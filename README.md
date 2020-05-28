@@ -1,5 +1,6 @@
 # Catan
 Catan JavaFX school project. 
+MAAK EEN BRANCH VOORDAT JE BEGINT.
 
 
 # EERSTE OPSTART: 
