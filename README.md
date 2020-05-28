@@ -16,5 +16,6 @@ Catan JavaFX school project.
 10. Open 'javafx', en dubbelklik op 
 
 # TROUBLESHOOTING:
-Check of in de pom.xml de executable op de goede locatie staat
-Klik weer op maven > projectnaam > plugins > 'clean', en dubbelklik op clean:clean. wacht to dit klaar is
+1. Check of in de pom.xml de executable op de goede locatie staat
+2. Klik weer op maven > projectnaam > plugins > 'clean', en dubbelklik op clean:clean. wacht to dit klaar is
+3. Je hoeft dus geen run configuration aan te maken, maar gewoon runnen via maven > javafx > javafx:run
