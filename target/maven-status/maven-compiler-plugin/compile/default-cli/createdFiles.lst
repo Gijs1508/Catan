@@ -1,0 +1,6 @@
+org\catan\Model\Chat.class
+org\catan\App.class
+org\catan\Helper\fxmlHelper.class
+org\catan\Model\ChatMessage.class
+org\catan\Controller\mainController.class
+org\catan\Controller\ChatController.class

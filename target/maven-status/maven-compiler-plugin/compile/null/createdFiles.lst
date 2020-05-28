@@ -1,3 +1,2 @@
-org\catan\Model\Chat.class
-org\catan\Controller\ChatController.class
-org\catan\Model\ChatMessage.class
+org\catan\Controller\LobbySchermController.class
+org\catan\Controller\JoinGameController.class
