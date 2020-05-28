@@ -1,0 +1,3 @@
+org\catan\Model\Chat.class
+org\catan\Controller\ChatController.class
+org\catan\Model\ChatMessage.class
