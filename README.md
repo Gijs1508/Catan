@@ -1,6 +1,8 @@
 # Catan
 Catan JavaFX school project. 
 
+MAAK EEN BRANCH VOORDAT JE BEGINT.
+
 
 # EERSTE OPSTART: 
 1. wacht tot de pom.xml gegenereed is
