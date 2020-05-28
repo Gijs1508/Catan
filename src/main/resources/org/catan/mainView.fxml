@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="620.0" prefWidth="1203.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.PrimaryController">
+   <children>
+      <AnchorPane layoutX="-110.0" layoutY="2.0">
+         <children>
+            <ImageView id="bg_img" fitHeight="753.0" fitWidth="1281.0" layoutX="113.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/Bord_met_water.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="start_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="657.0" layoutY="475.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="182.0" style="-fx-border-radius: 15px; -fx-border-color: black; -fx-background-color: white; -fx-background-radius: 15px;" text="Start game">
+               <font>
+                  <Font name="Myanmar Text" size="29.0" />
+               </font>
+            </Button>
+            <Button fx:id="join_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="657.0" layoutY="365.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="182.0" style="-fx-border-radius: 15px; -fx-border-color: black; -fx-background-color: white; -fx-background-radius: 15px;" text="Join game">
+               <font>
+                  <Font name="Myanmar Text" size="29.0" />
+               </font>
+            </Button>
+            <Button fx:id="rules_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="657.0" layoutY="577.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="182.0" style="-fx-border-radius: 15px; -fx-border-color: black; -fx-background-color: white; -fx-background-radius: 15px;" text="Rules">
+               <font>
+                  <Font name="Myanmar Text" size="29.0" />
+               </font>
+            </Button>
+            <ImageView id="logo_img" fitHeight="313.0" fitWidth="560.0" layoutX="456.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/Catan_glow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
