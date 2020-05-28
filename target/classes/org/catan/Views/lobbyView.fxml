@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e7e6e9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LobbySchermController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e7e6e9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LobbySchermController">
    <children>
       <ImageView fitHeight="810.0" fitWidth="1200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,7 +17,7 @@
       </ImageView>
       <VBox layoutX="331.0" layoutY="178.0" prefHeight="436.0" prefWidth="540.0" style="-fx-background-color: #cccc; -fx-background-radius: 5;" AnchorPane.topAnchor="178.0">
          <children>
-            <Pane prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
+            <Pane fx:id="player1pane" prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -27,7 +27,7 @@
                         <Image url="@../assets/img/playerRed.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#e74c3c" layoutX="150.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%PLAYER1NAME%">
+                  <Text fx:id="player1name" fill="#e74c3c" layoutX="150.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%PLAYER1NAME%">
                      <font>
                         <Font size="29.0" />
                      </font>
@@ -39,14 +39,14 @@
                   </Text>
                </children>
             </Pane>
-            <Pane prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
+            <Pane fx:id="player2pane" prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
                <children>
                   <ImageView fitHeight="75.0" fitWidth="40.0" layoutX="31.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/img/playerBlue.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#3498db" layoutX="150.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%PLAYER2NAME%">
+                  <Text fx:id="player2name" fill="#3498db" layoutX="150.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%PLAYER2NAME%">
                      <font>
                         <Font size="29.0" />
                      </font>
@@ -56,14 +56,14 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Pane>
-            <Pane prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
+            <Pane fx:id="player3pane" prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
                <children>
                   <ImageView fitHeight="75.0" fitWidth="40.0" layoutX="31.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/img/playerGreen.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#2ecc71" layoutX="150.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%PLAYER3NAME%">
+                  <Text fx:id="player3name" fill="#2ecc71" layoutX="150.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%PLAYER3NAME%">
                      <font>
                         <Font size="29.0" />
                      </font>
@@ -73,14 +73,14 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Pane>
-            <Pane prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
+            <Pane fx:id="player4pane" prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
                <children>
                   <ImageView fitHeight="75.0" fitWidth="40.0" layoutX="31.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/img/playerYellow.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#f4d03f" layoutX="150.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%PLAYER4NAME%">
+                  <Text fx:id="player4name" fill="#f4d03f" layoutX="150.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%PLAYER4NAME%">
                      <font>
                         <Font size="29.0" />
                      </font>
