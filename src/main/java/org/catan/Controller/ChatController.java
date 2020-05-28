@@ -7,6 +7,16 @@ import javafx.scene.text.Text;
 import org.catan.Model.Chat ;
 import org.catan.Model.ChatMessage ;
 
+/**
+ * Takes care of the user input and updates the chat.
+ *
+ * todo
+ * database
+ *
+ * @author Jeroen
+ * @version 0.1
+ */
+
 public class ChatController {
     Chat chat = new Chat(1); // get game ID
     @FXML
@@ -18,28 +28,16 @@ public class ChatController {
     @FXML
     private Text sender;
 
-    public ChatController() {
-
-    }
-
-    private void keyHandler() {
-
-    }
-
-    private void sendChatMessage(ChatMessage message) {
-
-    }
-
     @FXML
     private void sendMessage() {
-        if(messageField.getText().length() > 0 && messageField.getText().length() < 100){
+        if(messageField.getText().length() > 0 && messageField.getText().length() < 100) {
             ChatMessage message = new ChatMessage(messageField.getText());
             chat.addChatMessage(message);
             messageField.clear();
 
             updateChatView();
         }
-        else{ messageField.clear(); }
+        else { messageField.clear(); }
     }
 
     private void updateChatView() {

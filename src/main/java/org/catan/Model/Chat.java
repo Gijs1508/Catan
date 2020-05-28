@@ -2,6 +2,18 @@ package org.catan.Model;
 
 import java.util.ArrayList;
 
+/**
+ * Class that contains all chat messages.
+ * It turns those messages into a String so it can be displayed.
+ *
+ * todo
+ * database
+ * timestamps?
+ *
+ * @author Jeroen
+ * @version 0.5
+ */
+
 public class Chat {
 
     private int id;

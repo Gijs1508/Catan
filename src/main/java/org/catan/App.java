@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.catan.View.panes.LogsPane;
 
 import java.io.IOException;
 
@@ -17,7 +18,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Views/lobbyView"));
+//        scene = new Scene(loadFXML("Views/lobbyView"));
+        scene = new Scene(new LogsPane().getRoot());
         stage.setScene(scene);
         stage.show();
     }
