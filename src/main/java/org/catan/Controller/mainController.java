@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class mainController {
 
+    // Routes
     @FXML
     public void joinGame() throws IOException {
         App.setRoot("./Views/joinView");

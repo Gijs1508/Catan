@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="540.0" prefWidth="960.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.joinController">
    <children>
@@ -24,12 +25,22 @@
             <Font size="33.0" />
          </font>
       </TextField>
-      <Button fx:id="join_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="395.0" layoutY="440.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" styleClass="btn" text="Join game">
+      <Button fx:id="join_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="395.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleButtonJoinAction" prefHeight="60.0" prefWidth="150.0" styleClass="btn" text="Join game">
          <font>
             <Font name="Myanmar Text" size="25.0" />
          </font>
       </Button>
       <Button fx:id="back_to_menu_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="480.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="49.0" prefWidth="140.0" styleClass="btn" text="Terug naar menu">
+         <font>
+            <Font name="Myanmar Text" size="14.0" />
+         </font>
+      </Button>
+      <Text fx:id="foutmelding_text" fill="RED" layoutX="257.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="425.13671875">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Button fx:id="create_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="816.0" layoutY="482.0" mnemonicParsing="false" onAction="#createGame" prefHeight="49.0" prefWidth="140.0" styleClass="btn" stylesheets="@../assets/style/style.css" text="Create game">
          <font>
             <Font name="Myanmar Text" size="14.0" />
          </font>
