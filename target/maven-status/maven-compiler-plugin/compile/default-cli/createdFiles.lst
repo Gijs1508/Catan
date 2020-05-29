@@ -1,3 +1,5 @@
-org\catan\Controller\PrimaryController.class
-org\catan\Controller\SecondaryController.class
+org\catan\Controller\createController.class
+org\catan\Controller\joinController.class
 org\catan\App.class
+org\catan\Controller\mainController.class
+org\catan\Controller\rulesController.class
