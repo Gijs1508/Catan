@@ -1,13 +1,36 @@
 package org.catan.Controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import org.catan.App;
 
 import java.io.IOException;
 
 public class joinController {
-    @FXML
+    @FXML private TextField code_input;
+    @FXML private Text error_text;
+
+    // Routes
     public void backToMenu() throws IOException {
         App.setRoot("./views/mainView");
     }
+
+    public void createGame() throws IOException{
+        App.setRoot("./views/createView");
+    }
+
+    public void handleButtonJoinAction(ActionEvent actionEvent) throws IOException{
+        var code_text = code_input.getText();
+        // TODO Werner: check if game code exists + is open!
+        if(code_text.equals("testcode")){
+            //TODO Jeroen: Create route to gameview here :)
+            //App.setRoot("./Views/gameView");
+            System.out.println("haha leuk je code klopt");
+        } else {
+            error_text.setText("Code is onjuist!");
+        }
+    }
+
 }

@@ -19,17 +19,22 @@
                 <Image url="@../assets/img/Catan_glow.png" />
             </image>
         </ImageView>
-        <Button fx:id="create_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="366.0" layoutY="331.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="209.0" styleClass="btn" stylesheets="@../assets/style/style.css" text="Create game">
+        <Button fx:id="create_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="366.0" layoutY="331.0" mnemonicParsing="false" onAction="#createGame" prefHeight="91.0" prefWidth="209.0" styleClass="btn" stylesheets="@../assets/style/style.css" text="Create game">
             <font>
                 <Font name="Myanmar Text" size="29.0" />
             </font>
         </Button>
-      <Text layoutX="432.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code">
+      <Text fx:id="game_code_text" layoutX="397.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code" textAlignment="CENTER" wrappingWidth="146.45751953125">
          <font>
             <Font size="33.0" />
          </font>
       </Text>
       <Button fx:id="back_to_menu_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="463.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="49.0" prefWidth="140.0" styleClass="btn" stylesheets="@../assets/style/style.css" text="Terug naar menu">
+         <font>
+            <Font name="Myanmar Text" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="join_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="806.0" layoutY="472.0" mnemonicParsing="false" onAction="#joinGame" prefHeight="49.0" prefWidth="140.0" styleClass="btn" stylesheets="@../assets/style/style.css" text="Join game">
          <font>
             <Font name="Myanmar Text" size="14.0" />
          </font>
