@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VoorraadController">
+<AnchorPane prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.VoorraadController">
    <children>
       <Label layoutX="236.0" layoutY="8.0" text="Resources">
          <font>

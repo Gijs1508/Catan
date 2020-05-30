@@ -1,0 +1,4 @@
+org\catan\View\panes\LogPane.class
+org\catan\Controller\LobbySchermController.class
+org\catan\Controller\JoinGameController.class
+org\catan\Controller\LogController.class
