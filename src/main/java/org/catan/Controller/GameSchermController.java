@@ -38,16 +38,26 @@ public class GameSchermController {
     }
 
     @FXML
-    public void buildSettlement(MouseEvent mouseEvent) {
+    public void buildSettlement() {
     }
 
     @FXML
-    public void showVertex(MouseEvent mouseEvent) {
+    public void showVertex() {
     }
 
     @FXML
-    public void hideVertex(MouseEvent mouseEvent) {
+    public void hideVertex() {
     }
+
+    @FXML
+    public void upgradeSettlement() {
+    }
+
+    @FXML
+    public void buildRoad() {
+    }
+    
+
 
 //    private Speler getSpeler() {
 //        return Speler; // Dit moet worden gewijzigd

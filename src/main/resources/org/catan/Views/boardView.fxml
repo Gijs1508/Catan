@@ -790,6 +790,25 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
+            <VBox layoutX="3.0" layoutY="334.0" prefHeight="104.0" prefWidth="52.0">
+               <children>
+                  <ImageView fx:id="roadButton" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildRoad" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/UI/roadButton.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="settlementButton" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildSettlement" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/UI/buildButton.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="upgradeButton" fitWidth="52.0" onMouseClicked="#upgradeSettlement" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/UI/upgradeButton.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
          </children>
       </Pane>
    </children>
