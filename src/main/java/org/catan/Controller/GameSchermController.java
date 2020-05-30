@@ -56,7 +56,7 @@ public class GameSchermController {
     @FXML
     public void buildRoad() {
     }
-    
+
 
 
 //    private Speler getSpeler() {

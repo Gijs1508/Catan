@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="190.0" prefWidth="200.0" style="-fx-background-color: #a1aaa0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Log">
+<AnchorPane prefHeight="190.0" prefWidth="200.0" style="-fx-background-color: #a1aaa0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LogController">
    <children>
       <VBox fx:id="logsContainer" layoutX="4.0" layoutY="5.0" prefHeight="190.0" prefWidth="194.0">
          <children>
