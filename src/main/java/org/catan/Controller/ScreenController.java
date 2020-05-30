@@ -16,14 +16,12 @@ import java.util.ResourceBundle;
 
 public class ScreenController implements Initializable {
 
-    private AnchorPane screenView;
     private AnchorPane boardView;
     private AnchorPane stockView;
     private AnchorPane logView;
     private AnchorPane chatView;
     private AnchorPane tradeView;
 
-//    @FXML Pane screenPane;
     @FXML Pane boardPane;
     @FXML Pane stockPane;
     @FXML Pane scorePane;
@@ -35,7 +33,6 @@ public class ScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-//            screenView = (AnchorPane) App.loadFXML("Views/screenView");
             boardView = (AnchorPane) App.loadFXML("Views/boardView");
             stockView = (AnchorPane) App.loadFXML("Views/stockView");
             logView = (AnchorPane) App.loadFXML("Views/logView");
@@ -50,12 +47,6 @@ public class ScreenController implements Initializable {
         logPane.getChildren().setAll(logView);
         chatPane.getChildren().setAll(chatView);
         tradePane.getChildren().setAll(tradeView);
-
-//        screenView.getChildren().setAll(boardView, stockView, logView, chatView);
-//
-//        Scene scene = new Scene(screenView);
-//        App.getStage().setScene(scene);
-//        System.out.println("dwdwadadwa");
 
     }
 
