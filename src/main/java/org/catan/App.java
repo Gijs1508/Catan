@@ -32,6 +32,7 @@ public class App extends Application {
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         stage.setScene(scene);
 
+        stage.setResizable(false);
         stage.show();
     }
 

@@ -21,6 +21,8 @@ public class ScreenController implements Initializable {
     private AnchorPane logView;
     private AnchorPane chatView;
     private AnchorPane tradeView;
+    private AnchorPane diceView;
+    private AnchorPane scoreView;
 
     @FXML Pane boardPane;
     @FXML Pane stockPane;
@@ -38,6 +40,8 @@ public class ScreenController implements Initializable {
             logView = (AnchorPane) App.loadFXML("Views/logView");
             chatView = (AnchorPane) App.loadFXML("Views/chatView");
             tradeView = (AnchorPane) App.loadFXML("Views/tradeView");
+            diceView = (AnchorPane) App.loadFXML("Views/diceView");
+            scoreView = (AnchorPane) App.loadFXML("Views/scoreView");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,6 +52,8 @@ public class ScreenController implements Initializable {
         logPane.getChildren().setAll(logView);
         chatPane.getChildren().setAll(chatView);
         tradePane.getChildren().setAll(tradeView);
+        dicePane.getChildren().setAll(diceView);
+        scorePane.getChildren().setAll(scoreView);
 
     }
 
