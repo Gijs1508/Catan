@@ -10,6 +10,6 @@ public class rulesController {
     // Routes
     @FXML
     public void backToMenu() throws IOException {
-        App.setRoot("./views/mainView");
+        App.setRoot("./Views/mainViewTrade");
     }
 }

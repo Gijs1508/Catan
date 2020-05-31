@@ -13,7 +13,7 @@ public class createController {
 
     // Routes
     public void backToMenu() throws IOException {
-        App.setRoot("./views/mainView");
+        App.setRoot("./views/mainViewTrade");
     }
     public void joinGame() throws IOException{
         App.setRoot("./views/joinView");
