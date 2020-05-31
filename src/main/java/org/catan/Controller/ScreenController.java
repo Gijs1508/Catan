@@ -46,7 +46,6 @@ public class ScreenController implements Initializable {
             e.printStackTrace();
         }
 
-
         boardPane.getChildren().setAll(boardView);
         stockPane.getChildren().setAll(stockView);
         logPane.getChildren().setAll(logView);
@@ -54,7 +53,6 @@ public class ScreenController implements Initializable {
         tradePane.getChildren().setAll(tradeView);
         dicePane.getChildren().setAll(diceView);
         scorePane.getChildren().setAll(scoreView);
-
     }
 
 
