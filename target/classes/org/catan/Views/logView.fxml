@@ -2,16 +2,12 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="190.0" prefWidth="200.0" style="-fx-background-color: #a1aaa0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LogController">
+<AnchorPane prefHeight="223.0" prefWidth="230.0" style="-fx-background-color: #e5e4e7;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LogController">
    <children>
-      <VBox fx:id="logsContainer" layoutX="4.0" layoutY="5.0" prefHeight="190.0" prefWidth="194.0">
+      <VBox fx:id="logsContainer" layoutX="4.0" layoutY="5.0" prefHeight="215.0" prefWidth="224.0">
          <children>
             <GridPane fx:id="log1" prefHeight="25.0" prefWidth="194.0">
                <children>

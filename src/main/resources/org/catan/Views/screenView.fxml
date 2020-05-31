@@ -8,12 +8,12 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.ScreenController">
     <children>
-        <Pane fx:id="scorePane" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: white;" />
-        <Pane fx:id="stockPane" layoutY="500.0" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: blue;" />
-        <Pane fx:id="tradePane" layoutX="600.0" layoutY="500.0" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: purple;" />
-        <Pane fx:id="logPane" layoutX="300.0" prefHeight="190.0" prefWidth="200.0" style="-fx-background-color: pink;" />
-        <Pane fx:id="chatPane" layoutX="300.0" layoutY="190.0" prefHeight="190.0" prefWidth="200.0" style="-fx-background-color: green;" />
-        <Pane fx:id="dicePane" layoutX="300.0" layoutY="380.0" prefHeight="120.0" prefWidth="200.0" style="-fx-background-color: white;" />
-        <Pane fx:id="boardPane" layoutX="500.0" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: lightblue;" />
+        <Pane fx:id="scorePane" prefHeight="590.0" prefWidth="200.0" style="-fx-background-color: yellow;" />
+        <Pane fx:id="stockPane" layoutY="590.0" prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: blue;" />
+        <Pane fx:id="tradePane" layoutX="600.0" layoutY="590.0" prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: purple;" />
+        <Pane fx:id="logPane" layoutX="200.0" prefHeight="223.0" prefWidth="230.0" style="-fx-background-color: pink;" />
+        <Pane fx:id="chatPane" layoutX="200.0" layoutY="223.0" prefHeight="223.0" prefWidth="230.0" style="-fx-background-color: green;" />
+        <Pane fx:id="dicePane" layoutX="200.0" layoutY="446.0" prefHeight="144.0" prefWidth="230.0" style="-fx-background-color: orange;" />
+        <Pane fx:id="boardPane" layoutX="430.0" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: lightblue;" />
     </children>
 </AnchorPane>

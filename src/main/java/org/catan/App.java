@@ -30,6 +30,7 @@ public class App extends Application {
         scene = new Scene(App.loadFXML("Views/screenView"));
         stage.setScene(scene);
 
+        stage.setResizable(false);
         stage.show();
     }
 
