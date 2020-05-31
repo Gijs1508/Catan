@@ -31,7 +31,7 @@ public class ScreenController implements Initializable {
     @FXML Pane dicePane;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle){
         try {
             boardView = (AnchorPane) App.loadFXML("Views/boardView");
             stockView = (AnchorPane) App.loadFXML("Views/stockView");
@@ -41,6 +41,7 @@ public class ScreenController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         boardPane.getChildren().setAll(boardView);
         stockPane.getChildren().setAll(stockView);

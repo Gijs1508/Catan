@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane id="boardPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #54B9EB;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
+<AnchorPane id="boardPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #54B9EB;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
    <children>
       <Polygon fx:id="harbour19" fill="#f1db69" layoutX="127.0" layoutY="82.0" points="-60.6, 161.4, 73.8, 399.6, 387.6, 399.6, 520.8, 161.4, 378.6, -70.2, 73.8, -70.2" scaleX="0.9" scaleY="0.9" stroke="#fff5c6" strokeType="INSIDE" strokeWidth="0.0" />
       <HBox alignment="CENTER" layoutY="28.0" prefHeight="104.0" prefWidth="700.0" spacing="23.0">

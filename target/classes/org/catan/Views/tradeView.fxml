@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TradeController">
+<AnchorPane prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.TradeController">
     <children>
       <Pane layoutX="16.0" layoutY="58.0" prefHeight="228.0" prefWidth="485.0" style="-fx-background-color: #cccc; -fx-background-radius: 30px;">
          <children>

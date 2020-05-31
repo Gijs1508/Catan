@@ -27,8 +27,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         this.stage = stage;
 
-//        scene = new Scene(App.loadFXML("Views/screenView"));
-        scene = new Scene(loadFXML("Views/mainView"));
+        scene = new Scene(loadFXML("Views/screenView"));
+//        scene = new Scene(loadFXML("Views/mainView"));
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         stage.setScene(scene);
 
