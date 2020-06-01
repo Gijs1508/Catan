@@ -288,7 +288,7 @@ public class GameSchermController implements Initializable {
     private ArrayList<Label> tileNumNodeList;
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList;
-
+    private BuildSettlementController build;
 
     public GameSchermController() {
     }
@@ -347,7 +347,7 @@ public class GameSchermController implements Initializable {
     public void endTurn() {
     }
 
-    @FXML
+    @FXML // When you hover over a circle when road is selected
     public void emphasizeRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
         // Code that checks whether the road can be placed
@@ -448,7 +448,7 @@ public class GameSchermController implements Initializable {
         ArrayList<Polygon> tiles = addAllTilesToArray();
         ArrayList<Label> labels = addAllTileNumbersToArray();
         RandomizeBoard.setRandomTiles(tiles, labels);
-
+        this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, roadNodeList);
         //tile1.setFill(Color.BROWN);
         initializeButtons();
     }
