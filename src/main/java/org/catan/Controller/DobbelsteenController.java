@@ -9,6 +9,7 @@ public class DobbelsteenController {
 
 //    private Dobbelsteen dobbelsteen_1;
 //    private Dobbelsteen dobbelsteen_2;
+    private LogController logController = new LogController();
 
     public DobbelsteenController() {
 
@@ -36,5 +37,6 @@ public class DobbelsteenController {
 
     @FXML
     public void throwDie() {
+        logController.logRollEvent("2", "4");
     }
 }

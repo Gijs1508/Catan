@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.catan.App;
+import org.catan.View.panes.LogsPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,7 +40,8 @@ public class ScreenController implements Initializable {
         try {
             boardView = (AnchorPane) App.loadFXML("Views/boardView");
             stockView = (AnchorPane) App.loadFXML("Views/stockView");
-            logView = (AnchorPane) App.loadFXML("Views/logView");
+//            logView = (AnchorPane) App.loadFXML("Views/logView");
+            logView = new LogsPane().getRoot();
             chatView = (AnchorPane) App.loadFXML("Views/chatView");
             tradeView = (AnchorPane) App.loadFXML("Views/tradeView");
             diceView = (AnchorPane) App.loadFXML("Views/diceView");
@@ -51,6 +53,7 @@ public class ScreenController implements Initializable {
 
         boardPane.getChildren().setAll(boardView);
         stockPane.getChildren().setAll(stockView);
+//        logPane.getChildren().setAll(logView);
         logPane.getChildren().setAll(logView);
         chatPane.getChildren().setAll(chatView);
         tradePane.getChildren().setAll(tradeView);

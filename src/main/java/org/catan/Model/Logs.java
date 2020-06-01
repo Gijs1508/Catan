@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class Logs {
 
-    private ArrayList<Log> logs;
+    private ArrayList<Log> logs = new ArrayList<>();
     private HashMap<String, String> imgPath = new HashMap<>();
     private HashMap<String, String> textEvents = new HashMap<>();
     private HashMap<String, String> imgEvents = new HashMap<>();
@@ -28,23 +28,24 @@ public class Logs {
 
     public void initialize(){
         imgPath = new HashMap<>() {{
-            put("1", "org/catan/assets/img/die/die1.png");
-            put("2", "org/catan/assets/img/die/die2.png");
-            put("3", "org/catan/assets/img/die/die3.png");
-            put("4", "org/catan/assets/img/die/die4.png");
-            put("5", "org/catan/assets/img/die/die5.png");
-            put("6", "org/catan/assets/img/die/die6.png");
+            put("1", "assets/img/die/die1.png");
+            put("2", "assets/img/die/die2.png");
+            put("3", "assets/img/die/die3.png");
+            put("4", "assets/img/die/die4.png");
+            put("5", "assets/img/die/die5.png");
+            put("6", "assets/img/die/die6.png");
 
-            put("brick", "org/catan/assets/img/brickSmall.png");
-            put("ore", "org/catan/assets/img/oreSmall.png");
-            put("sheep", "org/catan/assets/img/sheepSmall.png");
-            put("wheat", "org/catan/assets/img/wheatSmall.png");
-            put("wood", "org/catan/assets/img/woodSmall.png");
+            put("brick", "assets/img/brickSmall.png");
+            put("ore", "assets/img/oreSmall.png");
+            put("sheep", "assets/img/sheepSmall.png");
+            put("wheat", "assets/img/wheatSmall.png");
+            put("wood", "assets/img/woodSmall.png");
         }};
 
         textEvents = new HashMap<>() {{
             put("stole", "%PLAYER% steals a card from %PLAYER2%.");
             put("endturn", "%PLAYER% ends turn.");
+            put("startturn", "It is now %PLAYER%'s turn");
             put("upgrade", "%PLAYER% upgrades a settlement.");
             put("road", "%PLAYER% places a road.");
             put("trade", "%PLAYER% traded with %PLAYER2.");

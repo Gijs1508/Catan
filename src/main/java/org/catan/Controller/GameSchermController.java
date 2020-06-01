@@ -267,6 +267,10 @@ public class GameSchermController implements Initializable {
 
     }
 
+    @FXML
+    public void endTurn() {
+
+    }
 
     // TODO Jan
     @FXML
@@ -317,10 +321,6 @@ public class GameSchermController implements Initializable {
         circle.setFill(Paint.valueOf("#ffffffa8"));
         circle.setScaleX(1);
         circle.setScaleY(1);
-    }
-
-    @FXML
-    public void endTurn() {
     }
 
     @FXML
