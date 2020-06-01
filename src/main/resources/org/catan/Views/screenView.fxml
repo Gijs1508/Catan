@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.ScreenController">
@@ -12,8 +9,9 @@
         <Pane fx:id="stockPane" layoutY="590.0" prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: blue;" />
         <Pane fx:id="tradePane" layoutX="600.0" layoutY="590.0" prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: purple;" />
         <Pane fx:id="logPane" prefHeight="144.0" prefWidth="430.0" style="-fx-background-color: pink;" />
-        <Pane fx:id="chatPane" layoutX="200.0" layoutY="144.0" prefHeight="302.0" prefWidth="230.0" style="-fx-background-color: green;" />
+        <Pane fx:id="chatPane" layoutX="200.0" layoutY="252.0" prefHeight="194.0" prefWidth="230.0" style="-fx-background-color: green;" />
         <Pane fx:id="dicePane" layoutX="200.0" layoutY="446.0" prefHeight="144.0" prefWidth="230.0" style="-fx-background-color: orange;" />
         <Pane fx:id="boardPane" layoutX="430.0" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: lightblue;" />
+        <Pane fx:id="costPane" layoutX="200.0" layoutY="143.0" prefHeight="109.0" prefWidth="230.0" style="-fx-background-color: grey;" />
     </children>
 </AnchorPane>
