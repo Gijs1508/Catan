@@ -21,7 +21,7 @@ public class Log {
     private String eventType;
     private String eventString;
 
-    Speler player = new Speler("Jeroen");
+    Speler player = new Speler();
 
 
     public Log(String eventType){

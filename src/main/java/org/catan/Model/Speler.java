@@ -9,8 +9,7 @@ public class Speler {
     private Inventaris spelerInventaris;
 //    private ArrayList<SpelObject> spelerObjecten = new ArrayList<SpelObject>();
 
-    public Speler(String naam) {
-        this.naam = naam;
+    public Speler() {
         this.kleur = "";    //TODO
         this.spelerInventaris = new Inventaris();
     }
