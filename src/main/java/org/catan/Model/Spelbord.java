@@ -11,7 +11,6 @@ public class Spelbord {
 
     public Spelbord() {
 
-
     }
 
     public void setTiles() {
