@@ -7,6 +7,7 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -22,6 +23,13 @@ import java.util.ResourceBundle;
 
 public class GameSchermController implements Initializable {
 
+
+    @FXML private ImageView roadButton;
+    @FXML private ImageView settlementButton;
+    @FXML private ImageView upgradeButton;
+    @FXML private ImageView roadButtonClose;
+    @FXML private ImageView settlementButtonClose;
+    @FXML private ImageView upgradeButtonClose;
 
     @FXML private Circle vertex1;
     @FXML private Circle vertex2;
@@ -228,7 +236,7 @@ public class GameSchermController implements Initializable {
     private int aantalSpelers;
 //    private Spelbord spelbord;
 //    private Spel spel;
-    private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // later in hashmap met bijbehorende class (of setter gebruiken)?
+    private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Label> tileNumNodeList;
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
@@ -259,14 +267,24 @@ public class GameSchermController implements Initializable {
 
     }
 
+
+    // TODO Jan
     @FXML
-    public void buildSettlement() {
+    public void buildSettlement(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
+        circle.getLayoutX();                             // Information you might need for the settlement/road
+        circle.getLayoutY();                             // Use it as a parameter (so the logic isn't in this controller)
     }
+
+    @FXML
+    public void buildRoad(MouseEvent mouseEvent) {
+    }
+    
 
     @FXML
     public void emphasizeRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
-        // Hier moet code komen dat controleert of er op de road spot geplaatst kan worden
+        // Code that checks whether the road can be placed
         // RoadSpot roadSpot = getAssociatedRoadSpot(circle)
         // if (roadSpot.isValid() {
         circle.setFill(Paint.valueOf("#c89eff"));
@@ -285,7 +303,7 @@ public class GameSchermController implements Initializable {
     @FXML
     public void emphasizeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
-        // Hier moet code komen dat controleert of er op de vertex geplaatst kan worden
+        // Code that checks whether the settlement can be placed
         // Vertex vertex = getAssociatedVertex(circle)
         // if (vertex.isValid() {
         circle.setFill(Color.WHITE);
@@ -301,11 +319,6 @@ public class GameSchermController implements Initializable {
         circle.setScaleY(1);
     }
 
-
-    @FXML
-    public void buildRoad() {
-    }
-
     @FXML
     public void endTurn() {
     }
@@ -315,6 +328,17 @@ public class GameSchermController implements Initializable {
         for (int i = 0; i < roadSpotNodeList.size(); i++) {
             roadSpotNodeList.get(i).setVisible(true);
         }
+        roadButton.setVisible(false);
+        roadButtonClose.setVisible(true);
+    }
+
+    @FXML
+    public void buildRoadBtnCloseClicked() {
+        for (int i = 0; i < roadSpotNodeList.size() ; i++) {
+            roadSpotNodeList.get(i).setVisible(false);
+        }
+        roadButton.setVisible(true);
+        roadButtonClose.setVisible(false);
     }
 
     @FXML
@@ -322,17 +346,44 @@ public class GameSchermController implements Initializable {
         for (int i = 0; i < vertexNodeList.size(); i++) {
             vertexNodeList.get(i).setVisible(true);
         }
+        settlementButton.setVisible(false);
+        settlementButtonClose.setVisible(true);
+    }
+
+    @FXML
+    public void buildSettlementBtnCloseClicked() {
+        for (int i = 0; i < vertexNodeList.size() ; i++) {
+            vertexNodeList.get(i).setVisible(false);
+        }
+        settlementButton.setVisible(true);
+        settlementButtonClose.setVisible(false);
     }
 
     @FXML
     public void upgradeSettlementBtnClicked() {
-
+        /* TODO  show all villages that can be upgraded*/
+        for (int i = 0; i < vertexNodeList.size(); i++) {
+            vertexNodeList.get(i).setVisible(true);
+        }
+        upgradeButton.setVisible(false);
+        upgradeButtonClose.setVisible(true);
     }
+
+    @FXML
+    public void upgradeSettlementBtnCloseClicked() {
+        for (int i = 0; i < vertexNodeList.size(); i++) {
+            vertexNodeList.get(i).setVisible(false);
+        }
+        upgradeButton.setVisible(true);
+        upgradeButtonClose.setVisible(false);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializePlacementSpots();
         initializeRoads();
+        initializeButtons();
     }
 
     private void initializePlacementSpots(){
@@ -380,6 +431,12 @@ public class GameSchermController implements Initializable {
         for (int i = 0; i < roadNodeList.size(); i++) {
             roadNodeList.get(i).setVisible(false);
         }
+    }
+
+    private void initializeButtons() {
+        upgradeButtonClose.setVisible(false);
+        settlementButtonClose.setVisible(false);
+        roadButtonClose.setVisible(false);
     }
 
 //    private Speler getSpeler() {
