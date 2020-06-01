@@ -1,141 +1,130 @@
 package org.catan.Controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+public class TradeController {
 
-public class tradeController{
-
-    // FXML fields
     @FXML
-    private Text woodAmount;
+    private Label giveWheatCount;
     @FXML
-    private Label takeWoodCount;
+    private Label takeWheatCount;
     @FXML
     private Label giveWoodCount;
     @FXML
-    private Text brickAmount;
+    private Label takeWoodCount;
     @FXML
-    private Text oreAmount;
+    private Label giveOreCount;
     @FXML
-    private Text sheepAmount;
+    private Label takeOreCount;
     @FXML
-    private Text wheatAmount;
-
-    private static Player tradingPlayer;
-    private Inventory playerInventory;
-    private int[] playerCards;
-    private int[] temp;
-
-    public static void setTradingPlayer(Player player){
-        tradingPlayer = player;
-        System.out.println(tradingPlayer.getName());
-    }
-
-    private void setTradingInventory(Player player){
-        playerInventory = player.getPlayerInventory();
-        playerCards = playerInventory.getCards();
-        temp = playerCards.clone();
-    }
-
-    private void raiseResource(Text text){
-        text.setText(Integer.toString(Integer.parseInt(text.getText()) + 1));
-    }
-
-    private void lowerResource(Text text){
-        text.setText(Integer.toString(Integer.parseInt(text.getText()) - 1));
-    }
-
-    private void raiseResource(Label text){
-        text.setText(Integer.toString(Integer.parseInt(text.getText()) + 1));
-    }
-
-    private void lowerResource(Label text){
-        text.setText(Integer.toString(Integer.parseInt(text.getText()) - 1));
-    }
-
-    // Routes
+    private Label giveSheepCount;
     @FXML
-    public void giveMoreWheat(MouseEvent mouseEvent) {
+    private Label takeSheepCount;
+    @FXML
+    private Label giveBrickCount;
+    @FXML
+    private Label takeBrickCount;
+
+
+    @FXML
+    public void bankTrade() {
     }
 
-    public void takeMoreWheat(MouseEvent mouseEvent) {
+    @FXML
+    public void playerTrade() {
     }
 
-    public void giveMoreWood(MouseEvent mouseEvent) {
-        if(temp[0] > 0){
-            lowerResource(woodAmount);
-            raiseResource(giveWoodCount);
-            temp[0] -= 1;
-            updateInventory();
-        }
+    @FXML
+    public void buyDevelopmentCard() {
     }
 
-    public void takeMoreWood(MouseEvent mouseEvent) {
-        if(Integer.parseInt(giveWoodCount.getText()) > 0){
-            raiseResource(woodAmount);
-            lowerResource(giveWoodCount);
-            temp[0] += 1;
-            updateInventory();
-        }
+    @FXML
+    public void sendTrade() {
     }
 
-    public void giveMoreBrick(MouseEvent mouseEvent) {
-    }
 
-    public void takeMoreBrick(MouseEvent mouseEvent) {
-    }
-
-    public void giveMoreSheep(MouseEvent mouseEvent) {
-    }
-
-    public void takeMoreSheep(MouseEvent mouseEvent) {
-    }
-
-    public void giveMoreOre(MouseEvent mouseEvent) {
-    }
-
-    public void takeMoreOre(MouseEvent mouseEvent) {
-    }
-
-    public void sendTrade(MouseEvent mouseEvent) {
-    }
-
-    public void resetTrade(MouseEvent mouseEvent) {
-        setTradingInventory(tradingPlayer);
-        // Reset to match player inventory
-        System.out.println(temp[0]);
-        woodAmount.setText(Integer.toString(playerCards[0]));
+    @FXML
+    public void resetTrade() {
         takeWoodCount.setText("0");
         giveWoodCount.setText("0");
-        brickAmount.setText(Integer.toString(playerCards[1]));
-        oreAmount.setText(Integer.toString(playerCards[2]));
-        sheepAmount.setText(Integer.toString(playerCards[3]));
-        wheatAmount.setText(Integer.toString(playerCards[4]));
+        takeBrickCount.setText("0");
+        giveBrickCount.setText("0");
+        takeOreCount.setText("0");
+        giveOreCount.setText("0");
+        takeSheepCount.setText("0");
+        giveSheepCount.setText("0");
+        takeWheatCount.setText("0");
+        giveWheatCount.setText("0");
     }
 
-    public void bankTrade(KeyEvent keyEvent) {
+    @FXML
+    public void giveMoreWood() {
+        int wood = getInventoryCards()[0];
+        if(resourceToInt(giveWoodCount) < wood){
+            giveWoodCount.setText(raiseResource(giveWoodCount));
+        }
     }
 
-    public void playerTrade(KeyEvent keyEvent) {
+    @FXML
+    public void takeMoreWood() {
+        takeWoodCount.setText(raiseResource(takeWoodCount));
     }
 
-    //Update player inventory
-    public void updateInventory(){
-        System.out.println("Inventory update");
-        woodAmount.setText(Integer.toString(temp[0]));
-        brickAmount.setText(Integer.toString(temp[1]));
-        oreAmount.setText(Integer.toString(temp[2]));
-        sheepAmount.setText(Integer.toString(temp[3]));
-        wheatAmount.setText(Integer.toString(temp[4]));
+    @FXML
+    public void giveMoreBrick() {
+    }
+
+    @FXML
+    public void takeMoreBrick() {
+        takeBrickCount.setText(raiseResource(takeBrickCount));
+    }
+
+    @FXML
+    public void giveMoreSheep() {
+    }
+
+    @FXML
+    public void takeMoreSheep() {
+        takeSheepCount.setText(raiseResource(takeSheepCount));
+    }
+
+    @FXML
+    public void giveMoreOre() {
+    }
+
+    @FXML
+    public void takeMoreOre() {
+        takeOreCount.setText(raiseResource(takeOreCount));
+    }
+
+    @FXML
+    public void giveMoreWheat() {
+    }
+
+    @FXML
+    public void takeMoreWheat() {
+        takeWheatCount.setText(raiseResource(takeWheatCount));
+    }
+
+    private String raiseResource(Label resource){
+        return Integer.toString(resourceToInt(resource) + 1);
+    }
+
+    private String lowerResource(Label resource){
+        return Integer.toString(resourceToInt(resource) + 1);
+    }
+
+    private int resourceToInt(Label resource){
+        return Integer.parseInt(resource.getText());
+    }
+
+    private int[] getInventoryCards(){
+        return Player.getMainPlayer().getPlayerInventory().getCards();
     }
 
 }
