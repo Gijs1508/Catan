@@ -8,7 +8,7 @@ import org.catan.App;
 
 import java.io.IOException;
 
-public class joinController {
+public class JoinController {
     @FXML private TextField code_input;
     @FXML private Text error_text;
 

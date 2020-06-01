@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -30,6 +31,8 @@ public class App extends Application {
         scene = new Scene(loadFXML("Views/screenView"));
 //        scene = new Scene(loadFXML("Views/mainView"));
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
+        stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
+        stage.setTitle("Kolonisten van Catan");
         stage.setScene(scene);
 
         stage.setResizable(false);

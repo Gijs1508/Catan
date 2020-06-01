@@ -6,7 +6,7 @@ import org.catan.App;
 
 import java.io.IOException;
 
-public class rulesController {
+public class RulesController {
     // Routes
     @FXML
     public void backToMenu() throws IOException {
