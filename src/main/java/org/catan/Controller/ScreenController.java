@@ -23,20 +23,20 @@ public class ScreenController implements Initializable {
     private AnchorPane tradeView;
     private AnchorPane diceView;
     private AnchorPane scoreView;
+    private AnchorPane costView;
 
-//    @FXML Pane screenPane;
-    @FXML Pane boardPane;
-    @FXML Pane stockPane;
-    @FXML Pane scorePane;
-    @FXML Pane chatPane;
-    @FXML Pane logPane;
-    @FXML Pane tradePane;
-    @FXML Pane dicePane;
+    @FXML private Pane boardPane;
+    @FXML private Pane stockPane;
+    @FXML private Pane scorePane;
+    @FXML private Pane chatPane;
+    @FXML private Pane logPane;
+    @FXML private Pane tradePane;
+    @FXML private Pane dicePane;
+    @FXML private Pane costPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-//            screenView = (AnchorPane) App.loadFXML("Views/screenView");
             boardView = (AnchorPane) App.loadFXML("Views/boardView");
             stockView = (AnchorPane) App.loadFXML("Views/stockView");
             logView = (AnchorPane) App.loadFXML("Views/logView");
@@ -44,6 +44,7 @@ public class ScreenController implements Initializable {
             tradeView = (AnchorPane) App.loadFXML("Views/tradeView");
             diceView = (AnchorPane) App.loadFXML("Views/diceView");
             scoreView = (AnchorPane) App.loadFXML("Views/scoreView");
+            costView = (AnchorPane) App.loadFXML("Views/costView");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,12 +56,7 @@ public class ScreenController implements Initializable {
         tradePane.getChildren().setAll(tradeView);
         dicePane.getChildren().setAll(diceView);
         scorePane.getChildren().setAll(scoreView);
-
-//        screenView.getChildren().setAll(boardView, stockView, logView, chatView);
-//
-//        Scene scene = new Scene(screenView);
-//        App.getStage().setScene(scene);
-//        System.out.println("dwdwadadwa");
+        costPane.getChildren().setAll(costView);
 
     }
 

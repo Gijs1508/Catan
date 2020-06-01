@@ -41,3 +41,16 @@ target/classes/org/catan/assets/img/gameobjects/city_green.png
 target/classes/org/catan/assets/img/gameobjects/city_blue.png
 target/classes/org/catan/assets/img/brick.png
 target/classes/org/catan/App.class
+target/classes/org/catan/Views/screenView.fxml
+target/classes/org/catan/Views/costView.fxml
+target/classes/org/catan/Views/chatView.fxml
+target/classes/org/catan/Model/Logs.class
+target/classes/org/catan/Model/Logs$3.class
+target/classes/org/catan/Model/Logs$2.class
+target/classes/org/catan/Model/Logs$1.class
+target/classes/org/catan/Model/Chat.class
+target/classes/org/catan/Controller/ScreenController.class
+target/classes/org/catan/Controller/LobbySchermController.class
+target/classes/org/catan/Controller/ChatController.class
+target/classes/org/catan/assets/img/costs.png
+target/classes/META-INF/Catan.kotlin_module
