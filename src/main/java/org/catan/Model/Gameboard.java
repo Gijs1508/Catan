@@ -6,7 +6,7 @@ public class Gameboard {
     private HashMap tiles;
     private HashMap settlements;
     private HashMap players;
-    //    private Thief thief; todo
+    private Thief thief;
     private HashMap harbour;
 
     public Gameboard() {
