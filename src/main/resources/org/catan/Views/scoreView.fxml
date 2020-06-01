@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="446.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.ScoreController">
+   <children>
+      <VBox layoutY="76.0" prefHeight="370.0" prefWidth="200.0" style="-fx-background-color: white;">
+         <children>
+            <Pane prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="52.0" fitWidth="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/trophy.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player1points" layoutX="49.0" layoutY="45.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="14.0" layoutX="91.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/wall_red.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player1roads" layoutX="91.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="player1villages" layoutX="124.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="36.0" fitWidth="47.0" layoutX="107.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/village_red.png" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #e74c3c;">
+                     <children>
+                        <Label fx:id="player1name" layoutX="14.0" layoutY="4.0" text="\%PLAYER1%">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="36.0" fitWidth="47.0" layoutX="150.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/city_red.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player1cities" layoutX="167.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="52.0" fitWidth="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/trophy.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player2points" layoutX="49.0" layoutY="45.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="14.0" layoutX="91.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/wall_blue.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player2roads" layoutX="91.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="player2villages" layoutX="124.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="36.0" fitWidth="47.0" layoutX="107.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/village_blue.png" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #3498db;">
+                     <children>
+                        <Label fx:id="player2name" layoutX="14.0" layoutY="4.0" text="\%PLAYER2%">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="36.0" fitWidth="47.0" layoutX="150.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/city_blue.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player2cities" layoutX="167.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="52.0" fitWidth="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/trophy.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player3points" layoutX="49.0" layoutY="45.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="14.0" layoutX="91.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/wall_green.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player3roads" layoutX="91.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="player3villages" layoutX="124.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="36.0" fitWidth="47.0" layoutX="107.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/village_green.png" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #2ecc71;">
+                     <children>
+                        <Label fx:id="player3name" layoutX="14.0" layoutY="4.0" text="\%PLAYER3%">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="36.0" fitWidth="47.0" layoutX="150.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/city_green.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player3cities" layoutX="167.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="52.0" fitWidth="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/trophy.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player4points" layoutX="49.0" layoutY="45.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="14.0" layoutX="91.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/wall_yellow.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player4roads" layoutX="91.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="player4villages" layoutX="124.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="36.0" fitWidth="47.0" layoutX="107.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/village_yellow.png" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #f4d03f;">
+                     <children>
+                        <Label fx:id="player4name" layoutX="14.0" layoutY="4.0" text="\%PLAYER4%">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="36.0" fitWidth="47.0" layoutX="150.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/gameobjects/city_yellow.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="player4cities" layoutX="167.0" layoutY="70.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <Pane prefHeight="76.0" prefWidth="200.0" style="-fx-background-color: white;">
+         <children>
+            <Pane prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #d1d1d1;">
+               <children>
+                  <Label fx:id="player1name1" layoutX="14.0" layoutY="4.0" text="Bank">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="14.0" layoutY="45.0" text="Development cards:" />
+            <Label layoutX="141.0" layoutY="40.0" text="25">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

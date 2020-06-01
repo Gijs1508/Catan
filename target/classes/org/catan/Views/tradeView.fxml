@@ -1,306 +1,356 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TradeController">
+<AnchorPane prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.TradeController">
     <children>
-      <Pane layoutX="16.0" layoutY="58.0" prefHeight="228.0" prefWidth="485.0" style="-fx-background-color: #cccc; -fx-background-radius: 30px;">
+      <Pane layoutX="16.0" layoutY="39.0" prefHeight="166.0" prefWidth="55.0">
+         <children>
+            <Pane layoutX="6.0" layoutY="14.0" prefHeight="40.0" prefWidth="40.0">
+               <children>
+                  <Rectangle arcHeight="18.0" arcWidth="18.0" fill="DODGERBLUE" height="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #2ecc71;" width="40.0" />
+                  <ImageView fitHeight="40.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/whiteCheckmark.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="35.0" layoutX="3.0" layoutY="3.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/whiteCross.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="6.0" layoutY="63.0" prefHeight="40.0" prefWidth="40.0">
+               <children>
+                  <Rectangle arcHeight="18.0" arcWidth="18.0" fill="DODGERBLUE" height="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #3498db;" width="40.0" />
+                  <ImageView fitHeight="40.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/whiteCheckmark.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="35.0" layoutX="3.0" layoutY="3.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/whiteCross.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="6.0" layoutY="112.0" prefHeight="40.0" prefWidth="40.0">
+               <children>
+                  <Rectangle arcHeight="18.0" arcWidth="18.0" fill="DODGERBLUE" height="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #e74c3c;" width="40.0" />
+                  <ImageView fitHeight="40.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/whiteCheckmark.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="35.0" layoutX="3.0" layoutY="3.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/whiteCross.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children></Pane>
+      <Pane layoutX="73.0" layoutY="42.0" prefHeight="160.0" prefWidth="424.0" style="-fx-background-color: #cccc; -fx-background-radius: 30px;">
          <children>
             <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="16.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/minus.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="16.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="16.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/plus.png" />
                </image>
             </ImageView>
+            <HBox layoutX="54.0" prefHeight="160.0" prefWidth="369.0" spacing="15.0">
+               <children>
+                  <Pane prefHeight="160.0" prefWidth="44.0">
+                     <children>
+                        <Label fx:id="giveWheatCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="giveWheatArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/arrowUp.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="2.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/wheatSmall.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="takeWheatArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/arrowDown.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label fx:id="takeWheatCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="160.0" prefWidth="44.0">
+                     <children>
+                        <Label fx:id="giveWoodCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="giveWoodArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../assets/img/arrowUp.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="2.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/woodSmall.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="takeWoodArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../assets/img/arrowDown.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="takeWoodCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="160.0" prefWidth="44.0">
+                     <children>
+                        <Label fx:id="giveBrickCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="giveBrickArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../assets/img/arrowUp.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="2.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/brickSmall.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="takeBrickArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../assets/img/arrowDown.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="takeBrickCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="160.0" prefWidth="44.0">
+                     <children>
+                        <Label fx:id="giveSheepCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="giveSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../assets/img/arrowUp.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="2.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/sheepSmall.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="takeSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../assets/img/arrowDown.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="takeSheepCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="160.0" prefWidth="44.0">
+                     <children>
+                        <Label fx:id="giveOreCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="giveOreArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../assets/img/arrowUp.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="2.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/oreSmall.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="takeOreArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../assets/img/arrowDown.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="takeOreCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="160.0" prefWidth="73.0">
+                     <children>
+                        <ImageView fx:id="sendTradeBtn" fitHeight="92.0" fitWidth="60.0" layoutX="1.0" layoutY="20.0" onMouseClicked="#sendTrade" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/checkmark.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="resetTradeBtn" fitHeight="86.0" fitWidth="55.0" layoutX="4.0" layoutY="80.0" onMouseClicked="#resetTrade" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/cross.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
          </children></Pane>
-        <Label layoutX="60.0" layoutY="9.0" text="Trade">
+        <Label layoutX="271.0" prefHeight="45.0" prefWidth="77.0" text="Trade">
             <font>
-                <Font size="29.0" />
+                <Font size="30.0" />
             </font>
         </Label>
-      <HBox layoutX="60.0" layoutY="57.0" prefHeight="241.0" prefWidth="442.0" spacing="73.0">
+      <Pane layoutX="509.0" layoutY="41.0" prefHeight="160.0" prefWidth="62.0">
          <children>
-            <Pane prefHeight="241.0" prefWidth="68.0">
-               <children>
-                  <Label fx:id="giveWheatCount" layoutX="25.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="giveWheatArrow" fitHeight="43.0" fitWidth="50.0" layoutX="13.0" layoutY="38.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowUp.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/wheatSmall.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="takeWheatArrow" fitHeight="43.0" fitWidth="50.0" layoutX="12.0" layoutY="148.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowDown.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <Label fx:id="takeWheatCount" layoutX="25.0" layoutY="177.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="241.0" prefWidth="68.0">
-               <children>
-                  <Label fx:id="giveWoodCount" layoutX="25.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="giveWoodArrow" fitHeight="43.0" fitWidth="50.0" layoutX="13.0" layoutY="38.0" onMouseClicked="#giveMoreWood" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowUp.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/woodSmall.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="takeWoodArrow" fitHeight="43.0" fitWidth="50.0" layoutX="12.0" layoutY="148.0" onMouseClicked="#takeMoreWood" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowDown.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <Label fx:id="takeWoodCount" layoutX="25.0" layoutY="177.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="241.0" prefWidth="68.0">
-               <children>
-                  <Label fx:id="giveBrickCount" layoutX="25.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="giveBrickArrow" fitHeight="43.0" fitWidth="50.0" layoutX="13.0" layoutY="38.0" onMouseClicked="#giveMoreBrick" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowUp.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/brickSmall.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="takeBrickArrow" fitHeight="43.0" fitWidth="50.0" layoutX="12.0" layoutY="148.0" onMouseClicked="#takeMoreBrick" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowDown.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <Label fx:id="takeBrickCount" layoutX="25.0" layoutY="177.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="241.0" prefWidth="68.0">
-               <children>
-                  <Label fx:id="giveSheepCount" layoutX="25.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="giveSheepArrow" fitHeight="43.0" fitWidth="50.0" layoutX="13.0" layoutY="38.0" onMouseClicked="#giveMoreSheep" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowUp.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/sheepSmall.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="takeSheepArrow" fitHeight="43.0" fitWidth="50.0" layoutX="12.0" layoutY="148.0" onMouseClicked="#takeMoreSheep" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowDown.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <Label fx:id="takeSheepCount" layoutX="25.0" layoutY="177.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="241.0" prefWidth="68.0">
-               <children>
-                  <Label fx:id="giveOreCount" layoutX="25.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="giveOreArrow" fitHeight="43.0" fitWidth="50.0" layoutX="13.0" layoutY="38.0" onMouseClicked="#giveMoreOre" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowUp.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/oreSmall.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="takeOreArrow" fitHeight="43.0" fitWidth="50.0" layoutX="12.0" layoutY="148.0" onMouseClicked="#takeMoreOre" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/arrowDown.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <Label fx:id="takeOreCount" layoutX="25.0" layoutY="177.0" prefHeight="20.0" prefWidth="10.0" text="0">
-                     <font>
-                        <Font size="34.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="sendTradeBtn" fitHeight="92.0" fitWidth="82.0" layoutX="-4.0" layoutY="39.0" onMouseClicked="#sendTrade" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/checkmark.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fx:id="resetTradeBtn" fitHeight="86.0" fitWidth="82.0" layoutX="-4.0" layoutY="121.0" onMouseClicked="#resetTrade" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/img/cross.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children>
-      </HBox>
-      <Pane layoutX="502.0" layoutY="62.0" prefHeight="216.0" prefWidth="94.0">
-         <children>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/wheatSmall.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="1.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/woodSmall.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="1.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/brickSmall.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="35.0" layoutX="12.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="1.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/sheepSmall.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="1.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/oreSmall.png" />
                </image>
             </ImageView>
-            <Label fx:id="wheatRatio" layoutX="53.0" layoutY="21.0" text="4:1">
+            <Label fx:id="wheatRatio" layoutX="36.0" layoutY="9.0" text="4:1">
                <font>
-                  <Font name="Verdana" size="15.0" />
+                  <Font name="Verdana" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="woodRatio" layoutX="53.0" layoutY="61.0" text="4:1">
+            <Label fx:id="woodRatio" layoutX="36.0" layoutY="42.0" text="4:1">
                <font>
-                  <Font name="Verdana" size="15.0" />
+                  <Font name="Verdana" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="brickRatio" layoutX="53.0" layoutY="100.0" text="4:1">
+            <Label fx:id="brickRatio" layoutX="36.0" layoutY="75.0" text="4:1">
                <font>
-                  <Font name="Verdana" size="15.0" />
+                  <Font name="Verdana" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="sheepRatio" layoutX="53.0" layoutY="139.0" text="4:1">
+            <Label fx:id="sheepRatio" layoutX="36.0" layoutY="106.0" text="4:1">
                <font>
-                  <Font name="Verdana" size="15.0" />
+                  <Font name="Verdana" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="oreRatio" layoutX="53.0" layoutY="178.0" text="4:1">
+            <Label fx:id="oreRatio" layoutX="36.0" layoutY="138.0" text="4:1">
                <font>
-                  <Font name="Verdana" size="15.0" />
+                  <Font name="Verdana" size="13.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Button fx:id="bankTradeBtn" layoutX="511.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#bankTrade" prefHeight="37.0" prefWidth="77.0" style="-fx-background-radius: 15px; -fx-background-color: #ccc;" text="Bank">
+      <Button fx:id="bankTradeBtn" layoutX="177.0" layoutY="7.0" mnemonicParsing="false" onAction="#bankTrade" prefHeight="16.0" prefWidth="77.0" style="-fx-background-radius: 15px; -fx-background-color: #ccc;" text="Bank">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="playerTradeBtn" layoutX="425.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#playerTrade" prefHeight="37.0" prefWidth="77.0" style="-fx-background-radius: 15px; -fx-background-color: #ccc;" text="Player">
+      <Button fx:id="playerTradeBtn" layoutX="95.0" layoutY="7.0" mnemonicParsing="false" onAction="#playerTrade" prefHeight="30.0" prefWidth="77.0" style="-fx-background-radius: 15px; -fx-background-color: #ccc;" text="Player">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="tradeType" layoutX="326.0" layoutY="13.0" text="\%TYPE%">
+      <Button fx:id="buyDevelopmentCardBtn" layoutX="366.0" layoutY="7.0" mnemonicParsing="false" onAction="#buyDevelopmentCard" prefHeight="30.0" prefWidth="184.0" style="-fx-background-radius: 15px; -fx-background-color: #ccc;" text="Buy development card">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
          <font>
-            <Font size="24.0" />
+            <Font size="14.0" />
          </font>
-      </Label>
+      </Button>
     </children>
 </AnchorPane>

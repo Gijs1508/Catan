@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="144.0" prefWidth="230.0" style="-fx-background-color: #d1d1d1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.DobbelsteenController">
+   <children>
+      <HBox layoutX="32.0" layoutY="54.0" prefHeight="76.0" prefWidth="167.0" spacing="20.0">
+         <children>
+            <Pane prefHeight="76.0" prefWidth="73.0">
+               <children>
+                  <ImageView fx:id="d1_1" fitHeight="102.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d1_2" fitHeight="102.0" fitWidth="70.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d1_3" fitHeight="102.0" fitWidth="70.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d1_4" fitHeight="102.0" fitWidth="70.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d1_5" fitHeight="102.0" fitWidth="70.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d1_6" fitHeight="102.0" fitWidth="70.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die6.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="76.0" prefWidth="74.0">
+               <children>
+                  <ImageView fx:id="d2_1" fitHeight="102.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d2_2" fitHeight="102.0" fitWidth="70.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d2_3" fitHeight="102.0" fitWidth="70.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d2_4" fitHeight="102.0" fitWidth="70.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d2_5" fitHeight="102.0" fitWidth="70.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="d2_6" fitHeight="102.0" fitWidth="70.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/die/die6.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <Button fx:id="throwButton" layoutX="61.0" layoutY="11.0" mnemonicParsing="false" onAction="#throwDie" prefHeight="33.0" prefWidth="109.0" style="-fx-background-color: white; -fx-border-color: #eeeeee; -fx-border-radius: 20px; -fx-background-radius: 20px;" text="Throw">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
