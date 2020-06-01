@@ -29,13 +29,14 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    public static void tradePopUp(Player player) throws IOException {
+    public static void tradePopUp(Player tradingPlayer) throws IOException {
         scene = new Scene(loadFXML("Views/tradeView2"));
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         Stage stage = new Stage();
         stage.setScene(scene);
-        //tradeController.updateInventory(player);
         stage.show();
+
+        tradeController.setTradingPlayer(tradingPlayer);
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
