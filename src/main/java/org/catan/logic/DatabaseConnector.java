@@ -20,7 +20,7 @@ public class DatabaseConnector {
     public DatabaseConnector() {
 
         try {
-            File accountKey = new File("C:\\Users\\werne\\Documents\\IPSENE\\IPSENE_applicatie\\Catan\\src\\env\\FirestoreKey.json");
+            File accountKey = new File("src/main/resources/org/catan/credentials/FirestoreKey.json");
             FileInputStream serviceAccount =
                     new FileInputStream(accountKey);
 

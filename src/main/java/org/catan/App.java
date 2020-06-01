@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.catan.Model.Spel;
+import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
 
@@ -25,15 +27,17 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        this.stage = stage;
-
-        scene = new Scene(loadFXML("Views/screenView"));
-//        scene = new Scene(loadFXML("Views/mainView"));
-        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
-        stage.setScene(scene);
-
-        stage.setResizable(false);
-        stage.show();
+        DatabaseConnector dbConnector = new DatabaseConnector();
+        dbConnector.getGameById("");
+//        this.stage = stage;
+//
+//        scene = new Scene(loadFXML("Views/screenView"));
+////        scene = new Scene(loadFXML("Views/mainView"));
+//        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
+//        stage.setScene(scene);
+//
+//        stage.setResizable(false);
+//        stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {
