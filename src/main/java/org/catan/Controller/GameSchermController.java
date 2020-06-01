@@ -386,10 +386,6 @@ public class GameSchermController implements Initializable {
     }
 
     @FXML
-    public void endTurn() {
-    }
-
-    @FXML
     public void buildRoadBtnClicked() {
         for (int i = 0; i < roadSpotNodeList.size(); i++) {
             roadSpotNodeList.get(i).setVisible(true);
