@@ -14,19 +14,10 @@ public class BuildSettlementController {
         VertexNodeList = vertexNodeList;
         RoadSpotNodeList = roadSpotNodeList;
         RoadNodeList = roadNodeList;
-
-        ArrayList<Circle> testArray = circlesInRadius(201.0,52.0, vertexNodeList, "huis");
-        printArray(RoadSpotNodeList);
-    }
-
-    private void printArray(ArrayList<Circle> array) {
-        for (Circle circle : array) {
-            System.out.println("This is X: " + circle.getLayoutX());
-            System.out.println("This is Y: " + circle.getLayoutY());
-        }
     }
 
     // Returns the circles that are next to the circle you put in the function
+    // x and y are the selected circle, ArrayList is the list from player, Type is what you want it to check road/village road/road ect
     private ArrayList<Circle> circlesInRadius(double x, double y, ArrayList<Circle> a, String type) {
         int radius = radius(type);
         ArrayList<Circle> inRadius = new ArrayList<>();
@@ -41,17 +32,17 @@ public class BuildSettlementController {
                 }
             }
         }
-        return inRadius;
+        return inRadius; // Nodes that are in the radius
     }
 
     // Returns the correct radius for that type
     private int radius(String type) {
-        if (type.equals("Road") || type.equals("road"))
+        if (type.equals("Road") || type.equals("road")) // Road next to road
             return 63;
-        else if (type.equals("Village") || type.equals("village"))
+        else if (type.equals("Village") || type.equals("village")) // Village next to village
             return 69;
         else {
-            return 41;
+            return 41; // Road next to village and visa versa
         }
     }
 
