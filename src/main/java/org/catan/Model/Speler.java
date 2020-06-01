@@ -6,12 +6,13 @@ public class Speler {
 
     private String naam;
     private String kleur;
-//    private Inventaris spelerInventaris;
+    private Inventaris spelerInventaris;
 //    private ArrayList<SpelObject> spelerObjecten = new ArrayList<SpelObject>();
 
     public Speler(String naam) {
         this.naam = naam;
         this.kleur = "";    //TODO
+        this.spelerInventaris = new Inventaris();
     }
 
     public String getNaam() {
@@ -28,5 +29,9 @@ public class Speler {
 
     public void setKleur(String kleur) {
         this.kleur = kleur;
+    }
+
+    public Inventaris getSpelerInventaris() {
+        return spelerInventaris;
     }
 }
