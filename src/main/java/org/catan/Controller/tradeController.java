@@ -77,6 +77,10 @@ public class TradeController {
 
     @FXML
     public void giveMoreBrick() {
+        int brick = getInventoryCards()[1];
+        if(resourceToInt(giveBrickCount) < brick){
+            giveBrickCount.setText(raiseResource(giveBrickCount));
+        }
     }
 
     @FXML
@@ -86,6 +90,10 @@ public class TradeController {
 
     @FXML
     public void giveMoreSheep() {
+        int sheep = getInventoryCards()[3];
+        if(resourceToInt(giveSheepCount) < sheep){
+            giveSheepCount.setText(raiseResource(giveSheepCount));
+        }
     }
 
     @FXML
@@ -95,6 +103,10 @@ public class TradeController {
 
     @FXML
     public void giveMoreOre() {
+        int ore = getInventoryCards()[2];
+        if(resourceToInt(giveOreCount) < ore){
+            giveOreCount.setText(raiseResource(giveOreCount));
+        }
     }
 
     @FXML
@@ -104,6 +116,10 @@ public class TradeController {
 
     @FXML
     public void giveMoreWheat() {
+        int wheat = getInventoryCards()[4];
+        if(resourceToInt(giveWheatCount) < wheat){
+            giveWheatCount.setText(raiseResource(giveWheatCount));
+        }
     }
 
     @FXML

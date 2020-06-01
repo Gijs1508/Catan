@@ -112,6 +112,6 @@
             </VBox>
          </children>
       </Pane>
-      <Button fx:id="testResources" layoutX="535.0" layoutY="10.0" mnemonicParsing="false" text="TEST" onAction="#testResources" />
+      <Button fx:id="testResources" layoutX="535.0" layoutY="10.0" mnemonicParsing="false" onAction="#testResources" text="TEST" />
    </children>
 </AnchorPane>
