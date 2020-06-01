@@ -23,14 +23,16 @@ public class ScreenController implements Initializable {
     private AnchorPane tradeView;
     private AnchorPane diceView;
     private AnchorPane scoreView;
+    private AnchorPane costView;
 
-    @FXML Pane boardPane;
-    @FXML Pane stockPane;
-    @FXML Pane scorePane;
-    @FXML Pane chatPane;
-    @FXML Pane logPane;
-    @FXML Pane tradePane;
-    @FXML Pane dicePane;
+    @FXML private Pane boardPane;
+    @FXML private Pane stockPane;
+    @FXML private Pane scorePane;
+    @FXML private Pane chatPane;
+    @FXML private Pane logPane;
+    @FXML private Pane tradePane;
+    @FXML private Pane dicePane;
+    @FXML private Pane costPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -42,6 +44,7 @@ public class ScreenController implements Initializable {
             tradeView = (AnchorPane) App.loadFXML("Views/tradeView");
             diceView = (AnchorPane) App.loadFXML("Views/diceView");
             scoreView = (AnchorPane) App.loadFXML("Views/scoreView");
+            costView = (AnchorPane) App.loadFXML("Views/costView");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,6 +56,8 @@ public class ScreenController implements Initializable {
         tradePane.getChildren().setAll(tradeView);
         dicePane.getChildren().setAll(diceView);
         scorePane.getChildren().setAll(scoreView);
+        costPane.getChildren().setAll(costView);
+
     }
 
 
