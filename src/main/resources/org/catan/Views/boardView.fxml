@@ -292,11 +292,6 @@
                   <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="59.0" fitWidth="14.0" layoutX="297.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/wall_blue.png" />
-               </image>
-            </ImageView>
             <ImageView fx:id="road2" fitHeight="59.0" fitWidth="14.0" layoutX="271.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
                   <Image url="@../assets/img/wall_blue.png" />
@@ -308,11 +303,6 @@
                </image>
             </ImageView>
             <ImageView fx:id="road1" fitHeight="59.0" fitWidth="14.0" layoutX="220.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/wall_blue.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road8" fitHeight="59.0" fitWidth="14.0" layoutX="297.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/wall_blue.png" />
                </image>
@@ -647,60 +637,65 @@
                   <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <Circle fx:id="vertex9" fill="#ffffffd9" layoutX="201.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex11" fill="#ffffffd9" layoutX="303.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex13" fill="#ffffffd9" layoutX="406.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex15" fill="#ffffffd9" layoutX="508.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex1" fill="#ffffffd9" layoutX="201.0" layoutY="52.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex3" fill="#ffffffd9" layoutX="303.0" layoutY="52.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex5" fill="#ffffffd9" layoutX="406.0" layoutY="52.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex7" fill="#ffffffd9" layoutX="508.0" layoutY="52.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex19" fill="#ffffffd9" layoutX="201.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex30" fill="#ffffffd9" layoutX="201.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex40" fill="#ffffffd9" layoutX="201.0" layoutY="378.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex48" fill="#ffffffd9" layoutX="201.0" layoutY="436.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex21" fill="#ffffffd9" layoutX="303.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex32" fill="#ffffffd9" layoutX="303.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex42" fill="#ffffffd9" layoutX="303.0" layoutY="378.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex50" fill="#ffffffd9" layoutX="303.0" layoutY="436.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex23" fill="#ffffffd9" layoutX="406.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex34" fill="#ffffffd9" layoutX="406.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex44" fill="#ffffffd9" layoutX="406.0" layoutY="378.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex52" fill="#ffffffd9" layoutX="406.0" layoutY="436.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex36" fill="#ffffffd9" layoutX="508.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex46" fill="#ffffffd9" layoutX="508.0" layoutY="378.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex54" fill="#ffffffd9" layoutX="508.0" layoutY="436.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex25" fill="#ffffffd9" layoutX="508.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex8" fill="#ffffffd9" layoutX="151.0" layoutY="134.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex39" fill="#ffffffd9" layoutX="151.0" layoutY="353.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex29" fill="#ffffffd9" layoutX="151.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex18" fill="#ffffffd9" layoutX="151.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex17" fill="#ffffffd9" layoutX="100.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex27" fill="#ffffffd9" layoutX="611.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex28" fill="#ffffffd9" layoutX="100.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex38" fill="#ffffffd9" layoutX="611.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex16" fill="#ffffffd9" layoutX="559.0" layoutY="134.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex47" fill="#ffffffd9" layoutX="559.0" layoutY="353.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex2" fill="#ffffffd9" layoutX="253.0" layoutY="28.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex49" fill="#ffffffd9" layoutX="252.0" layoutY="459.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex41" fill="#ffffffd9" layoutX="252.0" layoutY="355.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex31" fill="#ffffffd9" layoutX="252.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex20" fill="#ffffffd9" layoutX="252.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex10" fill="#ffffffd9" layoutX="252.0" layoutY="133.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex4" fill="#ffffffd9" layoutX="354.0" layoutY="28.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex12" fill="#ffffffd9" layoutX="354.0" layoutY="133.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex22" fill="#ffffffd9" layoutX="354.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex33" fill="#ffffffd9" layoutX="354.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex43" fill="#ffffffd9" layoutX="354.0" layoutY="355.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex51" fill="#ffffffd9" layoutX="354.0" layoutY="459.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex53" fill="#ffffffd9" layoutX="457.0" layoutY="459.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex45" fill="#ffffffd9" layoutX="458.0" layoutY="355.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex35" fill="#ffffffd9" layoutX="458.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex24" fill="#ffffffd9" layoutX="458.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex14" fill="#ffffffd9" layoutX="458.0" layoutY="133.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex6" fill="#ffffffd9" layoutX="458.0" layoutY="28.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex26" fill="#ffffffd9" layoutX="559.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="vertex37" fill="#ffffffd9" layoutX="559.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <ImageView fx:id="road8" fitHeight="59.0" fitWidth="14.0" layoutX="296.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/wall_blue.png" />
+               </image>
+            </ImageView>
+            <Circle fx:id="vertex9" fill="#ffffffa8" layoutX="201.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex11" fill="#ffffffa8" layoutX="303.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex13" fill="#ffffffa8" layoutX="406.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex15" fill="#ffffffa8" layoutX="508.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex1" fill="#ffffffa8" layoutX="201.0" layoutY="52.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex3" fill="#ffffffa8" layoutX="303.0" layoutY="52.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex5" fill="#ffffffa8" layoutX="406.0" layoutY="52.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex7" fill="#ffffffa8" layoutX="508.0" layoutY="52.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex19" fill="#ffffffa8" layoutX="201.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex30" fill="#ffffffa8" layoutX="201.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex40" fill="#ffffffa8" layoutX="201.0" layoutY="378.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex48" fill="#ffffffa8" layoutX="201.0" layoutY="436.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex21" fill="#ffffffa8" layoutX="303.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex32" fill="#ffffffa8" layoutX="303.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex42" fill="#ffffffa8" layoutX="303.0" layoutY="378.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex50" fill="#ffffffa8" layoutX="303.0" layoutY="436.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex23" fill="#ffffffa8" layoutX="406.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex34" fill="#ffffffa8" layoutX="406.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex44" fill="#ffffffa8" layoutX="406.0" layoutY="378.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex52" fill="#ffffffa8" layoutX="406.0" layoutY="436.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex36" fill="#ffffffa8" layoutX="508.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex46" fill="#ffffffa8" layoutX="508.0" layoutY="378.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex54" fill="#ffffffa8" layoutX="508.0" layoutY="436.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex25" fill="#ffffffa8" layoutX="508.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex8" fill="#ffffffa8" layoutX="151.0" layoutY="134.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex39" fill="#ffffffa8" layoutX="151.0" layoutY="353.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex29" fill="#ffffffa8" layoutX="151.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex18" fill="#ffffffa8" layoutX="151.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex17" fill="#ffffffa8" layoutX="100.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex27" fill="#ffffffa8" layoutX="611.0" layoutY="215.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex28" fill="#ffffffa8" layoutX="100.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex38" fill="#ffffffa8" layoutX="611.0" layoutY="273.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex16" fill="#ffffffa8" layoutX="559.0" layoutY="134.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex47" fill="#ffffffa8" layoutX="559.0" layoutY="353.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex2" fill="#ffffffa8" layoutX="253.0" layoutY="28.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex49" fill="#ffffffa8" layoutX="252.0" layoutY="459.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex41" fill="#ffffffa8" layoutX="252.0" layoutY="355.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex31" fill="#ffffffa8" layoutX="252.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex20" fill="#ffffffa8" layoutX="252.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex10" fill="#ffffffa8" layoutX="252.0" layoutY="133.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex4" fill="#ffffffa8" layoutX="354.0" layoutY="28.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex12" fill="#ffffffa8" layoutX="354.0" layoutY="133.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex22" fill="#ffffffa8" layoutX="354.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex33" fill="#ffffffa8" layoutX="354.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex43" fill="#ffffffa8" layoutX="354.0" layoutY="355.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex51" fill="#ffffffa8" layoutX="354.0" layoutY="459.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex53" fill="#ffffffa8" layoutX="457.0" layoutY="459.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex45" fill="#ffffffa8" layoutX="458.0" layoutY="355.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex35" fill="#ffffffa8" layoutX="458.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex24" fill="#ffffffa8" layoutX="458.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex14" fill="#ffffffa8" layoutX="458.0" layoutY="133.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex6" fill="#ffffffa8" layoutX="458.0" layoutY="28.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex26" fill="#ffffffa8" layoutX="559.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="vertex37" fill="#ffffffa8" layoutX="559.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Label fx:id="tile12num" alignment="CENTER" layoutX="546.0" layoutY="229.0" prefHeight="31.0" prefWidth="27.0" style="-fx-background-color: #00000066; -fx-background-radius: 50; -fx-padding: 6;" text="0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -877,7 +872,7 @@
             </ImageView>
             <VBox prefHeight="104.0" prefWidth="52.0">
                <children>
-                  <ImageView fx:id="roadButton" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildRoad" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="roadButton" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildRoadBtnClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/img/UI/roadButton.png" />
                      </image>
@@ -885,7 +880,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="settlementButton" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildSettlement" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="settlementButton" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildSettlementBtnClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/img/UI/buildButton.png" />
                      </image>
@@ -893,7 +888,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="upgradeButton" fitWidth="52.0" onMouseClicked="#upgradeSettlement" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="upgradeButton" fitWidth="52.0" onMouseClicked="#upgradeSettlementBtnClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/img/UI/upgradeButton.png" />
                      </image>
