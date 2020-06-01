@@ -61,6 +61,8 @@ public class VoorraadController {
         updateWood(woodCount);
         playerInventory.changeCards(1, 3);
         updateBrick(brickCount);
+        playerInventory.changeCards(2, 2);
+        updateOre(oreCount);
     }
 
 }

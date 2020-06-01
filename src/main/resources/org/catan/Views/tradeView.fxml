@@ -113,7 +113,7 @@
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="giveWoodArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="giveWoodArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWood" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -126,7 +126,7 @@
                               <Image url="@../assets/img/woodSmall.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="takeWoodArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="takeWoodArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWood" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -148,7 +148,7 @@
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="giveBrickArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="giveBrickArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreBrick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -161,7 +161,7 @@
                               <Image url="@../assets/img/brickSmall.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="takeBrickArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="takeBrickArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreBrick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -183,7 +183,7 @@
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="giveSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="giveSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreSheep" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -196,7 +196,7 @@
                               <Image url="@../assets/img/sheepSmall.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="takeSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="takeSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreSheep" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -218,7 +218,7 @@
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="giveOreArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWheat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="giveOreArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreOre" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -231,7 +231,7 @@
                               <Image url="@../assets/img/oreSmall.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="takeOreArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWheat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="takeOreArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreOre" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
