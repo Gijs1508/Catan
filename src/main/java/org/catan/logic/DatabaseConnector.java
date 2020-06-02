@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DatabaseConnector {
-    Firestore db;
+    private Firestore db;
 
     public DatabaseConnector() {
 
@@ -67,13 +67,12 @@ public class DatabaseConnector {
             for (QueryDocumentSnapshot document : documents) {
                 Map<String, Object> gameData = document.getData();
                 game = objectMapper.convertValue(gameData, Spel.class);
-                System.out.println(game.getCode());
                 return game;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return game;
     }
 
