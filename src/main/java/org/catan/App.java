@@ -6,10 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.catan.Model.Log;
 import org.catan.Model.Spel;
+import org.catan.Model.Speler;
 import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * JavaFX App
@@ -28,8 +31,20 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         DatabaseConnector dbConnector = new DatabaseConnector();
-        dbConnector.getGameById("");
-//        this.stage = stage;
+//        Spel game = new Spel();
+//        Speler jan = new Speler();
+//        jan.setNaam("Jan");
+//        jan.setKleur("Pink");
+//        game.addSpeler(jan);
+//        Log log = new Log("txt");
+//        game.addLog(log);
+        Spel game = dbConnector.getGameById("L5QR6HV14W");
+        System.out.println(game.getCode());
+        for (Log log : game.getLogs()) {
+            System.out.println(log.getEventType());
+        }
+
+        System.out.println(game.getSpelers());
 //
 //        scene = new Scene(loadFXML("Views/screenView"));
 ////        scene = new Scene(loadFXML("Views/mainView"));

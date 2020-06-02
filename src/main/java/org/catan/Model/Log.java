@@ -23,11 +23,14 @@ public class Log {
 
     Speler player = new Speler();
 
+    public Log() {
+
+    }
 
     public Log(String eventType){
         this.eventType = eventType;
         if(eventType.equals("txt")){
-            eventString = handleEventString(logs.getTextEvents().get(eventType));
+            eventString = handleEventString("txt event");
         }
         else if(eventType.equals("img")){
             eventString = handleEventString(logs.getImgEvents().get(eventType));

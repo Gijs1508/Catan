@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseConnector {
     Firestore db;
@@ -57,17 +58,22 @@ public class DatabaseConnector {
     public Spel getGameById(String id) {
         Spel game = new Spel();
         CollectionReference collectionReference = this.db.collection("games");
-        Query query = collectionReference.whereEqualTo("id", id);
+        Query query = collectionReference.whereEqualTo("code", id);
+        ObjectMapper objectMapper = new ObjectMapper();
+
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
         try {
             List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
             for (QueryDocumentSnapshot document : documents) {
-                game = document.toObject(Spel.class);
+                Map<String, Object> gameData = document.getData();
+                game = objectMapper.convertValue(gameData, Spel.class);
+                System.out.println(game.getCode());
+                return game;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
         return game;
     }
 
@@ -94,7 +100,6 @@ public class DatabaseConnector {
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<String, Object> dataMap = objectMapper.convertValue(game, HashMap.class);
         dataMap.put("spelers", objectMapper.convertValue(game.getSpelers(), HashMap.class));
-        System.out.println(dataMap);
         ApiFuture<WriteResult> result = documentReference.set(dataMap);
         try {
             System.out.println("Update time : " + result.get().getUpdateTime());
@@ -108,7 +113,6 @@ public class DatabaseConnector {
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<String, Object> dataMap = objectMapper.convertValue(game, HashMap.class);
         dataMap.put("spelers", objectMapper.convertValue(game.getSpelers(), HashMap.class));
-        System.out.println(dataMap);
         ApiFuture<WriteResult> result = documentReference.set(dataMap);
         try {
             System.out.println("Update time : " + result.get().getUpdateTime());
