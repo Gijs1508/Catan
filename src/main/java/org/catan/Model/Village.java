@@ -4,11 +4,13 @@ public class Village {
     private double x;
     private double y;
     private String imgPath;
+    private String color;
 
     public Village(double x, double y, String color) {
         this.x = x;
         this.y = y;
         this.imgPath = getFilePath(color);
+        this.color = color;
     }
 
     private String getFilePath(String color) {
@@ -27,14 +29,18 @@ public class Village {
     }
 
     public double getX() {
-        return x;
+        return this.x;
     }
 
     public double getY() {
-        return y;
+        return this.y;
     }
 
     public String getImgPath() {
-        return imgPath;
+        return this.imgPath;
+    }
+
+    public String getColor() {
+        return this.color;
     }
 }
