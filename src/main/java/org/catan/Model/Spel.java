@@ -11,9 +11,11 @@ public class Spel {
     private HashMap<String, Speler> spelers;
     private String status;
     private String code;
+    private ArrayList<Log> logs;
 
     public Spel() {
         this.spelers = new HashMap<String, Speler>();
+        this.logs = new ArrayList<>();
         this.status = "Open";
         this.code = CodeGenerator.generateCode(10);
     }
@@ -62,4 +64,27 @@ public class Spel {
         return this.code;
     }
 
+    public void addLog(Log log) {
+        this.logs.add(log);
+    }
+
+    public void removeLog(Log log) {
+        this.logs.remove(log);
+    }
+
+    public ArrayList<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(ArrayList<Log> logs) {
+        this.logs = logs;
+    }
+
+    public void setSpelers(HashMap<String, Speler> spelers) {
+        this.spelers = spelers;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

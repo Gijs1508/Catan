@@ -90,7 +90,17 @@ public class DatabaseConnector {
     }
 
     public void updateGame(Spel game) {
-
+        DocumentReference documentReference = this.db.collection("games").document(game.getCode());
+        ObjectMapper objectMapper = new ObjectMapper();
+        HashMap<String, Object> dataMap = objectMapper.convertValue(game, HashMap.class);
+        dataMap.put("spelers", objectMapper.convertValue(game.getSpelers(), HashMap.class));
+        System.out.println(dataMap);
+        ApiFuture<WriteResult> result = documentReference.set(dataMap);
+        try {
+            System.out.println("Update time : " + result.get().getUpdateTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void createGame(Spel game) {
