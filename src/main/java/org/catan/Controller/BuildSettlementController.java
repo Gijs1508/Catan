@@ -11,6 +11,7 @@ public class BuildSettlementController {
     private ArrayList<Circle> VertexNodeList = new ArrayList<>();
     private ArrayList<Circle> RoadSpotNodeList = new ArrayList<>();
     private ArrayList<ImageView> RoadNodeList = new ArrayList<>();
+
     @FXML private Pane objectsPane;
 
     public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList, ArrayList<ImageView> roadNodeList) {
@@ -50,6 +51,7 @@ public class BuildSettlementController {
     }
 
     public void buildVillage(double x, double y) {
+
 //        objectsPane.getChildren().add()
     }
 
