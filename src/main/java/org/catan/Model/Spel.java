@@ -8,13 +8,13 @@ import java.util.HashMap;
 
 public class Spel {
 
-    private HashMap<String, Speler> spelers;
+    private ArrayList<Speler> spelers;
     private String status;
     private String code;
     private ArrayList<Log> logs;
 
     public Spel() {
-        this.spelers = new HashMap<String, Speler>();
+        this.spelers = new ArrayList<>();
         this.logs = new ArrayList<>();
         this.status = "Open";
         this.code = CodeGenerator.generateCode(10);
@@ -53,10 +53,10 @@ public class Spel {
     }
 
     public void addSpeler(Speler speler) {
-        this.spelers.put(speler.getNaam(), speler);
+        this.spelers.add(speler);
     }
 
-    public HashMap<String, Speler> getSpelers() {
+    public ArrayList<Speler> getSpelers() {
         return this.spelers;
     }
 
@@ -80,7 +80,7 @@ public class Spel {
         this.logs = logs;
     }
 
-    public void setSpelers(HashMap<String, Speler> spelers) {
+    public void setSpelers(ArrayList<Speler> spelers) {
         this.spelers = spelers;
     }
 

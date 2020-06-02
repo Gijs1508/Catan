@@ -8,13 +8,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import org.catan.Model.Spel;
+import org.catan.Model.Speler;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DatabaseConnector {
     private Firestore db;
@@ -107,11 +105,27 @@ public class DatabaseConnector {
         }
     }
 
+    private ArrayList<Map> converPlayersToHashMaps(ArrayList<Speler> playerList){
+        ArrayList<Map> playerMapList = new ArrayList<>();
+
+        int index = 0;
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        for (Speler player : playerList) {
+            Map<String, Object> playerMap = objectMapper.convertValue(player, Map.class);
+            playerMap.put("spelerInventaris", objectMapper.convertValue(player.getSpelerInventaris(), Map.class));
+            playerMapList.add(playerMap);
+        }
+
+        return playerMapList;
+    }
+
     public void createGame(Spel game) {
         DocumentReference documentReference = this.db.collection("games").document(game.getCode());
         ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<Map> playerMap = converPlayersToHashMaps(game.getSpelers());
         HashMap<String, Object> dataMap = objectMapper.convertValue(game, HashMap.class);
-        dataMap.put("spelers", objectMapper.convertValue(game.getSpelers(), HashMap.class));
+        dataMap.put("spelers", playerMap);
         ApiFuture<WriteResult> result = documentReference.set(dataMap);
         try {
             System.out.println("Update time : " + result.get().getUpdateTime());

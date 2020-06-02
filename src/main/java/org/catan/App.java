@@ -32,20 +32,16 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         DatabaseConnector dbConnector = new DatabaseConnector();
-//        Spel game = new Spel();
-//        Speler jan = new Speler();
-//        jan.setNaam("Jan");
-//        jan.setKleur("Pink");
-//        game.addSpeler(jan);
+        Spel game = new Spel();
+        Speler jan = new Speler("Jan");
+        jan.setKleur("Pink");
+        game.addSpeler(jan);
+        dbConnector.createGame(game);
 //        Log log = new Log("txt");
 //        game.addLog(log);
-        Spel game = dbConnector.getGameById("L5QR6HV14W");
-        System.out.println(game.getCode());
-        for (Log log : game.getLogs()) {
-            System.out.println(log.getEventType());
-        }
+//        Spel game = dbConnector.getGameById("L5QR6HV14W");
+//        System.out.println(game.getCode());
 
-        System.out.println(game.getSpelers());
 //        scene = new Scene(loadFXML("Views/screenView"));
 //        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
 //        stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
