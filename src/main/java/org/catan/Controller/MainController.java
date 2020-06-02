@@ -5,7 +5,7 @@ import org.catan.App;
 
 import java.io.IOException;
 
-public class mainController {
+public class MainController {
 
     // Routes
     @FXML

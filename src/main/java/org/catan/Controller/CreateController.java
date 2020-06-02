@@ -8,7 +8,7 @@ import org.catan.Helper.createGameCode;
 
 import java.io.IOException;
 
-public class createController {
+public class CreateController {
     @FXML private Text game_code_text;
 
     // Routes

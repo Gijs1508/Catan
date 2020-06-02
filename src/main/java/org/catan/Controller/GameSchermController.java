@@ -7,12 +7,17 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
+import org.catan.App;
+import org.catan.Model.RandomizeBoard;
 
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -22,6 +27,58 @@ import java.util.ResourceBundle;
 
 public class GameSchermController implements Initializable {
 
+    private int aantalSpelers;
+//    private Spelbord spelbord;
+//    private Spel spel;
+
+    // Tiles
+    @FXML private Polygon tile1;
+    @FXML private Polygon tile2;
+    @FXML private Polygon tile3;
+    @FXML private Polygon tile4;
+    @FXML private Polygon tile5;
+    @FXML private Polygon tile6;
+    @FXML private Polygon tile7;
+    @FXML private Polygon tile8;
+    @FXML private Polygon tile9;
+    @FXML private Polygon tile11;
+    @FXML private Polygon tile12;
+    @FXML private Polygon tile13;
+    @FXML private Polygon tile14;
+    @FXML private Polygon tile15;
+    @FXML private Polygon tile16;
+    @FXML private Polygon tile17;
+    @FXML private Polygon tile18;
+    @FXML private Polygon tile19;
+    // This is the bandit
+    @FXML private Polygon tile10;
+
+    // Tile numbers
+    @FXML private Label tile1num;
+    @FXML private Label tile2num;
+    @FXML private Label tile3num;
+    @FXML private Label tile4num;
+    @FXML private Label tile5num;
+    @FXML private Label tile6num;
+    @FXML private Label tile7num;
+    @FXML private Label tile8num;
+    @FXML private Label tile9num;
+    @FXML private Label tile11num;
+    @FXML private Label tile12num;
+    @FXML private Label tile13num;
+    @FXML private Label tile14num;
+    @FXML private Label tile15num;
+    @FXML private Label tile16num;
+    @FXML private Label tile17num;
+    @FXML private Label tile18num;
+    @FXML private Label tile19num;
+
+    @FXML private ImageView roadButton;
+    @FXML private ImageView settlementButton;
+    @FXML private ImageView upgradeButton;
+    @FXML private ImageView roadButtonClose;
+    @FXML private ImageView settlementButtonClose;
+    @FXML private ImageView upgradeButtonClose;
 
     @FXML private Circle vertex1;
     @FXML private Circle vertex2;
@@ -224,11 +281,9 @@ public class GameSchermController implements Initializable {
     @FXML private ImageView road71;
     @FXML private ImageView road72;
 
-
-    private int aantalSpelers;
-//    private Spelbord spelbord;
+    //    private Spelbord spelbord;
 //    private Spel spel;
-    private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // later in hashmap met bijbehorende class (of setter gebruiken)?
+    private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Label> tileNumNodeList;
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
@@ -236,7 +291,6 @@ public class GameSchermController implements Initializable {
 
 
     public GameSchermController() {
-
     }
 
     private void keyHandler() {
@@ -259,14 +313,44 @@ public class GameSchermController implements Initializable {
 
     }
 
+
+    // TODO Jan
     @FXML
-    public void buildSettlement() {
+    public void buildSettlement(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
+        circle.getLayoutX();                             // Information you might need for the settlement/road
+        circle.getLayoutY();                             // Use it as a parameter (so the logic isn't in this controller)
+    }
+
+    @FXML
+    public void buildRoad(MouseEvent mouseEvent) {
+    }
+    
+
+    @FXML
+    public void showVertex() {
+    }
+
+    @FXML
+    public void hideVertex() {
+    }
+
+    @FXML
+    public void upgradeSettlement() {
+    }
+
+    @FXML
+    public void buildRoad() {
+    }
+
+    @FXML
+    public void endTurn() {
     }
 
     @FXML
     public void emphasizeRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
-        // Hier moet code komen dat controleert of er op de road spot geplaatst kan worden
+        // Code that checks whether the road can be placed
         // RoadSpot roadSpot = getAssociatedRoadSpot(circle)
         // if (roadSpot.isValid() {
         circle.setFill(Paint.valueOf("#c89eff"));
@@ -285,7 +369,7 @@ public class GameSchermController implements Initializable {
     @FXML
     public void emphasizeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
-        // Hier moet code komen dat controleert of er op de vertex geplaatst kan worden
+        // Code that checks whether the settlement can be placed
         // Vertex vertex = getAssociatedVertex(circle)
         // if (vertex.isValid() {
         circle.setFill(Color.WHITE);
@@ -301,20 +385,22 @@ public class GameSchermController implements Initializable {
         circle.setScaleY(1);
     }
 
-
-    @FXML
-    public void buildRoad() {
-    }
-
-    @FXML
-    public void endTurn() {
-    }
-
     @FXML
     public void buildRoadBtnClicked() {
         for (int i = 0; i < roadSpotNodeList.size(); i++) {
             roadSpotNodeList.get(i).setVisible(true);
         }
+        roadButton.setVisible(false);
+        roadButtonClose.setVisible(true);
+    }
+
+    @FXML
+    public void buildRoadBtnCloseClicked() {
+        for (int i = 0; i < roadSpotNodeList.size() ; i++) {
+            roadSpotNodeList.get(i).setVisible(false);
+        }
+        roadButton.setVisible(true);
+        roadButtonClose.setVisible(false);
     }
 
     @FXML
@@ -322,17 +408,49 @@ public class GameSchermController implements Initializable {
         for (int i = 0; i < vertexNodeList.size(); i++) {
             vertexNodeList.get(i).setVisible(true);
         }
+        settlementButton.setVisible(false);
+        settlementButtonClose.setVisible(true);
+    }
+
+    @FXML
+    public void buildSettlementBtnCloseClicked() {
+        for (int i = 0; i < vertexNodeList.size() ; i++) {
+            vertexNodeList.get(i).setVisible(false);
+        }
+        settlementButton.setVisible(true);
+        settlementButtonClose.setVisible(false);
     }
 
     @FXML
     public void upgradeSettlementBtnClicked() {
-
+        /* TODO  show all villages that can be upgraded*/
+        for (int i = 0; i < vertexNodeList.size(); i++) {
+            vertexNodeList.get(i).setVisible(true);
+        }
+        upgradeButton.setVisible(false);
+        upgradeButtonClose.setVisible(true);
     }
+
+    @FXML
+    public void upgradeSettlementBtnCloseClicked() {
+        for (int i = 0; i < vertexNodeList.size(); i++) {
+            vertexNodeList.get(i).setVisible(false);
+        }
+        upgradeButton.setVisible(true);
+        upgradeButtonClose.setVisible(false);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializePlacementSpots();
         initializeRoads();
+        ArrayList<Polygon> tiles = addAllTilesToArray();
+        ArrayList<Label> labels = addAllTileNumbersToArray();
+        RandomizeBoard.setRandomTiles(tiles, labels);
+
+        //tile1.setFill(Color.BROWN);
+        initializeButtons();
     }
 
     private void initializePlacementSpots(){
@@ -354,7 +472,7 @@ public class GameSchermController implements Initializable {
                 roadSpot51, roadSpot52, roadSpot53, roadSpot54, roadSpot55, roadSpot56, roadSpot57, roadSpot58, roadSpot59, roadSpot60,
                 roadSpot61, roadSpot62, roadSpot63, roadSpot64, roadSpot65, roadSpot66, roadSpot67, roadSpot68, roadSpot69, roadSpot70,
                 roadSpot71, roadSpot72
-                );
+        );
 
         for (int i = 0; i < vertexNodeList.size() ; i++) {
             vertexNodeList.get(i).setVisible(false);
@@ -380,6 +498,39 @@ public class GameSchermController implements Initializable {
         for (int i = 0; i < roadNodeList.size(); i++) {
             roadNodeList.get(i).setVisible(false);
         }
+    }
+
+    private void initializeButtons() {
+        upgradeButtonClose.setVisible(false);
+        settlementButtonClose.setVisible(false);
+        roadButtonClose.setVisible(false);
+    }
+
+//    private Speler getSpeler() {
+//        return Speler; // Dit moet worden gewijzigd
+//    }
+
+
+    private ArrayList<Polygon> addAllTilesToArray() {
+        ArrayList<Polygon> tiles = new ArrayList<Polygon>();
+
+        Collections.addAll(tiles, tile1, tile2, tile3, tile4, tile5,
+                tile6, tile7, tile8, tile9, tile11, tile12, tile13,
+                tile14, tile15,tile16, tile17, tile18, tile19);
+
+
+        return tiles;
+    }
+
+    private ArrayList<Label> addAllTileNumbersToArray(){
+        ArrayList<Label> tileLabels = new ArrayList<Label>();
+
+        Collections.addAll(tileLabels, tile1num, tile2num, tile3num, tile4num,
+                tile5num, tile6num, tile7num, tile8num, tile9num,
+                tile11num, tile12num, tile13num, tile14num, tile15num,
+                tile16num, tile17num, tile18num, tile19num);
+
+        return tileLabels;
     }
 
 //    private Speler getSpeler() {
