@@ -1,13 +1,16 @@
 package org.catan.Controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 import org.catan.Model.Player;
 
 public class TradeController {
+
+    private String tradeType = "player";
+    private boolean tradeGiveLock = false;
+    private boolean tradeTakeLock = false;
 
     @FXML
     private Label giveWheatCount;
@@ -29,14 +32,30 @@ public class TradeController {
     private Label giveBrickCount;
     @FXML
     private Label takeBrickCount;
+    @FXML
+    private Button playerTradeBtn;
+    @FXML
+    private Button bankTradeBtn;
 
 
     @FXML
     public void bankTrade() {
+        if (tradeType == "player"){
+            tradeType = "bank";
+            bankTradeBtn.setFont(new Font("System Bold", 14));
+            playerTradeBtn.setFont(new Font("System", 14));
+            resetTrade();
+        }
     }
 
     @FXML
     public void playerTrade() {
+        if (tradeType == "bank"){
+            tradeType = "player";
+            bankTradeBtn.setFont(new Font("System", 14));
+            playerTradeBtn.setFont(new Font("System Bold", 14));
+            resetTrade();
+        }
     }
 
     @FXML
@@ -60,19 +79,33 @@ public class TradeController {
         giveSheepCount.setText("0");
         takeWheatCount.setText("0");
         giveWheatCount.setText("0");
+        tradeGiveLock = false;
+        tradeTakeLock = false;
     }
 
     @FXML
     public void giveMoreWood() {
         int wood = getInventoryCards()[0];
-        if(resourceToInt(giveWoodCount) < wood){
-            giveWoodCount.setText(raiseResource(giveWoodCount));
+        if(tradeType == "player"){
+            if(resourceToInt(giveWoodCount) < wood){
+                giveWoodCount.setText(raiseResource(giveWoodCount));
+            }
+        } else if(wood >= 4 && tradeGiveLock == false){
+            for(int i = 0; i < 4; i++){
+                giveWoodCount.setText(raiseResource(giveWoodCount));
+                tradeGiveLock = true;
+            }
         }
     }
 
     @FXML
     public void takeMoreWood() {
-        takeWoodCount.setText(raiseResource(takeWoodCount));
+        if(tradeType == "player"){
+            takeWoodCount.setText(raiseResource(takeWoodCount));
+        } else if(tradeTakeLock == false){
+            takeWoodCount.setText(raiseResource(takeWoodCount));
+            tradeTakeLock = true;
+        }
     }
 
     @FXML
