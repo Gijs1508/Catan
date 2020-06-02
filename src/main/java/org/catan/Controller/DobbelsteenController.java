@@ -38,5 +38,6 @@ public class DobbelsteenController {
     @FXML
     public void throwDie() {
         logController.logRollEvent("2", "4");
+//        logController.logEndTurn();
     }
 }

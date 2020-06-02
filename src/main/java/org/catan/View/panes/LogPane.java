@@ -70,7 +70,6 @@ public class LogPane {
 //        imgBox.prefWidth(200);
         imgBox.setSpacing(2);
 
-
 //        logGrid.getChildren().addAll(eventText, imgBox);
         logGrid.add(eventText, 0, 0);
         logGrid.add(imgBox, 1, 0);

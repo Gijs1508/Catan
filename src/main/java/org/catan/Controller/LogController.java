@@ -2,8 +2,8 @@ package org.catan.Controller;
 
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import org.catan.Model.Log;
 import org.catan.Model.Logs;
 import org.catan.Model.Speler;
@@ -13,30 +13,31 @@ import org.catan.View.panes.LogsPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LogController implements Initializable{
+public class LogController{
 
     private LogsPane logsView = new LogsPane();
     private AnchorPane logsRoot;
     private Logs logsModel = new Logs();
-    private VBox logsBox;
 
     private Speler player = new Speler("Jeroen");   // Placeholder
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        logsBox = logsView.getlogsContainer();
-    }
 
 
     public void logRollEvent(String dice1, String dice2) {
         Log log = new Log("img", "roll");
-        log.createImage(dice1);
-        log.createImage(dice2);
-        logsModel.addLog(log);
+//        log.createImage(dice1);
+//        log.createImage(dice2);
+//        logsModel.addLog(log);
 
-        LogPane logPane = logsView.createLog(log);
-        logPane.addImage(log.getImage(0));
-        logPane.addImage(log.getImage(1));
+//        LogPane logPane = new LogPane(log);
+//        logsView.getLogsContainer().getChildren().add(logPane.getLogGrid());
+//        logsView.getLogsContainer().getChildren().add(new Text("eedfsfsdf"));
+        logsView.createLog(log);
+
+
+//        LogPane logPane = logsView.createLog(log);
+
+//        logPane.addImage(log.getImage(0));
+//        logPane.addImage(log.getImage(1));
 
         // Should work, but pane isn't added to logspane.
 
@@ -57,7 +58,9 @@ public class LogController implements Initializable{
     }
 
     public void logEndTurn() {
+        Log log = new Log("txt", "endturn");
 
+        LogPane logPane = logsView.createLog(log);
     }
 
     public void logUpgradeEvent() {

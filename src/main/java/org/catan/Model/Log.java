@@ -23,7 +23,6 @@ import java.util.HashMap;
 
 
 public class Log {
-    private LogController logController = new LogController();
     private Logs logs = new Logs();
     private String logType;
     private String eventType;
