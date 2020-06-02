@@ -1,6 +1,8 @@
 package org.catan.Controller;
 
+import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 
@@ -9,6 +11,7 @@ public class BuildSettlementController {
     private ArrayList<Circle> VertexNodeList = new ArrayList<>();
     private ArrayList<Circle> RoadSpotNodeList = new ArrayList<>();
     private ArrayList<ImageView> RoadNodeList = new ArrayList<>();
+    @FXML private Pane objectsPane;
 
     public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList, ArrayList<ImageView> roadNodeList) {
         VertexNodeList = vertexNodeList;
@@ -45,5 +48,10 @@ public class BuildSettlementController {
             return 41; // Road next to village and visa versa
         }
     }
+
+    public void buildVillage(double x, double y) {
+//        objectsPane.getChildren().add()
+    }
+
 
 }
