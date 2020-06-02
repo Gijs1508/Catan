@@ -54,19 +54,23 @@ public class DatabaseConnector {
         return games;
     }
 
-    public void getGameById(String id) {
-        ApiFuture<QuerySnapshot> query = this.db.collection("games").get();
+    public Spel getGameById(String id) {
+        Spel game = new Spel();
+        CollectionReference collectionReference = this.db.collection("games");
+        Query query = collectionReference.whereEqualTo("id", id);
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
         try {
-            QuerySnapshot snapshot = query.get();
-            List<QueryDocumentSnapshot> documents = snapshot.getDocuments();
+            List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
             for (QueryDocumentSnapshot document : documents) {
-                Spel game = document.toObject(Spel.class);
+                game = document.toObject(Spel.class);
                 System.out.println(game.getCode());
                 System.out.println(game.getSpelers().get("Jan").getNaam());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return game;
     }
 
     public void getGamesByStatus(String status) {
