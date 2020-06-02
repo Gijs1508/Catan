@@ -32,12 +32,10 @@ public class LogsPane {
 
         scrollPane.setPrefHeight(144);
         scrollPane.setPrefWidth(430);
-        scrollPane.setId("scrollPane");
 
         logs.prefWidth(430);
         logs.prefHeight(144);
         logs.setPadding(new Insets(10));
-        logs.setId("logsBox");
 
         scrollPane.setContent(logs);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);

@@ -42,10 +42,6 @@ public class LogPane {
         logGrid.prefHeight(25);
         logGrid.prefWidth(430);
 
-
-        logGrid.minHeight(50);
-
-
         RowConstraints row = new RowConstraints();
         row.setPrefHeight(30);
         row.setMinHeight(30);
@@ -69,13 +65,11 @@ public class LogPane {
 
         eventText.setWrappingWidth(0);
         eventText.setFont(Font.font(13));
-        logGrid.setMargin(eventText, new Insets(0, 15, 0, 15)); //v3=left, v1=right
+        logGrid.setMargin(eventText, new Insets(0, 15, 0, 30));
 
         imgBox.prefHeight(100);
-//        imgBox.prefWidth(200);
         imgBox.setSpacing(2);
 
-//        logGrid.getChildren().addAll(eventText, imgBox);
         logGrid.add(eventText, 0, 0);
         logGrid.add(imgBox, 1, 0);
 
@@ -94,10 +88,6 @@ public class LogPane {
 
     public GridPane getLogGrid() {
         return logGrid;
-    }
-
-    public void setEventText(String text) {
-        eventText.setText(text);
     }
 
     public void addImage(Image image) {

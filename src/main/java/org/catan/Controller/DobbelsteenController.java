@@ -38,7 +38,7 @@ public class DobbelsteenController {
     }
 
     @FXML
-    public void throwDie() throws IOException {
-        logController.logRollEvent("2", "4");
+    public void throwDie() {
+        logController.logRollEvent("2", "4"); // Replace parameters with the results of the throw
     }
 }

@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class LogController {
+public class LogController implements Initializable{
 
     @FXML private VBox logsBox;
     @FXML private ScrollPane scrollPane;
@@ -31,7 +31,11 @@ public class LogController {
 
     public LogController() {
         logController = this;
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));
     }
 
     public static LogController getInstance() {
