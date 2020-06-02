@@ -34,8 +34,11 @@ public class App extends Application {
         DatabaseConnector dbConnector = new DatabaseConnector();
         Spel game = new Spel();
         Speler jan = new Speler("Jan");
+        Speler sabrina = new Speler("Sabrina");
+        sabrina.setKleur("Red");
         jan.setKleur("Pink");
         game.addSpeler(jan);
+        game.addSpeler(sabrina);
         dbConnector.createGame(game);
 //        Log log = new Log("txt");
 //        game.addLog(log);
