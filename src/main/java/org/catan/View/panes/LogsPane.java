@@ -44,17 +44,4 @@ public class LogsPane {
 
         root.getChildren().add(scrollPane);
     }
-
-    public void addLog(LogPane log) {
-        logs.getChildren().add(new Text("test"));
-        logs.getChildren().add(log.getLogPane());
-    }
-
-    public VBox getlogsContainer(){
-        return logs;
-    }
-
-    public AnchorPane getRoot(){
-        return root;
-    }
 }

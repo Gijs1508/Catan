@@ -1,5 +1,9 @@
 package org.catan.Model;
 
+import javafx.scene.image.Image;
+import org.catan.App;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -22,6 +26,7 @@ public class Log {
     private String logType;
     private String eventString;
     private String playerName;
+    private ArrayList<Image> images = new ArrayList<>();
 
     public Log(String eventType, String playerName){
         if (logs.getImgEvents().containsKey(eventType))
@@ -35,7 +40,6 @@ public class Log {
     private void createLog() {
         if (logs.getImgEvents().containsKey(eventType)) {
             eventString = handleEventString(logs.getImgEvents().get(eventType));
-            System.out.println(eventString);
         }
         else if (logs.getTextEvents().containsKey(eventType)){
             eventString = handleEventString(logs.getTextEvents().get(eventType));
@@ -48,6 +52,24 @@ public class Log {
             eventString = eventString.replaceAll("%PLAYER2%", "Jan");       // TODO needs the other player
         }
         return eventString;
+    }
+
+    public Image createImage(String img) {
+        Image image = new Image(String.valueOf(logs.getImgPath().get(img)));
+        images.add(image);
+        return image;
+    }
+
+    public Image getImage() {
+        return images.get(0);
+    }
+
+    public Image getImage(int i) {
+        return images.get(i);
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
     }
 
     public String getEventString() {
