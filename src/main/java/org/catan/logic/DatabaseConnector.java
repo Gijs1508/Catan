@@ -11,6 +11,7 @@ import org.catan.Model.Spel;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,8 +37,21 @@ public class DatabaseConnector {
         this.db = FirestoreClient.getFirestore();
     }
 
-    public void getAllGames() {
+    public ArrayList<Spel> getAllGames() {
+        ArrayList<Spel> games = new ArrayList<>();
+        ApiFuture<QuerySnapshot> query = this.db.collection("games").get();
+        try {
+            QuerySnapshot snapshot = query.get();
+            List<QueryDocumentSnapshot> documents = snapshot.getDocuments();
+            for (QueryDocumentSnapshot document : documents) {
+                games.add(document.toObject(Spel.class));
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return games;
     }
 
     public void getGameById(String id) {
