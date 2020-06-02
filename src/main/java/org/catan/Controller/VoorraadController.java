@@ -54,15 +54,24 @@ public class VoorraadController {
         sheepCount.setText(Integer.toString(cards[3]));
     }
 
+    public static void updateWheat(Text wheatCount){
+        int[] cards = Player.mainPlayer.getPlayerInventory().getCards();
+        wheatCount.setText(Integer.toString(cards[4]));
+    }
+
     public void testResources(){
         Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
 
-        playerInventory.changeCards(0, 5);
+        playerInventory.changeCards(0, 1);
         updateWood(woodCount);
-        playerInventory.changeCards(1, 3);
+        playerInventory.changeCards(1, 2);
         updateBrick(brickCount);
-        playerInventory.changeCards(2, 2);
+        playerInventory.changeCards(2, 3);
         updateOre(oreCount);
+        playerInventory.changeCards(3, 4);
+        updateSheep(sheepCount);
+        playerInventory.changeCards(4, 5);
+        updateWheat(wheatCount);
     }
 
 }

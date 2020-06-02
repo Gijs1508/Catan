@@ -85,79 +85,57 @@ public class TradeController {
 
     @FXML
     public void giveMoreWood() {
-        int wood = getInventoryCards()[0];
-        if(tradeType == "player"){
-            if(resourceToInt(giveWoodCount) < wood){
-                giveWoodCount.setText(raiseResource(giveWoodCount));
-            }
-        } else if(wood >= 4 && tradeGiveLock == false){
-            for(int i = 0; i < 4; i++){
-                giveWoodCount.setText(raiseResource(giveWoodCount));
-                tradeGiveLock = true;
-            }
-        }
+        //Inventory index of Wood is 0
+        giveResource(giveWoodCount, 0);
     }
 
     @FXML
     public void takeMoreWood() {
-        if(tradeType == "player"){
-            takeWoodCount.setText(raiseResource(takeWoodCount));
-        } else if(tradeTakeLock == false){
-            takeWoodCount.setText(raiseResource(takeWoodCount));
-            tradeTakeLock = true;
-        }
+        takeResource(takeWoodCount);
     }
 
     @FXML
     public void giveMoreBrick() {
-        int brick = getInventoryCards()[1];
-        if(resourceToInt(giveBrickCount) < brick){
-            giveBrickCount.setText(raiseResource(giveBrickCount));
-        }
+        //Inventory index of Brick is 1
+        giveResource(giveBrickCount, 1);
     }
 
     @FXML
     public void takeMoreBrick() {
-        takeBrickCount.setText(raiseResource(takeBrickCount));
+        takeResource(takeBrickCount);
     }
 
     @FXML
     public void giveMoreSheep() {
-        int sheep = getInventoryCards()[3];
-        if(resourceToInt(giveSheepCount) < sheep){
-            giveSheepCount.setText(raiseResource(giveSheepCount));
-        }
+        //Inventory index of Sheep is 4
+        giveResource(giveSheepCount, 4);
     }
 
     @FXML
     public void takeMoreSheep() {
-        takeSheepCount.setText(raiseResource(takeSheepCount));
+        takeResource(takeSheepCount);
     }
 
     @FXML
     public void giveMoreOre() {
-        int ore = getInventoryCards()[2];
-        if(resourceToInt(giveOreCount) < ore){
-            giveOreCount.setText(raiseResource(giveOreCount));
-        }
+        //Inventory index of Ore is 2
+        giveResource(giveOreCount, 2);
     }
 
     @FXML
     public void takeMoreOre() {
-        takeOreCount.setText(raiseResource(takeOreCount));
+        takeResource(takeOreCount);
     }
 
     @FXML
     public void giveMoreWheat() {
-        int wheat = getInventoryCards()[4];
-        if(resourceToInt(giveWheatCount) < wheat){
-            giveWheatCount.setText(raiseResource(giveWheatCount));
-        }
+        //Inventory index of Wheat is 4
+        giveResource(giveWheatCount, 4);
     }
 
     @FXML
     public void takeMoreWheat() {
-        takeWheatCount.setText(raiseResource(takeWheatCount));
+        takeResource(takeWheatCount);
     }
 
     private String raiseResource(Label resource){
@@ -174,6 +152,29 @@ public class TradeController {
 
     private int[] getInventoryCards(){
         return Player.getMainPlayer().getPlayerInventory().getCards();
+    }
+
+    private void giveResource(Label resource, int inventoryIndex){
+        int inventoryCard = getInventoryCards()[inventoryIndex];
+        if(tradeType == "player"){
+            if(resourceToInt(resource) < inventoryCard){
+                resource.setText(raiseResource(resource));
+            }
+        } else if(inventoryCard >= 4 && tradeGiveLock == false){
+            for(int i = 0; i < 4; i++){
+                resource.setText(raiseResource(resource));
+                tradeGiveLock = true;
+            }
+        }
+    }
+
+    private void takeResource(Label resourceCount){
+        if(tradeType == "player"){
+            resourceCount.setText(raiseResource(resourceCount));
+        } else if(tradeTakeLock == false){
+            resourceCount.setText(raiseResource(resourceCount));
+            tradeTakeLock = true;
+        }
     }
 
 }
