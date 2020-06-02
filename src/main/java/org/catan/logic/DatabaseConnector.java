@@ -63,8 +63,6 @@ public class DatabaseConnector {
             List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
             for (QueryDocumentSnapshot document : documents) {
                 game = document.toObject(Spel.class);
-                System.out.println(game.getCode());
-                System.out.println(game.getSpelers().get("Jan").getNaam());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,8 +71,22 @@ public class DatabaseConnector {
         return game;
     }
 
-    public void getGamesByStatus(String status) {
+    public ArrayList<Spel> getGamesByStatus(String status) {
+        ArrayList<Spel> games = new ArrayList<>();
+        CollectionReference collectionReference = this.db.collection("games");
+        Query query = collectionReference.whereEqualTo("status", status);
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        try {
+            List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+            for (QueryDocumentSnapshot document : documents) {
+                games.add(document.toObject(Spel.class));
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return games;
     }
 
     public void updateGame(Spel game) {
