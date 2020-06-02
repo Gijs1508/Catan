@@ -23,9 +23,7 @@ public class Log {
 
     Speler player = new Speler();
 
-    public Log() {
-
-    }
+    public Log() {}
 
     public Log(String eventType){
         this.eventType = eventType;

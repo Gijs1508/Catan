@@ -10,6 +10,11 @@ public class Speler {
 //    private ArrayList<SpelObject> spelerObjecten = new ArrayList<SpelObject>();
 
     public Speler() {
+        
+    }
+
+    public Speler(String name) {
+        this.naam = name;
         this.kleur = "";    //TODO
         this.spelerInventaris = new Inventaris();
     }
