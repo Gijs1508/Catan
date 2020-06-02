@@ -11,7 +11,9 @@ import javafx.scene.text.Text;
 import org.catan.Controller.LogController;
 import org.catan.Model.Log;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -22,7 +24,7 @@ import java.util.ResourceBundle;
  * @version 0.4
  */
 
-public class LogsPane {
+public class LogsPane{
 
     private AnchorPane root = new AnchorPane();
     private ScrollPane scrollPane = new ScrollPane();
@@ -47,7 +49,7 @@ public class LogsPane {
 
         root.getChildren().add(scrollPane);
 
-//        logs.getChildren().add(new Text("d")); //AAAAAAAAAAAAAA
+        logs.getChildren().add(new Text("d")); // It works in the constructor, but not anywhere outside of it
 //        addChild();
     }
 
@@ -55,15 +57,24 @@ public class LogsPane {
         LogPane logPane = new LogPane(log);
         logPane.setEventText(log.getEventString());
 //        logs.getChildren().add(logPane.getLogGrid());
-        logs.getChildren().add(new Text("b"));
-        addChild();
+//        logs.getChildren().add(new Text("b"));
+//        addChild();
 
         return logPane;
     }
 
-    private void addChild() {
-        this.logs.getChildren().add(new Text("HALLO??"));
+    public void updateLogs(ArrayList<GridPane> gridPanes) {
+        logs.getChildren().clear();         // doesnt reset???
+        for (int i = 0; i < gridPanes.size(); i++) {
+            if(!gridPanes.isEmpty()) {
+                logs.getChildren().add(gridPanes.get(i));}
+        }
+        scrollPane.setContent(logs);
     }
+
+//    private void addChild() {
+//        this.logs.getChildren().add(new Text("ijkhhk?"));
+//    }
 
     public VBox getLogsContainer(){
         return logs;
@@ -72,4 +83,5 @@ public class LogsPane {
     public AnchorPane getRoot(){
         return root;
     }
+
 }
