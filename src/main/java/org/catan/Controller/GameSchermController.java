@@ -448,7 +448,7 @@ public class GameSchermController implements Initializable {
         ArrayList<Polygon> tiles = addAllTilesToArray();
         ArrayList<Label> labels = addAllTileNumbersToArray();
         RandomizeBoard.setRandomTiles(tiles, labels);
-        this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, roadNodeList);
+        this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList);
         //tile1.setFill(Color.BROWN);
         initializeButtons();
     }
