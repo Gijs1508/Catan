@@ -72,6 +72,10 @@ public class Log {
         return images.get(i);
     }
 
+    public String getLogType() {
+        return logType;
+    }
+
     public String getEventType() {
         return eventType;
     }

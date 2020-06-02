@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.catan.App;
+import org.catan.Model.Log;
 
 
 /**
@@ -23,13 +24,15 @@ import org.catan.App;
 
 public class LogPane {
 
+    private Log log;
     private GridPane logGrid = new GridPane();
     private Text eventText = new Text();
     private HBox imgBox = new HBox();
 
 
-    public LogPane(String type){
-        if(type == "img"){
+    public LogPane(Log log){
+        this.log = log;
+        if(log.getLogType() == "img"){
             initImgEvent();
             return; }
         initTxtEvent();
@@ -63,8 +66,6 @@ public class LogPane {
         eventText.setFont(Font.font(13));
         logGrid.setMargin(eventText, new Insets(0, 15, 0, 0));
 
-        eventText.setText("eee");
-
         imgBox.prefHeight(100);
 //        imgBox.prefWidth(200);
         imgBox.setSpacing(2);
@@ -73,6 +74,8 @@ public class LogPane {
 //        logGrid.getChildren().addAll(eventText, imgBox);
         logGrid.add(eventText, 0, 0);
         logGrid.add(imgBox, 1, 0);
+
+        eventText.setText(log.getEventString());
     }
 
     public void initTxtEvent(){
@@ -81,7 +84,7 @@ public class LogPane {
         eventText.setWrappingWidth(430);
         eventText.setFont(Font.font(13));
 
-        eventText.setText("Jeroen traded a penis pango bangle for a bingle bangle with mariano.");
+        eventText.setText("Text");
         logGrid.getChildren().addAll(eventText);
     }
 

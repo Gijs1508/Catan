@@ -34,8 +34,7 @@ public class LogController implements Initializable{
         log.createImage(dice2);
         logsModel.addLog(log);
 
-        LogPane logPane = logsView.createLog("img");
-        logPane.setEventText(log.getEventString());
+        LogPane logPane = logsView.createLog(log);
         logPane.addImage(log.getImage(0));
         logPane.addImage(log.getImage(1));
 

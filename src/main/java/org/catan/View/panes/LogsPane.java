@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.catan.Controller.LogController;
+import org.catan.Model.Log;
 
 /**
  * Class that creates the view/pane for event logging.
@@ -38,15 +39,15 @@ public class LogsPane {
         scrollPane.setContent(logs);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        createLog("img");
+//        createLog("img");
 
         root.getChildren().add(scrollPane);
     }
 
-    public LogPane createLog(String type) {
-        LogPane log = new LogPane(type);
-        logs.getChildren().add(log.getLogGrid());
-        return log;
+    public LogPane createLog(Log log) {
+        LogPane logPane = new LogPane(log);
+        logs.getChildren().add(logPane.getLogGrid());
+        return logPane;
     }
 
     public VBox getlogsContainer(){
