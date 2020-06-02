@@ -17,28 +17,40 @@ import java.util.HashMap;
 
 
 public class Log {
-    private Logs logs;
+    private Logs logs = new Logs();
     private String eventType;
+    private String logType;
     private String eventString;
+    private String playerName;
 
-    Speler player = new Speler("Jeroen");
-
-
-    public Log(String eventType){
+    public Log(String eventType, String playerName){
+        if (logs.getImgEvents().containsKey(eventType))
+            logType = "img";
+        else logType = "txt";
         this.eventType = eventType;
-        if(eventType.equals("txt")){
-            eventString = handleEventString(logs.getTextEvents().get(eventType));
-        }
-        else if(eventType.equals("img")){
+        this.playerName = playerName;
+        createLog();
+    }
+
+    private void createLog() {
+        if (logs.getImgEvents().containsKey(eventType)) {
             eventString = handleEventString(logs.getImgEvents().get(eventType));
+            System.out.println(eventString);
+        }
+        else if (logs.getTextEvents().containsKey(eventType)){
+            eventString = handleEventString(logs.getTextEvents().get(eventType));
         }
     }
 
-    public String handleEventString(String eventString) {
-        eventString = eventString.replaceAll("%PLAYER%", player.getNaam());
+    private String handleEventString(String eventString) {
+        eventString = eventString.replaceAll("%PLAYER%", playerName);
         if(eventString.contains("%PLAYER2%")){
-            eventString = eventString.replaceAll("%PLAYER2%", "Jan");
+            eventString = eventString.replaceAll("%PLAYER2%", "Jan");       // TODO needs the other player
         }
+        return eventString;
+    }
+
+    public String getEventString() {
         return eventString;
     }
 
@@ -48,5 +60,9 @@ public class Log {
 
     public String getEventType() {
         return eventType;
+    }
+
+    public String getLogType() {
+        return logType;
     }
 }

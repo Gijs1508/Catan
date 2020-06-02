@@ -2,9 +2,8 @@ package org.catan.View.panes;
 
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import org.catan.Model.Log;
 
 /**
  * Class that creates a pane for a single log.
@@ -19,20 +18,20 @@ import javafx.scene.text.Text;
 
 public class LogPane {
 
-    private GridPane log = new GridPane();
+    private GridPane logPane = new GridPane();
     private Text event = new Text();
     private HBox imgBox = new HBox();
 
-    public LogPane(String type){
-        if(type == "img"){
+    public LogPane(Log log){
+        if(log.getLogType() == "img"){
             initImgEvent();
             return; }
         initTxtEvent();
     }
 
     public void initLog(){
-        log.prefHeight(25);
-        log.prefWidth(200);
+        logPane.prefHeight(25);
+        logPane.prefWidth(200);
 
         RowConstraints row = new RowConstraints();
         row.setPrefHeight(30);
@@ -47,8 +46,8 @@ public class LogPane {
         column2.setMinWidth(10);
         column2.setPrefWidth(84);
 
-        log.getRowConstraints().add(row);
-        log.getColumnConstraints().addAll(column1, column2);
+        logPane.getRowConstraints().add(row);
+        logPane.getColumnConstraints().addAll(column1, column2);
 
     }
 
@@ -63,7 +62,7 @@ public class LogPane {
         imgBox.setSpacing(5);
 
         event.setText("This is an image event:");
-        log.getChildren().addAll(event, imgBox);
+        logPane.getChildren().addAll(event, imgBox);
     }
 
     public void initTxtEvent(){
@@ -73,10 +72,10 @@ public class LogPane {
         event.setFont(Font.font(13));
 
         event.setText("This is a text event.");
-        log.getChildren().addAll(event);
+        logPane.getChildren().addAll(event);
     }
 
-    public GridPane getLog() {
-        return log;
+    public GridPane getLogPane() {
+        return logPane;
     }
 }

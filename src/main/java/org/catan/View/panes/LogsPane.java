@@ -1,13 +1,12 @@
 package org.catan.View.panes;
 
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import org.catan.Controller.LogController;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import org.catan.Model.Log;
 
 /**
  * Class that creates the view/pane for event logging.
@@ -20,27 +19,35 @@ import java.util.ResourceBundle;
 public class LogsPane {
     private AnchorPane root = new AnchorPane();
     private VBox logs = new VBox();
+    private ScrollPane scrollPane = new ScrollPane();
 
     private LogController logController;
 
     public LogsPane(){
-        root.setPrefWidth(200);
-        root.setPrefHeight(190);
+        logController = LogController.getInstance();
+
+        root.setPrefWidth(430);
+        root.setPrefHeight(144);
         root.setStyle("-fx-background-color: #a1aaa0;");
 
-        logs.prefWidth(200);
-        logs.prefHeight(190);
+        scrollPane.setPrefHeight(144);
+        scrollPane.setPrefWidth(430);
+        scrollPane.setId("scrollPane");
+
+        logs.prefWidth(430);
+        logs.prefHeight(144);
         logs.setPadding(new Insets(10));
+        logs.setId("logsBox");
 
-        addLog("txt");
-        addLog("img");
+        scrollPane.setContent(logs);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        root.getChildren().add(logs);
+        root.getChildren().add(scrollPane);
     }
 
-    public void addLog(String type) {
-        LogPane log = new LogPane(type);
-        logs.getChildren().add(log.getLog());
+    public void addLog(LogPane log) {
+        logs.getChildren().add(new Text("test"));
+        logs.getChildren().add(log.getLogPane());
     }
 
     public VBox getlogsContainer(){
