@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
+import org.catan.Model.CreateGameCode;
 import org.catan.Model.RandomizeBoard;
 
 import java.lang.reflect.Array;
@@ -392,7 +393,11 @@ public class GameSchermController implements Initializable {
         initializeRoads();
         ArrayList<Polygon> tiles = addAllTilesToArray();
         ArrayList<Label> labels = addAllTileNumbersToArray();
-        RandomizeBoard.setRandomTiles(tiles, labels);
+
+        //TODO: changing the seed to the gamecode!
+        long seed = CreateGameCode.randomCodeGen(6);
+
+        RandomizeBoard.setRandomTiles(tiles, labels, seed);
 
         //tile1.setFill(Color.BROWN);
     }

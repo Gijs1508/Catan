@@ -6,9 +6,10 @@ public class Tile {
     private int number;
 
 
-    public Tile(String type, String id){
+    public Tile(String type, String id, Integer number){
         this.type = type;
         this.id = id;
+        this.number = number;
     }
 
     public String getType() {
@@ -17,10 +18,6 @@ public class Tile {
 
     public String getId() {
         return this.id;
-    }
-
-    public void setNumber(int number){
-        this.number = number;
     }
 
     public int getNumber() {
