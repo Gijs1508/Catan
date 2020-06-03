@@ -405,8 +405,9 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildSettlementBtnClicked() {
-        for (int i = 0; i < vertexNodeList.size(); i++) {
-            vertexNodeList.get(i).setVisible(true);
+        ArrayList<Circle> availableSpots = build.showVillageSpots();
+        for (int i = 0; i < availableSpots.size(); i++) {
+            availableSpots.get(i).setVisible(true);
         }
         settlementButton.setVisible(false);
         settlementButtonClose.setVisible(true);

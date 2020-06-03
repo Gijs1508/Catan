@@ -105,9 +105,8 @@ public class BuildSettlementController {
         roadsConnectedNodes = removeDuplicates(roadsConnectedNodes);
         ArrayList<Circle> nodeOutput = new ArrayList<>();
         nodeOutput = removeNonDuplicates(nodesNodes, roadsConnectedNodes);
-        print(nodeOutput);
 
-        return nodes;
+        return nodeOutput;
     }
 
     // Removes the roads that are already placed
