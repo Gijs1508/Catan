@@ -30,19 +30,20 @@ public class BuildSettlementController {
         buildRoads.add(new Road(278.0, 40.0, "blue"));
         buildRoads.add(new Road(380.0, 121.0, "blue"));
         this.math = new MathBuildSettlement();
-
     }
 
+    // Returns roads from player
     private ArrayList<Road> playerRoads() {
         ArrayList<Road> playerRoads = new ArrayList<>();
-        for (int i=0; i < buildRoads.size(); i++) {
-            if (buildRoads.get(i).getColor().equals(this.color)) {
-                playerRoads.add(buildRoads.get(i));
+        for (Road buildRoad : buildRoads) {
+            if (buildRoad.getColor().equals(this.color)) {
+                playerRoads.add(buildRoad);
             }
         }
         return playerRoads;
     }
 
+    // Returns villages from player
     private ArrayList<Village> playerVillages() {
         ArrayList<Village> playerVillages = new ArrayList<>();
         for (int i=0; i < buildRoads.size(); i++) {
@@ -80,6 +81,7 @@ public class BuildSettlementController {
         return c;
     }
 
+    // Removes duplicates in array
     private ArrayList<Circle> removeDuplicates(ArrayList<Circle> array) {
         ArrayList<Circle> arrayFixed = new ArrayList<>();
         for (Circle circle : array) {
@@ -90,6 +92,7 @@ public class BuildSettlementController {
         return arrayFixed;
     }
 
+    // Removes the uniques from two ArrayLists
     private ArrayList<Circle> removeNonDuplicates(ArrayList<Circle> array, ArrayList<Circle> array2) {
         ArrayList<Circle> arrayFixed = new ArrayList<>();
         for (Circle circle : array) {
@@ -100,6 +103,7 @@ public class BuildSettlementController {
         return arrayFixed;
     }
 
+    // Checks if the available spots don't have a settlement already
     private ArrayList<Circle> villageSpotAvailable(ArrayList<Circle> nodes) {
         for (int i=0; i < nodes.size(); i++) {
             for (int j=0; j < buildVillages.size(); j++) {
@@ -129,6 +133,7 @@ public class BuildSettlementController {
         return roadsConnected;
     }
 
+    // Returns the village nodes that are next to the given roads
     private ArrayList<Circle> roadsNextToVillageSpot(ArrayList<Circle> array) {
         ArrayList<Circle> availableNodes = new ArrayList<>();
         for (Circle circle : array) {
@@ -138,6 +143,7 @@ public class BuildSettlementController {
         return availableNodes;
     }
 
+    // Returns the village nodes that are next to the given roads
     private ArrayList<Circle> roadsNextToVillageSpotRoad(ArrayList<Road> array) {
         ArrayList<Circle> availableNodes = new ArrayList<>();
         for (Road road : array) {
@@ -147,6 +153,7 @@ public class BuildSettlementController {
         return availableNodes;
     }
 
+    // Builds the village
     public void buildVillage(Circle node) {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue");
         buildVillages.add(village);
