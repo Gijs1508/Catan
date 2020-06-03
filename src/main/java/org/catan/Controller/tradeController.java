@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
 public class TradeController {
@@ -64,6 +65,20 @@ public class TradeController {
 
     @FXML
     public void sendTrade() {
+        if(tradeType == "bank"){
+            int netWood = netResource(giveWoodCount, takeWoodCount);
+            getInventory().changeCards(0, netWood);
+            int netBrick = netResource(giveBrickCount, takeBrickCount);
+            getInventory().changeCards(1, netBrick);
+            int netOre = netResource(giveOreCount, takeOreCount);
+            getInventory().changeCards(2, netOre);
+            int netSheep = netResource(giveSheepCount, takeSheepCount);
+            getInventory().changeCards(3, netSheep);
+            int netWheat = netResource(giveWheatCount, takeWheatCount);
+            getInventory().changeCards(4, netWheat);
+            resetTrade();
+            VoorraadController.getInstance().updateResources();
+        }
     }
 
 
@@ -107,8 +122,8 @@ public class TradeController {
 
     @FXML
     public void giveMoreSheep() {
-        //Inventory index of Sheep is 4
-        giveResource(giveSheepCount, 4);
+        //Inventory index of Sheep is 3
+        giveResource(giveSheepCount, 3);
     }
 
     @FXML
@@ -150,8 +165,12 @@ public class TradeController {
         return Integer.parseInt(resource.getText());
     }
 
+    private Inventory getInventory(){
+        return Player.getMainPlayer().getPlayerInventory();
+    }
+
     private int[] getInventoryCards(){
-        return Player.getMainPlayer().getPlayerInventory().getCards();
+        return getInventory().getCards();
     }
 
     private void giveResource(Label resource, int inventoryIndex){
@@ -177,4 +196,7 @@ public class TradeController {
         }
     }
 
+    private int netResource(Label givenResource, Label receivedResource){
+        return (resourceToInt(receivedResource) - resourceToInt(givenResource));
+    }
 }

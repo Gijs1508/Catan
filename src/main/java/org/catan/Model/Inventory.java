@@ -1,24 +1,12 @@
 package org.catan.Model;
 
+import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
 import java.util.HashMap;
 
 public class Inventory {
-
-    @FXML
-    private Text wheatCount;
-    @FXML
-    private Text woodCount;
-    @FXML
-    private Text brickCount;
-    @FXML
-    private Text sheepCount;
-    @FXML
-    private Text oreCount;
-    @FXML
-    private Text knightCount;
 
     private int[] cards = {0, 0, 0, 0, 0, 0};
     /* INDEXES
