@@ -48,12 +48,12 @@ public class ScreenController implements Initializable {
         try {
             logView = (AnchorPane) App.loadFXML("Views/logsView");
             boardView = (AnchorPane) App.loadFXML("Views/boardView");
-            stockView = (AnchorPane) App.loadFXML("Views/stockView");
             chatView = (AnchorPane) App.loadFXML("Views/chatView");
             tradeView = (AnchorPane) App.loadFXML("Views/tradeView");
             diceView = (AnchorPane) App.loadFXML("Views/diceView");
             scoreView = (AnchorPane) App.loadFXML("Views/scoreView");
             costView = (AnchorPane) App.loadFXML("Views/costView");
+            stockView = (AnchorPane) App.loadFXML("Views/stockView");
             knightDetails = new KnightDetails().getRoot();
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,13 +61,12 @@ public class ScreenController implements Initializable {
 
         logPane.getChildren().setAll(logView);
         boardPane.getChildren().setAll(boardView);
-        stockPane.getChildren().setAll(stockView);
         chatPane.getChildren().setAll(chatView);
         tradePane.getChildren().setAll(tradeView);
         dicePane.getChildren().setAll(diceView);
         scorePane.getChildren().setAll(scoreView);
         costPane.getChildren().setAll(costView);
-
+        stockPane.getChildren().setAll(stockView);
         knightPopup.getChildren().setAll(knightDetails);
         knightPopup.setVisible(false);
     }

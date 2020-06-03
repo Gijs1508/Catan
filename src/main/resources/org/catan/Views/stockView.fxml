@@ -110,6 +110,40 @@
                   </Text>
                </children>
             </VBox>
+            <ImageView fx:id="animationKnightCard" fitHeight="125.0" fitWidth="74.0" layoutX="6.0" layoutY="12.0" onMouseClicked="#activateKnight" onMouseEntered="#showKnightDetails" onMouseExited="#hideKnightDetails" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/img/knight.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="animationResourcesPane" layoutX="125.0" layoutY="45.0" prefHeight="123.0" prefWidth="423.0">
+         <children>
+            <ImageView fx:id="animationOre" fitHeight="125.0" fitWidth="74.0" layoutX="346.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/img/ore.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="animationWheat" fitHeight="125.0" fitWidth="74.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/img/wheat.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="animationWood" fitHeight="125.0" fitWidth="74.0" layoutX="88.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/img/wood.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="animationBrick" fitHeight="125.0" fitWidth="74.0" layoutX="174.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/img/brick.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="animationSheep" fitHeight="125.0" fitWidth="74.0" layoutX="260.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/img/sheep.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Button fx:id="testResources" layoutX="535.0" layoutY="10.0" mnemonicParsing="false" onAction="#testResources" text="TEST" />
