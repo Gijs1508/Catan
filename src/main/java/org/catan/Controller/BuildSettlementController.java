@@ -110,7 +110,7 @@ public class BuildSettlementController {
     }
 
     // Checks if the available spots don't have a settlement already
-    private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Road> roads, int Useless) {
+    private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Road> roads, int useless) {
         for (int i=0; i < nodes.size(); i++) {
             for (Road r : roads) {
                 if (nodes.get(i).getLayoutX() == r.getX() && nodes.get(i).getLayoutY() == r.getY()) {
@@ -120,7 +120,7 @@ public class BuildSettlementController {
         }
         return nodes;
     }
-
+    // Checks if the available spots don't have a settlement already
     private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Village> village) {
         for (int i=0; i < nodes.size(); i++) {
             for (Village v : village) {
