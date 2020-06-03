@@ -46,13 +46,14 @@ public class Logs {
             put("steal", "%PLAYER% steals a card from %PLAYER2%.");
             put("endturn", "%PLAYER% ends turn.");
             put("upgrade", "%PLAYER% upgrades a settlement.");
-            put("road", "%PLAYER% places a road.");
+            put("road", "%PLAYER% builds a road.");
             put("trade", "%PLAYER% traded with %PLAYER2%.");
-            put("settlement", "%PLAYER% places a settlement.");
+            put("settlement", "%PLAYER% builds a settlement.");
             put("robber", "%PLAYER% moves the robber.");
             put("win", "%PLAYER% wins the game.");
             put("point", "%PLAYER% gains a victory point.");
             put("knight", "%PLAYER% activates a knight card.");
+            put("development", "%PLAYER% buys a development card.");
         }};
 
         imgEvents = new HashMap<>() {{

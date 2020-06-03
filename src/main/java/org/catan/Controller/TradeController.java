@@ -17,6 +17,7 @@ public class TradeController {
 
     @FXML
     public void buyDevelopmentCard() {
+        logController.logDevelopmentCardEvent();
     }
 
     @FXML

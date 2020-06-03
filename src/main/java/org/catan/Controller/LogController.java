@@ -137,6 +137,12 @@ public class LogController implements Initializable{
         storeLog(log);
     }
 
+    public void logDevelopmentCardEvent() {
+        Log log = new Log("development", player.getNaam());
+        addTxtLogToLogsPane(log);
+        storeLog(log);
+    }
+
 
     private void storeLog(Log log) {
         logs.addLog(log);

@@ -290,6 +290,8 @@ public class GameSchermController implements Initializable {
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList;
 
+    LogController logController = LogController.getInstance();
+
 
     public GameSchermController() {
     }
@@ -318,6 +320,8 @@ public class GameSchermController implements Initializable {
     // TODO Jan
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
+        logController.logSettlementEvent();
+
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
         circle.getLayoutX();                             // Information you might need for the settlement/road
         circle.getLayoutY();                             // Use it as a parameter (so the logic isn't in this controller)
@@ -325,6 +329,7 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildRoad(MouseEvent mouseEvent) {
+        logController.logRoadEvent();
     }
     
 
@@ -338,14 +343,12 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void upgradeSettlement() {
-    }
-
-    @FXML
-    public void buildRoad() {
+        logController.logUpgradeEvent();
     }
 
     @FXML
     public void endTurn() {
+        logController.logEndTurnEvent();
     }
 
     @FXML
