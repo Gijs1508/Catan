@@ -12,10 +12,17 @@ import java.util.ResourceBundle;
 
 public class VoorraadController implements Initializable {
 
-    @FXML private ImageView knightCard;
+    @FXML private Pane animationResourcesPane;
     @FXML private ImageView animationKnightCard;
+    @FXML private ImageView animationWheat;
+    @FXML private ImageView animationWood;
+    @FXML private ImageView animationBrick;
+    @FXML private ImageView animationSheep;
+    @FXML private ImageView animationOre;
 
-    private AnimationTimer animationTimer;
+
+
+//    private AnimationTimer animationTimer;
     private boolean animationIsActive = false;
 
 
@@ -23,6 +30,7 @@ public class VoorraadController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        animationResourcesPane.setVisible(true);
     }
 
     @FXML
@@ -30,6 +38,10 @@ public class VoorraadController implements Initializable {
         logController.logKnightEvent();
 
         removeCardAnimation(animationKnightCard);
+        removeCardAnimation(animationOre);
+        removeCardAnimation(animationSheep);
+        removeCardAnimation(animationWood);
+
     }
 
     private void removeCardAnimation(ImageView animationCard){
@@ -39,7 +51,7 @@ public class VoorraadController implements Initializable {
         double y = animationCard.getTranslateY();
 
         if(!animationIsActive){
-            animationTimer = new AnimationTimer() {
+            AnimationTimer animationTimer = new AnimationTimer() {
                 int tick = 0;
                 @Override
                 public void handle(long l) {
@@ -49,11 +61,11 @@ public class VoorraadController implements Initializable {
                     animationCard.setTranslateY(animationCard.getTranslateY() - 4);
 
                     if(tick > 40) {
-                        animationCard.setOpacity(animationCard.getOpacity() - 0.04);
+                        animationCard.setOpacity(animationCard.getOpacity() - 0.06);
                     }
 
                     if(animationCard.getOpacity() <= 0) {
-                        animationTimer.stop();
+                        this.stop();
 
                         animationCard.setTranslateX(x);
                         animationCard.setTranslateY(y);

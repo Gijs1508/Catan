@@ -112,5 +112,34 @@
             </VBox>
          </children>
       </Pane>
+      <Pane fx:id="animationResourcesPane" layoutX="125.0" layoutY="45.0" prefHeight="123.0" prefWidth="423.0" visible="false">
+         <children>
+            <ImageView fx:id="animationOre" fitHeight="125.0" fitWidth="74.0" layoutX="346.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ore.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="animationWheat" fitHeight="125.0" fitWidth="74.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/wheat.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="animationWood" fitHeight="125.0" fitWidth="74.0" layoutX="88.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/wood.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="animationBrick" fitHeight="125.0" fitWidth="74.0" layoutX="174.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brick.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="animationSheep" fitHeight="125.0" fitWidth="74.0" layoutX="260.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/sheep.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
