@@ -28,7 +28,6 @@ public class RandomizeBoard {
 
         // Test loop to check if the tile objects are created
         for (Tile allTile : ALL_TILES) {
-            System.out.println(allTile.getType() + "\t" + allTile.getId() + "\t" + allTile.getNumber());
         }
     }
 
@@ -152,11 +151,8 @@ public class RandomizeBoard {
     }
 
     private static void printAll(ArrayList<HashMap<String, Image>> tileArray){
-        //System.out.println("hoi");
         for (HashMap<String, Image> stringImageHashMap : tileArray) {
-            System.out.println(stringImageHashMap.keySet());
         }
-        System.out.println("end");
     }
 
     private static boolean checkIfTileInArray(ArrayList<String> tiles, String tile){
