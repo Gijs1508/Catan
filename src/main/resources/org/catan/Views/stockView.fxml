@@ -91,11 +91,6 @@
       <Pane layoutX="37.0" layoutY="35.0" prefHeight="156.0" prefWidth="86.0">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="100.0" fill="#dadada" height="168.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #cccc;" width="83.0" />
-            <ImageView fx:id="animationKnightCard" fitHeight="125.0" fitWidth="74.0" layoutX="5.0" layoutY="11.0" onMouseClicked="#activateKnight" onMouseEntered="#showKnightDetails" onMouseExited="#hideKnightDetails" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/knight.png" />
-               </image>
-            </ImageView>
             <VBox layoutX="5.0" layoutY="11.0" prefHeight="156.0" prefWidth="74.0">
                <children>
                   <ImageView fx:id="knightCard" fitHeight="125.0" fitWidth="74.0" onMouseClicked="#activateKnight" onMouseEntered="#showKnightDetails" onMouseExited="#hideKnightDetails" pickOnBounds="true" preserveRatio="true">
@@ -110,31 +105,36 @@
                   </Text>
                </children>
             </VBox>
+            <ImageView fx:id="animationKnightCard" fitHeight="125.0" fitWidth="74.0" layoutX="6.0" layoutY="12.0" onMouseClicked="#activateKnight" onMouseEntered="#showKnightDetails" onMouseExited="#hideKnightDetails" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/img/knight.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="animationResourcesPane" layoutX="125.0" layoutY="45.0" prefHeight="123.0" prefWidth="423.0" visible="false">
+      <Pane fx:id="animationResourcesPane" layoutX="125.0" layoutY="45.0" prefHeight="123.0" prefWidth="423.0">
          <children>
-            <ImageView fx:id="animationOre" fitHeight="125.0" fitWidth="74.0" layoutX="346.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="animationOre" fitHeight="125.0" fitWidth="74.0" layoutX="346.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../assets/img/ore.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="animationWheat" fitHeight="125.0" fitWidth="74.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="animationWheat" fitHeight="125.0" fitWidth="74.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../assets/img/wheat.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="animationWood" fitHeight="125.0" fitWidth="74.0" layoutX="88.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="animationWood" fitHeight="125.0" fitWidth="74.0" layoutX="88.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../assets/img/wood.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="animationBrick" fitHeight="125.0" fitWidth="74.0" layoutX="174.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="animationBrick" fitHeight="125.0" fitWidth="74.0" layoutX="174.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../assets/img/brick.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="animationSheep" fitHeight="125.0" fitWidth="74.0" layoutX="260.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="animationSheep" fitHeight="125.0" fitWidth="74.0" layoutX="260.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../assets/img/sheep.png" />
                </image>

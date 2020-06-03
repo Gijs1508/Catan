@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class VoorraadController implements Initializable {
@@ -21,16 +23,16 @@ public class VoorraadController implements Initializable {
     @FXML private ImageView animationOre;
 
 
-
-//    private AnimationTimer animationTimer;
     private boolean animationIsActive = false;
 
 
     private LogController logController = LogController.getInstance();
+    private HashMap<String, ImageView> animationCardForResource;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         animationResourcesPane.setVisible(true);
+        initializeAnimationCardMap();
     }
 
     @FXML
@@ -38,10 +40,17 @@ public class VoorraadController implements Initializable {
         logController.logKnightEvent();
 
         removeCardAnimation(animationKnightCard);
-        removeCardAnimation(animationOre);
-        removeCardAnimation(animationSheep);
-        removeCardAnimation(animationWood);
 
+//        ArrayList<String> resources = new ArrayList<>();          // Use this code when a resource gets taken
+//        resources.add("ore");
+//        resources.add("sheep");
+//        removeResources(resources);
+    }
+
+    public void removeResources(ArrayList<String> resources) {
+        for (int i = 0; i < resources.size(); i++) {
+            removeCardAnimation(animationCardForResource.get(resources.get(i)));
+        }
     }
 
     private void removeCardAnimation(ImageView animationCard){
@@ -58,7 +67,7 @@ public class VoorraadController implements Initializable {
                     tick++;
                     animationIsActive = true;
 
-                    animationCard.setTranslateY(animationCard.getTranslateY() - 4);
+                    animationCard.setTranslateY(animationCard.getTranslateY() - 2.8);
 
                     if(tick > 40) {
                         animationCard.setOpacity(animationCard.getOpacity() - 0.06);
@@ -89,5 +98,15 @@ public class VoorraadController implements Initializable {
     @FXML
     public void hideKnightDetails() {
         ScreenController.getInstance().hideKnightPopup();
+    }
+
+    private void initializeAnimationCardMap() {
+        animationCardForResource = new HashMap<>() {{
+            put("wheat", animationWheat);
+            put("wood", animationWood);
+            put("brick", animationBrick);
+            put("sheep", animationSheep);
+            put("ore", animationOre);
+        }};
     }
 }
