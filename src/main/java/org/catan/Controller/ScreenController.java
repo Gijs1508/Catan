@@ -7,14 +7,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.catan.App;
+import org.catan.View.panes.LogsPane;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ScreenController implements Initializable {
+
+    private static ScreenController screenController;
 
     private AnchorPane boardView;
     private AnchorPane stockView;
@@ -34,12 +38,16 @@ public class ScreenController implements Initializable {
     @FXML private Pane dicePane;
     @FXML private Pane costPane;
 
+    public ScreenController() {
+        screenController = this;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         try {
             boardView = (AnchorPane) App.loadFXML("Views/boardView");
             stockView = (AnchorPane) App.loadFXML("Views/stockView");
-            logView = (AnchorPane) App.loadFXML("Views/logView");
+            logView = (AnchorPane) App.loadFXML("Views/logsView");
             chatView = (AnchorPane) App.loadFXML("Views/chatView");
             tradeView = (AnchorPane) App.loadFXML("Views/tradeView");
             diceView = (AnchorPane) App.loadFXML("Views/diceView");
@@ -57,8 +65,5 @@ public class ScreenController implements Initializable {
         dicePane.getChildren().setAll(diceView);
         scorePane.getChildren().setAll(scoreView);
         costPane.getChildren().setAll(costView);
-
     }
-
-
 }
