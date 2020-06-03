@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import org.catan.App;
+import org.catan.Helper.MathBuildSettlement;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
 import java.util.*;
@@ -18,6 +19,7 @@ public class BuildSettlementController {
 
     private ArrayList<Road> buildRoads = new ArrayList<>();
     private ArrayList<Village> buildVillages = new ArrayList<>();
+    private MathBuildSettlement math;
 
     @FXML private Pane objectsPane;
 
@@ -27,41 +29,8 @@ public class BuildSettlementController {
         buildRoads.add(new Road(226.0, 41.0, "blue"));
         buildRoads.add(new Road(278.0, 40.0, "blue"));
         buildRoads.add(new Road(380.0, 121.0, "blue"));
-    }
+        this.math = new MathBuildSettlement();
 
-    // Returns the circles that are next to the circle you put in the function
-    // x and y are the selected circle, ArrayList is the list from player, Type is what you want it to check road/village road/road ect
-    private ArrayList<Circle> circlesInRadius(double x, double y, ArrayList<Circle> a, String type) {
-        int radius = radius(type);
-        ArrayList<Circle> inRadius = new ArrayList<>();
-        for (Circle circle : a) {
-            if (circle.getLayoutX() == x && circle.getLayoutY() == y) {
-            } else {
-                double distance = distance(x, y, circle.getLayoutX(), circle.getLayoutY());
-                if (distance <= radius) {
-                        inRadius.add(circle);
-                }
-            }
-        }
-        return inRadius; // Nodes that are in the radius
-    }
-    
-    // Measures the distance between points
-    private double distance(double xa, double ya, double xb, double yb) {
-        double xTotal = Math.pow(xb - xa, 2);
-        double yTotal = Math.pow(yb - ya, 2);
-        return Math.sqrt(xTotal + yTotal);
-    }
-
-    // Returns the correct radius for that type
-    private int radius(String type) {
-        if (type.equals("Road") || type.equals("road")) // Road next to road
-            return 63;
-        else if (type.equals("Village") || type.equals("village")) // Village next to village
-            return 69;
-        else {
-            return 41; // Road next to village and visa versa
-        }
     }
 
     private ArrayList<Road> playerRoads() {
@@ -89,7 +58,7 @@ public class BuildSettlementController {
         ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
         ArrayList<Circle> nodes = new ArrayList<>();
         for (int i=0; i < roadsConnected.size(); i++) {
-            nodes.addAll(circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
+            nodes.addAll(math.circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
         }
         nodes = filterOwnRoads(nodes, roadsConnected);
 
@@ -150,7 +119,7 @@ public class BuildSettlementController {
             for (Road playerRoad : playerRoads) {
                 if (playerRoads.get(i).getX() == playerRoad.getX() && playerRoads.get(i).getY() == playerRoad.getY()) {
                 } else {
-                    double distance = distance(playerRoads.get(i).getX(), playerRoads.get(i).getY(), playerRoad.getX(), playerRoad.getY());
+                    double distance = math.distance(playerRoads.get(i).getX(), playerRoads.get(i).getY(), playerRoad.getX(), playerRoad.getY());
                     if (distance <= 63) {
                         roadsConnected.add(playerRoads.get(i));
                     }
@@ -163,7 +132,7 @@ public class BuildSettlementController {
     private ArrayList<Circle> roadsNextToVillageSpot(ArrayList<Circle> array) {
         ArrayList<Circle> availableNodes = new ArrayList<>();
         for (Circle circle : array) {
-            availableNodes.addAll(circlesInRadius(circle.getLayoutX(), circle.getLayoutY(), vertexNodeList, "other"));
+            availableNodes.addAll(math.circlesInRadius(circle.getLayoutX(), circle.getLayoutY(), vertexNodeList, "other"));
         }
         availableNodes = removeDuplicates(availableNodes);
         return availableNodes;
@@ -172,7 +141,7 @@ public class BuildSettlementController {
     private ArrayList<Circle> roadsNextToVillageSpotRoad(ArrayList<Road> array) {
         ArrayList<Circle> availableNodes = new ArrayList<>();
         for (Road road : array) {
-            availableNodes.addAll(circlesInRadius(road.getX(), road.getY(), vertexNodeList, "other"));
+            availableNodes.addAll(math.circlesInRadius(road.getX(), road.getY(), vertexNodeList, "other"));
         }
         availableNodes = removeDuplicates(availableNodes);
         return availableNodes;
