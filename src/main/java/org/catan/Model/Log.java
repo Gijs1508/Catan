@@ -26,6 +26,7 @@ public class Log {
     private String logType;
     private String eventString;
     private String playerName;
+    private String opponentName;
     private ArrayList<Image> images = new ArrayList<>();
 
     public Log(String eventType, String playerName){
@@ -34,6 +35,16 @@ public class Log {
         else logType = "txt";
         this.eventType = eventType;
         this.playerName = playerName;
+        createLog();
+    }
+
+    public Log(String eventType, String playerName, String opponentName) {
+        if (logs.getImgEvents().containsKey(eventType))
+            logType = "img";
+        else logType = "txt";
+        this.eventType = eventType;
+        this.playerName = playerName;
+        this.opponentName = opponentName;
         createLog();
     }
 
@@ -49,7 +60,7 @@ public class Log {
     private String handleEventString(String eventString) {
         eventString = eventString.replaceAll("%PLAYER%", playerName);
         if(eventString.contains("%PLAYER2%")){
-            eventString = eventString.replaceAll("%PLAYER2%", "Jan");       // TODO needs the other player
+            eventString = eventString.replaceAll("%PLAYER2%", opponentName);       // TODO needs the other player
         }
         return eventString;
     }

@@ -1,20 +1,13 @@
 package org.catan.Controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import org.catan.Model.Log;
-import org.catan.Model.Logs;
 import org.catan.Model.Speler;
 import org.catan.View.panes.LogPane;
-import org.catan.View.panes.LogsPane;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,7 +18,8 @@ public class LogController implements Initializable{
     @FXML private VBox logsBox;
     @FXML private ScrollPane scrollPane;
 
-    Speler player = new Speler("Jeroen");    // placeholder
+    Speler player = new Speler("Jeroen");    // placeholders
+    Speler opponent = new Speler("Jan");
 
     private static LogController logController;
 
@@ -35,7 +29,7 @@ public class LogController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));
+        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));   // Scroll to bottom with each update
     }
 
     public static LogController getInstance() {
@@ -48,15 +42,6 @@ public class LogController implements Initializable{
     private void addToLogsBox(LogPane logPane) {
         logsBox.getChildren().add(logPane.getLogGrid());
     }
-    public void logRollEvent(String dice1, String dice2) {
-        Log log = new Log("roll", player.getNaam());
-        log.createImage(dice1);
-        log.createImage(dice2);
-
-        LogPane logPane = new LogPane(log);
-        addImagesToLogPane(logPane, log.getImages());
-        addToLogsBox(logPane);
-    }
 
     private void addImagesToLogPane(LogPane logPane, ArrayList<Image> images) {
         for (int i = 0; i < images.size(); i++) {
@@ -64,7 +49,82 @@ public class LogController implements Initializable{
         }
     }
 
-    public void update() {
+    private void addTxtLogToLogsPane(Log log) {
+        LogPane logPane = new LogPane(log);
+        addToLogsBox(logPane);
+    }
 
+    private void addImgLogToLogsPane(Log log) {
+        LogPane logPane = new LogPane(log);
+        addToLogsBox(logPane);
+        addImagesToLogPane(logPane, log.getImages());
+    }
+
+    public void update() {
+    }
+
+    public void logRollEvent(String dice1, String dice2) {
+        Log log = new Log("roll", player.getNaam());
+        log.createImage(dice1);
+        log.createImage(dice2);
+        addImgLogToLogsPane(log);
+    }
+
+    public void logReceiveEvent(ArrayList<String> receivedCards) {
+        Log log = new Log("receive", player.getNaam());
+        for (int i = 0; i < receivedCards.size(); i++) {
+            log.createImage(receivedCards.get(i));
+        }
+        addImgLogToLogsPane(log);
+    }
+
+    public void logStealEvent(Speler opponent) {
+        Log log = new Log("steal", player.getNaam(), opponent.getNaam());
+        addTxtLogToLogsPane(log);
+    }
+
+    public void logTradeEvent(Speler opponent) {
+        Log log = new Log("trade", player.getNaam(), opponent.getNaam());
+        addTxtLogToLogsPane(log);
+    }
+
+    public void logEndTurnEvent() {
+        Log log = new Log("endturn", player.getNaam());
+        addTxtLogToLogsPane(log);
+    }
+
+    public void logUpgradeEvent() {
+        Log log = new Log("upgrade", player.getNaam());
+        addTxtLogToLogsPane(log);
+    }
+
+    public void logRoadEvent() {
+        Log log = new Log("road", player.getNaam());
+        addTxtLogToLogsPane(log);
+    }
+
+    public void logSettlementEvent() {
+        Log log = new Log("settlement", player.getNaam());
+        addTxtLogToLogsPane(log);
+    }
+
+    public void logRobberEvent() {
+        Log log = new Log("robber", player.getNaam());
+        addTxtLogToLogsPane(log);
+    }
+
+    public void logWinEvent() {
+        Log log = new Log("win", player.getNaam());
+        addTxtLogToLogsPane(log);
+    }
+
+    public void logPointEvent() {
+        Log log = new Log("point", player.getNaam());
+        addTxtLogToLogsPane(log);
+    }
+
+    public void logKnightEvent() {
+        Log log = new Log("knight", player.getNaam());
+        addTxtLogToLogsPane(log);
     }
 }

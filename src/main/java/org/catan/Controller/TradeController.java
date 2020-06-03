@@ -1,11 +1,11 @@
 package org.catan.Controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXML;;
+import org.catan.Model.Speler;
 
 public class TradeController {
+
+    LogController logController = LogController.getInstance();
 
     @FXML
     public void bankTrade() {
@@ -21,6 +21,8 @@ public class TradeController {
 
     @FXML
     public void sendTrade() {
+        Speler opponent = new Speler("Jan");  // placeholder
+        logController.logTradeEvent(opponent);       // move to method that executes when trade succeeded
     }
 
 
