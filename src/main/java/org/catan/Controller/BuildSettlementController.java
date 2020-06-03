@@ -30,6 +30,7 @@ public class BuildSettlementController {
         buildRoads.add(new Road(278.0, 40.0, "blue"));
         buildRoads.add(new Road(380.0, 121.0, "blue"));
         this.math = new MathBuildSettlement();
+        showUpgradeableVillages();
     }
 
     // Returns roads from player
@@ -44,11 +45,11 @@ public class BuildSettlementController {
     }
 
     // Returns villages from player
-    private ArrayList<Village> playerVillages() {
+    public ArrayList<Village> playerVillages() {
         ArrayList<Village> playerVillages = new ArrayList<>();
-        for (int i=0; i < buildRoads.size(); i++) {
-            if (buildVillages.get(i).getColor().equals(this.color)) {
-                playerVillages.add(buildVillages.get(i));
+        for (Village buildVillage : buildVillages) {
+            if (buildVillage.getColor().equals(this.color)) {
+                playerVillages.add(buildVillage);
             }
         }
         return playerVillages;
@@ -106,8 +107,8 @@ public class BuildSettlementController {
     // Checks if the available spots don't have a settlement already
     private ArrayList<Circle> villageSpotAvailable(ArrayList<Circle> nodes) {
         for (int i=0; i < nodes.size(); i++) {
-            for (int j=0; j < buildVillages.size(); j++) {
-                if (nodes.get(i).getLayoutX() == buildVillages.get(j).getX() && nodes.get(i).getLayoutY() == buildVillages.get(j).getY()) {
+            for (Village buildVillage : buildVillages) {
+                if (nodes.get(i).getLayoutX() == buildVillage.getX() && nodes.get(i).getLayoutY() == buildVillage.getY()) {
                     nodes.remove(i);
                 }
             }
@@ -162,6 +163,23 @@ public class BuildSettlementController {
 //        imageView.setLayoutX(village.getX());
 //        imageView.setLayoutY(village.getY());
 //        objectsPane.getChildren().add(imageView);
+    }
+
+    public ArrayList<Circle> showUpgradeableVillages() {
+        ArrayList<Village> villages = playerVillages();
+        ArrayList<Circle> upgradeableVillages = new ArrayList<>();
+        if (villages.size() == 0){
+            return null;
+        } else {
+            for (Circle circle : vertexNodeList) {
+                for (Village playerVillage : villages) {
+                    if (circle.getLayoutX() == playerVillage.getX() && circle.getLayoutY() == playerVillage.getY()) {
+                        upgradeableVillages.add(circle);
+                    }
+                }
+            }
+            return upgradeableVillages;
+        }
     }
 
     // Prints coordinates ArrayList

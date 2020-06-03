@@ -336,7 +336,8 @@ public class GameSchermController implements Initializable {
     }
 
     @FXML
-    public void upgradeSettlement() {
+    public void upgradeSettlement(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
     }
 
     @FXML
@@ -424,9 +425,11 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void upgradeSettlementBtnClicked() {
-        /* TODO  show all villages that can be upgraded*/
-        for (int i = 0; i < vertexNodeList.size(); i++) {
-            vertexNodeList.get(i).setVisible(true);
+        ArrayList<Circle> nodes = build.showUpgradeableVillages();
+        if (nodes != null){
+            for (Circle node : nodes) {
+                node.setVisible(true);
+            }
         }
         upgradeButton.setVisible(false);
         upgradeButtonClose.setVisible(true);
