@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class Logs {
 
-    private ArrayList<Log> logs;
+    private ArrayList<Log> logs = new ArrayList<>();
     private HashMap<String, String> imgPath = new HashMap<>();
     private HashMap<String, String> textEvents = new HashMap<>();
     private HashMap<String, String> imgEvents = new HashMap<>();
