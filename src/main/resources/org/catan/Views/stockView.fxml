@@ -98,7 +98,7 @@
             <Rectangle arcHeight="20.0" arcWidth="100.0" fill="#dadada" height="168.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #cccc;" width="83.0" />
             <VBox layoutX="5.0" layoutY="11.0" prefHeight="156.0" prefWidth="74.0">
                <children>
-                  <ImageView fitHeight="125.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="knightCard" fitHeight="125.0" fitWidth="74.0" onMouseClicked="#activateKnight" onMouseEntered="#showKnightDetails" onMouseExited="#hideKnightDetails" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/img/knight.png" />
                      </image>

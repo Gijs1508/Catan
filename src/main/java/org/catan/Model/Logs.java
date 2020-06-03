@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class Logs {
 
-    private ArrayList<Log> logs;
+    private ArrayList<Log> logs = new ArrayList<>();
     private HashMap<String, String> imgPath = new HashMap<>();
     private HashMap<String, String> textEvents = new HashMap<>();
     private HashMap<String, String> imgEvents = new HashMap<>();
@@ -43,21 +43,22 @@ public class Logs {
         }};
 
         textEvents = new HashMap<>() {{
-            put("stole", "%PLAYER% steals a card from %PLAYER2%.");
+            put("steal", "%PLAYER% steals a card from %PLAYER2%.");
             put("endturn", "%PLAYER% ends turn.");
             put("upgrade", "%PLAYER% upgrades a settlement.");
-            put("road", "%PLAYER% places a road.");
-            put("trade", "%PLAYER% traded with %PLAYER2.");
-            put("settlement", "%PLAYER% places a settlement.");
+            put("road", "%PLAYER% builds a road.");
+            put("trade", "%PLAYER% traded with %PLAYER2%.");
+            put("settlement", "%PLAYER% builds a settlement.");
             put("robber", "%PLAYER% moves the robber.");
             put("win", "%PLAYER% wins the game.");
             put("point", "%PLAYER% gains a victory point.");
             put("knight", "%PLAYER% activates a knight card.");
+            put("development", "%PLAYER% buys a development card.");
         }};
 
         imgEvents = new HashMap<>() {{
             put("roll", "%PLAYER% rolled:");
-            put("receives", "%PLAYER% receives:");
+            put("receive", "%PLAYER% receives:");
         }};
 
     }
