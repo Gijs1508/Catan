@@ -92,7 +92,8 @@ public class TradeController {
             resetTrade();
             updateStockView();
         } else if(tradeType == "player"){
-            App.tradePopUp(Player.getMainPlayer());
+            TradePopUpController.setSender(Player.getMainPlayer().getName());
+            App.tradePopUp();
         }
     }
 

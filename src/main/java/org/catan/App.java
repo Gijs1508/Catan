@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.catan.Controller.TradePopUpController;
 import org.catan.Model.Player;
 
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class App extends Application {
         stage.show();
     }
 
-    public static void tradePopUp(Player sender) throws IOException{
+    public static void tradePopUp() throws IOException{
         scene = new Scene(loadFXML("Views/tradePopUpView"));
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         Stage stage = new Stage();
