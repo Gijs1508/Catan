@@ -17,7 +17,6 @@ public class TradeController {
 
     private String tradeType = "player";
     private boolean tradeGiveLock, tradeTakeLock = false;
-    //private boolean tradeTakeLock = false;
 
     @FXML
     private Label giveWheatCount;
@@ -71,7 +70,6 @@ public class TradeController {
             getInventory().changeCards(2, -1);
             getInventory().changeCards(3, -1);
             getInventory().changeCards(4, -1);
-            updateStockView();
             // TODO add development card functionality
         }
     }
@@ -90,9 +88,11 @@ public class TradeController {
             int netWheat = netResource(giveWheatCount, takeWheatCount);
             getInventory().changeCards(4, netWheat);
             resetTrade();
-            updateStockView();
         } else if(tradeType == "player"){
-            TradePopUpController.setSender(Player.getMainPlayer().getName());
+            String playerName = Player.getMainPlayer().getName();
+            String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveSheepCount.getText(), giveWheatCount.getText()};
+            String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeSheepCount.getText(), takeWheatCount.getText()};
+            TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
             App.tradePopUp();
         }
     }
@@ -216,7 +216,4 @@ public class TradeController {
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
     }
 
-    private void updateStockView(){
-        StockController.getInstance().updateResources();
-    }
 }

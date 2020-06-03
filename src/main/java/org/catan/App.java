@@ -50,6 +50,7 @@ public class App extends Application {
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setTitle("Trade offer");
         stage.show();
     }
 

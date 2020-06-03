@@ -3,6 +3,7 @@ package org.catan.Model;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
+import org.catan.Controller.StockController;
 
 import java.util.HashMap;
 
@@ -26,6 +27,7 @@ public class Inventory {
 
     public void changeCards(int index, int aantal){
         cards[index] += aantal;
+        StockController.getInstance().updateResources();
     }
 
 }
