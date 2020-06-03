@@ -69,8 +69,8 @@ public class BuildSettlementController {
         }
         nodes = filterOwnRoads(nodes, roadsConnected);
 
-        ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes);
-        ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpotRoad(roadsConnected);
+        ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes, 0);
+        ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpot(roadsConnected);
         return isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), buildVillages);
     }
 
@@ -151,7 +151,7 @@ public class BuildSettlementController {
     }
 
     // Returns the village nodes that are next to the given roads
-    private ArrayList<Circle> roadsNextToVillageSpot(ArrayList<Circle> array) {
+    private ArrayList<Circle> roadsNextToVillageSpot(ArrayList<Circle> array, int useless) {
         ArrayList<Circle> availableNodes = new ArrayList<>();
         for (Circle circle : array) {
             availableNodes.addAll(math.circlesInRadius(circle.getLayoutX(), circle.getLayoutY(), vertexNodeList, "other"));
@@ -161,7 +161,7 @@ public class BuildSettlementController {
     }
 
     // Returns the village nodes that are next to the given roads
-    private ArrayList<Circle> roadsNextToVillageSpotRoad(ArrayList<Road> array) {
+    private ArrayList<Circle> roadsNextToVillageSpot(ArrayList<Road> array) {
         ArrayList<Circle> availableNodes = new ArrayList<>();
         for (Road road : array) {
             availableNodes.addAll(math.circlesInRadius(road.getX(), road.getY(), vertexNodeList, "other"));
