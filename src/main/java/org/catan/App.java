@@ -44,6 +44,14 @@ public class App extends Application {
         stage.show();
     }
 
+    public static void tradePopUp(Player sender) throws IOException{
+        scene = new Scene(loadFXML("Views/tradePopUpView"));
+        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }

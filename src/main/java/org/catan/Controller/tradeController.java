@@ -4,11 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import org.catan.App;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
+
+import java.io.IOException;
 
 public class TradeController {
 
@@ -74,7 +77,7 @@ public class TradeController {
     }
 
     @FXML
-    public void sendTrade() {
+    public void sendTrade() throws IOException {
         if(tradeType == "bank"){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards(0, netWood);
@@ -89,7 +92,7 @@ public class TradeController {
             resetTrade();
             updateStockView();
         } else if(tradeType == "player"){
-            System.out.println("Test");
+            App.tradePopUp(Player.getMainPlayer());
         }
     }
 
