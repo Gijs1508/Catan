@@ -2,6 +2,7 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
@@ -61,4 +62,12 @@ public class StockController {
         knightCount.setText(Integer.toString(cards[5]));
     }
 
+    public void activateKnight(MouseEvent mouseEvent) {
+    }
+
+    public void showKnightDetails(MouseEvent mouseEvent) {
+    }
+
+    public void hideKnightDetails(MouseEvent mouseEvent) {
+    }
 }

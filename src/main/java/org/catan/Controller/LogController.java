@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import org.catan.Model.Log;
 import org.catan.Model.Logs;
-import org.catan.Model.Speler;
+import org.catan.Model.Player;
 import org.catan.View.panes.LogPane;
 
 import java.net.URL;
@@ -20,8 +20,8 @@ public class LogController implements Initializable{
     @FXML private ScrollPane scrollPane;
 
     private Logs logs = new Logs();
-    private Speler player = new Speler("Jeroen");    // placeholders
-    private Speler opponent = new Speler("Jan");
+    private Player player = new Player("Jeroen");    // placeholders
+    private Player opponent = new Player("Jan");
 
     private static LogController logController;
 
@@ -61,7 +61,7 @@ public class LogController implements Initializable{
 
 
     public void logRollEvent(String dice1, String dice2) {
-        Log log = new Log("roll", player.getNaam());
+        Log log = new Log("roll", player.getName());
         log.createImage(dice1);
         log.createImage(dice2);
         addImgLogToLogsPane(log);
@@ -69,7 +69,7 @@ public class LogController implements Initializable{
     }
 
     public void logReceiveEvent(ArrayList<String> receivedCards) {
-        Log log = new Log("receive", player.getNaam());
+        Log log = new Log("receive", player.getName());
         for (int i = 0; i < receivedCards.size(); i++) {
             log.createImage(receivedCards.get(i));
         }
@@ -77,68 +77,68 @@ public class LogController implements Initializable{
         storeLog(log);
     }
 
-    public void logStealEvent(Speler opponent) {
-        Log log = new Log("steal", player.getNaam(), opponent.getNaam());
+    public void logStealEvent(Player opponent) {
+        Log log = new Log("steal", player.getName(), opponent.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
-    public void logTradeEvent(Speler opponent) {
-        Log log = new Log("trade", player.getNaam(), opponent.getNaam());
+    public void logTradeEvent(Player opponent) {
+        Log log = new Log("trade", player.getName(), opponent.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logEndTurnEvent() {
-        Log log = new Log("endturn", player.getNaam());
+        Log log = new Log("endturn", player.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logUpgradeEvent() {
-        Log log = new Log("upgrade", player.getNaam());
+        Log log = new Log("upgrade", player.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logRoadEvent() {
-        Log log = new Log("road", player.getNaam());
+        Log log = new Log("road", player.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logSettlementEvent() {
-        Log log = new Log("settlement", player.getNaam());
+        Log log = new Log("settlement", player.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logRobberEvent() {
-        Log log = new Log("robber", player.getNaam());
+        Log log = new Log("robber", player.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logWinEvent() {
-        Log log = new Log("win", player.getNaam());
+        Log log = new Log("win", player.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logPointEvent() {
-        Log log = new Log("point", player.getNaam());
+        Log log = new Log("point", player.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logKnightEvent() {
-        Log log = new Log("knight", player.getNaam());
+        Log log = new Log("knight", player.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logDevelopmentCardEvent() {
-        Log log = new Log("development", player.getNaam());
+        Log log = new Log("development", player.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
