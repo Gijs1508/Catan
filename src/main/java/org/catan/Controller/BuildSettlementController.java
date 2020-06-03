@@ -9,6 +9,8 @@ import org.catan.App;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
+
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class BuildSettlementController {
@@ -69,7 +71,7 @@ public class BuildSettlementController {
 
         ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes);
         ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpotRoad(roadsConnected);
-        return villageSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes));
+        return isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), buildVillages);
     }
 
     // Removes the roads that are already placed
@@ -108,10 +110,21 @@ public class BuildSettlementController {
     }
 
     // Checks if the available spots don't have a settlement already
-    private ArrayList<Circle> villageSpotAvailable(ArrayList<Circle> nodes) {
+    private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Road> roads, int Useless) {
         for (int i=0; i < nodes.size(); i++) {
-            for (Village buildVillage : buildVillages) {
-                if (nodes.get(i).getLayoutX() == buildVillage.getX() && nodes.get(i).getLayoutY() == buildVillage.getY()) {
+            for (Road r : roads) {
+                if (nodes.get(i).getLayoutX() == r.getX() && nodes.get(i).getLayoutY() == r.getY()) {
+                    nodes.remove(i);
+                }
+            }
+        }
+        return nodes;
+    }
+
+    private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Village> village) {
+        for (int i=0; i < nodes.size(); i++) {
+            for (Village v : village) {
+                if (nodes.get(i).getLayoutX() == v.getX() && nodes.get(i).getLayoutY() == v.getY()) {
                     nodes.remove(i);
                 }
             }
@@ -157,17 +170,20 @@ public class BuildSettlementController {
         return availableNodes;
     }
 
-    // Builds the village
+    // Builds the village todo
     public void buildVillage(Circle node) {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue");
         buildVillages.add(village);
-//        Image img = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
-//        ImageView imageView = new ImageView(img);
-//        imageView.setLayoutX(village.getX());
-//        imageView.setLayoutY(village.getY());
-//        objectsPane.getChildren().add(imageView);
+        for (int i=0; i < 54; i++) {
+            if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
+//                objectsPane.getChildren().get(i)
+            }
+
+        }
+
     }
 
+    // todo
     public void buildUpgrade(Circle node) {
         for (int i=0; i < buildVillages.size(); i++) {
             if (node.getLayoutX() == buildVillages.get(i).getX() && node.getLayoutY() == buildVillages.get(i).getY()) {
@@ -192,6 +208,19 @@ public class BuildSettlementController {
             }
             return upgradeableVillages;
         }
+    }
+
+    public ArrayList<Circle> showAvailableRoads() {
+        ArrayList<Road> playerRoads = playerRoads();
+        ArrayList<Circle> roadPlaces = new ArrayList<>();
+        for (Road playerRoad : playerRoads) {
+            roadPlaces.addAll(math.circlesInRadius(playerRoad.getX(), playerRoad.getY(), roadSpotNodeList, "road"));
+        }
+        for (Village village : buildVillages) {
+            if (village.getColor().equals(color))
+                roadPlaces.addAll(math.circlesInRadius(village.getX(), village.getY(), roadSpotNodeList, "other"));
+        }
+        return isSpotAvailable(removeDuplicates(roadPlaces), buildRoads, 1);
     }
 
     // Prints coordinates ArrayList

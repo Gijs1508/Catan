@@ -322,7 +322,6 @@ public class GameSchermController implements Initializable {
     public void upgradeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The upgrade node that is clicked
         upgradeSettlementBtnCloseClicked();
-        System.out.println("aaaaaaaaaaaaaaaaaah het werkt");
     }
 
     @FXML
@@ -370,8 +369,9 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildRoadBtnClicked() {
-        for (int i = 0; i < roadSpotNodeList.size(); i++) {
-            roadSpotNodeList.get(i).setVisible(true);
+        ArrayList<Circle> nodes = build.showAvailableRoads();
+        for (Circle node : nodes) {
+            node.setVisible(true);
         }
         roadButton.setVisible(false);
         roadButtonClose.setVisible(true);
@@ -379,8 +379,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildRoadBtnCloseClicked() {
-        for (int i = 0; i < roadSpotNodeList.size() ; i++) {
-            roadSpotNodeList.get(i).setVisible(false);
+        for (Circle circle : roadSpotNodeList) {
+            circle.setVisible(false);
         }
         roadButton.setVisible(true);
         roadButtonClose.setVisible(false);
@@ -389,8 +389,8 @@ public class GameSchermController implements Initializable {
     @FXML
     public void buildSettlementBtnClicked() {
         ArrayList<Circle> availableSpots = build.showVillageSpots();
-        for (int i = 0; i < availableSpots.size(); i++) {
-            availableSpots.get(i).setVisible(true);
+        for (Circle availableSpot : availableSpots) {
+            availableSpot.setVisible(true);
         }
         settlementButton.setVisible(false);
         settlementButtonClose.setVisible(true);
@@ -398,8 +398,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildSettlementBtnCloseClicked() {
-        for (int i = 0; i < vertexNodeList.size() ; i++) {
-            vertexNodeList.get(i).setVisible(false);
+        for (Circle circle : vertexNodeList) {
+            circle.setVisible(false);
         }
         settlementButton.setVisible(true);
         settlementButtonClose.setVisible(false);
