@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #54B9EB;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
+<AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
    <children>
       <ImageView fitHeight="472.0" fitWidth="559.0" layoutX="113.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
          <image>
