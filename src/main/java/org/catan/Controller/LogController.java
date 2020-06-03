@@ -6,6 +6,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import org.catan.Model.Log;
+import org.catan.Model.Logs;
 import org.catan.Model.Speler;
 import org.catan.View.panes.LogPane;
 
@@ -18,10 +19,12 @@ public class LogController implements Initializable{
     @FXML private VBox logsBox;
     @FXML private ScrollPane scrollPane;
 
-    Speler player = new Speler("Jeroen");    // placeholders
-    Speler opponent = new Speler("Jan");
+    private Logs logs = new Logs();
+    private Speler player = new Speler("Jeroen");    // placeholders
+    private Speler opponent = new Speler("Jan");
 
     private static LogController logController;
+
 
     public LogController() {
         logController = this;
@@ -30,13 +33,6 @@ public class LogController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));   // Scroll to bottom with each update
-    }
-
-    public static LogController getInstance() {
-        if (logController == null){
-            logController = new LogController();
-        }
-        return logController;
     }
 
     private void addToLogsBox(LogPane logPane) {
@@ -63,11 +59,13 @@ public class LogController implements Initializable{
     public void update() {
     }
 
+
     public void logRollEvent(String dice1, String dice2) {
         Log log = new Log("roll", player.getNaam());
         log.createImage(dice1);
         log.createImage(dice2);
         addImgLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logReceiveEvent(ArrayList<String> receivedCards) {
@@ -76,55 +74,78 @@ public class LogController implements Initializable{
             log.createImage(receivedCards.get(i));
         }
         addImgLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logStealEvent(Speler opponent) {
         Log log = new Log("steal", player.getNaam(), opponent.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logTradeEvent(Speler opponent) {
         Log log = new Log("trade", player.getNaam(), opponent.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logEndTurnEvent() {
         Log log = new Log("endturn", player.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logUpgradeEvent() {
         Log log = new Log("upgrade", player.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logRoadEvent() {
         Log log = new Log("road", player.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logSettlementEvent() {
         Log log = new Log("settlement", player.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logRobberEvent() {
         Log log = new Log("robber", player.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logWinEvent() {
         Log log = new Log("win", player.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logPointEvent() {
         Log log = new Log("point", player.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
     }
 
     public void logKnightEvent() {
         Log log = new Log("knight", player.getNaam());
         addTxtLogToLogsPane(log);
+        storeLog(log);
+    }
+
+
+    private void storeLog(Log log) {
+        logs.addLog(log);
+    }
+
+    public static LogController getInstance() {
+        if (logController == null){
+            logController = new LogController();
+        }
+        return logController;
     }
 }
