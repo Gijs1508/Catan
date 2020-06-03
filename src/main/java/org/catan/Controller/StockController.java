@@ -6,11 +6,11 @@ import javafx.scene.text.Text;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
-public class VoorraadController {
+public class StockController {
 
 
     //Make controller available to other classes
-    private static VoorraadController voorraadController;
+    private static StockController stockController;
 
     @FXML
     private Text wheatCount;
@@ -27,15 +27,15 @@ public class VoorraadController {
     @FXML
     private Button testResources;
 
-    public VoorraadController(){
-        voorraadController = this;
+    public StockController(){
+        stockController = this;
     }
 
-    public static VoorraadController getInstance(){
-        if(voorraadController == null){
-            voorraadController = new VoorraadController();
+    public static StockController getInstance(){
+        if(stockController == null){
+            stockController = new StockController();
         }
-        return voorraadController;
+        return stockController;
     }
 
     @FXML

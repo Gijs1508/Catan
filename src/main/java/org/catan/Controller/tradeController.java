@@ -10,8 +10,8 @@ import org.catan.Model.Player;
 public class TradeController {
 
     private String tradeType = "player";
-    private boolean tradeGiveLock = false;
-    private boolean tradeTakeLock = false;
+    private boolean tradeGiveLock, tradeTakeLock = false;
+    //private boolean tradeTakeLock = false;
 
     @FXML
     private Label giveWheatCount;
@@ -61,6 +61,13 @@ public class TradeController {
 
     @FXML
     public void buyDevelopmentCard() {
+        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1){
+            getInventory().changeCards(2, -1);
+            getInventory().changeCards(3, -1);
+            getInventory().changeCards(4, -1);
+            updateStockView();
+            // TODO add development card functionality
+        }
     }
 
     @FXML
@@ -77,7 +84,7 @@ public class TradeController {
             int netWheat = netResource(giveWheatCount, takeWheatCount);
             getInventory().changeCards(4, netWheat);
             resetTrade();
-            VoorraadController.getInstance().updateResources();
+            updateStockView();
         }
     }
 
@@ -198,5 +205,9 @@ public class TradeController {
 
     private int netResource(Label givenResource, Label receivedResource){
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
+    }
+
+    private void updateStockView(){
+        StockController.getInstance().updateResources();
     }
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.VoorraadController">
+<AnchorPane prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.StockController">
    <children>
       <HBox layoutX="127.0" layoutY="46.0" prefHeight="149.0" prefWidth="434.0" spacing="12.0">
          <children>
