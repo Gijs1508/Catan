@@ -9,6 +9,7 @@ public class Village {
     private double y;
     private String imgPath;
     private String color;
+    private boolean upgraded = false;
 
     public Village(double x, double y, String color) {
         this.x = x;
@@ -46,5 +47,13 @@ public class Village {
 
     public String getColor() {
         return this.color;
+    }
+
+    public void setUpgraded(boolean upgraded) {
+        this.upgraded = upgraded;
+    }
+
+    public boolean isUpgraded() {
+        return upgraded;
     }
 }

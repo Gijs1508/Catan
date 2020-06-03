@@ -135,6 +135,61 @@ public class GameSchermController implements Initializable {
     @FXML private Circle vertex53;
     @FXML private Circle vertex54;
 
+    @FXML private Circle upgrade1;
+    @FXML private Circle upgrade2;
+    @FXML private Circle upgrade3;
+    @FXML private Circle upgrade4;
+    @FXML private Circle upgrade5;
+    @FXML private Circle upgrade6;
+    @FXML private Circle upgrade7;
+    @FXML private Circle upgrade8;
+    @FXML private Circle upgrade9;
+    @FXML private Circle upgrade10;
+    @FXML private Circle upgrade11;
+    @FXML private Circle upgrade12;
+    @FXML private Circle upgrade13;
+    @FXML private Circle upgrade14;
+    @FXML private Circle upgrade15;
+    @FXML private Circle upgrade16;
+    @FXML private Circle upgrade17;
+    @FXML private Circle upgrade18;
+    @FXML private Circle upgrade19;
+    @FXML private Circle upgrade20;
+    @FXML private Circle upgrade21;
+    @FXML private Circle upgrade22;
+    @FXML private Circle upgrade23;
+    @FXML private Circle upgrade24;
+    @FXML private Circle upgrade25;
+    @FXML private Circle upgrade26;
+    @FXML private Circle upgrade27;
+    @FXML private Circle upgrade28;
+    @FXML private Circle upgrade29;
+    @FXML private Circle upgrade30;
+    @FXML private Circle upgrade31;
+    @FXML private Circle upgrade32;
+    @FXML private Circle upgrade33;
+    @FXML private Circle upgrade34;
+    @FXML private Circle upgrade35;
+    @FXML private Circle upgrade36;
+    @FXML private Circle upgrade37;
+    @FXML private Circle upgrade38;
+    @FXML private Circle upgrade39;
+    @FXML private Circle upgrade40;
+    @FXML private Circle upgrade41;
+    @FXML private Circle upgrade42;
+    @FXML private Circle upgrade43;
+    @FXML private Circle upgrade44;
+    @FXML private Circle upgrade45;
+    @FXML private Circle upgrade46;
+    @FXML private Circle upgrade47;
+    @FXML private Circle upgrade48;
+    @FXML private Circle upgrade49;
+    @FXML private Circle upgrade50;
+    @FXML private Circle upgrade51;
+    @FXML private Circle upgrade52;
+    @FXML private Circle upgrade53;
+    @FXML private Circle upgrade54;
+
     @FXML private Circle roadSpot1;
     @FXML private Circle roadSpot2;
     @FXML private Circle roadSpot3;
@@ -208,83 +263,11 @@ public class GameSchermController implements Initializable {
     @FXML private Circle roadSpot71;
     @FXML private Circle roadSpot72;
 
-    @FXML private ImageView road1;
-    @FXML private ImageView road2;
-    @FXML private ImageView road3;
-    @FXML private ImageView road4;
-    @FXML private ImageView road5;
-    @FXML private ImageView road6;
-    @FXML private ImageView road7;
-    @FXML private ImageView road8;
-    @FXML private ImageView road9;
-    @FXML private ImageView road10;
-    @FXML private ImageView road11;
-    @FXML private ImageView road12;
-    @FXML private ImageView road13;
-    @FXML private ImageView road14;
-    @FXML private ImageView road15;
-    @FXML private ImageView road16;
-    @FXML private ImageView road17;
-    @FXML private ImageView road18;
-    @FXML private ImageView road19;
-    @FXML private ImageView road20;
-    @FXML private ImageView road21;
-    @FXML private ImageView road22;
-    @FXML private ImageView road23;
-    @FXML private ImageView road24;
-    @FXML private ImageView road25;
-    @FXML private ImageView road26;
-    @FXML private ImageView road27;
-    @FXML private ImageView road28;
-    @FXML private ImageView road29;
-    @FXML private ImageView road30;
-    @FXML private ImageView road31;
-    @FXML private ImageView road32;
-    @FXML private ImageView road33;
-    @FXML private ImageView road34;
-    @FXML private ImageView road35;
-    @FXML private ImageView road36;
-    @FXML private ImageView road37;
-    @FXML private ImageView road38;
-    @FXML private ImageView road39;
-    @FXML private ImageView road40;
-    @FXML private ImageView road41;
-    @FXML private ImageView road42;
-    @FXML private ImageView road43;
-    @FXML private ImageView road44;
-    @FXML private ImageView road45;
-    @FXML private ImageView road46;
-    @FXML private ImageView road47;
-    @FXML private ImageView road48;
-    @FXML private ImageView road49;
-    @FXML private ImageView road50;
-    @FXML private ImageView road51;
-    @FXML private ImageView road52;
-    @FXML private ImageView road53;
-    @FXML private ImageView road54;
-    @FXML private ImageView road55;
-    @FXML private ImageView road56;
-    @FXML private ImageView road57;
-    @FXML private ImageView road58;
-    @FXML private ImageView road59;
-    @FXML private ImageView road60;
-    @FXML private ImageView road61;
-    @FXML private ImageView road62;
-    @FXML private ImageView road63;
-    @FXML private ImageView road64;
-    @FXML private ImageView road65;
-    @FXML private ImageView road66;
-    @FXML private ImageView road67;
-    @FXML private ImageView road68;
-    @FXML private ImageView road69;
-    @FXML private ImageView road70;
-    @FXML private ImageView road71;
-    @FXML private ImageView road72;
-
     //    private Spelbord spelbord;
 //    private Spel spel;
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
+    private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Label> tileNumNodeList;
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList;
@@ -337,7 +320,9 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void upgradeSettlement(MouseEvent mouseEvent) {
-        Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
+        Circle circle = (Circle) mouseEvent.getSource(); // The upgrade node that is clicked
+        upgradeSettlementBtnCloseClicked();
+        System.out.println("aaaaaaaaaaaaaaaaaah het werkt");
     }
 
     @FXML
@@ -370,9 +355,6 @@ public class GameSchermController implements Initializable {
     @FXML
     public void emphasizeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
-        // Code that checks whether the settlement can be placed
-        // Vertex vertex = getAssociatedVertex(circle)
-        // if (vertex.isValid() {
         circle.setFill(Color.WHITE);
         circle.setScaleX(1.1);
         circle.setScaleY(1.1);
@@ -437,8 +419,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void upgradeSettlementBtnCloseClicked() {
-        for (int i = 0; i < vertexNodeList.size(); i++) {
-            vertexNodeList.get(i).setVisible(false);
+        for (Circle circle : upgradeNodeList) {
+            circle.setVisible(false);
         }
         upgradeButton.setVisible(true);
         upgradeButtonClose.setVisible(false);
@@ -448,11 +430,11 @@ public class GameSchermController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializePlacementSpots();
-        initializeRoads();
+//        initializeRoads();
         ArrayList<Polygon> tiles = addAllTilesToArray();
         ArrayList<Label> labels = addAllTileNumbersToArray();
         RandomizeBoard.setRandomTiles(tiles, labels);
-        this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList);
+        this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         //tile1.setFill(Color.BROWN);
         initializeButtons();
     }
@@ -465,6 +447,15 @@ public class GameSchermController implements Initializable {
                 vertex31, vertex32, vertex33, vertex34, vertex35, vertex36, vertex37, vertex38, vertex39, vertex40,
                 vertex41, vertex42, vertex43, vertex44, vertex45, vertex46, vertex47, vertex48, vertex49, vertex50,
                 vertex51, vertex52, vertex53, vertex54
+        );
+
+        Collections.addAll(upgradeNodeList,
+                upgrade1, upgrade2, upgrade3 ,upgrade4, upgrade5, upgrade6, upgrade7, upgrade8, upgrade9, upgrade10,
+                upgrade11, upgrade12, upgrade13, upgrade14, upgrade15, upgrade16, upgrade17, upgrade18, upgrade19, upgrade20,
+                upgrade21, upgrade22, upgrade23, upgrade24, upgrade25, upgrade26, upgrade27, upgrade28, upgrade29, upgrade30,
+                upgrade31, upgrade32, upgrade33, upgrade34, upgrade35, upgrade36, upgrade37, upgrade38, upgrade39, upgrade40,
+                upgrade41, upgrade42, upgrade43, upgrade44, upgrade45, upgrade46, upgrade47, upgrade48, upgrade49, upgrade50,
+                upgrade51, upgrade52, upgrade53, upgrade54
         );
 
         Collections.addAll(roadSpotNodeList,
@@ -482,27 +473,31 @@ public class GameSchermController implements Initializable {
             vertexNodeList.get(i).setVisible(false);
         }
 
+        for (int i = 0; i < upgradeNodeList.size() ; i++) {
+            upgradeNodeList.get(i).setVisible(false);
+        }
+
         for (int i = 0; i < roadSpotNodeList.size(); i++) {
             roadSpotNodeList.get(i).setVisible(false);
         }
     }
 
-    private void initializeRoads() {
-        Collections.addAll(roadNodeList,
-                road1, road2, road3 ,road4, road5, road6, road7, road8, road9, road10,
-                road11, road12, road13, road14, road15, road16, road17, road18, road19, road20,
-                road21, road22, road23, road24, road25, road26, road27, road28, road29, road30,
-                road31, road32, road33, road34, road35, road36, road37, road38, road39, road40,
-                road41, road42, road43, road44, road45, road46, road47, road48, road49, road50,
-                road51, road52, road53, road54, road55, road56, road57, road58, road59, road60,
-                road61, road62, road63, road64, road65, road66, road67, road68, road69, road70,
-                road71, road72
-        );
-
-        for (int i = 0; i < roadNodeList.size(); i++) {
-            roadNodeList.get(i).setVisible(false);
-        }
-    }
+//    private void initializeRoads() {
+//        Collections.addAll(roadNodeList,
+//                road1, road2, road3 ,road4, road5, road6, road7, road8, road9, road10,
+//                road11, road12, road13, road14, road15, road16, road17, road18, road19, road20,
+//                road21, road22, road23, road24, road25, road26, road27, road28, road29, road30,
+//                road31, road32, road33, road34, road35, road36, road37, road38, road39, road40,
+//                road41, road42, road43, road44, road45, road46, road47, road48, road49, road50,
+//                road51, road52, road53, road54, road55, road56, road57, road58, road59, road60,
+//                road61, road62, road63, road64, road65, road66, road67, road68, road69, road70,
+//                road71, road72
+//        );
+//
+//        for (int i = 0; i < roadNodeList.size(); i++) {
+//            roadNodeList.get(i).setVisible(false);
+//        }
+//    }
 
     private void initializeButtons() {
         upgradeButtonClose.setVisible(false);

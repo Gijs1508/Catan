@@ -15,6 +15,7 @@ public class BuildSettlementController {
 //    private Speler player;
     private String color = "blue";
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();
+    private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
 
     private ArrayList<Road> buildRoads = new ArrayList<>();
@@ -23,8 +24,10 @@ public class BuildSettlementController {
 
     @FXML private Pane objectsPane;
 
-    public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList) {
+    public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList,
+                                     ArrayList<Circle> upgradeNodeList) {
         this.vertexNodeList = vertexNodeList;
+        this.upgradeNodeList = upgradeNodeList;
         this.roadSpotNodeList = roadSpotNodeList;
         buildRoads.add(new Road(226.0, 41.0, "blue"));
         buildRoads.add(new Road(278.0, 40.0, "blue"));
@@ -165,13 +168,22 @@ public class BuildSettlementController {
 //        objectsPane.getChildren().add(imageView);
     }
 
+    public void buildUpgrade(Circle node) {
+        for (int i=0; i < buildVillages.size(); i++) {
+            if (node.getLayoutX() == buildVillages.get(i).getX() && node.getLayoutY() == buildVillages.get(i).getY()) {
+                buildVillages.get(i).setUpgraded(true);
+            }
+        }
+
+    }
+
     public ArrayList<Circle> showUpgradeableVillages() {
         ArrayList<Village> villages = playerVillages();
         ArrayList<Circle> upgradeableVillages = new ArrayList<>();
         if (villages.size() == 0){
             return null;
         } else {
-            for (Circle circle : vertexNodeList) {
+            for (Circle circle : upgradeNodeList) {
                 for (Village playerVillage : villages) {
                     if (circle.getLayoutX() == playerVillage.getX() && circle.getLayoutY() == playerVillage.getY()) {
                         upgradeableVillages.add(circle);
