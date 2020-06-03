@@ -5,8 +5,6 @@ import org.catan.Model.Speler;
 
 public class TradeController {
 
-    LogController logController = LogController.getInstance();
-
     @FXML
     public void bankTrade() {
     }
@@ -17,13 +15,10 @@ public class TradeController {
 
     @FXML
     public void buyDevelopmentCard() {
-        logController.logDevelopmentCardEvent();
     }
 
     @FXML
     public void sendTrade() {
-        Speler opponent = new Speler("Jan");  // placeholder
-        logController.logTradeEvent(opponent);       // move to method that executes when trade succeeded
     }
 
 
