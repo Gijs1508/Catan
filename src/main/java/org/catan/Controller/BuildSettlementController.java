@@ -104,16 +104,7 @@ public class BuildSettlementController {
         nodesNodes = removeDuplicates(nodesNodes);
         roadsConnectedNodes = removeDuplicates(roadsConnectedNodes);
         ArrayList<Circle> nodeOutput = new ArrayList<>();
-        nodeOutput.addAll(nodesNodes);
-        nodeOutput.addAll(roadsConnectedNodes);
-//        for (int i=0; i < nodesNodes.size(); i++) {
-//            for (int j=0; j < roadsConnected.size(); j++) {
-//                if (nodesNodes.get(i).getLayoutX() == roadsConnectedNodes.get(j).getLayoutX() && nodesNodes.get(i).getLayoutY() == roadsConnectedNodes.get(j).getLayoutY()) {
-//                    nodeOutput.add(nodesNodes.get(i));
-//                }
-//            }
-//        }
-        nodeOutput = removeNonDuplicates(nodeOutput);
+        nodeOutput = removeNonDuplicates(nodesNodes, roadsConnectedNodes);
         print(nodeOutput);
 
         return nodes;
@@ -142,16 +133,14 @@ public class BuildSettlementController {
         return arrayFixed;
     }
 
-    private ArrayList<Circle> removeNonDuplicates(ArrayList<Circle> array) {
+    private ArrayList<Circle> removeNonDuplicates(ArrayList<Circle> array, ArrayList<Circle> array2) {
         ArrayList<Circle> arrayFixed = new ArrayList<>();
-        ArrayList<Circle> arrayCopy = array;
         for (Circle circle : array) {
-            if (!arrayFixed.contains(circle)) {
-                arrayCopy.remove(circle);
+            if (array2.contains(circle)) {
                 arrayFixed.add(circle);
             }
         }
-        return arrayCopy;
+        return arrayFixed;
     }
 
     // Returns roads that lie next to another road
