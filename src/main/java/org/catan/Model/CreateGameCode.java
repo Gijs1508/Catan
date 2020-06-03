@@ -1,9 +1,9 @@
-package org.catan.Helper;
+package org.catan.Model;
 
-public class createGameCode {
+public class CreateGameCode {
     // Generate random game code with given length
     public static String randomCodeGen(int count) {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String chars = "0123456789";
         StringBuilder builder = new StringBuilder();
         while (count-- != 0) {
             int character = (int)(Math.random()*chars.length());

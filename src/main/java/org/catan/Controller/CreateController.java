@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.catan.App;
-import org.catan.Helper.createGameCode;
+import org.catan.Model.CreateGameCode;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class CreateController {
     @FXML
     public void createGame(ActionEvent actionEvent) {
         // TODO Werner: add code to db and check if it does not exist
-        var code = createGameCode.randomCodeGen(6);
+        var code = CreateGameCode.randomCodeGen(6);
         game_code_text.setText(code);
     }
 
