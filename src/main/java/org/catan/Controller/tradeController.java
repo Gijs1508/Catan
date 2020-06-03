@@ -6,6 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.event.ActionEvent;
 
 public class TradeController {
 
@@ -85,6 +88,8 @@ public class TradeController {
             getInventory().changeCards(4, netWheat);
             resetTrade();
             updateStockView();
+        } else if(tradeType == "player"){
+            System.out.println("Test");
         }
     }
 
