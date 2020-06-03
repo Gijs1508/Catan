@@ -1,12 +1,13 @@
 package org.catan.Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import org.catan.App;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
-
 import java.util.*;
 
 public class BuildSettlementController {
@@ -26,7 +27,6 @@ public class BuildSettlementController {
         buildRoads.add(new Road(226.0, 41.0, "blue"));
         buildRoads.add(new Road(278.0, 40.0, "blue"));
         buildRoads.add(new Road(380.0, 121.0, "blue"));
-        showVillageSpots();
     }
 
     // Returns the circles that are next to the circle you put in the function
@@ -74,16 +74,17 @@ public class BuildSettlementController {
         return playerRoads;
     }
 
-//    private ArrayList<Village> playerVillages() {
-//        ArrayList<Village> playerVillages = new ArrayList<>();
-//        for (int i=0; i < buildRoads.size(); i++) {
-//            if (buildVillages.get(i).getColor().equals(this.color)) {
-//                playerVillages.add(buildVillages.get(i));
-//            }
-//        }
-//        return playerVillages;
-//    }
+    private ArrayList<Village> playerVillages() {
+        ArrayList<Village> playerVillages = new ArrayList<>();
+        for (int i=0; i < buildRoads.size(); i++) {
+            if (buildVillages.get(i).getColor().equals(this.color)) {
+                playerVillages.add(buildVillages.get(i));
+            }
+        }
+        return playerVillages;
+    }
 
+    // Gives available node for placing a village
     public ArrayList<Circle> showVillageSpots() {
         ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
         ArrayList<Circle> nodes = new ArrayList<>();
@@ -92,21 +93,9 @@ public class BuildSettlementController {
         }
         nodes = filterOwnRoads(nodes, roadsConnected);
 
-        ArrayList<Circle> nodesNodes = new ArrayList<>();
-        for (int i=0; i < nodes.size(); i++) {
-            nodesNodes.addAll(circlesInRadius(nodes.get(i).getLayoutX(), nodes.get(i).getLayoutY(), vertexNodeList, "other"));
-        }
-        ArrayList<Circle> roadsConnectedNodes = new ArrayList<>();
-        for (int i=0; i < roadsConnected.size(); i++) {
-            roadsConnectedNodes.addAll(circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), vertexNodeList, "other"));
-        }
-
-        nodesNodes = removeDuplicates(nodesNodes);
-        roadsConnectedNodes = removeDuplicates(roadsConnectedNodes);
-        ArrayList<Circle> nodeOutput = new ArrayList<>();
-        nodeOutput = removeNonDuplicates(nodesNodes, roadsConnectedNodes);
-
-        return nodeOutput;
+        ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes);
+        ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpotRoad(roadsConnected);
+        return villageSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes));
     }
 
     // Removes the roads that are already placed
@@ -142,15 +131,26 @@ public class BuildSettlementController {
         return arrayFixed;
     }
 
+    private ArrayList<Circle> villageSpotAvailable(ArrayList<Circle> nodes) {
+        for (int i=0; i < nodes.size(); i++) {
+            for (int j=0; j < buildVillages.size(); j++) {
+                if (nodes.get(i).getLayoutX() == buildVillages.get(j).getX() && nodes.get(i).getLayoutY() == buildVillages.get(j).getY()) {
+                    nodes.remove(i);
+                }
+            }
+        }
+        return nodes;
+    }
+
     // Returns roads that lie next to another road
     private ArrayList<Road> roadsConnected() {
         ArrayList<Road> playerRoads = playerRoads();
         ArrayList<Road> roadsConnected = new ArrayList<>();
         for (int i=0; i < playerRoads.size(); i++) {
-            for (int j=0; j < playerRoads.size(); j++) {
-                if (playerRoads.get(i).getX() == playerRoads.get(j).getX() && playerRoads.get(i).getY() == playerRoads.get(j).getY()) {
+            for (Road playerRoad : playerRoads) {
+                if (playerRoads.get(i).getX() == playerRoad.getX() && playerRoads.get(i).getY() == playerRoad.getY()) {
                 } else {
-                    double distance = distance(playerRoads.get(i).getX(), playerRoads.get(i).getY(), playerRoads.get(j).getX(), playerRoads.get(j).getY());
+                    double distance = distance(playerRoads.get(i).getX(), playerRoads.get(i).getY(), playerRoad.getX(), playerRoad.getY());
                     if (distance <= 63) {
                         roadsConnected.add(playerRoads.get(i));
                     }
@@ -158,14 +158,35 @@ public class BuildSettlementController {
             }
         }
         return roadsConnected;
-        
     }
 
-//    public void buildVillage(double x, double y) {
-//        ArrayList<Circle> nearbyRoads = circlesInRadius(x, y, vertexNodeList, "roadNextToVillage");
-//        ArrayList<Circle> roadsNextToRoads = circlesInRadius(x, y, nearbyRoads, "road");
-//        objectsPane.getChildren().add()
-//    }
+    private ArrayList<Circle> roadsNextToVillageSpot(ArrayList<Circle> array) {
+        ArrayList<Circle> availableNodes = new ArrayList<>();
+        for (Circle circle : array) {
+            availableNodes.addAll(circlesInRadius(circle.getLayoutX(), circle.getLayoutY(), vertexNodeList, "other"));
+        }
+        availableNodes = removeDuplicates(availableNodes);
+        return availableNodes;
+    }
+
+    private ArrayList<Circle> roadsNextToVillageSpotRoad(ArrayList<Road> array) {
+        ArrayList<Circle> availableNodes = new ArrayList<>();
+        for (Road road : array) {
+            availableNodes.addAll(circlesInRadius(road.getX(), road.getY(), vertexNodeList, "other"));
+        }
+        availableNodes = removeDuplicates(availableNodes);
+        return availableNodes;
+    }
+
+    public void buildVillage(Circle node) {
+        Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue");
+        buildVillages.add(village);
+//        Image img = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+//        ImageView imageView = new ImageView(img);
+//        imageView.setLayoutX(village.getX());
+//        imageView.setLayoutY(village.getY());
+//        objectsPane.getChildren().add(imageView);
+    }
 
     // Prints coordinates ArrayList
     private void print(ArrayList<Circle> c) {

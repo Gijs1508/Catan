@@ -318,8 +318,8 @@ public class GameSchermController implements Initializable {
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        circle.getLayoutX();                             // Information you might need for the settlement/road
-        circle.getLayoutY();                             // Use it as a parameter (so the logic isn't in this controller)
+        build.buildVillage(circle);
+        buildSettlementBtnCloseClicked();
     }
 
     @FXML

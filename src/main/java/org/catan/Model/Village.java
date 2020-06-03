@@ -1,5 +1,9 @@
 package org.catan.Model;
 
+import org.catan.App;
+
+import java.util.Stack;
+
 public class Village {
     private double x;
     private double y;
@@ -16,13 +20,13 @@ public class Village {
     private String getFilePath(String color) {
         switch (color) {
             case "red":
-                return "org/catan/assets/img/gameobjects/village_red.png";
+                return "assets/img/gameobjects/village_red.png";
             case "blue":
-                return "org/catan/assets/img/gameobjects/village_blue.png";
+                return "assets/img/gameobjects/village_blue.png";
             case "green":
-                return "org/catan/assets/img/gameobjects/village_green.png";
+                return "assets/img/gameobjects/village_green.png";
             case "yellow":
-                return  "org/catan/assets/img/gameobjects/village_yellow.png";
+                return  "assets/img/gameobjects/village_yellow.png";
             default:
                 return "null";
         }
