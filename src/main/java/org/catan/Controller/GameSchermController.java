@@ -311,7 +311,6 @@ public class GameSchermController implements Initializable {
         buildSettlementBtnCloseClicked();
     }
 
-    @FXML
     private void placeSettlement(Village village) {
         for (int i=0; i < 54; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
@@ -340,6 +339,7 @@ public class GameSchermController implements Initializable {
     @FXML
     public void upgradeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The upgrade node that is clicked
+        placeSettlement(build.buildUpgrade(circle));
         upgradeSettlementBtnCloseClicked();
     }
 
@@ -427,10 +427,8 @@ public class GameSchermController implements Initializable {
     @FXML
     public void upgradeSettlementBtnClicked() {
         ArrayList<Circle> nodes = build.showUpgradeableVillages();
-        if (nodes != null){
-            for (Circle node : nodes) {
-                node.setVisible(true);
-            }
+        for (Circle node : nodes) {
+            node.setVisible(true);
         }
         upgradeButton.setVisible(false);
         upgradeButtonClose.setVisible(true);

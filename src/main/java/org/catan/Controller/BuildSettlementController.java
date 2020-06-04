@@ -22,10 +22,10 @@ public class BuildSettlementController {
         this.vertexNodeList = vertexNodeList;
         this.upgradeNodeList = upgradeNodeList;
         this.roadSpotNodeList = roadSpotNodeList;
-//        buildRoads.add(new Road(226.0, 41.0, "blue"));
-//        buildRoads.add(new Road(278.0, 40.0, "blue"));
-//        buildRoads.add(new Road(303.0, 82.0, "blue"));
-//        buildRoads.add(new Road(277.0, 121.0, "blue"));
+        buildRoads.add(new Road(226.0, 41.0, "blue"));
+        buildRoads.add(new Road(278.0, 40.0, "blue"));
+        buildRoads.add(new Road(303.0, 82.0, "blue"));
+        buildRoads.add(new Road(277.0, 121.0, "blue"));
 //        buildRoads.add(new Road(227, 121.0, "blue"));
 //        buildRoads.add(new Road(200.0, 81.0, "blue"));
         this.math = new MathBuildSettlement();
@@ -57,6 +57,8 @@ public class BuildSettlementController {
     // Gives available node for placing a village
     public ArrayList<Circle> showVillageSpots() {
         ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
+        if (roadsConnected.isEmpty())
+            return null;
         ArrayList<Circle> nodes = new ArrayList<>();
         for (int i=0; i < roadsConnected.size(); i++) {
             nodes.addAll(math.circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
@@ -178,12 +180,12 @@ public class BuildSettlementController {
         return removeDuplicates(roadsConnected, 0);
     }
 
-    private boolean settlementBetweenRoads(Road road, Road road2) {
-        ArrayList<Circle> settlements1 = math.circlesInRadius(road.getX(), road.getY(), vertexNodeList, "other");
-        ArrayList<Circle> settlements2 = math.circlesInRadius(road2.getX(), road2.getY(), vertexNodeList, "other");
-        ArrayList<Circle> sameSettlementNode = removeNonDuplicates(settlements1, settlements2);
-        return !isSpotAvailable(sameSettlementNode, buildVillages).isEmpty();
-    }
+//    private boolean settlementBetweenRoads(Road road, Road road2) {
+//        ArrayList<Circle> settlements1 = math.circlesInRadius(road.getX(), road.getY(), vertexNodeList, "other");
+//        ArrayList<Circle> settlements2 = math.circlesInRadius(road2.getX(), road2.getY(), vertexNodeList, "other");
+//        ArrayList<Circle> sameSettlementNode = removeNonDuplicates(settlements1, settlements2);
+//        return !isSpotAvailable(sameSettlementNode, buildVillages).isEmpty();
+//    }
 
     // Returns the village nodes that are next to the given roads
     private ArrayList<Circle> roadsNextToVillageSpot(ArrayList<Circle> array, int useless) {
@@ -212,14 +214,16 @@ public class BuildSettlementController {
         return village;
     }
 
-    // todo
-    public void buildUpgrade(Circle node) {
-        for (int i=0; i < buildVillages.size(); i++) {
-            if (node.getLayoutX() == buildVillages.get(i).getX() && node.getLayoutY() == buildVillages.get(i).getY()) {
-                buildVillages.get(i).setUpgraded(true);
+    public Village buildUpgrade(Circle node) {
+        Village village = null;
+        for (Village buildVillage : buildVillages) {
+            if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
+                buildVillage.setUpgraded(true);
+                village = buildVillage;
+                break;
             }
         }
-
+        return village;
     }
 
     public ArrayList<Circle> showUpgradeableVillages() {
@@ -230,7 +234,7 @@ public class BuildSettlementController {
         } else {
             for (Circle circle : upgradeNodeList) {
                 for (Village playerVillage : villages) {
-                    if (circle.getLayoutX() == playerVillage.getX() && circle.getLayoutY() == playerVillage.getY()) {
+                    if (circle.getLayoutX() == playerVillage.getX() && circle.getLayoutY() == playerVillage.getY() && !playerVillage.isUpgraded()) {
                         upgradeableVillages.add(circle);
                     }
                 }
