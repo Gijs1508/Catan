@@ -10,9 +10,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import org.catan.App;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
+import javax.sound.sampled.AudioSystem;
+import java.applet.AudioClip;
+import java.io.*;
+
+import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -22,6 +29,7 @@ public class TradePopUpController implements Initializable {
     @FXML private AnchorPane popupPane;
     @FXML private ImageView declineBtn;
 
+    @FXML private Text popupTitle;
     @FXML private Text playerName;
     @FXML private Text woodOffer;
     @FXML private Text brickOffer;
@@ -53,10 +61,21 @@ public class TradePopUpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+//        try {
+//            InputStream in = new FileInputStream(String.valueOf(App.class.getResource("assets/sounds/soundeffects/pop.wav")));
+//            AudioStream audioStream = new AudioStream(in);
+//            AudioPlayer.player.start(audioStream);
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+
+
         paneWidth = popupPane.getPrefWidth();
         paneHeight = popupPane.getPrefHeight();
 
-        playerName.setText(sender);
+        popupTitle.setText(popupTitle.getText().replaceAll("%PLAYER%", sender));
         woodOffer.setText(offer[0]);
         brickOffer.setText(offer[1]);
         oreOffer.setText(offer[2]);
@@ -80,7 +99,6 @@ public class TradePopUpController implements Initializable {
         });
         popupPane.setOnMouseReleased(mouseEvent -> popupPane.setCursor(Cursor.HAND));
         popupPane.setOnMouseDragged(mouseEvent -> {
-            checkCollision();
             popupPane.setLayoutX(mouseEvent.getSceneX() + x);
             popupPane.setLayoutY(mouseEvent.getSceneY() + y);
         });
@@ -88,7 +106,7 @@ public class TradePopUpController implements Initializable {
     }
 
     private void checkCollision() {
-
+        // Collisions are recognized, but I can't find a way to make use of it.
         // X Collisions
         if(popupPane.getLayoutX() + paneLayoutXinRoot + paneWidth  >  screenController.getRoot().getPrefWidth()) {
             System.out.println("collides right");
@@ -96,7 +114,6 @@ public class TradePopUpController implements Initializable {
         else if(popupPane.getLayoutX() + paneLayoutXinRoot  <  0) {
             System.out.println("collides left");
         }
-
         // Y Collisions
         if(popupPane.getLayoutY() + paneLayoutYinRoot + paneHeight > screenController.getRoot().getPrefHeight()) {
             System.out.println("collides bottom");
