@@ -11,11 +11,11 @@ public class Spel {
     private ArrayList<Speler> spelers;
     private String status;
     private String code;
-    private ArrayList<Log> logs;
+    private Logs logs;
 
     public Spel() {
         this.spelers = new ArrayList<>();
-        this.logs = new ArrayList<>();
+        this.logs = new Logs();
         this.status = "Open";
         this.code = CodeGenerator.generateCode(10);
     }
@@ -65,18 +65,14 @@ public class Spel {
     }
 
     public void addLog(Log log) {
-        this.logs.add(log);
-    }
-
-    public void removeLog(Log log) {
-        this.logs.remove(log);
+        this.logs.addLog(log);
     }
 
     public ArrayList<Log> getLogs() {
-        return logs;
+        return logs.getLogs();
     }
 
-    public void setLogs(ArrayList<Log> logs) {
+    public void setLogs(Logs logs) {
         this.logs = logs;
     }
 

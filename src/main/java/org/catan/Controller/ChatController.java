@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.catan.Model.Chat ;
 import org.catan.Model.ChatMessage ;
+import org.catan.Model.Player;
 
 /**
  * Takes care of the user input and updates the chat.

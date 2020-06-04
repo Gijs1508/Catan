@@ -11,6 +11,8 @@ import org.catan.Model.Log;
 import org.catan.Model.Spel;
 import org.catan.Model.Speler;
 import org.catan.logic.DatabaseConnector;
+import org.catan.Controller.TradePopUpController;
+import org.catan.Model.Player;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -39,21 +41,33 @@ public class App extends Application {
         jan.setKleur("Pink");
         game.addSpeler(jan);
         game.addSpeler(sabrina);
+        Log log = new Log("txt");
+        game.addLog(log);
         dbConnector.createGame(game);
-//        Log log = new Log("txt");
-//        game.addLog(log);
-//        Spel game = dbConnector.getGameById("L5QR6HV14W");
-//        System.out.println(game.getCode());
+        System.out.println(game.getCode());
 
-//        scene = new Scene(loadFXML("Views/screenView"));
-//        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
-//        stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
-//        stage.setTitle("Kolonisten van Catan");
-//        stage.setScene(scene);
-//
-//        stage.setResizable(false);
-//        stage.show();
+        scene = new Scene(loadFXML("Views/screenView"));
+//        scene = new Scene(loadFXML("Views/mainView"));
+        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
+        stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
+        stage.setTitle("Kolonisten van Catan");
+        stage.setScene(scene);
+        stage.setResizable(false);
 
+        // Main player = Player controlling the instance of the game
+        Player testPlayer1 = new Player("testPlayer"); //TODO Moet aangemaakt worden bij het opstarten/joinen van het spel
+        testPlayer1.setMainPlayer(testPlayer1);
+
+        stage.show();
+    }
+
+    public static void tradePopUp() throws IOException{
+        scene = new Scene(loadFXML("Views/tradePopUpView"));
+        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Trade offer");
+        stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {

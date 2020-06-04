@@ -39,6 +39,8 @@ public class LogPane {
     }
 
     public void initLog(){
+        eventText.setFont(Font.font(13));
+
         logGrid.prefHeight(25);
         logGrid.prefWidth(430);
 
@@ -46,43 +48,37 @@ public class LogPane {
         row.setPrefHeight(30);
         row.setMinHeight(30);
 
+        logGrid.setMargin(eventText, new Insets(0, 15, 0, 30));
+
         logGrid.getRowConstraints().add(row);
+
+        eventText.setText(log.getEventString());
     }
 
     public void initImgEvent(){
         initLog();
 
         ColumnConstraints column1 = new ColumnConstraints();
-        column1.setMinWidth(10);
-        column1.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        column1.setMinWidth(30);
+        column1.setPrefWidth(150);
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setMinWidth(10);
-        column2.setPrefWidth(84);
+        column2.setPrefWidth(Region.USE_COMPUTED_SIZE);
 
         logGrid.getColumnConstraints().addAll(column1, column2);
 
 //        logGrid.setGridLinesVisible(true); //shows gridlines
-
-        eventText.setWrappingWidth(0);
-        eventText.setFont(Font.font(13));
-        logGrid.setMargin(eventText, new Insets(0, 15, 0, 30));
 
         imgBox.prefHeight(100);
         imgBox.setSpacing(2);
 
         logGrid.add(eventText, 0, 0);
         logGrid.add(imgBox, 1, 0);
-
-        eventText.setText(log.getEventString());
     }
 
     public void initTxtEvent(){
         initLog();
 
-        eventText.setWrappingWidth(430);
-        eventText.setFont(Font.font(13));
-
-        eventText.setText("Text");
         logGrid.getChildren().addAll(eventText);
     }
 
