@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,6 +76,14 @@ public class StockController implements Initializable {
     }
 
     public void updateResources(){
+        int[] oldResources = new int[6];
+        oldResources[0] = Integer.parseInt(woodCount.getText());
+        oldResources[1] = Integer.parseInt(brickCount.getText());
+        oldResources[2] = Integer.parseInt(oreCount.getText());
+        oldResources[3] = Integer.parseInt(sheepCount.getText());
+        oldResources[4] = Integer.parseInt(wheatCount.getText());
+        oldResources[5] = Integer.parseInt(knightCount.getText());
+
         int[] cards = Player.getMainPlayer().getPlayerInventory().getCards();
         woodCount.setText(Integer.toString(cards[0]));
         brickCount.setText(Integer.toString(cards[1]));
@@ -82,11 +91,26 @@ public class StockController implements Initializable {
         sheepCount.setText(Integer.toString(cards[3]));
         wheatCount.setText(Integer.toString(cards[4]));
         knightCount.setText(Integer.toString(cards[5]));
+
+        animateRemoveResources(oldResources, cards);
     }
 
-    public void removeResources(ArrayList<String> resources) {
-        for (int i = 0; i < resources.size(); i++) {
-            removeCardAnimation(animationCardForResource.get(resources.get(i)));
+    public void animateRemoveResources(int[] oldResources, int[] cards) {
+        ArrayList<String> removedResources = new ArrayList<>();
+
+        if(cards[0] < oldResources[0])
+            removedResources.add("wood");
+        if(cards[1] < oldResources[1])
+            removedResources.add("brick");
+        if(cards[2] < oldResources[2])
+            removedResources.add("ore");
+        if(cards[3] < oldResources[3])
+            removedResources.add("sheep");
+        if(cards[4] < oldResources[4])
+            removedResources.add("wheat");
+
+        for (int i = 0; i < removedResources.size(); i++) {
+            removeCardAnimation(animationCardForResource.get(removedResources.get(i)));
         }
     }
 
@@ -148,11 +172,11 @@ public class StockController implements Initializable {
 
     private void initializeAnimationCardMap() {
         animationCardForResource = new HashMap<>() {{
-            put("wheat", animationWheat);
             put("wood", animationWood);
             put("brick", animationBrick);
-            put("sheep", animationSheep);
             put("ore", animationOre);
+            put("sheep", animationSheep);
+            put("wheat", animationWheat);
         }};
     }
 }

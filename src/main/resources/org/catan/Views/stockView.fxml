@@ -110,7 +110,7 @@
                   </Text>
                </children>
             </VBox>
-            <ImageView fx:id="animationKnightCard" fitHeight="125.0" fitWidth="74.0" layoutX="6.0" layoutY="12.0" onMouseClicked="#activateKnight" onMouseEntered="#showKnightDetails" onMouseExited="#hideKnightDetails" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="animationKnightCard" fitHeight="125.0" fitWidth="74.0" layoutX="6.0" layoutY="12.0" onMouseClicked="#activateKnight" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../assets/img/knight.png" />
                </image>
