@@ -11,7 +11,7 @@
    <children>
       <ScrollPane id="logScrollPane" fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="144.0" prefWidth="430.0" stylesheets="@style.css" vvalue="1.0">
          <content>
-            <VBox fx:id="logsBox" prefHeight="144.0" prefWidth="430.0" style="-fx-background-color: #d1d1d1;" />
+            <VBox fx:id="logsBox" prefHeight="144.0" prefWidth="430.0" style="-fx-background-color: #e5e4e7;" />
          </content>
       </ScrollPane>
    </children>

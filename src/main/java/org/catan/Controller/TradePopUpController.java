@@ -1,39 +1,48 @@
 package org.catan.Controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class TradePopUpController implements Initializable {
 
-    @FXML
-    private Text playerName;
-    @FXML
-    private Text woodOffer;
-    @FXML
-    private Text brickOffer;
-    @FXML
-    private Text oreOffer;
-    @FXML
-    private Text sheepOffer;
-    @FXML
-    private Text wheatOffer;
-    @FXML
-    private Text woodRequest;
-    @FXML
-    private Text brickRequest;
-    @FXML
-    private Text oreRequest;
-    @FXML
-    private Text sheepRequest;
-    @FXML
-    private Text wheatRequest;
+    @FXML private AnchorPane popupPane;
+    @FXML private ImageView declineBtn;
+
+    @FXML private Text playerName;
+    @FXML private Text woodOffer;
+    @FXML private Text brickOffer;
+    @FXML private Text oreOffer;
+    @FXML private Text sheepOffer;
+    @FXML private Text wheatOffer;
+    @FXML private Text woodRequest;
+    @FXML private Text brickRequest;
+    @FXML private Text oreRequest;
+    @FXML private Text sheepRequest;
+    @FXML private Text wheatRequest;
+
+    private ScreenController screenController = ScreenController.getInstance();
+
+    private double x;
+    private double y;
+
+    private HashMap<String, Double> paneInfo = screenController.getTradePopupLayout();
+    private double paneLayoutXinRoot = paneInfo.get("layoutX");
+    private double paneLayoutYinRoot = paneInfo.get("layoutY");
+    private double paneWidth;
+    private double paneHeight;
 
     public static String sender = "%PLAYER%";
     public static String[] offer = {"0", "0", "0", "0", "0"};
@@ -43,6 +52,9 @@ public class TradePopUpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        paneWidth = popupPane.getPrefWidth();
+        paneHeight = popupPane.getPrefHeight();
+
         playerName.setText(sender);
         woodOffer.setText(offer[0]);
         brickOffer.setText(offer[1]);
@@ -55,6 +67,43 @@ public class TradePopUpController implements Initializable {
         sheepRequest.setText(request[3]);
         wheatRequest.setText(request[4]);
         offerLock = false;
+
+        initializeDrag();
+    }
+
+    private void initializeDrag() {
+        popupPane.setOnMousePressed(mouseEvent -> {
+            x = popupPane.getLayoutX() - mouseEvent.getSceneX();
+            y = popupPane.getLayoutY() - mouseEvent.getSceneY();
+            popupPane.setCursor(Cursor.MOVE);
+        });
+        popupPane.setOnMouseReleased(mouseEvent -> popupPane.setCursor(Cursor.HAND));
+        popupPane.setOnMouseDragged(mouseEvent -> {
+            checkCollision();
+            popupPane.setLayoutX(mouseEvent.getSceneX() + x);
+            popupPane.setLayoutY(mouseEvent.getSceneY() + y);
+        });
+        popupPane.setOnMouseEntered(mouseEvent -> popupPane.setCursor(Cursor.HAND));
+    }
+
+    private void checkCollision() {
+
+        // X Collisions
+        if(popupPane.getLayoutX() + paneLayoutXinRoot + paneWidth  >  screenController.getRoot().getPrefWidth()) {
+            System.out.println("collides right");
+        }
+        else if(popupPane.getLayoutX() + paneLayoutXinRoot  <  0) {
+            System.out.println("collides left");
+        }
+
+        // Y Collisions
+        if(popupPane.getLayoutY() + paneLayoutYinRoot + paneHeight > screenController.getRoot().getPrefHeight()) {
+            System.out.println("collides bottom");
+        }
+
+        if(popupPane.getLayoutY() + paneLayoutYinRoot < 0) {
+            System.out.println("collides top");
+        }
     }
 
     public static void updateTradeOffer(String name, String[] offerArray, String[] requestArray){
@@ -73,10 +122,13 @@ public class TradePopUpController implements Initializable {
                 playerInventory.changeCards(i, -Integer.parseInt(request[i]));
             }
             offerLock = true;
+
+            screenController.hideTradePopup();
         }
     }
 
     public void declineTrade(MouseEvent mouseEvent) {
+        screenController.hideTradePopup();
     }
 
     // Check if player owns all the requested cards

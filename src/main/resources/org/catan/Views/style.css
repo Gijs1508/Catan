@@ -21,7 +21,7 @@
 }
 
 #logScrollPane .scroll-bar:vertical .track{
-    -fx-background-color : #d1d1d1;
+    -fx-background-color : #e5e4e7
     }
 
 .scroll-bar:vertical .increment-button ,
@@ -45,10 +45,9 @@
 }
 
 .scroll-bar:vertical .thumb {
-    -fx-background-color : #737373;
+    -fx-background-color : #d1d1d1;
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
-
 }
 
 .scroll-bar:vertical .thumb:hover {

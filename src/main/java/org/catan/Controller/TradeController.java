@@ -93,7 +93,8 @@ public class TradeController {
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveSheepCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeSheepCount.getText(), takeWheatCount.getText()};
             TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
-            App.tradePopUp();
+//            App.tradePopUp();
+            ScreenController.getInstance().showTradePopup();
         }
     }
 
