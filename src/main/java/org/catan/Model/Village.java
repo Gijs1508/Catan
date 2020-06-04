@@ -1,9 +1,4 @@
 package org.catan.Model;
-
-import org.catan.App;
-
-import java.util.Stack;
-
 public class Village {
     private double x;
     private double y;

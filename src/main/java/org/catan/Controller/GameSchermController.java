@@ -314,9 +314,11 @@ public class GameSchermController implements Initializable {
     @FXML
     private void placeSettlement(Village village) {
         for (int i=0; i < 54; i++) {
-            if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 20 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
+            if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                imageView.setLayoutX(village.getX() - 18);
+                imageView.setLayoutY(village.getY() - 20);
                 imageView.setImage(image);
             }
         }

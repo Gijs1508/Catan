@@ -286,7 +286,7 @@
       </HBox>
       <Pane fx:id="objectsPane" layoutX="35.0" layoutY="52.0" prefHeight="500.0" prefWidth="700.0">
          <children>
-            <ImageView fx:id="settlement1" fitHeight="40.0" fitWidth="40.0" layoutX="181" layoutY="32">
+            <ImageView fx:id="settlement1" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="52">
                <image>
                   <Image url="@../assets/img/gameobjects/placeholder.png"/>
                </image>
