@@ -1,155 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="228.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.TradePopUpController">
+<AnchorPane fx:id="popupPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.TradePopUpController">
    <children>
-      <Text layoutX="6.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trade offer from">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="playerName" layoutX="190.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%PLAYER%">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Pane layoutX="6.0" layoutY="33.0" prefHeight="194.0" prefWidth="342.0" style="-fx-background-color: #cccc; -fx-background-radius: 30px;">
+      <Pane prefHeight="291.0" prefWidth="408.0" style="-fx-background-radius: 30 30 20 20;">
          <children>
-            <Text layoutX="119.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="for">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="19.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/woodSmall.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="19.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/wheatSmall.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="19.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/brickSmall.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="19.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/sheepSmall.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="19.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/oreSmall.png" />
-               </image>
-            </ImageView>
-            <Text fx:id="wheatOffer" layoutX="62.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="woodOffer" layoutX="62.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="brickOffer" layoutX="62.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="sheepOffer" layoutX="62.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="oreOffer" layoutX="62.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="48.0" fitWidth="53.0" layoutX="106.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/arrowRight.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="194.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/woodSmall.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="194.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/wheatSmall.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="194.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/brickSmall.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="30.0" layoutX="194.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/sheepSmall.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="194.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/oreSmall.png" />
-               </image>
-            </ImageView>
-            <Text fx:id="wheatRequest" layoutX="244.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="woodRequest" layoutX="244.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="brickRequest" layoutX="244.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="sheepRequest" layoutX="244.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="oreRequest" layoutX="244.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <ImageView fx:id="acceptBtn" fitHeight="92.0" fitWidth="60.0" layoutX="278.0" layoutY="29.0" onMouseClicked="#acceptTrade" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/checkmark.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="declineBtn" fitHeight="86.0" fitWidth="55.0" layoutX="281.0" layoutY="108.0" onMouseClicked="#declineTrade" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/cross.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
+            <Pane layoutX="7.0" layoutY="47.0" prefHeight="240.0" prefWidth="395.0" style="-fx-background-color: #e5e4e7; -fx-background-radius: 0 0 20 20;">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="90.0" layoutX="54.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/woodSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="90.0" layoutX="54.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/wheatSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="54.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/brickSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="54.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/sheepSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="54.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/oreSmall.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="wheatOffer" layoutX="102.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="woodOffer" layoutX="102.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="brickOffer" layoutX="102.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="sheepOffer" layoutX="102.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="oreOffer" layoutX="102.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="60.0" fitWidth="80.0" layoutX="127.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/greenArrowLeft.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="229.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/woodSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="229.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/wheatSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="229.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/brickSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="229.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/sheepSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="229.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/oreSmall.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="wheatRequest" layoutX="277.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="woodRequest" layoutX="277.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="brickRequest" layoutX="277.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="sheepRequest" layoutX="277.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="oreRequest" layoutX="277.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="acceptBtn" fitHeight="76.0" fitWidth="85.0" layoutX="303.0" layoutY="50.0" onMouseClicked="#acceptTrade" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/checkmark.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="declineBtn" fitHeight="76.0" fitWidth="76.0" layoutX="303.0" layoutY="126.0" onMouseClicked="#declineTrade" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/cross.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="80.0" layoutX="151.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/redArrowRight.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="11.0" layoutY="18.0">
+                     <image>
+                        <Image url="@../assets/img/plus.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="186.0" layoutY="18.0">
+                     <image>
+                        <Image url="@../assets/img/minus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <StackPane layoutX="7.0" layoutY="9.0" prefHeight="46.0" prefWidth="395.0" style="-fx-background-color: white; -fx-background-radius: 30 30 0 0;">
+               <children>
+                  <Text fx:id="popupTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Trade offer from %PLAYER%" textAlignment="CENTER" textOrigin="CENTER">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
          </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#0000005a" />
+         </effect>
       </Pane>
    </children>
 </AnchorPane>
