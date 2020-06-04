@@ -21,7 +21,7 @@ public class ChatMessage {
     }
 
     private void init(){
-            this.sender = "Jeroen"; // Wordt later vervangen met getPlayer ofzo
+            this.sender = Player.getMainPlayer().getName(); // Wordt later vervangen met getPlayer ofzo
             this.message = sender + ": " + content;
     }
 

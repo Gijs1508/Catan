@@ -1,10 +1,15 @@
 package org.catan.View.panes;
 
+import javafx.geometry.Insets;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import org.catan.App;
+import org.catan.Model.Log;
+
 
 /**
  * Class that creates a pane for a single log.
@@ -19,64 +24,72 @@ import javafx.scene.text.Text;
 
 public class LogPane {
 
-    private GridPane log = new GridPane();
-    private Text event = new Text();
+    private Log log;
+    private GridPane logGrid = new GridPane();
+    private Text eventText = new Text();
     private HBox imgBox = new HBox();
 
-    public LogPane(String type){
-        if(type == "img"){
+
+    public LogPane(Log log){
+        this.log = log;
+        if(log.getLogType() == "img"){
             initImgEvent();
             return; }
         initTxtEvent();
     }
 
     public void initLog(){
-        log.prefHeight(25);
-        log.prefWidth(200);
+        eventText.setFont(Font.font(13));
+
+        logGrid.prefHeight(25);
+        logGrid.prefWidth(430);
 
         RowConstraints row = new RowConstraints();
         row.setPrefHeight(30);
-        row.setMinHeight(10);
+        row.setMinHeight(30);
 
-        ColumnConstraints column1 = new ColumnConstraints();
-        column1.setMaxWidth(164);
-        column1.setMinWidth(10);
-        column1.setPrefWidth(103);
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setMaxWidth(102);
-        column2.setMinWidth(10);
-        column2.setPrefWidth(84);
+        logGrid.setMargin(eventText, new Insets(0, 15, 0, 30));
 
-        log.getRowConstraints().add(row);
-        log.getColumnConstraints().addAll(column1, column2);
+        logGrid.getRowConstraints().add(row);
 
+        eventText.setText(log.getEventString());
     }
 
     public void initImgEvent(){
         initLog();
 
-        event.setWrappingWidth(115);
-        event.setFont(Font.font(13));
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setMinWidth(30);
+        column1.setPrefWidth(150);
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setMinWidth(10);
+        column2.setPrefWidth(Region.USE_COMPUTED_SIZE);
+
+        logGrid.getColumnConstraints().addAll(column1, column2);
+
+//        logGrid.setGridLinesVisible(true); //shows gridlines
 
         imgBox.prefHeight(100);
-        imgBox.prefWidth(200);
-        imgBox.setSpacing(5);
+        imgBox.setSpacing(2);
 
-        event.setText("This is an image event:");
-        log.getChildren().addAll(event, imgBox);
+        logGrid.add(eventText, 0, 0);
+        logGrid.add(imgBox, 1, 0);
     }
 
     public void initTxtEvent(){
         initLog();
 
-        event.setWrappingWidth(190);
-        event.setFont(Font.font(13));
-
-        event.setText("This is a text event.");
-        log.getChildren().addAll(event);
+        logGrid.getChildren().addAll(eventText);
     }
 
-    public GridPane getLog() {
-        return log;
+    public GridPane getLogGrid() {
+        return logGrid;
+    }
+
+    public void addImage(Image image) {
+        ImageView imageView = new ImageView(image);
+        imageView.setPreserveRatio(true);
+        imageView.setFitWidth(27);
+        imgBox.getChildren().addAll(imageView);
     }
 }

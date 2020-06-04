@@ -4,8 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.catan.Controller.TradePopUpController;
+import org.catan.Model.Player;
 
 import java.io.IOException;
 
@@ -30,9 +33,24 @@ public class App extends Application {
         scene = new Scene(loadFXML("Views/screenView"));
 //        scene = new Scene(loadFXML("Views/mainView"));
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
+        stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
+        stage.setTitle("Kolonisten van Catan");
         stage.setScene(scene);
-
         stage.setResizable(false);
+
+        // Main player = Player controlling the instance of the game
+        Player testPlayer1 = new Player("testPlayer"); //TODO Moet aangemaakt worden bij het opstarten/joinen van het spel
+        testPlayer1.setMainPlayer(testPlayer1);
+
+        stage.show();
+    }
+
+    public static void tradePopUp() throws IOException{
+        scene = new Scene(loadFXML("Views/tradePopUpView"));
+        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Trade offer");
         stage.show();
     }
 

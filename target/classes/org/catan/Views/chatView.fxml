@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="302.0" prefWidth="230.0" style="-fx-background-color: #F0F0F0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.ChatController">
+<AnchorPane prefHeight="194.0" prefWidth="230.0" style="-fx-background-color: #F0F0F0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.ChatController">
    <children>
-      <TextField fx:id="messageField" layoutX="16.0" layoutY="267.0" onAction="#sendMessage" prefHeight="25.0" prefWidth="198.0" promptText="Say something..." />
-      <TextArea fx:id="chatBox" editable="false" layoutY="-1.0" prefHeight="262.0" prefWidth="230.0" style="-fx-control-inner-background: white; -fx-focus-color: transparent;" wrapText="true" />
+      <TextField fx:id="messageField" layoutX="16.0" layoutY="164.0" onAction="#sendMessage" prefHeight="25.0" prefWidth="198.0" promptText="Say something..." />
+      <TextArea fx:id="chatBox" editable="false" prefHeight="161.0" prefWidth="230.0" style="-fx-control-inner-background: white; -fx-focus-color: transparent;" stylesheets="@style.css" wrapText="true" />
    </children>
 </AnchorPane>
