@@ -16,13 +16,13 @@ public class Road {
     private String getFilePath(String color) {
         switch (color) {
             case "red":
-                return "org/catan/assets/img/gameobjects/wall_red.png";
+                return "assets/img/gameobjects/wall_red.png";
             case "blue":
-                return "org/catan/assets/img/gameobjects/wall_blue.png";
+                return "assets/img/gameobjects/wall_blue.png";
             case "green":
-                return "org/catan/assets/img/gameobjects/wall_green.png";
+                return "assets/img/gameobjects/wall_green.png";
             case "yellow":
-                return  "org/catan/assets/img/gameobjects/wall_yellow.png";
+                return  "assets/img/gameobjects/wall_yellow.png";
             default:
                 return "null";
         }

@@ -20,6 +20,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.RandomizeBoard;
+import org.catan.Model.Road;
 import org.catan.Model.Village;
 
 import java.io.IOException;
@@ -329,6 +330,17 @@ public class GameSchermController implements Initializable {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                imageView.setImage(image);
+                break;
+            }
+        }
+    }
+
+    private void placeRoad(Road road) {
+        for (int i=0; i < 127; i++) {
+            if (objectsPane.getChildren().get(i).getLayoutX() == road.getX() && objectsPane.getChildren().get(i).getLayoutY() == road.getY()) {
+                ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
+                Image image = new Image(String.valueOf(App.class.getResource(road.getImgPath())));
                 imageView.setImage(image);
                 break;
             }
