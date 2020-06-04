@@ -2,8 +2,10 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
@@ -34,6 +36,8 @@ public class TradePopUpController implements Initializable {
     private Text sheepRequest;
     @FXML
     private Text wheatRequest;
+    @FXML
+    private ImageView declineBtn;
 
     public static String sender = "%PLAYER%";
     public static String[] offer = {"0", "0", "0", "0", "0"};
@@ -73,10 +77,14 @@ public class TradePopUpController implements Initializable {
                 playerInventory.changeCards(i, -Integer.parseInt(request[i]));
             }
             offerLock = true;
+            Stage stage = (Stage) declineBtn.getScene().getWindow();
+            stage.close();
         }
     }
 
     public void declineTrade(MouseEvent mouseEvent) {
+        Stage stage = (Stage) declineBtn.getScene().getWindow();
+        stage.close();
     }
 
     // Check if player owns all the requested cards
