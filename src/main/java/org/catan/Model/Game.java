@@ -11,8 +11,10 @@ public class Game {
     private String status;
     private String code;
     private Logs logs;
+    private Gameboard board;
 
     public Game() {
+        this.board = new Gameboard();
         this.players = new ArrayList<>();
         this.logs = new Logs();
         this.status = "Open";
@@ -81,5 +83,13 @@ public class Game {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Gameboard getBoard() {
+        return board;
+    }
+
+    public void setBoard(Gameboard board) {
+        this.board = board;
     }
 }
