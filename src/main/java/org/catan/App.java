@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.catan.Model.Log;
 import org.catan.Model.Game;
+import org.catan.Model.Player;
 import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
@@ -30,16 +31,16 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         DatabaseConnector dbConnector = new DatabaseConnector();
         Game game = new Game();
-        Speler jan = new Speler("Jan");
-        Speler sabrina = new Speler("Sabrina");
-        sabrina.setKleur("Red");
-        jan.setKleur("Pink");
+        Player jan = new Player("Jan");
+        Player sabrina = new Player("Sabrina");
+        sabrina.setColor("Red");
+        jan.setColor("Pink");
         game.addSpeler(jan);
         game.addSpeler(sabrina);
-        Log log = new Log("roll", jan.getNaam());
-        log.createImage("4");
-        log.createImage("3");
-        game.addLog(log);
+//        Log log = new Log("roll", jan.getName());
+//        log.createImage("4");
+//        log.createImage("3");
+//        game.addLog(log);
         dbConnector.createGame(game);
         System.out.println(game.getCode());
 

@@ -18,7 +18,6 @@ public class DatabaseConnector {
     private Firestore db;
 
     public DatabaseConnector() {
-
         try {
             File accountKey = new File("src/main/resources/org/catan/credentials/FirestoreKey.json");
             FileInputStream serviceAccount =
@@ -38,13 +37,14 @@ public class DatabaseConnector {
 
     public ArrayList<Game> getAllGames() {
         ArrayList<Game> games = new ArrayList<>();
+
         ApiFuture<QuerySnapshot> query = this.db.collection("games").get();
+
         try {
             QuerySnapshot snapshot = query.get();
             List<QueryDocumentSnapshot> documents = snapshot.getDocuments();
             for (QueryDocumentSnapshot document : documents) {
                 games.add(document.toObject(Game.class));
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,6 +60,7 @@ public class DatabaseConnector {
         ObjectMapper objectMapper = new ObjectMapper();
 
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
         try {
             List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
             for (QueryDocumentSnapshot document : documents) {
@@ -113,7 +114,7 @@ public class DatabaseConnector {
 
         for (Player player : playerList) {
             Map<String, Object> playerMap = objectMapper.convertValue(player, Map.class);
-            playerMap.put("spelerInventaris", objectMapper.convertValue(player.getPlayerInventory(), Map.class));
+            playerMap.put("playerInventory", objectMapper.convertValue(player.getPlayerInventory(), Map.class));
             playerMapList.add(playerMap);
         }
 
@@ -122,10 +123,12 @@ public class DatabaseConnector {
 
     public void createGame(Game game) {
         DocumentReference documentReference = this.db.collection("games").document(game.getCode());
+
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Map> playerMap = converPlayersToHashMaps(game.getPlayers());
+
         HashMap<String, Object> dataMap = objectMapper.convertValue(game, HashMap.class);
-        dataMap.put("spelers", playerMap);
+        dataMap.put("players", playerMap);
         ApiFuture<WriteResult> result = documentReference.set(dataMap);
         try {
             System.out.println("Update time : " + result.get().getUpdateTime());
