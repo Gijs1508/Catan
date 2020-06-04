@@ -13,16 +13,16 @@ public class ThiefController {
 
     private static boolean placeableLocation(Tile tile) {
         if (tile == location){
-            return false;
+            return false;  //Rover staat er, dus kan niet plaatsen
         } else {
-            return true;
+            return true;  //Rover staat er niet, dus kan plaatsen
         }
     }
 
     @FXML
-    public void placeThief(Player player, Tile tile) {
+    public static void placeThief(Player player, Tile tile) {
         if (placeableLocation(tile) == true){
-            //plaatsen
+            //Plaatsen van rover.png idk how
             setLocation(tile);
             updateThief();
         } else {
@@ -34,8 +34,8 @@ public class ThiefController {
         return location;
     }
 
-    public void setLocation(Tile location) {
-        this.location = location;
+    public static void setLocation(Tile tile) {
+        location = tile;
     }
 
     private static void updateThief() {
