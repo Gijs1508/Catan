@@ -17,11 +17,11 @@ public class Gameboard {
 
     }
 
-    public void setSettlements(Speler speler, Tile tile) {
+    public void setSettlements(Player player, Tile tile) {
 
     }
 
-    public void setThief(Speler speler, Tile tile) {
+    public void setThief(Player player, Tile tile) {
 
     }
 

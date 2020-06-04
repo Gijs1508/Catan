@@ -1,7 +1,5 @@
 package org.catan.Model;
 
-import java.util.HashMap;
-
 /**
  * Log class that contains information about a log entry.
  * It finds the appropriate event text that belongs to the given event that is to be logged.
@@ -21,7 +19,7 @@ public class Log {
     private String eventType;
     private String eventString;
 
-    Speler player = new Speler("Jeroen");
+    Player player = new Player("Jeroen");
 
 
     public Log(String eventType){
@@ -35,7 +33,7 @@ public class Log {
     }
 
     public String handleEventString(String eventString) {
-        eventString = eventString.replaceAll("%PLAYER%", player.getNaam());
+        eventString = eventString.replaceAll("%PLAYER%", player.getName());
         if(eventString.contains("%PLAYER2%")){
             eventString = eventString.replaceAll("%PLAYER2%", "Jan");
         }
