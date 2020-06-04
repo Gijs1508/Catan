@@ -1,5 +1,7 @@
 package org.catan.Model;
 
+import org.catan.Controller.ThiefController;
+
 import java.util.HashMap;
 
 public class Gameboard {
@@ -22,7 +24,7 @@ public class Gameboard {
     }
 
     public void setThief(Player player, Tile tile) {
-
+        ThiefController.placeThief(player, tile);
     }
 
     public void setHarbour() {
