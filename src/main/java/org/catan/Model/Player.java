@@ -1,17 +1,32 @@
 package org.catan.Model;
 
+import java.util.ArrayList;
+
 public class Player {
 
     private String name;
     private String color;
     private Inventory playerInventory;
+//    private ArrayList<SpelObject> spelerObjecten = new ArrayList<SpelObject>();
     public static Player mainPlayer; // Player controlling the instance of the game
 
+    public Player() {
+
+    }
 
     public Player(String name){
         this.name = name;
         this.color = ""; //TODO
         this.playerInventory = new Inventory();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public static Player getMainPlayer() {
