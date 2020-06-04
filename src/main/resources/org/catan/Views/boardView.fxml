@@ -557,6 +557,369 @@
                </image>
             </ImageView>
 
+
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="226" layoutY="41">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="278" layoutY="40">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="329" layoutY="41">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="380" layoutY="40">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="432" layoutY="41">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="483" layoutY="41">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="200" layoutY="81">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="82">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="407" layoutY="82">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="82">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="175" layoutY="123">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="227" layoutY="121">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="277" layoutY="121">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="330" layoutY="123">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="380" layoutY="121">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="431" layoutY="121">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="483" layoutY="121">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="534" layoutY="122">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="163">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="254" layoutY="163">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="355" layoutY="163">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="457" layoutY="162">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="163">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="126" layoutY="203">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="175" layoutY="203">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="226" layoutY="204">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="278" layoutY="203">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="329" layoutY="204">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="381" layoutY="204">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="431" layoutY="204">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="483" layoutY="203">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="534" layoutY="204">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="585" layoutY="204">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="100" layoutY="244">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="202" layoutY="244">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="244">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="244">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="245">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="610" layoutY="245">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="126" layoutY="285">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="176" layoutY="285">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="226" layoutY="285">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="279" layoutY="286">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="329" layoutY="284">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="380" layoutY="286">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="431" layoutY="285">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="483" layoutY="286">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="534" layoutY="285">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="585" layoutY="284">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="326">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="253" layoutY="325">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="355" layoutY="326">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="457" layoutY="326">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="325">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="175" layoutY="367">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="226" layoutY="368">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="277" layoutY="367">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="329" layoutY="367">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="381" layoutY="368">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="432" layoutY="367">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="483" layoutY="368">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="533" layoutY="366">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="202" layoutY="408">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="304" layoutY="408">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="408">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="509" layoutY="408">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="226" layoutY="448">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="277" layoutY="448">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="329" layoutY="448">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="381" layoutY="447">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="431" layoutY="447">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="483" layoutY="448">
+                 <image>
+                     <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                 </image>
+             </ImageView>
+
+
             <Circle fx:id="vertex9" fill="#ffffffa8" layoutX="201.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="vertex11" fill="#ffffffa8" layoutX="303.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="vertex13" fill="#ffffffa8" layoutX="406.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />

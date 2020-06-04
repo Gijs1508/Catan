@@ -307,11 +307,11 @@ public class GameSchermController implements Initializable {
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        placeSettlement(build.buildVillage(circle));
+        placeVillage(build.buildVillage(circle));
         buildSettlementBtnCloseClicked();
     }
 
-    private void placeSettlement(Village village) {
+    private void placeVillage(Village village) {
         for (int i=0; i < 54; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
@@ -319,6 +319,18 @@ public class GameSchermController implements Initializable {
                 imageView.setLayoutX(village.getX() - 18);
                 imageView.setLayoutY(village.getY() - 20);
                 imageView.setImage(image);
+                break;
+            }
+        }
+    }
+
+    private void placeCity(Village village) {
+        for (int i=0; i < 54; i++) {
+            if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
+                ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
+                Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                imageView.setImage(image);
+                break;
             }
         }
     }
@@ -339,7 +351,7 @@ public class GameSchermController implements Initializable {
     @FXML
     public void upgradeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The upgrade node that is clicked
-        placeSettlement(build.buildUpgrade(circle));
+        placeCity(build.buildUpgrade(circle));
         upgradeSettlementBtnCloseClicked();
     }
 

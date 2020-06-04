@@ -59,15 +59,17 @@ public class BuildSettlementController {
         ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
         if (roadsConnected.isEmpty())
             return null;
-        ArrayList<Circle> nodes = new ArrayList<>();
-        for (int i=0; i < roadsConnected.size(); i++) {
-            nodes.addAll(math.circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
-        }
-        nodes = removeDuplicates(nodes);
+        else {
+            ArrayList<Circle> nodes = new ArrayList<>();
+            for (int i=0; i < roadsConnected.size(); i++) {
+                nodes.addAll(math.circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
+            }
+            nodes = removeDuplicates(nodes);
 //        nodes = filterOwnRoads(nodes, roadsConnected);
-        ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes, 0);
-        ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpot(roadsConnected);
-        return villagesNotClose(isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), buildVillages));
+            ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes, 0);
+            ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpot(roadsConnected);
+            return villagesNotClose(isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), buildVillages));
+        }
     }
 
     private ArrayList<Circle> villagesNotClose(ArrayList<Circle> spots) {
