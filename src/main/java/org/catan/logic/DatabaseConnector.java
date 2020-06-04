@@ -8,6 +8,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import org.catan.Model.Game;
+import org.catan.Model.Player;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -104,15 +105,15 @@ public class DatabaseConnector {
         }
     }
 
-    private ArrayList<Map> converPlayersToHashMaps(ArrayList<Speler> playerList){
+    private ArrayList<Map> converPlayersToHashMaps(ArrayList<Player> playerList){
         ArrayList<Map> playerMapList = new ArrayList<>();
 
         int index = 0;
         ObjectMapper objectMapper = new ObjectMapper();
 
-        for (Speler player : playerList) {
+        for (Player player : playerList) {
             Map<String, Object> playerMap = objectMapper.convertValue(player, Map.class);
-            playerMap.put("spelerInventaris", objectMapper.convertValue(player.getSpelerInventaris(), Map.class));
+            playerMap.put("spelerInventaris", objectMapper.convertValue(player.getPlayerInventory(), Map.class));
             playerMapList.add(playerMap);
         }
 
