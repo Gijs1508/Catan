@@ -12,6 +12,11 @@
 
 <AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
    <children>
+      <ImageView fitHeight="590.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/sea.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="472.0" fitWidth="559.0" layoutX="113.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/island.png" />
@@ -865,6 +870,7 @@
             <Circle fx:id="roadSpot66" fill="#c89cffd9" layoutX="509.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
          </children>
       </Pane>
+      <Pane prefHeight="472.0" prefWidth="476.0" />
       <ImageView fx:id="endTurnButton" fitHeight="55.0" fitWidth="155.0" layoutX="7.0" layoutY="534.0" onMouseClicked="#endTurn" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/UI/endTurn.png" />
