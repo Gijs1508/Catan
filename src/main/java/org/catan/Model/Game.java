@@ -4,17 +4,16 @@ package org.catan.Model;
 import org.catan.logic.CodeGenerator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class Spel {
+public class Game {
 
-    private ArrayList<Speler> spelers;
+    private ArrayList<Player> players;
     private String status;
     private String code;
     private Logs logs;
 
-    public Spel() {
-        this.spelers = new ArrayList<>();
+    public Game() {
+        this.players = new ArrayList<>();
         this.logs = new Logs();
         this.status = "Open";
         this.code = CodeGenerator.generateCode(10);
@@ -52,12 +51,12 @@ public class Spel {
         return this.status;
     }
 
-    public void addSpeler(Speler speler) {
-        this.spelers.add(speler);
+    public void addSpeler(Player speler) {
+        this.players.add(speler);
     }
 
-    public ArrayList<Speler> getSpelers() {
-        return this.spelers;
+    public ArrayList<Player> getPlayers() {
+        return this.players;
     }
 
     public String getCode(){
@@ -76,8 +75,8 @@ public class Spel {
         this.logs = logs;
     }
 
-    public void setSpelers(ArrayList<Speler> spelers) {
-        this.spelers = spelers;
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
     }
 
     public void setCode(String code) {

@@ -4,18 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.catan.Model.Log;
-import org.catan.Model.Spel;
-import org.catan.Model.Speler;
+import org.catan.Model.Game;
 import org.catan.logic.DatabaseConnector;
-import org.catan.Controller.TradePopUpController;
-import org.catan.Model.Player;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * JavaFX App
@@ -34,7 +29,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         DatabaseConnector dbConnector = new DatabaseConnector();
-        Spel game = new Spel();
+        Game game = new Game();
         Speler jan = new Speler("Jan");
         Speler sabrina = new Speler("Sabrina");
         sabrina.setKleur("Red");
