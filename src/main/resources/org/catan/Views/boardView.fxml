@@ -557,7 +557,7 @@
                </image>
             </ImageView>
 
-
+<!--            Roads-->
              <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="226" layoutY="41">
                  <image>
                      <Image url="@../assets/img/gameobjects/placeholder.png"/>
@@ -918,7 +918,6 @@
                      <Image url="@../assets/img/gameobjects/placeholder.png"/>
                  </image>
              </ImageView>
-
 
             <Circle fx:id="vertex9" fill="#ffffffa8" layoutX="201.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="vertex11" fill="#ffffffa8" layoutX="303.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
