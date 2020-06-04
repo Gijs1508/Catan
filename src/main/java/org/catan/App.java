@@ -37,10 +37,10 @@ public class App extends Application {
         jan.setColor("Pink");
         game.addSpeler(jan);
         game.addSpeler(sabrina);
-//        Log log = new Log("roll", jan.getName());
-//        log.createImage("4");
-//        log.createImage("3");
-//        game.addLog(log);
+        Log log = new Log("roll", jan.getName());
+        log.createImage("4");
+        log.createImage("3");
+        game.addLog(log);
         dbConnector.createGame(game);
         System.out.println(game.getCode());
 
