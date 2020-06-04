@@ -5,11 +5,13 @@ package org.catan.Controller;
 //import Model.Speler;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -18,7 +20,9 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.RandomizeBoard;
+import org.catan.Model.Village;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
@@ -263,6 +267,8 @@ public class GameSchermController implements Initializable {
     @FXML private Circle roadSpot71;
     @FXML private Circle roadSpot72;
 
+    @FXML private Pane objectsPane;
+
     //    private Spelbord spelbord;
 //    private Spel spel;
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
@@ -301,8 +307,19 @@ public class GameSchermController implements Initializable {
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        build.buildVillage(circle);
+        placeSettlement(build.buildVillage(circle));
         buildSettlementBtnCloseClicked();
+    }
+
+    @FXML
+    private void placeSettlement(Village village) {
+        for (int i=0; i < 54; i++) {
+            if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 20 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
+                ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
+                Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                imageView.setImage(image);
+            }
+        }
     }
 
     @FXML

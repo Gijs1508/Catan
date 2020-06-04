@@ -1,6 +1,7 @@
 package org.catan.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -10,6 +11,7 @@ import org.catan.Helper.MathBuildSettlement;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -170,17 +172,11 @@ public class BuildSettlementController {
         return availableNodes;
     }
 
-    // Builds the village todo
-    public void buildVillage(Circle node) {
+    // Makes villages and returns to GameSchermController for img placement.
+    public Village buildVillage(Circle node) {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue");
         buildVillages.add(village);
-        for (int i=0; i < 54; i++) {
-            if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
-//                objectsPane.getChildren().get(i)
-            }
-
-        }
-
+        return village;
     }
 
     // todo
