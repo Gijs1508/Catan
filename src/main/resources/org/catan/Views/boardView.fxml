@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
    <children>
@@ -870,7 +870,15 @@
             <Circle fx:id="roadSpot66" fill="#c89cffd9" layoutX="509.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
          </children>
       </Pane>
-      <Pane prefHeight="472.0" prefWidth="476.0" />
+      <Pane layoutX="211.0" prefHeight="116.0" prefWidth="88.0">
+         <children>
+            <ImageView fitHeight="110.0" fitWidth="79.0" layoutX="1.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/harbor.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="116.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+         </children></Pane>
       <ImageView fx:id="endTurnButton" fitHeight="55.0" fitWidth="155.0" layoutX="7.0" layoutY="534.0" onMouseClicked="#endTurn" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/UI/endTurn.png" />
@@ -879,6 +887,34 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Pane layoutX="385.0" layoutY="-4.0" prefHeight="104.0" prefWidth="115.0">
+         <children>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="51.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="14.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="38.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/wheatHarbor.png" />
+               </image></ImageView>
+            <Label layoutX="13.0" layoutY="33.0" text="2:1" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <Pane layoutX="8.0" layoutY="485.0" prefHeight="55.0" prefWidth="155.0">
          <children>
             <ImageView fx:id="roadButton" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildRoadBtnClicked" pickOnBounds="true" preserveRatio="true">
