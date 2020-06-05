@@ -292,24 +292,24 @@ public class GameSchermController implements Initializable {
     @FXML private Pane harbor7;
     @FXML private Pane harbor8;
     @FXML private Pane harbor9;
-    @FXML private Pane harbor1resource;
-    @FXML private Pane harbor2resource;
-    @FXML private Pane harbor3resource;
-    @FXML private Pane harbor4resource;
-    @FXML private Pane harbor5resource;
-    @FXML private Pane harbor6resource;
-    @FXML private Pane harbor7resource;
-    @FXML private Pane harbor8resource;
-    @FXML private Pane harbor9resource;
-    @FXML private Pane harbor1ratio;
-    @FXML private Pane harbor2ratio;
-    @FXML private Pane harbor3ratio;
-    @FXML private Pane harbor4ratio;
-    @FXML private Pane harbor5ratio;
-    @FXML private Pane harbor6ratio;
-    @FXML private Pane harbor7ratio;
-    @FXML private Pane harbor8ratio;
-    @FXML private Pane harbor9ratio;
+    @FXML private ImageView harbor1resource;
+    @FXML private ImageView harbor2resource;
+    @FXML private ImageView harbor3resource;
+    @FXML private ImageView harbor4resource;
+    @FXML private ImageView harbor5resource;
+    @FXML private ImageView harbor6resource;
+    @FXML private ImageView harbor7resource;
+    @FXML private ImageView harbor8resource;
+    @FXML private ImageView harbor9resource;
+    @FXML private Label harbor1ratio;
+    @FXML private Label harbor2ratio;
+    @FXML private Label harbor3ratio;
+    @FXML private Label harbor4ratio;
+    @FXML private Label harbor5ratio;
+    @FXML private Label harbor6ratio;
+    @FXML private Label harbor7ratio;
+    @FXML private Label harbor8ratio;
+    @FXML private Label harbor9ratio;
 
 
     //    private Spelbord spelbord;
@@ -320,7 +320,7 @@ public class GameSchermController implements Initializable {
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList;
 
-    private ArrayList<Harbor> harbors;
+    private ArrayList<Harbor> harbors = new ArrayList<>();
 
     LogController logController = LogController.getInstance();
 
@@ -377,6 +377,15 @@ public class GameSchermController implements Initializable {
             put(9, harbor9children);
         }};
 
+        HashMap<String, Image> resourceToImage = new HashMap<>() {{
+            put("wood", new Image(String.valueOf(App.class.getResource("assets/img/woodHarbor.png"))));
+            put("brick", new Image(String.valueOf(App.class.getResource("assets/img/brickHarbor.png"))));
+            put("ore", new Image(String.valueOf(App.class.getResource("assets/img/oreHarbor.png"))));
+            put("sheep", new Image(String.valueOf(App.class.getResource("assets/img/sheepHarbor.png"))));
+            put("wheat", new Image(String.valueOf(App.class.getResource("assets/img/wheatHarbor.png"))));
+            put("any", new Image(String.valueOf(App.class.getResource("assets/img/anyHarbor.png"))));
+        }};
+
         HashMap<String, Integer> harborTypeToCount = new HashMap<>() {{
             put("wood", 1);   put("brick", 1);
             put("ore", 1);    put("sheep", 1);
@@ -384,6 +393,7 @@ public class GameSchermController implements Initializable {
         }};
         HashMap<Integer, String> harborNumToResource = new HashMap<>();
 
+        // Distribute harbor types over harbor numbers
         int harborNum = 1;
         for (int i = 0; i < 9; i++) {   // There are 9 harbors
             Object[] harborTypes = harborTypeToCount.keySet().toArray();
@@ -396,11 +406,21 @@ public class GameSchermController implements Initializable {
             else i--;
         }
 
-        List<Map.Entry<Integer, String>> list = new ArrayList<>(harborNumToResource.entrySet());
-        for(Map.Entry<Integer, String> entry : list) {
-            System.out.println(entry.getKey() + "::" + entry.getValue());
+        // Create Harbor objects and add them to harbors
+        List<Map.Entry<Integer, String>> randomizedList = new ArrayList<>(harborNumToResource.entrySet());
+        for(Map.Entry<Integer, String> entry : randomizedList)
+            harbors.add(new Harbor(entry.getKey(), entry.getValue()));
 
+        // 
+        for(Harbor harbor : harbors) {
+            System.out.println(harbor.getHarborNum() + "::" + harbor.getType());
 
+            List<Node> nodes = harborToChildren.get(harbor.getHarborNum());
+            ImageView harborResource = (ImageView) nodes.get(0);
+            Label harborRatio = (Label) nodes.get(1);
+
+            harborResource.setImage(resourceToImage.get(harbor.getType()));
+            harborRatio.setText("1 : " + harbor.getRatio());
         }
     }
 

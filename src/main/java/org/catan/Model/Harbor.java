@@ -4,21 +4,34 @@ import java.util.HashMap;
 
 public class Harbor {
 
-    private String resource;
+    private int harborNum;
+    private String type;
     private int ratio;  // ex. 1 : <2>
-    private HashMap<String, Integer> resourceToRatio;
 
-    public Harbor(HashMap<String, Integer> resourceToRatio) {
-        this.resourceToRatio = resourceToRatio;
-        this.resource = resourceToRatio.keySet().toArray()[0].toString();
-        this.ratio = resourceToRatio.get(resource);
+    public Harbor(int harborNum, String type) {
+        this.harborNum = harborNum;
+        this.type = type;
+
+        findRatio();
     }
 
-    public String getResource() {
-        return resource;
+    private void findRatio() {
+        if (type.equals("any")) {
+            ratio = 3;
+            return; }
+        ratio = 2;
     }
 
     public int getRatio() {
         return ratio;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getHarborNum() {
+        return harborNum;
+    }
+
 }
