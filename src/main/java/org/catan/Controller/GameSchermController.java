@@ -341,6 +341,8 @@ public class GameSchermController implements Initializable {
             if (objectsPane.getChildren().get(i).getLayoutX() == road.getX() && objectsPane.getChildren().get(i).getLayoutY() == road.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(road.getImgPath())));
+                imageView.setLayoutX(road.getX() - 3);
+                imageView.setLayoutY(road.getY() - 27);
                 imageView.setImage(image);
                 break;
             }
@@ -349,6 +351,9 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildRoad(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
+        placeRoad(build.buildRoad(circle));
+        buildRoadBtnCloseClicked();
     }
     
 

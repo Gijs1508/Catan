@@ -24,8 +24,8 @@ public class BuildSettlementController {
         this.roadSpotNodeList = roadSpotNodeList;
         buildRoads.add(new Road(226.0, 41.0, "blue"));
         buildRoads.add(new Road(278.0, 40.0, "blue"));
-        buildRoads.add(new Road(303.0, 82.0, "blue"));
-        buildRoads.add(new Road(277.0, 121.0, "blue"));
+//        buildRoads.add(new Road(303.0, 82.0, "blue"));
+//        buildRoads.add(new Road(277.0, 121.0, "blue"));
 //        buildRoads.add(new Road(227, 121.0, "blue"));
 //        buildRoads.add(new Road(200.0, 81.0, "blue"));
         this.math = new MathBuildSettlement();
@@ -138,7 +138,7 @@ public class BuildSettlementController {
         return arrayFixed;
     }
 
-    // Checks if the available spots don't have a settlement already
+    // Checks if the spots don't have a road already
     private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Road> roads, int useless) {
         for (int i=0; i < nodes.size(); i++) {
             for (Road r : roads) {
@@ -256,6 +256,12 @@ public class BuildSettlementController {
                 roadPlaces.addAll(math.circlesInRadius(village.getX(), village.getY(), roadSpotNodeList, "other"));
         }
         return isSpotAvailable(removeDuplicates(roadPlaces), buildRoads, 1);
+    }
+
+    public Road buildRoad(Circle node) {
+        Road road = new Road(node.getLayoutX(), node.getLayoutY(), "blue");
+        buildRoads.add(road);
+        return road;
     }
 
     // Prints coordinates ArrayList
