@@ -28,6 +28,7 @@ public class RandomizeBoard {
 
         // Test loop to check if the tile objects are created
         for (Tile allTile : ALL_TILES) {
+            System.out.println(allTile.getId());
         }
     }
 

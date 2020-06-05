@@ -29,12 +29,4 @@ public class MainController {
         App.setRoot("./Views/mainViewTrade");
     }
 
-    @FXML
-    public void tradeTest() throws IOException {
-        Player player1 = new Player("testplayer");
-        player1.getPlayerInventory().changeCards(0, 5);
-        player1.getPlayerInventory().changeCards(4, 2);
-
-        //App.tradePopUp(player1);
-    }
 }

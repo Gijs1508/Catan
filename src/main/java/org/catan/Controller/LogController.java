@@ -20,8 +20,8 @@ public class LogController implements Initializable{
     @FXML private ScrollPane scrollPane;
 
     private Logs logs = new Logs();
-    private Player player = new Player("Jeroen");    // placeholders
-    private Player opponent = new Player("Jan");
+    private static String player;
+    private static String opponent;
 
     private static LogController logController;
 
@@ -61,7 +61,7 @@ public class LogController implements Initializable{
 
 
     public void logRollEvent(String dice1, String dice2) {
-        Log log = new Log("roll", player.getName());
+        Log log = new Log("roll", player);
         log.createImage(dice1);
         log.createImage(dice2);
         addImgLogToLogsPane(log);
@@ -69,7 +69,7 @@ public class LogController implements Initializable{
     }
 
     public void logReceiveEvent(ArrayList<String> receivedCards) {
-        Log log = new Log("receive", player.getName());
+        Log log = new Log("receive", player);
         for (int i = 0; i < receivedCards.size(); i++) {
             log.createImage(receivedCards.get(i));
         }
@@ -78,67 +78,67 @@ public class LogController implements Initializable{
     }
 
     public void logStealEvent(Player opponent) {
-        Log log = new Log("steal", player.getName(), opponent.getName());
+        Log log = new Log("steal", player, opponent.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logTradeEvent(Player opponent) {
-        Log log = new Log("trade", player.getName(), opponent.getName());
+        Log log = new Log("trade", player, opponent.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logEndTurnEvent() {
-        Log log = new Log("endturn", player.getName());
+        Log log = new Log("endturn", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logUpgradeEvent() {
-        Log log = new Log("upgrade", player.getName());
+        Log log = new Log("upgrade", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logRoadEvent() {
-        Log log = new Log("road", player.getName());
+        Log log = new Log("road", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logSettlementEvent() {
-        Log log = new Log("settlement", player.getName());
+        Log log = new Log("settlement", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logRobberEvent() {
-        Log log = new Log("robber", player.getName());
+        Log log = new Log("robber", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logWinEvent() {
-        Log log = new Log("win", player.getName());
+        Log log = new Log("win", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logPointEvent() {
-        Log log = new Log("point", player.getName());
+        Log log = new Log("point", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logKnightEvent() {
-        Log log = new Log("knight", player.getName());
+        Log log = new Log("knight", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
     public void logDevelopmentCardEvent() {
-        Log log = new Log("development", player.getName());
+        Log log = new Log("development", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
@@ -153,5 +153,14 @@ public class LogController implements Initializable{
             logController = new LogController();
         }
         return logController;
+    }
+
+    public static void setPlayer(){
+        player = Player.getActivePlayer().getName();
+    }
+
+    public static void setOpponent(Player opponentPlayer){
+        opponent = opponentPlayer.getName();
+        //TODO Opponent moet bij alle acties waar de opponent in voorkomt aangegeven worden met behulp van deze methode
     }
 }
