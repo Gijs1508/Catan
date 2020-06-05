@@ -312,7 +312,7 @@
                   <Image url="@../assets/img/woodHarbor.png" />
                </image>
             </ImageView>
-            <Label fx:id="harbor4ratio" layoutX="44.0" layoutY="44.0" text="3:1" textAlignment="CENTER" />
+            <Label fx:id="harbor4ratio" layoutX="24.0" layoutY="59.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
          </children>
       </Pane>
       <Pane fx:id="harbor3" layoutX="100.0" layoutY="131.0" prefHeight="113.0" prefWidth="82.0">
@@ -337,7 +337,7 @@
                   <Image url="@../assets/img/oreHarbor.png" />
                </image>
             </ImageView>
-            <Label fx:id="harbor3ratio" layoutX="34.0" layoutY="62.0" text="3:1" textAlignment="CENTER" />
+            <Label fx:id="harbor3ratio" layoutX="16.0" layoutY="80.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
          </children>
       </Pane>
       <Pane fx:id="harbor2" layoutX="385.0" layoutY="-4.0" prefHeight="104.0" prefWidth="115.0">
@@ -361,7 +361,7 @@
                <image>
                   <Image url="@../assets/img/wheatHarbor.png" />
                </image></ImageView>
-            <Label fx:id="harbor2ratio" layoutX="61.0" layoutY="33.0" text="3:1" textAlignment="CENTER" />
+            <Label fx:id="harbor2ratio" layoutX="43.0" layoutY="50.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
          </children>
       </Pane>
       <Pane fx:id="harbor1" layoutX="212.0" prefHeight="113.0" prefWidth="82.0">
@@ -386,7 +386,7 @@
                   <Image url="@../assets/img/sheepHarbor.png" />
                </image>
             </ImageView>
-            <Label fx:id="harbor1ratio" layoutX="32.0" layoutY="29.0" text="3:1" textAlignment="CENTER" />
+            <Label fx:id="harbor1ratio" layoutX="14.0" layoutY="47.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
          </children></Pane>
       <Pane fx:id="harbor5" layoutX="644.0" layoutY="223.0" prefHeight="104.0" prefWidth="75.0">
          <children>
@@ -410,7 +410,7 @@
                   <Image url="@../assets/img/brickHarbor.png" />
                </image>
             </ImageView>
-            <Label fx:id="harbor5ratio" layoutX="50.0" layoutY="56.0" text="3:1" textAlignment="CENTER" />
+            <Label fx:id="harbor5ratio" layoutX="33.0" layoutY="71.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
          </children>
       </Pane>
       <Pane fx:id="harbor6" layoutX="100.0" layoutY="325.0" prefHeight="113.0" prefWidth="82.0">
@@ -430,7 +430,7 @@
                   <Image url="@../assets/img/ship.png" />
                </image>
             </ImageView>
-            <Label fx:id="harbor6ratio" layoutX="33.0" layoutY="39.0" text="3:1" textAlignment="CENTER" />
+            <Label fx:id="harbor6ratio" layoutX="15.0" layoutY="55.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
             <ImageView fx:id="harbor6resource" fitHeight="35.0" fitWidth="37.0" layoutX="9.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/brickHarbor.png" />
@@ -455,7 +455,7 @@
                   <Image url="@../assets/img/ship.png" />
                </image>
             </ImageView>
-            <Label fx:id="harbor7ratio" layoutX="51.0" layoutY="61.0" text="3:1" textAlignment="CENTER" />
+            <Label fx:id="harbor7ratio" layoutX="34.0" layoutY="76.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
             <ImageView fx:id="harbor7resource" fitHeight="35.0" fitWidth="37.0" layoutX="27.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/brickHarbor.png" />
@@ -485,7 +485,7 @@
                   <Image url="@../assets/img/brickHarbor.png" />
                </image>
             </ImageView>
-            <Label fx:id="harbor9ratio" layoutX="52.0" layoutY="58.0" text="3:1" textAlignment="CENTER" />
+            <Label fx:id="harbor9ratio" layoutX="34.0" layoutY="74.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
          </children>
       </Pane>
       <Pane fx:id="harbor8" layoutX="208.0" layoutY="479.0" prefHeight="104.0" prefWidth="75.0">
@@ -510,7 +510,7 @@
                   <Image url="@../assets/img/brickHarbor.png" />
                </image>
             </ImageView>
-            <Label fx:id="harbor8ratio" layoutX="32.0" layoutY="51.0" text="3:1" textAlignment="CENTER" />
+            <Label fx:id="harbor8ratio" layoutX="15.0" layoutY="66.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
          </children>
       </Pane>
       <Pane layoutX="35.0" layoutY="52.0" prefHeight="500.0" prefWidth="700.0" visible="false">

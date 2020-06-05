@@ -411,7 +411,7 @@ public class GameSchermController implements Initializable {
         for(Map.Entry<Integer, String> entry : randomizedList)
             harbors.add(new Harbor(entry.getKey(), entry.getValue()));
 
-        // 
+        // Updates the view with randomized harbors
         for(Harbor harbor : harbors) {
             System.out.println(harbor.getHarborNum() + "::" + harbor.getType());
 
