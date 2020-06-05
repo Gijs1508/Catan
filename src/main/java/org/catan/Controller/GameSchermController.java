@@ -272,7 +272,7 @@ public class GameSchermController implements Initializable {
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Label> tileNumNodeList;
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
-    private ArrayList<Polygon> tileNodeList;
+    private ArrayList<Polygon> tileNodeList = new ArrayList<>();
 
     LogController logController = LogController.getInstance();
 
@@ -483,14 +483,14 @@ public class GameSchermController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializePlacementSpots();
 //        initializeRoads();
-        ArrayList<Polygon> tiles = addAllTilesToArray();
+        addAllTilesToArray();
         ArrayList<Label> labels = addAllTileNumbersToArray();
 
         //TODO: changing the seed to the gamecode!
         long seed = CreateGameCode.randomCodeGen(6);
 
-        RandomizeBoard.setRandomTiles(tiles, labels, seed);
-        this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
+        RandomizeBoard.setRandomTiles(tileNodeList, labels, seed);
+        this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList, tileNodeList);
         //tile1.setFill(Color.BROWN);
         initializeButtons();
     }
@@ -549,15 +549,11 @@ public class GameSchermController implements Initializable {
 //    }
 
 
-    private ArrayList<Polygon> addAllTilesToArray() {
-        ArrayList<Polygon> tiles = new ArrayList<Polygon>();
+    private void addAllTilesToArray() {
 
-        Collections.addAll(tiles, tile1, tile2, tile3, tile4, tile5,
+        Collections.addAll(tileNodeList, tile1, tile2, tile3, tile4, tile5,
                 tile6, tile7, tile8, tile9, tile11, tile12, tile13,
                 tile14, tile15,tile16, tile17, tile18, tile19);
-
-
-        return tiles;
     }
 
     private ArrayList<Label> addAllTileNumbersToArray(){
