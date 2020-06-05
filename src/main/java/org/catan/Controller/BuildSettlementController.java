@@ -90,11 +90,15 @@ public class BuildSettlementController {
     // Removes duplicates in array
     private ArrayList<Circle> removeDuplicates(ArrayList<Circle> array) {
         ArrayList<Circle> arrayFixed = new ArrayList<>();
+        System.out.println("===========================================");
+        System.out.println("This is the remove duplicates function");
         for (Circle circle : array) {
             if (!arrayFixed.contains(circle)) {
+                System.out.println("Road node ID: " + circle);
                 arrayFixed.add(circle);
             }
         }
+        System.out.println("===========================================");
         return arrayFixed;
     }
 
@@ -231,14 +235,17 @@ public class BuildSettlementController {
         print(buildRoads, 0);
         ArrayList<Road> playerRoads = playerRoads();
         ArrayList<Circle> roadPlaces = new ArrayList<>();
+
         for (Road playerRoad : playerRoads) {
             roadPlaces.addAll(math.circlesInRadius(playerRoad.getX(), playerRoad.getY(), roadSpotNodeList, "road"));
         }
+        roadPlaces = removeDuplicates(roadPlaces);
 
         for (Village village : buildVillages) {
             if (village.getColor().equals(color))
                 roadPlaces.addAll(math.circlesInRadius(village.getX(), village.getY(), roadSpotNodeList, "other"));
         }
+
         return isSpotAvailable(removeDuplicates(roadPlaces), buildRoads, 1);
     }
 
