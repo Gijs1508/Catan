@@ -22,6 +22,7 @@ import org.catan.App;
 import org.catan.Model.CreateGameCode;
 import org.catan.Model.Harbor;
 import org.catan.Model.RandomizeBoard;
+import org.catan.Model.RandomizeHarbors;
 
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -343,6 +344,7 @@ public class GameSchermController implements Initializable {
     }
 
     private void initializeHarbors() {
+
         // Gets the seed (game code)
         Random random = new Random(CreateGameCode.getSeed());
 
@@ -377,49 +379,17 @@ public class GameSchermController implements Initializable {
             put(9, harbor9children);
         }};
 
-        HashMap<String, Image> resourceToImage = new HashMap<>() {{
-            put("wood", new Image(String.valueOf(App.class.getResource("assets/img/woodHarbor.png"))));
-            put("brick", new Image(String.valueOf(App.class.getResource("assets/img/brickHarbor.png"))));
-            put("ore", new Image(String.valueOf(App.class.getResource("assets/img/oreHarbor.png"))));
-            put("sheep", new Image(String.valueOf(App.class.getResource("assets/img/sheepHarbor.png"))));
-            put("wheat", new Image(String.valueOf(App.class.getResource("assets/img/wheatHarbor.png"))));
-            put("any", new Image(String.valueOf(App.class.getResource("assets/img/anyHarbor.png"))));
-        }};
-
-        HashMap<String, Integer> harborTypeToCount = new HashMap<>() {{
-            put("wood", 1);   put("brick", 1);
-            put("ore", 1);    put("sheep", 1);
-            put("wheat", 1);  put("any", 4);
-        }};
-        HashMap<Integer, String> harborNumToResource = new HashMap<>();
-
-        // Distribute harbor types over harbor numbers
-        int harborNum = 1;
-        for (int i = 0; i < 9; i++) {   // There are 9 harbors
-            Object[] harborTypes = harborTypeToCount.keySet().toArray();
-            Object harborType = harborTypes[random.nextInt(harborTypes.length)];    // Random harborType
-            if(harborTypeToCount.get(harborType.toString()) > 0) {                  // The count of this harborType is > 0
-                harborTypeToCount.replace(harborType.toString(), harborTypeToCount.get(harborType) - 1);
-                harborNumToResource.put(harborNum, harborType.toString());          // Assigns a type to each harbor num
-                harborNum++;
-            }
-            else i--;
-        }
-
-        // Create Harbor objects and add them to harbors
-        List<Map.Entry<Integer, String>> randomizedList = new ArrayList<>(harborNumToResource.entrySet());
-        for(Map.Entry<Integer, String> entry : randomizedList)
-            harbors.add(new Harbor(entry.getKey(), entry.getValue()));
+        harbors = RandomizeHarbors.randomizeHarbors();
 
         // Updates the view with randomized harbors
-        for(Harbor harbor : harbors) {
+        for (Harbor harbor : harbors) {
             System.out.println(harbor.getHarborNum() + "::" + harbor.getType());
 
             List<Node> nodes = harborToChildren.get(harbor.getHarborNum());
             ImageView harborResource = (ImageView) nodes.get(0);
             Label harborRatio = (Label) nodes.get(1);
 
-            harborResource.setImage(resourceToImage.get(harbor.getType()));
+            harborResource.setImage(Harbor.getResourceToImage().get(harbor.getType()));
             harborRatio.setText("1 : " + harbor.getRatio());
         }
     }

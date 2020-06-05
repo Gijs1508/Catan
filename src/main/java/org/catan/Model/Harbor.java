@@ -1,5 +1,8 @@
 package org.catan.Model;
 
+import javafx.scene.image.Image;
+import org.catan.App;
+
 import java.util.HashMap;
 
 public class Harbor {
@@ -7,6 +10,15 @@ public class Harbor {
     private int harborNum;
     private String type;
     private int ratio;  // ex. 1 : <2>
+
+    private static HashMap<String, Image> resourceToImage = new HashMap<>() {{
+        put("wood", new Image(String.valueOf(App.class.getResource("assets/img/woodHarbor.png"))));
+        put("brick", new Image(String.valueOf(App.class.getResource("assets/img/brickHarbor.png"))));
+        put("ore", new Image(String.valueOf(App.class.getResource("assets/img/oreHarbor.png"))));
+        put("sheep", new Image(String.valueOf(App.class.getResource("assets/img/sheepHarbor.png"))));
+        put("wheat", new Image(String.valueOf(App.class.getResource("assets/img/wheatHarbor.png"))));
+        put("any", new Image(String.valueOf(App.class.getResource("assets/img/anyHarbor.png"))));
+    }};
 
     public Harbor(int harborNum, String type) {
         this.harborNum = harborNum;
@@ -32,6 +44,10 @@ public class Harbor {
 
     public int getHarborNum() {
         return harborNum;
+    }
+
+    public static HashMap<String, Image> getResourceToImage() {
+        return resourceToImage;
     }
 
 }
