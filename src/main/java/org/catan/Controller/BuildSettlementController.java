@@ -57,6 +57,8 @@ public class BuildSettlementController {
     // Gives available node for placing a village
     public ArrayList<Circle> showVillageSpots() {
         ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
+        System.out.println("RoadsConnected");
+        print(roadsConnected, 0);
         ArrayList<Circle> nodes = new ArrayList<>();
         for (int i=0; i < roadsConnected.size(); i++) {
             nodes.addAll(math.circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
@@ -90,15 +92,15 @@ public class BuildSettlementController {
     // Removes duplicates in array
     private ArrayList<Circle> removeDuplicates(ArrayList<Circle> array) {
         ArrayList<Circle> arrayFixed = new ArrayList<>();
-        System.out.println("===========================================");
-        System.out.println("This is the remove duplicates function");
+//        System.out.println("===========================================");
+//        System.out.println("This is the remove duplicates function");
         for (Circle circle : array) {
             if (!arrayFixed.contains(circle)) {
-                System.out.println("Road node ID: " + circle);
+//                System.out.println("Road node ID: " + circle);
                 arrayFixed.add(circle);
             }
         }
-        System.out.println("===========================================");
+//        System.out.println("===========================================");
         return arrayFixed;
     }
 
@@ -231,21 +233,21 @@ public class BuildSettlementController {
     }
 
     public ArrayList<Circle> showAvailableRoads() {
-        System.out.println("Road arraylist");
-        print(buildRoads, 0);
+//        System.out.println("Road arraylist");
+//        print(buildRoads, 0);
         ArrayList<Road> playerRoads = playerRoads();
         ArrayList<Circle> roadPlaces = new ArrayList<>();
 
         for (Road playerRoad : playerRoads) {
             roadPlaces.addAll(math.circlesInRadius(playerRoad.getX(), playerRoad.getY(), roadSpotNodeList, "road"));
         }
-        roadPlaces = removeDuplicates(roadPlaces);
 
         for (Village village : buildVillages) {
             if (village.getColor().equals(color))
                 roadPlaces.addAll(math.circlesInRadius(village.getX(), village.getY(), roadSpotNodeList, "other"));
         }
 
+        roadPlaces = isSpotAvailable(removeDuplicates(roadPlaces), buildRoads, 1);
         return isSpotAvailable(removeDuplicates(roadPlaces), buildRoads, 1);
     }
 
