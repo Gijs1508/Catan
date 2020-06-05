@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import org.catan.App;
 import org.catan.Model.CreateGameCode;
 import org.catan.Model.Player;
 import org.catan.Model.RandomizeBoard;
