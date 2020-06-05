@@ -14,17 +14,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.CreateGameCode;
 import org.catan.Model.RandomizeBoard;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
-
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -274,6 +269,7 @@ public class GameSchermController implements Initializable {
 //    private Spel spel;
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
+    private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Label> tileNumNodeList;
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList;
@@ -417,9 +413,12 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildRoadBtnClicked() {
-        ArrayList<Circle> nodes = build.showRoadSpots();
-        for (Circle node : nodes) {
-            node.setVisible(true);
+        try {
+            ArrayList<Circle> nodes = build.showRoadSpots();
+            for (Circle node : nodes) {
+                node.setVisible(true);
+            }
+        } catch (Exception e){
         }
         roadButton.setVisible(false);
         roadButtonClose.setVisible(true);
@@ -458,9 +457,13 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void upgradeSettlementBtnClicked() {
-        ArrayList<Circle> nodes = build.showUpgradeableVillages();
-        for (Circle node : nodes) {
-            node.setVisible(true);
+        try {
+            ArrayList<Circle> nodes = build.showUpgradeableVillages();
+            for (Circle node : nodes) {
+                node.setVisible(true);
+            }
+
+        } catch (Exception e) {
         }
         upgradeButton.setVisible(false);
         upgradeButtonClose.setVisible(true);
@@ -534,23 +537,6 @@ public class GameSchermController implements Initializable {
             roadSpotNodeList.get(i).setVisible(false);
         }
     }
-
-//    private void initializeRoads() {
-//        Collections.addAll(roadNodeList,
-//                road1, road2, road3 ,road4, road5, road6, road7, road8, road9, road10,
-//                road11, road12, road13, road14, road15, road16, road17, road18, road19, road20,
-//                road21, road22, road23, road24, road25, road26, road27, road28, road29, road30,
-//                road31, road32, road33, road34, road35, road36, road37, road38, road39, road40,
-//                road41, road42, road43, road44, road45, road46, road47, road48, road49, road50,
-//                road51, road52, road53, road54, road55, road56, road57, road58, road59, road60,
-//                road61, road62, road63, road64, road65, road66, road67, road68, road69, road70,
-//                road71, road72
-//        );
-//
-//        for (int i = 0; i < roadNodeList.size(); i++) {
-//            roadNodeList.get(i).setVisible(false);
-//        }
-//    }
 
     private void initializeButtons() {
         upgradeButtonClose.setVisible(false);
