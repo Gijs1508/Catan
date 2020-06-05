@@ -453,7 +453,7 @@ public class GameSchermController implements Initializable {
         ArrayList<Label> labels = addAllTileNumbersToArray();
 
         //TODO: changing the seed to the gamecode!
-        long seed = CreateGameCode.randomCodeGen(6);
+        long seed = CreateGameCode.randomCodeGen();
 
         RandomizeBoard.setRandomTiles(tiles, labels, seed);
 
