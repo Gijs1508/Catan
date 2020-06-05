@@ -438,16 +438,12 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildSettlementBtnClicked() {
-        try {
-            ArrayList<Circle> availableSpots = build.showVillageSpots();
-            for (Circle availableSpot : availableSpots) {
-                availableSpot.setVisible(true);
-            }
-            settlementButton.setVisible(false);
-            settlementButtonClose.setVisible(true);
-        }catch (Exception e) {
-
+        ArrayList<Circle> availableSpots = build.showVillageSpots();
+        for (Circle availableSpot : availableSpots) {
+            availableSpot.setVisible(true);
         }
+        settlementButton.setVisible(false);
+        settlementButtonClose.setVisible(true);
 
     }
 
