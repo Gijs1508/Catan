@@ -23,7 +23,7 @@ public class CreateController {
     @FXML
     public void createGame(ActionEvent actionEvent) {
         // TODO Werner: add code to db and check if it does not exist
-        var code = CreateGameCode.randomCodeGen(6);
+        var code = CreateGameCode.getSeed();
         game_code_text.setText(String.valueOf(code));
     }
 
