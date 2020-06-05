@@ -6,10 +6,12 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -18,13 +20,12 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.CreateGameCode;
+import org.catan.Model.Harbor;
 import org.catan.Model.RandomizeBoard;
 
 import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class GameSchermController implements Initializable {
 
@@ -282,6 +283,35 @@ public class GameSchermController implements Initializable {
     @FXML private ImageView road71;
     @FXML private ImageView road72;
 
+    @FXML private Pane harbor1;
+    @FXML private Pane harbor2;
+    @FXML private Pane harbor3;
+    @FXML private Pane harbor4;
+    @FXML private Pane harbor5;
+    @FXML private Pane harbor6;
+    @FXML private Pane harbor7;
+    @FXML private Pane harbor8;
+    @FXML private Pane harbor9;
+    @FXML private Pane harbor1resource;
+    @FXML private Pane harbor2resource;
+    @FXML private Pane harbor3resource;
+    @FXML private Pane harbor4resource;
+    @FXML private Pane harbor5resource;
+    @FXML private Pane harbor6resource;
+    @FXML private Pane harbor7resource;
+    @FXML private Pane harbor8resource;
+    @FXML private Pane harbor9resource;
+    @FXML private Pane harbor1ratio;
+    @FXML private Pane harbor2ratio;
+    @FXML private Pane harbor3ratio;
+    @FXML private Pane harbor4ratio;
+    @FXML private Pane harbor5ratio;
+    @FXML private Pane harbor6ratio;
+    @FXML private Pane harbor7ratio;
+    @FXML private Pane harbor8ratio;
+    @FXML private Pane harbor9ratio;
+
+
     //    private Spelbord spelbord;
 //    private Spel spel;
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
@@ -290,10 +320,88 @@ public class GameSchermController implements Initializable {
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList;
 
+    private ArrayList<Harbor> harbors;
+
     LogController logController = LogController.getInstance();
 
 
-    public GameSchermController() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializePlacementSpots();
+        initializeRoads();
+        ArrayList<Polygon> tiles = addAllTilesToArray();
+        ArrayList<Label> labels = addAllTileNumbersToArray();
+
+        //TODO: changing the seed to the gamecode!
+        long seed = CreateGameCode.randomCodeGen();
+
+        RandomizeBoard.setRandomTiles(tiles, labels, seed);
+
+        //tile1.setFill(Color.BROWN);
+        initializeButtons();
+        initializeHarbors();
+    }
+
+    private void initializeHarbors() {
+        // Gets the seed (game code)
+        Random random = new Random(CreateGameCode.getSeed());
+
+        // Contains the children in the harbor panes
+        List<Node> harbor1children = new ArrayList<>();
+        List<Node> harbor2children = new ArrayList<>();
+        List<Node> harbor3children = new ArrayList<>();
+        List<Node> harbor4children = new ArrayList<>();
+        List<Node> harbor5children = new ArrayList<>();
+        List<Node> harbor6children = new ArrayList<>();
+        List<Node> harbor7children = new ArrayList<>();
+        List<Node> harbor8children = new ArrayList<>();
+        List<Node> harbor9children = new ArrayList<>();
+
+        // 0 > resource (ImageView)              1 > ratio (Label)
+        harbor1children.add(harbor1resource); harbor1children.add(harbor1ratio);
+        harbor2children.add(harbor2resource); harbor2children.add(harbor2ratio);
+        harbor3children.add(harbor3resource); harbor3children.add(harbor3ratio);
+        harbor4children.add(harbor4resource); harbor4children.add(harbor4ratio);
+        harbor5children.add(harbor5resource); harbor5children.add(harbor5ratio);
+        harbor6children.add(harbor6resource); harbor6children.add(harbor6ratio);
+        harbor7children.add(harbor7resource); harbor7children.add(harbor7ratio);
+        harbor8children.add(harbor8resource); harbor8children.add(harbor8ratio);
+        harbor9children.add(harbor9resource); harbor9children.add(harbor9ratio);
+
+        // Harbor number and its children
+        HashMap<Integer, List<Node>> harborToChildren = new HashMap<>() {{
+            put(1, harbor1children); put(2, harbor2children);
+            put(3, harbor3children); put(4, harbor4children);
+            put(5, harbor5children); put(6, harbor6children);
+            put(7, harbor7children); put(8, harbor8children);
+            put(9, harbor9children);
+        }};
+
+        HashMap<String, Integer> harborTypeToCount = new HashMap<>() {{
+            put("wood", 1);   put("brick", 1);
+            put("ore", 1);    put("sheep", 1);
+            put("wheat", 1);  put("any", 4);
+        }};
+        HashMap<Integer, String> harborNumToResource = new HashMap<>();
+
+        int harborNum = 1;
+        for (int i = 0; i < 9; i++) {   // There are 9 harbors
+            Object[] harborTypes = harborTypeToCount.keySet().toArray();
+            Object harborType = harborTypes[random.nextInt(harborTypes.length)];    // Random harborType
+            if(harborTypeToCount.get(harborType.toString()) > 0) {                  // The count of this harborType is > 0
+                harborTypeToCount.replace(harborType.toString(), harborTypeToCount.get(harborType) - 1);
+                harborNumToResource.put(harborNum, harborType.toString());          // Assigns a type to each harbor num
+                harborNum++;
+            }
+            else i--;
+        }
+
+        List<Map.Entry<Integer, String>> list = new ArrayList<>(harborNumToResource.entrySet());
+        for(Map.Entry<Integer, String> entry : list) {
+            System.out.println(entry.getKey() + "::" + entry.getValue());
+
+
+        }
     }
 
     private void keyHandler() {
@@ -444,22 +552,6 @@ public class GameSchermController implements Initializable {
         upgradeButtonClose.setVisible(false);
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        initializePlacementSpots();
-        initializeRoads();
-        ArrayList<Polygon> tiles = addAllTilesToArray();
-        ArrayList<Label> labels = addAllTileNumbersToArray();
-
-        //TODO: changing the seed to the gamecode!
-        long seed = CreateGameCode.randomCodeGen(6);
-
-        RandomizeBoard.setRandomTiles(tiles, labels, seed);
-
-        //tile1.setFill(Color.BROWN);
-        initializeButtons();
-    }
 
     private void initializePlacementSpots(){
         Collections.addAll(vertexNodeList,
