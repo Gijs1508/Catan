@@ -568,7 +568,7 @@
                   <Image url="@../assets/img/gameobjects/placeholder.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road2" fitHeight="54.0" fitWidth="9.0" layoutX="271.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road2" fitHeight="54.0" fitWidth="9.0" layoutX="278.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
                   <Image url="@../assets/img/gameobjects/placeholder.png" />
                </image>
