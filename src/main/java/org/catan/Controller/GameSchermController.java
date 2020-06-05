@@ -356,7 +356,6 @@ public class GameSchermController implements Initializable {
         buildRoadBtnCloseClicked();
         logController.logRoadEvent();
     }
-    
 
     @FXML
     public void showVertex() {
@@ -490,7 +489,7 @@ public class GameSchermController implements Initializable {
         long seed = CreateGameCode.randomCodeGen(6);
 
         RandomizeBoard.setRandomTiles(tileNodeList, labels, seed);
-        this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList, tileNodeList);
+        this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         //tile1.setFill(Color.BROWN);
         initializeButtons();
     }

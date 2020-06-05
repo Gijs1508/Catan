@@ -3,8 +3,8 @@ package org.catan.Controller;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.Helper.MathBuildSettlement;
+import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.Road;
-import org.catan.Model.Tile;
 import org.catan.Model.Village;
 import java.util.*;
 
@@ -14,20 +14,19 @@ public class BuildSettlementController {
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
-    private ArrayList<Polygon> tileNodeList = new ArrayList<>();
 
     private ArrayList<Road> buildRoads = new ArrayList<>();
     private ArrayList<Village> buildVillages = new ArrayList<>();
     private MathBuildSettlement math;
+    private PolygonConnectedNodes poly;
 
     public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList,
-                                     ArrayList<Circle> upgradeNodeList, ArrayList<Polygon> tileNodeList) {
+                                     ArrayList<Circle> upgradeNodeList) {
         this.vertexNodeList = vertexNodeList;
         this.upgradeNodeList = upgradeNodeList;
         this.roadSpotNodeList = roadSpotNodeList;
-        this.tileNodeList = tileNodeList;
         this.math = new MathBuildSettlement();
-        print(tileNodeList, 0);
+        this.poly = new PolygonConnectedNodes(vertexNodeList);
     }
 
     // Returns roads from player
@@ -42,7 +41,7 @@ public class BuildSettlementController {
     }
 
     // Returns villages from player
-    public ArrayList<Village> playerVillages() {
+    private ArrayList<Village> playerVillages() {
         ArrayList<Village> playerVillages = new ArrayList<>();
         for (Village buildVillage : buildVillages) {
             if (buildVillage.getColor().equals(this.color)) {
@@ -205,13 +204,9 @@ public class BuildSettlementController {
         return isSpotAvailable(availableNodes, buildVillages);
     }
 
-//    public ArrayList<Tile> getConnectedTiles(double x, double y) {
-//
-//    }
-
     // Makes villages and returns to GameSchermController for img placement.
     public Village buildVillage(Circle node) {
-        Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", new ArrayList<Tile>());
+        Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
         return village;
     }
@@ -268,30 +263,8 @@ public class BuildSettlementController {
         return road;
     }
 
-    // Prints coordinates ArrayList
-    private void print(ArrayList<Circle> c) {
-        System.out.println("Print initialized");
-        for (int i=0; i < c.size(); i++) {
-            System.out.println("This is X: " + c.get(i).getLayoutX());
-            System.out.println("This is Y: " + c.get(i).getLayoutY());
-        }
-    }
-
-    // Prints coordinates ArrayList
-    private void print(ArrayList<Road> c, int useless) {
-        System.out.println("Print initialized");
-        for (int i=0; i < c.size(); i++) {
-            System.out.println("This is X: " + c.get(i).getX());
-            System.out.println("This is Y: " + c.get(i).getY());
-        }
-    }
-    // Prints coordinates ArrayList
-    private void print(ArrayList<Polygon> c, double useless) {
-        System.out.println("Print initialized");
-        for (int i=0; i < c.size(); i++) {
-            System.out.println("This is X: " + c.get(i).getLayoutX());
-            System.out.println("This is Y: " + c.get(i).getLayoutY());
-        }
+    public ArrayList<Village> getBuildVillages() {
+        return this.buildVillages;
     }
 
 
