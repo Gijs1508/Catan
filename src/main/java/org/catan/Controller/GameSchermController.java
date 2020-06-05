@@ -4,10 +4,8 @@ package org.catan.Controller;
 //import Model.Spelbord;
 //import Model.Speler;
 
-import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,15 +18,15 @@ import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.CreateGameCode;
 import org.catan.Model.Player;
-import org.catan.Model.Harbor;
 import org.catan.Model.RandomizeBoard;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
 import org.catan.Model.TurnManager;
-import org.catan.Model.RandomizeHarbors;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
 
 public class GameSchermController implements Initializable {
 
@@ -37,103 +35,109 @@ public class GameSchermController implements Initializable {
 //    private Spel spel;
 
     // Tiles
-    @FXML private Polygon tile1; @FXML private Polygon tile2; @FXML private Polygon tile3;
-    @FXML private Polygon tile4; @FXML private Polygon tile5; @FXML private Polygon tile6;
-    @FXML private Polygon tile7; @FXML private Polygon tile8; @FXML private Polygon tile9;
-    @FXML private Polygon tile11; @FXML private Polygon tile12; @FXML private Polygon tile13;
-    @FXML private Polygon tile14; @FXML private Polygon tile15; @FXML private Polygon tile16;
-    @FXML private Polygon tile17; @FXML private Polygon tile18; @FXML private Polygon tile19;
+    @FXML private Polygon tile1;
+    @FXML private Polygon tile2;
+    @FXML private Polygon tile3;
+    @FXML private Polygon tile4;
+    @FXML private Polygon tile5;
+    @FXML private Polygon tile6;
+    @FXML private Polygon tile7;
+    @FXML private Polygon tile8;
+    @FXML private Polygon tile9;
+    @FXML private Polygon tile11;
+    @FXML private Polygon tile12;
+    @FXML private Polygon tile13;
+    @FXML private Polygon tile14;
+    @FXML private Polygon tile15;
+    @FXML private Polygon tile16;
+    @FXML private Polygon tile17;
+    @FXML private Polygon tile18;
+    @FXML private Polygon tile19;
     // This is the bandit
     @FXML private Polygon tile10;
 
     // Tile numbers
-    @FXML private Label tile1num; @FXML private Label tile2num; @FXML private Label tile3num;
-    @FXML private Label tile4num; @FXML private Label tile5num; @FXML private Label tile6num;
-    @FXML private Label tile7num; @FXML private Label tile8num; @FXML private Label tile9num;
-    @FXML private Label tile11num; @FXML private Label tile12num; @FXML private Label tile13num;
-    @FXML private Label tile14num; @FXML private Label tile15num; @FXML private Label tile16num;
-    @FXML private Label tile17num; @FXML private Label tile18num; @FXML private Label tile19num;
+    @FXML private Label tile1num;
+    @FXML private Label tile2num;
+    @FXML private Label tile3num;
+    @FXML private Label tile4num;
+    @FXML private Label tile5num;
+    @FXML private Label tile6num;
+    @FXML private Label tile7num;
+    @FXML private Label tile8num;
+    @FXML private Label tile9num;
+    @FXML private Label tile11num;
+    @FXML private Label tile12num;
+    @FXML private Label tile13num;
+    @FXML private Label tile14num;
+    @FXML private Label tile15num;
+    @FXML private Label tile16num;
+    @FXML private Label tile17num;
+    @FXML private Label tile18num;
+    @FXML private Label tile19num;
 
-    @FXML private Circle vertex1; @FXML private Circle vertex2; @FXML private Circle vertex3;
-    @FXML private Circle vertex4; @FXML private Circle vertex5; @FXML private Circle vertex6;
-    @FXML private Circle vertex7; @FXML private Circle vertex8; @FXML private Circle vertex9;
-    @FXML private Circle vertex10; @FXML private Circle vertex11; @FXML private Circle vertex12;
-    @FXML private Circle vertex13; @FXML private Circle vertex14; @FXML private Circle vertex15;
-    @FXML private Circle vertex16; @FXML private Circle vertex17; @FXML private Circle vertex18;
-    @FXML private Circle vertex19; @FXML private Circle vertex20; @FXML private Circle vertex21;
-    @FXML private Circle vertex22; @FXML private Circle vertex23; @FXML private Circle vertex24;
-    @FXML private Circle vertex25; @FXML private Circle vertex26; @FXML private Circle vertex27;
-    @FXML private Circle vertex28; @FXML private Circle vertex29; @FXML private Circle vertex30;
-    @FXML private Circle vertex31; @FXML private Circle vertex32; @FXML private Circle vertex33;
-    @FXML private Circle vertex34; @FXML private Circle vertex35; @FXML private Circle vertex36;
-    @FXML private Circle vertex37; @FXML private Circle vertex38; @FXML private Circle vertex39;
-    @FXML private Circle vertex40; @FXML private Circle vertex41; @FXML private Circle vertex42;
-    @FXML private Circle vertex43; @FXML private Circle vertex44; @FXML private Circle vertex45;
-    @FXML private Circle vertex46; @FXML private Circle vertex47; @FXML private Circle vertex48;
-    @FXML private Circle vertex49; @FXML private Circle vertex50; @FXML private Circle vertex51;
-    @FXML private Circle vertex52; @FXML private Circle vertex53; @FXML private Circle vertex54;
+    @FXML private ImageView roadButton;
+    @FXML private ImageView settlementButton;
+    @FXML private ImageView upgradeButton;
+    @FXML private ImageView roadButtonClose;
+    @FXML private ImageView settlementButtonClose;
+    @FXML private ImageView upgradeButtonClose;
 
-    @FXML private Circle roadSpot1; @FXML private Circle roadSpot2; @FXML private Circle roadSpot3;
-    @FXML private Circle roadSpot4; @FXML private Circle roadSpot5; @FXML private Circle roadSpot6;
-    @FXML private Circle roadSpot7; @FXML private Circle roadSpot8; @FXML private Circle roadSpot9;
-    @FXML private Circle roadSpot10; @FXML private Circle roadSpot11; @FXML private Circle roadSpot12;
-    @FXML private Circle roadSpot13; @FXML private Circle roadSpot14; @FXML private Circle roadSpot15;
-    @FXML private Circle roadSpot16; @FXML private Circle roadSpot17; @FXML private Circle roadSpot18;
-    @FXML private Circle roadSpot19; @FXML private Circle roadSpot20; @FXML private Circle roadSpot21;
-    @FXML private Circle roadSpot22; @FXML private Circle roadSpot23; @FXML private Circle roadSpot24;
-    @FXML private Circle roadSpot25; @FXML private Circle roadSpot26; @FXML private Circle roadSpot27;
-    @FXML private Circle roadSpot28; @FXML private Circle roadSpot29; @FXML private Circle roadSpot30;
-    @FXML private Circle roadSpot31; @FXML private Circle roadSpot32; @FXML private Circle roadSpot33;
-    @FXML private Circle roadSpot34; @FXML private Circle roadSpot35; @FXML private Circle roadSpot36;
-    @FXML private Circle roadSpot37; @FXML private Circle roadSpot38; @FXML private Circle roadSpot39;
-    @FXML private Circle roadSpot40; @FXML private Circle roadSpot41; @FXML private Circle roadSpot42;
-    @FXML private Circle roadSpot43; @FXML private Circle roadSpot44; @FXML private Circle roadSpot45;
-    @FXML private Circle roadSpot46; @FXML private Circle roadSpot47; @FXML private Circle roadSpot48;
-    @FXML private Circle roadSpot49; @FXML private Circle roadSpot50; @FXML private Circle roadSpot51;
-    @FXML private Circle roadSpot52; @FXML private Circle roadSpot53; @FXML private Circle roadSpot54;
-    @FXML private Circle roadSpot55; @FXML private Circle roadSpot56; @FXML private Circle roadSpot57;
-    @FXML private Circle roadSpot58; @FXML private Circle roadSpot59; @FXML private Circle roadSpot60;
-    @FXML private Circle roadSpot61; @FXML private Circle roadSpot62; @FXML private Circle roadSpot63;
-    @FXML private Circle roadSpot64; @FXML private Circle roadSpot65; @FXML private Circle roadSpot66;
-    @FXML private Circle roadSpot67; @FXML private Circle roadSpot68; @FXML private Circle roadSpot69;
-    @FXML private Circle roadSpot70; @FXML private Circle roadSpot71; @FXML private Circle roadSpot72;
+    @FXML private Circle vertex1;
+    @FXML private Circle vertex2;
+    @FXML private Circle vertex3;
+    @FXML private Circle vertex4;
+    @FXML private Circle vertex5;
+    @FXML private Circle vertex6;
+    @FXML private Circle vertex7;
+    @FXML private Circle vertex8;
+    @FXML private Circle vertex9;
+    @FXML private Circle vertex10;
+    @FXML private Circle vertex11;
+    @FXML private Circle vertex12;
+    @FXML private Circle vertex13;
+    @FXML private Circle vertex14;
+    @FXML private Circle vertex15;
+    @FXML private Circle vertex16;
+    @FXML private Circle vertex17;
+    @FXML private Circle vertex18;
+    @FXML private Circle vertex19;
+    @FXML private Circle vertex20;
+    @FXML private Circle vertex21;
+    @FXML private Circle vertex22;
+    @FXML private Circle vertex23;
+    @FXML private Circle vertex24;
+    @FXML private Circle vertex25;
+    @FXML private Circle vertex26;
+    @FXML private Circle vertex27;
+    @FXML private Circle vertex28;
+    @FXML private Circle vertex29;
+    @FXML private Circle vertex30;
+    @FXML private Circle vertex31;
+    @FXML private Circle vertex32;
+    @FXML private Circle vertex33;
+    @FXML private Circle vertex34;
+    @FXML private Circle vertex35;
+    @FXML private Circle vertex36;
+    @FXML private Circle vertex37;
+    @FXML private Circle vertex38;
+    @FXML private Circle vertex39;
+    @FXML private Circle vertex40;
+    @FXML private Circle vertex41;
+    @FXML private Circle vertex42;
+    @FXML private Circle vertex43;
+    @FXML private Circle vertex44;
+    @FXML private Circle vertex45;
+    @FXML private Circle vertex46;
+    @FXML private Circle vertex47;
+    @FXML private Circle vertex48;
+    @FXML private Circle vertex49;
+    @FXML private Circle vertex50;
+    @FXML private Circle vertex51;
+    @FXML private Circle vertex52;
+    @FXML private Circle vertex53;
+    @FXML private Circle vertex54;
 
-    @FXML private ImageView road1; @FXML private ImageView road2; @FXML private ImageView road3;
-    @FXML private ImageView road4; @FXML private ImageView road5; @FXML private ImageView road6;
-    @FXML private ImageView road7; @FXML private ImageView road8; @FXML private ImageView road9;
-    @FXML private ImageView road10; @FXML private ImageView road11; @FXML private ImageView road12;
-    @FXML private ImageView road13; @FXML private ImageView road14; @FXML private ImageView road15;
-    @FXML private ImageView road16; @FXML private ImageView road17; @FXML private ImageView road18;
-    @FXML private ImageView road19; @FXML private ImageView road20; @FXML private ImageView road21;
-    @FXML private ImageView road22; @FXML private ImageView road23; @FXML private ImageView road24;
-    @FXML private ImageView road25; @FXML private ImageView road26; @FXML private ImageView road27;
-    @FXML private ImageView road28; @FXML private ImageView road29; @FXML private ImageView road30;
-    @FXML private ImageView road31; @FXML private ImageView road32; @FXML private ImageView road33;
-    @FXML private ImageView road34; @FXML private ImageView road35; @FXML private ImageView road36;
-    @FXML private ImageView road37; @FXML private ImageView road38; @FXML private ImageView road39;
-    @FXML private ImageView road40; @FXML private ImageView road41; @FXML private ImageView road42;
-    @FXML private ImageView road43; @FXML private ImageView road44; @FXML private ImageView road45;
-    @FXML private ImageView road46; @FXML private ImageView road47; @FXML private ImageView road48;
-    @FXML private ImageView road49; @FXML private ImageView road50; @FXML private ImageView road51;
-    @FXML private ImageView road52; @FXML private ImageView road53; @FXML private ImageView road54;
-    @FXML private ImageView road55; @FXML private ImageView road56; @FXML private ImageView road57;
-    @FXML private ImageView road58; @FXML private ImageView road59; @FXML private ImageView road60;
-    @FXML private ImageView road61; @FXML private ImageView road62; @FXML private ImageView road63;
-    @FXML private ImageView road64; @FXML private ImageView road65; @FXML private ImageView road66;
-    @FXML private ImageView road67; @FXML private ImageView road68; @FXML private ImageView road69;
-    @FXML private ImageView road70; @FXML private ImageView road71; @FXML private ImageView road72;
-
-    @FXML private ImageView ship1; @FXML private ImageView ship2; @FXML private ImageView ship3;
-    @FXML private ImageView ship4; @FXML private ImageView ship5; @FXML private ImageView ship6;
-    @FXML private ImageView ship7; @FXML private ImageView ship8; @FXML private ImageView ship9;
-    @FXML private ImageView harbor1resource; @FXML private ImageView harbor2resource;
-    @FXML private ImageView harbor3resource; @FXML private ImageView harbor4resource;
-    @FXML private ImageView harbor5resource; @FXML private ImageView harbor6resource;
-    @FXML private ImageView harbor7resource; @FXML private ImageView harbor8resource;
-    @FXML private ImageView harbor9resource;
-    @FXML private Label harbor1ratio; @FXML private Label harbor2ratio; @FXML private Label harbor3ratio;
-    @FXML private Label harbor4ratio; @FXML private Label harbor5ratio; @FXML private Label harbor6ratio;
-    @FXML private Label harbor7ratio; @FXML private Label harbor8ratio; @FXML private Label harbor9ratio;
     @FXML private Circle upgrade1;
     @FXML private Circle upgrade2;
     @FXML private Circle upgrade3;
@@ -262,10 +266,6 @@ public class GameSchermController implements Initializable {
     @FXML private Circle roadSpot71;
     @FXML private Circle roadSpot72;
 
-    @FXML private ImageView roadButton; @FXML private ImageView settlementButton;
-    @FXML private ImageView upgradeButton; @FXML private ImageView roadButtonClose;
-    @FXML private ImageView settlementButtonClose; @FXML private ImageView upgradeButtonClose;
-
     @FXML private Pane objectsPane;
 
     //    private Spelbord spelbord;
@@ -276,106 +276,11 @@ public class GameSchermController implements Initializable {
     private ArrayList<Label> tileNumNodeList;
     private ArrayList<Polygon> tileNodeList = new ArrayList<>();
 
-    private ArrayList<Harbor> harbors = new ArrayList<>();
-    private ArrayList<ImageView> ships = new ArrayList<>();
-
     LogController logController = LogController.getInstance();
 
     private BuildSettlementController build;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        initializePlacementSpots();
-        initializeRoads();
-        ArrayList<Polygon> tiles = addAllTilesToArray();
-        ArrayList<Label> labels = addAllTileNumbersToArray();
-
-        //TODO: changing the seed to the gamecode!
-        long seed = CreateGameCode.randomCodeGen();
-
-        RandomizeBoard.setRandomTiles(tiles, labels, seed);
-
-        //tile1.setFill(Color.BROWN);
-        initializeButtons();
-        initializeHarbors();
-    }
-
-    private void initializeHarbors() {
-
-        // Gets the seed (game code)
-        Random random = new Random(CreateGameCode.getSeed());
-
-        // Contains the ImageViews for the ships
-        Collections.addAll(ships, ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9);
-
-        // Contains the children in the harbor panes
-        List<Node> harbor1children = new ArrayList<>(); List<Node> harbor2children = new ArrayList<>();
-        List<Node> harbor3children = new ArrayList<>(); List<Node> harbor4children = new ArrayList<>();
-        List<Node> harbor5children = new ArrayList<>(); List<Node> harbor6children = new ArrayList<>();
-        List<Node> harbor7children = new ArrayList<>(); List<Node> harbor8children = new ArrayList<>();
-        List<Node> harbor9children = new ArrayList<>();
-
-        // 0 > resource (ImageView)              1 > ratio (Label)
-        harbor1children.add(harbor1resource); harbor1children.add(harbor1ratio);
-        harbor2children.add(harbor2resource); harbor2children.add(harbor2ratio);
-        harbor3children.add(harbor3resource); harbor3children.add(harbor3ratio);
-        harbor4children.add(harbor4resource); harbor4children.add(harbor4ratio);
-        harbor5children.add(harbor5resource); harbor5children.add(harbor5ratio);
-        harbor6children.add(harbor6resource); harbor6children.add(harbor6ratio);
-        harbor7children.add(harbor7resource); harbor7children.add(harbor7ratio);
-        harbor8children.add(harbor8resource); harbor8children.add(harbor8ratio);
-        harbor9children.add(harbor9resource); harbor9children.add(harbor9ratio);
-
-        // Harbor number and its children
-        HashMap<Integer, List<Node>> harborToChildren = new HashMap<>() {{
-            put(1, harbor1children); put(2, harbor2children);
-            put(3, harbor3children); put(4, harbor4children);
-            put(5, harbor5children); put(6, harbor6children);
-            put(7, harbor7children); put(8, harbor8children);
-            put(9, harbor9children);
-        }};
-
-        harbors = RandomizeHarbors.randomizeHarbors();
-
-        // Updates the view with randomized harbors
-        for (Harbor harbor : harbors) {
-//            System.out.println(harbor.getHarborNum() + ":" + harbor.getType());
-
-            List<Node> nodes = harborToChildren.get(harbor.getHarborNum());
-            ImageView harborResource = (ImageView) nodes.get(0);
-            Label harborRatio = (Label) nodes.get(1);
-
-            harborResource.setImage(Harbor.getResourceToImage().get(harbor.getType()));
-            harborRatio.setText("1 : " + harbor.getRatio());
-        }
-
-        startShipAnimation();
-    }
-
-    private void startShipAnimation() {
-        Image shipFrame1 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-1.png")));
-        Image shipFrame2 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-2.png")));
-        Image shipFrame3 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-3.png")));
-
-        // Ship animation with 1 frame per second (60 ticks)
-        AnimationTimer shipAnimation = new AnimationTimer() {
-            int tick;
-            @Override
-            public void handle(long l) {
-                tick++;
-
-                if(tick % 60 == 0)
-                    for(ImageView ship : ships)
-                        ship.setImage(shipFrame1);
-                if(tick % 120 == 0)
-                    for(ImageView ship : ships)
-                        ship.setImage(shipFrame2);
-                if(tick % 180 == 0)
-                    for(ImageView ship : ships)
-                        ship.setImage(shipFrame3);
-            }
-        };
-        shipAnimation.start();
+    public GameSchermController() {
     }
 
     private void keyHandler() {
