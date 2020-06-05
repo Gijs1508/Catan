@@ -57,19 +57,15 @@ public class BuildSettlementController {
     // Gives available node for placing a village
     public ArrayList<Circle> showVillageSpots() {
         ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
-        if (roadsConnected.isEmpty())
-            return null;
-        else {
-            ArrayList<Circle> nodes = new ArrayList<>();
-            for (int i=0; i < roadsConnected.size(); i++) {
-                nodes.addAll(math.circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
-            }
-            nodes = removeDuplicates(nodes);
-//        nodes = filterOwnRoads(nodes, roadsConnected);
-            ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes, 0);
-            ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpot(roadsConnected);
-            return villagesNotClose(isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), buildVillages));
+        ArrayList<Circle> nodes = new ArrayList<>();
+        for (int i=0; i < roadsConnected.size(); i++) {
+            nodes.addAll(math.circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
         }
+        nodes = removeDuplicates(nodes);
+
+        ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes, 0);
+        ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpot(roadsConnected);
+        return villagesNotClose(isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), buildVillages));
     }
 
     private ArrayList<Circle> villagesNotClose(ArrayList<Circle> spots) {
@@ -90,21 +86,6 @@ public class BuildSettlementController {
          }
          return placeAbleSpots;
     }
-
-
-
-//    // Removes the roads that are already placed
-//    private ArrayList<Circle> filterOwnRoads(ArrayList<Circle> ci, ArrayList<Road> r) {
-//        ArrayList<Circle> c = ci;
-//        for (int i=0; i < c.size(); i++) {
-//            for (int j=0; j < r.size(); j++) {
-//                if (c.get(i).getLayoutX() == r.get(j).getX() && c.get(i).getLayoutY() == r.get(j).getY()) {
-//                    c.remove(i);
-//                }
-//            }
-//        }
-//        return c;
-//    }
 
     // Removes duplicates in array
     private ArrayList<Circle> removeDuplicates(ArrayList<Circle> array) {
@@ -246,11 +227,14 @@ public class BuildSettlementController {
     }
 
     public ArrayList<Circle> showAvailableRoads() {
+        System.out.println("Road arraylist");
+        print(buildRoads, 0);
         ArrayList<Road> playerRoads = playerRoads();
         ArrayList<Circle> roadPlaces = new ArrayList<>();
         for (Road playerRoad : playerRoads) {
             roadPlaces.addAll(math.circlesInRadius(playerRoad.getX(), playerRoad.getY(), roadSpotNodeList, "road"));
         }
+
         for (Village village : buildVillages) {
             if (village.getColor().equals(color))
                 roadPlaces.addAll(math.circlesInRadius(village.getX(), village.getY(), roadSpotNodeList, "other"));
@@ -270,6 +254,15 @@ public class BuildSettlementController {
         for (int i=0; i < c.size(); i++) {
             System.out.println("This is X: " + c.get(i).getLayoutX());
             System.out.println("This is Y: " + c.get(i).getLayoutY());
+        }
+    }
+
+    // Prints coordinates ArrayList
+    private void print(ArrayList<Road> c, int useless) {
+        System.out.println("Print initialized");
+        for (int i=0; i < c.size(); i++) {
+            System.out.println("This is X: " + c.get(i).getX());
+            System.out.println("This is Y: " + c.get(i).getY());
         }
     }
 

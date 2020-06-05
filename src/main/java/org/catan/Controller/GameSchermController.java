@@ -389,6 +389,8 @@ public class GameSchermController implements Initializable {
         circle.setFill(Paint.valueOf("#c89eff"));
         circle.setScaleX(1.1);
         circle.setScaleY(1.1);
+        System.out.println("This is the X: " + circle.getLayoutX());
+        System.out.println("This is the Y: " + circle.getLayoutY());
     }
 
     @FXML

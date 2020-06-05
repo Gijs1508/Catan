@@ -30,7 +30,7 @@ public class MathBuildSettlement {
         else if (type.equals("Village") || type.equals("village")) // Village next to village
             return 69;
         else {
-            return 41; // Road next to village and visa versa
+            return 45; // Road next to village and visa versa
         }
     }
 
