@@ -156,10 +156,11 @@ public class LogController implements Initializable{
     }
 
     public static void setPlayer(){
-        Player.getActivePlayer().getName();
+        player = Player.getActivePlayer().getName();
     }
 
     public static void setOpponent(Player opponentPlayer){
         opponent = opponentPlayer.getName();
+        //TODO Opponent moet bij alle acties waar de opponent in voorkomt aangegeven worden met behulp van deze methode
     }
 }

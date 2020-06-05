@@ -1,5 +1,7 @@
 package org.catan.Model;
 
+import org.catan.Controller.LogController;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -7,6 +9,7 @@ public class Player {
     private String name;
     private String color;
     private Inventory playerInventory;
+    private boolean active = false;
 
     public static Player mainPlayer; // Player controlling the instance of the game
     public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
@@ -46,9 +49,15 @@ public class Player {
 
     public static void setActivePlayer(Player player){
         activePlayer = player;
+        player.setActive();
+        LogController.setPlayer();
     }
 
     public static Player getActivePlayer(){
         return activePlayer;
+    }
+
+    public void setActive(){
+        active = true;
     }
 }

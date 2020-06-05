@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.catan.Controller.TradePopUpController;
 import org.catan.Model.Player;
+import org.catan.Model.TurnManager;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -49,6 +50,9 @@ public class App extends Application {
         // Other test players
         Player testPlayer2 = new Player("testPlayer2");
         Player testPlayer3 = new Player("testPlayer3");
+
+        // Initialize first active player
+        Player.setActivePlayer(testPlayer1);
 
         stage.show();
     }

@@ -346,7 +346,7 @@ public class GameSchermController implements Initializable {
     @FXML
     public void endTurn() {
         logController.logEndTurnEvent();
-        TurnManager.nextTurn(Player.getMainPlayer());
+        TurnManager.nextTurn(Player.getActivePlayer());
         //TODO
     }
 
