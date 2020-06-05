@@ -1,17 +1,21 @@
 package org.catan.Model;
 
+import java.util.ArrayList;
+
 public class Player {
 
     private String name;
     private String color;
     private Inventory playerInventory;
     public static Player mainPlayer; // Player controlling the instance of the game
+    public static ArrayList<Player> allPlayers = new ArrayList<Player>();
 
 
     public Player(String name){
         this.name = name;
         this.color = ""; //TODO
         this.playerInventory = new Inventory();
+        allPlayers.add(this);
     }
 
     public static Player getMainPlayer() {
@@ -32,5 +36,9 @@ public class Player {
 
     public Inventory getPlayerInventory(){
         return this.playerInventory;
+    }
+
+    public static ArrayList<Player> getAllPlayers(){
+        return allPlayers;
     }
 }

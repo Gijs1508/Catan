@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 import org.catan.Controller.TradePopUpController;
 import org.catan.Model.Player;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import java.io.IOException;
 
 /**
@@ -26,6 +29,7 @@ public class App extends Application {
     private AnchorPane logView;
     private AnchorPane chatView;
 
+
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
@@ -41,6 +45,10 @@ public class App extends Application {
         // Main player = Player controlling the instance of the game
         Player testPlayer1 = new Player("testPlayer"); //TODO Moet aangemaakt worden bij het opstarten/joinen van het spel
         testPlayer1.setMainPlayer(testPlayer1);
+
+        // Other test players
+        Player testPlayer2 = new Player("testPlayer2");
+        Player testPlayer3 = new Player("testPlayer3");
 
         stage.show();
     }

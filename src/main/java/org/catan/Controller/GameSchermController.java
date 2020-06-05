@@ -7,20 +7,17 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
-import org.catan.App;
 import org.catan.Model.CreateGameCode;
+import org.catan.Model.Player;
 import org.catan.Model.RandomizeBoard;
+import org.catan.Model.TurnManager;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -349,6 +346,8 @@ public class GameSchermController implements Initializable {
     @FXML
     public void endTurn() {
         logController.logEndTurnEvent();
+        TurnManager.nextTurn(Player.getMainPlayer());
+        //TODO
     }
 
     @FXML
