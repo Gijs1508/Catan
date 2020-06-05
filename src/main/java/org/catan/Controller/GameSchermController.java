@@ -342,7 +342,7 @@ public class GameSchermController implements Initializable {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(road.getImgPath())));
                 imageView.setLayoutX(road.getX() - 3);
-                imageView.setLayoutY(road.getY() - 27);
+                imageView.setLayoutY(road.getY() - 17);
                 imageView.setImage(image);
                 break;
             }
@@ -436,12 +436,17 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildSettlementBtnClicked() {
-        ArrayList<Circle> availableSpots = build.showVillageSpots();
-        for (Circle availableSpot : availableSpots) {
-            availableSpot.setVisible(true);
+        try {
+            ArrayList<Circle> availableSpots = build.showVillageSpots();
+            for (Circle availableSpot : availableSpots) {
+                availableSpot.setVisible(true);
+            }
+            settlementButton.setVisible(false);
+            settlementButtonClose.setVisible(true);
+        }catch (Exception e) {
+
         }
-        settlementButton.setVisible(false);
-        settlementButtonClose.setVisible(true);
+
     }
 
     @FXML

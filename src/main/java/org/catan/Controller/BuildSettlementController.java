@@ -23,7 +23,7 @@ public class BuildSettlementController {
         this.upgradeNodeList = upgradeNodeList;
         this.roadSpotNodeList = roadSpotNodeList;
         buildRoads.add(new Road(226.0, 41.0, "blue"));
-        buildRoads.add(new Road(278.0, 40.0, "blue"));
+//        buildRoads.add(new Road(278.0, 40.0, "blue"));
 //        buildRoads.add(new Road(303.0, 82.0, "blue"));
 //        buildRoads.add(new Road(277.0, 121.0, "blue"));
 //        buildRoads.add(new Road(227, 121.0, "blue"));
