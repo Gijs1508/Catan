@@ -13,9 +13,23 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
    <children>
+      <ImageView fitHeight="590.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/sea.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="472.0" fitWidth="559.0" layoutX="113.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/island.png" />
@@ -289,6 +303,230 @@
             </Polygon>
          </children>
       </HBox>
+      <Pane fx:id="harbor4" layoutX="558.0" layoutY="70.0" prefHeight="104.0" prefWidth="62.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="-5.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship4" fitHeight="72.0" fitWidth="79.0" layoutX="4.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="29.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor4resource" fitHeight="35.0" fitWidth="37.0" layoutX="18.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/woodHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor4ratio" layoutX="24.0" layoutY="59.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor3" layoutX="100.0" layoutY="131.0" prefHeight="113.0" prefWidth="82.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="65.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="66.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship3" fitHeight="72.0" fitWidth="79.0" layoutX="-4.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor3resource" fitHeight="35.0" fitWidth="37.0" layoutX="9.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/oreHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor3ratio" layoutX="16.0" layoutY="80.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor2" layoutX="385.0" layoutY="-4.0" prefHeight="104.0" prefWidth="115.0">
+         <children>
+            <ImageView fx:id="ship2" fitHeight="72.0" fitWidth="79.0" layoutX="23.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="51.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="13.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor2resource" fitHeight="35.0" fitWidth="37.0" layoutX="36.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/wheatHarbor.png" />
+               </image></ImageView>
+            <Label fx:id="harbor2ratio" layoutX="43.0" layoutY="50.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor1" layoutX="212.0" prefHeight="113.0" prefWidth="82.0">
+         <children>
+            <ImageView fx:id="ship1" fitHeight="72.0" fitWidth="79.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="21.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="57.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor1resource" fitHeight="35.0" fitWidth="37.0" layoutX="7.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/sheepHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor1ratio" layoutX="14.0" layoutY="47.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children></Pane>
+      <Pane fx:id="harbor5" layoutX="644.0" layoutY="223.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="9.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="8.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship5" fitHeight="72.0" fitWidth="79.0" layoutX="13.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor5resource" fitHeight="35.0" fitWidth="37.0" layoutX="27.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor5ratio" layoutX="33.0" layoutY="71.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor6" layoutX="100.0" layoutY="325.0" prefHeight="113.0" prefWidth="82.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="63.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="63.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship6" fitHeight="72.0" fitWidth="79.0" layoutX="-5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor6ratio" layoutX="15.0" layoutY="55.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+            <ImageView fx:id="harbor6resource" fitHeight="35.0" fitWidth="37.0" layoutX="9.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="harbor7" layoutX="550.0" layoutY="391.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="40.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="4.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship7" fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor7ratio" layoutX="34.0" layoutY="76.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+            <ImageView fx:id="harbor7resource" fitHeight="35.0" fitWidth="37.0" layoutX="27.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="harbor9" layoutX="397.0" layoutY="473.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="40.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="4.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship9" fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor9resource" fitHeight="35.0" fitWidth="37.0" layoutX="28.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor9ratio" layoutX="34.0" layoutY="74.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor8" layoutX="208.0" layoutY="479.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="24.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="60.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship8" fitHeight="72.0" fitWidth="79.0" layoutX="-6.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor8resource" fitHeight="35.0" fitWidth="37.0" layoutX="8.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor8ratio" layoutX="14.0" layoutY="66.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane layoutX="35.0" layoutY="52.0" prefHeight="500.0" prefWidth="700.0">
       <Pane fx:id="objectsPane" layoutX="35.0" layoutY="52.0" prefHeight="500.0" prefWidth="700.0">
          <children>
             <ImageView fx:id="settlement1" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="52">
@@ -461,469 +699,336 @@
                   <Image url="@../assets/img/gameobjects/placeholder.png"/>
                </image>
             </ImageView>
-            <ImageView fx:id="settlement35" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="295">
+            <ImageView fx:id="road9" fitHeight="59.0" fitWidth="14.0" layoutX="399.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement36" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="273">
+            <ImageView fx:id="road4" fitHeight="59.0" fitWidth="14.0" layoutX="373.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement37" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="295">
+            <ImageView fx:id="road15" fitHeight="59.0" fitWidth="14.0" layoutX="373.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement38" fitHeight="40.0" fitWidth="40.0" layoutX="611" layoutY="273">
+            <ImageView fx:id="road3" fitHeight="59.0" fitWidth="14.0" layoutX="322.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement39" fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="353">
+            <ImageView fx:id="road16" fitHeight="59.0" fitWidth="14.0" layoutX="425.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement40" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="378">
+            <ImageView fx:id="road17" fitHeight="59.0" fitWidth="14.0" layoutX="476.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement41" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="355">
+            <ImageView fx:id="road5" fitHeight="59.0" fitWidth="14.0" layoutX="425.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement42" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="378">
+            <ImageView fx:id="road6" fitHeight="59.0" fitWidth="14.0" layoutX="476.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement43" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="355">
+            <ImageView fx:id="road10" fitHeight="59.0" fitWidth="14.0" layoutX="501.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement44" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="378">
+            <ImageView fx:id="road67" fitHeight="59.0" fitWidth="14.0" layoutX="219.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement45" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="355">
+            <ImageView fx:id="road68" fitHeight="59.0" fitWidth="14.0" layoutX="270.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement46" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="378">
+            <ImageView fx:id="road56" fitHeight="59.0" fitWidth="14.0" layoutX="219.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement47" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="353">
+            <ImageView fx:id="road57" fitHeight="59.0" fitWidth="14.0" layoutX="271.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement48" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="436">
+            <ImageView fx:id="road64" fitHeight="59.0" fitWidth="14.0" layoutX="297.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement49" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="459">
+            <ImageView fx:id="road69" fitHeight="59.0" fitWidth="14.0" layoutX="322.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement50" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="436">
+            <ImageView fx:id="road70" fitHeight="59.0" fitWidth="14.0" layoutX="373.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement51" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="459">
+            <ImageView fx:id="road58" fitHeight="59.0" fitWidth="14.0" layoutX="322.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement52" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="436">
+            <ImageView fx:id="road59" fitHeight="59.0" fitWidth="14.0" layoutX="373.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement53" fitHeight="40.0" fitWidth="40.0" layoutX="457" layoutY="459">
+            <ImageView fx:id="road65" fitHeight="59.0" fitWidth="14.0" layoutX="399.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settlement54" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="436">
+            <ImageView fx:id="road71" fitHeight="59.0" fitWidth="14.0" layoutX="425.0" layoutY="422.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png"/>
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-
-<!--            Roads-->
-            <ImageView fx:id="road7" fitHeight="54.0" fitWidth="9.0" layoutX="200.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road72" fitHeight="59.0" fitWidth="14.0" layoutX="476.0" layoutY="422.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road12" fitHeight="54.0" fitWidth="9.0" layoutX="227.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road60" fitHeight="59.0" fitWidth="14.0" layoutX="425.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road2" fitHeight="54.0" fitWidth="9.0" layoutX="278.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road61" fitHeight="59.0" fitWidth="14.0" layoutX="476.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road13" fitHeight="54.0" fitWidth="9.0" layoutX="277.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road66" fitHeight="59.0" fitWidth="14.0" layoutX="501.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road1" fitHeight="54.0" fitWidth="9.0" layoutX="226.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road62" fitHeight="59.0" fitWidth="14.0" layoutX="527.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road14" fitHeight="54.0" fitWidth="9.0" layoutX="330.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road47" fitHeight="59.0" fitWidth="14.0" layoutX="476.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road9" fitHeight="54.0" fitWidth="9.0" layoutX="407.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road48" fitHeight="59.0" fitWidth="14.0" layoutX="527.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road4" fitHeight="54.0" fitWidth="9.0" layoutX="380.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road54" fitHeight="59.0" fitWidth="14.0" layoutX="552.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road15" fitHeight="54.0" fitWidth="9.0" layoutX="380.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road49" fitHeight="59.0" fitWidth="14.0" layoutX="578.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road3" fitHeight="54.0" fitWidth="9.0" layoutX="329.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road32" fitHeight="59.0" fitWidth="14.0" layoutX="527.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road16" fitHeight="54.0" fitWidth="9.0" layoutX="431.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road33" fitHeight="59.0" fitWidth="14.0" layoutX="578.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road17" fitHeight="54.0" fitWidth="9.0" layoutX="483.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road39" fitHeight="59.0" fitWidth="14.0" layoutX="603.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road5" fitHeight="54.0" fitWidth="9.0" layoutX="432.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road31" fitHeight="59.0" fitWidth="14.0" layoutX="476.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road6" fitHeight="54.0" fitWidth="9.0" layoutX="483.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road18" fitHeight="59.0" fitWidth="14.0" layoutX="527.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road10" fitHeight="54.0" fitWidth="9.0" layoutX="508.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road23" fitHeight="59.0" fitWidth="14.0" layoutX="552.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road67" fitHeight="54.0" fitWidth="9.0" layoutX="226.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road22" fitHeight="59.0" fitWidth="14.0" layoutX="450.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road68" fitHeight="54.0" fitWidth="9.0" layoutX="277.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road38" fitHeight="59.0" fitWidth="14.0" layoutX="501.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road56" fitHeight="54.0" fitWidth="9.0" layoutX="226.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road53" fitHeight="59.0" fitWidth="14.0" layoutX="450.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road57" fitHeight="54.0" fitWidth="9.0" layoutX="277.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road63" fitHeight="59.0" fitWidth="14.0" layoutX="195.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road64" fitHeight="54.0" fitWidth="9.0" layoutX="304.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road21" fitHeight="59.0" fitWidth="14.0" layoutX="348.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road69" fitHeight="54.0" fitWidth="9.0" layoutX="329.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road20" fitHeight="59.0" fitWidth="14.0" layoutX="246.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road70" fitHeight="54.0" fitWidth="9.0" layoutX="381.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road19" fitHeight="59.0" fitWidth="14.0" layoutX="144.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road58" fitHeight="54.0" fitWidth="9.0" layoutX="329.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road37" fitHeight="59.0" fitWidth="14.0" layoutX="399.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road59" fitHeight="54.0" fitWidth="9.0" layoutX="381.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road36" fitHeight="59.0" fitWidth="14.0" layoutX="297.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road65" fitHeight="54.0" fitWidth="9.0" layoutX="406.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road35" fitHeight="59.0" fitWidth="14.0" layoutX="195.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road71" fitHeight="54.0" fitWidth="9.0" layoutX="431.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road52" fitHeight="59.0" fitWidth="14.0" layoutX="348.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road72" fitHeight="54.0" fitWidth="9.0" layoutX="483.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road51" fitHeight="59.0" fitWidth="14.0" layoutX="246.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road60" fitHeight="54.0" fitWidth="9.0" layoutX="432.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road50" fitHeight="59.0" fitWidth="14.0" layoutX="144.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road61" fitHeight="54.0" fitWidth="9.0" layoutX="483.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road34" fitHeight="59.0" fitWidth="14.0" layoutX="93.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road66" fitHeight="54.0" fitWidth="9.0" layoutX="509.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road30" fitHeight="59.0" fitWidth="14.0" layoutX="424.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road62" fitHeight="54.0" fitWidth="9.0" layoutX="533.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road28" fitHeight="59.0" fitWidth="14.0" layoutX="323.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road47" fitHeight="54.0" fitWidth="9.0" layoutX="483.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road29" fitHeight="59.0" fitWidth="14.0" layoutX="374.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road48" fitHeight="54.0" fitWidth="9.0" layoutX="534.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road11" fitHeight="59.0" fitWidth="14.0" layoutX="169.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road54" fitHeight="54.0" fitWidth="9.0" layoutX="559.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road41" fitHeight="59.0" fitWidth="14.0" layoutX="168.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road49" fitHeight="54.0" fitWidth="9.0" layoutX="585.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road43" fitHeight="59.0" fitWidth="14.0" layoutX="272.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road32" fitHeight="54.0" fitWidth="9.0" layoutX="534.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+            <ImageView fx:id="road45" fitHeight="59.0" fitWidth="14.0" layoutX="374.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road33" fitHeight="54.0" fitWidth="9.0" layoutX="585.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road24" fitHeight="59.0" fitWidth="14.0" layoutX="117.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road39" fitHeight="54.0" fitWidth="9.0" layoutX="610.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road26" fitHeight="59.0" fitWidth="14.0" layoutX="219.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road31" fitHeight="54.0" fitWidth="9.0" layoutX="483.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road42" fitHeight="59.0" fitWidth="14.0" layoutX="221.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road18" fitHeight="54.0" fitWidth="9.0" layoutX="534.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+            <ImageView fx:id="road25" fitHeight="59.0" fitWidth="14.0" layoutX="169.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road23" fitHeight="54.0" fitWidth="9.0" layoutX="559.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road44" fitHeight="59.0" fitWidth="14.0" layoutX="323.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road22" fitHeight="54.0" fitWidth="9.0" layoutX="457.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road46" fitHeight="59.0" fitWidth="14.0" layoutX="425.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road38" fitHeight="54.0" fitWidth="9.0" layoutX="508.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road27" fitHeight="59.0" fitWidth="14.0" layoutX="272.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road53" fitHeight="54.0" fitWidth="9.0" layoutX="457.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road40" fitHeight="59.0" fitWidth="14.0" layoutX="119.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road63" fitHeight="54.0" fitWidth="9.0" layoutX="202.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road55" fitHeight="59.0" fitWidth="14.0" layoutX="168.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road21" fitHeight="54.0" fitWidth="9.0" layoutX="355.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="road8" fitHeight="59.0" fitWidth="14.0" layoutX="296.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+                  <Image url="@../assets/img/wall_blue.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="road20" fitHeight="54.0" fitWidth="9.0" layoutX="254.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road19" fitHeight="54.0" fitWidth="9.0" layoutX="151.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road37" fitHeight="54.0" fitWidth="9.0" layoutX="406.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road36" fitHeight="54.0" fitWidth="9.0" layoutX="303.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road35" fitHeight="54.0" fitWidth="9.0" layoutX="202.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road52" fitHeight="54.0" fitWidth="9.0" layoutX="355.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road51" fitHeight="54.0" fitWidth="9.0" layoutX="253.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road50" fitHeight="54.0" fitWidth="9.0" layoutX="151.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road34" fitHeight="54.0" fitWidth="9.0" layoutX="100.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road30" fitHeight="54.0" fitWidth="9.0" layoutX="431.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road28" fitHeight="54.0" fitWidth="9.0" layoutX="329.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road29" fitHeight="54.0" fitWidth="9.0" layoutX="381.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road11" fitHeight="54.0" fitWidth="9.0" layoutX="175.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road41" fitHeight="54.0" fitWidth="9.0" layoutX="176.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road43" fitHeight="54.0" fitWidth="9.0" layoutX="279.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road45" fitHeight="54.0" fitWidth="9.0" layoutX="380.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road24" fitHeight="54.0" fitWidth="9.0" layoutX="126.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road26" fitHeight="54.0" fitWidth="9.0" layoutX="226.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road42" fitHeight="54.0" fitWidth="9.0" layoutX="226.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road25" fitHeight="54.0" fitWidth="9.0" layoutX="175.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road44" fitHeight="54.0" fitWidth="9.0" layoutX="329.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road46" fitHeight="54.0" fitWidth="9.0" layoutX="431.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road27" fitHeight="54.0" fitWidth="9.0" layoutX="278.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road40" fitHeight="54.0" fitWidth="9.0" layoutX="126.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road55" fitHeight="54.0" fitWidth="9.0" layoutX="175.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="road8" fitHeight="54.0" fitWidth="9.0" layoutX="303.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-
             <Circle fx:id="vertex9" fill="#ffffffa8" layoutX="201.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="vertex11" fill="#ffffffa8" layoutX="303.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="vertex13" fill="#ffffffa8" layoutX="406.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
@@ -978,62 +1083,6 @@
             <Circle fx:id="vertex6" fill="#ffffffa8" layoutX="458.0" layoutY="28.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="vertex26" fill="#ffffffa8" layoutX="559.0" layoutY="192.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="vertex37" fill="#ffffffa8" layoutX="559.0" layoutY="295.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-
-            <Circle fx:id="upgrade9" fill="#ffffffa8" layoutX="201.0" layoutY="110.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade11" fill="#ffffffa8" layoutX="303.0" layoutY="110.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade13" fill="#ffffffa8" layoutX="406.0" layoutY="110.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade15" fill="#ffffffa8" layoutX="508.0" layoutY="110.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade1" fill="#ffffffa8" layoutX="201.0" layoutY="52.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade3" fill="#ffffffa8" layoutX="303.0" layoutY="52.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade5" fill="#ffffffa8" layoutX="406.0" layoutY="52.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade7" fill="#ffffffa8" layoutX="508.0" layoutY="52.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade19" fill="#ffffffa8" layoutX="201.0" layoutY="215.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade30" fill="#ffffffa8" layoutX="201.0" layoutY="273.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade40" fill="#ffffffa8" layoutX="201.0" layoutY="378.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade48" fill="#ffffffa8" layoutX="201.0" layoutY="436.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade21" fill="#ffffffa8" layoutX="303.0" layoutY="215.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade32" fill="#ffffffa8" layoutX="303.0" layoutY="273.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade42" fill="#ffffffa8" layoutX="303.0" layoutY="378.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade50" fill="#ffffffa8" layoutX="303.0" layoutY="436.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade23" fill="#ffffffa8" layoutX="406.0" layoutY="215.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade34" fill="#ffffffa8" layoutX="406.0" layoutY="273.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade44" fill="#ffffffa8" layoutX="406.0" layoutY="378.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade52" fill="#ffffffa8" layoutX="406.0" layoutY="436.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade36" fill="#ffffffa8" layoutX="508.0" layoutY="273.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade46" fill="#ffffffa8" layoutX="508.0" layoutY="378.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade54" fill="#ffffffa8" layoutX="508.0" layoutY="436.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade25" fill="#ffffffa8" layoutX="508.0" layoutY="215.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade8" fill="#ffffffa8" layoutX="151.0" layoutY="134.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade39" fill="#ffffffa8" layoutX="151.0" layoutY="353.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade29" fill="#ffffffa8" layoutX="151.0" layoutY="295.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade18" fill="#ffffffa8" layoutX="151.0" layoutY="192.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade17" fill="#ffffffa8" layoutX="100.0" layoutY="215.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade27" fill="#ffffffa8" layoutX="611.0" layoutY="215.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade28" fill="#ffffffa8" layoutX="100.0" layoutY="273.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade38" fill="#ffffffa8" layoutX="611.0" layoutY="273.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade16" fill="#ffffffa8" layoutX="559.0" layoutY="134.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade47" fill="#ffffffa8" layoutX="559.0" layoutY="353.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade2" fill="#ffffffa8" layoutX="253.0" layoutY="28.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade49" fill="#ffffffa8" layoutX="252.0" layoutY="459.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade41" fill="#ffffffa8" layoutX="252.0" layoutY="355.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade31" fill="#ffffffa8" layoutX="252.0" layoutY="295.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade20" fill="#ffffffa8" layoutX="252.0" layoutY="192.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade10" fill="#ffffffa8" layoutX="252.0" layoutY="133.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade4" fill="#ffffffa8" layoutX="354.0" layoutY="28.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade12" fill="#ffffffa8" layoutX="354.0" layoutY="133.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade22" fill="#ffffffa8" layoutX="354.0" layoutY="192.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade33" fill="#ffffffa8" layoutX="354.0" layoutY="295.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade43" fill="#ffffffa8" layoutX="354.0" layoutY="355.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade51" fill="#ffffffa8" layoutX="354.0" layoutY="459.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade53" fill="#ffffffa8" layoutX="457.0" layoutY="459.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade45" fill="#ffffffa8" layoutX="458.0" layoutY="355.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade35" fill="#ffffffa8" layoutX="458.0" layoutY="295.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade24" fill="#ffffffa8" layoutX="458.0" layoutY="192.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade14" fill="#ffffffa8" layoutX="458.0" layoutY="133.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade6" fill="#ffffffa8" layoutX="458.0" layoutY="28.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade26" fill="#ffffffa8" layoutX="559.0" layoutY="192.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="upgrade37" fill="#ffffffa8" layoutX="559.0" layoutY="295.0" onMouseClicked="#upgradeSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-
             <Label fx:id="tile12num" alignment="CENTER" layoutX="546.0" layoutY="229.0" prefHeight="31.0" prefWidth="27.0" style="-fx-background-color: #00000066; -fx-background-radius: 50; -fx-padding: 6;" text="0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
