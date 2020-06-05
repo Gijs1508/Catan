@@ -415,7 +415,7 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildRoadBtnClicked() {
-        ArrayList<Circle> nodes = build.showAvailableRoads();
+        ArrayList<Circle> nodes = build.showRoadSpots();
         for (Circle node : nodes) {
             node.setVisible(true);
         }

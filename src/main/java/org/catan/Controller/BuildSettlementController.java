@@ -22,12 +22,6 @@ public class BuildSettlementController {
         this.vertexNodeList = vertexNodeList;
         this.upgradeNodeList = upgradeNodeList;
         this.roadSpotNodeList = roadSpotNodeList;
-        buildRoads.add(new Road(226.0, 41.0, "blue"));
-//        buildRoads.add(new Road(278.0, 40.0, "blue"));
-//        buildRoads.add(new Road(303.0, 82.0, "blue"));
-//        buildRoads.add(new Road(277.0, 121.0, "blue"));
-//        buildRoads.add(new Road(227, 121.0, "blue"));
-//        buildRoads.add(new Road(200.0, 81.0, "blue"));
         this.math = new MathBuildSettlement();
     }
 
@@ -52,6 +46,31 @@ public class BuildSettlementController {
         }
         return playerVillages;
     }
+
+    public ArrayList<Circle> showVillageStartSpots() {
+        ArrayList<Circle> nodes = new ArrayList<>();
+        for (Circle circle : vertexNodeList) {
+            for (Village buildVillage : buildVillages) {
+                if (circle.getLayoutX() != buildVillage.getX() && circle.getLayoutY() != buildVillage.getY())
+                    nodes.add(circle);
+            }
+        }
+        return villagesNotClose(nodes);
+    }
+
+    public ArrayList<Circle> showRoadStartSpots(Circle village) {
+        ArrayList<Circle> roads = math.circlesInRadius(village.getLayoutX(), village.getLayoutY(), roadSpotNodeList, "other");
+        ArrayList<Circle> availableRoads = new ArrayList<>();
+        for (Circle circle : roads) {
+            for (Road buildRoad : buildRoads) {
+                if (circle.getLayoutX() != buildRoad.getX() && circle.getLayoutY() != buildRoad.getY())
+                    availableRoads.add(circle);
+            }
+        }
+        return availableRoads;
+    }
+
+
 
     // Gives available node for placing a village
     public ArrayList<Circle> showVillageSpots() {
@@ -217,7 +236,7 @@ public class BuildSettlementController {
         }
     }
 
-    public ArrayList<Circle> showAvailableRoads() {
+    public ArrayList<Circle> showRoadSpots() {
         ArrayList<Road> playerRoads = playerRoads();
         ArrayList<Circle> roadPlaces = new ArrayList<>();
 
