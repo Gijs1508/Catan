@@ -290,6 +290,205 @@
             </Polygon>
          </children>
       </HBox>
+      <Pane layoutX="558.0" layoutY="70.0" prefHeight="104.0" prefWidth="62.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="-5.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="2.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="29.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="16.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/woodHarbor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="102.0" layoutY="131.0" prefHeight="113.0" prefWidth="82.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="65.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="66.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="-1.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="12.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/oreHarbor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="385.0" layoutY="-4.0" prefHeight="104.0" prefWidth="115.0">
+         <children>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="23.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="51.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="13.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="36.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/wheatHarbor.png" />
+               </image></ImageView>
+            <Label layoutX="60.0" layoutY="34.0" text="2:1" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="212.0" prefHeight="113.0" prefWidth="82.0">
+         <children>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="21.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="57.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="6.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/sheepHarbor.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Pane layoutX="644.0" layoutY="223.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="9.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="8.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="13.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="26.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="101.0" layoutY="325.0" prefHeight="113.0" prefWidth="82.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="63.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="63.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="-5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="550.0" layoutY="391.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="40.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="4.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="397.0" layoutY="473.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="40.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="4.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="208.0" layoutY="479.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="24.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="59.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="-4.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ship.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
       <Pane layoutX="35.0" layoutY="52.0" prefHeight="500.0" prefWidth="700.0">
          <children>
             <ImageView fx:id="road7" fitHeight="59.0" fitWidth="14.0" layoutX="195.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
@@ -870,15 +1069,6 @@
             <Circle fx:id="roadSpot66" fill="#c89cffd9" layoutX="509.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
          </children>
       </Pane>
-      <Pane layoutX="211.0" prefHeight="116.0" prefWidth="88.0">
-         <children>
-            <ImageView fitHeight="110.0" fitWidth="79.0" layoutX="1.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/harbor.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="116.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
-         </children></Pane>
       <ImageView fx:id="endTurnButton" fitHeight="55.0" fitWidth="155.0" layoutX="7.0" layoutY="534.0" onMouseClicked="#endTurn" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/UI/endTurn.png" />
@@ -887,34 +1077,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane layoutX="385.0" layoutY="-4.0" prefHeight="104.0" prefWidth="115.0">
-         <children>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/ship.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="51.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/pier.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="14.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
-               <image>
-                  <Image url="@../assets/img/pier.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="38.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/img/wheatHarbor.png" />
-               </image></ImageView>
-            <Label layoutX="13.0" layoutY="33.0" text="2:1" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
       <Pane layoutX="8.0" layoutY="485.0" prefHeight="55.0" prefWidth="155.0">
          <children>
             <ImageView fx:id="roadButton" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildRoadBtnClicked" pickOnBounds="true" preserveRatio="true">
