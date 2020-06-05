@@ -4,6 +4,7 @@ package org.catan.Controller;
 //import Model.Spelbord;
 //import Model.Speler;
 
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -284,33 +285,18 @@ public class GameSchermController implements Initializable {
     @FXML private ImageView road71;
     @FXML private ImageView road72;
 
-    @FXML private Pane harbor1;
-    @FXML private Pane harbor2;
-    @FXML private Pane harbor3;
-    @FXML private Pane harbor4;
-    @FXML private Pane harbor5;
-    @FXML private Pane harbor6;
-    @FXML private Pane harbor7;
-    @FXML private Pane harbor8;
-    @FXML private Pane harbor9;
-    @FXML private ImageView harbor1resource;
-    @FXML private ImageView harbor2resource;
-    @FXML private ImageView harbor3resource;
-    @FXML private ImageView harbor4resource;
-    @FXML private ImageView harbor5resource;
-    @FXML private ImageView harbor6resource;
-    @FXML private ImageView harbor7resource;
-    @FXML private ImageView harbor8resource;
-    @FXML private ImageView harbor9resource;
-    @FXML private Label harbor1ratio;
-    @FXML private Label harbor2ratio;
-    @FXML private Label harbor3ratio;
-    @FXML private Label harbor4ratio;
-    @FXML private Label harbor5ratio;
-    @FXML private Label harbor6ratio;
-    @FXML private Label harbor7ratio;
-    @FXML private Label harbor8ratio;
-    @FXML private Label harbor9ratio;
+    @FXML private Pane harbor1; @FXML private Pane harbor2; @FXML private Pane harbor3;
+    @FXML private Pane harbor4; @FXML private Pane harbor5; @FXML private Pane harbor6;
+    @FXML private Pane harbor7; @FXML private Pane harbor8; @FXML private Pane harbor9;
+    @FXML private ImageView ship1; @FXML private ImageView ship2; @FXML private ImageView ship3;
+    @FXML private ImageView ship4; @FXML private ImageView ship5; @FXML private ImageView ship6;
+    @FXML private ImageView ship7; @FXML private ImageView ship8; @FXML private ImageView ship9;
+    @FXML private ImageView harbor1resource; @FXML private ImageView harbor2resource; @FXML private ImageView harbor3resource;
+    @FXML private ImageView harbor4resource; @FXML private ImageView harbor5resource; @FXML private ImageView harbor6resource;
+    @FXML private ImageView harbor7resource; @FXML private ImageView harbor8resource; @FXML private ImageView harbor9resource;
+    @FXML private Label harbor1ratio; @FXML private Label harbor2ratio; @FXML private Label harbor3ratio;
+    @FXML private Label harbor4ratio; @FXML private Label harbor5ratio; @FXML private Label harbor6ratio;
+    @FXML private Label harbor7ratio; @FXML private Label harbor8ratio; @FXML private Label harbor9ratio;
 
 
     //    private Spelbord spelbord;
@@ -322,6 +308,7 @@ public class GameSchermController implements Initializable {
     private ArrayList<Polygon> tileNodeList;
 
     private ArrayList<Harbor> harbors = new ArrayList<>();
+    private ArrayList<ImageView> ships = new ArrayList<>();
 
     LogController logController = LogController.getInstance();
 
@@ -348,15 +335,14 @@ public class GameSchermController implements Initializable {
         // Gets the seed (game code)
         Random random = new Random(CreateGameCode.getSeed());
 
+        // Contains the ImageViews for the ships
+        Collections.addAll(ships, ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9);
+
         // Contains the children in the harbor panes
-        List<Node> harbor1children = new ArrayList<>();
-        List<Node> harbor2children = new ArrayList<>();
-        List<Node> harbor3children = new ArrayList<>();
-        List<Node> harbor4children = new ArrayList<>();
-        List<Node> harbor5children = new ArrayList<>();
-        List<Node> harbor6children = new ArrayList<>();
-        List<Node> harbor7children = new ArrayList<>();
-        List<Node> harbor8children = new ArrayList<>();
+        List<Node> harbor1children = new ArrayList<>(); List<Node> harbor2children = new ArrayList<>();
+        List<Node> harbor3children = new ArrayList<>(); List<Node> harbor4children = new ArrayList<>();
+        List<Node> harbor5children = new ArrayList<>(); List<Node> harbor6children = new ArrayList<>();
+        List<Node> harbor7children = new ArrayList<>(); List<Node> harbor8children = new ArrayList<>();
         List<Node> harbor9children = new ArrayList<>();
 
         // 0 > resource (ImageView)              1 > ratio (Label)
@@ -392,6 +378,36 @@ public class GameSchermController implements Initializable {
             harborResource.setImage(Harbor.getResourceToImage().get(harbor.getType()));
             harborRatio.setText("1 : " + harbor.getRatio());
         }
+
+        Image shipFrame1 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-1.png")));
+        Image shipFrame2 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-2.png")));
+        Image shipFrame3 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-3.png")));
+
+
+        AnimationTimer shipAnimation = new AnimationTimer() {
+            int tick;
+            @Override
+            public void handle(long l) {
+                tick++;
+
+                if(tick % 60 == 0){
+                    for(ImageView ship : ships) {
+                        ship.setImage(shipFrame1);
+                    }
+                }
+                if(tick % 120 == 0){
+                    for(ImageView ship : ships) {
+                        ship.setImage(shipFrame2);
+                    }
+                }
+                if(tick % 180 == 0){
+                    for(ImageView ship : ships) {
+                        ship.setImage(shipFrame3);
+                    }
+                }
+            }
+        };
+        shipAnimation.start();
     }
 
     private void keyHandler() {

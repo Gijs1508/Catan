@@ -297,9 +297,9 @@
                   <Image url="@../assets/img/pier.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="4.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ship4" fitHeight="72.0" fitWidth="79.0" layoutX="4.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/ship.png" />
+                  <Image url="@../assets/img/ships/ship-1.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="29.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
@@ -327,9 +327,9 @@
                   <Image url="@../assets/img/pier.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="-4.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ship3" fitHeight="72.0" fitWidth="79.0" layoutX="-4.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/ship.png" />
+                  <Image url="@../assets/img/ships/ship-1.png" />
                </image>
             </ImageView>
             <ImageView fx:id="harbor3resource" fitHeight="35.0" fitWidth="37.0" layoutX="9.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
@@ -342,9 +342,9 @@
       </Pane>
       <Pane fx:id="harbor2" layoutX="385.0" layoutY="-4.0" prefHeight="104.0" prefWidth="115.0">
          <children>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="23.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ship2" fitHeight="72.0" fitWidth="79.0" layoutX="23.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/ship.png" />
+                  <Image url="@../assets/img/ships/ship-1.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="51.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
@@ -366,9 +366,9 @@
       </Pane>
       <Pane fx:id="harbor1" layoutX="212.0" prefHeight="113.0" prefWidth="82.0">
          <children>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ship1" fitHeight="72.0" fitWidth="79.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/ship.png" />
+                  <Image url="@../assets/img/ships/ship-1.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="21.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
@@ -400,9 +400,9 @@
                   <Image url="@../assets/img/pier.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="13.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ship5" fitHeight="72.0" fitWidth="79.0" layoutX="13.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/ship.png" />
+                  <Image url="@../assets/img/ships/ship-1.png" />
                </image>
             </ImageView>
             <ImageView fx:id="harbor5resource" fitHeight="35.0" fitWidth="37.0" layoutX="27.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
@@ -425,9 +425,9 @@
                   <Image url="@../assets/img/pier.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="-5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ship6" fitHeight="72.0" fitWidth="79.0" layoutX="-5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/ship.png" />
+                  <Image url="@../assets/img/ships/ship-1.png" />
                </image>
             </ImageView>
             <Label fx:id="harbor6ratio" layoutX="15.0" layoutY="55.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
@@ -450,9 +450,9 @@
                   <Image url="@../assets/img/pier.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ship7" fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/ship.png" />
+                  <Image url="@../assets/img/ships/ship-1.png" />
                </image>
             </ImageView>
             <Label fx:id="harbor7ratio" layoutX="34.0" layoutY="76.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
@@ -475,9 +475,9 @@
                   <Image url="@../assets/img/pier.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ship9" fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/ship.png" />
+                  <Image url="@../assets/img/ships/ship-1.png" />
                </image>
             </ImageView>
             <ImageView fx:id="harbor9resource" fitHeight="35.0" fitWidth="37.0" layoutX="28.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
@@ -500,9 +500,9 @@
                   <Image url="@../assets/img/pier.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="-6.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ship8" fitHeight="72.0" fitWidth="79.0" layoutX="-6.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/ship.png" />
+                  <Image url="@../assets/img/ships/ship-1.png" />
                </image>
             </ImageView>
             <ImageView fx:id="harbor8resource" fitHeight="35.0" fitWidth="37.0" layoutX="8.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
