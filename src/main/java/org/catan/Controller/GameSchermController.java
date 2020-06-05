@@ -225,15 +225,18 @@ public class GameSchermController implements Initializable {
             public void handle(long l) {
                 tick++;
 
-                if(tick % 60 == 0)
+                if(tick % 60 == 0) {
                     for(ImageView ship : ships)
-                        ship.setImage(shipFrame1);
-                if(tick % 120 == 0)
+                        ship.setImage(shipFrame1); }
+                if(tick % 120 == 0) {
                     for(ImageView ship : ships)
-                        ship.setImage(shipFrame2);
-                if(tick % 180 == 0)
+                        ship.setImage(shipFrame2); }
+                if(tick % 180 == 0) {
                     for(ImageView ship : ships)
-                        ship.setImage(shipFrame3);
+                        ship.setImage(shipFrame3); }
+                if(tick % 240 == 0) {
+                    for(ImageView ship : ships)
+                        ship.setImage(shipFrame2); }
             }
         };
         shipAnimation.start();
