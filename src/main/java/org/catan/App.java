@@ -50,6 +50,7 @@ public class App extends Application {
         // Other test players
         Player testPlayer2 = new Player("testPlayer2");
         Player testPlayer3 = new Player("testPlayer3");
+        Player testPlayer4 = new Player("testPlayer4");
 
         // Initialize first active player
         Player.setActivePlayer(testPlayer1);

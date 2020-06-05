@@ -14,6 +14,7 @@ public class Player {
     public static Player mainPlayer; // Player controlling the instance of the game
     public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
     public static Player activePlayer;
+    public static boolean mainPlayerActive;
 
 
     public Player(String name){
@@ -51,6 +52,12 @@ public class Player {
         activePlayer = player;
         player.setActive();
         LogController.setPlayer();
+        if (player == mainPlayer){
+            mainPlayerActive = true;
+            System.out.println("MAIN PLAYER ACTIVE");
+        } else{
+            mainPlayerActive = false;
+        }
     }
 
     public static Player getActivePlayer(){
@@ -60,4 +67,9 @@ public class Player {
     public void setActive(){
         active = true;
     }
+
+    public static boolean isMainPlayerActive(){
+        return mainPlayerActive;
+    }
+
 }
