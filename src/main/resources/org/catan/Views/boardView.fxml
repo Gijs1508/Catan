@@ -510,10 +510,10 @@
                   <Image url="@../assets/img/brickHarbor.png" />
                </image>
             </ImageView>
-            <Label fx:id="harbor8ratio" layoutX="15.0" layoutY="66.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+            <Label fx:id="harbor8ratio" layoutX="14.0" layoutY="66.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
          </children>
       </Pane>
-      <Pane layoutX="35.0" layoutY="52.0" prefHeight="500.0" prefWidth="700.0" visible="false">
+      <Pane layoutX="35.0" layoutY="52.0" prefHeight="500.0" prefWidth="700.0">
          <children>
             <ImageView fx:id="road7" fitHeight="59.0" fitWidth="14.0" layoutX="195.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
