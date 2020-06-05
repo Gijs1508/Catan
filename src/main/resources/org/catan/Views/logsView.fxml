@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="144.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LogController">
+   <children>
+      <ScrollPane id="logScrollPane" fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="144.0" prefWidth="430.0" stylesheets="@style.css" vvalue="1.0">
+         <content>
+            <VBox fx:id="logsBox" prefHeight="144.0" prefWidth="430.0" style="-fx-background-color: #e5e4e7;" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

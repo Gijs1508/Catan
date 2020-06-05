@@ -2,6 +2,7 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import org.catan.App;
+import org.catan.Model.Player;
 
 import java.io.IOException;
 
@@ -25,6 +26,15 @@ public class MainController {
 
     @FXML
     public void backToMenu() throws IOException {
-        App.setRoot("./views/mainView");
+        App.setRoot("./Views/mainViewTrade");
+    }
+
+    @FXML
+    public void tradeTest() throws IOException {
+        Player player1 = new Player("testplayer");
+        player1.getPlayerInventory().changeCards(0, 5);
+        player1.getPlayerInventory().changeCards(4, 2);
+
+        //App.tradePopUp(player1);
     }
 }

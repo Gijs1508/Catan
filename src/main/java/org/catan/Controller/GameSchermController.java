@@ -5,7 +5,6 @@ package org.catan.Controller;
 //import Model.Speler;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -18,8 +17,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
-import jdk.jshell.spi.ExecutionControlProvider;
 import org.catan.App;
+import org.catan.Model.CreateGameCode;
 import org.catan.Model.RandomizeBoard;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
@@ -275,10 +274,12 @@ public class GameSchermController implements Initializable {
 //    private Spel spel;
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
-    private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Label> tileNumNodeList;
     private ArrayList<ImageView> roadNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList;
+
+    LogController logController = LogController.getInstance();
+
     private BuildSettlementController build;
 
     public GameSchermController() {
@@ -308,6 +309,8 @@ public class GameSchermController implements Initializable {
     // TODO Jan
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
+        logController.logSettlementEvent();
+
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
         placeVillage(build.buildVillage(circle));
         buildSettlementBtnCloseClicked();
@@ -355,6 +358,7 @@ public class GameSchermController implements Initializable {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
         placeRoad(build.buildRoad(circle));
         buildRoadBtnCloseClicked();
+        logController.logRoadEvent();
     }
     
 
@@ -371,14 +375,12 @@ public class GameSchermController implements Initializable {
         Circle circle = (Circle) mouseEvent.getSource(); // The upgrade node that is clicked
         placeCity(build.buildUpgrade(circle));
         upgradeSettlementBtnCloseClicked();
-    }
-
-    @FXML
-    public void buildRoad() {
+        logController.logUpgradeEvent();
     }
 
     @FXML
     public void endTurn() {
+        logController.logEndTurnEvent();
     }
 
     @FXML // When you hover over a circle when road is selected
@@ -480,7 +482,11 @@ public class GameSchermController implements Initializable {
 //        initializeRoads();
         ArrayList<Polygon> tiles = addAllTilesToArray();
         ArrayList<Label> labels = addAllTileNumbersToArray();
-        RandomizeBoard.setRandomTiles(tiles, labels);
+
+        //TODO: changing the seed to the gamecode!
+        long seed = CreateGameCode.randomCodeGen(6);
+
+        RandomizeBoard.setRandomTiles(tiles, labels, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         //tile1.setFill(Color.BROWN);
         initializeButtons();

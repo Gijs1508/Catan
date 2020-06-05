@@ -14,9 +14,14 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #54B9EB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
+<AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
    <children>
-      <Polygon fx:id="island" fill="#f1db69" layoutX="161.0" layoutY="132.0" points="-60.6, 161.4, 73.8, 399.6, 387.6, 399.6, 520.8, 161.4, 378.6, -70.2, 73.8, -70.2" scaleX="0.9" scaleY="0.9" stroke="#fff5c6" strokeType="INSIDE" strokeWidth="0.0" />
+      <ImageView fitHeight="472.0" fitWidth="559.0" layoutX="113.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/island.png" />
+         </image>
+      </ImageView>
+      <Polygon fx:id="island" fill="#f1db69" layoutX="161.0" layoutY="132.0" points="-60.6, 161.4, 73.8, 399.6, 387.6, 399.6, 520.8, 161.4, 378.6, -70.2, 73.8, -70.2" scaleX="0.9" scaleY="0.9" stroke="#fff5c6" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
       <HBox alignment="CENTER" layoutX="35.0" layoutY="80.0" prefHeight="104.0" prefWidth="700.0" spacing="23.0">
          <children>
             <Polygon fx:id="tile1" fill="#3fff00" points="-50.4, -30.4, -6, -8.0, 38, -30.4, 38, -78.4, -6, -100.8, -50.4, -78.4" strokeType="INSIDE" strokeWidth="0.0">
@@ -144,7 +149,7 @@
                   </LinearGradient>
                </stroke>
             </Polygon>
-            <Polygon id="tile" fx:id="tile10" fill="#cdaf5e" points="-50.4, -30.4, -6, -8.0, 38, -30.4, 38, -78.4, -6, -100.8, -50.4, -78.4" strokeType="INSIDE" strokeWidth="0.0">
+            <Polygon id="tile" fx:id="tile10" fill="#bca25f" points="-50.4, -30.4, -6, -8.0, 38, -30.4, 38, -78.4, -6, -100.8, -50.4, -78.4" strokeType="INSIDE" strokeWidth="0.0">
                <HBox.margin>
                   <Insets right="-10.0" />
                </HBox.margin>
