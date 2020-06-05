@@ -18,6 +18,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
+import jdk.jshell.spi.ExecutionControlProvider;
 import org.catan.App;
 import org.catan.Model.RandomizeBoard;
 import org.catan.Model.Road;
@@ -383,14 +384,9 @@ public class GameSchermController implements Initializable {
     @FXML // When you hover over a circle when road is selected
     public void emphasizeRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
-        // Code that checks whether the road can be placed
-        // RoadSpot roadSpot = getAssociatedRoadSpot(circle)
-        // if (roadSpot.isValid() {
         circle.setFill(Paint.valueOf("#c89eff"));
         circle.setScaleX(1.1);
         circle.setScaleY(1.1);
-        System.out.println("This is the X: " + circle.getLayoutX());
-        System.out.println("This is the Y: " + circle.getLayoutY());
     }
 
     @FXML
@@ -443,12 +439,10 @@ public class GameSchermController implements Initializable {
             for (Circle availableSpot : availableSpots) {
                 availableSpot.setVisible(true);
             }
-            settlementButton.setVisible(false);
-            settlementButtonClose.setVisible(true);
-        }catch (Exception e) {
-
+        } catch (Exception e) {
         }
-
+        settlementButton.setVisible(false);
+        settlementButtonClose.setVisible(true);
     }
 
     @FXML

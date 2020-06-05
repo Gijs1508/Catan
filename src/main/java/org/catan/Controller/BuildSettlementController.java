@@ -29,7 +29,6 @@ public class BuildSettlementController {
 //        buildRoads.add(new Road(227, 121.0, "blue"));
 //        buildRoads.add(new Road(200.0, 81.0, "blue"));
         this.math = new MathBuildSettlement();
-//        showUpgradeableVillages();
     }
 
     // Returns roads from player
@@ -57,14 +56,11 @@ public class BuildSettlementController {
     // Gives available node for placing a village
     public ArrayList<Circle> showVillageSpots() {
         ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
-        System.out.println("RoadsConnected");
-        print(roadsConnected, 0);
         ArrayList<Circle> nodes = new ArrayList<>();
         for (int i=0; i < roadsConnected.size(); i++) {
             nodes.addAll(math.circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
         }
         nodes = removeDuplicates(nodes);
-
         ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes, 0);
         ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpot(roadsConnected);
         return villagesNotClose(isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), buildVillages));
@@ -74,15 +70,15 @@ public class BuildSettlementController {
         ArrayList<Circle> placeAbleSpots = new ArrayList<>();
          for (int i=0; i < spots.size(); i++) {
              ArrayList<Circle> nodes = (math.circlesInRadius(spots.get(i).getLayoutX(), spots.get(i).getLayoutY(), vertexNodeList, "village"));
-             int size = nodes.size();
+             int foundVillages = 0;
              for (int j=0; j < nodes.size(); j++) {
                  for (int k=0; k < buildVillages.size(); k++) {
                      if (nodes.get(j).getLayoutX() == buildVillages.get(k).getX() && nodes.get(j).getLayoutY() == buildVillages.get(k).getY()) {
-                         nodes.remove(nodes.get(j));
+                         foundVillages++;
                      }
                  }
              }
-             if (size == nodes.size()) {
+             if (foundVillages == 0) {
                  placeAbleSpots.add(spots.get(i));
              }
          }
@@ -92,15 +88,11 @@ public class BuildSettlementController {
     // Removes duplicates in array
     private ArrayList<Circle> removeDuplicates(ArrayList<Circle> array) {
         ArrayList<Circle> arrayFixed = new ArrayList<>();
-//        System.out.println("===========================================");
-//        System.out.println("This is the remove duplicates function");
         for (Circle circle : array) {
             if (!arrayFixed.contains(circle)) {
-//                System.out.println("Road node ID: " + circle);
                 arrayFixed.add(circle);
             }
         }
-//        System.out.println("===========================================");
         return arrayFixed;
     }
 
@@ -138,13 +130,16 @@ public class BuildSettlementController {
     }
     // Checks if the available spots don't have a settlement already
     private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Village> village) {
+        ArrayList<Circle> nodesToRemove = new ArrayList<>();
         for (int i=0; i < nodes.size(); i++) {
             for (Village v : village) {
                 if (nodes.get(i).getLayoutX() == v.getX() && nodes.get(i).getLayoutY() == v.getY()) {
-                    nodes.remove(i);
+                    nodesToRemove.add(nodes.get(i));
                 }
             }
         }
+        nodes.removeAll(nodesToRemove);
+
         return nodes;
     }
 
@@ -159,22 +154,12 @@ public class BuildSettlementController {
                     double distance = math.distance(playerRoads.get(i).getX(), playerRoads.get(i).getY(), playerRoad.getX(), playerRoad.getY());
                     if (distance <= 63) {
                         roadsConnected.add(playerRoads.get(i));
-//                        if (settlementBetweenRoads(playerRoads.get(i), playerRoad)) {
-//                            roadsConnected.add(playerRoads.get(i));
-//                        }
                     }
                 }
             }
         }
         return removeDuplicates(roadsConnected, 0);
     }
-
-//    private boolean settlementBetweenRoads(Road road, Road road2) {
-//        ArrayList<Circle> settlements1 = math.circlesInRadius(road.getX(), road.getY(), vertexNodeList, "other");
-//        ArrayList<Circle> settlements2 = math.circlesInRadius(road2.getX(), road2.getY(), vertexNodeList, "other");
-//        ArrayList<Circle> sameSettlementNode = removeNonDuplicates(settlements1, settlements2);
-//        return !isSpotAvailable(sameSettlementNode, buildVillages).isEmpty();
-//    }
 
     // Returns the village nodes that are next to the given roads
     private ArrayList<Circle> roadsNextToVillageSpot(ArrayList<Circle> array, int useless) {
@@ -233,8 +218,6 @@ public class BuildSettlementController {
     }
 
     public ArrayList<Circle> showAvailableRoads() {
-//        System.out.println("Road arraylist");
-//        print(buildRoads, 0);
         ArrayList<Road> playerRoads = playerRoads();
         ArrayList<Circle> roadPlaces = new ArrayList<>();
 
