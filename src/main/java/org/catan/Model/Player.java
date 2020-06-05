@@ -7,8 +7,10 @@ public class Player {
     private String name;
     private String color;
     private Inventory playerInventory;
+
     public static Player mainPlayer; // Player controlling the instance of the game
-    public static ArrayList<Player> allPlayers = new ArrayList<Player>();
+    public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
+    public static Player activePlayer;
 
 
     public Player(String name){
@@ -40,5 +42,13 @@ public class Player {
 
     public static ArrayList<Player> getAllPlayers(){
         return allPlayers;
+    }
+
+    public static void setActivePlayer(Player player){
+        activePlayer = player;
+    }
+
+    public static Player getActivePlayer(){
+        return activePlayer;
     }
 }
