@@ -7,6 +7,7 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -273,7 +274,6 @@ public class GameSchermController implements Initializable {
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Label> tileNumNodeList;
-    private ArrayList<ImageView> roadNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList = new ArrayList<>();
 
     LogController logController = LogController.getInstance();
