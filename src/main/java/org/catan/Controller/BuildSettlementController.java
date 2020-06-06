@@ -78,8 +78,6 @@ public class BuildSettlementController {
         return availableRoads;
     }
 
-
-
     // Gives available node for placing a village
     public ArrayList<Circle> showVillageSpots() {
         ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
@@ -155,6 +153,7 @@ public class BuildSettlementController {
         }
         return nodes;
     }
+
     // Checks if the available spots don't have a settlement already
     private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Village> village) {
         ArrayList<Circle> nodesToRemove = new ArrayList<>();
@@ -267,10 +266,5 @@ public class BuildSettlementController {
         buildRoads.add(road);
         return road;
     }
-
-    public ArrayList<Village> getBuildVillages() {
-        return this.buildVillages;
-    }
-
 
 }
