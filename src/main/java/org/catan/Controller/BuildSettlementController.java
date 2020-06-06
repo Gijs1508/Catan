@@ -1,6 +1,7 @@
 package org.catan.Controller;
 
 import javafx.scene.shape.Circle;
+import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.Road;
@@ -19,6 +20,7 @@ public class BuildSettlementController {
     private ArrayList<Village> buildVillages = new ArrayList<>();
     private MathBuildSettlement math;
     private PolygonConnectedNodes poly;
+    private BuildVillages bv;
 
     public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList,
                                      ArrayList<Circle> upgradeNodeList) {
@@ -27,6 +29,8 @@ public class BuildSettlementController {
         this.roadSpotNodeList = roadSpotNodeList;
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
+        this.bv = new BuildVillages();
+
     }
 
     // Returns roads from player
@@ -208,6 +212,7 @@ public class BuildSettlementController {
     public Village buildVillage(Circle node) {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
+        bv.setBuildVillages(buildVillages);
         return village;
     }
 
