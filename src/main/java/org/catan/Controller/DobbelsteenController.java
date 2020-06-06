@@ -3,6 +3,8 @@ package org.catan.Controller;
 //import model.Dobbelsteen;
 
 import javafx.fxml.FXML;
+import org.catan.Model.Sound;
+
 import java.util.ArrayList;
 
 public class DobbelsteenController {
@@ -34,6 +36,8 @@ public class DobbelsteenController {
 
     @FXML
     public void throwDie() {
+        Sound.playDiceThrow();
+
         logController.logRollEvent("4", "3"); // Replace parameters with the results of the throw
 
 //        ArrayList<String> receivedCards = new ArrayList<>();  // Move to method to controller that handles this

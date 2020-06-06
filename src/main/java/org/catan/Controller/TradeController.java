@@ -10,6 +10,7 @@ import org.catan.Model.Player;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
+import org.catan.Model.Sound;
 
 import java.io.IOException;
 
@@ -46,6 +47,8 @@ public class TradeController {
 
     @FXML
     public void bankTrade() {
+        Sound.playSwitch();
+
         if (tradeType == "player" && Player.mainPlayerActive){
             tradeType = "bank";
             bankTradeBtn.setFont(new Font("System Bold", 14));
@@ -56,6 +59,8 @@ public class TradeController {
 
     @FXML
     public void playerTrade() {
+        Sound.playSwitch2();
+
         if (tradeType == "bank" && Player.mainPlayerActive){
             tradeType = "player";
             bankTradeBtn.setFont(new Font("System", 14));
