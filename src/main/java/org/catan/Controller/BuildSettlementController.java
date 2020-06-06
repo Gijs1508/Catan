@@ -1,7 +1,6 @@
 package org.catan.Controller;
 
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polygon;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.Road;
@@ -9,6 +8,7 @@ import org.catan.Model.Village;
 import java.util.*;
 
 public class BuildSettlementController {
+    // todo add Player properties in all the methods
 //    private Speler player;
     private String color = "blue";
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();
