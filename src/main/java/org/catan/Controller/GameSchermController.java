@@ -19,6 +19,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.*;
+import javafx.scene.media.*;
 
 import java.net.URL;
 import java.util.*;
@@ -336,6 +337,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void endTurn() {
+        Sound.playEndTurnJingle();
+
         logController.logEndTurnEvent();
         TurnManager.nextTurn(Player.getActivePlayer());
         //TODO
@@ -375,6 +378,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildRoadBtnClicked() {
+        Sound.playClick();
+
         try {
             ArrayList<Circle> nodes = build.showRoadSpots();
             for (Circle node : nodes) {
@@ -388,6 +393,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildRoadBtnCloseClicked() {
+        Sound.playClick();
+
         for (Circle circle : roadSpotNodeList) {
             circle.setVisible(false);
         }
@@ -397,6 +404,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildSettlementBtnClicked() {
+        Sound.playClick();
+
         try {
             ArrayList<Circle> availableSpots = build.showVillageSpots();
             for (Circle availableSpot : availableSpots) {
@@ -410,6 +419,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildSettlementBtnCloseClicked() {
+        Sound.playClick();
+
         for (Circle circle : vertexNodeList) {
             circle.setVisible(false);
         }
@@ -419,6 +430,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void upgradeSettlementBtnClicked() {
+        Sound.playClick();
+
         try {
             ArrayList<Circle> nodes = build.showUpgradeableVillages();
             for (Circle node : nodes) {
@@ -433,6 +446,8 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void upgradeSettlementBtnCloseClicked() {
+        Sound.playClick();
+
         for (Circle circle : upgradeNodeList) {
             circle.setVisible(false);
         }
