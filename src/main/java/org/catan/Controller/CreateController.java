@@ -25,7 +25,7 @@ public class CreateController {
     // Create new game
     public void createGame(ActionEvent actionEvent) {
         // TODO Werner: add code to db and check if it does not exist
-        long gameCode = CreateGameCode.randomCodeGen(6);
+        long gameCode = CreateGameCode.getSeed();
         game_code_text.setText(String.valueOf(gameCode));
     }
 }

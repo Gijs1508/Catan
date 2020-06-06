@@ -1,6 +1,7 @@
 package org.catan.Model;
 
 import org.catan.Controller.CreateController;
+import org.catan.Controller.BuildSettlementController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import java.util.Random;
 
 public class Dice {
 
-    public static HashMap<Integer, ArrayList<String>> throwDice() {
+    public HashMap<Integer, ArrayList<String>> throwDice() {
         HashMap<Integer, ArrayList<String>> diceResult = new HashMap<>();
         ArrayList<String> dices = new ArrayList<>();
         Random rand = new Random();
@@ -18,6 +19,17 @@ public class Dice {
         dices.add(String.valueOf(dice1));
         dices.add(String.valueOf(dice2));
         diceResult.put(total, dices);
+
+        System.out.println("hallo?");
+        System.out.println(BuildSettlementController.getInstance().getBuildVillages().size() + " hoi");
+        if(BuildSettlementController.getInstance() == null){
+            System.out.println("BSC BESTAAT NIET HOER");
+        }
+
+        for (Village village : BuildSettlementController.getInstance().getBuildVillages()) {
+            System.out.println(village.getColor());
+        }
+
 
         return diceResult;
     }

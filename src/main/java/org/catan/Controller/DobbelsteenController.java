@@ -17,6 +17,7 @@ public class DobbelsteenController {
     LogController logController = LogController.getInstance();
     @FXML private ImageView dice1_img;
     @FXML private ImageView dice2_img;
+    Dice dice = new Dice();
 
 //    private Dobbelsteen dobbelsteen_1;
 //    private Dobbelsteen dobbelsteen_2;
@@ -43,7 +44,7 @@ public class DobbelsteenController {
 
     @FXML
     public void throwDie() {
-        HashMap<Integer, ArrayList<String>> diceResult = Dice.throwDice();
+        HashMap<Integer, ArrayList<String>> diceResult = dice.throwDice();
         Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
         Integer total = entry.getKey();
         ArrayList<String> values = entry.getValue();

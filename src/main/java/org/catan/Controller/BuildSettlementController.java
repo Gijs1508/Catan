@@ -20,6 +20,8 @@ public class BuildSettlementController {
     private MathBuildSettlement math;
     private PolygonConnectedNodes poly;
 
+    private static BuildSettlementController buildSettlementController;
+
     public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList,
                                      ArrayList<Circle> upgradeNodeList) {
         this.vertexNodeList = vertexNodeList;
@@ -27,6 +29,18 @@ public class BuildSettlementController {
         this.roadSpotNodeList = roadSpotNodeList;
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
+        buildRoads.add(new Road(200, 81, "blue"));
+    }
+
+    public BuildSettlementController() {
+        buildSettlementController = this;
+    }
+
+    public static BuildSettlementController getInstance(){
+        if(buildSettlementController == null){
+            buildSettlementController = new BuildSettlementController();
+        }
+        return buildSettlementController;
     }
 
     // Returns roads from player
@@ -208,6 +222,11 @@ public class BuildSettlementController {
     public Village buildVillage(Circle node) {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
+        System.out.println("====================");
+        for (int i = 0; i < buildVillages.size(); i++) {
+            System.out.println(buildVillages.get(i).getColor());
+        }
+        System.out.println("====================");
         return village;
     }
 
@@ -264,7 +283,7 @@ public class BuildSettlementController {
     }
 
     public ArrayList<Village> getBuildVillages() {
-        return this.buildVillages;
+        return buildVillages;
     }
 
 
