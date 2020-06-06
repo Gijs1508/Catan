@@ -50,13 +50,13 @@ public class Sound {
     // todo - play when it's your turn
     public static void playStartTurnJingle() {
         AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/startTurnJingle.mp3").toExternalForm());
-        sound.setVolume(0.6);
+        sound.setVolume(0.1);
         sound.play();
     }
 
     public static void playEndTurnJingle() {
         AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/endTurnJingle.mp3").toExternalForm());
-        sound.setVolume(0.2);
+        sound.setVolume(0.1);
         sound.play();
     }
 }
