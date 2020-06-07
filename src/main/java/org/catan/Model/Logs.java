@@ -44,6 +44,7 @@ public class Logs {
 
         textEvents = new HashMap<>() {{
             put("steal", "%PLAYER% steals a card from %PLAYER2%.");
+            put("startturn", "%PLAYER% starts turn.");
             put("endturn", "%PLAYER% ends turn.");
             put("upgrade", "%PLAYER% upgrades a settlement.");
             put("road", "%PLAYER% builds a road.");

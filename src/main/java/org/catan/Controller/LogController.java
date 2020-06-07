@@ -89,6 +89,12 @@ public class LogController implements Initializable{
         storeLog(log);
     }
 
+    public void logStartTurnEvent() {
+        Log log = new Log("startturn", player);
+        addTxtLogToLogsPane(log);
+        storeLog(log);
+    }
+
     public void logEndTurnEvent() {
         Log log = new Log("endturn", player);
         addTxtLogToLogsPane(log);

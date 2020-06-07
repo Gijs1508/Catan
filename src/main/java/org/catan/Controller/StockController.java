@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
+import org.catan.Model.Sound;
 
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -92,12 +93,8 @@ public class StockController implements Initializable {
         wheatCount.setText(Integer.toString(cards[4]));
         knightCount.setText(Integer.toString(cards[5]));
 
-        animateRemoveResources(oldResources, cards);
-    }
-
-    public void animateRemoveResources(int[] oldResources, int[] cards) {
+        // If the new count is less than before, a card (or more) has been taken
         ArrayList<String> removedResources = new ArrayList<>();
-
         if(cards[0] < oldResources[0])
             removedResources.add("wood");
         if(cards[1] < oldResources[1])
@@ -109,9 +106,14 @@ public class StockController implements Initializable {
         if(cards[4] < oldResources[4])
             removedResources.add("wheat");
 
+        // Play the take card sound effect if any cards have been removed
+        // todo - one at a time
+        if(!removedResources.isEmpty()) {
+            Sound.playTakeCard(); }
+
+        // Play card animation for each removed card
         for (int i = 0; i < removedResources.size(); i++) {
-            removeCardAnimation(animationCardForResource.get(removedResources.get(i)));
-        }
+            removeCardAnimation(animationCardForResource.get(removedResources.get(i))); }
     }
 
     private void removeCardAnimation(ImageView animationCard){
@@ -128,13 +130,13 @@ public class StockController implements Initializable {
                     tick++;
                     animationIsActive = true;
 
-                    animationCard.setTranslateY(animationCard.getTranslateY() - 2.8);
+                    animationCard.setTranslateY(animationCard.getTranslateY() - 2.8);   // Move the card up
 
                     if(tick > 40) {
-                        animationCard.setOpacity(animationCard.getOpacity() - 0.06);
+                        animationCard.setOpacity(animationCard.getOpacity() - 0.06);    // After 40 ticks, start decreasing opacity per tick
                     }
 
-                    if(animationCard.getOpacity() <= 0) {
+                    if(animationCard.getOpacity() <= 0) {   // If card isn't visible anymore, stop animation and reset the card
                         this.stop();
 
                         animationCard.setTranslateX(x);
@@ -155,6 +157,8 @@ public class StockController implements Initializable {
         logController.logKnightEvent();
 
         removeCardAnimation(animationKnightCard);
+
+        Sound.playSword();
 
 //        ArrayList<String> resources = new ArrayList<>();          // Use this code when a resource gets taken
 //        resources.add("ore");

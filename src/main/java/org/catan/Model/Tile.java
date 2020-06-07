@@ -1,5 +1,9 @@
 package org.catan.Model;
 
+import javafx.scene.shape.Circle;
+
+import java.util.ArrayList;
+
 public class Tile {
     private String type;
     private String id;
