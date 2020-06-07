@@ -55,6 +55,7 @@ public class BuildSettlementController {
         return playerVillages;
     }
 
+    // This method is for placing villages in the startFase
     public ArrayList<Circle> showVillageStartSpots() {
         ArrayList<Circle> nodes = new ArrayList<>();
         for (Circle circle : vertexNodeList) {
@@ -66,6 +67,7 @@ public class BuildSettlementController {
         return villagesNotClose(nodes);
     }
 
+    // This method is for placing roads in the startFase
     public ArrayList<Circle> showRoadStartSpots(Circle village) {
         ArrayList<Circle> roads = math.circlesInRadius(village.getLayoutX(), village.getLayoutY(), roadSpotNodeList, "other");
         ArrayList<Circle> availableRoads = new ArrayList<>();
@@ -82,8 +84,8 @@ public class BuildSettlementController {
     public ArrayList<Circle> showVillageSpots() {
         ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
         ArrayList<Circle> nodes = new ArrayList<>();
-        for (int i=0; i < roadsConnected.size(); i++) {
-            nodes.addAll(math.circlesInRadius(roadsConnected.get(i).getX(), roadsConnected.get(i).getY(), roadSpotNodeList, "road"));
+        for (Road road : roadsConnected) {
+            nodes.addAll(math.circlesInRadius(road.getX(), road.getY(), roadSpotNodeList, "road"));
         }
         nodes = removeDuplicates(nodes);
         ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes, 0);
@@ -91,22 +93,23 @@ public class BuildSettlementController {
         return villagesNotClose(isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), buildVillages));
     }
 
+    // Returns nodes that have no villages close to them
     private ArrayList<Circle> villagesNotClose(ArrayList<Circle> spots) {
         ArrayList<Circle> placeAbleSpots = new ArrayList<>();
-         for (int i=0; i < spots.size(); i++) {
-             ArrayList<Circle> nodes = (math.circlesInRadius(spots.get(i).getLayoutX(), spots.get(i).getLayoutY(), vertexNodeList, "village"));
-             int foundVillages = 0;
-             for (int j=0; j < nodes.size(); j++) {
-                 for (int k=0; k < buildVillages.size(); k++) {
-                     if (nodes.get(j).getLayoutX() == buildVillages.get(k).getX() && nodes.get(j).getLayoutY() == buildVillages.get(k).getY()) {
-                         foundVillages++;
-                     }
-                 }
-             }
-             if (foundVillages == 0) {
-                 placeAbleSpots.add(spots.get(i));
-             }
-         }
+        for (Circle spot : spots) {
+            ArrayList<Circle> nodes = (math.circlesInRadius(spot.getLayoutX(), spot.getLayoutY(), vertexNodeList, "village"));
+            int foundVillages = 0;
+            for (Circle node : nodes) {
+                for (Village buildVillage : buildVillages) {
+                    if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
+                        foundVillages++;
+                    }
+                }
+            }
+            if (foundVillages == 0) {
+                placeAbleSpots.add(spot);
+            }
+        }
          return placeAbleSpots;
     }
 
@@ -121,6 +124,7 @@ public class BuildSettlementController {
         return arrayFixed;
     }
 
+    // Removes duplicates in array
     private ArrayList<Road> removeDuplicates(ArrayList<Road> array, int useless) {
         ArrayList<Road> arrayFixed = new ArrayList<>();
         for (Road road : array) {
@@ -215,6 +219,7 @@ public class BuildSettlementController {
         return village;
     }
 
+    // Sets upgrade status village and returns it
     public Village buildUpgrade(Circle node) {
         Village village = null;
         for (Village buildVillage : buildVillages) {
@@ -227,6 +232,7 @@ public class BuildSettlementController {
         return village;
     }
 
+    // Shows all the villages that are placed and can be upgraded
     public ArrayList<Circle> showUpgradeableVillages() {
         ArrayList<Village> villages = playerVillages();
         ArrayList<Circle> upgradeableVillages = new ArrayList<>();
@@ -244,6 +250,7 @@ public class BuildSettlementController {
         }
     }
 
+    // Shows nodes where roads can be placed
     public ArrayList<Circle> showRoadSpots() {
         ArrayList<Road> playerRoads = playerRoads();
         ArrayList<Circle> roadPlaces = new ArrayList<>();
@@ -261,6 +268,7 @@ public class BuildSettlementController {
         return isSpotAvailable(removeDuplicates(roadPlaces), buildRoads, 1);
     }
 
+    // Creates a road and returns it
     public Road buildRoad(Circle node) {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), "blue");
         buildRoads.add(road);
