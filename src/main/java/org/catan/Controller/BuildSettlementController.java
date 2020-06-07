@@ -30,6 +30,7 @@ public class BuildSettlementController {
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
         this.bv = new BuildVillages();
+        buildRoads.add(new Road(200, 81, "blue"));
 
     }
 

@@ -2,6 +2,7 @@ package org.catan.Model;
 
 import org.catan.Controller.CreateController;
 import org.catan.Controller.BuildSettlementController;
+import org.catan.Helper.BuildVillages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,14 +21,11 @@ public class Dice {
         dices.add(String.valueOf(dice2));
         diceResult.put(total, dices);
 
-        System.out.println("hallo?");
-        System.out.println(BuildSettlementController.getInstance().getBuildVillages().size() + " hoi");
-        if(BuildSettlementController.getInstance() == null){
-            System.out.println("BSC BESTAAT NIET HOER");
-        }
-
-        for (Village village : BuildSettlementController.getInstance().getBuildVillages()) {
-            System.out.println(village.getColor());
+        for (Village village : BuildVillages.getBuildVillages()) {
+            for (Tile tile : village.getConnectedTiles()){
+                Player.getMainPlayer().getPlayerInventory().changeCards();
+                System.out.println(tile.getType());
+            }
         }
 
 
