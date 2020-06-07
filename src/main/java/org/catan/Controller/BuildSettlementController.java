@@ -1,7 +1,7 @@
 package org.catan.Controller;
 
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polygon;
+import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.Road;
@@ -9,6 +9,7 @@ import org.catan.Model.Village;
 import java.util.*;
 
 public class BuildSettlementController {
+    // todo add Player properties in all the methods
 //    private Speler player;
     private String color = "blue";
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();
@@ -19,8 +20,7 @@ public class BuildSettlementController {
     private ArrayList<Village> buildVillages = new ArrayList<>();
     private MathBuildSettlement math;
     private PolygonConnectedNodes poly;
-
-    private static BuildSettlementController buildSettlementController;
+    private BuildVillages bv;
 
     public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList,
                                      ArrayList<Circle> upgradeNodeList) {
@@ -29,18 +29,8 @@ public class BuildSettlementController {
         this.roadSpotNodeList = roadSpotNodeList;
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
-        buildRoads.add(new Road(200, 81, "blue"));
-    }
+        this.bv = new BuildVillages();
 
-    public BuildSettlementController() {
-        buildSettlementController = this;
-    }
-
-    public static BuildSettlementController getInstance(){
-        if(buildSettlementController == null){
-            buildSettlementController = new BuildSettlementController();
-        }
-        return buildSettlementController;
     }
 
     // Returns roads from player
@@ -87,8 +77,6 @@ public class BuildSettlementController {
         }
         return availableRoads;
     }
-
-
 
     // Gives available node for placing a village
     public ArrayList<Circle> showVillageSpots() {
@@ -165,6 +153,7 @@ public class BuildSettlementController {
         }
         return nodes;
     }
+
     // Checks if the available spots don't have a settlement already
     private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Village> village) {
         ArrayList<Circle> nodesToRemove = new ArrayList<>();
@@ -222,11 +211,7 @@ public class BuildSettlementController {
     public Village buildVillage(Circle node) {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
-        System.out.println("====================");
-        for (int i = 0; i < buildVillages.size(); i++) {
-            System.out.println(buildVillages.get(i).getColor());
-        }
-        System.out.println("====================");
+        bv.setBuildVillages(buildVillages);
         return village;
     }
 
@@ -281,10 +266,5 @@ public class BuildSettlementController {
         buildRoads.add(road);
         return road;
     }
-
-    public ArrayList<Village> getBuildVillages() {
-        return buildVillages;
-    }
-
 
 }

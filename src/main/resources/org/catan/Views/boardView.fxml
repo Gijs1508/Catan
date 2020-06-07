@@ -16,6 +16,11 @@
 
 <AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
    <children>
+      <ImageView fitHeight="590.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/sea.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="472.0" fitWidth="559.0" layoutX="113.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/island.png" />
@@ -289,6 +294,231 @@
             </Polygon>
          </children>
       </HBox>
+
+      <Pane fx:id="harbor4" layoutX="558.0" layoutY="70.0" prefHeight="104.0" prefWidth="62.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="-5.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship4" fitHeight="72.0" fitWidth="79.0" layoutX="4.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="29.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor4resource" fitHeight="35.0" fitWidth="37.0" layoutX="18.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/woodHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor4ratio" layoutX="24.0" layoutY="59.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor3" layoutX="100.0" layoutY="131.0" prefHeight="113.0" prefWidth="82.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="65.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="66.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship3" fitHeight="72.0" fitWidth="79.0" layoutX="-4.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor3resource" fitHeight="35.0" fitWidth="37.0" layoutX="9.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/oreHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor3ratio" layoutX="16.0" layoutY="80.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor2" layoutX="385.0" layoutY="-4.0" prefHeight="104.0" prefWidth="115.0">
+         <children>
+            <ImageView fx:id="ship2" fitHeight="72.0" fitWidth="79.0" layoutX="23.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="51.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="13.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor2resource" fitHeight="35.0" fitWidth="37.0" layoutX="36.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/wheatHarbor.png" />
+               </image></ImageView>
+            <Label fx:id="harbor2ratio" layoutX="43.0" layoutY="50.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor1" layoutX="212.0" prefHeight="113.0" prefWidth="82.0">
+         <children>
+            <ImageView fx:id="ship1" fitHeight="72.0" fitWidth="79.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="21.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="57.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor1resource" fitHeight="35.0" fitWidth="37.0" layoutX="7.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/sheepHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor1ratio" layoutX="14.0" layoutY="47.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children></Pane>
+      <Pane fx:id="harbor5" layoutX="644.0" layoutY="223.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="9.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="8.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship5" fitHeight="72.0" fitWidth="79.0" layoutX="13.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor5resource" fitHeight="35.0" fitWidth="37.0" layoutX="27.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor5ratio" layoutX="33.0" layoutY="71.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor6" layoutX="100.0" layoutY="325.0" prefHeight="113.0" prefWidth="82.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="63.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="63.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship6" fitHeight="72.0" fitWidth="79.0" layoutX="-5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor6ratio" layoutX="15.0" layoutY="55.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+            <ImageView fx:id="harbor6resource" fitHeight="35.0" fitWidth="37.0" layoutX="9.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="harbor7" layoutX="550.0" layoutY="391.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="40.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="4.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship7" fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor7ratio" layoutX="34.0" layoutY="76.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+            <ImageView fx:id="harbor7resource" fitHeight="35.0" fitWidth="37.0" layoutX="27.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="harbor9" layoutX="397.0" layoutY="473.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="40.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="4.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" rotate="-63.4">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship9" fitHeight="72.0" fitWidth="79.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor9resource" fitHeight="35.0" fitWidth="37.0" layoutX="28.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor9ratio" layoutX="34.0" layoutY="74.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+      <Pane fx:id="harbor8" layoutX="208.0" layoutY="479.0" prefHeight="104.0" prefWidth="75.0">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="24.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="14.0" layoutX="60.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" rotate="-117.6">
+               <image>
+                  <Image url="@../assets/img/pier.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship8" fitHeight="72.0" fitWidth="79.0" layoutX="-6.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/ships/ship-1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="harbor8resource" fitHeight="35.0" fitWidth="37.0" layoutX="8.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/brickHarbor.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="harbor8ratio" layoutX="14.0" layoutY="66.0" text="3 : 1" textAlignment="CENTER" textFill="#eeeeee" />
+         </children>
+      </Pane>
+
       <Pane fx:id="objectsPane" layoutX="35.0" layoutY="52.0" prefHeight="500.0" prefWidth="700.0">
          <children>
             <ImageView fx:id="settlement1" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="52">
@@ -562,7 +792,7 @@
                </image>
             </ImageView>
 
-<!--            Roads-->
+            <!--            Roads-->
             <ImageView fx:id="road7" fitHeight="54.0" fitWidth="9.0" layoutX="200.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/gameobjects/placeholder.png" />

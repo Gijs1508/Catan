@@ -1,25 +1,19 @@
 package org.catan.Controller;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.media.*;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import org.catan.App;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
+import org.catan.Model.Sound;
 
-import javax.sound.sampled.AudioSystem;
-import java.applet.AudioClip;
-import java.io.*;
-
-import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -62,15 +56,7 @@ public class TradePopUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-//        try {
-//            InputStream in = new FileInputStream(String.valueOf(App.class.getResource("assets/sounds/soundeffects/pop.wav")));
-//            AudioStream audioStream = new AudioStream(in);
-//            AudioPlayer.player.start(audioStream);
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-
+        Sound.playPop();
 
         paneWidth = popupPane.getPrefWidth();
         paneHeight = popupPane.getPrefHeight();
@@ -131,6 +117,8 @@ public class TradePopUpController implements Initializable {
     }
 
     public void acceptTrade(MouseEvent mouseEvent) {
+        Sound.playClick();
+
         //TODO tradelock
         Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
         int[] cards = playerInventory.getCards();
@@ -146,6 +134,8 @@ public class TradePopUpController implements Initializable {
     }
 
     public void declineTrade(MouseEvent mouseEvent) {
+        Sound.playClick();
+
         screenController.hideTradePopup();
     }
 
