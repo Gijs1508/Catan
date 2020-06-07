@@ -20,6 +20,7 @@ public class TurnManager {
                 System.out.println(lastPlayer.getName() + " ended their turn. " + allPlayers.get(turn).getName() + "'s turn is up next.");
                 Player.setActivePlayer(allPlayers.get(turn));
                 LogController.setPlayer();
+                LogController.getInstance().logStartTurnEvent();
             }
         }
     }

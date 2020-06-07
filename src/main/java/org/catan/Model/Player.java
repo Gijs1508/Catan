@@ -54,6 +54,7 @@ public class Player {
         LogController.setPlayer();
         if (player == mainPlayer){
             mainPlayerActive = true;
+            Sound.playStartTurnJingle();
             System.out.println("MAIN PLAYER ACTIVE");
         } else{
             mainPlayerActive = false;
