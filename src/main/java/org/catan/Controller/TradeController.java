@@ -67,9 +67,9 @@ public class TradeController {
     @FXML
     public void buyDevelopmentCard() {
         if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
-            getInventory().changeCards(2, -1);
-            getInventory().changeCards(3, -1);
-            getInventory().changeCards(4, -1);
+            getInventory().changeCards("ore", -1);
+            getInventory().changeCards("sheep", -1);
+            getInventory().changeCards("wheat", -1);
             // TODO add development card functionality
         }
     }
@@ -78,15 +78,15 @@ public class TradeController {
     public void sendTrade() throws IOException {
         if(tradeType == "bank" && Player.mainPlayerActive){
             int netWood = netResource(giveWoodCount, takeWoodCount);
-            getInventory().changeCards(0, netWood);
+            getInventory().changeCards("wood", netWood);
             int netBrick = netResource(giveBrickCount, takeBrickCount);
-            getInventory().changeCards(1, netBrick);
+            getInventory().changeCards("brick", netBrick);
             int netOre = netResource(giveOreCount, takeOreCount);
-            getInventory().changeCards(2, netOre);
+            getInventory().changeCards("ore", netOre);
             int netSheep = netResource(giveSheepCount, takeSheepCount);
-            getInventory().changeCards(3, netSheep);
+            getInventory().changeCards("sheep", netSheep);
             int netWheat = netResource(giveWheatCount, takeWheatCount);
-            getInventory().changeCards(4, netWheat);
+            getInventory().changeCards("wheat", netWheat);
             resetTrade();
         } else if(tradeType == "player" && Player.mainPlayerActive){
             String playerName = Player.getMainPlayer().getName();

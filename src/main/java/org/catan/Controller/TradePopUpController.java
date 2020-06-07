@@ -135,10 +135,16 @@ public class TradePopUpController implements Initializable {
         Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
         int[] cards = playerInventory.getCards();
         if(!offerLock && ownCards()){
-            for (int i = 0; i < offer.length; i++){
-                playerInventory.changeCards(i, Integer.parseInt(offer[i]));
-                playerInventory.changeCards(i, -Integer.parseInt(request[i]));
-            }
+            playerInventory.changeCards("wood", Integer.parseInt(offer[0]));
+            playerInventory.changeCards("wood", -Integer.parseInt(request[0]));
+            playerInventory.changeCards("brick", Integer.parseInt(offer[1]));
+            playerInventory.changeCards("brick", -Integer.parseInt(request[1]));
+            playerInventory.changeCards("ore", Integer.parseInt(offer[2]));
+            playerInventory.changeCards("ore", -Integer.parseInt(request[2]));
+            playerInventory.changeCards("sheep", Integer.parseInt(offer[3]));
+            playerInventory.changeCards("sheep", -Integer.parseInt(request[3]));
+            playerInventory.changeCards("wheat", Integer.parseInt(offer[4]));
+            playerInventory.changeCards("wheat", -Integer.parseInt(request[4]));
             offerLock = true;
 
             screenController.hideTradePopup();
