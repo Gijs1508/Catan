@@ -21,10 +21,17 @@ public class Dice {
         dices.add(String.valueOf(dice2));
         diceResult.put(total, dices);
 
-        for (Village village : BuildVillages.getBuildVillages()) {
-            for (Tile tile : village.getConnectedTiles()){
-                Player.getMainPlayer().getPlayerInventory().changeCards();
-                System.out.println(tile.getType());
+        if(BuildVillages.getBuildVillages() != null){
+            for (Village village : BuildVillages.getBuildVillages()) {
+                for (Tile tile : village.getConnectedTiles()){
+                    int amount;
+                    if(village.isUpgraded()){
+                        amount = 2;
+                    } else {
+                        amount = 1;
+                    }
+                    Player.getMainPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
+                }
             }
         }
 
