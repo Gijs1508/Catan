@@ -25,8 +25,20 @@ public class Inventory {
         return this.cards;
     }
 
-    public void changeCards(int index, int aantal){
-        cards[index] += aantal;
+    public void changeCards(String type, int amount){
+        if (type == "wood"){
+            cards[0] += amount;
+        } else if (type == "brick"){
+            cards[1] += amount;
+        } else if (type == "ore"){
+            cards[2] += amount;
+        } else if (type == "sheep"){
+            cards[3] += amount;
+        } else if (type == "wheat"){
+            cards[4] += amount;
+        } else if (type == "knight"){
+            cards[5] += amount;
+        }
         StockController.getInstance().updateResources();
     }
 
