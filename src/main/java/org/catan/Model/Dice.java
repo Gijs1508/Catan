@@ -25,11 +25,8 @@ public class Dice {
             for (Village village : BuildVillages.getBuildVillages()) {
                 for (Tile tile : village.getConnectedTiles()){
                     int amount;
-                    if(village.isUpgraded()){
-                        amount = 2;
-                    } else {
-                        amount = 1;
-                    }
+                    if(village.isUpgraded()) amount = 2;
+                    else amount = 1;
                     Player.getMainPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
                 }
             }
