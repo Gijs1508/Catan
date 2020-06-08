@@ -159,12 +159,11 @@ public class GameSchermController implements Initializable {
         initializePlacementSpots();
 //        initializeRoads();
         addAllTilesToArray();
-        ArrayList<Label> labels = addAllTileNumbersToArray();
 
         //TODO: changing the seed to the gamecode!
         long seed = CreateGameCode.randomCodeGen();
 
-        RandomizeBoard.setRandomTiles(tileNodeList, labels, seed);
+        RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         //tile1.setFill(Color.BROWN);
         initializeButtons();
@@ -574,15 +573,12 @@ public class GameSchermController implements Initializable {
                 tile14, tile15,tile16, tile17, tile18, tile19);
     }
 
-    private ArrayList<Label> addAllTileNumbersToArray(){
-        ArrayList<Label> tileLabels = new ArrayList<Label>();
+    private void addAllTileNumbersToArray(){
 
-        Collections.addAll(tileLabels, tile1num, tile2num, tile3num, tile4num,
+        Collections.addAll(tileNumNodeList, tile1num, tile2num, tile3num, tile4num,
                 tile5num, tile6num, tile7num, tile8num, tile9num,
                 tile11num, tile12num, tile13num, tile14num, tile15num,
                 tile16num, tile17num, tile18num, tile19num);
-
-        return tileLabels;
     }
 
 //    private Speler getSpeler() {
