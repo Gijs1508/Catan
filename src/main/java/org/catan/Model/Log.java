@@ -27,7 +27,7 @@ public class Log {
     private String eventString;
     private String playerName;
     private String opponentName;
-    private ArrayList<Image> images = new ArrayList<>();
+    private ArrayList<String> imgPaths = new ArrayList<>();
 
     public Log(String eventType, String playerName){
         if (logs.getImgEvents().containsKey(eventType))
@@ -65,23 +65,12 @@ public class Log {
         return eventString;
     }
 
-    public Image createImage(String img) {
-        Image image = new Image(String.valueOf(logs.getImgPath().get(img)));
-        images.add(image);
-        return image;
+    public void addImgPath(String img) {
+        String imgPath = logs.getImgPath().get(img);
+        imgPaths.add(imgPath);
     }
 
-    public Image getImage() {
-        return images.get(0);
-    }
-
-    public Image getImage(int i) {
-        return images.get(i);
-    }
-
-    public ArrayList<Image> getImages() {
-        return images;
-    }
+    public ArrayList<String> getImgPaths() { return imgPaths; }
 
     public String getEventString() {
         return eventString;
