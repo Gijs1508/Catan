@@ -316,7 +316,7 @@
                   <Font name="Verdana" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="sheepRatio" layoutX="36.0" layoutY="106.0" text="4:1">
+            <Label fx:id="woolRatio" layoutX="36.0" layoutY="106.0" text="4:1">
                <font>
                   <Font name="Verdana" size="13.0" />
                </font>

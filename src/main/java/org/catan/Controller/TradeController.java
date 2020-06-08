@@ -3,6 +3,7 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import org.catan.App;
 import org.catan.Model.Inventory;
@@ -13,6 +14,9 @@ import javafx.event.ActionEvent;
 import org.catan.Model.Sound;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class TradeController {
 
@@ -44,6 +48,24 @@ public class TradeController {
     @FXML
     private Button bankTradeBtn;
 
+    @FXML private Label wheatRatio; @FXML private Label woodRatio;
+    @FXML private Label brickRatio; @FXML private Label woolRatio;
+    @FXML private Label oreRatio;
+
+
+    private static TradeController tradeController;
+
+
+    public TradeController(){
+        tradeController = this;
+    }
+
+    public static TradeController getInstance(){
+        if(tradeController == null){
+            tradeController = new TradeController();
+        }
+        return tradeController;
+    }
 
     @FXML
     public void bankTrade() {
@@ -173,6 +195,28 @@ public class TradeController {
     @FXML
     public void takeMoreWheat() {
         takeResource(takeWheatCount);
+    }
+
+    public void updateRatioView(String type, int ratio) {
+        switch (type) {
+            case "wheat":
+                wheatRatio.setText(ratio + ":1"); break;
+            case "wood":
+                woodRatio.setText(ratio + ":1"); break;
+            case "brick":
+                brickRatio.setText(ratio + ":1"); break;
+            case "wool":
+                woolRatio.setText(ratio + ":1"); break;
+            case "ore":
+                oreRatio.setText(ratio + ":1"); break;
+            case "any":
+                wheatRatio.setText(ratio + ":1");
+                woodRatio.setText(ratio + ":1");
+                brickRatio.setText(ratio + ":1");
+                woolRatio.setText(ratio + ":1");
+                oreRatio.setText(ratio + ":1");
+                break;
+        }
     }
 
     private String raiseResource(Label resource){

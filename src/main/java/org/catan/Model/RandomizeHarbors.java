@@ -16,14 +16,14 @@ public class RandomizeHarbors {
         put("wood", new Image(String.valueOf(App.class.getResource("assets/img/woodHarbor.png"))));
         put("brick", new Image(String.valueOf(App.class.getResource("assets/img/brickHarbor.png"))));
         put("ore", new Image(String.valueOf(App.class.getResource("assets/img/oreHarbor.png"))));
-        put("sheep", new Image(String.valueOf(App.class.getResource("assets/img/sheepHarbor.png"))));
+        put("wool", new Image(String.valueOf(App.class.getResource("assets/img/sheepHarbor.png"))));
         put("wheat", new Image(String.valueOf(App.class.getResource("assets/img/wheatHarbor.png"))));
         put("any", new Image(String.valueOf(App.class.getResource("assets/img/anyHarbor.png"))));
     }};
 
     private static HashMap<String, Integer> harborTypeToCount = new HashMap<>() {{
         put("wood", 1);   put("brick", 1);
-        put("ore", 1);    put("sheep", 1);
+        put("ore", 1);    put("wool", 1);
         put("wheat", 1);  put("any", 4);
     }};
 
