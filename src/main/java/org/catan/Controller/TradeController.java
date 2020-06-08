@@ -252,22 +252,14 @@ public class TradeController {
             }
         } else {
             String resourceType = indexToResource.get(inventoryIndex);
-            HashMap<String, Integer> resourceToCost = Player.getActivePlayer().getResourceToCost();
+            int cost = Player.getActivePlayer().getCostOf(resourceType);
 
-            Iterator it = resourceToCost.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry)it.next();
-                System.out.println(pair.getKey() + " = " + pair.getValue());
-                it.remove(); // avoids a ConcurrentModificationException
+            if(inventoryCard >= cost && tradeGiveLock == false){
+                for(int i = 0; i < cost; i++){
+                    resource.setText(raiseResource(resource));
+                    tradeGiveLock = true;
+                }
             }
-//            int cost = Player.getActivePlayer().getResourceToCost().get(resourceType);
-
-//            if(inventoryCard >= cost && tradeGiveLock == false){
-//                for(int i = 0; i < cost; i++){
-//                    resource.setText(raiseResource(resource));
-//                    tradeGiveLock = true;
-//                }
-//            }
         }
     }
 
@@ -282,9 +274,5 @@ public class TradeController {
 
     private int netResource(Label givenResource, Label receivedResource){
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
-    }
-
-    private HashMap<String, Integer> getUpdatedPlayerCosts() {
-        return Player.getActivePlayer().getResourceToCost();
     }
 }

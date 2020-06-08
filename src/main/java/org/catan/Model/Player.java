@@ -15,7 +15,7 @@ public class Player {
     private Inventory playerInventory;
     private boolean active = false;
 
-    private HashMap<String, Integer> resourceToCost = new HashMap<>();
+    private HashMap<String, Integer> resourceToCost;
     private TradeController tradeController = TradeController.getInstance();
 
     public static Player mainPlayer; // Player controlling the instance of the game
@@ -52,13 +52,12 @@ public class Player {
     public void updateResourceCosts(Harbor harbor) {
         if(harbor.getType().equals("any")) {
             Iterator it = resourceToCost.entrySet().iterator();
-            while (it.hasNext()) {  // Iterate through the resourceToCost HashMap
+            while (it.hasNext()) { // Iterate through the resourceToCost HashMap
                 Map.Entry pair = (Map.Entry) it.next();
-                if((Integer) pair.getValue() >= harbor.getRatio()) { // Only update if the old value is higher than the new value
+                if((Integer) pair.getValue() > harbor.getRatio()) { // Only update if the old value is higher than the new value
                     resourceToCost.replace((String) pair.getKey(), harbor.getRatio());
                     tradeController.updateRatioView((String) pair.getKey(), harbor.getRatio());
                 }
-                it.remove();
             }
         }
         else {
@@ -115,10 +114,6 @@ public class Player {
 
     public static boolean isMainPlayerActive(){
         return mainPlayerActive;
-    }
-
-    public HashMap<String, Integer> getResourceToCost() {
-        return resourceToCost;
     }
 
     public int getCostOf(String resource) {
