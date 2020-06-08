@@ -1,5 +1,7 @@
 package org.catan.Model;
 
+import org.catan.Controller.LogController;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -7,8 +9,11 @@ public class Player {
     private String name;
     private String color;
     private Inventory playerInventory;
-//    private ArrayList<SpelObject> spelerObjecten = new ArrayList<SpelObject>();
+    private boolean active = false;
     public static Player mainPlayer; // Player controlling the instance of the game
+    public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
+    public static Player activePlayer;
+    public static boolean mainPlayerActive;
 
     public Player() {
 
@@ -18,6 +23,7 @@ public class Player {
         this.name = name;
         this.color = ""; //TODO
         this.playerInventory = new Inventory();
+        allPlayers.add(this);
     }
 
     public void setName(String name) {
@@ -48,4 +54,34 @@ public class Player {
     public Inventory getPlayerInventory(){
         return this.playerInventory;
     }
+
+    public static ArrayList<Player> getAllPlayers(){
+        return allPlayers;
+    }
+
+    public static void setActivePlayer(Player player){
+        activePlayer = player;
+        player.setActive();
+        LogController.setPlayer();
+        if (player == mainPlayer){
+            mainPlayerActive = true;
+            Sound.playStartTurnJingle();
+            System.out.println("MAIN PLAYER ACTIVE");
+        } else{
+            mainPlayerActive = false;
+        }
+    }
+
+    public static Player getActivePlayer(){
+        return activePlayer;
+    }
+
+    public void setActive(){
+        active = true;
+    }
+
+    public static boolean isMainPlayerActive(){
+        return mainPlayerActive;
+    }
+
 }

@@ -1,19 +1,24 @@
 package org.catan.Model;
 
+import java.util.ArrayList;
+
 public class Village {
     private double x;
     private double y;
     private String color;
     private boolean upgraded = false;
+    private ArrayList<Tile> connectedTiles = new ArrayList<>();
 
     public Village() {
 
     }
 
-    public Village(double x, double y, String color) {
+
+    public Village(double x, double y, String color, ArrayList<Tile> connectedTiles) {
         this.x = x;
         this.y = y;
         this.color = color;
+        this.connectedTiles = connectedTiles;
     }
 
     private String getFilePathVillage() {
@@ -54,12 +59,12 @@ public class Village {
         return this.y;
     }
 
-//    public String getImgPath() {
-//        if (upgraded)
-//            return getFilePathCity();
-//        else
-//            return getFilePathVillage();
-//    }
+    public String getImgPath() {
+        if (upgraded)
+            return getFilePathCity();
+        else
+            return getFilePathVillage();
+    }
 
     public String getColor() {
         return this.color;
@@ -71,5 +76,9 @@ public class Village {
 
     public boolean isUpgraded() {
         return upgraded;
+    }
+
+    public ArrayList<Tile> getConnectedTiles() {
+        return connectedTiles;
     }
 }

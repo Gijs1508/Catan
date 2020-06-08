@@ -14,7 +14,7 @@ public class Inventory {
     [0]: Wood
     [1]: Brick
     [2]: Ore
-    [3]: Sheep
+    [3]: Wool
     [4]: Wheat
     [5]: Knight
      */
@@ -25,8 +25,17 @@ public class Inventory {
         return this.cards;
     }
 
-    public void changeCards(int index, int aantal){
-        cards[index] += aantal;
+    public void changeCards(String type, int amount){
+        System.out.println(type + "\t" + String.valueOf(amount));
+        switch(type){
+            case "wood": cards[0] += amount; break;
+            case "brick": cards[1] += amount; break;
+            case "ore": cards[2] += amount; break;
+            case "wool": cards[3] += amount; break;
+            case "wheat": cards[4] += amount; break;
+            case "knight": cards[5] += amount; break;
+
+        }
         StockController.getInstance().updateResources();
     }
 

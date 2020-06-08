@@ -10,6 +10,7 @@ import org.catan.Model.Player;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
+import org.catan.Model.Sound;
 
 import java.io.IOException;
 
@@ -46,7 +47,9 @@ public class TradeController {
 
     @FXML
     public void bankTrade() {
-        if (tradeType == "player"){
+        Sound.playSwitch();
+
+        if (tradeType == "player" && Player.mainPlayerActive){
             tradeType = "bank";
             bankTradeBtn.setFont(new Font("System Bold", 14));
             playerTradeBtn.setFont(new Font("System", 14));
@@ -56,7 +59,9 @@ public class TradeController {
 
     @FXML
     public void playerTrade() {
-        if (tradeType == "bank"){
+        Sound.playSwitch2();
+
+        if (tradeType == "bank" && Player.mainPlayerActive){
             tradeType = "player";
             bankTradeBtn.setFont(new Font("System", 14));
             playerTradeBtn.setFont(new Font("System Bold", 14));
@@ -66,35 +71,35 @@ public class TradeController {
 
     @FXML
     public void buyDevelopmentCard() {
-        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1){
-            getInventory().changeCards(2, -1);
-            getInventory().changeCards(3, -1);
-            getInventory().changeCards(4, -1);
+        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
+            getInventory().changeCards("ore", -1);
+            getInventory().changeCards("sheep", -1);
+            getInventory().changeCards("wheat", -1);
             // TODO add development card functionality
         }
     }
 
     @FXML
     public void sendTrade() throws IOException {
-        if(tradeType == "bank"){
+        if(tradeType == "bank" && Player.mainPlayerActive){
             int netWood = netResource(giveWoodCount, takeWoodCount);
-            getInventory().changeCards(0, netWood);
+            getInventory().changeCards("wood", netWood);
             int netBrick = netResource(giveBrickCount, takeBrickCount);
-            getInventory().changeCards(1, netBrick);
+            getInventory().changeCards("brick", netBrick);
             int netOre = netResource(giveOreCount, takeOreCount);
-            getInventory().changeCards(2, netOre);
+            getInventory().changeCards("ore", netOre);
             int netSheep = netResource(giveSheepCount, takeSheepCount);
-            getInventory().changeCards(3, netSheep);
+            getInventory().changeCards("sheep", netSheep);
             int netWheat = netResource(giveWheatCount, takeWheatCount);
-            getInventory().changeCards(4, netWheat);
+            getInventory().changeCards("wheat", netWheat);
             resetTrade();
-        } else if(tradeType == "player"){
+        } else if(tradeType == "player" && Player.mainPlayerActive){
             String playerName = Player.getMainPlayer().getName();
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveSheepCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeSheepCount.getText(), takeWheatCount.getText()};
             TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
 //            App.tradePopUp();
-            ScreenController.getInstance().showTradePopup();
+            ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij MainPlayer
         }
     }
 

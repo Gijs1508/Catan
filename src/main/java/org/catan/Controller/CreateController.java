@@ -11,6 +11,9 @@ import java.io.IOException;
 public class CreateController {
     @FXML private Text game_code_text;
 
+    public CreateController(){
+    }
+
     // Routes
     public void backToMenu() throws IOException {
         App.setRoot("./views/mainViewTrade");
@@ -20,12 +23,9 @@ public class CreateController {
     }
 
     // Create new game
-    @FXML
     public void createGame(ActionEvent actionEvent) {
         // TODO Werner: add code to db and check if it does not exist
-        var code = CreateGameCode.randomCodeGen(6);
-        game_code_text.setText(String.valueOf(code));
+        long gameCode = CreateGameCode.getSeed();
+        game_code_text.setText(String.valueOf(gameCode));
     }
-
-
 }
