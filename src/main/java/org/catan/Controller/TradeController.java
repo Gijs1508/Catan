@@ -14,9 +14,7 @@ import javafx.event.ActionEvent;
 import org.catan.Model.Sound;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 public class TradeController {
 
@@ -52,6 +50,13 @@ public class TradeController {
     @FXML private Label brickRatio; @FXML private Label woolRatio;
     @FXML private Label oreRatio;
 
+    private HashMap<Integer, String> indexToResource = new HashMap<>(){{
+        put(0, "wood");
+        put(1, "brick");
+        put(2, "ore");
+        put(3, "wool");
+        put(4, "wheat");
+    }};
 
     private static TradeController tradeController;
 
@@ -245,11 +250,24 @@ public class TradeController {
             if(resourceToInt(resource) < inventoryCard){
                 resource.setText(raiseResource(resource));
             }
-        } else if(inventoryCard >= 4 && tradeGiveLock == false){
-            for(int i = 0; i < 4; i++){
-                resource.setText(raiseResource(resource));
-                tradeGiveLock = true;
+        } else {
+            String resourceType = indexToResource.get(inventoryIndex);
+            HashMap<String, Integer> resourceToCost = Player.getActivePlayer().getResourceToCost();
+
+            Iterator it = resourceToCost.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
+                System.out.println(pair.getKey() + " = " + pair.getValue());
+                it.remove(); // avoids a ConcurrentModificationException
             }
+//            int cost = Player.getActivePlayer().getResourceToCost().get(resourceType);
+
+//            if(inventoryCard >= cost && tradeGiveLock == false){
+//                for(int i = 0; i < cost; i++){
+//                    resource.setText(raiseResource(resource));
+//                    tradeGiveLock = true;
+//                }
+//            }
         }
     }
 
@@ -266,4 +284,7 @@ public class TradeController {
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
     }
 
+    private HashMap<String, Integer> getUpdatedPlayerCosts() {
+        return Player.getActivePlayer().getResourceToCost();
+    }
 }

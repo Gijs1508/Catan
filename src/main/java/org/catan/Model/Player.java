@@ -15,7 +15,7 @@ public class Player {
     private Inventory playerInventory;
     private boolean active = false;
 
-    private HashMap<String, Integer> resourceToCost;
+    private HashMap<String, Integer> resourceToCost = new HashMap<>();
     private TradeController tradeController = TradeController.getInstance();
 
     public static Player mainPlayer; // Player controlling the instance of the game
@@ -65,6 +65,7 @@ public class Player {
             resourceToCost.replace(harbor.getType(), harbor.getRatio());
             tradeController.updateRatioView(harbor.getType(), harbor.getRatio());
         }
+
     }
 
     public static Player getMainPlayer() {
@@ -114,6 +115,14 @@ public class Player {
 
     public static boolean isMainPlayerActive(){
         return mainPlayerActive;
+    }
+
+    public HashMap<String, Integer> getResourceToCost() {
+        return resourceToCost;
+    }
+
+    public int getCostOf(String resource) {
+        return resourceToCost.get(resource);
     }
 
 }
