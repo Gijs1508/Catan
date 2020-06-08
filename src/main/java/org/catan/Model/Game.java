@@ -1,6 +1,5 @@
 package org.catan.Model;
 
-
 import org.catan.logic.CodeGenerator;
 
 import java.util.ArrayList;
@@ -93,3 +92,4 @@ public class Game {
         this.board = board;
     }
 }
+

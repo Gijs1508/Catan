@@ -39,9 +39,10 @@ public class LogController implements Initializable{
         logsBox.getChildren().add(logPane.getLogGrid());
     }
 
-    private void addImagesToLogPane(LogPane logPane, ArrayList<Image> images) {
-        for (int i = 0; i < images.size(); i++) {
-            logPane.addImage(images.get(i));
+    private void addImagesToLogPane(LogPane logPane, ArrayList<String> imagePaths) {
+        for (int i = 0; i < imagePaths.size(); i++) {
+            Image image = new Image(imagePaths.get(i));
+            logPane.addImage(image);
         }
     }
 
@@ -53,7 +54,7 @@ public class LogController implements Initializable{
     private void addImgLogToLogsPane(Log log) {
         LogPane logPane = new LogPane(log);
         addToLogsBox(logPane);
-        addImagesToLogPane(logPane, log.getImages());
+        addImagesToLogPane(logPane, log.getImgPaths());
     }
 
     public void update() {
@@ -62,8 +63,8 @@ public class LogController implements Initializable{
 
     public void logRollEvent(String dice1, String dice2) {
         Log log = new Log("roll", player);
-        log.createImage(dice1);
-        log.createImage(dice2);
+        log.addImgPath(dice1);
+        log.addImgPath(dice2);
         addImgLogToLogsPane(log);
         storeLog(log);
     }
@@ -71,7 +72,7 @@ public class LogController implements Initializable{
     public void logReceiveEvent(ArrayList<String> receivedCards) {
         Log log = new Log("receive", player);
         for (int i = 0; i < receivedCards.size(); i++) {
-            log.createImage(receivedCards.get(i));
+            log.addImgPath(receivedCards.get(i));
         }
         addImgLogToLogsPane(log);
         storeLog(log);
