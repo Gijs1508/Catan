@@ -8,15 +8,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import org.catan.Model.Game;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
+import org.catan.interfaces.Observable;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class TradePopUpController implements Initializable {
+public class TradePopUpController implements Initializable, Observable {
 
     @FXML private AnchorPane popupPane;
     @FXML private ImageView declineBtn;
@@ -155,4 +157,8 @@ public class TradePopUpController implements Initializable {
         return ownCards;
     }
 
+    @Override
+    public void update(Game game) {
+
+    }
 }

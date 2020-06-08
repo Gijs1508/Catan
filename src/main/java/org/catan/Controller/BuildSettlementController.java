@@ -4,11 +4,14 @@ import javafx.scene.shape.Circle;
 import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
+import org.catan.Model.Game;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
+import org.catan.interfaces.Observable;
+
 import java.util.*;
 
-public class BuildSettlementController {
+public class BuildSettlementController implements Observable {
     // todo add Player properties in all the methods
 //    private Speler player;
     private String color = "blue";
@@ -266,4 +269,8 @@ public class BuildSettlementController {
         return road;
     }
 
+    @Override
+    public void update(Game game) {
+
+    }
 }

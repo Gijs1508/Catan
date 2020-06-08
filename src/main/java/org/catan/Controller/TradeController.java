@@ -4,13 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import org.catan.Model.Game;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
+import org.catan.interfaces.Observable;
 
 import java.io.IOException;
 
-public class TradeController {
+public class TradeController implements Observable {
 
     private String tradeType = "player";
     private boolean tradeGiveLock, tradeTakeLock = false;
@@ -218,4 +220,8 @@ public class TradeController {
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
     }
 
+    @Override
+    public void update(Game game) {
+
+    }
 }

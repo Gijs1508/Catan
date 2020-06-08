@@ -9,7 +9,7 @@ public class Game {
     private static ArrayList<Player> players = new ArrayList<Player>();
     public static Player activePlayer;
     private String status;
-    private String code;
+    private Long code;
     private ArrayList<Log> logs;
     private Gameboard board;
 
@@ -18,7 +18,7 @@ public class Game {
         this.players = new ArrayList<>();
         this.logs = new ArrayList<>();
         this.status = "Open";
-        this.code = CodeGenerator.generateCode(10);
+        this.code = CreateGameCode.getSeed();
     }
 
     public void nextTurn() {
@@ -61,7 +61,7 @@ public class Game {
         return this.players;
     }
 
-    public String getCode(){
+    public Long getCode(){
         return this.code;
     }
 
@@ -81,7 +81,7 @@ public class Game {
         this.players = players;
     }
 
-    public void setCode(String code) {
+    public void setCode(Long code) {
         this.code = code;
     }
 

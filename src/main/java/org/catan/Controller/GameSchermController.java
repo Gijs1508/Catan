@@ -19,11 +19,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.*;
+import org.catan.interfaces.Observable;
 
 import java.net.URL;
 import java.util.*;
 
-public class GameSchermController implements Initializable {
+public class GameSchermController implements Initializable, Observable {
 
     private int aantalSpelers;
 //    private Spelbord spelbord;
@@ -521,6 +522,11 @@ public class GameSchermController implements Initializable {
                 tile16num, tile17num, tile18num, tile19num);
 
         return tileLabels;
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 
 //    private Speler getSpeler() {

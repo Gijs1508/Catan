@@ -17,6 +17,8 @@ import java.util.*;
 public class DatabaseConnector {
     private Firestore db;
 
+    public static DatabaseConnector connector;
+
     public DatabaseConnector() {
         try {
             File accountKey = new File("src/main/resources/org/catan/credentials/FirestoreKey.json");
@@ -33,6 +35,14 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
         this.db = FirestoreClient.getFirestore();
+        connector = this;
+    }
+
+    public static DatabaseConnector getInstance() {
+        if (connector == null) {
+            connector = new DatabaseConnector();
+        }
+        return connector;
     }
 
     public ArrayList<Game> getAllGames() {
@@ -94,7 +104,7 @@ public class DatabaseConnector {
     }
 
     public void updateGame(Game game) {
-        DocumentReference documentReference = this.db.collection("games").document(game.getCode());
+        DocumentReference documentReference = this.db.collection("games").document(String.valueOf(game.getCode()));
 
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Map> playerMap = converPlayersToHashMaps(game.getPlayers());
@@ -125,7 +135,7 @@ public class DatabaseConnector {
     }
 
     public void createGame(Game game) {
-        DocumentReference documentReference = this.db.collection("games").document(game.getCode());
+        DocumentReference documentReference = this.db.collection("games").document(String.valueOf(game.getCode()));
 
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Map> playerMap = converPlayersToHashMaps(game.getPlayers());
@@ -154,5 +164,9 @@ public class DatabaseConnector {
 
     public void createChat() {
 
+    }
+
+    public Firestore getDb() {
+        return this.db;
     }
 }

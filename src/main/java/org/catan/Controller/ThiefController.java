@@ -1,8 +1,10 @@
 package org.catan.Controller;
 
+import org.catan.Model.Game;
 import org.catan.Model.Tile;
+import org.catan.interfaces.Observable;
 
-public class ThiefController {
+public class ThiefController implements Observable {
     private Tile location;
 
     private void keyHandler() {
@@ -29,4 +31,8 @@ public class ThiefController {
 
     }
 
+    @Override
+    public void update(Game game) {
+
+    }
 }

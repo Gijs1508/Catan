@@ -2,11 +2,13 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import org.catan.App;
+import org.catan.Model.Game;
 import org.catan.Model.Player;
+import org.catan.interfaces.Observable;
 
 import java.io.IOException;
 
-public class MainController {
+public class MainController implements Observable {
 
     // Routes
     @FXML
@@ -22,5 +24,10 @@ public class MainController {
     @FXML
     private void viewRules() throws IOException {
         App.setRoot("./Views/regelsView");
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 }

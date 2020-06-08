@@ -2,7 +2,10 @@ package org.catan.Controller;
 
 //import model.Speler;
 
-public class ScoreController {
+import org.catan.Model.Game;
+import org.catan.interfaces.Observable;
+
+public class ScoreController implements Observable {
 //    private Speler speler;
     private int score;
 
@@ -15,6 +18,11 @@ public class ScoreController {
     }
 
     public void updateScore() {
+
+    }
+
+    @Override
+    public void update(Game game) {
 
     }
 }

@@ -6,7 +6,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.catan.Model.Chat ;
 import org.catan.Model.ChatMessage ;
+import org.catan.Model.Game;
 import org.catan.Model.Player;
+import org.catan.interfaces.Observable;
 
 /**
  * Takes care of the user input and updates the chat.
@@ -18,7 +20,7 @@ import org.catan.Model.Player;
  * @version 0.1
  */
 
-public class ChatController {
+public class ChatController implements Observable {
     Chat chat = new Chat(1); // get game ID
     @FXML
     private TextField messageField;
@@ -44,5 +46,10 @@ public class ChatController {
     private void updateChatView() {
         chatBox.clear();
         chatBox.appendText(chat.generateChatString());
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 }
