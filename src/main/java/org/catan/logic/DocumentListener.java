@@ -8,10 +8,13 @@ import com.google.cloud.firestore.FirestoreException;
 import javax.annotation.Nullable;
 
 public class DocumentListener {
+
+    private DocumentReference docRef;
+
     public DocumentListener(String gameId) {
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
-        DocumentReference documentReference = dbConnector.getDb().collection("games").document(gameId);
-        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        this.docRef = dbConnector.getDb().collection("games").document(gameId);
+        this.docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,
                                 @Nullable FirestoreException e) {
@@ -19,7 +22,7 @@ public class DocumentListener {
                     System.err.println("Listen failed: " + e);
                     return;
                 }
-
+                // In this if statement, all the controllers that should be called when a game document is updated, should be put
                 if (snapshot != null && snapshot.exists()) {
                     System.out.println("Current data: " + snapshot.getData());
                 } else {
@@ -28,4 +31,9 @@ public class DocumentListener {
             }
         });
     }
+
+    public void removeListener() {
+        this.docRef = null;
+    }
+
 }
