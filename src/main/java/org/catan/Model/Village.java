@@ -81,4 +81,6 @@ public class Village {
     public ArrayList<Tile> getConnectedTiles() {
         return connectedTiles;
     }
+
+    public void addConnectedTile(Tile tile) {this.connectedTiles.add(tile);}
 }

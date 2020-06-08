@@ -74,11 +74,11 @@ public class Log {
         imgPaths.add(imgPath);
     }
 
-    public String getImgPath() {
+    public String imgPathGetter() {
         return imgPaths.get(0);
     }
 
-    public String getImgPath(int i) {
+    public String imgPathGetter(int i) {
         return imgPaths.get(i);
     }
 
