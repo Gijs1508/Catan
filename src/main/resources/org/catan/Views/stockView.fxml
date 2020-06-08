@@ -65,7 +65,7 @@
                         <Image url="@../assets/img/sheep.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="sheepCount" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="72.46875">
+                  <Text fx:id="woolCount" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="72.46875">
                      <font>
                         <Font size="24.0" />
                      </font>

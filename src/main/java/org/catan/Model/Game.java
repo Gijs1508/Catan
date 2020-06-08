@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class Game {
 
-    private ArrayList<Player> players;
+    private static ArrayList<Player> players = new ArrayList<Player>();
+    public static Player activePlayer;
     private String status;
     private String code;
     private ArrayList<Log> logs;
@@ -91,5 +92,13 @@ public class Game {
     public void setBoard(Gameboard board) {
         this.board = board;
     }
-}
 
+    public static Player getActivePlayer(){
+        return activePlayer;
+    }
+
+    public static void setActivePlayer(Player player){
+        activePlayer = player;
+    }
+
+}

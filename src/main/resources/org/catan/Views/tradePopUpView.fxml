@@ -54,7 +54,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text fx:id="sheepOffer" layoutX="102.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                  <Text fx:id="woolOffer" layoutX="102.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -109,7 +109,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text fx:id="sheepRequest" layoutX="277.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                  <Text fx:id="woolRequest" layoutX="277.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font size="18.0" />
                      </font>
