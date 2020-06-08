@@ -68,11 +68,11 @@ public class StockController implements Initializable {
 
     public void testResources(){
         Inventory inventory = Player.getMainPlayer().getPlayerInventory();
-        inventory.changeCards(0, 1);
-        inventory.changeCards(1, 2);
-        inventory.changeCards(2, 3);
-        inventory.changeCards(3, 4);
-        inventory.changeCards(4, 5);
+        inventory.changeCards("wood", 1);
+        inventory.changeCards("brick", 2);
+        inventory.changeCards("ore", 3);
+        inventory.changeCards("sheep", 4);
+        inventory.changeCards("wheat", 5);
         updateResources();
     }
 
