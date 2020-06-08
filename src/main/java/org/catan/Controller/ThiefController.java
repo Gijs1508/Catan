@@ -3,21 +3,21 @@ package org.catan.Controller;
 import java.util.*;
 
 public class ThiefController {
-    private static String currentPosition = "tile10";
+    private static int currentPosition = 10;
 
     private void keyHandler() {
     }
 
-    public static boolean checkThiefPosition(String PolygonID){
-        if (PolygonID.equals(currentPosition)){
+    public static boolean checkThiefPosition(int PolygonID){
+        if (PolygonID == currentPosition){
             return false;  //if you can NOT place the thief on this position
         } else {
             return  true;  //if you CAN place the thief on this position
         }
     }
 
-    public static List<Integer> placeThief(String PolygonID) {
-        HashMap<String, List<Integer>> idAndCoordinates = new HashMap<>();
+    public static List<Integer> placeThief(int PolygonID) {
+        HashMap<Integer, List<Integer>> idAndCoordinates = new HashMap<>();
         Integer[] coordinate1 = {238, 66};
         Integer[] coordinate2 = {341, 66};
         Integer[] coordinate3 = {445, 66};
@@ -38,25 +38,25 @@ public class ThiefController {
         Integer[] coordinate18 = {341, 392};
         Integer[] coordinate19 = {445, 392};
 
-        idAndCoordinates.put("tile1", Arrays.asList(coordinate1));
-        idAndCoordinates.put("tile2", Arrays.asList(coordinate2));
-        idAndCoordinates.put("tile3", Arrays.asList(coordinate3));
-        idAndCoordinates.put("tile4", Arrays.asList(coordinate4));
-        idAndCoordinates.put("tile5", Arrays.asList(coordinate5));
-        idAndCoordinates.put("tile6", Arrays.asList(coordinate6));
-        idAndCoordinates.put("tile7", Arrays.asList(coordinate7));
-        idAndCoordinates.put("tile8", Arrays.asList(coordinate8));
-        idAndCoordinates.put("tile9", Arrays.asList(coordinate9));
-        idAndCoordinates.put("tile10", Arrays.asList(coordinate10));
-        idAndCoordinates.put("tile11", Arrays.asList(coordinate11));
-        idAndCoordinates.put("tile12", Arrays.asList(coordinate12));
-        idAndCoordinates.put("tile13", Arrays.asList(coordinate13));
-        idAndCoordinates.put("tile14", Arrays.asList(coordinate14));
-        idAndCoordinates.put("tile15", Arrays.asList(coordinate15));
-        idAndCoordinates.put("tile16", Arrays.asList(coordinate16));
-        idAndCoordinates.put("tile17", Arrays.asList(coordinate17));
-        idAndCoordinates.put("tile18", Arrays.asList(coordinate18));
-        idAndCoordinates.put("tile19", Arrays.asList(coordinate19));
+        idAndCoordinates.put(1, Arrays.asList(coordinate1));
+        idAndCoordinates.put(2, Arrays.asList(coordinate2));
+        idAndCoordinates.put(3, Arrays.asList(coordinate3));
+        idAndCoordinates.put(4, Arrays.asList(coordinate4));
+        idAndCoordinates.put(5, Arrays.asList(coordinate5));
+        idAndCoordinates.put(6, Arrays.asList(coordinate6));
+        idAndCoordinates.put(7, Arrays.asList(coordinate7));
+        idAndCoordinates.put(8, Arrays.asList(coordinate8));
+        idAndCoordinates.put(9, Arrays.asList(coordinate9));
+        idAndCoordinates.put(10, Arrays.asList(coordinate10));
+        idAndCoordinates.put(11, Arrays.asList(coordinate11));
+        idAndCoordinates.put(12, Arrays.asList(coordinate12));
+        idAndCoordinates.put(13, Arrays.asList(coordinate13));
+        idAndCoordinates.put(14, Arrays.asList(coordinate14));
+        idAndCoordinates.put(15, Arrays.asList(coordinate15));
+        idAndCoordinates.put(16, Arrays.asList(coordinate16));
+        idAndCoordinates.put(17, Arrays.asList(coordinate17));
+        idAndCoordinates.put(18, Arrays.asList(coordinate18));
+        idAndCoordinates.put(19, Arrays.asList(coordinate19));
 
         currentPosition = PolygonID;
         return idAndCoordinates.get(PolygonID);
