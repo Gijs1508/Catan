@@ -52,7 +52,7 @@ public class BuildSettlementController {
 
     /** Checks if settlement was placed adjacent to a harbor */
     private boolean builtAtHarbor() {
-        // todo Going to work on this when the build settlement functionality has been pushed
+        // todo Going to work on this when the build settlement functionality has been pushed -Jeroen
         return false;
     }
 

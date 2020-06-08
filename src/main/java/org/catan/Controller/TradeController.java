@@ -244,15 +244,16 @@ public class TradeController {
         return getInventory().getCards();
     }
 
+
     private void giveResource(Label resource, int inventoryIndex){
         int inventoryCard = getInventoryCards()[inventoryIndex];
         if(tradeType == "player"){
             if(resourceToInt(resource) < inventoryCard){
                 resource.setText(raiseResource(resource));
             }
-        } else {
+        } else { // tradeType is bank
             String resourceType = indexToResource.get(inventoryIndex);
-            int cost = Player.getActivePlayer().getCostOf(resourceType);
+            int cost = Player.getActivePlayer().getCostOf(resourceType); // Gets the player's cost for the resource type
 
             if(inventoryCard >= cost && tradeGiveLock == false){
                 for(int i = 0; i < cost; i++){
