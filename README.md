@@ -13,9 +13,9 @@ MAAK EEN BRANCH VOORDAT JE BEGINT.
 5. Klik helemaal rechts op Maven.
 6. Open de dropdown van Projectnaam
 7. Open de dropdown van Plugins
-8. Open 'clean', en dubbelklik op clean:clean. wacht to dit klaar is
-9. Open 'compiler', en dubbelklik op compiler:compile. wacht tot dit klaar is
-10. Open 'javafx', en dubbelklik op 
+8. Open 'clean', en dubbelklik op clean:clean. Wacht to dit klaar is
+9. Open 'compiler', en dubbelklik op compiler:compile. Wacht tot dit klaar is
+10. Open 'javafx', en dubbelklik op javafx:run. Wacht tot dit klaar is
 
 # TROUBLESHOOTING:
 1. Check of in de pom.xml de executable op de goede locatie staat
