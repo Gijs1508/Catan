@@ -9,12 +9,11 @@ public class ThiefController {
     }
 
     public static boolean checkThiefPosition(String PolygonID){
-        if (PolygonID == currentPosition){
+        if (PolygonID.equals(currentPosition)){
             return false;  //if you can NOT place the thief on this position
         } else {
             return  true;  //if you CAN place the thief on this position
         }
-
     }
 
     public static List<Integer> placeThief(String PolygonID) {
