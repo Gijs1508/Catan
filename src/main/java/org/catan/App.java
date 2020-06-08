@@ -11,6 +11,7 @@ import org.catan.logic.DatabaseConnector;
 import org.catan.Controller.TradePopUpController;
 import org.catan.Model.Player;
 import org.catan.Model.TurnManager;
+import org.catan.logic.GameDataPrinter;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -63,9 +64,8 @@ public class App extends Application {
 //        dbConnector.createGame(game);
 //        System.out.println(game.getCode());
         Game game = dbConnector.getGameById("Y5H81CJIK9");
-        game.getBoard().addSettlement(janVillage);
+        GameDataPrinter.printGameDetails(game);
 
-        dbConnector.updateGame(game);
 //        scene = new Scene(loadFXML("Views/screenView"));
 //        scene = new Scene(loadFXML("Views/mainView"));
 
