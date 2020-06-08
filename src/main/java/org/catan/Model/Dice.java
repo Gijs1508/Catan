@@ -10,6 +10,10 @@ import java.util.Random;
 
 public class Dice {
 
+    /*
+    This method returns a arraylist containing two random numbers
+    between 1-6. 
+     */
     public HashMap<Integer, ArrayList<String>> throwDice() {
         HashMap<Integer, ArrayList<String>> diceResult = new HashMap<>();
         ArrayList<String> dices = new ArrayList<>();
@@ -21,6 +25,11 @@ public class Dice {
         dices.add(String.valueOf(dice2));
         diceResult.put(total, dices);
 
+        setPlayerResources();
+        return diceResult;
+    }
+
+    private void setPlayerResources(){
         if(BuildVillages.getBuildVillages() != null){
             for (Village village : BuildVillages.getBuildVillages()) {
                 for (Tile tile : village.getConnectedTiles()){
@@ -31,8 +40,5 @@ public class Dice {
                 }
             }
         }
-
-
-        return diceResult;
     }
 }
