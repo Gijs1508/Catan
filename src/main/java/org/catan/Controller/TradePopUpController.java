@@ -6,10 +6,8 @@ import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.*;
 import javafx.scene.text.Text;
 
-import org.catan.App;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
@@ -28,12 +26,12 @@ public class TradePopUpController implements Initializable {
     @FXML private Text woodOffer;
     @FXML private Text brickOffer;
     @FXML private Text oreOffer;
-    @FXML private Text sheepOffer;
+    @FXML private Text woolOffer;
     @FXML private Text wheatOffer;
     @FXML private Text woodRequest;
     @FXML private Text brickRequest;
     @FXML private Text oreRequest;
-    @FXML private Text sheepRequest;
+    @FXML private Text woolRequest;
     @FXML private Text wheatRequest;
 
     private ScreenController screenController = ScreenController.getInstance();
@@ -65,12 +63,12 @@ public class TradePopUpController implements Initializable {
         woodOffer.setText(offer[0]);
         brickOffer.setText(offer[1]);
         oreOffer.setText(offer[2]);
-        sheepOffer.setText(offer[3]);
+        woolOffer.setText(offer[3]);
         wheatOffer.setText(offer[4]);
         woodRequest.setText(request[0]);
         brickRequest.setText(request[1]);
         oreRequest.setText(request[2]);
-        sheepRequest.setText(request[3]);
+        woolRequest.setText(request[3]);
         wheatRequest.setText(request[4]);
         offerLock = false;
 
@@ -129,8 +127,8 @@ public class TradePopUpController implements Initializable {
             playerInventory.changeCards("brick", -Integer.parseInt(request[1]));
             playerInventory.changeCards("ore", Integer.parseInt(offer[2]));
             playerInventory.changeCards("ore", -Integer.parseInt(request[2]));
-            playerInventory.changeCards("sheep", Integer.parseInt(offer[3]));
-            playerInventory.changeCards("sheep", -Integer.parseInt(request[3]));
+            playerInventory.changeCards("wool", Integer.parseInt(offer[3]));
+            playerInventory.changeCards("wool", -Integer.parseInt(request[3]));
             playerInventory.changeCards("wheat", Integer.parseInt(offer[4]));
             playerInventory.changeCards("wheat", -Integer.parseInt(request[4]));
             offerLock = true;

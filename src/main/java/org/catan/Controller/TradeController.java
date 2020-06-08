@@ -4,12 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-import org.catan.App;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.event.ActionEvent;
 import org.catan.Model.Sound;
 
 import java.io.IOException;
@@ -32,9 +28,9 @@ public class TradeController {
     @FXML
     private Label takeOreCount;
     @FXML
-    private Label giveSheepCount;
+    private Label giveWoolCount;
     @FXML
-    private Label takeSheepCount;
+    private Label takeWoolCount;
     @FXML
     private Label giveBrickCount;
     @FXML
@@ -73,7 +69,7 @@ public class TradeController {
     public void buyDevelopmentCard() {
         if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
             getInventory().changeCards("ore", -1);
-            getInventory().changeCards("sheep", -1);
+            getInventory().changeCards("wool", -1);
             getInventory().changeCards("wheat", -1);
             // TODO add development card functionality
         }
@@ -88,15 +84,15 @@ public class TradeController {
             getInventory().changeCards("brick", netBrick);
             int netOre = netResource(giveOreCount, takeOreCount);
             getInventory().changeCards("ore", netOre);
-            int netSheep = netResource(giveSheepCount, takeSheepCount);
-            getInventory().changeCards("sheep", netSheep);
+            int netWool = netResource(giveWoolCount, takeWoolCount);
+            getInventory().changeCards("wool", netWool);
             int netWheat = netResource(giveWheatCount, takeWheatCount);
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
         } else if(tradeType == "player" && Player.mainPlayerActive){
             String playerName = Player.getMainPlayer().getName();
-            String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveSheepCount.getText(), giveWheatCount.getText()};
-            String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeSheepCount.getText(), takeWheatCount.getText()};
+            String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
+            String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
             TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
 //            App.tradePopUp();
             ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij MainPlayer
@@ -112,8 +108,8 @@ public class TradeController {
         giveBrickCount.setText("0");
         takeOreCount.setText("0");
         giveOreCount.setText("0");
-        takeSheepCount.setText("0");
-        giveSheepCount.setText("0");
+        takeWoolCount.setText("0");
+        giveWoolCount.setText("0");
         takeWheatCount.setText("0");
         giveWheatCount.setText("0");
         tradeGiveLock = false;
@@ -143,14 +139,14 @@ public class TradeController {
     }
 
     @FXML
-    public void giveMoreSheep() {
-        //Inventory index of Sheep is 3
-        giveResource(giveSheepCount, 3);
+    public void giveMoreWool() {
+        //Inventory index of Wool is 3
+        giveResource(giveWoolCount, 3);
     }
 
     @FXML
-    public void takeMoreSheep() {
-        takeResource(takeSheepCount);
+    public void takeMoreWool() {
+        takeResource(takeWoolCount);
     }
 
     @FXML
