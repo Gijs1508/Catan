@@ -30,7 +30,6 @@ public class BuildSettlementController {
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
         this.bv = new BuildVillages();
-
     }
 
     // Returns roads from player
