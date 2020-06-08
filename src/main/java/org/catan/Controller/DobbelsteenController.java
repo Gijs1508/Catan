@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import org.catan.App;
 import org.catan.Model.Dice;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class DobbelsteenController {
     }
 
     @FXML
-    public void throwDie() {
+    public void throwDie() throws IOException {
         HashMap<Integer, ArrayList<String>> diceResult = dice.throwDice();
         Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
         Integer total = entry.getKey();

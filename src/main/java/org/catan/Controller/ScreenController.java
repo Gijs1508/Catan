@@ -38,6 +38,7 @@ public class ScreenController implements Initializable {
     @FXML private Pane costPane;
     @FXML private Pane knightPopup;
     @FXML private Pane tradePopup;
+    @FXML private Pane HandInPopUp;
 
     private static ScreenController screenController;
 
