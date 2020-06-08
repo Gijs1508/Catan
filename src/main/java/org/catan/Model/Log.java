@@ -75,11 +75,11 @@ public class Log {
         return image;
     }
 
-    public Image getImage() {
+    public Image imageGetter() {
         return images.get(0);
     }
 
-    public Image getImage(int i) {
+    public Image imageGetter(int i) {
         return images.get(i);
     }
 
