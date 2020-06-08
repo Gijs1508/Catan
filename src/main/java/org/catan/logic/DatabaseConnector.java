@@ -95,10 +95,13 @@ public class DatabaseConnector {
 
     public void updateGame(Game game) {
         DocumentReference documentReference = this.db.collection("games").document(game.getCode());
+
         ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<Map> playerMap = converPlayersToHashMaps(game.getPlayers());
+
         HashMap<String, Object> dataMap = objectMapper.convertValue(game, HashMap.class);
-        dataMap.put("spelers", objectMapper.convertValue(game.getPlayers(), HashMap.class));
-        ApiFuture<WriteResult> result = documentReference.set(dataMap);
+        dataMap.put("players", playerMap);
+        ApiFuture<WriteResult> result = documentReference.update(dataMap);
         try {
             System.out.println("Update time : " + result.get().getUpdateTime());
         } catch (Exception e) {
