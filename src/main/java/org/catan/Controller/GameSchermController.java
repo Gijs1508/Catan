@@ -39,6 +39,15 @@ public class GameSchermController implements Initializable {
     @FXML private Polygon tile17; @FXML private Polygon tile18; @FXML private Polygon tile19;
     // This is the bandit
     @FXML private Polygon tile10;
+    @FXML private ImageView thief;
+
+    @FXML private Circle thiefTile1; @FXML private Circle thiefTile2; @FXML private Circle thiefTile3;
+    @FXML private Circle thiefTile4; @FXML private Circle thiefTile5; @FXML private Circle thiefTile6;
+    @FXML private Circle thiefTile7; @FXML private Circle thiefTile8; @FXML private Circle thiefTile9;
+    @FXML private Circle thiefTile10; @FXML private Circle thiefTile11; @FXML private Circle thiefTile12;
+    @FXML private Circle thiefTile13; @FXML private Circle thiefTile14; @FXML private Circle thiefTile15;
+    @FXML private Circle thiefTile16; @FXML private Circle thiefTile17; @FXML private Circle thiefTile18;
+    @FXML private Circle thiefTile19;
 
     // Tile numbers
     @FXML private Label tile1num; @FXML private Label tile2num; @FXML private Label tile3num;
@@ -134,7 +143,8 @@ public class GameSchermController implements Initializable {
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
-    private ArrayList<Label> tileNumNodeList;
+    private ArrayList<Circle> thiefTileNodeList = new ArrayList<>();
+    private ArrayList<Label> tileNumNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList = new ArrayList<>();
 
     private ArrayList<Harbor> harbors = new ArrayList<>();
@@ -160,6 +170,8 @@ public class GameSchermController implements Initializable {
         initializeButtons();
 
         initializeHarbors();
+
+        highlightTiles(10);
     }
 
     private void initializeHarbors() {
@@ -263,6 +275,43 @@ public class GameSchermController implements Initializable {
 
     }
 
+    @FXML
+    private void placeThief(MouseEvent mouseEvent){
+        Circle circle = (Circle) mouseEvent.getSource();
+        thief.setLayoutX(circle.getLayoutX() - 26);
+        thief.setLayoutY(circle.getLayoutY() - 33);
+        unHighlightTiles();
+    }
+
+    public void highlightTiles(int tileId) {
+        for (Circle thiefTile : thiefTileNodeList) {
+            if (!thiefTile.getId().equals("thiefTile" + tileId)) {
+                thiefTile.setVisible(true);
+            }
+        }
+    }
+
+    private void unHighlightTiles() {
+        for (Circle thiefTile : thiefTileNodeList) {
+            thiefTile.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void emphasizeTile(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource();
+        circle.setOpacity(0.9);
+        circle.setScaleX(1.1);
+        circle.setScaleY(1.1);
+    }
+
+    @FXML
+    private void undoEmphasizeTile(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource();
+        circle.setOpacity(0.7);
+        circle.setScaleX(1);
+        circle.setScaleY(1);
+    }
 
     // TODO Jan
     @FXML
@@ -485,16 +534,25 @@ public class GameSchermController implements Initializable {
                 roadSpot71, roadSpot72
         );
 
-        for (int i = 0; i < vertexNodeList.size() ; i++) {
-            vertexNodeList.get(i).setVisible(false);
+        Collections.addAll(thiefTileNodeList,
+                thiefTile1, thiefTile2, thiefTile3, thiefTile4, thiefTile5, thiefTile6, thiefTile7, thiefTile8,
+                thiefTile9, thiefTile10, thiefTile11, thiefTile12, thiefTile13, thiefTile14, thiefTile15,
+                thiefTile16, thiefTile17, thiefTile18, thiefTile19);
+
+        for (Circle item : vertexNodeList) {
+            item.setVisible(false);
         }
 
-        for (int i = 0; i < upgradeNodeList.size() ; i++) {
-            upgradeNodeList.get(i).setVisible(false);
+        for (Circle value : upgradeNodeList) {
+            value.setVisible(false);
         }
 
-        for (int i = 0; i < roadSpotNodeList.size(); i++) {
-            roadSpotNodeList.get(i).setVisible(false);
+        for (Circle circle : roadSpotNodeList) {
+            circle.setVisible(false);
+        }
+
+        for (Circle circle : thiefTileNodeList) {
+            circle.setVisible(false);
         }
     }
 
