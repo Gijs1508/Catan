@@ -13,15 +13,18 @@ public class JoinController {
     @FXML private Text error_text;
 
     // Routes
-    public void backToMenu() throws IOException {
+    @FXML
+    private void backToMenu() throws IOException {
         App.setRoot("./views/mainView");
     }
 
-    public void createGame() throws IOException{
+    @FXML
+    private void createGame() throws IOException{
         App.setRoot("./views/createView");
     }
 
-    public void handleButtonJoinAction(ActionEvent actionEvent) throws IOException{
+    @FXML
+    private void handleButtonJoinAction(ActionEvent actionEvent) throws IOException{
         var code_text = code_input.getText();
         // TODO Werner: check if game code exists + is open!
         if(code_text.equals("testcode")){

@@ -150,10 +150,7 @@ public class GameSchermController implements Initializable {
 //        initializeRoads();
         addAllTilesToArray();
         ArrayList<Label> labels = addAllTileNumbersToArray();
-
-        //TODO: changing the seed to the gamecode!
         long seed = CreateGameCode.randomCodeGen();
-
         RandomizeBoard.setRandomTiles(tileNodeList, labels, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         //tile1.setFill(Color.BROWN);
