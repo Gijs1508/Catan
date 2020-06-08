@@ -10,13 +10,13 @@ public class Game {
     private ArrayList<Player> players;
     private String status;
     private String code;
-    private Logs logs;
+    private ArrayList<Log> logs;
     private Gameboard board;
 
     public Game() {
         this.board = new Gameboard();
         this.players = new ArrayList<>();
-        this.logs = new Logs();
+        this.logs = new ArrayList<>();
         this.status = "Open";
         this.code = CodeGenerator.generateCode(10);
     }
@@ -66,14 +66,14 @@ public class Game {
     }
 
     public void addLog(Log log) {
-        this.logs.addLog(log);
+        this.logs.add(log);
     }
 
     public ArrayList<Log> getLogs() {
-        return logs.getLogs();
+        return logs;
     }
 
-    public void setLogs(Logs logs) {
+    public void setLogs(ArrayList<Log> logs) {
         this.logs = logs;
     }
 

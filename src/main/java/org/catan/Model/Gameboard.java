@@ -12,7 +12,8 @@ public class Gameboard {
     private HashMap harbour;
 
     public Gameboard() {
-
+        this.settlements = new ArrayList<>();
+        this.roads = new ArrayList<>();
     }
 
     public void setTiles() {
@@ -49,5 +50,13 @@ public class Gameboard {
 
     public void setRoads(ArrayList<Road> roads) {
         this.roads = roads;
+    }
+
+    public void addSettlement(Village village) {
+        this.settlements.add(village);
+    }
+
+    public void addRoad(Road road) {
+        this.roads.add(road);
     }
 }

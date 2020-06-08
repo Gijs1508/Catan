@@ -6,6 +6,10 @@ public class Village {
     private String color;
     private boolean upgraded = false;
 
+    public Village() {
+
+    }
+
     public Village(double x, double y, String color) {
         this.x = x;
         this.y = y;
@@ -50,12 +54,12 @@ public class Village {
         return this.y;
     }
 
-    public String getImgPath() {
-        if (upgraded)
-            return getFilePathCity();
-        else
-            return getFilePathVillage();
-    }
+//    public String getImgPath() {
+//        if (upgraded)
+//            return getFilePathCity();
+//        else
+//            return getFilePathVillage();
+//    }
 
     public String getColor() {
         return this.color;

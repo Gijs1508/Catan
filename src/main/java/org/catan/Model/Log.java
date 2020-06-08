@@ -29,6 +29,10 @@ public class Log {
     private String opponentName;
     private ArrayList<Image> images = new ArrayList<>();
 
+    public Log() {
+
+    }
+
     public Log(String eventType, String playerName){
         if (logs.getImgEvents().containsKey(eventType))
             logType = "img";
