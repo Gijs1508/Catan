@@ -22,6 +22,7 @@ public class GameDataPrinter {
         for (Village village : game.getBoard().getSettlements()) {
             System.out.println(village.getX());
             System.out.println(village.getY());
+            System.out.println("is upgraded: " + village.isUpgraded());
             System.out.println("village connected tiles: ");
             for (Tile tile : village.getConnectedTiles()) {
                 System.out.println(tile.getType());
