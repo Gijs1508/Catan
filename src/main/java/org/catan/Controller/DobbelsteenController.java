@@ -52,6 +52,7 @@ public class DobbelsteenController {
         dice2_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(1) + ".png"))));
         logController.logRollEvent(values.get(0), values.get(1));
 
+
 //        ArrayList<String> receivedCards = new ArrayList<>();  // Move to method to controller that handles this
 //        receivedCards.add("wheat");
 //        receivedCards.add("ore");
