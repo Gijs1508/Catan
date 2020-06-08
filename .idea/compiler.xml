@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Catan" />
         <module name="IIPSENE_Game" />
+        <module name="Catan_Game" />
       </profile>
     </annotationProcessing>
   </component>

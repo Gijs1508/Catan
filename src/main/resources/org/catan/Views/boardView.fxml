@@ -863,6 +863,11 @@
             <Circle fx:id="roadSpot64" fill="#c89cffd9" layoutX="304.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="roadSpot69" fill="#c89cffd9" layoutX="329.0" layoutY="448.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="roadSpot66" fill="#c89cffd9" layoutX="509.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <ImageView fx:id="thief" fitHeight="59.0" fitWidth="14.0" layoutX="546.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/gameobjects/Thief.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <ImageView fx:id="endTurnButton" fitHeight="55.0" fitWidth="155.0" layoutX="7.0" layoutY="534.0" onMouseClicked="#endTurn" pickOnBounds="true" preserveRatio="true">
