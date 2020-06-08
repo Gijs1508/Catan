@@ -10,24 +10,24 @@ public class ThiefController {
     public static List<Integer> placeThief(String PolygonID) {
         HashMap<String, List<Integer>> idAndCoordinates = new HashMap<>();
         Integer[] coordinate1 = {238, 66};
-        Integer[] coordinate2 = {238, 66};
-        Integer[] coordinate3 = {238, 66};
-        Integer[] coordinate4 = {238, 66};
-        Integer[] coordinate5 = {238, 66};
-        Integer[] coordinate6 = {666, 66};
-        Integer[] coordinate7 = {238, 66};
-        Integer[] coordinate8 = {238, 66};
-        Integer[] coordinate9 = {238, 66};
-        Integer[] coordinate10 = {238, 66};
-        Integer[] coordinate11 = {238, 66};
-        Integer[] coordinate12 = {238, 66};
-        Integer[] coordinate13 = {238, 66};
-        Integer[] coordinate14 = {238, 66};
-        Integer[] coordinate15 = {238, 66};
-        Integer[] coordinate16 = {238, 66};
-        Integer[] coordinate17 = {238, 66};
-        Integer[] coordinate18 = {238, 66};
-        Integer[] coordinate19 = {238, 66};
+        Integer[] coordinate2 = {341, 66};
+        Integer[] coordinate3 = {445, 66};
+        Integer[] coordinate4 = {187, 147};
+        Integer[] coordinate5 = {290, 147};
+        Integer[] coordinate6 = {392, 147};
+        Integer[] coordinate7 = {495, 147};
+        Integer[] coordinate8 = {137, 229};
+        Integer[] coordinate9 = {240, 229};
+        Integer[] coordinate10 = {327, 211};
+        Integer[] coordinate11 = {444, 229};
+        Integer[] coordinate12 = {546, 229};
+        Integer[] coordinate13 = {187, 310};
+        Integer[] coordinate14 = {289, 310};
+        Integer[] coordinate15 = {392, 310};
+        Integer[] coordinate16 = {495, 310};
+        Integer[] coordinate17 = {239, 392};
+        Integer[] coordinate18 = {341, 392};
+        Integer[] coordinate19 = {445, 392};
 
         idAndCoordinates.put("tile1", Arrays.asList(coordinate1));
         idAndCoordinates.put("tile2", Arrays.asList(coordinate2));
@@ -49,7 +49,7 @@ public class ThiefController {
         idAndCoordinates.put("tile18", Arrays.asList(coordinate18));
         idAndCoordinates.put("tile19", Arrays.asList(coordinate19));
 
-        return idAndCoordinates.get("tile6");
+        return idAndCoordinates.get(PolygonID);
     }
 
 }
