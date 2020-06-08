@@ -1,6 +1,7 @@
 package org.catan.Model;
 
 import org.catan.Controller.LogController;
+import org.catan.Controller.ThiefController;
 
 import java.util.ArrayList;
 
