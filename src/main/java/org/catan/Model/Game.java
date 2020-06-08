@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
     private static ArrayList<Player> players = new ArrayList<Player>();
+    public static Player activePlayer;
     private String status;
     private String code;
 
@@ -40,5 +41,17 @@ public class Game {
     public String getStatus() { return status; }
 
     public String getCode() { return code; }
+
+    public ArrayList<Player> getPlayers(){
+        return players;
+    }
+
+    public static Player getActivePlayer(){
+        return activePlayer;
+    }
+
+    public static void setActivePlayer(Player player){
+        activePlayer = player;
+    }
 
 }

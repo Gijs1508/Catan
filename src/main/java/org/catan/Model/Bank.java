@@ -1,7 +1,5 @@
 package org.catan.Model;
 
-// Inventaris needs to add the card to Bank
-
 public class Bank {
     private Inventory bankInventory;
 
