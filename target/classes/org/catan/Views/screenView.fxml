@@ -17,6 +17,6 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Pane>
-      <Pane fx:id="tradePopup" layoutX="574.0" layoutY="91.0" prefHeight="228.0" prefWidth="354.0" />
+      <Pane fx:id="tradePopup" layoutX="600.0" layoutY="141.0" prefHeight="228.0" prefWidth="354.0" />
     </children>
 </AnchorPane>

@@ -34,7 +34,6 @@ public class Inventory {
 
     //Changing a player's cards
     public void changeCards(String type, int amount){
-        System.out.println(type + "\t" + String.valueOf(amount));
         switch(type){
             case "wood": cards[0] += amount; break;
             case "brick": cards[1] += amount; break;
