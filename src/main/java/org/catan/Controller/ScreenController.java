@@ -11,6 +11,7 @@ import org.catan.View.popups.KnightDetails;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class ScreenController implements Initializable {
@@ -24,7 +25,9 @@ public class ScreenController implements Initializable {
     private AnchorPane scoreView;
     private AnchorPane costView;
     private AnchorPane knightDetails;
+    private AnchorPane tradePopupView;
 
+    @FXML private AnchorPane root;
     @FXML private Pane boardPane;
     @FXML private Pane stockPane;
     @FXML private Pane scorePane;
@@ -34,6 +37,7 @@ public class ScreenController implements Initializable {
     @FXML private Pane dicePane;
     @FXML private Pane costPane;
     @FXML private Pane knightPopup;
+    @FXML private Pane tradePopup;
 
     private static ScreenController screenController;
 
@@ -69,6 +73,8 @@ public class ScreenController implements Initializable {
         stockPane.getChildren().setAll(stockView);
         knightPopup.getChildren().setAll(knightDetails);
         knightPopup.setVisible(false);
+
+        tradePopup.setVisible(false);
     }
 
     public void hideKnightPopup() {
@@ -79,6 +85,28 @@ public class ScreenController implements Initializable {
     public void showKnightPopup() {
         KnightDetails.getFadeIn().playFromStart();
         knightPopup.setVisible(true);
+    }
+
+    public void showTradePopup() throws IOException {
+        tradePopupView = (AnchorPane) App.loadFXML("Views/tradePopUpView");
+        tradePopup.getChildren().setAll(tradePopupView);
+        tradePopup.setVisible(true);
+    }
+
+    public void hideTradePopup() {
+        tradePopup.setVisible(false);
+    }
+
+    public HashMap<String, Double> getTradePopupLayout() {
+        HashMap<String, Double> popupInfo = new HashMap<>() {{
+            this.put("layoutX", tradePopup.getLayoutX());
+            this.put("layoutY", tradePopup.getLayoutY());
+        }};
+        return popupInfo;
+    }
+
+    public AnchorPane getRoot() {
+        return root;
     }
 
     public static ScreenController getInstance() {
