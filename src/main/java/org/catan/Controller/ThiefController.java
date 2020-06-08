@@ -3,8 +3,18 @@ package org.catan.Controller;
 import java.util.*;
 
 public class ThiefController {
+    private static String currentPosition = "tile10";
 
     private void keyHandler() {
+    }
+
+    public static boolean checkThiefPosition(String PolygonID){
+        if (PolygonID == currentPosition){
+            return false;  //if you can NOT place the thief on this position
+        } else {
+            return  true;  //if you CAN place the thief on this position
+        }
+
     }
 
     public static List<Integer> placeThief(String PolygonID) {
@@ -49,6 +59,7 @@ public class ThiefController {
         idAndCoordinates.put("tile18", Arrays.asList(coordinate18));
         idAndCoordinates.put("tile19", Arrays.asList(coordinate19));
 
+        currentPosition = PolygonID;
         return idAndCoordinates.get(PolygonID);
     }
 
