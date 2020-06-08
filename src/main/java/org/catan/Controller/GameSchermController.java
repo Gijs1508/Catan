@@ -23,6 +23,7 @@ import javafx.scene.media.*;
 
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameSchermController implements Initializable {
 
@@ -394,7 +395,7 @@ public class GameSchermController implements Initializable {
     @FXML
     public void buildRoadBtnClicked() {
         // todo Placeholder for building next to a harbor
-        BuildSettlementController.getInstance().builtAtHarbor(harbors.get(2));
+        BuildSettlementController.getInstance().updatePlayerFromHarbor(harbors.get(ThreadLocalRandom.current().nextInt(0, 8 + 1)));
 
         Sound.playClick();
 

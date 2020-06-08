@@ -5,6 +5,8 @@ import org.catan.Controller.TradeController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Player {
 
@@ -44,11 +46,25 @@ public class Player {
 
     /*** Updates resource costs for the player object and the player's trade view.
      * Takes harbor's type and ratio (costs) as a parameter since it's the only relevant information.
+     * If the type is any, all values in resourceToCost get updated (unless the ratio has already been updated).
      * @param harbor harbor object that settlement has been placed adjacent to
      * @author Jeroen */
     public void updateResourceCosts(Harbor harbor) {
-        resourceToCost.replace(harbor.getType(), harbor.getRatio());
-        tradeController.updateRatioView(harbor.getType(), harbor.getRatio());
+        if(harbor.getType().equals("any")) {
+            Iterator it = resourceToCost.entrySet().iterator();
+            while (it.hasNext()) {  // Iterate through the resourceToCost HashMap
+                Map.Entry pair = (Map.Entry) it.next();
+                if((Integer) pair.getValue() >= harbor.getRatio()) { // Only update if the old value is higher than the new value
+                    resourceToCost.replace((String) pair.getKey(), harbor.getRatio());
+                    tradeController.updateRatioView((String) pair.getKey(), harbor.getRatio());
+                }
+                it.remove();
+            }
+        }
+        else {
+            resourceToCost.replace(harbor.getType(), harbor.getRatio());
+            tradeController.updateRatioView(harbor.getType(), harbor.getRatio());
+        }
     }
 
     public static Player getMainPlayer() {
