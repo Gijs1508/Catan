@@ -27,8 +27,9 @@ public class RandomizeBoard {
         addItemsToTile(tileHashmap, labelHashmap);
 
         // Test loop to check if the tile objects are created
-        for (Tile allTile : ALL_TILES) {
-        }
+//        for (Tile allTile : ALL_TILES) {
+//            System.out.println(allTile.getId());
+//        }
     }
 
     private static HashMap<String, String> createResourcesOnTiles(Random randomBoard, ArrayList<Polygon> tiles, ArrayList<HashMap<String, Image>> tileArray){
