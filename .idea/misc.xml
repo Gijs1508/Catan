@@ -5,9 +5,7 @@
     <option name="languageLevel" value="ES6" />
   </component>
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Desktop/Test" />
-    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="true" />
-    <option name="OPTION_DOCUMENT_TAG_VERSION" value="true" />
+    <option name="OUTPUT_DIRECTORY" value="F:/javadoc Catan" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
