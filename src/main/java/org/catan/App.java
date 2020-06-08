@@ -42,9 +42,9 @@ public class App extends Application {
         jan.setColor("Pink");
         game.addSpeler(jan);
         game.addSpeler(sabrina);
-        Village janVillage = new Village(20, 40, "Pink");
-        Village sabrinaVillage = new Village(40, 20, "Red");
-        Road janRoad = new Road(10, 30, "Pink");
+        Village janVillage = new Village(20, 40, "Blue", new ArrayList<>());
+        Village sabrinaVillage = new Village(40, 20, "Red", new ArrayList<>());
+        Road janRoad = new Road(10, 30, "Blue");
         Road sabrinaRoad = new Road(20, 40, "Red");
         game.getBoard().addSettlement(janVillage);
         game.getBoard().addSettlement(sabrinaVillage);

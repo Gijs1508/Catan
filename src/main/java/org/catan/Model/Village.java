@@ -59,7 +59,7 @@ public class Village {
         return this.y;
     }
 
-    public String getImgPath() {
+    public String imgPath() {
         if (upgraded)
             return getFilePathCity();
         else
