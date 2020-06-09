@@ -31,6 +31,7 @@ public class Dice {
                 System.out.println("Speler moet kaarten inleveren");
                 App.HandInPopUp();
             }
+            //TODO Rover verzetten
         }
 
         setPlayerResources();
