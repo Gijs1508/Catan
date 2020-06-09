@@ -3,12 +3,14 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
 
 import java.io.IOException;
+import java.util.*;
 
 public class TradeController {
 
@@ -40,6 +42,31 @@ public class TradeController {
     @FXML
     private Button bankTradeBtn;
 
+    @FXML private Label wheatRatio; @FXML private Label woodRatio;
+    @FXML private Label brickRatio; @FXML private Label woolRatio;
+    @FXML private Label oreRatio;
+
+    private HashMap<Integer, String> indexToResource = new HashMap<>(){{
+        put(0, "wood");
+        put(1, "brick");
+        put(2, "ore");
+        put(3, "wool");
+        put(4, "wheat");
+    }};
+
+    private static TradeController tradeController;
+
+
+    public TradeController(){
+        tradeController = this;
+    }
+
+    public static TradeController getInstance(){
+        if(tradeController == null){
+            tradeController = new TradeController();
+        }
+        return tradeController;
+    }
 
     @FXML
     public void bankTrade() {
@@ -171,6 +198,28 @@ public class TradeController {
         takeResource(takeWheatCount);
     }
 
+    public void updateRatioView(String type, int ratio) {
+        switch (type) {
+            case "wheat":
+                wheatRatio.setText(ratio + ":1"); break;
+            case "wood":
+                woodRatio.setText(ratio + ":1"); break;
+            case "brick":
+                brickRatio.setText(ratio + ":1"); break;
+            case "wool":
+                woolRatio.setText(ratio + ":1"); break;
+            case "ore":
+                oreRatio.setText(ratio + ":1"); break;
+            case "any":
+                wheatRatio.setText(ratio + ":1");
+                woodRatio.setText(ratio + ":1");
+                brickRatio.setText(ratio + ":1");
+                woolRatio.setText(ratio + ":1");
+                oreRatio.setText(ratio + ":1");
+                break;
+        }
+    }
+
     private String raiseResource(Label resource){
         return Integer.toString(resourceToInt(resource) + 1);
     }
@@ -191,16 +240,22 @@ public class TradeController {
         return getInventory().getCards();
     }
 
+
     private void giveResource(Label resource, int inventoryIndex){
         int inventoryCard = getInventoryCards()[inventoryIndex];
         if(tradeType == "player"){
             if(resourceToInt(resource) < inventoryCard){
                 resource.setText(raiseResource(resource));
             }
-        } else if(inventoryCard >= 4 && tradeGiveLock == false){
-            for(int i = 0; i < 4; i++){
-                resource.setText(raiseResource(resource));
-                tradeGiveLock = true;
+        } else { // tradeType is bank
+            String resourceType = indexToResource.get(inventoryIndex);
+            int cost = Player.getActivePlayer().getCostOf(resourceType); // Gets the player's cost for the resource type
+
+            if(inventoryCard >= cost && tradeGiveLock == false){
+                for(int i = 0; i < cost; i++){
+                    resource.setText(raiseResource(resource));
+                    tradeGiveLock = true;
+                }
             }
         }
     }
@@ -217,5 +272,4 @@ public class TradeController {
     private int netResource(Label givenResource, Label receivedResource){
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
     }
-
 }

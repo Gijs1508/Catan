@@ -5,6 +5,13 @@ import org.catan.App;
 
 import java.util.HashMap;
 
+/**
+ * Harbor model that contains all required information about a single harbor.
+ *
+ * @author Jeroen
+ * @version 0.5
+ */
+
 public class Harbor {
 
     private int harborNum;
@@ -15,7 +22,7 @@ public class Harbor {
         put("wood", new Image(String.valueOf(App.class.getResource("assets/img/woodHarbor.png"))));
         put("brick", new Image(String.valueOf(App.class.getResource("assets/img/brickHarbor.png"))));
         put("ore", new Image(String.valueOf(App.class.getResource("assets/img/oreHarbor.png"))));
-        put("sheep", new Image(String.valueOf(App.class.getResource("assets/img/sheepHarbor.png"))));
+        put("wool", new Image(String.valueOf(App.class.getResource("assets/img/sheepHarbor.png"))));
         put("wheat", new Image(String.valueOf(App.class.getResource("assets/img/wheatHarbor.png"))));
         put("any", new Image(String.valueOf(App.class.getResource("assets/img/anyHarbor.png"))));
     }};
