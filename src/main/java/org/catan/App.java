@@ -36,7 +36,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Views/screenView"));
-        scene = new Scene(loadFXML("Views/mainView"));
+        //scene = new Scene(loadFXML("Views/mainView"));
 
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
