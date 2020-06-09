@@ -95,15 +95,29 @@ public class TradeController {
 
     @FXML
     public void buyDevelopmentCard() {
-        // TODO add those resources to bank inventory
+        // If player has required cards TODO add those resources to bank inventory
         if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
             String developmentCard = Bank.getBank().takeDevelopmentCard();
 
-            // Executes if bank has development cards left
+            // Bank gave a victory point card
+            if(developmentCard.equals("victoryPoint")) {
+
+            }
+            // Bank gave a knight card
+            else {
+
+            }
+
+            // Executes if bank has development cards left, takes resources
             if(!developmentCard.equals("bankEmpty")) {
                 getInventory().changeCards("ore", -1);
                 getInventory().changeCards("wool", -1);
                 getInventory().changeCards("wheat", -1);
+            }
+            // Bank is empty
+            else {
+                // TODO bank is empty functionality
+                System.out.println("Bank is empty");
             }
         }
     }

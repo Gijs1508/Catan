@@ -29,7 +29,7 @@ public class Bank {
         this.bankInventory.changeCards("knight", 25); // Represents all development cards (also victory point cards)
 
         developmentCardStock = new HashMap<>(){{
-           put("victorypoint", 7);
+           put("victoryPoint", 7);
            put("knight", 18);
         }};
     }
@@ -37,14 +37,20 @@ public class Bank {
     public String takeDevelopmentCard() {
         if(bankInventory.getDevelopmentCardsLeft() > 0) {
             // Get random key from developmentCardStock
-            Object developmentCardObject = developmentCardStock.keySet().toArray()[new Random().nextInt(developmentCardStock.keySet().toArray().length)];
-            String developmentCard = developmentCardObject.toString();
+            String developmentCard = null;
+            for (int i = 0; i < 1; i++) {
+                Object developmentCardObject = developmentCardStock.keySet().toArray()[new Random().nextInt(developmentCardStock.keySet().toArray().length)];
+                developmentCard = developmentCardObject.toString();
+                if (developmentCardStock.get(developmentCard) <= 0) {
+                    i--;
+                }
+            }
 
             // Remove that development card from the developmentCardStock, the inventory and update the score view
             developmentCardStock.replace(developmentCard, developmentCardStock.get(developmentCard) - 1);
             bankInventory.changeCards("knight", -1);
             scoreController.removeDevelopmentCardFromBankView();
-
+            
             return developmentCard;
         }
         else return "bankEmpty";
