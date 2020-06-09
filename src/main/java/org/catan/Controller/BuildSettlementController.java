@@ -96,8 +96,14 @@ public class BuildSettlementController {
                 for (Village buildVillage : buildVillages) {
                     if (circle.getLayoutX() != buildVillage.getX() && circle.getLayoutY() != buildVillage.getY()) {
                         nodes.add(circle);
+                        System.out.println();
+                        System.out.println("#############");
                         System.out.println("hier staat een gebouw");
                         System.out.println("Dit is de circle X: " + circle.getLayoutX());
+                        System.out.println("Dit is de village X: " + buildVillage.getX());
+
+                        System.out.println("Dit is de circle Y: " + circle.getLayoutX());
+                        System.out.println("Dit is de village Y: " + buildVillage.getY());
                     }
                 }
             }
@@ -147,29 +153,29 @@ public class BuildSettlementController {
     // Returns nodes that have no villages close to them
     private ArrayList<Circle> villagesNotClose(ArrayList<Circle> spots) {
         ArrayList<Circle> placeAbleSpots = new ArrayList<>();
-        System.out.println();
-        System.out.println("###################################");
-        System.out.println();
-        System.out.println("VillagesNotClose called");
+//        System.out.println();
+//        System.out.println("###################################");
+//        System.out.println();
+//        System.out.println("VillagesNotClose called");
         for (Circle spot : spots) {
             ArrayList<Circle> nodes = (math.circlesInRadius(spot.getLayoutX(), spot.getLayoutY(), vertexNodeList, "village"));
             int foundVillages = 0;
             System.out.println();
-            System.out.println("===========================");
+//            System.out.println("===========================");
             for (Circle node : nodes) {
-                System.out.println("Looping nodes");
+//                System.out.println("Looping nodes");
                 for (Village buildVillage : buildVillages) {
-                    System.out.println("Looping buildvillage");
+//                    System.out.println("Looping buildvillage");
                     if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
-                        System.out.println("!!!!FoundVillage ++!!!!");
-                        System.out.println("Fundvillage spot X: " + spot.getLayoutX());
-                        System.out.println("Fundvillage spot Y: " + spot.getLayoutY());
+//                        System.out.println("!!!!FoundVillage ++!!!!");
+//                        System.out.println("Fundvillage spot X: " + spot.getLayoutX());
+//                        System.out.println("Fundvillage spot Y: " + spot.getLayoutY());
                         foundVillages++;
                     }
                 }
             }
             if (foundVillages == 0) {
-                System.out.println("Spot is placeable: " + spot);
+//                System.out.println("Spot is placeable: " + spot);
                 placeAbleSpots.add(spot);
             }
         }
