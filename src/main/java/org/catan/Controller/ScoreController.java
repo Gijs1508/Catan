@@ -50,6 +50,8 @@ public class ScoreController implements Initializable {
         initializeColorToScore();
     }
 
+    /** Assigns labels to player colors
+     * @author Jeroen */
     private void initializeColorToScore() {
         player1labels = new HashMap<>(){{
             put("name", player1name); put("points", player1points);
@@ -93,9 +95,9 @@ public class ScoreController implements Initializable {
     }
 
     /** Searches for the color's labels in the score view and updates the victory points label.
-     * @author Jeroen
      * @param color the player's color
-     * @param score the player's score in victory points */
+     * @param score the player's score in victory points
+     * @author Jeroen */
     public void addVictoryPointToPlayer(String color, int score) {
         colorToLabels.get(color).get("points").setText(Integer.toString(score));
     }
