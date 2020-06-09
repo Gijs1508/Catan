@@ -1,6 +1,7 @@
 package org.catan.Model;
 
 import org.catan.App;
+import org.catan.Controller.GameSchermController;
 import org.catan.Helper.BuildVillages;
 
 import java.io.IOException;
@@ -32,6 +33,8 @@ public class Dice {
                 App.HandInPopUp();
             }
             //TODO Rover verzetten
+            System.out.println("7!!!!!");
+            GameSchermController.startHighlightTiles(Thief.getTile());
         }
 
         setPlayerResources();

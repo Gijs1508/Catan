@@ -296,11 +296,25 @@ public class GameSchermController implements Initializable {
         thief.setLayoutX(circle.getLayoutX() - 26);
         thief.setLayoutY(circle.getLayoutY() - 33);
         unHighlightTiles();
+
+        String circleID = circle.getId().replaceAll("[^\\d.]", "");; //Tile string opschoonen tot alleen een getal
+        int tileID;
+        try {
+            tileID = Integer.parseInt(circleID);
+        }
+        catch (NumberFormatException e)
+        {
+            tileID = 1;
+        }
+        Thief.setTile(tileID);
     }
 
     public void highlightTiles(int tileId) {
+        System.out.println("2");
         for (Circle thiefTile : thiefTileNodeList) {
+            System.out.println("in loop");
             if (!thiefTile.getId().equals("thiefTile" + tileId)) {
+                System.out.println("3");
                 thiefTile.setVisible(true);
             }
         }
@@ -310,6 +324,12 @@ public class GameSchermController implements Initializable {
         for (Circle thiefTile : thiefTileNodeList) {
             thiefTile.setVisible(false);
         }
+    }
+
+    public static void startHighlightTiles(int tileId){
+        System.out.println("1");
+        GameSchermController game = new GameSchermController();
+        game.highlightTiles(tileId);
     }
 
     @FXML

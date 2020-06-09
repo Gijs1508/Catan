@@ -1,34 +1,12 @@
 package org.catan.Model;
 
 public class Thief {
-    private Tile tile;
-    private double x;
-    private double y;
-    private String imgPath;
+    private static int tile;
 
-    public Thief(Tile tile) {
-        this.x = x;
-        this.y = y;
-        this.imgPath = "assets/img/gameobjects/Thief.png";
+    public Thief() {
     }
 
-    public double getX() {
-        return this.x;
-    }
+    public static void setTile(int tilenr) { tile = tilenr; }
 
-    public double getY() {
-        return this.y;
-    }
-
-    public String getImgPath() {
-        return this.imgPath;
-    }
-
-    public void setTile(Tile tile) {
-        this.tile= tile;
-    }
-
-    private Tile getTile() {
-        return this.tile;
-    }
+    public static int getTile() { return tile; }
 }
