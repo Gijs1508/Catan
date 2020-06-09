@@ -6,7 +6,11 @@ public class CreateGameCode {
     CreateGameCode(){
 
     }
-    // Generate random game code with given length
+    /*
+    This method generates a random code based on numbers.
+    It returns the game code as seed, since that is also used as
+    seed to generate the tiles et.
+     */
     public static long randomCodeGen() {
         String chars = "0123456789";
         int count = 6;

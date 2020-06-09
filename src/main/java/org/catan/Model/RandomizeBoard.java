@@ -12,6 +12,11 @@ import java.util.*;
 public class RandomizeBoard {
 
     public static ArrayList<Tile> ALL_TILES = new ArrayList<Tile>();
+
+    /*
+    This method gets called when a new game gets created. It places
+    Resources and numbers on the tiles.
+     */
     public static void setRandomTiles(ArrayList<Polygon> tiles, ArrayList<Label> labels, long seed){
         // In this arraylist all the tiles are stored containing a hashmap with (name_of_resource, img_of_resource)
         // Every time an item of this arraylist gets placed on the board the item will be removed from the ArrayList
