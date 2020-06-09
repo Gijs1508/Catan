@@ -184,7 +184,7 @@ public class GameSchermController implements Initializable {
 
         initializeHarbors();
 
-        highlightTiles(10);
+//        highlightTiles(10);
     }
 
     private void initializeHarbors() {
