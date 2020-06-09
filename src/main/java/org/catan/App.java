@@ -38,7 +38,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         DatabaseConnector dbConnector = new DatabaseConnector();
-        Game game = dbConnector.getGameById((long) 288220);
+//        Game game = dbConnector.getGameById((long) 288220);
         DocumentListener documentListener = new DocumentListener("288220");
 //        Player werner = new Player("Werner");
 //        werner.setColor("green");
