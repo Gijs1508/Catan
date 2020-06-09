@@ -89,11 +89,15 @@ public class BuildSettlementController {
     public ArrayList<Circle> showVillageStartSpots() {
         ArrayList<Circle> nodes = new ArrayList<>();
         for (Circle circle : vertexNodeList) {
-            for (Village buildVillage : buildVillages) {
-                if (circle.getLayoutX() != buildVillage.getX() && circle.getLayoutY() != buildVillage.getY())
-                    nodes.add(circle);
+            if (buildVillages.isEmpty()) {
+                nodes.add(circle);
+            } else {
+                for (Village buildVillage : buildVillages) {
+                    if (circle.getLayoutX() != buildVillage.getX() && circle.getLayoutY() != buildVillage.getY())
+                        nodes.add(circle);
+                }
             }
-        }
+            }
         return villagesNotClose(nodes);
     }
 
@@ -107,9 +111,13 @@ public class BuildSettlementController {
         ArrayList<Circle> roads = math.circlesInRadius(village.getLayoutX(), village.getLayoutY(), roadSpotNodeList, "other");
         ArrayList<Circle> availableRoads = new ArrayList<>();
         for (Circle circle : roads) {
-            for (Road buildRoad : buildRoads) {
-                if (circle.getLayoutX() != buildRoad.getX() && circle.getLayoutY() != buildRoad.getY())
-                    availableRoads.add(circle);
+            if(buildRoads.isEmpty()) {
+                availableRoads.add(circle);
+            } else {
+                for (Road buildRoad : buildRoads) {
+                    if (circle.getLayoutX() != buildRoad.getX() && circle.getLayoutY() != buildRoad.getY())
+                        availableRoads.add(circle);
+                }
             }
         }
         return availableRoads;
@@ -333,5 +341,11 @@ public class BuildSettlementController {
 
     public static BuildSettlementController getInstance() {
         return buildSettlementController;
+    }
+
+    public void print(ArrayList<Circle> circle) {
+        for (Circle c : circle) {
+            System.out.println("This is circle: " + c);
+        }
     }
 }
