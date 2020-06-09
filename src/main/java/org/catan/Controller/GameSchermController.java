@@ -184,7 +184,7 @@ public class GameSchermController implements Initializable {
 
         initializeHarbors();
 
-        highlightTiles(10);
+        //highlightTiles(10);
     }
 
     private void initializeHarbors() {
@@ -334,7 +334,12 @@ public class GameSchermController implements Initializable {
         logController.logSettlementEvent();
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        placeVillage(build.buildVillage(circle));
+        Village village = build.buildVillage(circle);
+        if(village != null){
+            placeVillage(village);
+        } else {
+            // TODO: create a fancy 'joe not ghev enuf resources alert'
+        }
         buildSettlementBtnCloseClicked();
     }
 

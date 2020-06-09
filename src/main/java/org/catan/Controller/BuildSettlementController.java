@@ -42,6 +42,7 @@ public class BuildSettlementController {
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
         this.bv = new BuildVillages();
+        buildRoads.add(new Road(226, 41, "blue"));
     }
 
     /** Gives the harbor that a settlement has been placed adjacent to to the player for updates.
@@ -257,8 +258,19 @@ public class BuildSettlementController {
      */
     public Village buildVillage(Circle node) {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
-        buildVillages.add(village);
-        bv.setBuildVillages(buildVillages);
+        int[] requiredResources = {1, 1, 0, 1, 1, 0};
+        int[] playerCards = Player.getMainPlayer().getPlayerInventory().getCards();
+        for (int x = 0; x < playerCards.length; x++) {
+            for (int reqCard : requiredResources){
+                if(playerCards[x] >= reqCard){
+                    System.out.println("speler heeft genoeg van " + reqCard);
+                    playerCards[x] -= reqCard;
+                    buildVillages.add(village);
+                    bv.setBuildVillages(buildVillages);
+                    break;
+                }
+            }
+        }
         return village;
     }
 
