@@ -51,15 +51,14 @@ public class Bank {
                     switch (randomIndex) {
                         case 0:
                             randomIndex = 1;
+                            break;
                         case 1:
                             randomIndex = 0;
+                            break;
                     }
                     i--;
                 }
             }
-
-            System.out.println(developmentCardStock.toString());
-
             // Remove that development card from the developmentCardStock, the inventory and update the score view
             developmentCardStock.replace(developmentCard, developmentCardStock.get(developmentCard) - 1);
             bankInventory.changeCards("knight", -1);
