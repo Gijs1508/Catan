@@ -5,6 +5,8 @@ import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.Game;
+import org.catan.Model.Harbor;
+import org.catan.Model.Player;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
 import org.catan.interfaces.Observable;
@@ -29,14 +31,36 @@ public class BuildSettlementController implements Observable {
     private PolygonConnectedNodes poly;
     private BuildVillages bv;
 
+    private GameSchermController gameSchermController = GameSchermController.getInstance();
+
+    private static BuildSettlementController buildSettlementController;
+
+
     public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList,
                                      ArrayList<Circle> upgradeNodeList) {
+        buildSettlementController = this;
+
         this.vertexNodeList = vertexNodeList;
         this.upgradeNodeList = upgradeNodeList;
         this.roadSpotNodeList = roadSpotNodeList;
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
         this.bv = new BuildVillages();
+    }
+
+    /** Gives the harbor that a settlement has been placed adjacent to to the player for updates.
+     * @param harbor the harbor object
+     * @author Jeroen */
+    public void updatePlayerFromHarbor(Harbor harbor) {
+        Player.getActivePlayer().updateResourceCosts(harbor);
+        // todo It updates when you click it outside of your turn (probably because of the placeholder button, placeRoadBtn)
+        // todo Make method private when placeholder is replaced
+    }
+
+    /** Checks if settlement was placed adjacent to a harbor */
+    private boolean builtAtHarbor() {
+        // todo Going to work on this when the build settlement functionality has been pushed -Jeroen
+        return false;
     }
 
     // Returns roads from player
@@ -313,6 +337,9 @@ public class BuildSettlementController implements Observable {
 
     @Override
     public void update(Game game) {
+    }
 
+    public static BuildSettlementController getInstance() {
+        return buildSettlementController;
     }
 }

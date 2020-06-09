@@ -54,12 +54,12 @@ public class ScreenController implements Initializable, Observable {
         try {
             logView = (AnchorPane) App.loadFXML("Views/logsView");
             boardView = (AnchorPane) App.loadFXML("Views/boardView");
-            chatView = (AnchorPane) App.loadFXML("Views/chatView");
+            stockView = (AnchorPane) App.loadFXML("Views/stockView");
             tradeView = (AnchorPane) App.loadFXML("Views/tradeView");
+            chatView = (AnchorPane) App.loadFXML("Views/chatView");
             diceView = (AnchorPane) App.loadFXML("Views/diceView");
             scoreView = (AnchorPane) App.loadFXML("Views/scoreView");
             costView = (AnchorPane) App.loadFXML("Views/costView");
-            stockView = (AnchorPane) App.loadFXML("Views/stockView");
             knightDetails = new KnightDetails().getRoot();
         } catch (IOException e) {
             e.printStackTrace();
@@ -67,15 +67,14 @@ public class ScreenController implements Initializable, Observable {
 
         logPane.getChildren().setAll(logView);
         boardPane.getChildren().setAll(boardView);
-        chatPane.getChildren().setAll(chatView);
         tradePane.getChildren().setAll(tradeView);
+        stockPane.getChildren().setAll(stockView);
+        chatPane.getChildren().setAll(chatView);
         dicePane.getChildren().setAll(diceView);
         scorePane.getChildren().setAll(scoreView);
         costPane.getChildren().setAll(costView);
-        stockPane.getChildren().setAll(stockView);
         knightPopup.getChildren().setAll(knightDetails);
         knightPopup.setVisible(false);
-
         tradePopup.setVisible(false);
     }
 
