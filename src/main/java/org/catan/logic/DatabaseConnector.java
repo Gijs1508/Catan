@@ -63,12 +63,11 @@ public class DatabaseConnector {
         return games;
     }
 
-    public Game getGameById(String id) {
+    public Game getGameById(Long id) {
         Game game = new Game();
         CollectionReference collectionReference = this.db.collection("games");
         Query query = collectionReference.whereEqualTo("code", id);
         ObjectMapper objectMapper = new ObjectMapper();
-
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
 
         try {

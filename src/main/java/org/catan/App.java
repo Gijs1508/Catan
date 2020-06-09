@@ -38,8 +38,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         DatabaseConnector dbConnector = new DatabaseConnector();
-        DocumentListener documentListener = new DocumentListener("678956");
-//        Game game = dbConnector.getGameById("678956");
+        Game game = dbConnector.getGameById((long) 288220);
+        DocumentListener documentListener = new DocumentListener("288220");
 //        Player werner = new Player("Werner");
 //        werner.setColor("green");
 //        game.addSpeler(werner);

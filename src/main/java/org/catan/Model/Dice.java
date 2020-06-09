@@ -27,7 +27,7 @@ public class Dice {
         // Throwing 7 properties
         if(total == 7){
             //TODO Andere spelers ook laten inleveren
-            if(Player.getMainPlayer().getPlayerInventory().getCardsTotal() > 7){
+            if(Player.getMainPlayer().getPlayerInventory().cardsTotalGetter() > 7){
                 System.out.println("Speler moet kaarten inleveren");
                 App.HandInPopUp();
             }

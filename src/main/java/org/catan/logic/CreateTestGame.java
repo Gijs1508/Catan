@@ -11,6 +11,8 @@ public class CreateTestGame {
         jan.setColor("blue");
         Player sabrina = new Player("Sabrina");
         sabrina.setColor("red");
+        game.addSpeler(jan);
+        game.addSpeler(sabrina);
         Tile tile1 = new Tile("wood", "tile1", 3);
         Tile tile2 = new Tile("stone", "tile2", 6);
         Tile tile3 = new Tile("ore", "tile3", 10);
