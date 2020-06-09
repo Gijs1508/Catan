@@ -310,11 +310,8 @@ public class GameSchermController implements Initializable {
     }
 
     public void highlightTiles(int tileId) {
-        System.out.println("2");
         for (Circle thiefTile : thiefTileNodeList) {
-            System.out.println("in loop");
             if (!thiefTile.getId().equals("thiefTile" + tileId)) {
-                System.out.println("3");
                 thiefTile.setVisible(true);
             }
         }
@@ -324,12 +321,6 @@ public class GameSchermController implements Initializable {
         for (Circle thiefTile : thiefTileNodeList) {
             thiefTile.setVisible(false);
         }
-    }
-
-    public static void startHighlightTiles(int tileId){
-        System.out.println("1");
-        GameSchermController game = new GameSchermController();
-        game.highlightTiles(tileId);
     }
 
     @FXML
