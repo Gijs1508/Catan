@@ -345,4 +345,11 @@ public class BuildSettlementController {
     public static BuildSettlementController getInstance() {
         return buildSettlementController;
     }
+
+    public void print(ArrayList<Village> village) {
+        for (Village v : village) {
+            System.out.println();
+            System.out.println("This is a build village: " + v);
+        }
+    }
 }
