@@ -3,12 +3,15 @@ package org.catan.Controller;
 //import model.Speler;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.catan.Model.Player;
 
+import java.net.URL;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
-public class ScoreController {
+public class ScoreController implements Initializable {
 
     @FXML private Label player1name; @FXML private Label player1points;
     @FXML private Label player1roads; @FXML private Label player1villages;
@@ -40,7 +43,10 @@ public class ScoreController {
 
     public ScoreController() {
         scoreController = this;
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeColorToScore();
     }
 
@@ -86,14 +92,12 @@ public class ScoreController {
 
     }
 
+    /** Searches for the color's labels in the score view and updates the victory points label.
+     * @author Jeroen
+     * @param color the player's color
+     * @param score the player's score in victory points */
     public void addVictoryPointToPlayer(String color, int score) {
-        switch(color) {
-            case "red":
-                colorToLabels.get(color).get("points").setText(Integer.toString(score));
-
-//                Label playerPoints = colorToLabels.get(color).get("points");
-//                playerPoints.setText(Integer.toString(score));
-        }
+        colorToLabels.get(color).get("points").setText(Integer.toString(score));
     }
 
     public void removeDevelopmentCardFromBankView() {
@@ -103,5 +107,4 @@ public class ScoreController {
     public static ScoreController getInstance() {
         return scoreController;
     }
-
 }
