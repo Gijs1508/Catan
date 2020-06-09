@@ -21,8 +21,8 @@ public class BuildSettlementController {
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
 
-    private ArrayList<Road> buildRoads = new ArrayList<>();
-    private ArrayList<Village> buildVillages = new ArrayList<>();
+    private ArrayList<Road> buildRoads;
+    private ArrayList<Village> buildVillages;
     private MathBuildSettlement math;
     private PolygonConnectedNodes poly;
     private BuildVillages bv;
@@ -42,6 +42,8 @@ public class BuildSettlementController {
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
         this.bv = new BuildVillages();
+        this.buildRoads = new ArrayList<>();
+        this.buildVillages = new ArrayList<>();
     }
 
     /** Gives the harbor that a settlement has been placed adjacent to to the player for updates.

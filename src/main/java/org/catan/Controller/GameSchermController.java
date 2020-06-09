@@ -155,9 +155,7 @@ public class GameSchermController implements Initializable {
 
     private BuildSettlementController build;
     private boolean startPhase = true;
-    private Circle justBuildVillage;
-    private Circle duplicateJustBuildVillage;
-    private boolean villagePlaced = false;
+    private int startPhaseCount = 0;
 
     private static GameSchermController gameSchermController;
 
@@ -362,7 +360,9 @@ public class GameSchermController implements Initializable {
         if (startPhase)
             roadStartPhase(circle);
         buildSettlementBtnCloseClicked();
-//        startPhase = false;
+        startPhaseCount++;
+        if (startPhaseCount == 2)
+            startPhase = false;
     }
 
     private void placeVillage(Village village) {
