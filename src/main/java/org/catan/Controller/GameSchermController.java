@@ -8,6 +8,7 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -331,14 +332,18 @@ public class GameSchermController implements Initializable {
     // TODO Jan
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
-        logController.logSettlementEvent();
+        int[] reqResources = {1, 1, 0, 1, 1, 0};
+        //TODO Jan: deze bool veranderen naar de status van startevent
+        boolean startEvent = false;
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        Village village = build.buildVillage(circle);
-        if(village != null){
-            placeVillage(village);
-        } else {
-            // TODO: create a fancy 'joe not ghev enuf resources alert'
+        if(canBuildObject(reqResources)){
+            placeVillage(build.buildVillage(circle));
+            logController.logSettlementEvent();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("You don't have enough resources to build an village!");
+            alert.show();
         }
         buildSettlementBtnCloseClicked();
     }
@@ -383,9 +388,17 @@ public class GameSchermController implements Initializable {
     @FXML
     public void buildRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
-        placeRoad(build.buildRoad(circle));
+        int[] reqResources = {1, 1, 0, 0, 0, 0};
+
+        if(canBuildObject(reqResources)){
+            placeRoad(build.buildRoad(circle));
+            logController.logRoadEvent();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("You don't have enough resources to build an road!");
+            alert.show();
+        }
         buildRoadBtnCloseClicked();
-        logController.logRoadEvent();
     }
 
     @FXML
@@ -506,9 +519,9 @@ public class GameSchermController implements Initializable {
 
         try {
             ArrayList<Circle> nodes = build.showUpgradeableVillages();
-            for (Circle node : nodes) {
-                node.setVisible(true);
-            }
+                for (Circle node : nodes) {
+                    node.setVisible(true);
+                }
 
         } catch (Exception e) {
         }
@@ -600,6 +613,18 @@ public class GameSchermController implements Initializable {
                 tile5num, tile6num, tile7num, tile8num, tile9num,
                 tile11num, tile12num, tile13num, tile14num, tile15num,
                 tile16num, tile17num, tile18num, tile19num);
+    }
+
+    public boolean canBuildObject(int[] reqResources){
+        Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
+        for (int i = 0; i < playerInventory.getCards().length; i++) {
+            if(playerInventory.getCards()[i] >= reqResources[i]){
+                playerInventory.changeCards(playerInventory.getStrCards()[i], -reqResources[i]);
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 
 //    private Speler getSpeler() {

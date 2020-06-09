@@ -20,8 +20,8 @@ public class Inventory {
     [0]: Wood
     [1]: Brick
     [2]: Ore
-    [3]: Sheep
-    [4]: Wool
+    [3]: Wool
+    [4]: Wheat
     [5]: Knight
      */
     private int[] cards = {0, 0, 0, 0, 0, 0};
@@ -30,6 +30,10 @@ public class Inventory {
 
     public int[] getCards(){
         return this.cards;
+    }
+
+    public String[] getStrCards(){
+        return new String[]{"wood", "brick", "ore", "wool", "wheat", "knight"};
     }
 
     //Changing a player's cards

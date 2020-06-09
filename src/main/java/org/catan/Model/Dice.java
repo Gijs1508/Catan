@@ -25,11 +25,11 @@ public class Dice {
         dices.add(String.valueOf(dice2));
         diceResult.put(total, dices);
 
-        setPlayerResources();
+        setPlayerResources(total);
         return diceResult;
     }
 
-    private void setPlayerResources(){
+    private void setPlayerResources(int total){
         if(BuildVillages.getBuildVillages() != null){
             for (Village village : BuildVillages.getBuildVillages()) {
                 for (Tile tile : village.getConnectedTiles()){
@@ -39,7 +39,9 @@ public class Dice {
                     } else {
                         amount = 1;
                     }
-                    Player.getMainPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
+                    if(total == tile.getNumber()){
+                        Player.getMainPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
+                    }
                 }
             }
         }
