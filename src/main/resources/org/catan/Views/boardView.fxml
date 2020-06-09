@@ -15,6 +15,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Button?>
 <AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
    <children>
       <ImageView fitHeight="590.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true">
@@ -1648,5 +1649,6 @@
             </ImageView>
          </children>
       </Pane>
+      <Button fx:id="testStartPhase" layoutX="565.0" layoutY="10.0" mnemonicParsing="false" onAction="#startPhase" text="TEST startPhase" />
    </children>
 </AnchorPane>
