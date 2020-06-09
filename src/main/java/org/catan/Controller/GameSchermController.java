@@ -23,6 +23,7 @@ import javafx.scene.media.*;
 
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameSchermController implements Initializable {
 
@@ -154,6 +155,19 @@ public class GameSchermController implements Initializable {
 
     private BuildSettlementController build;
 
+    private static GameSchermController gameSchermController;
+
+    public GameSchermController(){
+        gameSchermController = this;
+    }
+
+    public static GameSchermController getInstance(){
+        if(gameSchermController == null){
+            gameSchermController = new GameSchermController();
+        }
+        return gameSchermController;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializePlacementSpots();
@@ -174,9 +188,6 @@ public class GameSchermController implements Initializable {
     }
 
     private void initializeHarbors() {
-
-        // Gets the seed (game code)
-        Random random = new Random(CreateGameCode.getSeed());
 
         // Contains the ImageViews for the ships
         Collections.addAll(ships, ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9);
@@ -223,6 +234,11 @@ public class GameSchermController implements Initializable {
         }
 
         startShipAnimation();
+    }
+
+    //placeholder
+    public ArrayList<Harbor> getHarbors() {
+        return harbors;
     }
 
     private void startShipAnimation() {
@@ -426,6 +442,9 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void buildRoadBtnClicked() {
+        // todo Placeholder for building next to a harbor
+        BuildSettlementController.getInstance().updatePlayerFromHarbor(harbors.get(ThreadLocalRandom.current().nextInt(0, 8 + 1)));
+
         Sound.playClick();
 
         try {
