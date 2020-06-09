@@ -81,7 +81,7 @@ public class BuildSettlementController {
         return playerVillages;
     }
 
-    /*
+    /**
     * The methods returns the right placement nodes in the start phase
     * This is for village placement
     * @return an arrayList with nodes
@@ -101,7 +101,7 @@ public class BuildSettlementController {
         return villagesNotClose(nodes);
     }
 
-    /*
+    /**
      * The methods returns the right placement nodes in the start phase
      * This is for road placement
      * @param village Give the village the player just build
