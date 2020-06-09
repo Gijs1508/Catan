@@ -18,7 +18,7 @@ public class Game {
         this.players = new ArrayList<>();
         this.logs = new ArrayList<>();
         this.status = "Open";
-        this.code = CreateGameCode.getSeed();
+        this.code = CreateGameCode.randomCodeGen();
     }
 
     public void nextTurn() {

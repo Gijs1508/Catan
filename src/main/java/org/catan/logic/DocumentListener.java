@@ -24,6 +24,7 @@ public class DocumentListener {
                 }
                 // In this if statement, all the controllers that should be called when a game document is updated, should be put
                 if (snapshot != null && snapshot.exists()) {
+                    System.out.println("Document Listener doing stuff on update");
                     System.out.println("Current data: " + snapshot.getData());
                 } else {
                     System.out.print("Current data: null");
