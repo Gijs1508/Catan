@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="popupPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.HandInController">
+   <children>
+      <Pane prefHeight="291.0" prefWidth="408.0" style="-fx-background-radius: 30 30 20 20;">
+         <children>
+            <Pane layoutX="7.0" layoutY="47.0" prefHeight="240.0" prefWidth="395.0" style="-fx-background-color: #e5e4e7; -fx-background-radius: 0 0 20 20;">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="90.0" layoutX="170.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/woodSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="90.0" layoutX="170.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/wheatSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="170.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/brickSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="170.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/sheepSmall.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="170.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/oreSmall.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="giveWheat" layoutX="225.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="giveWood" layoutX="225.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="giveBrick" layoutX="225.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="giveWool" layoutX="225.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="giveOre" layoutX="225.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="acceptBtn" fitHeight="76.0" fitWidth="85.0" layoutX="303.0" layoutY="50.0" onMouseClicked="#accept" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/checkmark.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="resetBtn" fitHeight="76.0" fitWidth="76.0" layoutX="303.0" layoutY="126.0" onMouseClicked="#reset" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/cross.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="raiseWheat" fitHeight="40.0" fitWidth="40.0" layoutX="121.0" layoutY="18.0" onMouseClicked="#raiseWheat">
+                     <image>
+                        <Image url="@../assets/img/plus.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="raiseWood" fitHeight="40.0" fitWidth="40.0" layoutX="121.0" layoutY="61.0" onMouseClicked="#raiseWood">
+                     <image>
+                        <Image url="@../assets/img/plus.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="raiseBrick" fitHeight="40.0" fitWidth="40.0" layoutX="121.0" layoutY="106.0" onMouseClicked="#raiseBrick">
+                     <image>
+                        <Image url="@../assets/img/plus.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="raiseWool" fitHeight="40.0" fitWidth="40.0" layoutX="121.0" layoutY="147.0" onMouseClicked="#raiseWool">
+                     <image>
+                        <Image url="@../assets/img/plus.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="raiseOre" fitHeight="40.0" fitWidth="40.0" layoutX="121.0" layoutY="190.0" onMouseClicked="#raiseOre">
+                     <image>
+                        <Image url="@../assets/img/plus.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Text fx:id="requiredAmount" layoutX="36.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="16.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="More">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <StackPane layoutX="7.0" layoutY="9.0" prefHeight="46.0" prefWidth="395.0" style="-fx-background-color: white; -fx-background-radius: 30 30 0 0;">
+               <children>
+                  <Text fx:id="popupTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="You need to hand in cards" textAlignment="CENTER" textOrigin="CENTER">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
+         </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#0000005a" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>

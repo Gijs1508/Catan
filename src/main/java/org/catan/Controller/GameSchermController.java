@@ -309,6 +309,17 @@ public class GameSchermController implements Initializable {
         thief.setLayoutX(circle.getLayoutX() - 26);
         thief.setLayoutY(circle.getLayoutY() - 33);
         unHighlightTiles();
+
+        String circleID = circle.getId().replaceAll("[^\\d.]", "");; //Tile string opschoonen tot alleen een getal
+        int tileID;
+        try {
+            tileID = Integer.parseInt(circleID);
+        }
+        catch (NumberFormatException e)
+        {
+            tileID = 1;
+        }
+        Thief.setTile(tileID);
     }
 
     public void highlightTiles(int tileId) {
