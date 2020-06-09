@@ -9,7 +9,7 @@ public class Bank {
         this.bankInventory.changeCards("wood", 50);
         this.bankInventory.changeCards("brick", 50);
         this.bankInventory.changeCards("ore", 50);
-        this.bankInventory.changeCards("sheep", 50);
+        this.bankInventory.changeCards("wool", 50);
         this.bankInventory.changeCards("wheat", 50);
     }
 

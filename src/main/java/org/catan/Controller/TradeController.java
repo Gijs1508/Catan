@@ -3,16 +3,14 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
-import org.catan.App;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.event.ActionEvent;
 import org.catan.Model.Sound;
 
 import java.io.IOException;
+import java.util.*;
 
 public class TradeController {
 
@@ -32,9 +30,9 @@ public class TradeController {
     @FXML
     private Label takeOreCount;
     @FXML
-    private Label giveSheepCount;
+    private Label giveWoolCount;
     @FXML
-    private Label takeSheepCount;
+    private Label takeWoolCount;
     @FXML
     private Label giveBrickCount;
     @FXML
@@ -44,6 +42,31 @@ public class TradeController {
     @FXML
     private Button bankTradeBtn;
 
+    @FXML private Label wheatRatio; @FXML private Label woodRatio;
+    @FXML private Label brickRatio; @FXML private Label woolRatio;
+    @FXML private Label oreRatio;
+
+    private HashMap<Integer, String> indexToResource = new HashMap<>(){{
+        put(0, "wood");
+        put(1, "brick");
+        put(2, "ore");
+        put(3, "wool");
+        put(4, "wheat");
+    }};
+
+    private static TradeController tradeController;
+
+
+    public TradeController(){
+        tradeController = this;
+    }
+
+    public static TradeController getInstance(){
+        if(tradeController == null){
+            tradeController = new TradeController();
+        }
+        return tradeController;
+    }
 
     @FXML
     public void bankTrade() {
@@ -73,7 +96,7 @@ public class TradeController {
     public void buyDevelopmentCard() {
         if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
             getInventory().changeCards("ore", -1);
-            getInventory().changeCards("sheep", -1);
+            getInventory().changeCards("wool", -1);
             getInventory().changeCards("wheat", -1);
             // TODO add development card functionality
         }
@@ -88,15 +111,15 @@ public class TradeController {
             getInventory().changeCards("brick", netBrick);
             int netOre = netResource(giveOreCount, takeOreCount);
             getInventory().changeCards("ore", netOre);
-            int netSheep = netResource(giveSheepCount, takeSheepCount);
-            getInventory().changeCards("sheep", netSheep);
+            int netWool = netResource(giveWoolCount, takeWoolCount);
+            getInventory().changeCards("wool", netWool);
             int netWheat = netResource(giveWheatCount, takeWheatCount);
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
         } else if(tradeType == "player" && Player.mainPlayerActive){
             String playerName = Player.getMainPlayer().getName();
-            String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveSheepCount.getText(), giveWheatCount.getText()};
-            String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeSheepCount.getText(), takeWheatCount.getText()};
+            String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
+            String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
             TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
 //            App.tradePopUp();
             ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij MainPlayer
@@ -112,8 +135,8 @@ public class TradeController {
         giveBrickCount.setText("0");
         takeOreCount.setText("0");
         giveOreCount.setText("0");
-        takeSheepCount.setText("0");
-        giveSheepCount.setText("0");
+        takeWoolCount.setText("0");
+        giveWoolCount.setText("0");
         takeWheatCount.setText("0");
         giveWheatCount.setText("0");
         tradeGiveLock = false;
@@ -143,14 +166,14 @@ public class TradeController {
     }
 
     @FXML
-    public void giveMoreSheep() {
-        //Inventory index of Sheep is 3
-        giveResource(giveSheepCount, 3);
+    public void giveMoreWool() {
+        //Inventory index of Wool is 3
+        giveResource(giveWoolCount, 3);
     }
 
     @FXML
-    public void takeMoreSheep() {
-        takeResource(takeSheepCount);
+    public void takeMoreWool() {
+        takeResource(takeWoolCount);
     }
 
     @FXML
@@ -175,6 +198,28 @@ public class TradeController {
         takeResource(takeWheatCount);
     }
 
+    public void updateRatioView(String type, int ratio) {
+        switch (type) {
+            case "wheat":
+                wheatRatio.setText(ratio + ":1"); break;
+            case "wood":
+                woodRatio.setText(ratio + ":1"); break;
+            case "brick":
+                brickRatio.setText(ratio + ":1"); break;
+            case "wool":
+                woolRatio.setText(ratio + ":1"); break;
+            case "ore":
+                oreRatio.setText(ratio + ":1"); break;
+            case "any":
+                wheatRatio.setText(ratio + ":1");
+                woodRatio.setText(ratio + ":1");
+                brickRatio.setText(ratio + ":1");
+                woolRatio.setText(ratio + ":1");
+                oreRatio.setText(ratio + ":1");
+                break;
+        }
+    }
+
     private String raiseResource(Label resource){
         return Integer.toString(resourceToInt(resource) + 1);
     }
@@ -195,16 +240,22 @@ public class TradeController {
         return getInventory().getCards();
     }
 
+
     private void giveResource(Label resource, int inventoryIndex){
         int inventoryCard = getInventoryCards()[inventoryIndex];
         if(tradeType == "player"){
             if(resourceToInt(resource) < inventoryCard){
                 resource.setText(raiseResource(resource));
             }
-        } else if(inventoryCard >= 4 && tradeGiveLock == false){
-            for(int i = 0; i < 4; i++){
-                resource.setText(raiseResource(resource));
-                tradeGiveLock = true;
+        } else { // tradeType is bank
+            String resourceType = indexToResource.get(inventoryIndex);
+            int cost = Player.getActivePlayer().getCostOf(resourceType); // Gets the player's cost for the resource type
+
+            if(inventoryCard >= cost && tradeGiveLock == false){
+                for(int i = 0; i < cost; i++){
+                    resource.setText(raiseResource(resource));
+                    tradeGiveLock = true;
+                }
             }
         }
     }
@@ -221,5 +272,4 @@ public class TradeController {
     private int netResource(Label givenResource, Label receivedResource){
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
     }
-
 }

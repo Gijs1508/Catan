@@ -5,14 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +25,7 @@ public class StockController implements Initializable {
     @FXML private Text wheatCount;
     @FXML private Text woodCount;
     @FXML private Text brickCount;
-    @FXML private Text sheepCount;
+    @FXML private Text woolCount;
     @FXML private Text oreCount;
     @FXML private Text knightCount;
     @FXML private Button testResources;
@@ -71,7 +69,7 @@ public class StockController implements Initializable {
         inventory.changeCards("wood", 1);
         inventory.changeCards("brick", 2);
         inventory.changeCards("ore", 3);
-        inventory.changeCards("sheep", 4);
+        inventory.changeCards("wool", 4);
         inventory.changeCards("wheat", 5);
         updateResources();
     }
@@ -81,7 +79,7 @@ public class StockController implements Initializable {
         oldResources[0] = Integer.parseInt(woodCount.getText());
         oldResources[1] = Integer.parseInt(brickCount.getText());
         oldResources[2] = Integer.parseInt(oreCount.getText());
-        oldResources[3] = Integer.parseInt(sheepCount.getText());
+        oldResources[3] = Integer.parseInt(woolCount.getText());
         oldResources[4] = Integer.parseInt(wheatCount.getText());
         oldResources[5] = Integer.parseInt(knightCount.getText());
 
@@ -89,7 +87,7 @@ public class StockController implements Initializable {
         woodCount.setText(Integer.toString(cards[0]));
         brickCount.setText(Integer.toString(cards[1]));
         oreCount.setText(Integer.toString(cards[2]));
-        sheepCount.setText(Integer.toString(cards[3]));
+        woolCount.setText(Integer.toString(cards[3]));
         wheatCount.setText(Integer.toString(cards[4]));
         knightCount.setText(Integer.toString(cards[5]));
 
@@ -102,7 +100,7 @@ public class StockController implements Initializable {
         if(cards[2] < oldResources[2])
             removedResources.add("ore");
         if(cards[3] < oldResources[3])
-            removedResources.add("sheep");
+            removedResources.add("wool");
         if(cards[4] < oldResources[4])
             removedResources.add("wheat");
 
@@ -179,7 +177,7 @@ public class StockController implements Initializable {
             put("wood", animationWood);
             put("brick", animationBrick);
             put("ore", animationOre);
-            put("sheep", animationSheep);
+            put("wool", animationSheep);
             put("wheat", animationWheat);
         }};
     }

@@ -16,6 +16,7 @@ public class Village {
         this.connectedTiles = connectedTiles;
     }
 
+    // Returns the right filepath for village
     private String getFilePathVillage() {
         switch (color) {
             case "red":
@@ -31,6 +32,7 @@ public class Village {
         }
     }
 
+    // Returns the right filepath for city
     private String getFilePathCity() {
         switch (color) {
             case "red":
@@ -46,13 +48,16 @@ public class Village {
         }
     }
 
+    // Returns x coordinate
     public double getX() {
         return this.x;
     }
 
+    // Returns y coordinate
     public double getY() {
         return this.y;
     }
+
 
     public String getImgPath() {
         if (upgraded)

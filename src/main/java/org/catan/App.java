@@ -36,7 +36,7 @@ public class App extends Application {
         this.stage = stage;
 
         scene = new Scene(loadFXML("Views/screenView"));
-//        scene = new Scene(loadFXML("Views/mainView"));
+        //scene = new Scene(loadFXML("Views/mainView"));
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
         stage.setTitle("Kolonisten van Catan");
@@ -64,6 +64,15 @@ public class App extends Application {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Trade offer");
+        stage.show();
+    }
+
+    public static void HandInPopUp() throws IOException{
+        scene = new Scene(loadFXML("Views/handInView"));
+        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Get fucked");
         stage.show();
     }
 

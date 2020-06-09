@@ -178,12 +178,12 @@
                   </Pane>
                   <Pane prefHeight="160.0" prefWidth="44.0">
                      <children>
-                        <Label fx:id="giveSheepCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="giveWoolCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="giveSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreSheep" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="giveSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="31.0" onMouseClicked="#giveMoreWool" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -196,7 +196,7 @@
                               <Image url="@../assets/img/sheepSmall.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="takeSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreSheep" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="takeSheepArrow" fitHeight="43.0" fitWidth="35.0" layoutX="4.0" layoutY="96.0" onMouseClicked="#takeMoreWool" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -204,7 +204,7 @@
                               <Image url="@../assets/img/arrowDown.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="takeSheepCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="takeWoolCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -316,7 +316,7 @@
                   <Font name="Verdana" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="sheepRatio" layoutX="36.0" layoutY="106.0" text="4:1">
+            <Label fx:id="woolRatio" layoutX="36.0" layoutY="106.0" text="4:1">
                <font>
                   <Font name="Verdana" size="13.0" />
                </font>

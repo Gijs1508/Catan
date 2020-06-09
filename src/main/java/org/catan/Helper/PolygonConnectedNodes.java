@@ -18,6 +18,7 @@ public class PolygonConnectedNodes {
         this.polygonsConnected = getPolygons();
     }
 
+    // Returns the tiles the village is connected to
     public ArrayList<Tile> getConnectedTiles(double x, double y) {
         ArrayList<Tile> connectedTiles = new ArrayList<>();
         for (int i=0; i < polygonsConnected.size(); i++) {
@@ -32,6 +33,7 @@ public class PolygonConnectedNodes {
         return connectedTiles;
     }
 
+    // Returns the right tile from the polygonNumber
     private Tile getTile(int polygonNumber) {
         Tile returnTile = null;
         String tile = "tile" + polygonNumber;
@@ -44,6 +46,7 @@ public class PolygonConnectedNodes {
         return returnTile;
     }
 
+    // Creates a hashmap for the tiles.
     private HashMap<Integer, ArrayList<Circle>> getPolygons() {
         HashMap<Integer, ArrayList<Circle>> polygons =  new HashMap<>();
         polygons.put(0,tile1());
@@ -68,6 +71,8 @@ public class PolygonConnectedNodes {
         return polygons;
     }
 
+    // Adds the right vertexnodes to the right tiles
+    // 19 Tiles, 6 Vertex nodes per tile
     private ArrayList<Circle> tile1() {
         ArrayList<Circle> nodes = new ArrayList<>();
         nodes.add(vertexNodes.get(0));
