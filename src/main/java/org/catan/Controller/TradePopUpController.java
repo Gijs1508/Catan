@@ -119,7 +119,6 @@ public class TradePopUpController implements Initializable, Observable {
     public void acceptTrade(MouseEvent mouseEvent) {
         Sound.playClick();
 
-        //TODO tradelock
         Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
         int[] cards = playerInventory.getCards();
         if(!offerLock && ownCards()){

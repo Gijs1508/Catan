@@ -8,6 +8,7 @@ import org.catan.Model.Dice;
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class DobbelsteenController implements Observable {
     of the dices to the numbers rolled.
      */
     @FXML
-    public void throwDie() {
+    public void throwDie() throws IOException {
         HashMap<Integer, ArrayList<String>> diceResult = dice.throwDice();
         Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
         Integer total = entry.getKey();

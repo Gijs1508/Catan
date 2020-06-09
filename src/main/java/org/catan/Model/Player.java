@@ -13,7 +13,6 @@ public class Player {
     private String name;
     private String color;
     private Inventory playerInventory;
-    private boolean active = false;
 
     private HashMap<String, Integer> resourceToCost;
     private TradeController tradeController = TradeController.getInstance();
@@ -105,7 +104,6 @@ public class Player {
 
     public static void setActivePlayer(Player player){
         activePlayer = player;
-        player.setActive();
         LogController.setPlayer();
         if (player == mainPlayer){
             mainPlayerActive = true;
@@ -118,10 +116,6 @@ public class Player {
 
     public static Player getActivePlayer(){
         return activePlayer;
-    }
-
-    public void setActive(){
-        active = true;
     }
 
     public static boolean isMainPlayerActive(){
