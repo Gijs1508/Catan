@@ -24,7 +24,7 @@ import javafx.scene.media.*;
 import java.net.URL;
 import java.util.*;
 
-public class GameSchermController implements Initializable {
+public class GameSchermOUDDD implements Initializable {
 
     private int aantalSpelers;
 //    private Spelbord spelbord;
@@ -144,7 +144,7 @@ public class GameSchermController implements Initializable {
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Circle> thiefTileNodeList = new ArrayList<>();
-    private ArrayList<Label> tileNumNodeList;
+    private ArrayList<Label> tileNumNodeList = new ArrayList<>();
     private ArrayList<Polygon> tileNodeList = new ArrayList<>();
 
     private ArrayList<Harbor> harbors = new ArrayList<>();
@@ -159,17 +159,18 @@ public class GameSchermController implements Initializable {
         initializePlacementSpots();
 //        initializeRoads();
         addAllTilesToArray();
-        ArrayList<Label> labels = addAllTileNumbersToArray();
 
         //TODO: changing the seed to the gamecode!
         long seed = CreateGameCode.randomCodeGen();
 
-        RandomizeBoard.setRandomTiles(tileNodeList, labels, seed);
+        RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         //tile1.setFill(Color.BROWN);
         initializeButtons();
 
         initializeHarbors();
+
+        highlightTiles(10);
     }
 
     private void initializeHarbors() {
@@ -273,6 +274,43 @@ public class GameSchermController implements Initializable {
 
     }
 
+    @FXML
+    private void placeThief(MouseEvent mouseEvent){
+        Circle circle = (Circle) mouseEvent.getSource();
+        thief.setLayoutX(circle.getLayoutX() - 26);
+        thief.setLayoutY(circle.getLayoutY() - 33);
+        unHighlightTiles();
+    }
+
+    public void highlightTiles(int tileId) {
+        for (Circle thiefTile : thiefTileNodeList) {
+            if (!thiefTile.getId().equals("thiefTile" + tileId)) {
+                thiefTile.setVisible(true);
+            }
+        }
+    }
+
+    private void unHighlightTiles() {
+        for (Circle thiefTile : thiefTileNodeList) {
+            thiefTile.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void emphasizeTile(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource();
+        circle.setOpacity(0.9);
+        circle.setScaleX(1.1);
+        circle.setScaleY(1.1);
+    }
+
+    @FXML
+    private void undoEmphasizeTile(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource();
+        circle.setOpacity(0.7);
+        circle.setScaleX(1);
+        circle.setScaleY(1);
+    }
 
     // TODO Jan
     @FXML
@@ -495,16 +533,25 @@ public class GameSchermController implements Initializable {
                 roadSpot71, roadSpot72
         );
 
-        for (int i = 0; i < vertexNodeList.size() ; i++) {
-            vertexNodeList.get(i).setVisible(false);
+        Collections.addAll(thiefTileNodeList,
+                thiefTile1, thiefTile2, thiefTile3, thiefTile4, thiefTile5, thiefTile6, thiefTile7, thiefTile8,
+                thiefTile9, thiefTile10, thiefTile11, thiefTile12, thiefTile13, thiefTile14, thiefTile15,
+                thiefTile16, thiefTile17, thiefTile18, thiefTile19);
+
+        for (Circle item : vertexNodeList) {
+            item.setVisible(false);
         }
 
-        for (int i = 0; i < upgradeNodeList.size() ; i++) {
-            upgradeNodeList.get(i).setVisible(false);
+        for (Circle value : upgradeNodeList) {
+            value.setVisible(false);
         }
 
-        for (int i = 0; i < roadSpotNodeList.size(); i++) {
-            roadSpotNodeList.get(i).setVisible(false);
+        for (Circle circle : roadSpotNodeList) {
+            circle.setVisible(false);
+        }
+
+        for (Circle circle : thiefTileNodeList) {
+            circle.setVisible(false);
         }
     }
 
@@ -526,53 +573,12 @@ public class GameSchermController implements Initializable {
                 tile14, tile15,tile16, tile17, tile18, tile19);
     }
 
-    private ArrayList<Label> addAllTileNumbersToArray(){
-        ArrayList<Label> tileLabels = new ArrayList<Label>();
+    private void addAllTileNumbersToArray(){
 
-        Collections.addAll(tileLabels, tile1num, tile2num, tile3num, tile4num,
+        Collections.addAll(tileNumNodeList, tile1num, tile2num, tile3num, tile4num,
                 tile5num, tile6num, tile7num, tile8num, tile9num,
                 tile11num, tile12num, tile13num, tile14num, tile15num,
                 tile16num, tile17num, tile18num, tile19num);
-
-        return tileLabels;
-    }
-
-    @FXML
-    private void emphasizeTile(MouseEvent mouseEvent) {
-        Circle circle = (Circle) mouseEvent.getSource();
-        circle.setOpacity(0.9);
-        circle.setScaleX(1.1);
-        circle.setScaleY(1.1);
-    }
-
-    @FXML
-    private void undoEmphasizeTile(MouseEvent mouseEvent) {
-        Circle circle = (Circle) mouseEvent.getSource();
-        circle.setOpacity(0.7);
-        circle.setScaleX(1);
-        circle.setScaleY(1);
-    }
-
-    @FXML
-    private void placeThief(MouseEvent mouseEvent){
-        Circle circle = (Circle) mouseEvent.getSource();
-        thief.setLayoutX(circle.getLayoutX() - 26);
-        thief.setLayoutY(circle.getLayoutY() - 33);
-        unHighlightTiles();
-    }
-
-    public void highlightTiles(int tileId) {
-        for (Circle thiefTile : thiefTileNodeList) {
-            if (!thiefTile.getId().equals("thiefTile" + tileId)) {
-                thiefTile.setVisible(true);
-            }
-        }
-    }
-
-    private void unHighlightTiles() {
-        for (Circle thiefTile : thiefTileNodeList) {
-            thiefTile.setVisible(false);
-        }
     }
 
 //    private Speler getSpeler() {
