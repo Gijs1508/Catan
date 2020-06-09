@@ -129,6 +129,8 @@ public class TradeController {
             System.out.println("Got a knight card.");
             Player.getActivePlayer().getPlayerInventory().changeCards("knight", 1);
         }
+
+        LogController.getInstance().logDevelopmentCardEvent();
     }
 
     @FXML
