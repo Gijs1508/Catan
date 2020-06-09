@@ -4,6 +4,7 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import org.catan.Model.Player;
 
 import java.util.HashMap;
 
@@ -30,7 +31,6 @@ public class ScoreController {
     private static ScoreController scoreController;
 //    private Speler speler;
     private int score;
-    private HashMap<String, Label> scoreTypeToLabel;
     private HashMap<String, Label> player1labels;
     private HashMap<String, Label> player2labels;
     private HashMap<String, Label> player3labels;
@@ -86,8 +86,14 @@ public class ScoreController {
 
     }
 
-    public void addVictoryPointToPlayer(String color) {
+    public void addVictoryPointToPlayer(String color, int score) {
+        switch(color) {
+            case "red":
+                colorToLabels.get(color).get("points").setText(Integer.toString(score));
 
+//                Label playerPoints = colorToLabels.get(color).get("points");
+//                playerPoints.setText(Integer.toString(score));
+        }
     }
 
     public void removeDevelopmentCardFromBankView() {

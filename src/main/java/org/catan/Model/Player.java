@@ -13,6 +13,7 @@ public class Player {
 
     private String name;
     private String color;
+    private int score;
     private Inventory playerInventory;
 
     private HashMap<String, Integer> resourceToCost;
@@ -29,7 +30,8 @@ public class Player {
 
     public Player(String name){
         this.name = name;
-        this.color = ""; //TODO
+        this.color = "red"; //TODO
+        this.score = 0;
         this.playerInventory = new Inventory();
         allPlayers.add(this);
 
@@ -71,6 +73,8 @@ public class Player {
 
     public void addVictoryPoint() {
         //TODO call ScoreController to increase player's points
+        score++;
+        scoreController.addVictoryPointToPlayer(color, score);
     }
 
     public static Player getMainPlayer() {
@@ -87,6 +91,10 @@ public class Player {
 
     public String getColor(){
         return this.color;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public Inventory getPlayerInventory(){
