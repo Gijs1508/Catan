@@ -22,6 +22,9 @@ public class Player {
     public static Player activePlayer;
     public static boolean mainPlayerActive;
 
+    public Player() {
+
+    }
 
 
     public Player(String name){
@@ -64,6 +67,15 @@ public class Player {
             tradeController.updateRatioView(harbor.getType(), harbor.getRatio());
         }
 
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public static Player getMainPlayer() {

@@ -5,10 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.catan.App;
+import org.catan.Model.Game;
+import org.catan.interfaces.Observable;
 
 import java.io.IOException;
 
-public class JoinController {
+public class JoinController implements Observable {
     @FXML private TextField code_input;
     @FXML private Text error_text;
 
@@ -36,4 +38,8 @@ public class JoinController {
         }
     }
 
+    @Override
+    public void update(Game game) {
+
+    }
 }

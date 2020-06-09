@@ -19,13 +19,13 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.*;
-import javafx.scene.media.*;
+import org.catan.interfaces.Observable;
 
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class GameSchermController implements Initializable {
+public class GameSchermController implements Initializable, Observable {
 
     private int aantalSpelers;
 //    private Spelbord spelbord;
@@ -184,7 +184,7 @@ public class GameSchermController implements Initializable {
 
         initializeHarbors();
 
-//        highlightTiles(10);
+        highlightTiles(10);
     }
 
     private void initializeHarbors() {
@@ -342,7 +342,7 @@ public class GameSchermController implements Initializable {
         for (int i=0; i < 54; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
-                Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
                 imageView.setLayoutX(village.getX() - 18);
                 imageView.setLayoutY(village.getY() - 20);
                 imageView.setImage(image);
@@ -355,7 +355,7 @@ public class GameSchermController implements Initializable {
         for (int i=0; i < 54; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
-                Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
                 imageView.setImage(image);
                 break;
             }
@@ -401,13 +401,11 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void endTurn() {
-        if(Player.mainPlayerActive){
-            Sound.playEndTurnJingle();
+        Sound.playEndTurnJingle();
 
-            logController.logEndTurnEvent();
-            TurnManager.nextTurn(Player.getActivePlayer());
-            //TODO
-        }
+        logController.logEndTurnEvent();
+        TurnManager.nextTurn(Player.getActivePlayer());
+        //TODO
     }
 
     @FXML // When you hover over a circle when road is selected
@@ -597,6 +595,11 @@ public class GameSchermController implements Initializable {
                 tile5num, tile6num, tile7num, tile8num, tile9num,
                 tile11num, tile12num, tile13num, tile14num, tile15num,
                 tile16num, tile17num, tile18num, tile19num);
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 
 //    private Speler getSpeler() {

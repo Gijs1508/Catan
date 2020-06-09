@@ -7,14 +7,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.catan.App;
+import org.catan.Model.Game;
 import org.catan.View.popups.KnightDetails;
+import org.catan.interfaces.Observable;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class ScreenController implements Initializable {
+public class ScreenController implements Initializable, Observable {
 
     private AnchorPane boardView;
     private AnchorPane stockView;
@@ -110,5 +112,10 @@ public class ScreenController implements Initializable {
 
     public static ScreenController getInstance() {
         return screenController;
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 }

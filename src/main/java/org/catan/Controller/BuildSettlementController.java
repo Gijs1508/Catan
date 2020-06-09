@@ -4,16 +4,20 @@ import javafx.scene.shape.Circle;
 import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
+import org.catan.Model.Game;
 import org.catan.Model.Harbor;
 import org.catan.Model.Player;
 import org.catan.Model.Road;
 import org.catan.Model.Village;
+import org.catan.interfaces.Observable;
+
 import java.util.*;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
  */
+public class BuildSettlementController implements Observable {
 
-public class BuildSettlementController {
+
     // todo add Player properties in all the methods
 //    private Speler player;
     private String color = "blue";
@@ -329,6 +333,10 @@ public class BuildSettlementController {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), "blue");
         buildRoads.add(road);
         return road;
+    }
+
+    @Override
+    public void update(Game game) {
     }
 
     public static BuildSettlementController getInstance() {

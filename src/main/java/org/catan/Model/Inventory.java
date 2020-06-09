@@ -46,7 +46,7 @@ public class Inventory {
         StockController.getInstance().updateResources();
     }
 
-    public int getCardsTotal(){
+    public int cardsTotalGetter(){
         int total = 0;
         for(int card : cards){
             total += card;
