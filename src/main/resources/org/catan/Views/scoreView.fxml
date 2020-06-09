@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="446.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.ScoreController">
    <children>
@@ -238,7 +236,7 @@
                </children>
             </Pane>
             <Label layoutX="14.0" layoutY="45.0" text="Development cards:" />
-            <Label layoutX="141.0" layoutY="40.0" text="25">
+            <Label fx:id="bankDevelopmentCards" layoutX="141.0" layoutY="40.0" text="25">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

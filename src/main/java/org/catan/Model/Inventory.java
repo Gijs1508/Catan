@@ -41,9 +41,12 @@ public class Inventory {
             case "wool": cards[3] += amount; break;
             case "wheat": cards[4] += amount; break;
             case "knight": cards[5] += amount; break;
-
         }
         StockController.getInstance().updateResources();
+    }
+
+    public int getDevelopmentCardsLeft() {
+        return cards[5];
     }
 
     public int getCardsTotal(){
