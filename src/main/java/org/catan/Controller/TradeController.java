@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
+import org.catan.Model.Bank;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
@@ -94,11 +95,16 @@ public class TradeController {
 
     @FXML
     public void buyDevelopmentCard() {
+        // TODO add those resources to bank inventory
         if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
-            getInventory().changeCards("ore", -1);
-            getInventory().changeCards("wool", -1);
-            getInventory().changeCards("wheat", -1);
-            // TODO add development card functionality
+            String developmentCard = Bank.getBank().takeDevelopmentCard();
+
+            // Executes if bank has development cards left
+            if(!developmentCard.equals("bankEmpty")) {
+                getInventory().changeCards("ore", -1);
+                getInventory().changeCards("wool", -1);
+                getInventory().changeCards("wheat", -1);
+            }
         }
     }
 
