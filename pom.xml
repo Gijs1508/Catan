@@ -49,7 +49,7 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.1</version>
+                <version>0.0.4</version>
                 <configuration>
                     <executable>C:/Program Files/Java/jdk-14.0.1/bin/java</executable>
                     <mainClass>org.catan.App</mainClass>
