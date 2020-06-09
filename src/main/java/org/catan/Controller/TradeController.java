@@ -95,30 +95,34 @@ public class TradeController {
 
     @FXML
     public void buyDevelopmentCard() {
-        // If player has required cards TODO add those resources to bank inventory
-        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
-            String developmentCard = Bank.getBank().takeDevelopmentCard();
+        // If player doesn't have enough resources
+        if(getInventoryCards()[2] <= 1 && getInventoryCards()[3] <= 1 && getInventoryCards()[4] <= 1 && Player.mainPlayerActive){
+            System.out.println("You don't have enough resources.");
+            return;
+        }
 
-            // Bank gave a victory point card
-            if(developmentCard.equals("victoryPoint")) {
-                System.out.println("Got a victory point.");
-            }
-            // Bank gave a knight card
-            else {
-                System.out.println("Got a knight card.");
-            }
+        // If player has enough resources
+        String developmentCard = Bank.getBank().takeDevelopmentCard();
 
-            // Executes if bank has development cards left, takes resources
-            if(!developmentCard.equals("bankEmpty")) {
-                getInventory().changeCards("ore", -1);
-                getInventory().changeCards("wool", -1);
-                getInventory().changeCards("wheat", -1);
-            }
-            // Bank is empty
-            else {
-                // TODO bank is empty functionality
-                System.out.println("Bank is empty");
-            }
+        // If bank is empty
+        if(developmentCard.equals("bankEmpty")) {
+            System.out.println("Bank is empty.");
+            return;
+        }
+
+        // Executes if bank has development cards left, takes resources
+        getInventory().changeCards("ore", -1);
+        getInventory().changeCards("wool", -1);
+        getInventory().changeCards("wheat", -1);
+
+        // Bank gave a victory point card
+        if(developmentCard.equals("victoryPoint")) {
+            System.out.println("Got a victory point.");
+        }
+        // Bank gave a knight card
+        else {
+            System.out.println("Got a knight card.");
+            Player.getActivePlayer().getPlayerInventory().changeCards("knight", 1);
         }
     }
 
