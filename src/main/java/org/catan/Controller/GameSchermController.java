@@ -184,7 +184,7 @@ public class GameSchermController implements Initializable {
 
         initializeHarbors();
 
-        highlightTiles(10);
+//        highlightTiles(10);
     }
 
     private void initializeHarbors() {
@@ -412,11 +412,13 @@ public class GameSchermController implements Initializable {
 
     @FXML
     public void endTurn() {
-        Sound.playEndTurnJingle();
+        if(Player.mainPlayerActive){
+            Sound.playEndTurnJingle();
 
-        logController.logEndTurnEvent();
-        TurnManager.nextTurn(Player.getActivePlayer());
-        //TODO
+            logController.logEndTurnEvent();
+            TurnManager.nextTurn(Player.getActivePlayer());
+            //TODO
+        }
     }
 
     @FXML // When you hover over a circle when road is selected

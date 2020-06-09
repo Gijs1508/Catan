@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.catan.App;
 import org.catan.Model.Dice;
+import org.catan.Model.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,12 +26,14 @@ public class DobbelsteenController {
      */
     @FXML
     public void throwDie() throws IOException {
-        HashMap<Integer, ArrayList<String>> diceResult = dice.throwDice();
-        Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
-        Integer total = entry.getKey();
-        ArrayList<String> values = entry.getValue();
-        dice1_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(0) + ".png"))));
-        dice2_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(1) + ".png"))));
-        logController.logRollEvent(values.get(0), values.get(1));
+        if(Player.mainPlayerActive){
+            HashMap<Integer, ArrayList<String>> diceResult = dice.throwDice();
+            Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
+            Integer total = entry.getKey();
+            ArrayList<String> values = entry.getValue();
+            dice1_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(0) + ".png"))));
+            dice2_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(1) + ".png"))));
+            logController.logRollEvent(values.get(0), values.get(1));
+        }
     }
 }
