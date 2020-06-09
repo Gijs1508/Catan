@@ -101,11 +101,11 @@ public class TradeController {
 
             // Bank gave a victory point card
             if(developmentCard.equals("victoryPoint")) {
-
+                System.out.println("Got a victory point.");
             }
             // Bank gave a knight card
             else {
-
+                System.out.println("Got a knight card.");
             }
 
             // Executes if bank has development cards left, takes resources

@@ -25,12 +25,18 @@ public class Bank {
         this.bankInventory.changeCards("wheat", 50);
         this.bankInventory.changeCards("knight", 25); // Represents all development cards (also victory point cards)
 
+        // Each development card the bank has with its amount left.
         developmentCardStock = new LinkedHashMap<>(){{
            put("victoryPoint", 7);
            put("knight", 18);
         }};
     }
 
+    /***
+     * Takes a random development card from the bank's inventory.
+     * Calculates the odds of getting each card.
+     * @author Jeroen
+     * @return type of development card () */
     public String takeDevelopmentCard() {
         if(bankInventory.getDevelopmentCardsLeft() > 0) {
             // Get random key from developmentCardStock
@@ -46,7 +52,6 @@ public class Bank {
                 developmentCard = developmentCardObject.toString();
                 // If this specific card is out of stock
                 if (developmentCardStock.get(developmentCard) <= 0) {
-                    System.out.println("swap");
                     // Repeat process, but take the other card
                     switch (randomIndex) {
                         case 0:
