@@ -1,6 +1,7 @@
 package org.catan.Model;
 
 import org.catan.Controller.LogController;
+import org.catan.Controller.ScoreController;
 import org.catan.Controller.TradeController;
 
 import java.util.ArrayList;
@@ -15,7 +16,9 @@ public class Player {
     private Inventory playerInventory;
 
     private HashMap<String, Integer> resourceToCost;
+
     private TradeController tradeController = TradeController.getInstance();
+    private ScoreController scoreController = ScoreController.getInstance();
 
     public static Player mainPlayer; // Player controlling the instance of the game
     public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
@@ -64,6 +67,10 @@ public class Player {
             tradeController.updateRatioView(harbor.getType(), harbor.getRatio());
         }
 
+    }
+
+    public void addVictoryPoint() {
+        //TODO call ScoreController to increase player's points
     }
 
     public static Player getMainPlayer() {

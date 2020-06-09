@@ -156,6 +156,7 @@ public class StockController implements Initializable {
 
         // Checks if there still are knight cards left
         if(Player.getActivePlayer().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
+            // TODO notify the player
             System.out.println("No knight cards left.");
             return;
         }
@@ -164,11 +165,6 @@ public class StockController implements Initializable {
         removeCardAnimation(animationKnightCard);
 
         Sound.playSword();
-
-//        ArrayList<String> resources = new ArrayList<>();          // Use this code when a resource gets taken
-//        resources.add("ore");
-//        resources.add("sheep");
-//        removeResources(resources);
     }
 
     public void showKnightDetails() {

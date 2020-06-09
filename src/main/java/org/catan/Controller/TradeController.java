@@ -97,6 +97,7 @@ public class TradeController {
     public void buyDevelopmentCard() {
         // If player doesn't have enough resources
         if(getInventoryCards()[2] <= 1 && getInventoryCards()[3] <= 1 && getInventoryCards()[4] <= 1 && Player.mainPlayerActive){
+            //TODO notify the player
             System.out.println("You don't have enough resources.");
             return;
         }
@@ -106,6 +107,7 @@ public class TradeController {
 
         // If bank is empty
         if(developmentCard.equals("bankEmpty")) {
+            //TODO notify the player
             System.out.println("Bank is empty.");
             return;
         }
@@ -117,7 +119,10 @@ public class TradeController {
 
         // Bank gave a victory point card
         if(developmentCard.equals("victoryPoint")) {
+            //TODO popup
             System.out.println("Got a victory point.");
+
+            Player.getActivePlayer().addVictoryPoint();
         }
         // Bank gave a knight card
         else {
