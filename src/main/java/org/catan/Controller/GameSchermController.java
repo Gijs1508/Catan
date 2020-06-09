@@ -362,6 +362,7 @@ public class GameSchermController implements Initializable {
         if (startPhase)
             roadStartPhase(circle);
         buildSettlementBtnCloseClicked();
+//        startPhase = false;
     }
 
     private void placeVillage(Village village) {
@@ -552,7 +553,6 @@ public class GameSchermController implements Initializable {
 
     public void villageStartPhase() {
         ArrayList<Circle> nodes = build.showVillageStartSpots();
-        System.out.println("the nodes have been initzilizaedfg");
         for (Circle node : nodes) {
             node.setVisible(true);
         }

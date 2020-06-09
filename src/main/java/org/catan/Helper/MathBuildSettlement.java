@@ -12,8 +12,7 @@ public class MathBuildSettlement {
         int radius = radius(type);
         ArrayList<Circle> inRadius = new ArrayList<>();
         for (Circle circle : a) {
-            if (circle.getLayoutX() == x && circle.getLayoutY() == y) {
-            } else {
+            if (circle.getLayoutX() != x || circle.getLayoutY() != y) {
                 double distance = distance(x, y, circle.getLayoutX(), circle.getLayoutY());
                 if (distance <= radius) {
                     inRadius.add(circle);

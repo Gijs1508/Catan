@@ -91,19 +91,10 @@ public class BuildSettlementController {
         for (Circle circle : vertexNodeList) {
             if (buildVillages.isEmpty()) {
                 nodes.add(circle);
-                System.out.println("De array is leeg");
             } else {
                 for (Village buildVillage : buildVillages) {
-                    if (circle.getLayoutX() != buildVillage.getX() && circle.getLayoutY() != buildVillage.getY()) {
+                    if ((circle.getLayoutX() != buildVillage.getX()) || (circle.getLayoutY() != buildVillage.getY())) {
                         nodes.add(circle);
-                        System.out.println();
-                        System.out.println("#############");
-                        System.out.println("hier staat een gebouw");
-                        System.out.println("Dit is de circle X: " + circle.getLayoutX());
-                        System.out.println("Dit is de village X: " + buildVillage.getX());
-
-                        System.out.println("Dit is de circle Y: " + circle.getLayoutX());
-                        System.out.println("Dit is de village Y: " + buildVillage.getY());
                     }
                 }
             }
@@ -125,7 +116,7 @@ public class BuildSettlementController {
                 availableRoads.add(circle);
             } else {
                 for (Road buildRoad : buildRoads) {
-                    if (circle.getLayoutX() != buildRoad.getX() && circle.getLayoutY() != buildRoad.getY())
+                    if (circle.getLayoutX() != buildRoad.getX() || circle.getLayoutY() != buildRoad.getY())
                         availableRoads.add(circle);
                 }
             }
@@ -133,7 +124,7 @@ public class BuildSettlementController {
         return availableRoads;
     }
 
-    /*
+    /**
      * The methods returns the right placement nodes outside the start phase
      * This is for village placement
      * @return an arrayList with nodes
@@ -153,29 +144,18 @@ public class BuildSettlementController {
     // Returns nodes that have no villages close to them
     private ArrayList<Circle> villagesNotClose(ArrayList<Circle> spots) {
         ArrayList<Circle> placeAbleSpots = new ArrayList<>();
-//        System.out.println();
-//        System.out.println("###################################");
-//        System.out.println();
-//        System.out.println("VillagesNotClose called");
         for (Circle spot : spots) {
             ArrayList<Circle> nodes = (math.circlesInRadius(spot.getLayoutX(), spot.getLayoutY(), vertexNodeList, "village"));
             int foundVillages = 0;
             System.out.println();
-//            System.out.println("===========================");
             for (Circle node : nodes) {
-//                System.out.println("Looping nodes");
                 for (Village buildVillage : buildVillages) {
-//                    System.out.println("Looping buildvillage");
                     if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
-//                        System.out.println("!!!!FoundVillage ++!!!!");
-//                        System.out.println("Fundvillage spot X: " + spot.getLayoutX());
-//                        System.out.println("Fundvillage spot Y: " + spot.getLayoutY());
                         foundVillages++;
                     }
                 }
             }
             if (foundVillages == 0) {
-//                System.out.println("Spot is placeable: " + spot);
                 placeAbleSpots.add(spot);
             }
         }
@@ -248,8 +228,7 @@ public class BuildSettlementController {
         ArrayList<Road> roadsConnected = new ArrayList<>();
         for (int i=0; i < playerRoads.size(); i++) {
             for (Road playerRoad : playerRoads) {
-                if (playerRoads.get(i).getX() == playerRoad.getX() && playerRoads.get(i).getY() == playerRoad.getY()) {
-                } else {
+                if (playerRoads.get(i).getX() != playerRoad.getX() || playerRoads.get(i).getY() != playerRoad.getY()) {
                     double distance = math.distance(playerRoads.get(i).getX(), playerRoads.get(i).getY(), playerRoad.getX(), playerRoad.getY());
                     if (distance <= 63) {
                         roadsConnected.add(playerRoads.get(i));
@@ -280,10 +259,10 @@ public class BuildSettlementController {
         return isSpotAvailable(availableNodes, buildVillages);
     }
 
-    /*
+    /**
      * The methods makes a Village and returns it
      * Villages gets used in GameSchermController for image placement
-     * @param The node the player clicked
+     * @param node the player clicked
      */
     public Village buildVillage(Circle node) {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
@@ -292,10 +271,10 @@ public class BuildSettlementController {
         return village;
     }
 
-    /*
+    /**
      * The methods upgrades a Village and returns it
      * Upgraded villages gets used in GameSchermController for image placement
-     * @param The node the player clicked
+     * @param node the player clicked
      */
     public Village buildUpgrade(Circle node) {
         Village village = null;
@@ -309,7 +288,7 @@ public class BuildSettlementController {
         return village;
     }
 
-    /*
+    /**
      * Checks the villages that can be upgraded
      * @return an arrayList with nodes of villages
      */
@@ -330,7 +309,7 @@ public class BuildSettlementController {
         }
     }
 
-    /*
+    /**
      * Checks the roads that can be build
      * @return an arrayList with nodes of roads
      */
@@ -351,7 +330,7 @@ public class BuildSettlementController {
         return isSpotAvailable(removeDuplicates(roadPlaces), buildRoads, 1);
     }
 
-    /*
+    /**
      * The returns the villages that can be upgraded
      * @return an arrayList with nodes of villages
      */
@@ -363,11 +342,5 @@ public class BuildSettlementController {
 
     public static BuildSettlementController getInstance() {
         return buildSettlementController;
-    }
-
-    public void print(ArrayList<Circle> circle) {
-        for (Circle c : circle) {
-            System.out.println("This is circle: " + c);
-        }
     }
 }
