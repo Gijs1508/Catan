@@ -2,14 +2,11 @@ package org.catan.Model;
 
 import org.catan.Controller.ScoreController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Bank {
     private Inventory bankInventory;
-    private HashMap<String, Integer> developmentCardStock;
+    private LinkedHashMap<String, Integer> developmentCardStock;
     private static Bank bank = new Bank();
     private static ScoreController scoreController = ScoreController.getInstance();
 
@@ -28,7 +25,7 @@ public class Bank {
         this.bankInventory.changeCards("wheat", 50);
         this.bankInventory.changeCards("knight", 25); // Represents all development cards (also victory point cards)
 
-        developmentCardStock = new HashMap<>(){{
+        developmentCardStock = new LinkedHashMap<>(){{
            put("victoryPoint", 7);
            put("knight", 18);
         }};
@@ -37,20 +34,37 @@ public class Bank {
     public String takeDevelopmentCard() {
         if(bankInventory.getDevelopmentCardsLeft() > 0) {
             // Get random key from developmentCardStock
+            int randomIndex;
+            double r = new Random().nextDouble();
+            if (r < 0.35) randomIndex = 0;   // Chance of getting victoryPoint is 35%
+            else randomIndex = 1;           // Chance of getting knight is 65%
+
             String developmentCard = null;
             for (int i = 0; i < 1; i++) {
-                Object developmentCardObject = developmentCardStock.keySet().toArray()[new Random().nextInt(developmentCardStock.keySet().toArray().length)];
+                Object developmentCardObject = developmentCardStock.keySet().toArray()[randomIndex]; //
+
                 developmentCard = developmentCardObject.toString();
+                // If this specific card is out of stock
                 if (developmentCardStock.get(developmentCard) <= 0) {
+                    System.out.println("swap");
+                    // Repeat process, but take the other card
+                    switch (randomIndex) {
+                        case 0:
+                            randomIndex = 1;
+                        case 1:
+                            randomIndex = 0;
+                    }
                     i--;
                 }
             }
+
+            System.out.println(developmentCardStock.toString());
 
             // Remove that development card from the developmentCardStock, the inventory and update the score view
             developmentCardStock.replace(developmentCard, developmentCardStock.get(developmentCard) - 1);
             bankInventory.changeCards("knight", -1);
             scoreController.removeDevelopmentCardFromBankView();
-            
+
             return developmentCard;
         }
         else return "bankEmpty";
