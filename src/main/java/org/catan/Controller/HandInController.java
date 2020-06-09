@@ -36,19 +36,20 @@ public class HandInController implements Initializable {
         giveWheat.setText("0");
     }
 
-    public void accept(MouseEvent mouseEvent) {
+    public void accept() {
         if(textToInt(requiredAmount) == 0){
             getInventory().changeCards("wood", -textToInt(giveWood));
             getInventory().changeCards("brick", -textToInt(giveBrick));
             getInventory().changeCards("ore", -textToInt(giveOre));
             getInventory().changeCards("wool", -textToInt(giveWool));
             getInventory().changeCards("wheat", -textToInt(giveWheat));
-            Stage stage = (Stage) acceptBtn.getScene().getWindow();
-            stage.close();
+            screenController.hideHandInPopUp();
+//            Stage stage = (Stage) acceptBtn.getScene().getWindow();
+//            stage.close();
         }
     }
 
-    public void reset(MouseEvent mouseEvent) {
+    public void reset() {
         calcRequiredAmount();
         requiredAmount.setText(Integer.toString(requiredCards));
         giveWood.setText("0");

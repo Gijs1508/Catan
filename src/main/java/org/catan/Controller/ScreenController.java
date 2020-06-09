@@ -1,6 +1,8 @@
 package org.catan.Controller;
 
 import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -9,6 +11,7 @@ import javafx.util.Duration;
 import org.catan.App;
 import org.catan.View.popups.KnightDetails;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -26,6 +29,7 @@ public class ScreenController implements Initializable {
     private AnchorPane costView;
     private AnchorPane knightDetails;
     private AnchorPane tradePopupView;
+    private AnchorPane handInPopupView;
 
     @FXML private AnchorPane root;
     @FXML private Pane boardPane;
@@ -38,6 +42,7 @@ public class ScreenController implements Initializable {
     @FXML private Pane costPane;
     @FXML private Pane knightPopup;
     @FXML private Pane tradePopup;
+    @FXML private Pane handInPopup;
 
     private static ScreenController screenController;
 
@@ -72,18 +77,30 @@ public class ScreenController implements Initializable {
         scorePane.getChildren().setAll(scoreView);
         costPane.getChildren().setAll(costView);
         knightPopup.getChildren().setAll(knightDetails);
-        knightPopup.setVisible(false);
-        tradePopup.setVisible(false);
+
+        initializePopup(knightPopup);
+        initializePopup(tradePopup);
+        initializePopup(handInPopup);
     }
 
     public void hideKnightPopup() {
         KnightDetails.getFadeOut().playFromStart();
-//        knightPopup.setVisible(false);
+        KnightDetails.getFadeOut().setOnFinished(actionEvent -> knightPopup.setVisible(false));
     }
 
     public void showKnightPopup() {
         KnightDetails.getFadeIn().playFromStart();
         knightPopup.setVisible(true);
+    }
+
+    public void showHandInPopUp() throws IOException {
+        handInPopupView = (AnchorPane) App.loadFXML("Views/handInPopUpView");
+        handInPopup.getChildren().setAll(handInPopupView);
+        handInPopup.setVisible(true);
+    }
+
+    public void hideHandInPopUp() {
+        handInPopup.setVisible(false);
     }
 
     public void showTradePopup() throws IOException {
@@ -94,6 +111,12 @@ public class ScreenController implements Initializable {
 
     public void hideTradePopup() {
         tradePopup.setVisible(false);
+    }
+
+    private void initializePopup(Pane popupPane) {
+        popupPane.setVisible(false);
+        popupPane.setOpacity(1);
+        popupPane.setStyle("-fx-background-color: none;");
     }
 
     public HashMap<String, Double> getTradePopupLayout() {

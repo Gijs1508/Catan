@@ -2,6 +2,7 @@ package org.catan.Model;
 
 import org.catan.App;
 import org.catan.Controller.GameSchermController;
+import org.catan.Controller.ScreenController;
 import org.catan.Helper.BuildVillages;
 
 import java.io.IOException;
@@ -10,6 +11,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Dice {
+
+    private ScreenController screenController = ScreenController.getInstance();
 
     /*
     This method returns a arraylist containing two random numbers
@@ -30,7 +33,8 @@ public class Dice {
             //TODO Andere spelers ook laten inleveren
             if(Player.getMainPlayer().getPlayerInventory().getCardsTotal() > 7){
                 System.out.println("Speler moet kaarten inleveren");
-                App.HandInPopUp();
+                screenController.showHandInPopUp();
+//                App.HandInPopUp();
             }
             //TODO Rover verzetten
             GameSchermController.getInstance().highlightTiles(Thief.getTile());
