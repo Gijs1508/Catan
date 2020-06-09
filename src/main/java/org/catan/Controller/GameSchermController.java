@@ -155,6 +155,9 @@ public class GameSchermController implements Initializable {
 
     private BuildSettlementController build;
     private boolean startPhase = true;
+    private Circle justBuildVillage;
+    private Circle duplicateJustBuildVillage;
+    private boolean villagePlaced = false;
 
     private static GameSchermController gameSchermController;
 
@@ -237,12 +240,9 @@ public class GameSchermController implements Initializable {
         startShipAnimation();
     }
 
+    @FXML
     private void startPhase() {
-        while(startPhase) {
-            if (is turn) {
-
-            }
-        }
+        villageStartPhase();
     }
 
     public void setStartPhase(boolean phase) {
@@ -348,6 +348,8 @@ public class GameSchermController implements Initializable {
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
         placeVillage(build.buildVillage(circle));
+        if (startPhase)
+            roadStartPhase(circle);
         buildSettlementBtnCloseClicked();
     }
 
@@ -539,6 +541,7 @@ public class GameSchermController implements Initializable {
 
     public void villageStartPhase() {
         ArrayList<Circle> nodes = build.showVillageStartSpots();
+        System.out.println("the nodes have been initzilizaedfg");
         for (Circle node : nodes) {
             node.setVisible(true);
         }
