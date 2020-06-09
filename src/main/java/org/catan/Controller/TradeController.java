@@ -96,41 +96,41 @@ public class TradeController {
     @FXML
     public void buyDevelopmentCard() {
         // If player doesn't have enough resources
-        if(getInventoryCards()[2] <= 1 && getInventoryCards()[3] <= 1 && getInventoryCards()[4] <= 1 && Player.mainPlayerActive){
+        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
+            // If player has enough resources
+            String developmentCard = Bank.getBank().takeDevelopmentCard();
+
+            // If bank is empty
+            if(developmentCard.equals("bankEmpty")) {
+                //TODO notify the player
+                System.out.println("Bank is empty.");
+                return;
+            }
+
+            // Executes if bank has development cards left, takes resources
+            getInventory().changeCards("ore", -1);
+            getInventory().changeCards("wool", -1);
+            getInventory().changeCards("wheat", -1);
+
+            // Bank gave a victory point card
+            if(developmentCard.equals("victoryPoint")) {
+                //TODO popup
+                System.out.println("Got a victory point.");
+
+                Player.getActivePlayer().addVictoryPoint();
+            }
+            // Bank gave a knight card
+            else {
+                System.out.println("Got a knight card.");
+                Player.getActivePlayer().getPlayerInventory().changeCards("knight", 1);
+            }
+
+            LogController.getInstance().logDevelopmentCardEvent();
+        } else{
             //TODO notify the player
             System.out.println("You don't have enough resources.");
             return;
         }
-
-        // If player has enough resources
-        String developmentCard = Bank.getBank().takeDevelopmentCard();
-
-        // If bank is empty
-        if(developmentCard.equals("bankEmpty")) {
-            //TODO notify the player
-            System.out.println("Bank is empty.");
-            return;
-        }
-
-        // Executes if bank has development cards left, takes resources
-        getInventory().changeCards("ore", -1);
-        getInventory().changeCards("wool", -1);
-        getInventory().changeCards("wheat", -1);
-
-        // Bank gave a victory point card
-        if(developmentCard.equals("victoryPoint")) {
-            //TODO popup
-            System.out.println("Got a victory point.");
-
-            Player.getActivePlayer().addVictoryPoint();
-        }
-        // Bank gave a knight card
-        else {
-            System.out.println("Got a knight card.");
-            Player.getActivePlayer().getPlayerInventory().changeCards("knight", 1);
-        }
-
-        LogController.getInstance().logDevelopmentCardEvent();
     }
 
     @FXML
