@@ -154,6 +154,7 @@ public class GameSchermController implements Initializable {
     LogController logController = LogController.getInstance();
 
     private BuildSettlementController build;
+    private boolean startPhase = true;
 
     private static GameSchermController gameSchermController;
 
@@ -234,6 +235,18 @@ public class GameSchermController implements Initializable {
         }
 
         startShipAnimation();
+    }
+
+    private void startPhase() {
+        while(startPhase) {
+            if (is turn) {
+
+            }
+        }
+    }
+
+    public void setStartPhase(boolean phase) {
+        this.startPhase = phase;
     }
 
     //placeholder
@@ -522,6 +535,24 @@ public class GameSchermController implements Initializable {
         }
         upgradeButton.setVisible(true);
         upgradeButtonClose.setVisible(false);
+    }
+
+    public void villageStartPhase() {
+        ArrayList<Circle> nodes = build.showVillageStartSpots();
+        for (Circle node : nodes) {
+            node.setVisible(true);
+        }
+        settlementButton.setVisible(false);
+        settlementButtonClose.setVisible(true);
+    }
+
+    public void roadStartPhase(Circle circle) {
+        ArrayList<Circle> nodes = build.showRoadStartSpots(circle);
+        for (Circle node : nodes) {
+            node.setVisible(true);
+        }
+        roadButton.setVisible(false);
+        roadButtonClose.setVisible(true);
     }
 
     private void initializePlacementSpots(){
