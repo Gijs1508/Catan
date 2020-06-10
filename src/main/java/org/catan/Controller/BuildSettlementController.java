@@ -187,6 +187,17 @@ public class BuildSettlementController implements Observable {
         return arrayFixed;
     }
 
+    // Removes duplicates in array
+    private ArrayList<Village> removeDuplicates(ArrayList<Village> array, double useless) {
+        ArrayList<Village> arrayFixed = new ArrayList<>();
+        for (Village village : array) {
+            if (!arrayFixed.contains(village)) {
+                arrayFixed.add(village);
+            }
+        }
+        return arrayFixed;
+    }
+
     // Removes the uniques from two ArrayLists
     private ArrayList<Circle> removeNonDuplicates(ArrayList<Circle> array, ArrayList<Circle> array2) {
         ArrayList<Circle> arrayFixed = new ArrayList<>();
@@ -383,6 +394,36 @@ public class BuildSettlementController implements Observable {
 
     @Override
     public void update(Game game) {
+        updateRoads(game.getBoard().getRoads());
+        updateSettlements(game.getBoard().getSettlements());
+    }
+
+    private void updateRoads(ArrayList<Road> roads) {
+        if (!roads.equals(buildRoads)) {
+            roads.addAll(buildRoads);
+            ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicates(roads, 0));
+            GameSchermController.getInstance().updateRoads(changedRoads);
+            buildRoads.addAll(changedRoads);
+        }
+    }
+
+    private void updateSettlements(ArrayList<Village> villages) {
+        if (!villages.equals(buildVillages)) {
+            villages.addAll(buildVillages);
+            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicates(villages, 0));
+            ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
+            ArrayList<Village> cities = new ArrayList<>();
+            for (Village village : changedVillages) {
+                if (village.isUpgraded()) {
+                    cities.add(village);
+                    villages2.remove(village);
+                }
+            }
+            if (!villages2.isEmpty())
+                GameSchermController.getInstance().updateVillage(villages2);
+            if (!cities.isEmpty())
+                GameSchermController.getInstance().updateCity(cities);
+        }
     }
 
     public static BuildSettlementController getInstance() {

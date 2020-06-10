@@ -679,6 +679,24 @@ public class GameSchermController implements Initializable, Observable {
 
     }
 
+    public void updateRoads(ArrayList<Road> roads) {
+        for (Road road : roads) {
+            placeRoad(road);
+        }
+    }
+
+    public void updateVillage(ArrayList<Village> villages) {
+        for (Village village : villages) {
+            placeVillage(village);
+        }
+    }
+
+    public void updateCity(ArrayList<Village> cities) {
+        for (Village city : cities) {
+            placeCity(city);
+        }
+    }
+
 //    private Speler getSpeler() {
 //        return Speler; // Dit moet worden gewijzigd
 //    }
