@@ -29,6 +29,10 @@ public class Log {
     private String opponentName;
     private ArrayList<String> imgPaths = new ArrayList<>();
 
+    public Log() {
+
+    }
+
     public Log(String eventType, String playerName){
         if (logs.getImgEvents().containsKey(eventType))
             logType = "img";
@@ -69,6 +73,15 @@ public class Log {
         String imgPath = logs.getImgPath().get(img);
         imgPaths.add(imgPath);
     }
+
+    public String imgPathGetter() {
+        return imgPaths.get(0);
+    }
+
+    public String imgPathGetter(int i) {
+        return imgPaths.get(i);
+    }
+
 
     public ArrayList<String> getImgPaths() { return imgPaths; }
 

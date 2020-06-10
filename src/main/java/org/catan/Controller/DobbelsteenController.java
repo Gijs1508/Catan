@@ -6,13 +6,14 @@ import javafx.scene.image.ImageView;
 import org.catan.App;
 import org.catan.Model.Dice;
 import org.catan.Model.Player;
-
+import org.catan.Model.Game;
+import org.catan.interfaces.Observable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DobbelsteenController {
+public class DobbelsteenController implements Observable {
 
     LogController logController = LogController.getInstance();
     @FXML private ImageView dice1_img;
@@ -35,5 +36,10 @@ public class DobbelsteenController {
             dice2_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(1) + ".png"))));
             logController.logRollEvent(values.get(0), values.get(1));
         }
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 }

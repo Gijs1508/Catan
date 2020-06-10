@@ -10,8 +10,10 @@ import org.catan.Model.Player;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import org.catan.Model.Game;
+import org.catan.interfaces.Observable;
 
-public class ScoreController implements Initializable {
+public class ScoreController implements Initializable, Observable {
 
     @FXML private Label player1name; @FXML private Label player1points;
     @FXML private Label player1roads; @FXML private Label player1villages;
@@ -32,6 +34,10 @@ public class ScoreController implements Initializable {
     @FXML private Label bankDevelopmentCards;
 
     private static ScoreController scoreController;
+
+
+
+
 //    private Speler speler;
     private int score;
     private HashMap<String, Label> player1labels;
@@ -108,5 +114,10 @@ public class ScoreController implements Initializable {
 
     public static ScoreController getInstance() {
         return scoreController;
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 }

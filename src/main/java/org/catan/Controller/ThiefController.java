@@ -3,9 +3,12 @@ package org.catan.Controller;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import org.catan.Model.Game;
+import org.catan.Model.Tile;
+import org.catan.interfaces.Observable;
 
-public class ThiefController {
-//    private static int currentPosition = 10;
+public class ThiefController implements Observable {
+    //    private static int currentPosition = 10;
 
     private void keyHandler() {
     }
@@ -16,6 +19,11 @@ public class ThiefController {
 //        } else {
 //            System.out.println("Geen struikrover nodig");
 //        }
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 
 //    public static List<Integer> placeThief(int polygonID) {
@@ -63,5 +71,4 @@ public class ThiefController {
 //        currentPosition = polygonID;
 //        return idAndCoordinates.get(polygonID);
 //    }
-
 }

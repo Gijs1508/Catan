@@ -1,49 +1,96 @@
 package org.catan.Model;
 
+import org.catan.logic.CodeGenerator;
+
 import java.util.ArrayList;
 
 public class Game {
+
     private static ArrayList<Player> players = new ArrayList<Player>();
     public static Player activePlayer;
     private String status;
-    private String code;
+    private Long code;
+    private ArrayList<Log> logs;
+    private Gameboard board;
 
-//    public static void nextTurn() {
-//        for (int i = 0; i < 3; i++){
-//            players.get(i).setMainPlayer(players.get(i));
-//            if (i == 3){
-//                i = 0;
-//            }
-//        }
+    public Game() {
+        this.board = new Gameboard();
+        this.players = new ArrayList<>();
+        this.logs = new ArrayList<>();
+        this.status = "Open";
+        this.code = CreateGameCode.randomCodeGen();
+    }
+
+    public void nextTurn() {
+
+    }
+
+//    public Tile getRoverStatus(){
+//
 //    }
 
-//    public Tile getRoverStatus(){ gameboard.getRover().getTile(); }
-
-//    connection with borspel/gameboard class required
 //    public void placeGebouw(Gebouw gebouw){
-//        setSettlements(Player player, Tile tile)
+//
 //    }
 
 //    public void upgradeGebouw(Gebouw gebouw){
-//        ?
+//
 //    }
 
-    public void giveGrondstoffen(String type, int number, Player player){
-        player.getPlayerInventory().changeCards(type, number);
+//    public void giveGrondstoffen(ArrayList<Grondstof> grondstoffen, Speler speler){
+//
+//    }
+
+//    public void giveRidderkaarten(ArrayList<Ridderkaart> ridderkaarten, Speler speler) {
+//
+//    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void giveRidderkaarten(int number, Player player) {
-        player.getPlayerInventory().changeCards("knight", number);
+    public String getStatus(){
+        return this.status;
     }
 
-    public void setStatus(String status) { this.status = status; }
+    public void addSpeler(Player speler) {
+        this.players.add(speler);
+    }
 
-    public String getStatus() { return status; }
+    public ArrayList<Player> getPlayers() {
+        return this.players;
+    }
 
-    public String getCode() { return code; }
+    public Long getCode(){
+        return this.code;
+    }
 
-    public ArrayList<Player> getPlayers(){
-        return players;
+    public void addLog(Log log) {
+        this.logs.add(log);
+    }
+
+    public ArrayList<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(ArrayList<Log> logs) {
+        this.logs = logs;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
+    }
+
+    public Gameboard getBoard() {
+        return board;
+    }
+
+    public void setBoard(Gameboard board) {
+        this.board = board;
     }
 
     public static Player getActivePlayer(){

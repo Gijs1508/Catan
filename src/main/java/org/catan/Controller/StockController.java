@@ -7,16 +7,18 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import org.catan.Model.Game;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
+import org.catan.interfaces.Observable;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class StockController implements Initializable {
+public class StockController implements Initializable, Observable {
 
 
     //Make controller available to other classes
@@ -182,5 +184,10 @@ public class StockController implements Initializable {
             put("wool", animationSheep);
             put("wheat", animationWheat);
         }};
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 }

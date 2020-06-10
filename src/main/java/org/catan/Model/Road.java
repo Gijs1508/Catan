@@ -6,6 +6,10 @@ public class Road {
     private String imgPath;
     private String color;
 
+    public Road() {
+
+    }
+
     public Road(double x, double y, String color) {
         this.x = x;
         this.y = y;
