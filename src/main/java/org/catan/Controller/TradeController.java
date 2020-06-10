@@ -54,7 +54,6 @@ public class TradeController {
         put(3, "wool");
         put(4, "wheat");
     }};
-
     private static TradeController tradeController;
 
 
@@ -119,7 +118,8 @@ public class TradeController {
 
         // Bank gave a victory point card
         if(developmentCard.equals("victoryPoint")) {
-            //TODO popup
+            ScreenController.getInstance().showDevCardPopup();
+            DevCardPopUpController.getInstance().setPointImage();
             System.out.println("Got a victory point.");
 
             Player.getActivePlayer().addVictoryPoint();
@@ -127,9 +127,11 @@ public class TradeController {
         // Bank gave a knight card
         else {
             System.out.println("Got a knight card.");
+            ScreenController.getInstance().showDevCardPopup();
+            DevCardPopUpController.getInstance().setKnightImage();
             Player.getActivePlayer().getPlayerInventory().changeCards("knight", 1);
         }
-
+        DevCardPopUpController.getInstance().playAnimation();
         LogController.getInstance().logDevelopmentCardEvent();
     }
 
