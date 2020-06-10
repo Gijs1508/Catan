@@ -258,6 +258,7 @@ public class BuildSettlementController {
     public Village buildVillage(Circle node) {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
+        bv.setBuildVillages(buildVillages);
         return village;
     }
 

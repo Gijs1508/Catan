@@ -55,6 +55,8 @@ public class Dice {
                     }
                 }
             }
+        } else {
+            System.out.println("ja jan ze blijven leeg");
         }
     }
 }
