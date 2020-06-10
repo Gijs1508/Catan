@@ -61,24 +61,6 @@ public class App extends Application {
         stage.show();
     }
 
-    public static void tradePopUp() throws IOException{
-        scene = new Scene(loadFXML("Views/tradePopUpView"));
-        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Trade offer");
-        stage.show();
-    }
-
-    public static void HandInPopUp() throws IOException{
-        scene = new Scene(loadFXML("Views/handInView"));
-        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Get fucked");
-        stage.show();
-    }
-
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }

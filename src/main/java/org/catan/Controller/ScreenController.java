@@ -32,6 +32,7 @@ public class ScreenController implements Initializable, Observable {
     private AnchorPane knightDetails;
     private AnchorPane tradePopupView;
     private AnchorPane handInPopupView;
+    private AnchorPane devCardPopupView;
 
     @FXML private AnchorPane root;
     @FXML private Pane boardPane;
@@ -45,6 +46,7 @@ public class ScreenController implements Initializable, Observable {
     @FXML private Pane knightPopup;
     @FXML private Pane tradePopup;
     @FXML private Pane handInPopup;
+    @FXML private Pane devCardPopup;
 
     private static ScreenController screenController;
 
@@ -65,6 +67,7 @@ public class ScreenController implements Initializable, Observable {
             diceView = (AnchorPane) App.loadFXML("Views/diceView");
             scoreView = (AnchorPane) App.loadFXML("Views/scoreView");
             costView = (AnchorPane) App.loadFXML("Views/costView");
+            devCardPopupView = (AnchorPane) App.loadFXML("Views/devCardPopUpView");
             knightDetails = new KnightDetails().getRoot();
         } catch (IOException e) {
             e.printStackTrace();
@@ -79,10 +82,12 @@ public class ScreenController implements Initializable, Observable {
         scorePane.getChildren().setAll(scoreView);
         costPane.getChildren().setAll(costView);
         knightPopup.getChildren().setAll(knightDetails);
+        devCardPopup.getChildren().setAll(devCardPopupView);
 
         initializePopup(knightPopup);
         initializePopup(tradePopup);
         initializePopup(handInPopup);
+        initializePopup(devCardPopup);
     }
 
     public void hideKnightPopup() {
@@ -113,6 +118,14 @@ public class ScreenController implements Initializable, Observable {
 
     public void hideTradePopup() {
         tradePopup.setVisible(false);
+    }
+
+    public void showDevCardPopup() {
+        devCardPopup.setVisible(true);
+    }
+
+    public void hideDevCardPopup() {
+        devCardPopup.setVisible(false);
     }
 
     private void initializePopup(Pane popupPane) {
