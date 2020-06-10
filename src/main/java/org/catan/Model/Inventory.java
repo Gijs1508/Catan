@@ -53,7 +53,8 @@ public class Inventory {
         return cards[5];
     }
 
-    public int getCardsTotal(){
+
+    public int cardsTotalGetter(){
         int total = 0;
         for(int card : cards){
             total += card;

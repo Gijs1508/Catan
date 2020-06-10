@@ -9,6 +9,9 @@ public class Tile {
     private String id;
     private int number;
 
+    public Tile() {
+
+    }
 
     public Tile(String type, String id, Integer number){
         this.type = type;

@@ -68,7 +68,7 @@ public class HandInController implements Initializable {
     }
 
     private void calcRequiredAmount(){
-        requiredCards = getInventory().getCardsTotal() / 2;
+        requiredCards = getInventory().cardsTotalGetter() / 2;
     }
 
     public void raiseWheat(MouseEvent mouseEvent) {

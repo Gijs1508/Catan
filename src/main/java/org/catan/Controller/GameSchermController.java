@@ -20,13 +20,13 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.*;
-import javafx.scene.media.*;
+import org.catan.interfaces.Observable;
 
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class GameSchermController implements Initializable {
+public class GameSchermController implements Initializable, Observable {
 
     private int aantalSpelers;
 //    private Spelbord spelbord;
@@ -363,7 +363,7 @@ public class GameSchermController implements Initializable {
         for (int i=0; i < 54; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
-                Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
                 imageView.setLayoutX(village.getX() - 18);
                 imageView.setLayoutY(village.getY() - 20);
                 imageView.setImage(image);
@@ -376,7 +376,7 @@ public class GameSchermController implements Initializable {
         for (int i=0; i < 54; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
-                Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
                 imageView.setImage(image);
                 break;
             }
@@ -628,16 +628,21 @@ public class GameSchermController implements Initializable {
                 tile16num, tile17num, tile18num, tile19num);
     }
 
-    public boolean canBuildObject(int[] reqResources){
+    public boolean canBuildObject(int[] reqResources) {
         Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
         for (int i = 0; i < playerInventory.getCards().length; i++) {
-            if(playerInventory.getCards()[i] >= reqResources[i]){
+            if (playerInventory.getCards()[i] >= reqResources[i]) {
                 playerInventory.changeCards(playerInventory.getStrCards()[i], -reqResources[i]);
             } else {
                 return false;
             }
         }
         return true;
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 
 //    private Speler getSpeler() {

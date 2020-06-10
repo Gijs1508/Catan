@@ -5,13 +5,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.App;
+import org.catan.Model.Game;
+import org.catan.interfaces.Observable;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class LobbySchermController implements Initializable {
+public class LobbySchermController implements Initializable, Observable {
 
     private int aantalSpelers;
     private int minimumAantalSpelers;
@@ -50,6 +52,11 @@ public class LobbySchermController implements Initializable {
     }
 
     private void startTimer() {
+
+    }
+
+    @Override
+    public void update(Game game) {
 
     }
 }

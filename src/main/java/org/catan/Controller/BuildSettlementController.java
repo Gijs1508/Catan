@@ -6,13 +6,14 @@ import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.*;
-
+import org.catan.interfaces.Observable;
 import java.util.*;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
  */
+public class BuildSettlementController implements Observable {
 
-public class BuildSettlementController {
+
     // todo add Player properties in all the methods
 //    private Speler player;
     private String color = "blue";
@@ -361,6 +362,10 @@ public class BuildSettlementController {
 //        }
 //        return true;
 //    }
+
+    @Override
+    public void update(Game game) {
+    }
 
     public static BuildSettlementController getInstance() {
         return buildSettlementController;
