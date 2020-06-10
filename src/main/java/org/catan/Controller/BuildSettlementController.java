@@ -7,6 +7,8 @@ import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+
+import java.lang.reflect.Array;
 import java.util.*;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
@@ -17,9 +19,9 @@ public class BuildSettlementController implements Observable {
     // todo add Player properties in all the methods
 //    private Speler player;
     private String color = "blue";
-    private ArrayList<Circle> vertexNodeList = new ArrayList<>();
-    private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
-    private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
+    private ArrayList<Circle> vertexNodeList;
+    private ArrayList<Circle> upgradeNodeList;
+    private ArrayList<Circle> roadSpotNodeList;
 
     private ArrayList<Road> buildRoads;
     private ArrayList<Village> buildVillages;
@@ -111,7 +113,7 @@ public class BuildSettlementController implements Observable {
      * @return an arrayList with nodes
      */
     public ArrayList<Circle> showRoadStartSpots(Circle village) {
-        ArrayList<Circle> roads = math.circlesInRadius(village.getLayoutX(), village.getLayoutY(), roadSpotNodeList, "other");
+        ArrayList<Circle> roads = new ArrayList<>(math.circlesInRadius(village.getLayoutX(), village.getLayoutY(), roadSpotNodeList, "other"));
         ArrayList<Circle> availableRoads = new ArrayList<>();
         for (Circle circle : roads) {
             if(buildRoads.isEmpty()) {
@@ -132,7 +134,7 @@ public class BuildSettlementController implements Observable {
      * @return an arrayList with nodes
      */
     public ArrayList<Circle> showVillageSpots() {
-        ArrayList<Road> roadsConnected = roadsConnected(); // Gives roads that have a minimum length of 2
+        ArrayList<Road> roadsConnected = new ArrayList<>(roadsConnected()); // Gives roads that have a minimum length of 2
         ArrayList<Circle> nodes = new ArrayList<>();
         for (Road road : roadsConnected) {
             nodes.addAll(math.circlesInRadius(road.getX(), road.getY(), roadSpotNodeList, "road"));
@@ -198,41 +200,41 @@ public class BuildSettlementController implements Observable {
 
     // Checks if the spots don't have a road already
     private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Road> roads, int useless) {
-        for (int i=0; i < nodes.size(); i++) {
+        ArrayList<Circle> availableSpots = new ArrayList<>(nodes);
+        for (Circle node : nodes) {
             for (Road r : roads) {
-                if (nodes.get(i).getLayoutX() == r.getX() && nodes.get(i).getLayoutY() == r.getY()) {
-                    nodes.remove(i);
+                if (node.getLayoutX() == r.getX() && node.getLayoutY() == r.getY()) {
+                    availableSpots.remove(node);
                 }
             }
         }
-        return nodes;
+        return availableSpots;
     }
 
     // Checks if the available spots don't have a settlement already
-    private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Village> village) {
+    private ArrayList<Circle> isSpotAvailable(ArrayList<Circle> nodes, ArrayList<Village> villages) {
         ArrayList<Circle> nodesToRemove = new ArrayList<>();
-        for (int i=0; i < nodes.size(); i++) {
-            for (Village v : village) {
-                if (nodes.get(i).getLayoutX() == v.getX() && nodes.get(i).getLayoutY() == v.getY()) {
-                    nodesToRemove.add(nodes.get(i));
+        for (Circle node : nodes) {
+            for (Village village : villages) {
+                if (node.getLayoutX() == village.getX() && node.getLayoutY() == village.getY()) {
+                    nodesToRemove.add(node);
                 }
             }
         }
         nodes.removeAll(nodesToRemove);
-
         return nodes;
     }
 
     // Returns roads that lie next to another road
     private ArrayList<Road> roadsConnected() {
-        ArrayList<Road> playerRoads = playerRoads();
+        ArrayList<Road> playerRoads = new ArrayList<>(playerRoads());
         ArrayList<Road> roadsConnected = new ArrayList<>();
-        for (int i=0; i < playerRoads.size(); i++) {
+        for (Road road : playerRoads) {
             for (Road playerRoad : playerRoads) {
-                if (playerRoads.get(i).getX() != playerRoad.getX() || playerRoads.get(i).getY() != playerRoad.getY()) {
-                    double distance = math.distance(playerRoads.get(i).getX(), playerRoads.get(i).getY(), playerRoad.getX(), playerRoad.getY());
+                if (road.getX() != playerRoad.getX() || road.getY() != playerRoad.getY()) {
+                    double distance = math.distance(road.getX(), road.getY(), playerRoad.getX(), playerRoad.getY());
                     if (distance <= 63) {
-                        roadsConnected.add(playerRoads.get(i));
+                        roadsConnected.add(road);
                     }
                 }
             }
@@ -301,7 +303,7 @@ public class BuildSettlementController implements Observable {
      * @return an arrayList with nodes of villages
      */
     public ArrayList<Circle> showUpgradeableVillages() {
-        ArrayList<Village> villages = playerVillages();
+        ArrayList<Village> villages = new ArrayList<>(playerVillages());
         ArrayList<Circle> upgradeableVillages = new ArrayList<>();
         if (villages.size() == 0){
             return null;
@@ -310,6 +312,7 @@ public class BuildSettlementController implements Observable {
                 for (Village playerVillage : villages) {
                     if (circle.getLayoutX() == playerVillage.getX() && circle.getLayoutY() == playerVillage.getY() && !playerVillage.isUpgraded()) {
                         upgradeableVillages.add(circle);
+                        break;
                     }
                 }
             }
@@ -322,7 +325,7 @@ public class BuildSettlementController implements Observable {
      * @return an arrayList with nodes of roads
      */
     public ArrayList<Circle> showRoadSpots() {
-        ArrayList<Road> playerRoads = playerRoads();
+        ArrayList<Road> playerRoads = new ArrayList<>(playerRoads());
         ArrayList<Circle> roadPlaces = new ArrayList<>();
 
         for (Road playerRoad : playerRoads) {
@@ -334,7 +337,6 @@ public class BuildSettlementController implements Observable {
                 roadPlaces.addAll(math.circlesInRadius(village.getX(), village.getY(), roadSpotNodeList, "other"));
         }
 
-        roadPlaces = isSpotAvailable(removeDuplicates(roadPlaces), buildRoads, 1);
         return isSpotAvailable(removeDuplicates(roadPlaces), buildRoads, 1);
     }
 
@@ -373,18 +375,17 @@ public class BuildSettlementController implements Observable {
 //        return true;
 //    }
 
+    private void print(ArrayList<Village> village) {
+        for (Village v : village) {
+            System.out.println("This is a village " + v);
+        }
+    }
+
     @Override
     public void update(Game game) {
     }
 
     public static BuildSettlementController getInstance() {
         return buildSettlementController;
-    }
-
-    public void print(ArrayList<Village> village) {
-        for (Village v : village) {
-            System.out.println();
-            System.out.println("This is a build village: " + v);
-        }
     }
 }

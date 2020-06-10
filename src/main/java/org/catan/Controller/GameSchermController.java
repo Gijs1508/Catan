@@ -367,7 +367,6 @@ public class GameSchermController implements Initializable, Observable {
             alert.setContentText("You don't have enough resources to build an village!");
             alert.show();
         }
-        placeVillage(build.buildVillage(circle));
         if (startPhase)
             roadStartPhase(circle);
         buildSettlementBtnCloseClicked();

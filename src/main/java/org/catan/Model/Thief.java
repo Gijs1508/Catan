@@ -1,7 +1,7 @@
 package org.catan.Model;
 
 public class Thief {
-    private static int tile;
+    private static int tile = 10;
 
     public Thief() {
     }
