@@ -14,11 +14,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 
+/**
+ * Class that contains the functionality to communicate with the database
+ *
+ * @author werner
+ */
 public class DatabaseConnector {
     private Firestore db;
 
     public static DatabaseConnector connector;
 
+    /**
+     * Constructor for db connector, will establish the connection with the db so that it can be used in future functions
+     */
     public DatabaseConnector() {
         try {
             File accountKey = new File("src/main/resources/org/catan/credentials/FirestoreKey.json");
@@ -38,6 +46,10 @@ public class DatabaseConnector {
         connector = this;
     }
 
+    /**
+     * Function to get the databaseConnector instance, to ensure only one instance is used
+     * @return DatabaseConnector
+     */
     public static DatabaseConnector getInstance() {
         if (connector == null) {
             connector = new DatabaseConnector();
@@ -45,8 +57,13 @@ public class DatabaseConnector {
         return connector;
     }
 
+    /**
+     * Function to get all games
+     * @return ArrayList<Game>()
+     */
     public ArrayList<Game> getAllGames() {
         ArrayList<Game> games = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
 
         ApiFuture<QuerySnapshot> query = this.db.collection("games").get();
 
@@ -54,7 +71,8 @@ public class DatabaseConnector {
             QuerySnapshot snapshot = query.get();
             List<QueryDocumentSnapshot> documents = snapshot.getDocuments();
             for (QueryDocumentSnapshot document : documents) {
-                games.add(document.toObject(Game.class));
+                Map<String, Object> gameData = document.getData();
+                games.add(objectMapper.convertValue(gameData, Game.class));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,6 +81,11 @@ public class DatabaseConnector {
         return games;
     }
 
+    /**
+     * Function to get a game by it's unique id
+     * @param id
+     * @return
+     */
     public Game getGameById(Long id) {
         Game game = new Game();
         CollectionReference collectionReference = this.db.collection("games");
@@ -84,16 +107,23 @@ public class DatabaseConnector {
         return game;
     }
 
+    /**
+     * Function to get games, by their status
+     *
+     * @param status
+     * @return
+     */
     public ArrayList<Game> getGamesByStatus(String status) {
         ArrayList<Game> games = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+
         CollectionReference collectionReference = this.db.collection("games");
         Query query = collectionReference.whereEqualTo("status", status);
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
         try {
             List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
             for (QueryDocumentSnapshot document : documents) {
-                games.add(document.toObject(Game.class));
-
+                games.add(objectMapper.convertValue(document.getData(), Game.class));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,6 +132,10 @@ public class DatabaseConnector {
         return games;
     }
 
+    /**
+     * Function to update the data of an existing game
+     * @param game
+     */
     public void updateGame(Game game) {
         DocumentReference documentReference = this.db.collection("games").document(String.valueOf(game.getCode()));
 
@@ -133,6 +167,10 @@ public class DatabaseConnector {
         return playerMapList;
     }
 
+    /**
+     * Function to create a new game in the database
+     * @param game
+     */
     public void createGame(Game game) {
         DocumentReference documentReference = this.db.collection("games").document(String.valueOf(game.getCode()));
 
