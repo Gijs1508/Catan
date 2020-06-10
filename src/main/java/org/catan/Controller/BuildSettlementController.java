@@ -1,19 +1,19 @@
 package org.catan.Controller;
 
+import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
-import org.catan.Model.Harbor;
-import org.catan.Model.Player;
-import org.catan.Model.Road;
-import org.catan.Model.Village;
+import org.catan.Model.*;
+import org.catan.interfaces.Observable;
 import java.util.*;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
  */
+public class BuildSettlementController implements Observable {
 
-public class BuildSettlementController {
+
     // todo add Player properties in all the methods
 //    private Speler player;
     private String color = "blue";
@@ -149,7 +149,6 @@ public class BuildSettlementController {
         for (Circle spot : spots) {
             ArrayList<Circle> nodes = (math.circlesInRadius(spot.getLayoutX(), spot.getLayoutY(), vertexNodeList, "village"));
             int foundVillages = 0;
-            System.out.println();
             for (Circle node : nodes) {
                 for (Village buildVillage : buildVillages) {
                     if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
@@ -280,12 +279,19 @@ public class BuildSettlementController {
      */
     public Village buildUpgrade(Circle node) {
         Village village = null;
-        for (Village buildVillage : buildVillages) {
-            if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
-                buildVillage.setUpgraded(true);
-                village = buildVillage;
-                break;
+        int[] reqResources = {0, 0, 3, 0, 2, 0};
+        if(gameSchermController.canBuildObject(reqResources)){
+            for (Village buildVillage : buildVillages) {
+                if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
+                    buildVillage.setUpgraded(true);
+                    village = buildVillage;
+                    break;
+                }
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("You don't have enough resources to upgrade an village!");
+            alert.show();
         }
         return village;
     }
@@ -340,6 +346,35 @@ public class BuildSettlementController {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), "blue");
         buildRoads.add(road);
         return road;
+    }
+
+//    public boolean buildItem(int[] requiredResources, Object object){
+//        Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
+//        for (int i = 0; i < playerInventory.getCards().length; i++) {
+//            for (int reqCard : requiredResources){
+//                if(playerInventory.getCards()[i] >= reqCard){
+//                    System.out.println(playerInventory.getStrCards()[i]);
+//                    playerInventory.changeCards(playerInventory.getStrCards()[i], -reqCard);
+//                    //buildVillages.add(object);
+//                    System.out.println(object.getClass().getName());
+//
+//                    switch (object.getClass().getName()){
+//                        case "org.catan.Model.Village": buildVillages.add((Village) object); break;
+//                        case "org.catan.Model.Road": buildRoads.add((Road) object); break;
+//                    }
+//
+//                    bv.setBuildVillages(buildVillages);
+//                    return true;
+//                } else {
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//    }
+
+    @Override
+    public void update(Game game) {
     }
 
     public static BuildSettlementController getInstance() {

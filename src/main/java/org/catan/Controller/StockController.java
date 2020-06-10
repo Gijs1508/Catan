@@ -7,16 +7,18 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import org.catan.Model.Game;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
+import org.catan.interfaces.Observable;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class StockController implements Initializable {
+public class StockController implements Initializable, Observable {
 
 
     //Make controller available to other classes
@@ -152,16 +154,18 @@ public class StockController implements Initializable {
     }
 
     public void activateKnight() {
-        logController.logKnightEvent();
+        // Checks if there still are knight cards left
+        if(Player.getActivePlayer().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
+            // TODO notify the player
+            System.out.println("No knight cards left.");
+            return;
+        }
 
+        Player.getActivePlayer().getPlayerInventory().changeCards("knight", -1);
         removeCardAnimation(animationKnightCard);
 
+        logController.logKnightEvent();
         Sound.playSword();
-
-//        ArrayList<String> resources = new ArrayList<>();          // Use this code when a resource gets taken
-//        resources.add("ore");
-//        resources.add("sheep");
-//        removeResources(resources);
     }
 
     public void showKnightDetails() {
@@ -180,5 +184,10 @@ public class StockController implements Initializable {
             put("wool", animationSheep);
             put("wheat", animationWheat);
         }};
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 }

@@ -8,6 +8,7 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,13 +20,13 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.*;
-import javafx.scene.media.*;
+import org.catan.interfaces.Observable;
 
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class GameSchermController implements Initializable {
+public class GameSchermController implements Initializable, Observable {
 
     private int aantalSpelers;
 //    private Spelbord spelbord;
@@ -308,7 +309,7 @@ public class GameSchermController implements Initializable {
         thief.setLayoutY(circle.getLayoutY() - 33);
         unHighlightTiles();
 
-        String circleID = circle.getId().replaceAll("[^\\d.]", "");; //Tile string opschoonen tot alleen een getal
+        String circleID = circle.getId().replaceAll("[^\\d.]", "");; //Tile string opschonen tot alleen een getal
         int tileID;
         try {
             tileID = Integer.parseInt(circleID);
@@ -353,9 +354,19 @@ public class GameSchermController implements Initializable {
     // TODO Jan
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
-        logController.logSettlementEvent();
+        int[] reqResources = {1, 1, 0, 1, 1, 0};
+        //TODO Jan: deze bool veranderen naar de status van startevent
+        boolean startEvent = false;
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
+        if(canBuildObject(reqResources)){
+            placeVillage(build.buildVillage(circle));
+            logController.logSettlementEvent();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("You don't have enough resources to build an village!");
+            alert.show();
+        }
         placeVillage(build.buildVillage(circle));
         if (startPhase)
             roadStartPhase(circle);
@@ -369,7 +380,7 @@ public class GameSchermController implements Initializable {
         for (int i=0; i < 54; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
-                Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
                 imageView.setLayoutX(village.getX() - 18);
                 imageView.setLayoutY(village.getY() - 20);
                 imageView.setImage(image);
@@ -382,7 +393,7 @@ public class GameSchermController implements Initializable {
         for (int i=0; i < 54; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
-                Image image = new Image(String.valueOf(App.class.getResource(village.getImgPath())));
+                Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
                 imageView.setImage(image);
                 break;
             }
@@ -405,9 +416,17 @@ public class GameSchermController implements Initializable {
     @FXML
     public void buildRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
-        placeRoad(build.buildRoad(circle));
+        int[] reqResources = {1, 1, 0, 0, 0, 0};
+
+        if(canBuildObject(reqResources)){
+            placeRoad(build.buildRoad(circle));
+            logController.logRoadEvent();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("You don't have enough resources to build an road!");
+            alert.show();
+        }
         buildRoadBtnCloseClicked();
-        logController.logRoadEvent();
     }
 
     @FXML
@@ -642,6 +661,23 @@ public class GameSchermController implements Initializable {
                 tile5num, tile6num, tile7num, tile8num, tile9num,
                 tile11num, tile12num, tile13num, tile14num, tile15num,
                 tile16num, tile17num, tile18num, tile19num);
+    }
+
+    public boolean canBuildObject(int[] reqResources) {
+        Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
+        for (int i = 0; i < playerInventory.getCards().length; i++) {
+            if (playerInventory.getCards()[i] >= reqResources[i]) {
+                playerInventory.changeCards(playerInventory.getStrCards()[i], -reqResources[i]);
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 
 //    private Speler getSpeler() {

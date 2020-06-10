@@ -5,16 +5,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import org.catan.Model.Game;
 import org.catan.Model.Log;
 import org.catan.Model.Logs;
 import org.catan.Model.Player;
 import org.catan.View.panes.LogPane;
+import org.catan.interfaces.Observable;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class LogController implements Initializable{
+public class LogController implements Initializable, Observable {
 
     @FXML private VBox logsBox;
     @FXML private ScrollPane scrollPane;
@@ -169,5 +171,10 @@ public class LogController implements Initializable{
     public static void setOpponent(Player opponentPlayer){
         opponent = opponentPlayer.getName();
         //TODO Opponent moet bij alle acties waar de opponent in voorkomt aangegeven worden met behulp van deze methode
+    }
+
+    @Override
+    public void update(Game game) {
+
     }
 }
