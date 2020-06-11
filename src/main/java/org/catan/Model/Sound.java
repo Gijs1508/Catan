@@ -11,6 +11,12 @@ public class Sound {
         sound.play();
     }
 
+    public static void playDiceShuffle() {
+        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/diceShuffle.mp3").toExternalForm());
+        sound.setVolume(0.6);
+        sound.play();
+    }
+
     public static void playDiceThrow() {
         AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/diceThrow.mp3").toExternalForm());
         sound.setVolume(0.6);
