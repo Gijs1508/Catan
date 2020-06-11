@@ -29,6 +29,7 @@ public class ScreenController implements Initializable, Observable {
     private AnchorPane diceView;
     private AnchorPane scoreView;
     private AnchorPane costView;
+    private AnchorPane settingsView;
     private AnchorPane knightDetails;
     private AnchorPane tradePopupView;
     private AnchorPane handInPopupView;
@@ -44,6 +45,7 @@ public class ScreenController implements Initializable, Observable {
     @FXML private Pane tradePane;
     @FXML private Pane dicePane;
     @FXML private Pane costPane;
+    @FXML private Pane settingsPane;
     @FXML private Pane knightPopup;
     @FXML private Pane tradePopup;
     @FXML private Pane handInPopup;
@@ -70,6 +72,7 @@ public class ScreenController implements Initializable, Observable {
             diceView = (AnchorPane) App.loadFXML("Views/diceView");
             scoreView = (AnchorPane) App.loadFXML("Views/scoreView");
             costView = (AnchorPane) App.loadFXML("Views/costView");
+            settingsView = (AnchorPane) App.loadFXML("Views/settingsView");
             devCardPopupView = (AnchorPane) App.loadFXML("Views/devCardPopUpView");
             alertPopupView = (AnchorPane) App.loadFXML("Views/alertPopUpView");
             knightDetails = new KnightDetails().getRoot();
@@ -85,15 +88,25 @@ public class ScreenController implements Initializable, Observable {
         dicePane.getChildren().setAll(diceView);
         scorePane.getChildren().setAll(scoreView);
         costPane.getChildren().setAll(costView);
+        settingsPane.getChildren().setAll(settingsView);
         knightPopup.getChildren().setAll(knightDetails);
         devCardPopup.getChildren().setAll(devCardPopupView);
         alertPopup.getChildren().setAll(alertPopupView);
 
+        initializePopup(settingsPane);
         initializePopup(knightPopup);
         initializePopup(tradePopup);
         initializePopup(handInPopup);
         initializePopup(devCardPopup);
         initializePopup(alertPopup);
+    }
+
+    public void showSettings() {
+        settingsPane.setVisible(true);
+        SettingsController.getInstance().startAnimation();
+    }
+    public void hideSettings() {
+        settingsPane.setVisible(false);
     }
 
     public void showKnightPopup() {

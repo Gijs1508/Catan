@@ -697,6 +697,10 @@ public class GameSchermController implements Initializable, Observable {
         return true;
     }
 
+    public void openSettings() {
+        ScreenController.getInstance().showSettings();
+    }
+
     @Override
     public void update(Game game) {
 
@@ -713,6 +717,7 @@ public class GameSchermController implements Initializable, Observable {
     public ArrayList<Harbor> getHarbors() {
         return harbors;
     }
+
 
 
 //    private Speler getSpeler() {
