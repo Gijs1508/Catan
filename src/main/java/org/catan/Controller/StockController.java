@@ -154,6 +154,12 @@ public class StockController implements Initializable, Observable {
     }
 
     public void activateKnight() {
+        // Check if it's player's turn
+        if(!Player.mainPlayerActive) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card outside of your turn.");
+            return;
+        }
         // Checks if there still are knight cards left
         if(Player.getActivePlayer().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
             ScreenController.getInstance().showAlertPopup();
