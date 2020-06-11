@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AlertPopUpController {
-    @FXML private AnchorPane root;
     @FXML private Label alertDescription;
     private ScreenController screenController = ScreenController.getInstance();
     private static AlertPopUpController alertPopUpController;

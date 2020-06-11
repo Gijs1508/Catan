@@ -104,8 +104,8 @@ public class TradeController implements Observable {
 
             // If bank is empty
             if(developmentCard.equals("bankEmpty")) {
-                //TODO notify the player
-                System.out.println("Bank is empty.");
+                ScreenController.getInstance().showAlertPopup();
+                AlertPopUpController.getInstance().setAlertDescription("The bank doesn't have any development cards left to give.");
                 return;
             }
 
@@ -118,13 +118,11 @@ public class TradeController implements Observable {
             if(developmentCard.equals("victoryPoint")) {
                 ScreenController.getInstance().showDevCardPopup();
                 DevCardPopUpController.getInstance().setPointImage();
-                System.out.println("Got a victory point.");
 
                 Player.getActivePlayer().addVictoryPoint();
             }
             // Bank gave a knight card
             else {
-                System.out.println("Got a knight card.");
                 ScreenController.getInstance().showDevCardPopup();
                 DevCardPopUpController.getInstance().setKnightImage();
                 Player.getActivePlayer().getPlayerInventory().changeCards("knight", 1);
@@ -134,8 +132,8 @@ public class TradeController implements Observable {
         }
         // Player doesn't have enough resources
         else {
-            //TODO notify the player
-            System.out.println("You don't have enough resources.");
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to buy a development card.");
             return;
         }
     }
