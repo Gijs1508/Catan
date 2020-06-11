@@ -75,7 +75,7 @@ public class TradeController implements Observable {
     public void bankTrade() {
         Sound.playSwitch();
 
-        if (tradeType == "player" && Player.mainPlayerActive){
+        if (tradeType == "player") {
             tradeType = "bank";
             bankTradeBtn.setFont(new Font("System Bold", 14));
             playerTradeBtn.setFont(new Font("System", 14));
@@ -87,7 +87,7 @@ public class TradeController implements Observable {
     public void playerTrade() {
         Sound.playSwitch2();
 
-        if (tradeType == "bank" && Player.mainPlayerActive){
+        if (tradeType == "bank") {
             tradeType = "player";
             bankTradeBtn.setFont(new Font("System", 14));
             playerTradeBtn.setFont(new Font("System Bold", 14));
@@ -131,10 +131,14 @@ public class TradeController implements Observable {
             LogController.getInstance().logDevelopmentCardEvent();
         }
         // Player doesn't have enough resources
-        else {
+        else if (Player.mainPlayerActive){
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to buy a development card.");
             return;
+        }
+        else {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't buy a development card outside of your turn.");
         }
     }
 
@@ -159,6 +163,10 @@ public class TradeController implements Observable {
             TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
 //            App.tradePopUp();
             ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij MainPlayer
+        }
+        else {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't send trade offers outside of your turn.");
         }
     }
 

@@ -454,6 +454,10 @@ public class GameSchermController implements Initializable, Observable {
             TurnManager.nextTurn(Player.getActivePlayer());
             //TODO
         }
+        else {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't end your turn when it's not your turn.");
+        }
     }
 
     @FXML // When you hover over a circle when road is selected

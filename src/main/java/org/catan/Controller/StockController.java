@@ -156,8 +156,8 @@ public class StockController implements Initializable, Observable {
     public void activateKnight() {
         // Checks if there still are knight cards left
         if(Player.getActivePlayer().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
-            // TODO notify the player
-            System.out.println("No knight cards left.");
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You don't have any knight cards left to activate.");
             return;
         }
 
