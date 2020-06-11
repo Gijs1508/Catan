@@ -21,7 +21,7 @@
                   </Label>
                   <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="248.0" layoutY="71.0" onMouseClicked="#closePopup">
                      <image>
-                        <Image url="@../assets/img/cross.png" />
+                        <Image url="@../assets/img/return.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />

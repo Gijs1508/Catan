@@ -31,6 +31,7 @@ public class SettingsController {
 
     public void soundsBtnClicked() {
         if (soundsOn) {
+            Sound.playClick();
             Sound.muteSoundEffects();
             soundsImg.setImage(soundsOffImg);
             soundsOn = false;
@@ -72,7 +73,7 @@ public class SettingsController {
                     background.setOpacity(background.getOpacity() + 0.01);
                 }
                 else {
-
+                    this.stop();
                 }
             }
         };
