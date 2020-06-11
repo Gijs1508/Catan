@@ -20,6 +20,8 @@
         <Pane fx:id="tradePopup" layoutX="600.0" layoutY="141.0" opacity="0.2" prefHeight="291.0" prefWidth="408.0" style="-fx-background-color: blue;" />
         <Pane fx:id="handInPopup" layoutX="600.0" layoutY="141.0" opacity="0.2" prefHeight="291.0" prefWidth="408.0" style="-fx-background-color: green;" />
         <Pane fx:id="devCardPopup" layoutX="725.0" layoutY="141.0" opacity="0.2" prefHeight="291.0" prefWidth="195.0" style="-fx-background-color: pink;" />
+        <Pane fx:id="alertPopup" layoutX="664.0" layoutY="196.0" opacity="0.2" prefHeight="182.0" prefWidth="317.0" style="-fx-background-color: yellow;" />
+
 
 
     </children>

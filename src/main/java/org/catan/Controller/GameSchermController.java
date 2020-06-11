@@ -363,9 +363,11 @@ public class GameSchermController implements Initializable, Observable {
             placeVillage(build.buildVillage(circle));
             logController.logSettlementEvent();
         }else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("You don't have enough resources to build an village!");
-            alert.show();
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setContentText("You don't have enough resources to build an village!");
+//            alert.show();
         }
         if (startPhase)
             roadStartPhase(circle);
@@ -421,9 +423,8 @@ public class GameSchermController implements Initializable, Observable {
             placeRoad(build.buildRoad(circle));
             logController.logRoadEvent();
         }else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("You don't have enough resources to build an road!");
-            alert.show();
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a road.");
         }
         buildRoadBtnCloseClicked();
     }
