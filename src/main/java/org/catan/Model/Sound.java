@@ -1,68 +1,107 @@
 package org.catan.Model;
 
+import javafx.fxml.Initializable;
 import javafx.scene.media.AudioClip;
 import org.catan.App;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
 public class Sound {
 
+    private static AudioClip pop = new AudioClip(App.class.getResource("assets/sounds/soundeffects/pop.wav").toExternalForm());
+    private static AudioClip diceShuffle = new AudioClip(App.class.getResource("assets/sounds/soundeffects/diceShuffle.mp3").toExternalForm());
+    private static AudioClip diceThrow = new AudioClip(App.class.getResource("assets/sounds/soundeffects/diceThrow.mp3").toExternalForm());
+    private static AudioClip click = new AudioClip(App.class.getResource("assets/sounds/soundeffects/click.mp3").toExternalForm());
+    private static AudioClip takeCard = new AudioClip(App.class.getResource("assets/sounds/soundeffects/takeCard.mp3").toExternalForm());
+    private static AudioClip switch1 = new AudioClip(App.class.getResource("assets/sounds/soundeffects/switch.mp3").toExternalForm());
+    private static AudioClip switch2 = new AudioClip(App.class.getResource("assets/sounds/soundeffects/switch2.mp3").toExternalForm());
+    private static AudioClip sword = new AudioClip(App.class.getResource("assets/sounds/soundeffects/sword.mp3").toExternalForm());
+    private static AudioClip startTurn = new AudioClip(App.class.getResource("assets/sounds/soundeffects/startTurnJingle.mp3").toExternalForm());
+    private static AudioClip endTurn = new AudioClip(App.class.getResource("assets/sounds/soundeffects/endTurnJingle.mp3").toExternalForm());
+
+    private static ArrayList<AudioClip> soundEffects = new ArrayList<>();
+    private static HashMap<AudioClip, Double> defaultVolume;
+
+    public static void initializeSounds() {
+        Collections.addAll(soundEffects, pop, diceShuffle, diceThrow, click, takeCard, switch1, switch2, sword, startTurn, endTurn);
+        defaultVolume = new HashMap<>(){{
+            put(pop, 0.6);
+            put(diceShuffle, 0.6);
+            put(diceThrow, 0.6);
+            put(click, 0.4);
+            put(takeCard, 0.2);
+            put(switch1, 0.6);
+            put(switch2, 0.6);
+            put(sword, 0.3);
+            put(startTurn, 0.1);
+            put(endTurn, 0.1);
+        }};
+        for(AudioClip soundEffect : soundEffects) {
+            soundEffect.setVolume(defaultVolume.get(soundEffect));
+        }
+    }
+
     public static void playPop() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/pop.wav").toExternalForm());
-        sound.setVolume(0.6);
-        sound.play();
+        if(pop.getVolume() > 0)
+            pop.play();
     }
 
     public static void playDiceShuffle() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/diceShuffle.mp3").toExternalForm());
-        sound.setVolume(0.6);
-        sound.play();
+        if(diceShuffle.getVolume() > 0)
+            diceShuffle.play();
     }
 
     public static void playDiceThrow() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/diceThrow.mp3").toExternalForm());
-        sound.setVolume(0.6);
-        sound.play();
+        if(diceThrow.getVolume() > 0)
+            diceThrow.play();
     }
 
     public static void playClick() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/click.mp3").toExternalForm());
-        sound.setVolume(0.4);
-        sound.play();
+        if(click.getVolume() > 0)
+            click.play();
     }
 
     public static void playTakeCard() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/takeCard.mp3").toExternalForm());
-        sound.setVolume(0.2);
-        sound.play();
+        if(takeCard.getVolume() > 0)
+            takeCard.play();
     }
 
     public static void playSwitch() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/switch.mp3").toExternalForm());
-        sound.setVolume(0.6);
-        sound.play();
+        if(switch1.getVolume() > 0)
+            switch1.play();
     }
 
     public static void playSwitch2() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/switch2.mp3").toExternalForm());
-        sound.setVolume(0.6);
-        sound.play();
+        if(switch2.getVolume() > 0)
+            switch2.play();
     }
 
     public static void playSword() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/sword.mp3").toExternalForm());
-        sound.setVolume(0.3);
-        sound.play();
+        if(sword.getVolume() > 0)
+            sword.play();
     }
 
-    // todo - play when it's your turn
     public static void playStartTurnJingle() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/startTurnJingle.mp3").toExternalForm());
-        sound.setVolume(0.1);
-        sound.play();
+        if(startTurn.getVolume() > 0)
+            startTurn.play();
     }
 
     public static void playEndTurnJingle() {
-        AudioClip sound = new AudioClip(App.class.getResource("assets/sounds/soundeffects/endTurnJingle.mp3").toExternalForm());
-        sound.setVolume(0.1);
-        sound.play();
+        if(endTurn.getVolume() > 0)
+            endTurn.play();
+    }
+
+    public static void muteSoundEffects() {
+        for (AudioClip soundEffect : soundEffects) {
+            soundEffect.setVolume(0);
+        }
+    }
+
+    public static void unmuteSoundEffects() {
+        for (AudioClip soundEffect : soundEffects) {
+            soundEffect.setVolume(defaultVolume.get(soundEffect));
+        }
     }
 }

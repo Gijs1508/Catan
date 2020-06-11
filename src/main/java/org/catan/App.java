@@ -37,6 +37,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Sound.initializeSounds();
+
         scene = new Scene(loadFXML("Views/screenView"));
         //scene = new Scene(loadFXML("Views/mainView"));
 
