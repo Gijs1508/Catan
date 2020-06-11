@@ -20,7 +20,7 @@ public class SettingsController {
     private Image musicOnImg = new Image(String.valueOf(App.class.getResource("assets/img/musicOn.png")));
     private Image musicOffImg = new Image(String.valueOf(App.class.getResource("assets/img/musicOff.png")));
 
-    private boolean musicOn = true;
+    private boolean musicOn = false;
     private boolean soundsOn = true;
 
     private static SettingsController settingsController;
@@ -45,13 +45,13 @@ public class SettingsController {
 
     public void musicBtnClicked() {
         if (musicOn) {
-//            Sound.muteMusic();
+            Sound.muteMusic();
             Sound.playClick();
             musicImg.setImage(musicOffImg);
             musicOn = false;
         }
         else {
-//            Sound.unmuteMusic();
+            Sound.unmuteMusic();
             Sound.playClick();
             musicImg.setImage(musicOnImg);
             musicOn = true;

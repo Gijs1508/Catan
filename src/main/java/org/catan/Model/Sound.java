@@ -2,6 +2,9 @@ package org.catan.Model;
 
 import javafx.fxml.Initializable;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 import org.catan.App;
 
 import java.util.ArrayList;
@@ -20,9 +23,10 @@ public class Sound {
     private static AudioClip sword = new AudioClip(App.class.getResource("assets/sounds/soundeffects/sword.mp3").toExternalForm());
     private static AudioClip startTurn = new AudioClip(App.class.getResource("assets/sounds/soundeffects/startTurnJingle.mp3").toExternalForm());
     private static AudioClip endTurn = new AudioClip(App.class.getResource("assets/sounds/soundeffects/endTurnJingle.mp3").toExternalForm());
-
     private static ArrayList<AudioClip> soundEffects = new ArrayList<>();
     private static HashMap<AudioClip, Double> defaultVolume;
+
+    private static MediaPlayer bgm = new MediaPlayer(new Media(App.class.getResource("assets/sounds/music/bgm.mp3").toExternalForm()));
 
     public static void initializeSounds() {
         Collections.addAll(soundEffects, pop, diceShuffle, diceThrow, click, takeCard, switch1, switch2, sword, startTurn, endTurn);
@@ -41,6 +45,9 @@ public class Sound {
         for(AudioClip soundEffect : soundEffects) {
             soundEffect.setVolume(defaultVolume.get(soundEffect));
         }
+
+        bgm.setVolume(0.1);
+        bgm.setCycleCount(Integer.MAX_VALUE);
     }
 
     public static void playPop() {
@@ -103,5 +110,13 @@ public class Sound {
         for (AudioClip soundEffect : soundEffects) {
             soundEffect.setVolume(defaultVolume.get(soundEffect));
         }
+    }
+
+    public static void muteMusic() {
+        bgm.pause();
+    }
+
+    public static void unmuteMusic() {
+        bgm.play();
     }
 }

@@ -44,7 +44,7 @@
                                  <children>
                                     <ImageView fx:id="musicImg" fitHeight="81.0" fitWidth="81.0" layoutY="-6.0">
                                        <image>
-                                          <Image url="@../assets/img/musicOn.png" />
+                                          <Image url="@../assets/img/musicOff.png" />
                                        </image>
                                     </ImageView>
                                     <Label layoutX="88.0" layoutY="20.0" text="Music">
