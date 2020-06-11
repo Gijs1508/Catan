@@ -22,6 +22,7 @@ import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -151,6 +152,8 @@ public class GameSchermController implements Initializable, Observable {
 
     private ArrayList<Harbor> harbors = new ArrayList<>();
     private ArrayList<ImageView> ships = new ArrayList<>();
+    private HashMap<Integer, ArrayList<Circle>> harborNumToVertices;
+    private ArrayList<Circle> allHarborVertices = new ArrayList<>();
 
     LogController logController = LogController.getInstance();
 
@@ -222,12 +225,36 @@ public class GameSchermController implements Initializable, Observable {
             put(9, harbor9children);
         }};
 
+        // Contains all vertices that border to a harbor (for faster reading)
+        Collections.addAll(allHarborVertices, vertex1, vertex2, vertex4, vertex5, vertex8, vertex18, vertex15, vertex16,
+                           vertex27, vertex38, vertex29, vertex39, vertex46, vertex47, vertex48, vertex49, vertex51, vertex52);
+
+        // Contains the vertices that border to each harbor
+        ArrayList<Circle> harbor1Vertices = new ArrayList<>(); ArrayList<Circle> harbor2Vertices = new ArrayList<>();
+        ArrayList<Circle> harbor3Vertices = new ArrayList<>(); ArrayList<Circle> harbor4Vertices = new ArrayList<>();
+        ArrayList<Circle> harbor5Vertices = new ArrayList<>(); ArrayList<Circle> harbor6Vertices = new ArrayList<>();
+        ArrayList<Circle> harbor7Vertices = new ArrayList<>(); ArrayList<Circle> harbor8Vertices = new ArrayList<>();
+        ArrayList<Circle> harbor9Vertices = new ArrayList<>();
+        Collections.addAll(harbor1Vertices, vertex1, vertex2); Collections.addAll(harbor2Vertices, vertex4, vertex5);
+        Collections.addAll(harbor3Vertices, vertex8, vertex18); Collections.addAll(harbor4Vertices, vertex15, vertex16);
+        Collections.addAll(harbor5Vertices, vertex27, vertex38); Collections.addAll(harbor6Vertices, vertex29, vertex39);
+        Collections.addAll(harbor7Vertices, vertex46, vertex47); Collections.addAll(harbor8Vertices, vertex48, vertex49);
+        Collections.addAll(harbor9Vertices, vertex51, vertex52);
+
+        // Assigns the vertices to the actual harbor number
+        harborNumToVertices = new HashMap<>() {{
+           put(1, harbor1Vertices); put(2, harbor2Vertices);
+           put(3, harbor3Vertices); put(4, harbor4Vertices);
+           put(5, harbor5Vertices); put(6, harbor6Vertices);
+           put(7, harbor7Vertices); put(8, harbor8Vertices);
+           put(9, harbor9Vertices);
+        }};
+
         harbors = RandomizeHarbors.randomizeHarbors();
 
         // Updates the view with randomized harbors
         for (Harbor harbor : harbors) {
 //            System.out.println(harbor.getHarborNum() + ":" + harbor.getType());
-
             List<Node> nodes = harborToChildren.get(harbor.getHarborNum());
             ImageView harborResource = (ImageView) nodes.get(0);
             Label harborRatio = (Label) nodes.get(1);
@@ -235,7 +262,6 @@ public class GameSchermController implements Initializable, Observable {
             harborResource.setImage(Harbor.getResourceToImage().get(harbor.getType()));
             harborRatio.setText("1 : " + harbor.getRatio());
         }
-
         startShipAnimation();
     }
 
@@ -246,11 +272,6 @@ public class GameSchermController implements Initializable, Observable {
 
     public void setStartPhase(boolean phase) {
         this.startPhase = phase;
-    }
-
-    //placeholder
-    public ArrayList<Harbor> getHarbors() {
-        return harbors;
     }
 
     private void startShipAnimation() {
@@ -494,9 +515,6 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     public void buildRoadBtnClicked() {
-        // todo Placeholder for building next to a harbor
-        BuildSettlementController.getInstance().updatePlayerFromHarbor(harbors.get(ThreadLocalRandom.current().nextInt(0, 8 + 1)));
-
         Sound.playClick();
 
         try {
@@ -683,6 +701,19 @@ public class GameSchermController implements Initializable, Observable {
     public void update(Game game) {
 
     }
+
+    public ArrayList<Circle> getAllHarborVertices() {
+        return allHarborVertices;
+    }
+
+    public HashMap<Integer, ArrayList<Circle>> getHarborNumToVertices() {
+        return harborNumToVertices;
+    }
+
+    public ArrayList<Harbor> getHarbors() {
+        return harbors;
+    }
+
 
 //    private Speler getSpeler() {
 //        return Speler; // Dit moet worden gewijzigd
