@@ -21,6 +21,8 @@ import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 
@@ -321,7 +323,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    private void placeThief(MouseEvent mouseEvent){
+    private void placeThief(MouseEvent mouseEvent) throws IOException {
         Circle circle = (Circle) mouseEvent.getSource();
         thief.setLayoutX(circle.getLayoutX() - 26);
         thief.setLayoutY(circle.getLayoutY() - 33);
@@ -340,12 +342,40 @@ public class GameSchermController implements Initializable, Observable {
         LogController.getInstance().logRobberEvent();
 
         ArrayList<Player> opponents = findOpponentsOnTile(tileID);
+//        opponents.remove(Player.getActivePlayer());
+        // TODO replace placeholder with above once colors are implemented
+//        ArrayList<Player> opponents = new ArrayList<>();
+//        Player opponent1 = new Player();
+//        opponent1.setColor("blue");
+//        opponent1.setName("papi");
+//        opponent1.getPlayerInventory().changeCards("wheat", 10);
+//        opponent1.getPlayerInventory().changeCards("ore", 10);
+//        Player opponent2 = new Player();
+//        opponent2.setColor("green");
+//        opponent2.setName("babo");
+//        opponent1.getPlayerInventory().changeCards("wool", 10);
+//        opponent1.getPlayerInventory().changeCards("wood", 10);
+//        Collections.addAll(opponents, opponent1, opponent2);
+
+        // There are no opponents to steal from
         if(opponents.isEmpty())
             return;
-        stealFromVictim(chooseVictim(opponents));
+        // There are more opponents to steal from
+        else if(opponents.size() > 1) {
+            chooseVictim(opponents);
+            return;
+        }
+        // There is one opponent to steal from
+        Player victim = opponents.get(0);
+        stealFromVictim(victim);
     }
 
-    private void stealFromVictim(Player victim) {
+    private void chooseVictim(ArrayList<Player> opponents) throws IOException {
+        ScreenController.getInstance().showStealPopUp();
+        StealPopUpController.getInstance().updateOpponents(opponents);
+    }
+
+    public void stealFromVictim(Player victim) {
         // Get the victim's resources in their inventory
         HashMap<String, Integer> resourcesToAmount = victim.getPlayerInventory().resourceToAmountGetter();
         Iterator it = resourcesToAmount.entrySet().iterator();
@@ -366,20 +396,6 @@ public class GameSchermController implements Initializable, Observable {
 
         // Log steal event
         LogController.getInstance().logStealEvent(victim);
-    }
-
-    private Player chooseVictim(ArrayList<Player> opponents) {
-        Player victim = null;
-        // There is one opponent to steal from
-        if(opponents.size() == 1) {
-            victim = opponents.get(0);
-        }
-        // There are more opponents to steal from
-        if(opponents.size() > 1) {
-            // TODO popup that allows you to pick a victim
-            victim = opponents.get(0); //placeholder
-        }
-        return victim;
     }
 
     /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
