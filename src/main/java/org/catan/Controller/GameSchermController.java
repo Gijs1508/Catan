@@ -341,58 +341,34 @@ public class GameSchermController implements Initializable, Observable {
         // TODO would be cool to find the tile num for the ID (for logging)
         LogController.getInstance().logRobberEvent();
 
-//        ArrayList<Player> opponents = findOpponentsOnTile(tileID);
-//        System.out.println(opponents.size());
+
+        // placeholder
+//        ArrayList<Player> opponents = Player.getAllPlayers();
+//        opponents.get(1).setColor("green");
+//        opponents.get(1).getPlayerInventory().changeCards("ore", 10);
+//        opponents.get(2).setColor("red");
+//        opponents.get(2).getPlayerInventory().changeCards("wheat", 10);
+//        opponents.get(3).setColor("yellow");
+//        opponents.get(3).getPlayerInventory().changeCards("wood", 10);
 //        opponents.remove(Player.getActivePlayer());
-        // TODO replace placeholder with above once colors are implemented
-        ArrayList<Player> opponents = Player.getAllPlayers();
-        opponents.remove(Player.getActivePlayer());
-        opponents.get(0).setColor("green");
-        opponents.get(0).getPlayerInventory().changeCards("ore", 10);
-        opponents.get(1).setColor("blue");
-        opponents.get(1).getPlayerInventory().changeCards("wheat", 10);
-        opponents.get(2).setColor("yellow");
-        opponents.get(2).getPlayerInventory().changeCards("wood", 10);
+
+        // TODO because all players are red, it won't find the owner of the blue settlement
+        ArrayList<Player> opponents = findOpponentsOnTile(tileID);
+//        // opponents.remove(Player.getActivePlayer());
+//        System.out.println(opponents.size());
 
         // There are no opponents to steal from
-        if(opponents.isEmpty())
-            return;
+        if(opponents.isEmpty()) {
+            return; }
         // There are more opponents to steal from
         else if(opponents.size() > 1) {
-            chooseVictim(opponents);
+            ScreenController.getInstance().showStealPopUp(); // Choose opponent popup
+            StealPopUpController.getInstance().updateOpponents(opponents);
             return;
         }
         // There is one opponent to steal from
         Player victim = opponents.get(0);
-        stealFromVictim(victim);
-    }
-
-    private void chooseVictim(ArrayList<Player> opponents) throws IOException {
-        ScreenController.getInstance().showStealPopUp();
-        StealPopUpController.getInstance().updateOpponents(opponents);
-    }
-
-    public void stealFromVictim(Player victim) {
-        // Get the victim's resources in their inventory
-        HashMap<String, Integer> resourcesToAmount = victim.getPlayerInventory().resourceToAmountGetter();
-        Iterator it = resourcesToAmount.entrySet().iterator();
-        while(it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            if((Integer) pair.getValue() <= 0){
-                it.remove(); // Ignore resources that the victim doesn't have any of
-            }
-        }
-
-        // Random resource from resources
-        List<String> resources = new ArrayList<>(resourcesToAmount.keySet());
-        String resource = resources.get(new Random().nextInt(resources.size()));
-
-        // Take the resource from the victim, and give it to the active player
-        victim.getPlayerInventory().changeCards(resource, -1);
-        Player.getActivePlayer().getPlayerInventory().changeCards(resource, 1);
-
-        // Log steal event
-        LogController.getInstance().logStealEvent(victim);
+        Player.getActivePlayer().stealFromVictim(victim);
     }
 
     /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
@@ -418,7 +394,9 @@ public class GameSchermController implements Initializable, Observable {
         }
         // Get opponent's Player object by color and add to opponents list
         for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) {
+//            System.out.println(entry.getKey());
             for(Player player : Player.getAllPlayers()) {
+//                System.out.println(player.getColor());
                 if(player.getColor().equals(entry.getKey())) {
                     opponents.add(player);
                 }

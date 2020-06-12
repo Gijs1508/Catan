@@ -79,17 +79,17 @@ public class StealPopUpController implements Initializable {
     }
 
     public void opponent1clicked() {
-        gameSchermController.stealFromVictim(opponents.get(0));
+        Player.getActivePlayer().stealFromVictim(opponents.get(0));
         screenController.hideStealPopUp();
     }
 
     public void opponent2clicked() {
-        gameSchermController.stealFromVictim(opponents.get(1));
+        Player.getActivePlayer().stealFromVictim(opponents.get(1));
         screenController.hideStealPopUp();
     }
 
     public void opponent3clicked() {
-        gameSchermController.stealFromVictim(opponents.get(2));
+        Player.getActivePlayer().stealFromVictim(opponents.get(2));
         screenController.hideStealPopUp();
     }
 
