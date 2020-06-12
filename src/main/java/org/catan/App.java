@@ -47,15 +47,15 @@ public class App extends Application {
         // Other test players (placeholders)
         Player testPlayer2 = new Player("testPlayer2");
         testPlayer2.setColor("blue");
-        testPlayer2.getPlayerInventory().changeCards("wheat", 10);
+//        testPlayer2.getPlayerInventory().changeCards("wheat", 10); // makes game crash when it starts in the mainView (players shouldn't be created here anyway)
 
         Player testPlayer3 = new Player("testPlayer3");
         testPlayer3.setColor("green");
-        testPlayer3.getPlayerInventory().changeCards("wool", 10);
+//        testPlayer3.getPlayerInventory().changeCards("wool", 10);
 
         Player testPlayer4 = new Player("testPlayer4");
         testPlayer4.setColor("yellow");
-        testPlayer4.getPlayerInventory().changeCards("wood", 10);
+//        testPlayer4.getPlayerInventory().changeCards("wood", 10);
 
 
         // Initialize first active player
