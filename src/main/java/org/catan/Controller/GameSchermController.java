@@ -341,20 +341,9 @@ public class GameSchermController implements Initializable, Observable {
         LogController.getInstance().logRobberEvent();
 
 
-        // placeholder
-//        ArrayList<Player> opponents = Player.getAllPlayers();
-//        opponents.get(1).setColor("green");
-//        opponents.get(1).getPlayerInventory().changeCards("ore", 10);
-//        opponents.get(2).setColor("red");
-//        opponents.get(2).getPlayerInventory().changeCards("wheat", 10);
-//        opponents.get(3).setColor("yellow");
-//        opponents.get(3).getPlayerInventory().changeCards("wood", 10);
-//        opponents.remove(Player.getActivePlayer());
-
         // TODO because all players are red, it won't find the owner of the blue settlement
         ArrayList<Player> opponents = findOpponentsOnTile(tileID);
 //        // opponents.remove(Player.getActivePlayer());
-//        System.out.println(opponents.size());
 
         // There are no opponents to steal from
         if(opponents.isEmpty()) {

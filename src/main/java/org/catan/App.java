@@ -44,10 +44,19 @@ public class App extends Application {
         Player testPlayer1 = new Player("testPlayer"); //TODO Moet aangemaakt worden bij het opstarten/joinen van het spel
         testPlayer1.setMainPlayer(testPlayer1);
 
-        // Other test players
+        // Other test players (placeholders)
         Player testPlayer2 = new Player("testPlayer2");
+        testPlayer2.setColor("blue");
+        testPlayer2.getPlayerInventory().changeCards("wheat", 10);
+
         Player testPlayer3 = new Player("testPlayer3");
+        testPlayer3.setColor("green");
+        testPlayer3.getPlayerInventory().changeCards("wool", 10);
+
         Player testPlayer4 = new Player("testPlayer4");
+        testPlayer4.setColor("yellow");
+        testPlayer4.getPlayerInventory().changeCards("wood", 10);
+
 
         // Initialize first active player
         Player.setActivePlayer(testPlayer1);

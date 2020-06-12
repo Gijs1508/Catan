@@ -1,8 +1,6 @@
 package org.catan.Model;
 
-import org.catan.Controller.LogController;
-import org.catan.Controller.ScoreController;
-import org.catan.Controller.TradeController;
+import org.catan.Controller.*;
 
 import java.util.*;
 
@@ -85,6 +83,11 @@ public class Player {
         }
         // Random resource from resources
         List<String> resources = new ArrayList<>(resourcesToAmount.keySet());
+        if(resources.isEmpty()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("Stealing from " + victim.getName() + " failed.\nOpponent does not have any resources.");
+            return;
+        }
         String resource = resources.get(new Random().nextInt(resources.size()));
 
         // Take the resource from the victim, and give it to the active player
