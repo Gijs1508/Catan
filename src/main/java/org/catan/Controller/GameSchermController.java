@@ -8,7 +8,6 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,10 +21,8 @@ import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class GameSchermController implements Initializable, Observable {
 
@@ -335,14 +332,40 @@ public class GameSchermController implements Initializable, Observable {
         try {
             tileID = Integer.parseInt(circleID);
         }
-        catch (NumberFormatException e)
-        {
+        catch (NumberFormatException e) {
             tileID = 1;
         }
         Thief.setTile(tileID);
 
+        Map<String, Integer> opponentColorToCount = findOpponentsOnTile(tileID);
+        if(!opponentColorToCount.isEmpty()) {
+            System.out.println(opponentColorToCount.size());
+        }
+
         // Todo would be cool to find the tile num to the ID
         LogController.getInstance().logRobberEvent();
+    }
+
+    /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
+     * @param tileID the id of the tile the thief was moved to
+     * @return map with the opponents to steal from (key: color, value: count)
+     * @author Jeroen */
+    private Map<String, Integer> findOpponentsOnTile(int tileID) {
+        Map<String, Integer> colorToCount = new HashMap<>();
+        int opponentCount = 0;
+        for (Village settlement : BuildSettlementController.getInstance().getBuiltVillages()) { // Loop through all settlements
+            // TODO this if statement can't be tested properly since colors aren't implemented yet
+            if (!settlement.getColor().equals(Player.getMainPlayer().getColor())) { // If settlement isn't player's
+                ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
+                for (Tile tile : connectedTiles) {
+                    if (Integer.parseInt(tile.getId().replaceAll("tile", "")) == tileID) { // Tile's ID is saved as "tileX" and tileID is an integer
+                        opponentCount++;
+                        colorToCount.put(settlement.getColor(), opponentCount);
+                    }
+                }
+            }
+        }
+        return colorToCount;
     }
 
     public void highlightTiles(int tileId) {

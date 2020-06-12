@@ -1,6 +1,5 @@
 package org.catan.Controller;
 
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import org.catan.Helper.BuildVillages;
@@ -9,10 +8,7 @@ import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
-import java.lang.reflect.Array;
-import java.net.URL;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
  */
@@ -29,7 +25,7 @@ public class BuildSettlementController implements Observable {
     private ArrayList<Circle> roadSpotNodeList;
 
     private ArrayList<Road> buildRoads;
-    private ArrayList<Village> buildVillages;
+    private ArrayList<Village> builtVillages;
     private MathBuildSettlement math;
     private PolygonConnectedNodes poly;
     private BuildVillages bv;
@@ -49,7 +45,7 @@ public class BuildSettlementController implements Observable {
         this.poly = new PolygonConnectedNodes(vertexNodeList);
         this.bv = new BuildVillages();
         this.buildRoads = new ArrayList<>();
-        this.buildVillages = new ArrayList<>();
+        this.builtVillages = new ArrayList<>();
     }
 
     // Returns roads from player
@@ -66,7 +62,7 @@ public class BuildSettlementController implements Observable {
     // Returns villages from player
     private ArrayList<Village> playerVillages() {
         ArrayList<Village> playerVillages = new ArrayList<>();
-        for (Village buildVillage : buildVillages) {
+        for (Village buildVillage : builtVillages) {
             if (buildVillage.getColor().equals(this.color)) {
                 playerVillages.add(buildVillage);
             }
@@ -82,10 +78,10 @@ public class BuildSettlementController implements Observable {
     public ArrayList<Circle> showVillageStartSpots() {
         ArrayList<Circle> nodes = new ArrayList<>();
         for (Circle circle : vertexNodeList) {
-            if (buildVillages.isEmpty()) {
+            if (builtVillages.isEmpty()) {
                 nodes.add(circle);
             } else {
-                for (Village buildVillage : buildVillages) {
+                for (Village buildVillage : builtVillages) {
                     if ((circle.getLayoutX() != buildVillage.getX()) || (circle.getLayoutY() != buildVillage.getY())) {
                         nodes.add(circle);
                     }
@@ -131,7 +127,7 @@ public class BuildSettlementController implements Observable {
         nodes = removeDuplicates(nodes);
         ArrayList<Circle> nodesNodes = roadsNextToVillageSpot(nodes, 0);
         ArrayList<Circle> roadsConnectedNodes = roadsNextToVillageSpot(roadsConnected);
-        return villagesNotClose(isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), buildVillages));
+        return villagesNotClose(isSpotAvailable(removeNonDuplicates(nodesNodes, roadsConnectedNodes), builtVillages));
     }
 
     // Returns nodes that have no villages close to them
@@ -141,7 +137,7 @@ public class BuildSettlementController implements Observable {
             ArrayList<Circle> nodes = (math.circlesInRadius(spot.getLayoutX(), spot.getLayoutY(), vertexNodeList, "village"));
             int foundVillages = 0;
             for (Circle node : nodes) {
-                for (Village buildVillage : buildVillages) {
+                for (Village buildVillage : builtVillages) {
                     if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
                         foundVillages++;
                     }
@@ -238,7 +234,7 @@ public class BuildSettlementController implements Observable {
             availableNodes.addAll(math.circlesInRadius(circle.getLayoutX(), circle.getLayoutY(), vertexNodeList, "other"));
         }
         availableNodes = removeDuplicates(availableNodes);
-        return isSpotAvailable(availableNodes, buildVillages);
+        return isSpotAvailable(availableNodes, builtVillages);
     }
 
     // Returns the village nodes that are next to the given roads
@@ -248,7 +244,7 @@ public class BuildSettlementController implements Observable {
             availableNodes.addAll(math.circlesInRadius(road.getX(), road.getY(), vertexNodeList, "other"));
         }
         availableNodes = removeDuplicates(availableNodes);
-        return isSpotAvailable(availableNodes, buildVillages);
+        return isSpotAvailable(availableNodes, builtVillages);
     }
 
     /**
@@ -263,8 +259,8 @@ public class BuildSettlementController implements Observable {
         }
 
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
-        buildVillages.add(village);
-        bv.setBuildVillages(buildVillages);
+        builtVillages.add(village);
+        bv.setBuildVillages(builtVillages);
         return village;
     }
 
@@ -299,7 +295,7 @@ public class BuildSettlementController implements Observable {
         Village village = null;
         int[] reqResources = {0, 0, 3, 0, 2, 0};
         if(gameSchermController.canBuildObject(reqResources)){
-            for (Village buildVillage : buildVillages) {
+            for (Village buildVillage : builtVillages) {
                 if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
                     buildVillage.setUpgraded(true);
                     village = buildVillage;
@@ -348,7 +344,7 @@ public class BuildSettlementController implements Observable {
             roadPlaces.addAll(math.circlesInRadius(playerRoad.getX(), playerRoad.getY(), roadSpotNodeList, "road"));
         }
 
-        for (Village village : buildVillages) {
+        for (Village village : builtVillages) {
             if (village.getColor().equals(color))
                 roadPlaces.addAll(math.circlesInRadius(village.getX(), village.getY(), roadSpotNodeList, "other"));
         }
@@ -395,6 +391,10 @@ public class BuildSettlementController implements Observable {
         for (Village v : village) {
             System.out.println("This is a village " + v);
         }
+    }
+
+    public ArrayList<Village> getBuiltVillages() {
+        return builtVillages;
     }
 
     @Override
