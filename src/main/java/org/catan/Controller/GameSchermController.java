@@ -402,7 +402,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     private void placeVillage(Village village) {
-        for (int i=0; i < 54; i++) {
+        for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
@@ -415,7 +415,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     private void placeCity(Village village) {
-        for (int i=0; i < 54; i++) {
+        for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
@@ -426,7 +426,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     private void placeRoad(Road road) {
-        for (int i=0; i < 127; i++) {
+        for (int i=0; i < 73; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == road.getX() && objectsPane.getChildren().get(i).getLayoutY() == road.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(road.getImgPath())));
