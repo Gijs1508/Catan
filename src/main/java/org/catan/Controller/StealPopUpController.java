@@ -18,14 +18,17 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the popup that allows the player to pick an opponent to steal from.
+ * Creates clickable circles that take the color of the opponents.
+ *
+ * @author Jeroen
+ */
+
 public class StealPopUpController implements Initializable {
-    @FXML Circle opponent1;
-    @FXML Circle opponent2;
-    @FXML Circle opponent3;
     @FXML HBox circleBox;
 
     private ScreenController screenController = ScreenController.getInstance();
-    private GameSchermController gameSchermController = GameSchermController.getInstance();
     private static StealPopUpController stealPopUpController;
 
     private final String RED = "#e74c3c";
@@ -57,6 +60,8 @@ public class StealPopUpController implements Initializable {
         }
     }
 
+    /** Creates a clickable circle for each potential victim.
+     * @param opponent the opponent */
     private void createCircle(Player opponent) {
         Circle circle = new Circle();
         circle.setCursor(Cursor.HAND);

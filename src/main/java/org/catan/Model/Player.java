@@ -1,8 +1,6 @@
 package org.catan.Model;
 
-import org.catan.Controller.LogController;
-import org.catan.Controller.ScoreController;
-import org.catan.Controller.TradeController;
+import org.catan.Controller.*;
 
 import java.util.*;
 
@@ -25,11 +23,6 @@ public class Player {
     public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
     public static Player activePlayer;
     public static boolean mainPlayerActive;
-
-    public Player() {
-
-    }
-
 
     public Player(String name){
         this.name = name;
@@ -77,8 +70,7 @@ public class Player {
      * @param victim the opponent to steal from
      * @author Jeroen */
     public void stealFromVictim(Player victim) {
-        // Get the victim's resources in their inventory
-        HashMap<String, Integer> resourcesToAmount = victim.getPlayerInventory().resourceToAmountGetter();
+        HashMap<String, Integer> resourcesToAmount = victim.getPlayerInventory().resourceToAmountGetter(); // Get the victim's resources in their inventory
         Iterator it = resourcesToAmount.entrySet().iterator();
         while(it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
@@ -86,16 +78,20 @@ public class Player {
                 it.remove(); // Ignore resources that the victim doesn't have any of
             }
         }
-        // Random resource from resources
-        List<String> resources = new ArrayList<>(resourcesToAmount.keySet());
+        List<String> resources = new ArrayList<>(resourcesToAmount.keySet()); // Random resource from resources
+        if(resources.isEmpty()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription(
+                    "Stealing from " + victim.getName() + " failed.\nOpponent does not have any resources."
+            );
+            return;
+        }
         String resource = resources.get(new Random().nextInt(resources.size()));
 
-        // Take the resource from the victim, and give it to the active player
-        victim.getPlayerInventory().changeCards(resource, -1);
+        victim.getPlayerInventory().changeCards(resource, -1); // Take the resource from the victim, and give it to the active player
         getPlayerInventory().changeCards(resource, 1);
 
-        // Log steal event
-        LogController.getInstance().logStealEvent(victim);
+        LogController.getInstance().logStealEvent(victim); // Log steal event
     }
 
     public void addVictoryPoint() {
