@@ -346,7 +346,23 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     private void stealFromVictim(Player victim) {
-        
+        // Get the victim's resources in their inventory
+        HashMap<String, Integer> resourcesToAmount = victim.getPlayerInventory().resourceToAmountGetter();
+        Iterator it = resourcesToAmount.entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            if((Integer) pair.getValue() <= 0){
+                it.remove();
+            }
+        }
+
+        // Random resource from resources
+        List<String> resources = new ArrayList<>(resourcesToAmount.keySet());
+        String resource = resources.get(new Random().nextInt(resources.size()));
+
+        // Take the resource from the victim, and give it to the active player
+        victim.getPlayerInventory().changeCards(resource, -1);
+        Player.getActivePlayer().getPlayerInventory().changeCards(resource, 1);
     }
 
     private Player chooseVictim(ArrayList<Player> opponents) {
@@ -367,6 +383,7 @@ public class GameSchermController implements Initializable, Observable {
      * @param tileID the id of the tile the thief was moved to
      * @return arrayList with the opponents as Player objects
      * @author Jeroen */
+    // TODO desert tile always seem to not have any settlements bordered to it
     private ArrayList<Player> findOpponentsOnTile(int tileID) {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();
