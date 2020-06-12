@@ -38,7 +38,7 @@ public class Chat {
         return chatString;
     }
 
-    public ArrayList getChatMessages(){
+    public ArrayList<ChatMessage> getChatMessages(){
         return chatMessages;
     }
 

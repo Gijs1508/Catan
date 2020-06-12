@@ -192,7 +192,7 @@ public class DatabaseConnector {
 
     }
 
-    public Chat getChatById(Long id) {
+    public Chat getChatById(int id) {
         Chat chat = new Chat();
         CollectionReference collectionReference = this.db.collection("chats");
         Query query = collectionReference.whereEqualTo("gameId", id);
