@@ -13,9 +13,9 @@ public class DocumentListener {
 
     private DocumentReference docRef;
 
-    public DocumentListener(String gameId) {
+    public DocumentListener(String collection, String documentId) {
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
-        this.docRef = dbConnector.getDb().collection("games").document(gameId);
+        this.docRef = dbConnector.getDb().collection(collection).document(documentId);
         this.docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,

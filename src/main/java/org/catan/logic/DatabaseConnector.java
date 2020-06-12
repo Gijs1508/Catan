@@ -7,6 +7,7 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
+import org.catan.Model.Chat;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
 
@@ -191,16 +192,53 @@ public class DatabaseConnector {
 
     }
 
-    public void getChatById(int id) {
+    public Chat getChatById(Long id) {
+        Chat chat = new Chat();
+        CollectionReference collectionReference = this.db.collection("chats");
+        Query query = collectionReference.whereEqualTo("gameId", id);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
 
+        try {
+            List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+            for (QueryDocumentSnapshot document : documents) {
+                Map<String, Object> gameData = document.getData();
+                chat = objectMapper.convertValue(gameData, Chat.class);
+                return chat;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return chat;
     }
 
-    public void updateChat() {
+    public void updateChat(Chat chat) {
+        DocumentReference documentReference = this.db.collection("chats").document(String.valueOf(chat.getGameId()));
 
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        HashMap<String, Object> dataMap = objectMapper.convertValue(chat, HashMap.class);
+        ApiFuture<WriteResult> result = documentReference.update(dataMap);
+        try {
+            System.out.println("Update time : " + result.get().getUpdateTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void createChat() {
+    public void createChat(Chat chat) {
+        DocumentReference documentReference = this.db.collection("chats").document(String.valueOf(chat.getGameId()));
 
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        HashMap<String, Object> dataMap = objectMapper.convertValue(chat, HashMap.class);
+        ApiFuture<WriteResult> result = documentReference.set(dataMap);
+        try {
+            System.out.println("Update time : " + result.get().getUpdateTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Firestore getDb() {

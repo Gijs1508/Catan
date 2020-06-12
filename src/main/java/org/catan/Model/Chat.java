@@ -21,6 +21,10 @@ public class Chat {
     private ArrayList<ChatMessage> chatMessages = new ArrayList<>();
     private String chatString;
 
+    public Chat(){
+
+    }
+
     public Chat(int gameId) {
         this.gameId = gameId;
     }
@@ -54,4 +58,20 @@ public class Chat {
 //
 //    }
 
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
+    }
+
+    public String getChatString() {
+        return chatString;
+    }
+
+    public void setChatString(String chatString) {
+        this.chatString = chatString;
+    }
 }

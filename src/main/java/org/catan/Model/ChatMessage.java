@@ -11,18 +11,11 @@ public class ChatMessage {
     private String sender;
     private String message;
     private Date timestamp; // DateTime is geen data type?? -Sabrina
-    private String playerName;
 
-    private ChatController chatController;
-
-    public ChatMessage(String content) {
+    public ChatMessage(String content, String playerName) {
         this.content = content;
-        init();
-    }
-
-    private void init(){
-            this.sender = Player.getMainPlayer().getName(); // Wordt later vervangen met getPlayer ofzo
-            this.message = sender + ": " + content;
+        this.sender = playerName;
+        this.message = this.sender + ": " + this.content;
     }
 
     public String getMessage() {
