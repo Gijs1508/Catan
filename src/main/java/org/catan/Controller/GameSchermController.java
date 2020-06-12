@@ -341,21 +341,17 @@ public class GameSchermController implements Initializable, Observable {
         // TODO would be cool to find the tile num for the ID (for logging)
         LogController.getInstance().logRobberEvent();
 
-        ArrayList<Player> opponents = findOpponentsOnTile(tileID);
+//        ArrayList<Player> opponents = findOpponentsOnTile(tileID);
 //        opponents.remove(Player.getActivePlayer());
         // TODO replace placeholder with above once colors are implemented
-//        ArrayList<Player> opponents = new ArrayList<>();
-//        Player opponent1 = new Player();
-//        opponent1.setColor("blue");
-//        opponent1.setName("papi");
-//        opponent1.getPlayerInventory().changeCards("wheat", 10);
-//        opponent1.getPlayerInventory().changeCards("ore", 10);
-//        Player opponent2 = new Player();
-//        opponent2.setColor("green");
-//        opponent2.setName("babo");
-//        opponent1.getPlayerInventory().changeCards("wool", 10);
-//        opponent1.getPlayerInventory().changeCards("wood", 10);
-//        Collections.addAll(opponents, opponent1, opponent2);
+        ArrayList<Player> opponents = Player.getAllPlayers();
+        opponents.remove(Player.getActivePlayer());
+        opponents.get(0).setColor("green");
+        opponents.get(0).getPlayerInventory().changeCards("ore", 10);
+        opponents.get(1).setColor("blue");
+        opponents.get(1).getPlayerInventory().changeCards("wheat", 10);
+        opponents.get(2).setColor("yellow");
+        opponents.get(2).getPlayerInventory().changeCards("wood", 10);
 
         // There are no opponents to steal from
         if(opponents.isEmpty())
@@ -422,8 +418,9 @@ public class GameSchermController implements Initializable, Observable {
         // Get opponent's Player object by color and add to opponents list
         for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) {
             for(Player player : Player.getAllPlayers()) {
-                if(player.getColor().equals(entry.getKey()));
-                opponents.add(player);
+                if(player.getColor().equals(entry.getKey())) {
+                    opponents.add(player);
+                }
             }
         }
         return opponents;
