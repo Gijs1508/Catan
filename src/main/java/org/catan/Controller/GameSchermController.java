@@ -352,7 +352,7 @@ public class GameSchermController implements Initializable, Observable {
         while(it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             if((Integer) pair.getValue() <= 0){
-                it.remove();
+                it.remove(); // Ignore resources that the victim doesn't have any of
             }
         }
 
@@ -363,6 +363,9 @@ public class GameSchermController implements Initializable, Observable {
         // Take the resource from the victim, and give it to the active player
         victim.getPlayerInventory().changeCards(resource, -1);
         Player.getActivePlayer().getPlayerInventory().changeCards(resource, 1);
+
+        // Log steal event
+        LogController.getInstance().logStealEvent(victim);
     }
 
     private Player chooseVictim(ArrayList<Player> opponents) {
