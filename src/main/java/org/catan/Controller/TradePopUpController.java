@@ -92,7 +92,7 @@ public class TradePopUpController implements Initializable, Observable {
     }
 
     private void checkCollision() {
-        // Collisions are recognized, but I can't find a way to make use of it.
+        // TODO Collisions are recognized, but I can't find a way to make use of it.
         // X Collisions
         if(popupPane.getLayoutX() + paneLayoutXinRoot + paneWidth  >  screenController.getRoot().getPrefWidth()) {
             System.out.println("collides right");

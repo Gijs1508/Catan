@@ -37,6 +37,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Sound.initializeSounds();
+
         scene = new Scene(loadFXML("Views/screenView"));
         //scene = new Scene(loadFXML("Views/mainView"));
 
@@ -58,24 +60,6 @@ public class App extends Application {
         // Initialize first active player
         Player.setActivePlayer(testPlayer1);
 
-        stage.show();
-    }
-
-    public static void tradePopUp() throws IOException{
-        scene = new Scene(loadFXML("Views/tradePopUpView"));
-        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Trade offer");
-        stage.show();
-    }
-
-    public static void HandInPopUp() throws IOException{
-        scene = new Scene(loadFXML("Views/handInView"));
-        scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Get fucked");
         stage.show();
     }
 
