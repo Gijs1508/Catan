@@ -340,6 +340,9 @@ public class GameSchermController implements Initializable, Observable {
             tileID = 1;
         }
         Thief.setTile(tileID);
+
+        // Todo would be cool to find the tile num to the ID
+        LogController.getInstance().logRobberEvent();
     }
 
     public void highlightTiles(int tileId) {
