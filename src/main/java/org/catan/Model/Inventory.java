@@ -62,4 +62,12 @@ public class Inventory {
         return total;
     }
 
+    public int cardsTotalMinusKnightGetter(){
+        int total = 0;
+        for(int i = 0; i < 4; i++){
+            total++;
+        }
+        return total;
+    }
+
 }
