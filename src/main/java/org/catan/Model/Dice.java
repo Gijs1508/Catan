@@ -29,6 +29,9 @@ public class Dice {
         dices.add(String.valueOf(dice1));
         dices.add(String.valueOf(dice2));
         diceResult.put(total, dices);
+
+        LogController.getInstance().logRollEvent(Integer.toString(dice1), Integer.toString(dice2));
+
         // Throwing 7 properties
         if(total == 7){
             //TODO Andere spelers ook laten inleveren
