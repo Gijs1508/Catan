@@ -7,10 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import org.catan.Model.Game;
-import org.catan.Model.Inventory;
-import org.catan.Model.Player;
-import org.catan.Model.Sound;
+import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
 import java.net.URL;
@@ -169,6 +166,8 @@ public class StockController implements Initializable, Observable {
 
         Player.getActivePlayer().getPlayerInventory().changeCards("knight", -1);
         removeCardAnimation(animationKnightCard);
+
+        GameSchermController.getInstance().highlightTiles(Thief.getTile());
 
         logController.logKnightEvent();
         Sound.playSword();
