@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.SettingsController">
+<children>
+      <Pane fx:id="background" opacity="0.66" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: black;;" />
+    <Pane layoutX="476.0" layoutY="171.0" prefHeight="327.0" prefWidth="254.0" style="-fx-background-radius: 30 30 20 20;">
+        <children>
+            <Pane layoutY="40.0" prefHeight="288.0" prefWidth="252.0" style="-fx-background-color: #e5e4e7; -fx-background-radius: 0 0 20 20;">
+               <children>
+                  <VBox layoutY="28.0" prefHeight="247.0" prefWidth="252.0" spacing="10.0">
+                     <children>
+                        <Pane prefHeight="71.0" prefWidth="252.0">
+                           <children>
+                              <Pane layoutX="10.0" onMouseClicked="#soundsBtnClicked" prefHeight="69.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+                                 <children>
+                                    <Label layoutX="110.0" layoutY="20.0" text="Sounds">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fx:id="soundsImg" fitHeight="81.0" fitWidth="81.0" layoutY="-6.0">
+                                       <image>
+                                          <Image url="@../assets/img/audioOn.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Pane>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="71.0" prefWidth="252.0">
+                           <children>
+                              <Pane layoutX="10.0" onMouseClicked="#musicBtnClicked" prefHeight="69.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+                                 <children>
+                                    <ImageView fx:id="musicImg" fitHeight="81.0" fitWidth="81.0" layoutY="-6.0">
+                                       <image>
+                                          <Image url="@../assets/img/musicOff.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="116.0" layoutY="20.0" text="Music">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Pane>
+                        <Pane prefHeight="66.0" prefWidth="252.0">
+                           <children>
+                              <Pane layoutX="38.0" layoutY="10.0" onMouseClicked="#applyBtnClicked" prefHeight="61.0" prefWidth="176.0" style="-fx-background-color: #FBFBFB; -fx-background-radius: 50;">
+                                 <children>
+                                    <ImageView fitHeight="61.0" fitWidth="55.0" layoutX="8.0">
+                                       <image>
+                                          <Image url="@../assets/img/checkmarkBlack.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="88.0" layoutY="16.0" text="Apply">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <StackPane prefHeight="46.0" prefWidth="252.0" style="-fx-background-color: white; -fx-background-radius: 30 30 0 0;">
+                <children>
+                    <Text fx:id="popupTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" textAlignment="CENTER" textOrigin="CENTER">
+                        <font>
+                            <Font size="20.0" />
+                        </font>
+                    </Text>
+                </children>
+            </StackPane>
+        </children>
+        <effect>
+            <DropShadow blurType="GAUSSIAN" color="#0000005a" />
+        </effect>
+    </Pane>
+</children>
+</AnchorPane>
