@@ -9,6 +9,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * Player class that contains information about individual players and the player running the instance of the application.
+ * Each instance of a player has an inventory tied to it.
+ *
+ * TODO
+ * allPlayers & activePlayer in a different model (Game?)
+ *
+ * @author Kaz
+ * @version 0.1
+ */
+
 public class Player {
 
     private String name;
@@ -30,7 +41,10 @@ public class Player {
 
     }
 
-
+    /**
+     * Constructor creates player object and a new Inventory object to go along with it.
+     * @param name is initialized when the game is started
+     */
     public Player(String name){
         this.name = name;
         this.color = "red"; //TODO
