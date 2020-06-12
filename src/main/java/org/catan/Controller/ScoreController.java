@@ -108,6 +108,18 @@ public class ScoreController implements Initializable, Observable {
         colorToLabels.get(color).get("points").setText(Integer.toString(score));
     }
 
+    public void addRoadPointToPlayer(String color, int road) {
+        colorToLabels.get(color).get("roads").setText(Integer.toString(road));
+    }
+
+    public void addVillagePointToPlayer(String color, int village) {
+        colorToLabels.get(color).get("villages").setText(Integer.toString(village));
+    }
+
+    public void addCityPointToPlayer(String color, int city) {
+        colorToLabels.get(color).get("cities").setText(Integer.toString(city));
+    }
+
     public void removeDevelopmentCardFromBankView() {
         bankDevelopmentCards.setText(String.valueOf(Integer.parseInt(bankDevelopmentCards.getText()) - 1));
     }

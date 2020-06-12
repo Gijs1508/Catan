@@ -14,6 +14,9 @@ public class Player {
     private String name;
     private String color;
     private int score;
+    private int road;
+    private int village;
+    private int city;
     private Inventory playerInventory;
 
     private HashMap<String, Integer> resourceToCost;
@@ -79,6 +82,22 @@ public class Player {
         score++;
         scoreController.addVictoryPointToPlayer(color, score);
     }
+
+    public void addRoadPoint() {
+        road++;
+        scoreController.addRoadPointToPlayer(color, road);
+    }
+
+    public void addVillagePoint() {
+        village++;
+        scoreController.addVillagePointToPlayer(color, village);
+    }
+
+    public void addCityPoint() {
+        city++;
+        scoreController.addCityPointToPlayer(color, city);
+    }
+
     public void setName(String name) {
         this.name = name;
     }
