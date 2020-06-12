@@ -345,17 +345,15 @@ public class GameSchermController implements Initializable, Observable {
         ArrayList<Player> opponents = findOpponentsOnTile(tileID);
 //        // opponents.remove(Player.getActivePlayer());
 
-        // There are no opponents to steal from
-        if(opponents.isEmpty()) {
+        if(opponents.isEmpty()) { // There are no opponents to steal from
+
             return; }
-        // There are more opponents to steal from
-        else if(opponents.size() > 1) {
+        else if(opponents.size() > 1) { // There are more opponents to steal from
             ScreenController.getInstance().showStealPopUp(); // Choose opponent popup
             StealPopUpController.getInstance().updateOpponents(opponents);
             return;
         }
-        // There is one opponent to steal from
-        Player victim = opponents.get(0);
+        Player victim = opponents.get(0); // There is one opponent to steal from
         Player.getActivePlayer().stealFromVictim(victim);
     }
 
@@ -380,8 +378,7 @@ public class GameSchermController implements Initializable, Observable {
                 }
             }
         }
-        // Get opponent's Player object by color and add to opponents list
-        for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) {
+        for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) { // Get opponent's Player object by color and add to opponents list
 //            System.out.println(entry.getKey());
             for(Player player : Player.getAllPlayers()) {
 //                System.out.println(player.getColor());
@@ -437,9 +434,6 @@ public class GameSchermController implements Initializable, Observable {
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setContentText("You don't have enough resources to build an village!");
-//            alert.show();
         }
         if (startPhase)
             roadStartPhase(circle);
