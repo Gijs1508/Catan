@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="540.0" prefWidth="960.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.JoinController">
    <children>
@@ -19,7 +20,7 @@
             <Image url="@../assets/img/Catan_glow.png" />
          </image>
       </ImageView>
-      <TextField fx:id="code_input" alignment="CENTER" layoutX="390.0" layoutY="321.0" prefHeight="90.0" prefWidth="180.0" style="-fx-background-radius: 15px;" styleClass="btn" text="Code...">
+      <TextField fx:id="code_input" alignment="CENTER" layoutX="390.0" layoutY="321.0" prefHeight="90.0" prefWidth="180.0" promptText="Code..." style="-fx-background-radius: 15px;" styleClass="btn" stylesheets="@style.css">
          <font>
             <Font size="41.0" />
          </font>
@@ -39,5 +40,10 @@
             <Font name="Myanmar Text" size="14.0" />
          </font>
       </Button>
+      <Text fx:id="error_text" fill="RED" layoutX="369.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="invalide code ingevoerd" visible="false" wrappingWidth="222.13671875">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

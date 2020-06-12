@@ -18,7 +18,7 @@ public class MainController implements Observable {
 
     @FXML
     private void startGame() throws IOException {
-        App.setRoot("./Views/createView");
+        App.setRoot("./Views/lobbyView");
     }
 
     @FXML

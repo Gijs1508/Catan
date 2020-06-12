@@ -27,6 +27,7 @@ public class App extends Application {
 
     private static Scene scene;
     private static Stage stage;
+    private static Player clientPlayer;
 
     private AnchorPane screenView;
     private AnchorPane boardView;
@@ -38,9 +39,9 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Sound.initializeSounds();
-
-        scene = new Scene(loadFXML("Views/screenView"));
-        //scene = new Scene(loadFXML("Views/mainView"));
+        clientPlayer = new Player("Werner");
+//        scene = new Scene(loadFXML("Views/screenView"));
+        scene = new Scene(loadFXML("Views/mainView"));
 
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
@@ -70,6 +71,10 @@ public class App extends Application {
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+
+    public static Player getClientPlayer() {
+        return clientPlayer;
     }
 
     public static void main(String[] args) {

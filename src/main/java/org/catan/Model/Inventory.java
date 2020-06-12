@@ -32,7 +32,7 @@ public class Inventory {
         return this.cards;
     }
 
-    public String[] getStrCards(){
+    public String[] strCardsGetter(){
         return new String[]{"wood", "brick", "ore", "wool", "wheat", "knight"};
     }
 
@@ -49,7 +49,7 @@ public class Inventory {
         StockController.getInstance().updateResources();
     }
 
-    public int getDevelopmentCardsLeft() {
+    public int developmentCardsLeftGetter() {
         return cards[5];
     }
 

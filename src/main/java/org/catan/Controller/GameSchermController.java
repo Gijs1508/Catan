@@ -8,7 +8,6 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,10 +21,8 @@ import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class GameSchermController implements Initializable, Observable {
 
@@ -692,7 +689,7 @@ public class GameSchermController implements Initializable, Observable {
         Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
         for (int i = 0; i < playerInventory.getCards().length; i++) {
             if (playerInventory.getCards()[i] >= reqResources[i]) {
-                playerInventory.changeCards(playerInventory.getStrCards()[i], -reqResources[i]);
+                playerInventory.changeCards(playerInventory.strCardsGetter()[i], -reqResources[i]);
             } else {
                 return false;
             }
