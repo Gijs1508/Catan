@@ -342,6 +342,7 @@ public class GameSchermController implements Initializable, Observable {
         LogController.getInstance().logRobberEvent();
 
 //        ArrayList<Player> opponents = findOpponentsOnTile(tileID);
+//        System.out.println(opponents.size());
 //        opponents.remove(Player.getActivePlayer());
         // TODO replace placeholder with above once colors are implemented
         ArrayList<Player> opponents = Player.getAllPlayers();

@@ -38,9 +38,8 @@ public class StealPopUpController implements Initializable {
         put("blue", BLUE);
         put("yellow", YELLOW);
     }};
-    private HashMap<Integer, Player> countToPlayer = new HashMap<>();
-    private int count;
     private ArrayList<Circle> circles = new ArrayList<>();
+    private ArrayList<Player> opponents;
 
     public StealPopUpController() {
         stealPopUpController = this;
@@ -52,9 +51,8 @@ public class StealPopUpController implements Initializable {
     }
 
     public void updateOpponents(ArrayList<Player> opponents) {
+        this.opponents = opponents;
         for(Player opponent : opponents) {
-            count++;
-            countToPlayer.put(count, opponent);
             createCircle(opponent);
         }
     }
@@ -68,36 +66,30 @@ public class StealPopUpController implements Initializable {
         circle.setStrokeWidth(2);
 
         circle.setFill(Color.web(colorToHex.get(opponent.getColor())));
-        switch(count) {
-            case 1:
-                circle.setOnMouseClicked(e -> {
-                    opponent1clicked();
-                });
-            case 2:
-                circle.setOnMouseClicked(e -> {
-                    opponent2clicked();
-                });
-            case 3:
-                circle.setOnMouseClicked(e -> {
-                    opponent3clicked();
-                });
-        }
+
+        if(circles.isEmpty()) { // This circle is the first circle
+            circle.setOnMouseClicked(e -> opponent1clicked()); }
+        else if(circles.size() == 1) { // This circle is the second circle
+            circle.setOnMouseClicked(e -> opponent2clicked()); }
+        else { // This circle is the third circle (there can't be four)
+            circle.setOnMouseClicked(e -> opponent3clicked()); }
+
         circles.add(circle);
         circleBox.getChildren().add(circle);
     }
 
     public void opponent1clicked() {
-        gameSchermController.stealFromVictim(countToPlayer.get(1));
+        gameSchermController.stealFromVictim(opponents.get(0));
         screenController.hideStealPopUp();
     }
 
     public void opponent2clicked() {
-        gameSchermController.stealFromVictim(countToPlayer.get(2));
+        gameSchermController.stealFromVictim(opponents.get(1));
         screenController.hideStealPopUp();
     }
 
     public void opponent3clicked() {
-        gameSchermController.stealFromVictim(countToPlayer.get(3));
+        gameSchermController.stealFromVictim(opponents.get(2));
         screenController.hideStealPopUp();
     }
 
