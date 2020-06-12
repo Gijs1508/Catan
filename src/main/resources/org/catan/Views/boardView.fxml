@@ -1579,7 +1579,7 @@
    <children>
             <ImageView fx:id="thief" fitHeight="59.0" fitWidth="56.0" layoutX="328.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/Thief2.png" />
+                  <Image url="@../assets/img/gameobjects/Thief.png" />
                </image>
             </ImageView>
    </children>
