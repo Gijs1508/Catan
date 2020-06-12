@@ -336,22 +336,40 @@ public class GameSchermController implements Initializable, Observable {
             tileID = 1;
         }
         Thief.setTile(tileID);
-
-        Map<String, Integer> opponentColorToCount = findOpponentsOnTile(tileID);
-        if(!opponentColorToCount.isEmpty()) {
-            System.out.println(opponentColorToCount.size());
-        }
-
-        // Todo would be cool to find the tile num to the ID
+        // TODO would be cool to find the tile num for the ID (for logging)
         LogController.getInstance().logRobberEvent();
+
+        ArrayList<Player> opponents = findOpponentsOnTile(tileID);
+        if(opponents.isEmpty())
+            return;
+        stealFromVictim(chooseVictim(opponents));
+    }
+
+    private void stealFromVictim(Player victim) {
+        
+    }
+
+    private Player chooseVictim(ArrayList<Player> opponents) {
+        Player victim = null;
+        // There is one opponent to steal from
+        if(opponents.size() == 1) {
+            victim = opponents.get(0);
+        }
+        // There are more opponents to steal from
+        if(opponents.size() > 1) {
+            // TODO popup that allows you to pick a victim
+            victim = opponents.get(0); //placeholder
+        }
+        return victim;
     }
 
     /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
      * @param tileID the id of the tile the thief was moved to
-     * @return map with the opponents to steal from (key: color, value: count)
+     * @return arrayList with the opponents as Player objects
      * @author Jeroen */
-    private Map<String, Integer> findOpponentsOnTile(int tileID) {
+    private ArrayList<Player> findOpponentsOnTile(int tileID) {
         Map<String, Integer> colorToCount = new HashMap<>();
+        ArrayList<Player> opponents = new ArrayList<>();
         int opponentCount = 0;
         for (Village settlement : BuildSettlementController.getInstance().getBuiltVillages()) { // Loop through all settlements
             // TODO this if statement can't be tested properly since colors aren't implemented yet
@@ -365,7 +383,14 @@ public class GameSchermController implements Initializable, Observable {
                 }
             }
         }
-        return colorToCount;
+        // Get opponent's Player object by color and add to opponents list
+        for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) {
+            for(Player player : Player.getAllPlayers()) {
+                if(player.getColor().equals(entry.getKey()));
+                opponents.add(player);
+            }
+        }
+        return opponents;
     }
 
     public void highlightTiles(int tileId) {
