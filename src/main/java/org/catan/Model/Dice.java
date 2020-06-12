@@ -2,6 +2,7 @@ package org.catan.Model;
 
 import org.catan.App;
 import org.catan.Controller.GameSchermController;
+import org.catan.Controller.LogController;
 import org.catan.Controller.ScreenController;
 import org.catan.Helper.BuildVillages;
 
@@ -45,7 +46,8 @@ public class Dice {
     }
 
     private void setPlayerResources(int total){
-        if(BuildVillages.getBuildVillages() != null){
+        if(BuildVillages.getBuildVillages() != null) {
+            ArrayList<String> receivedResources = new ArrayList<>();
             for (Village village : BuildVillages.getBuildVillages()) {
                 for (Tile tile : village.getConnectedTiles()){
                     int amount;
@@ -56,8 +58,12 @@ public class Dice {
                     }
                     if(total == tile.getNumber()){
                         Player.getMainPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
+                        receivedResources.add(tile.getType());
                     }
                 }
+            }
+            if(!receivedResources.isEmpty()) {
+                LogController.getInstance().logReceiveEvent(receivedResources);
             }
         }
     }

@@ -37,7 +37,7 @@ public class Logs {
 
             put("brick", "org/catan/assets/img/brickSmall.png");
             put("ore", "org/catan/assets/img/oreSmall.png");
-            put("sheep", "org/catan/assets/img/sheepSmall.png");
+            put("wool", "org/catan/assets/img/sheepSmall.png");
             put("wheat", "org/catan/assets/img/wheatSmall.png");
             put("wood", "org/catan/assets/img/woodSmall.png");
         }};
