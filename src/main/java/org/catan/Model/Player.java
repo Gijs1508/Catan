@@ -4,10 +4,7 @@ import org.catan.Controller.LogController;
 import org.catan.Controller.ScoreController;
 import org.catan.Controller.TradeController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class Player {
 
@@ -74,7 +71,31 @@ public class Player {
             resourceToCost.replace(harbor.getType(), harbor.getRatio());
             tradeController.updateRatioView(harbor.getType(), harbor.getRatio());
         }
+    }
 
+    /** Makes the player steal a random card from another player.
+     * @param victim the opponent to steal from
+     * @author Jeroen */
+    public void stealFromVictim(Player victim) {
+        // Get the victim's resources in their inventory
+        HashMap<String, Integer> resourcesToAmount = victim.getPlayerInventory().resourceToAmountGetter();
+        Iterator it = resourcesToAmount.entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            if((Integer) pair.getValue() <= 0){
+                it.remove(); // Ignore resources that the victim doesn't have any of
+            }
+        }
+        // Random resource from resources
+        List<String> resources = new ArrayList<>(resourcesToAmount.keySet());
+        String resource = resources.get(new Random().nextInt(resources.size()));
+
+        // Take the resource from the victim, and give it to the active player
+        victim.getPlayerInventory().changeCards(resource, -1);
+        getPlayerInventory().changeCards(resource, 1);
+
+        // Log steal event
+        LogController.getInstance().logStealEvent(victim);
     }
 
     public void addVictoryPoint() {

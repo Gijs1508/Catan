@@ -26,14 +26,6 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-    private static Stage stage;
-
-    private AnchorPane screenView;
-    private AnchorPane boardView;
-    private AnchorPane stockView;
-    private AnchorPane logView;
-    private AnchorPane chatView;
-
 
     @Override
     public void start(Stage stage) throws IOException {
