@@ -1,12 +1,18 @@
 package org.catan.Controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import org.catan.App;
 import org.catan.Model.Dice;
 import org.catan.Model.Player;
 import org.catan.Model.Game;
+import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,17 +30,32 @@ public class DobbelsteenController implements Observable {
     This method gets called when the player presses the throw dice button.
     it uses the Dice class to get random numbers and then sets the images
     of the dices to the numbers rolled.
+    TODO disable throwing multiple times a turn
      */
-    @FXML
-    public void throwDie() throws IOException {
+    @FXML public void throwDie() {
         if(Player.mainPlayerActive){
-            HashMap<Integer, ArrayList<String>> diceResult = dice.throwDice();
-            Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
-            Integer total = entry.getKey();
-            ArrayList<String> values = entry.getValue();
-            dice1_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(0) + ".png"))));
-            dice2_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(1) + ".png"))));
-            logController.logRollEvent(values.get(0), values.get(1));
+
+            Sound.playDiceShuffle();
+            // Throw the dice 1.5 seconds after starting the shuffle sound effect
+            Timeline delay = new Timeline(new KeyFrame(Duration.seconds(1.5), actionEvent -> {
+                HashMap<Integer, ArrayList<String>> diceResult;
+                try {
+                    diceResult = dice.throwDice();
+                    Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
+                    Integer total = entry.getKey();
+                    ArrayList<String> values = entry.getValue();
+                    dice1_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(0) + ".png"))));
+                    dice2_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(1) + ".png"))));
+                    Sound.playDiceThrow();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }));
+            delay.play();
+        }
+        else {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't roll when it's not your turn.");
         }
     }
 

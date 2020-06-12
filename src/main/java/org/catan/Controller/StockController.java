@@ -7,10 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import org.catan.Model.Game;
-import org.catan.Model.Inventory;
-import org.catan.Model.Player;
-import org.catan.Model.Sound;
+import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
 import java.net.URL;
@@ -154,15 +151,23 @@ public class StockController implements Initializable, Observable {
     }
 
     public void activateKnight() {
+        // Check if it's player's turn
+        if(!Player.mainPlayerActive) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card outside of your turn.");
+            return;
+        }
         // Checks if there still are knight cards left
         if(Player.getActivePlayer().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
-            // TODO notify the player
-            System.out.println("No knight cards left.");
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You don't have any knight cards left to activate.");
             return;
         }
 
         Player.getActivePlayer().getPlayerInventory().changeCards("knight", -1);
         removeCardAnimation(animationKnightCard);
+
+        GameSchermController.getInstance().highlightTiles(Thief.getTile());
 
         logController.logKnightEvent();
         Sound.playSword();

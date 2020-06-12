@@ -75,7 +75,7 @@ public class TradeController implements Observable {
     public void bankTrade() {
         Sound.playSwitch();
 
-        if (tradeType == "player" && Player.mainPlayerActive){
+        if (tradeType == "player") {
             tradeType = "bank";
             bankTradeBtn.setFont(new Font("System Bold", 14));
             playerTradeBtn.setFont(new Font("System", 14));
@@ -87,7 +87,7 @@ public class TradeController implements Observable {
     public void playerTrade() {
         Sound.playSwitch2();
 
-        if (tradeType == "bank" && Player.mainPlayerActive){
+        if (tradeType == "bank") {
             tradeType = "player";
             bankTradeBtn.setFont(new Font("System", 14));
             playerTradeBtn.setFont(new Font("System Bold", 14));
@@ -97,15 +97,15 @@ public class TradeController implements Observable {
 
     @FXML
     public void buyDevelopmentCard() {
-        // If player doesn't have enough resources
+        // If player has enough resources
         if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
             // If player has enough resources
             String developmentCard = Bank.getBank().takeDevelopmentCard();
 
             // If bank is empty
             if(developmentCard.equals("bankEmpty")) {
-                //TODO notify the player
-                System.out.println("Bank is empty.");
+                ScreenController.getInstance().showAlertPopup();
+                AlertPopUpController.getInstance().setAlertDescription("The bank doesn't have any development cards left to give.");
                 return;
             }
 
@@ -116,22 +116,29 @@ public class TradeController implements Observable {
 
             // Bank gave a victory point card
             if(developmentCard.equals("victoryPoint")) {
-                //TODO popup
-                System.out.println("Got a victory point.");
+                ScreenController.getInstance().showDevCardPopup();
+                DevCardPopUpController.getInstance().setPointImage();
 
                 Player.getActivePlayer().addVictoryPoint();
             }
             // Bank gave a knight card
             else {
-                System.out.println("Got a knight card.");
+                ScreenController.getInstance().showDevCardPopup();
+                DevCardPopUpController.getInstance().setKnightImage();
                 Player.getActivePlayer().getPlayerInventory().changeCards("knight", 1);
             }
-
+            DevCardPopUpController.getInstance().playAnimation();
             LogController.getInstance().logDevelopmentCardEvent();
-        } else{
-            //TODO notify the player
-            System.out.println("You don't have enough resources.");
+        }
+        // Player doesn't have enough resources
+        else if (Player.mainPlayerActive){
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to buy a development card.");
             return;
+        }
+        else {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't buy a development card outside of your turn.");
         }
     }
 
@@ -156,6 +163,10 @@ public class TradeController implements Observable {
             TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
 //            App.tradePopUp();
             ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij MainPlayer
+        }
+        else {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't send trade offers outside of your turn.");
         }
     }
 

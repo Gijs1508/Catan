@@ -29,9 +29,12 @@ public class ScreenController implements Initializable, Observable {
     private AnchorPane diceView;
     private AnchorPane scoreView;
     private AnchorPane costView;
+    private AnchorPane settingsView;
     private AnchorPane knightDetails;
     private AnchorPane tradePopupView;
     private AnchorPane handInPopupView;
+    private AnchorPane devCardPopupView;
+    private AnchorPane alertPopupView;
 
     @FXML private AnchorPane root;
     @FXML private Pane boardPane;
@@ -42,9 +45,13 @@ public class ScreenController implements Initializable, Observable {
     @FXML private Pane tradePane;
     @FXML private Pane dicePane;
     @FXML private Pane costPane;
+    @FXML private Pane settingsPane;
     @FXML private Pane knightPopup;
     @FXML private Pane tradePopup;
     @FXML private Pane handInPopup;
+    @FXML private Pane devCardPopup;
+    @FXML private Pane alertPopup;
+
 
     private static ScreenController screenController;
 
@@ -65,6 +72,9 @@ public class ScreenController implements Initializable, Observable {
             diceView = (AnchorPane) App.loadFXML("Views/diceView");
             scoreView = (AnchorPane) App.loadFXML("Views/scoreView");
             costView = (AnchorPane) App.loadFXML("Views/costView");
+            settingsView = (AnchorPane) App.loadFXML("Views/settingsView");
+            devCardPopupView = (AnchorPane) App.loadFXML("Views/devCardPopUpView");
+            alertPopupView = (AnchorPane) App.loadFXML("Views/alertPopUpView");
             knightDetails = new KnightDetails().getRoot();
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,21 +88,34 @@ public class ScreenController implements Initializable, Observable {
         dicePane.getChildren().setAll(diceView);
         scorePane.getChildren().setAll(scoreView);
         costPane.getChildren().setAll(costView);
+        settingsPane.getChildren().setAll(settingsView);
         knightPopup.getChildren().setAll(knightDetails);
+        devCardPopup.getChildren().setAll(devCardPopupView);
+        alertPopup.getChildren().setAll(alertPopupView);
 
+        initializePopup(settingsPane);
         initializePopup(knightPopup);
         initializePopup(tradePopup);
         initializePopup(handInPopup);
+        initializePopup(devCardPopup);
+        initializePopup(alertPopup);
     }
 
-    public void hideKnightPopup() {
-        KnightDetails.getFadeOut().playFromStart();
-        KnightDetails.getFadeOut().setOnFinished(actionEvent -> knightPopup.setVisible(false));
+    public void showSettings() {
+        settingsPane.setVisible(true);
+        SettingsController.getInstance().startAnimation();
+    }
+    public void hideSettings() {
+        settingsPane.setVisible(false);
     }
 
     public void showKnightPopup() {
         KnightDetails.getFadeIn().playFromStart();
         knightPopup.setVisible(true);
+    }
+    public void hideKnightPopup() {
+        KnightDetails.getFadeOut().playFromStart();
+        KnightDetails.getFadeOut().setOnFinished(actionEvent -> knightPopup.setVisible(false));
     }
 
     public void showHandInPopUp() throws IOException {
@@ -100,7 +123,6 @@ public class ScreenController implements Initializable, Observable {
         handInPopup.getChildren().setAll(handInPopupView);
         handInPopup.setVisible(true);
     }
-
     public void hideHandInPopUp() {
         handInPopup.setVisible(false);
     }
@@ -110,9 +132,22 @@ public class ScreenController implements Initializable, Observable {
         tradePopup.getChildren().setAll(tradePopupView);
         tradePopup.setVisible(true);
     }
-
     public void hideTradePopup() {
         tradePopup.setVisible(false);
+    }
+
+    public void showDevCardPopup() {
+        devCardPopup.setVisible(true);
+    }
+    public void hideDevCardPopup() {
+        devCardPopup.setVisible(false);
+    }
+
+    public void showAlertPopup() {
+        alertPopup.setVisible(true);
+    }
+    public void hideAlertPopup() {
+        alertPopup.setVisible(false);
     }
 
     private void initializePopup(Pane popupPane) {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="root" prefHeight="291.0" prefWidth="195.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.DevCardPopUpController">
+   <children>
+      <ImageView fx:id="cardImg" fitHeight="239.0" fitWidth="190.0" layoutX="23.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/knightTitle.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="77.0" fitWidth="77.0" layoutX="111.0" layoutY="21.0">
+         <image>
+            <Image url="@../assets/img/plus.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

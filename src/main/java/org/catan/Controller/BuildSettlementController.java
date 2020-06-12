@@ -1,5 +1,6 @@
 package org.catan.Controller;
 
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import org.catan.Helper.BuildVillages;
@@ -9,7 +10,9 @@ import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
 import java.lang.reflect.Array;
+import java.net.URL;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
  */
@@ -18,6 +21,8 @@ public class BuildSettlementController implements Observable {
 
     // todo add Player properties in all the methods
 //    private Speler player;
+
+
     private String color = "blue";
     private ArrayList<Circle> vertexNodeList;
     private ArrayList<Circle> upgradeNodeList;
@@ -30,7 +35,6 @@ public class BuildSettlementController implements Observable {
     private BuildVillages bv;
 
     private GameSchermController gameSchermController = GameSchermController.getInstance();
-
     private static BuildSettlementController buildSettlementController;
 
 
@@ -46,21 +50,6 @@ public class BuildSettlementController implements Observable {
         this.bv = new BuildVillages();
         this.buildRoads = new ArrayList<>();
         this.buildVillages = new ArrayList<>();
-    }
-
-    /** Gives the harbor that a settlement has been placed adjacent to to the player for updates.
-     * @param harbor the harbor object
-     * @author Jeroen */
-    public void updatePlayerFromHarbor(Harbor harbor) {
-        Player.getActivePlayer().updateResourceCosts(harbor);
-        // todo It updates when you click it outside of your turn (probably because of the placeholder button, placeRoadBtn)
-        // todo Make method private when placeholder is replaced
-    }
-
-    /** Checks if settlement was placed adjacent to a harbor */
-    private boolean builtAtHarbor() {
-        // todo Going to work on this when the build settlement functionality has been pushed -Jeroen
-        return false;
     }
 
     // Returns roads from player
@@ -279,11 +268,39 @@ public class BuildSettlementController implements Observable {
      * @param node the player clicked
      */
     public Village buildVillage(Circle node) {
+        // If the node borders a harbor
+        if(gameSchermController.getAllHarborVertices().contains(node)) {
+            builtAtHarbor(node);
+        }
+
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
         bv.setBuildVillages(buildVillages);
+        Player.getActivePlayer().addVillagePoint();
         return village;
     }
+
+    /** Finds the harbor that the settlement has been placed adjacent to and updates accordingly.
+     * @param node the vertex a settlement has been placed on
+     * @author Jeroen */
+    private void builtAtHarbor(Circle node) {
+        int harborNum = 0;
+
+        // Finds what harborNum belongs to the vertex a settlement was placed on
+        for (Map.Entry<Integer, ArrayList<Circle>> entry : gameSchermController.getHarborNumToVertices().entrySet()) {
+            if(entry.getValue().contains(node)) {
+                harborNum = entry.getKey();
+            }
+        }
+        // Finds what harbor belongs to that harborNum and updates the player's costs accordingly
+        for (Harbor harbor : gameSchermController.getHarbors()) {
+            if(harbor.getHarborNum() == harborNum) {
+                Player.getActivePlayer().updateResourceCosts(harbor);
+            }
+        }
+        return;
+    }
+
 
     /**
      * The methods upgrades a Village and returns it
@@ -301,6 +318,7 @@ public class BuildSettlementController implements Observable {
                     break;
                 }
             }
+            Player.getActivePlayer().addCityPoint();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("You don't have enough resources to upgrade an village!");
@@ -358,6 +376,7 @@ public class BuildSettlementController implements Observable {
     public Road buildRoad(Circle node) {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), "blue");
         buildRoads.add(road);
+        Player.getActivePlayer().addRoadPoint();
         return road;
     }
 

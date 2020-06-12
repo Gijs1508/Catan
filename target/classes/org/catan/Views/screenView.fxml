@@ -13,12 +13,11 @@
         <Pane fx:id="boardPane" layoutX="430.0" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: lightblue;" />
         <Pane fx:id="costPane" layoutX="200.0" layoutY="143.0" prefHeight="109.0" prefWidth="230.0" style="-fx-background-color: grey;" />
         <Pane fx:id="stockPane" layoutY="590.0" prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: blue;" />
-      <Pane fx:id="knightPopup" layoutX="118.0" layoutY="459.0" opacity="0.2" prefHeight="296.0" prefWidth="185.0" style="-fx-background-color: blue;">
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor></Pane>
-      <Pane fx:id="tradePopup" layoutX="600.0" layoutY="141.0" opacity="0.2" prefHeight="291.0" prefWidth="408.0" style="-fx-background-color: blue;" />
+        <Pane fx:id="knightPopup" layoutX="118.0" layoutY="459.0" opacity="0.2" prefHeight="296.0" prefWidth="185.0" style="-fx-background-color: blue;" />
+        <Pane fx:id="tradePopup" layoutX="600.0" layoutY="141.0" opacity="0.2" prefHeight="291.0" prefWidth="408.0" style="-fx-background-color: blue;" />
         <Pane fx:id="handInPopup" layoutX="600.0" layoutY="141.0" opacity="0.2" prefHeight="291.0" prefWidth="408.0" style="-fx-background-color: green;" />
-
+        <Pane fx:id="devCardPopup" layoutX="725.0" layoutY="141.0" opacity="0.2" prefHeight="291.0" prefWidth="195.0" style="-fx-background-color: pink;" />
+        <Pane fx:id="alertPopup" layoutX="661.0" layoutY="198.0" opacity="0.2" prefHeight="182.0" prefWidth="317.0" style="-fx-background-color: yellow;" />
+        <Pane fx:id="settingsPane" opacity="0.2" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: grey;" />
     </children>
 </AnchorPane>
