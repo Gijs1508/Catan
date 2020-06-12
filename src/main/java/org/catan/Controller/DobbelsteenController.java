@@ -46,8 +46,6 @@ public class DobbelsteenController implements Observable {
                     ArrayList<String> values = entry.getValue();
                     dice1_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(0) + ".png"))));
                     dice2_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(1) + ".png"))));
-                    logController.logRollEvent(values.get(0), values.get(1));
-
                     Sound.playDiceThrow();
                 } catch (IOException e) {
                     e.printStackTrace();
