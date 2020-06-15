@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e7e6e9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LobbySchermController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e7e6e9;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LobbySchermController">
    <children>
       <ImageView fitHeight="810.0" fitWidth="1200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/Bord_met_water.png" />
          </image>
       </ImageView>
-      <VBox layoutX="331.0" layoutY="178.0" prefHeight="436.0" prefWidth="540.0" style="-fx-background-color: #cccc; -fx-background-radius: 5;" AnchorPane.topAnchor="178.0">
+      <VBox layoutX="331.0" layoutY="125.0" prefHeight="522.0" prefWidth="540.0" style="-fx-background-color: #cccc; -fx-background-radius: 5;" AnchorPane.topAnchor="125.0">
          <children>
             <Pane fx:id="player1pane" prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
                <VBox.margin>
@@ -90,11 +93,23 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Pane>
+            <Pane prefHeight="71.0" prefWidth="540.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <children>
+                  <Text fx:id="game_code" layoutX="9.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="521.13671875">
+                     <font>
+                        <Font size="46.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
          </children></VBox>
       <Pane prefHeight="145.0" prefWidth="1200.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#53b3e2" height="145.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
-            <Text layoutX="403.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="lobbyText" text="Waiting for host..." wrappingWidth="393.74951171875">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#53b3e2" height="126.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
+            <Text layoutX="403.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="lobbyText" text="Waiting for host..." wrappingWidth="393.74951171875">
                <font>
                   <Font size="50.0" />
                </font>
@@ -106,12 +121,12 @@
             </ImageView>
          </children>
       </Pane>
-      <Button fx:id="startGameBtn" layoutX="416.0" layoutY="627.0" mnemonicParsing="false" onAction="#startGame" prefHeight="75.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 50; -fx-cursor: pointer;" styleClass="lobbyText" text="Start match">
+      <Button fx:id="startGameBtn" disable="true" layoutX="418.0" layoutY="656.0" mnemonicParsing="false" onAction="#startGame" prefHeight="75.0" prefWidth="371.0" style="-fx-background-color: white; -fx-background-radius: 50; -fx-cursor: pointer;" styleClass="lobbyText" text="Start match">
          <font>
             <Font size="35.0" />
          </font>
       </Button>
-      <Button fx:id="leaveGameBtn" layoutX="481.0" layoutY="715.0" mnemonicParsing="false" onAction="#leaveGame" prefHeight="44.0" prefWidth="238.0" style="-fx-background-color: white; -fx-background-radius: 50; -fx-cursor: pointer;" styleClass="lobbyText" text="Back to menu">
+      <Button fx:id="leaveGameBtn" layoutX="484.0" layoutY="742.0" mnemonicParsing="false" onAction="#leaveGame" prefHeight="44.0" prefWidth="238.0" style="-fx-background-color: white; -fx-background-radius: 50; -fx-cursor: pointer;" styleClass="lobbyText" text="Back to menu">
          <font>
             <Font size="20.0" />
          </font>

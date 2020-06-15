@@ -17,7 +17,7 @@ public class Game {
         this.board = new Gameboard();
         this.players = new ArrayList<>();
         this.logs = new ArrayList<>();
-        this.status = "Open";
+        this.status = "open";
         this.code = CreateGameCode.randomCodeGen();
     }
 
@@ -101,4 +101,11 @@ public class Game {
         activePlayer = player;
     }
 
+    public void removePlayer(Player player) {
+        for (Player gamePlayer: players) {
+            if (gamePlayer.getIdentifier() == player.getIdentifier()) {
+                players.remove(gamePlayer);
+            }
+        }
+    }
 }

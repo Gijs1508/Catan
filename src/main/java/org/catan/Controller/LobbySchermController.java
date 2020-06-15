@@ -2,6 +2,7 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.App;
@@ -9,6 +10,7 @@ import org.catan.Model.Game;
 import org.catan.Model.Player;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
+import org.catan.logic.DocumentListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +21,7 @@ import java.util.ResourceBundle;
 public class LobbySchermController implements Initializable, Observable {
 
     private Long gameCode;
-    private static LobbySchermController lobbySchermController;
+    private static LobbySchermController lobbySchermController = new LobbySchermController();
     private int aantalSpelers;
     private int minimumAantalSpelers;
     private Player player1;
@@ -35,15 +37,31 @@ public class LobbySchermController implements Initializable, Observable {
     @FXML Text player2name;
     @FXML Text player3name;
     @FXML Text player4name;
+    @FXML Text game_code;
+    @FXML Button startGameBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        player1pane.setVisible(false);
+        player2pane.setVisible(false);
+        player3pane.setVisible(false);
+        player4pane.setVisible(false);
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         System.out.println(lobbySchermController.getGameCode());
         if (lobbySchermController.getGameCode() != null) {
             Game game = dbConnector.getGameById(lobbySchermController.getGameCode());
+            game_code.setText("Game code: " + game.getCode());
             setupGamePlayers(game.getPlayers());
+        } else {
+            Game game = new Game();
+            game.addSpeler(App.getClientPlayer());
+            dbConnector.createGame(game);
+            game_code.setText("Game code: " + game.getCode());
+            DocumentListener gameListener = new DocumentListener(String.valueOf(game.getCode()));
+            setupGamePlayers(game.getPlayers());
+            App.addListener(gameListener);
         }
+        lobbySchermController = this;
     }
 
     @FXML
@@ -57,12 +75,18 @@ public class LobbySchermController implements Initializable, Observable {
             case 1:
                 player1pane.setVisible(true);
                 player1name.setText(players.get(0).getName());
+                player2pane.setVisible(false);
+                player3pane.setVisible(false);
+                player4pane.setVisible(false);
                 break;
             case 2:
+                System.out.println("Making 2 players visible");
                 player1pane.setVisible(true);
                 player1name.setText(players.get(0).getName());
                 player2pane.setVisible(true);
                 player2name.setText(players.get(1).getName());
+                player3pane.setVisible(false);
+                player4pane.setVisible(false);
                 break;
             case 3:
                 player1pane.setVisible(true);
@@ -71,6 +95,7 @@ public class LobbySchermController implements Initializable, Observable {
                 player2name.setText(players.get(1).getName());
                 player3pane.setVisible(true);
                 player3name.setText(players.get(2).getName());
+                player4pane.setVisible(false);
                 break;
             case 4:
                 player1pane.setVisible(true);
@@ -87,7 +112,14 @@ public class LobbySchermController implements Initializable, Observable {
 
     @FXML
     private void leaveGame() throws IOException {
-        App.setRoot("Views/joinView");
+        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+        System.out.println("Start removing player");
+        Game game = dbConnector.getGameById(App.getCurrentGameCode());
+        game.removePlayer(App.getClientPlayer());
+        dbConnector.updateGame(game);
+        System.out.println("Player removed");
+        App.setStageSize(960, 540);
+        App.setRoot("Views/mainView");
     }
 
     private void genoegAantalSpelers() {
@@ -100,7 +132,12 @@ public class LobbySchermController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
-
+        setupGamePlayers(game.getPlayers());
+        if (game.getPlayers().size() > 1 && App.getClientPlayer().isHost()) {
+            startGameBtn.setDisable(false);
+        } else {
+            startGameBtn.setDisable(true);
+        }
     }
 
     public static LobbySchermController getInstance() {
@@ -117,5 +154,26 @@ public class LobbySchermController implements Initializable, Observable {
 
     public Long getGameCode() {
         return this.gameCode;
+    }
+
+    private void updatePlayerColors(Game game) {
+        for (int i = 0; i < game.getPlayers().size(); i++) {
+            if (game.getPlayers().get(i).getIdentifier() == App.getClientPlayer().getIdentifier()) {
+                App.setClientPlayer(game.getPlayers().get(i));
+            }
+            switch (i) {
+                case 0:
+                    game.getPlayers().get(i).setColor("red");
+                    break;
+                case 1:
+                    game.getPlayers().get(i).setColor("blue");
+                    break;
+                case 2:
+                    game.getPlayers().get(i).setColor("green");
+                    break;
+                case 3:
+                    game.getPlayers().get(i).setColor("yellow");
+            }
+        }
     }
 }

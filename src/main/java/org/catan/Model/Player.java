@@ -17,6 +17,7 @@ public class Player {
     private int road;
     private int village;
     private int city;
+    private int identifier;
     private Inventory playerInventory;
 
     private HashMap<String, Integer> resourceToCost;
@@ -28,6 +29,7 @@ public class Player {
     public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
     public static Player activePlayer;
     public static boolean mainPlayerActive;
+    private boolean host = false;
 
     public Player() {
 
@@ -39,6 +41,7 @@ public class Player {
         this.color = "red"; //TODO
         this.score = 0;
         this.playerInventory = new Inventory();
+        this.identifier = Math.toIntExact(CreateGameCode.getSeed());
         allPlayers.add(this);
 
         initializeResourceCosts();
@@ -78,7 +81,6 @@ public class Player {
     }
 
     public void addVictoryPoint() {
-        //TODO call ScoreController to increase player's points
         score++;
         scoreController.addVictoryPointToPlayer(color, score);
     }
@@ -159,4 +161,19 @@ public class Player {
         return resourceToCost.get(resource);
     }
 
+    public boolean isHost() {
+        return host;
+    }
+
+    public void setHost(boolean host) {
+        this.host = host;
+    }
+
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(int identifier) {
+        this.identifier = identifier;
+    }
 }

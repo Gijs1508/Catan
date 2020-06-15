@@ -6,10 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.catan.Controller.*;
 import org.catan.Model.*;
 import org.catan.logic.CreateTestGame;
 import org.catan.logic.DatabaseConnector;
-import org.catan.Controller.TradePopUpController;
 import org.catan.Model.Player;
 import org.catan.Model.TurnManager;
 import org.catan.logic.DocumentListener;
@@ -26,8 +26,12 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-    private static Stage stage;
+    private static String viewName;
+    private static Stage appStage;
     private static Player clientPlayer;
+    private static Long currentGameCode;
+    private static ArrayList<DocumentListener> listeners = new ArrayList<DocumentListener>();
+
 
     private AnchorPane screenView;
     private AnchorPane boardView;
@@ -39,7 +43,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Sound.initializeSounds();
-        clientPlayer = new Player("Werner");
+        setupControllerInstances();
+        clientPlayer = new Player("Sabrina");
 //        scene = new Scene(loadFXML("Views/screenView"));
         scene = new Scene(loadFXML("Views/mainView"));
 
@@ -48,7 +53,7 @@ public class App extends Application {
         stage.setTitle("Kolonisten van Catan");
         stage.setScene(scene);
         stage.setResizable(false);
-
+        appStage = stage;
         // Main player = Player controlling the instance of the game
         Player testPlayer1 = new Player("testPlayer"); //TODO Moet aangemaakt worden bij het opstarten/joinen van het spel
         testPlayer1.setMainPlayer(testPlayer1);
@@ -66,6 +71,31 @@ public class App extends Application {
 
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+        viewName = fxml;
+    }
+
+    public static String getViewNameGlobally() {
+        return viewName;
+    }
+
+
+    private void setupControllerInstances() {
+        LobbySchermController.getInstance();
+        AlertPopUpController.getInstance();
+        BuildSettlementController.getInstance();
+        DevCardPopUpController.getInstance();
+        GameSchermController.getInstance();
+        LogController.getInstance();
+        ScoreController.getInstance();
+        ScreenController.getInstance();
+        SettingsController.getInstance();
+        StockController.getInstance();
+        TradeController.getInstance();
+    }
+
+    public static void setStageSize(int width, int height) {
+        appStage.setWidth(width);
+        appStage.setHeight(height);
     }
 
     public static Parent loadFXML(String fxml) throws IOException {
@@ -77,8 +107,27 @@ public class App extends Application {
         return clientPlayer;
     }
 
+    public static void setClientPlayer(Player player) {
+        clientPlayer = player;
+    }
+
     public static void main(String[] args) {
         launch();
     }
 
+    public static void addListener(DocumentListener listener) {
+        listeners.add(listener);
+    }
+
+    public static void resetListeners() {
+        listeners = new ArrayList<DocumentListener>();
+    }
+
+    public static Long getCurrentGameCode() {
+        return currentGameCode;
+    }
+
+    public static void setCurrentGameCode(Long gameCode) {
+        currentGameCode = gameCode;
+    }
 }

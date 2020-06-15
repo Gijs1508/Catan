@@ -10,9 +10,11 @@ import org.catan.Model.Game;
 import org.catan.Model.Player;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
+import org.catan.logic.DocumentListener;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class JoinController implements Observable {
@@ -39,20 +41,34 @@ public class JoinController implements Observable {
         Long code = Long.valueOf(code_input.getText());
         Game game = dbConnector.getGameById(code);
         if (game.getCode().equals(code)) {
-            if (game.getPlayers().size() < 4) {
-                this.lobbySchermController.setGameCode(code);
-                setPlayerColor(game.getPlayers().size(), App.getClientPlayer());
-                game.addSpeler(App.getClientPlayer());
-                dbConnector.updateGame(game);
-
-                App.setRoot("./views/lobbyView");
+            if (game.getStatus().equals("open")) {
+                if (game.getPlayers().size() < 4) {
+                    this.lobbySchermController.setGameCode(code);
+                    setPlayerColor(game.getPlayers().size(), App.getClientPlayer());
+                    App.getClientPlayer().setHost(false);
+                    App.setCurrentGameCode(game.getCode());
+                    game.addSpeler(App.getClientPlayer());
+                    dbConnector.updateGame(game);
+                    addGameListener(game);
+                    App.setStageSize(1200, 810);
+                    App.setRoot("./views/lobbyView");
+                } else {
+                    this.error_text.setText("Het spel zit al vol");
+                    this.error_text.setVisible(true);
+                }
             } else {
-                this.error_text.setText("Het spel zit al vol");
+                this.error_text.setText("Dit spel kan niet meer worden gejoined");
                 this.error_text.setVisible(true);
             }
         } else {
+            this.error_text.setText("Invalide code ingevoerd");
             this.error_text.setVisible(true);
         }
+    }
+
+    private void addGameListener(Game game) {
+        DocumentListener gameListener = new DocumentListener(String.valueOf(game.getCode()));
+        App.addListener(gameListener);
     }
 
     private void setPlayerColor(int playerSize, Player player) {

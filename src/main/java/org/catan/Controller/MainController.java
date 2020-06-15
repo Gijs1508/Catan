@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class MainController implements Observable {
 
+    private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
+
     // Routes
     @FXML
     private void joinGame() throws IOException {
@@ -18,6 +20,7 @@ public class MainController implements Observable {
 
     @FXML
     private void startGame() throws IOException {
+        App.setStageSize(1200, 810);
         App.setRoot("./Views/lobbyView");
     }
 
