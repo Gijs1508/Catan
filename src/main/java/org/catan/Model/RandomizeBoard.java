@@ -9,6 +9,12 @@ import org.catan.App;
 
 import java.util.*;
 
+/**
+ * Used to generate random resources and tile numbers on tiles.
+ * Gets called when the game gets created.
+ *
+ * @Author Gijs van der Weijden
+ */
 public class RandomizeBoard {
 
     public static ArrayList<Tile> ALL_TILES = new ArrayList<Tile>();
