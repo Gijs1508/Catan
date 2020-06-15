@@ -10,6 +10,11 @@ import org.catan.interfaces.Observable;
 
 import java.io.IOException;
 
+/**
+ * Used to handle button clicks on the main menu screen.
+ *
+ * @Author Gijs van der Weijden
+ */
 public class MainController implements Observable {
 
     private LobbySchermController lobbySchermController = LobbySchermController.getInstance();

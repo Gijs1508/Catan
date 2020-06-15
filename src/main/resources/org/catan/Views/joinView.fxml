@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="540.0" prefWidth="960.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.JoinController">
    <children>
@@ -40,10 +40,10 @@
             <Font name="Myanmar Text" size="14.0" />
          </font>
       </Button>
-      <Text fx:id="error_text" fill="RED" layoutX="369.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="invalide code ingevoerd" visible="false" wrappingWidth="222.13671875">
+      <Label fx:id="error_text" layoutX="295.0" layoutY="290.0" prefHeight="31.0" prefWidth="370.0" style="-fx-alignment: center;" text="Invalide code ingevoerd" textAlignment="CENTER" visible="false">
          <font>
-            <Font size="20.0" />
+            <Font size="21.0" />
          </font>
-      </Text>
+      </Label>
    </children>
 </AnchorPane>
