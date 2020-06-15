@@ -424,11 +424,9 @@ public class GameSchermController implements Initializable, Observable {
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
         int[] reqResources = {1, 1, 0, 1, 1, 0};
-        //TODO Jan: deze bool veranderen naar de status van startevent
-        boolean startEvent = false;
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        if(canBuildObject(reqResources)){
+        if(canBuildObject(reqResources) || startPhase){
             placeVillage(build.buildVillage(circle));
             logController.logSettlementEvent();
         }else {
@@ -485,7 +483,7 @@ public class GameSchermController implements Initializable, Observable {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
         int[] reqResources = {1, 1, 0, 0, 0, 0};
 
-        if(canBuildObject(reqResources)){
+        if(canBuildObject(reqResources) || startPhase){
             placeRoad(build.buildRoad(circle));
             logController.logRoadEvent();
         }else {
