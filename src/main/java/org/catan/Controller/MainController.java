@@ -1,6 +1,8 @@
 package org.catan.Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
@@ -8,17 +10,41 @@ import org.catan.interfaces.Observable;
 
 import java.io.IOException;
 
+/**
+ * Used to handle button clicks on the main menu screen.
+ *
+ * @Author Gijs van der Weijden
+ */
 public class MainController implements Observable {
 
+    private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
+
+    @FXML
+    private TextField player_name_input;
     // Routes
+
     @FXML
     private void joinGame() throws IOException {
-        App.setRoot("./Views/joinView");
+        if(nameIsSet()){
+            App.setClientPlayer(new Player(player_name_input.getText()));
+            App.setRoot("./Views/joinView");
+        } else {
+            createAlert();
+
+        }
     }
+
 
     @FXML
     private void startGame() throws IOException {
-        App.setRoot("./Views/createView");
+        App.setStageSize(1200, 810);
+        if(nameIsSet()){
+            App.setClientPlayer(new Player(player_name_input.getText()));
+            App.getClientPlayer().setHost(true);
+            App.setRoot("./Views/lobbyView");
+        } else {
+            createAlert();
+        }
     }
 
     @FXML
@@ -29,5 +55,15 @@ public class MainController implements Observable {
     @Override
     public void update(Game game) {
 
+    }
+
+    private void createAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("You didn't fill in a name!");
+        alert.show();
+    }
+
+    private boolean nameIsSet(){
+        return !player_name_input.getText().equals("");
     }
 }

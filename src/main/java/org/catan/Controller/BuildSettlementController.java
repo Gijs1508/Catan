@@ -1,6 +1,5 @@
 package org.catan.Controller;
 
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import org.catan.Helper.BuildVillages;
@@ -9,10 +8,7 @@ import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
-import java.lang.reflect.Array;
-import java.net.URL;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
  */
@@ -409,6 +405,10 @@ public class BuildSettlementController implements Observable {
         for (Village v : village) {
             System.out.println("This is a village " + v);
         }
+    }
+
+    public ArrayList<Village> getBuildVillages() {
+        return buildVillages;
     }
 
     @Override

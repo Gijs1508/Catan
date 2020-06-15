@@ -1,24 +1,8 @@
 package org.catan.Model;
 
-import org.catan.Controller.LogController;
-import org.catan.Controller.ScoreController;
-import org.catan.Controller.TradeController;
+import org.catan.Controller.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-/**
- * Player class that contains information about individual players and the player running the instance of the application.
- * Each instance of a player has an inventory tied to it.
- *
- * TODO
- * allPlayers & activePlayer in a different model (Game?)
- *
- * @author Kaz
- * @version 0.1
- */
+import java.util.*;
 
 public class Player {
 
@@ -28,6 +12,8 @@ public class Player {
     private int road;
     private int village;
     private int city;
+    private int identifier;
+    private boolean turn;
     private Inventory playerInventory;
 
     private HashMap<String, Integer> resourceToCost;
@@ -39,20 +25,21 @@ public class Player {
     public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
     public static Player activePlayer;
     public static boolean mainPlayerActive;
+    private boolean host = false;
 
+    /**
+     * Empty constructor, needed for Jackson to do proper deserialization
+     */
     public Player() {
 
     }
 
-    /**
-     * Constructor creates player object and a new Inventory object to go along with it.
-     * @param name is initialized when the game is started
-     */
     public Player(String name){
         this.name = name;
         this.color = "red"; //TODO
         this.score = 0;
         this.playerInventory = new Inventory();
+        this.identifier = Math.toIntExact(CreateGameCode.randomCodeGen());
         allPlayers.add(this);
 
         initializeResourceCosts();
@@ -88,11 +75,37 @@ public class Player {
             resourceToCost.replace(harbor.getType(), harbor.getRatio());
             tradeController.updateRatioView(harbor.getType(), harbor.getRatio());
         }
+    }
 
+    /** Makes the player steal a random card from another player.
+     * @param victim the opponent to steal from
+     * @author Jeroen */
+    public void stealFromVictim(Player victim) {
+        HashMap<String, Integer> resourcesToAmount = victim.getPlayerInventory().resourceToAmountGetter(); // Get the victim's resources in their inventory
+        Iterator it = resourcesToAmount.entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            if((Integer) pair.getValue() <= 0){
+                it.remove(); // Ignore resources that the victim doesn't have any of
+            }
+        }
+        List<String> resources = new ArrayList<>(resourcesToAmount.keySet()); // Random resource from resources
+        if(resources.isEmpty()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription(
+                    "Stealing from " + victim.getName() + " failed.\nOpponent does not have any resources."
+            );
+            return;
+        }
+        String resource = resources.get(new Random().nextInt(resources.size()));
+
+        victim.getPlayerInventory().changeCards(resource, -1); // Take the resource from the victim, and give it to the active player
+        getPlayerInventory().changeCards(resource, 1);
+
+        LogController.getInstance().logStealEvent(victim); // Log steal event
     }
 
     public void addVictoryPoint() {
-        //TODO call ScoreController to increase player's points
         score++;
         scoreController.addVictoryPointToPlayer(color, score);
     }
@@ -173,4 +186,27 @@ public class Player {
         return resourceToCost.get(resource);
     }
 
+    public boolean isHost() {
+        return host;
+    }
+
+    public void setHost(boolean host) {
+        this.host = host;
+    }
+
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(int identifier) {
+        this.identifier = identifier;
+    }
+
+    public boolean isTurn() {
+        return turn;
+    }
+
+    public void setTurn(boolean turn) {
+        this.turn = turn;
+    }
 }

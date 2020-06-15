@@ -21,7 +21,7 @@ public class CreateController implements Observable {
     the main menu screen
      */
     public void backToMenu() throws IOException {
-        App.setRoot("./views/mainViewTrade");
+        App.setRoot("./views/mainView");
     }
 
     /*
@@ -40,12 +40,12 @@ public class CreateController implements Observable {
      */
     public void createGame() {
         // TODO Werner: add code to db and check if it does not exist
-        long gameCode = CreateGameCode.getSeed();
+        long gameCode = CreateGameCode.randomCodeGen();
         game_code_text.setText(String.valueOf(gameCode));
     }
 
     @Override
     public void update(Game game) {
-
+        //long gameCode = CreateGameCode.getSeed();
     }
 }
