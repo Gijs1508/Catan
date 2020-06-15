@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+/**
+ * Takes care of all the sounds in the game (music, sound effects).
+ * @author Jeroen
+ */
+
 public class Sound {
 
     private static AudioClip pop = new AudioClip(App.class.getResource("assets/sounds/soundeffects/pop.wav").toExternalForm());
@@ -27,6 +32,7 @@ public class Sound {
     private static HashMap<AudioClip, Double> defaultVolume;
 
     private static MediaPlayer bgm = new MediaPlayer(new Media(App.class.getResource("assets/sounds/music/bgm.mp3").toExternalForm()));
+    private static MediaPlayer intromusic = new MediaPlayer(new Media(App.class.getResource("assets/sounds/music/intromusic.mp3").toExternalForm()));
 
     public static void initializeSounds() {
         Collections.addAll(soundEffects, pop, diceShuffle, diceThrow, click, takeCard, switch1, switch2, sword, startTurn, endTurn);
@@ -34,7 +40,7 @@ public class Sound {
             put(pop, 0.6);
             put(diceShuffle, 0.6);
             put(diceThrow, 0.6);
-            put(click, 0.3);
+            put(click, 0.2);
             put(takeCard, 0.2);
             put(switch1, 0.6);
             put(switch2, 0.6);
@@ -48,6 +54,8 @@ public class Sound {
 
         bgm.setVolume(0.1);
         bgm.setCycleCount(Integer.MAX_VALUE);
+        intromusic.setVolume(0.1);
+        intromusic.setCycleCount(Integer.MAX_VALUE);
     }
 
     public static void playPop() {
@@ -112,11 +120,19 @@ public class Sound {
         }
     }
 
-    public static void muteMusic() {
+    public static void muteGameMusic() {
         bgm.pause();
     }
 
-    public static void unmuteMusic() {
+    public static void unmuteGameMusic() {
         bgm.play();
+    }
+
+    public static void playMenuMusic() {
+        intromusic.play();
+    }
+
+    public static void pauseMenuMusic() {
+        intromusic.pause();
     }
 }

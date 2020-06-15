@@ -4,8 +4,6 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.catan.App;
 import org.catan.Model.Sound;
@@ -46,13 +44,13 @@ public class SettingsController {
 
     public void musicBtnClicked() {
         if (musicOn) {
-            Sound.muteMusic();
+            Sound.muteGameMusic();
             Sound.playClick();
             musicImg.setImage(musicOffImg);
             musicOn = false;
         }
         else {
-            Sound.unmuteMusic();
+            Sound.unmuteGameMusic();
             Sound.playClick();
             musicImg.setImage(musicOnImg);
             musicOn = true;
