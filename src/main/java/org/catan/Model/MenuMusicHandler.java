@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.catan.App;
 
-/** Handles the music in the main menu. Allows changes made in one menu to affect for all menu's.
+/** Handles the music in the main menu. Allows changes made in one menu to affect for all menus.
  * @author Jeroen
  */
 
