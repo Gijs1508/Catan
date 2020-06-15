@@ -110,4 +110,14 @@ public class Game {
         }
         players.remove(playerToRemove);
     }
+
+    public Player getTurnPlayer() {
+        for (Player player : players) {
+            if (player.isTurn()) {
+                return player;
+            }
+        }
+
+        return new Player();
+    }
 }
