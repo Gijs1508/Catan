@@ -2,18 +2,30 @@ package org.catan.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.CreateGameCode;
 import org.catan.Model.Game;
+import org.catan.Model.MenuMusicHandler;
+import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class CreateController implements Observable {
+public class CreateController implements Observable, Initializable {
     @FXML private Text game_code_text;
+    @FXML private ImageView musicBtn;
 
     public CreateController(){
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        MenuMusicHandler.initializeMusic(musicBtn);
     }
 
     /*
@@ -42,6 +54,12 @@ public class CreateController implements Observable {
         // TODO Werner: add code to db and check if it does not exist
         long gameCode = CreateGameCode.randomCodeGen();
         game_code_text.setText(String.valueOf(gameCode));
+    }
+
+    @FXML
+    private void toggleMusic() {
+        Sound.playClick();
+        MenuMusicHandler.toggleMusic(musicBtn);
     }
 
     @Override

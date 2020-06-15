@@ -35,12 +35,12 @@
             <Image url="@../assets/img/menu/joinGame.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="462.0" layoutY="515.0" onMouseClicked="#backToMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="473.0" layoutY="515.0" onMouseClicked="#backToMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/menu/back2.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="55.0" fitWidth="250.0" layoutX="525.0" layoutY="515.0" onMouseClicked="#createGame" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="55.0" fitWidth="250.0" layoutX="577.0" layoutY="515.0" onMouseClicked="#createGame" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/menu/create.png" />
          </image>
