@@ -111,7 +111,7 @@ public class Game {
         players.remove(playerToRemove);
     }
 
-    public Player getTurnPlayer() {
+    public Player turnPlayerGetter() {
         for (Player player : players) {
             if (player.isTurn()) {
                 return player;
