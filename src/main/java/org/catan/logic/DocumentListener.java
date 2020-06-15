@@ -42,7 +42,7 @@ public class DocumentListener {
                             LobbySchermController.getInstance().update(game);
                             break;
                         case "going":
-                            if (App.getViewNameGlobally() == "lobbyView") {
+                            if (App.getCurrentGame().getStatus().equals("open")) {
                                 try {
                                     App.setRoot("./Views/screenView");
                                 } catch (IOException ex) {
@@ -51,6 +51,7 @@ public class DocumentListener {
                             }
                             break;
                     }
+                    App.setCurrentGame(game);
                 } else {
                     System.out.print("Current data: null");
                 }

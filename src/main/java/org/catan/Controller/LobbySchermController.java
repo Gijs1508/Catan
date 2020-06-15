@@ -142,7 +142,6 @@ public class LobbySchermController implements Initializable, Observable {
         } else {
             startGameBtn.setDisable(true);
         }
-        App.setCurrentGame(game);
     }
 
     public static LobbySchermController getInstance() {
