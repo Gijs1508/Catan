@@ -34,7 +34,7 @@
             <Image url="@../assets/img/Catan_glow.png" />
          </image>
       </ImageView>
-      <TextField fx:id="player_name_input" layoutX="390.0" layoutY="320.0" prefHeight="52.0" prefWidth="162.0" promptText="Je naam..">
+      <TextField fx:id="player_name_input" layoutX="390.0" layoutY="320.0" prefHeight="52.0" prefWidth="162.0" promptText="Your name..">
          <font>
             <Font size="21.0" />
          </font>
