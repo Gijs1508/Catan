@@ -41,7 +41,6 @@ public class Player {
         this.playerInventory = new Inventory();
         this.identifier = Math.toIntExact(CreateGameCode.randomCodeGen());
         allPlayers.add(this);
-
         initializeResourceCosts();
     }
 
