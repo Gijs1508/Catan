@@ -517,276 +517,6 @@
 
       <Pane fx:id="objectsPane" layoutX="35.0" layoutY="52.0" prefHeight="500.0" prefWidth="700.0">
          <children>
-            <ImageView fx:id="settlement1" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="52">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement2" fitHeight="40.0" fitWidth="40.0" layoutX="253" layoutY="28">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement3" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="52">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement4" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="28">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement5" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="52">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement6" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="28">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement7" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="52">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement8" fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="134">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement9" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="110">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement10" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="133">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement11" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="110">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement12" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="133">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement13" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="110">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement14" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="133">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement15" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="110">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement16" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="134">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement17" fitHeight="40.0" fitWidth="40.0" layoutX="100" layoutY="215">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement18" fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="192">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement19" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="215">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement20" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="192">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement21" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="215">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement22" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="192">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement23" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="215">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement24" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="192">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement25" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="215">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement26" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="192">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement27" fitHeight="40.0" fitWidth="40.0" layoutX="611" layoutY="215">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement28" fitHeight="40.0" fitWidth="40.0" layoutX="100" layoutY="273">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement29" fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="295">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement30" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="273">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement31" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="295">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement32" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="273">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement33" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="295">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement34" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="273">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement35" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="295">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement36" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="273">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement37" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="295">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement38" fitHeight="40.0" fitWidth="40.0" layoutX="611" layoutY="273">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement39" fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="353">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement40" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="378">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement41" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="355">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement42" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="378">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement43" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="355">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement44" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="378">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement45" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="355">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement46" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="378">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement47" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="353">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement48" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="436">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement49" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="459">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement50" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="436">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement51" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="459">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement52" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="436">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement53" fitHeight="40.0" fitWidth="40.0" layoutX="457" layoutY="459">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settlement54" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="436">
-               <image>
-                  <Image url="@../assets/img/gameobjects/placeholder.png" />
-               </image>
-            </ImageView>
 
             <!--            Roads-->
             <ImageView fx:id="road7" fitHeight="54.0" fitWidth="9.0" layoutX="200.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
@@ -1150,6 +880,351 @@
                </image>
             </ImageView>
 
+<!--            These are the settlements-->
+            <ImageView fx:id="settlement1" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="52">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement2" fitHeight="40.0" fitWidth="40.0" layoutX="253" layoutY="28">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement3" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="52">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement4" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="28">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement5" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="52">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement6" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="28">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement7" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="52">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement8" fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="134">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement9" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="110">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement10" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="133">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement11" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="110">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement12" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="133">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement13" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="110">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement14" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="133">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement15" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="110">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement16" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="134">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement17" fitHeight="40.0" fitWidth="40.0" layoutX="100" layoutY="215">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement18" fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="192">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement19" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="215">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement20" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="192">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement21" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="215">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement22" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="192">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement23" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="215">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement24" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="192">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement25" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="215">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement26" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="192">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement27" fitHeight="40.0" fitWidth="40.0" layoutX="611" layoutY="215">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement28" fitHeight="40.0" fitWidth="40.0" layoutX="100" layoutY="273">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement29" fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="295">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement30" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="273">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement31" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="295">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement32" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="273">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement33" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="295">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement34" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="273">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement35" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="295">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement36" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="273">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement37" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="295">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement38" fitHeight="40.0" fitWidth="40.0" layoutX="611" layoutY="273">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement39" fitHeight="40.0" fitWidth="40.0" layoutX="151" layoutY="353">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement40" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="378">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement41" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="355">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement42" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="378">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement43" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="355">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement44" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="378">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement45" fitHeight="40.0" fitWidth="40.0" layoutX="458" layoutY="355">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement46" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="378">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement47" fitHeight="40.0" fitWidth="40.0" layoutX="559" layoutY="353">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement48" fitHeight="40.0" fitWidth="40.0" layoutX="201" layoutY="436">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement49" fitHeight="40.0" fitWidth="40.0" layoutX="252" layoutY="459">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement50" fitHeight="40.0" fitWidth="40.0" layoutX="303" layoutY="436">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement51" fitHeight="40.0" fitWidth="40.0" layoutX="354" layoutY="459">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement52" fitHeight="40.0" fitWidth="40.0" layoutX="406" layoutY="436">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement53" fitHeight="40.0" fitWidth="40.0" layoutX="457" layoutY="459">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="settlement54" fitHeight="40.0" fitWidth="40.0" layoutX="508" layoutY="436">
+               <image>
+                  <Image url="@../assets/img/gameobjects/placeholder.png" />
+               </image>
+            </ImageView>
+
+            <Circle fx:id="roadSpot12" fill="#c89cffd9" layoutX="227.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot7" fill="#c89cffd9" layoutX="200.0" layoutY="81.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot1" fill="#c89cffd9" layoutX="226.0" layoutY="41.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot2" fill="#c89cffd9" layoutX="278.0" layoutY="40.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot8" fill="#c89cffd9" layoutX="303.0" layoutY="82.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot13" fill="#c89cffd9" layoutX="277.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot14" fill="#c89cffd9" layoutX="330.0" layoutY="123.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot15" fill="#c89cffd9" layoutX="380.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot3" fill="#c89cffd9" layoutX="329.0" layoutY="41.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot4" fill="#c89cffd9" layoutX="380.0" layoutY="40.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot9" fill="#c89cffd9" layoutX="407.0" layoutY="82.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot5" fill="#c89cffd9" layoutX="432.0" layoutY="41.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot6" fill="#c89cffd9" layoutX="483.0" layoutY="41.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot16" fill="#c89cffd9" layoutX="431.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot17" fill="#c89cffd9" layoutX="483.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot10" fill="#c89cffd9" layoutX="508.0" layoutY="82.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot11" fill="#c89cffd9" layoutX="175.0" layoutY="123.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot19" fill="#c89cffd9" layoutX="151.0" layoutY="163.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot20" fill="#c89cffd9" layoutX="254.0" layoutY="163.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot21" fill="#c89cffd9" layoutX="355.0" layoutY="163.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot22" fill="#c89cffd9" layoutX="457.0" layoutY="162.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot23" fill="#c89cffd9" layoutX="559.0" layoutY="163.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot24" fill="#c89cffd9" layoutX="126.0" layoutY="203.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot25" fill="#c89cffd9" layoutX="175.0" layoutY="203.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot26" fill="#c89cffd9" layoutX="226.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot27" fill="#c89cffd9" layoutX="278.0" layoutY="203.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot28" fill="#c89cffd9" layoutX="329.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot29" fill="#c89cffd9" layoutX="381.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot30" fill="#c89cffd9" layoutX="431.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot31" fill="#c89cffd9" layoutX="483.0" layoutY="203.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot32" fill="#c89cffd9" layoutX="534.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot18" fill="#c89cffd9" layoutX="534.0" layoutY="122.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot34" fill="#c89cffd9" layoutX="100.0" layoutY="244.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot35" fill="#c89cffd9" layoutX="202.0" layoutY="244.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot36" fill="#c89cffd9" layoutX="303.0" layoutY="244.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot37" fill="#c89cffd9" layoutX="406.0" layoutY="244.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot38" fill="#c89cffd9" layoutX="508.0" layoutY="245.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot39" fill="#c89cffd9" layoutX="610.0" layoutY="245.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot33" fill="#c89cffd9" layoutX="585.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot40" fill="#c89cffd9" layoutX="126.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot41" fill="#c89cffd9" layoutX="176.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot42" fill="#c89cffd9" layoutX="226.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot43" fill="#c89cffd9" layoutX="279.0" layoutY="286.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot44" fill="#c89cffd9" layoutX="329.0" layoutY="284.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot45" fill="#c89cffd9" layoutX="380.0" layoutY="286.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot46" fill="#c89cffd9" layoutX="431.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot47" fill="#c89cffd9" layoutX="483.0" layoutY="286.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot48" fill="#c89cffd9" layoutX="534.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot49" fill="#c89cffd9" layoutX="585.0" layoutY="284.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot50" fill="#c89cffd9" layoutX="151.0" layoutY="326.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot55" fill="#c89cffd9" layoutX="175.0" layoutY="367.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot51" fill="#c89cffd9" layoutX="253.0" layoutY="325.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot52" fill="#c89cffd9" layoutX="355.0" layoutY="326.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot53" fill="#c89cffd9" layoutX="457.0" layoutY="326.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot54" fill="#c89cffd9" layoutX="559.0" layoutY="325.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot56" fill="#c89cffd9" layoutX="226.0" layoutY="368.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot57" fill="#c89cffd9" layoutX="277.0" layoutY="367.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot58" fill="#c89cffd9" layoutX="329.0" layoutY="367.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot59" fill="#c89cffd9" layoutX="381.0" layoutY="368.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot60" fill="#c89cffd9" layoutX="432.0" layoutY="367.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot61" fill="#c89cffd9" layoutX="483.0" layoutY="368.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot62" fill="#c89cffd9" layoutX="533.0" layoutY="366.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot63" fill="#c89cffd9" layoutX="202.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot67" fill="#c89cffd9" layoutX="226.0" layoutY="448.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot70" fill="#c89cffd9" layoutX="381.0" layoutY="447.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot65" fill="#c89cffd9" layoutX="406.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot71" fill="#c89cffd9" layoutX="431.0" layoutY="447.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot72" fill="#c89cffd9" layoutX="483.0" layoutY="448.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot68" fill="#c89cffd9" layoutX="277.0" layoutY="448.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot64" fill="#c89cffd9" layoutX="304.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot69" fill="#c89cffd9" layoutX="329.0" layoutY="448.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="roadSpot66" fill="#c89cffd9" layoutX="509.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+
             <Circle fx:id="vertex9" fill="#ffffffa8" layoutX="201.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="vertex11" fill="#ffffffa8" layoutX="303.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
             <Circle fx:id="vertex13" fill="#ffffffa8" layoutX="406.0" layoutY="110.0" onMouseClicked="#buildSettlement" onMouseEntered="#emphasizeSettlement" onMouseExited="#undoEmphasizeSettlement" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
@@ -1350,78 +1425,6 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Circle fx:id="roadSpot12" fill="#c89cffd9" layoutX="227.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot7" fill="#c89cffd9" layoutX="200.0" layoutY="81.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot1" fill="#c89cffd9" layoutX="226.0" layoutY="41.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot2" fill="#c89cffd9" layoutX="278.0" layoutY="40.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot8" fill="#c89cffd9" layoutX="303.0" layoutY="82.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot13" fill="#c89cffd9" layoutX="277.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot14" fill="#c89cffd9" layoutX="330.0" layoutY="123.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot15" fill="#c89cffd9" layoutX="380.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot3" fill="#c89cffd9" layoutX="329.0" layoutY="41.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot4" fill="#c89cffd9" layoutX="380.0" layoutY="40.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot9" fill="#c89cffd9" layoutX="407.0" layoutY="82.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot5" fill="#c89cffd9" layoutX="432.0" layoutY="41.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot6" fill="#c89cffd9" layoutX="483.0" layoutY="41.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot16" fill="#c89cffd9" layoutX="431.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot17" fill="#c89cffd9" layoutX="483.0" layoutY="121.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot10" fill="#c89cffd9" layoutX="508.0" layoutY="82.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot11" fill="#c89cffd9" layoutX="175.0" layoutY="123.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot19" fill="#c89cffd9" layoutX="151.0" layoutY="163.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot20" fill="#c89cffd9" layoutX="254.0" layoutY="163.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot21" fill="#c89cffd9" layoutX="355.0" layoutY="163.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot22" fill="#c89cffd9" layoutX="457.0" layoutY="162.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot23" fill="#c89cffd9" layoutX="559.0" layoutY="163.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot24" fill="#c89cffd9" layoutX="126.0" layoutY="203.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot25" fill="#c89cffd9" layoutX="175.0" layoutY="203.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot26" fill="#c89cffd9" layoutX="226.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot27" fill="#c89cffd9" layoutX="278.0" layoutY="203.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot28" fill="#c89cffd9" layoutX="329.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot29" fill="#c89cffd9" layoutX="381.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot30" fill="#c89cffd9" layoutX="431.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot31" fill="#c89cffd9" layoutX="483.0" layoutY="203.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot32" fill="#c89cffd9" layoutX="534.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot18" fill="#c89cffd9" layoutX="534.0" layoutY="122.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot34" fill="#c89cffd9" layoutX="100.0" layoutY="244.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot35" fill="#c89cffd9" layoutX="202.0" layoutY="244.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot36" fill="#c89cffd9" layoutX="303.0" layoutY="244.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot37" fill="#c89cffd9" layoutX="406.0" layoutY="244.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot38" fill="#c89cffd9" layoutX="508.0" layoutY="245.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot39" fill="#c89cffd9" layoutX="610.0" layoutY="245.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot33" fill="#c89cffd9" layoutX="585.0" layoutY="204.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot40" fill="#c89cffd9" layoutX="126.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot41" fill="#c89cffd9" layoutX="176.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot42" fill="#c89cffd9" layoutX="226.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot43" fill="#c89cffd9" layoutX="279.0" layoutY="286.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot44" fill="#c89cffd9" layoutX="329.0" layoutY="284.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot45" fill="#c89cffd9" layoutX="380.0" layoutY="286.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot46" fill="#c89cffd9" layoutX="431.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot47" fill="#c89cffd9" layoutX="483.0" layoutY="286.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot48" fill="#c89cffd9" layoutX="534.0" layoutY="285.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot49" fill="#c89cffd9" layoutX="585.0" layoutY="284.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot50" fill="#c89cffd9" layoutX="151.0" layoutY="326.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot55" fill="#c89cffd9" layoutX="175.0" layoutY="367.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot51" fill="#c89cffd9" layoutX="253.0" layoutY="325.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot52" fill="#c89cffd9" layoutX="355.0" layoutY="326.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot53" fill="#c89cffd9" layoutX="457.0" layoutY="326.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot54" fill="#c89cffd9" layoutX="559.0" layoutY="325.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot56" fill="#c89cffd9" layoutX="226.0" layoutY="368.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot57" fill="#c89cffd9" layoutX="277.0" layoutY="367.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot58" fill="#c89cffd9" layoutX="329.0" layoutY="367.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot59" fill="#c89cffd9" layoutX="381.0" layoutY="368.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot60" fill="#c89cffd9" layoutX="432.0" layoutY="367.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot61" fill="#c89cffd9" layoutX="483.0" layoutY="368.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot62" fill="#c89cffd9" layoutX="533.0" layoutY="366.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot63" fill="#c89cffd9" layoutX="202.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot67" fill="#c89cffd9" layoutX="226.0" layoutY="448.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot70" fill="#c89cffd9" layoutX="381.0" layoutY="447.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot65" fill="#c89cffd9" layoutX="406.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot71" fill="#c89cffd9" layoutX="431.0" layoutY="447.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot72" fill="#c89cffd9" layoutX="483.0" layoutY="448.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot68" fill="#c89cffd9" layoutX="277.0" layoutY="448.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot64" fill="#c89cffd9" layoutX="304.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot69" fill="#c89cffd9" layoutX="329.0" layoutY="448.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fx:id="roadSpot66" fill="#c89cffd9" layoutX="509.0" layoutY="408.0" onMouseClicked="#buildRoad" onMouseEntered="#emphasizeRoad" onMouseExited="#undoEmphasizeRoad" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
 
             <Circle fx:id="thiefTile18" fill="#ffffffa6" layoutX="354.0" layoutY="408.0" onMouseClicked="#placeThief" onMouseEntered="#emphasizeTile" onMouseExited="#undoEmphasizeTile" opacity="0.7" radius="20.0" stroke="#e8e8e84d" strokeType="INSIDE" strokeWidth="3.0">
                <cursor>
@@ -1579,7 +1582,7 @@
    <children>
             <ImageView fx:id="thief" fitHeight="59.0" fitWidth="56.0" layoutX="328.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/img/gameobjects/Thief2.png" />
+                  <Image url="@../assets/img/gameobjects/Thief.png" />
                </image>
             </ImageView>
    </children>

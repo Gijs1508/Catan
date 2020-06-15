@@ -1,6 +1,5 @@
 package org.catan.Controller;
 
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import org.catan.Helper.BuildVillages;
@@ -9,10 +8,7 @@ import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
-import java.lang.reflect.Array;
-import java.net.URL;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
  */
@@ -171,6 +167,17 @@ public class BuildSettlementController implements Observable {
         for (Road road : array) {
             if (!arrayFixed.contains(road)) {
                 arrayFixed.add(road);
+            }
+        }
+        return arrayFixed;
+    }
+
+    // Removes duplicates in array
+    private ArrayList<Village> removeDuplicates(ArrayList<Village> array, double useless) {
+        ArrayList<Village> arrayFixed = new ArrayList<>();
+        for (Village village : array) {
+            if (!arrayFixed.contains(village)) {
+                arrayFixed.add(village);
             }
         }
         return arrayFixed;
@@ -400,8 +407,43 @@ public class BuildSettlementController implements Observable {
         }
     }
 
+    public ArrayList<Village> getBuildVillages() {
+        return buildVillages;
+    }
+
     @Override
     public void update(Game game) {
+        updateRoads(game.getBoard().getRoads());
+        updateSettlements(game.getBoard().getSettlements());
+    }
+
+    private void updateRoads(ArrayList<Road> roads) {
+        if (!roads.equals(buildRoads)) {
+            roads.addAll(buildRoads);
+            ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicates(roads, 0));
+            GameSchermController.getInstance().updateRoads(changedRoads);
+            buildRoads.addAll(changedRoads);
+        }
+    }
+
+    private void updateSettlements(ArrayList<Village> villages) {
+        if (!villages.equals(buildVillages)) {
+            villages.addAll(buildVillages);
+            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicates(villages, 0));
+            ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
+            ArrayList<Village> cities = new ArrayList<>();
+            buildVillages = new ArrayList<>(villages);
+            for (Village village : changedVillages) {
+                if (village.isUpgraded()) {
+                    cities.add(village);
+                    villages2.remove(village);
+                }
+            }
+            if (!villages2.isEmpty())
+                GameSchermController.getInstance().updateVillage(villages2);
+            if (!cities.isEmpty())
+                GameSchermController.getInstance().updateCity(cities);
+        }
     }
 
     public static BuildSettlementController getInstance() {

@@ -30,6 +30,7 @@ public class ScreenController implements Initializable, Observable {
     private AnchorPane scoreView;
     private AnchorPane costView;
     private AnchorPane settingsView;
+    private AnchorPane stealPopupView;
     private AnchorPane knightDetails;
     private AnchorPane tradePopupView;
     private AnchorPane handInPopupView;
@@ -46,6 +47,7 @@ public class ScreenController implements Initializable, Observable {
     @FXML private Pane dicePane;
     @FXML private Pane costPane;
     @FXML private Pane settingsPane;
+    @FXML private Pane stealPopup;
     @FXML private Pane knightPopup;
     @FXML private Pane tradePopup;
     @FXML private Pane handInPopup;
@@ -94,6 +96,7 @@ public class ScreenController implements Initializable, Observable {
         alertPopup.getChildren().setAll(alertPopupView);
 
         initializePopup(settingsPane);
+        initializePopup(stealPopup);
         initializePopup(knightPopup);
         initializePopup(tradePopup);
         initializePopup(handInPopup);
@@ -116,6 +119,15 @@ public class ScreenController implements Initializable, Observable {
     public void hideKnightPopup() {
         KnightDetails.getFadeOut().playFromStart();
         KnightDetails.getFadeOut().setOnFinished(actionEvent -> knightPopup.setVisible(false));
+    }
+
+    public void showStealPopUp() throws IOException {
+        stealPopupView = (AnchorPane) App.loadFXML("Views/stealPopUpView");
+        stealPopup.getChildren().setAll(stealPopupView);
+        stealPopup.setVisible(true);
+    }
+    public void hideStealPopUp() {
+        stealPopup.setVisible(false);
     }
 
     public void showHandInPopUp() throws IOException {

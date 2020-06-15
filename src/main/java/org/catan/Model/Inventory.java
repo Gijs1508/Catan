@@ -36,6 +36,7 @@ public class Inventory {
         return new String[]{"wood", "brick", "ore", "wool", "wheat", "knight"};
     }
 
+
     //Changing a player's cards
     public void changeCards(String type, int amount){
         switch(type){
@@ -53,6 +54,22 @@ public class Inventory {
         return cards[5];
     }
 
+    public String[] getStrCards(){
+        return new String[]{"wood", "brick", "ore", "wool", "wheat", "knight"};
+    }
+
+//    public static String[] getResCards() { return new String[]{"wood", "brick", "ore", "wool", "wheat"};}
+
+    public HashMap<String, Integer> resourceToAmountGetter() {
+        HashMap<String, Integer> resourceToAmount = new HashMap<>() {{
+            put("wood", cards[0]);
+            put("brick", cards[1]);
+            put("ore", cards[2]);
+            put("wool", cards[3]);
+            put("wheat", cards[4]);
+        }};
+        return resourceToAmount;
+    }
 
     public int cardsTotalGetter(){
         int total = 0;

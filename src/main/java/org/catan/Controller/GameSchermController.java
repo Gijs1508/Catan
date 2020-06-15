@@ -20,7 +20,7 @@ import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
-
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -321,7 +321,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    private void placeThief(MouseEvent mouseEvent){
+    private void placeThief(MouseEvent mouseEvent) throws IOException {
         Circle circle = (Circle) mouseEvent.getSource();
         thief.setLayoutX(circle.getLayoutX() - 26);
         thief.setLayoutY(circle.getLayoutY() - 33);
@@ -332,14 +332,61 @@ public class GameSchermController implements Initializable, Observable {
         try {
             tileID = Integer.parseInt(circleID);
         }
-        catch (NumberFormatException e)
-        {
+        catch (NumberFormatException e) {
             tileID = 1;
         }
         Thief.setTile(tileID);
-
-        // Todo would be cool to find the tile num to the ID
+        // TODO would be cool to find the tile num for the ID (for logging)
         LogController.getInstance().logRobberEvent();
+
+
+        // TODO because all players are red, it won't find the owner of the blue settlement
+        ArrayList<Player> opponents = findOpponentsOnTile(tileID);
+//        // opponents.remove(Player.getActivePlayer());
+
+        if(opponents.isEmpty()) { // There are no opponents to steal from
+
+            return; }
+        else if(opponents.size() > 1) { // There are more opponents to steal from
+            ScreenController.getInstance().showStealPopUp(); // Choose opponent popup
+            StealPopUpController.getInstance().updateOpponents(opponents);
+            return;
+        }
+        Player victim = opponents.get(0); // There is one opponent to steal from
+        Player.getActivePlayer().stealFromVictim(victim);
+    }
+
+    /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
+     * @param tileID the id of the tile the thief was moved to
+     * @return arrayList with the opponents as Player objects
+     * @author Jeroen */
+    // TODO desert tile always seem to not have any settlements bordered to it
+    private ArrayList<Player> findOpponentsOnTile(int tileID) {
+        Map<String, Integer> colorToCount = new HashMap<>();
+        ArrayList<Player> opponents = new ArrayList<>();
+        int opponentCount = 0;
+        for (Village settlement : BuildSettlementController.getInstance().getBuildVillages()) { // Loop through all settlements
+            // TODO this if statement can't be tested properly since colors aren't implemented yet
+            if (!settlement.getColor().equals(Player.getMainPlayer().getColor())) { // If settlement isn't player's
+                ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
+                for (Tile tile : connectedTiles) {
+                    if (Integer.parseInt(tile.getId().replaceAll("tile", "")) == tileID) { // Tile's ID is saved as "tileX" and tileID is an integer
+                        opponentCount++;
+                        colorToCount.put(settlement.getColor(), opponentCount);
+                    }
+                }
+            }
+        }
+        for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) { // Get opponent's Player object by color and add to opponents list
+//            System.out.println(entry.getKey());
+            for(Player player : Player.getAllPlayers()) {
+//                System.out.println(player.getColor());
+                if(player.getColor().equals(entry.getKey())) {
+                    opponents.add(player);
+                }
+            }
+        }
+        return opponents;
     }
 
     public void highlightTiles(int tileId) {
@@ -386,9 +433,6 @@ public class GameSchermController implements Initializable, Observable {
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setContentText("You don't have enough resources to build an village!");
-//            alert.show();
         }
         if (startPhase)
             roadStartPhase(circle);
@@ -399,7 +443,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     private void placeVillage(Village village) {
-        for (int i=0; i < 54; i++) {
+        for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
@@ -412,7 +456,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     private void placeCity(Village village) {
-        for (int i=0; i < 54; i++) {
+        for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
@@ -423,7 +467,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     private void placeRoad(Road road) {
-        for (int i=0; i < 127; i++) {
+        for (int i=0; i < 73; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == road.getX() && objectsPane.getChildren().get(i).getLayoutY() == road.getY()) {
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(road.getImgPath())));
@@ -704,6 +748,24 @@ public class GameSchermController implements Initializable, Observable {
     @Override
     public void update(Game game) {
 
+    }
+
+    public void updateRoads(ArrayList<Road> roads) {
+        for (Road road : roads) {
+            placeRoad(road);
+        }
+    }
+
+    public void updateVillage(ArrayList<Village> villages) {
+        for (Village village : villages) {
+            placeVillage(village);
+        }
+    }
+
+    public void updateCity(ArrayList<Village> cities) {
+        for (Village city : cities) {
+            placeCity(city);
+        }
     }
 
     public ArrayList<Circle> getAllHarborVertices() {
