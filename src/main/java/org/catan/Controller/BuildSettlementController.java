@@ -14,12 +14,6 @@ import java.util.*;
  */
 public class BuildSettlementController implements Observable {
 
-
-    // todo add Player properties in all the methods
-//    private Speler player;
-
-
-    private String color = "blue";
     private ArrayList<Circle> vertexNodeList;
     private ArrayList<Circle> upgradeNodeList;
     private ArrayList<Circle> roadSpotNodeList;
@@ -52,7 +46,7 @@ public class BuildSettlementController implements Observable {
     private ArrayList<Road> playerRoads() {
         ArrayList<Road> playerRoads = new ArrayList<>();
         for (Road buildRoad : buildRoads) {
-            if (buildRoad.getColor().equals(this.color)) {
+            if (buildRoad.getColor().equals(getPlayerColor())) {
                 playerRoads.add(buildRoad);
             }
         }
@@ -63,7 +57,7 @@ public class BuildSettlementController implements Observable {
     private ArrayList<Village> playerVillages() {
         ArrayList<Village> playerVillages = new ArrayList<>();
         for (Village buildVillage : buildVillages) {
-            if (buildVillage.getColor().equals(this.color)) {
+            if (buildVillage.getColor().equals(getPlayerColor())) {
                 playerVillages.add(buildVillage);
             }
         }
@@ -269,7 +263,7 @@ public class BuildSettlementController implements Observable {
             builtAtHarbor(node);
         }
 
-        Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
+        Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
         bv.setBuildVillages(buildVillages);
         Player.getActivePlayer().addVillagePoint();
@@ -294,7 +288,7 @@ public class BuildSettlementController implements Observable {
                 Player.getActivePlayer().updateResourceCosts(harbor);
             }
         }
-        return;
+//        return;
     }
 
 
@@ -358,7 +352,7 @@ public class BuildSettlementController implements Observable {
         }
 
         for (Village village : buildVillages) {
-            if (village.getColor().equals(color))
+            if (village.getColor().equals(getPlayerColor()))
                 roadPlaces.addAll(math.circlesInRadius(village.getX(), village.getY(), roadSpotNodeList, "other"));
         }
 
@@ -401,14 +395,8 @@ public class BuildSettlementController implements Observable {
 //        return true;
 //    }
 
-    private void print(ArrayList<Village> village) {
-        for (Village v : village) {
-            System.out.println("This is a village " + v);
-        }
-    }
-
-    public ArrayList<Village> getBuildVillages() {
-        return buildVillages;
+    private String getPlayerColor() {
+        return Game.getActivePlayer().getColor();
     }
 
     @Override
