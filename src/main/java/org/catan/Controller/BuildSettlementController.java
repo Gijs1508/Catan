@@ -405,6 +405,7 @@ public class BuildSettlementController implements Observable {
         updateSettlements(game.getBoard().getSettlements());
     }
 
+    // Updates the roads on the display and in the array
     private void updateRoads(ArrayList<Road> roads) {
         if (!roads.equals(buildRoads)) {
             roads.addAll(buildRoads);
@@ -414,6 +415,7 @@ public class BuildSettlementController implements Observable {
         }
     }
 
+    // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
         if (!villages.equals(buildVillages)) {
             villages.addAll(buildVillages);
@@ -434,6 +436,7 @@ public class BuildSettlementController implements Observable {
         }
     }
 
+    // returns the instance of this class
     public static BuildSettlementController getInstance() {
         return buildSettlementController;
     }
