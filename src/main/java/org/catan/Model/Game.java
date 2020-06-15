@@ -102,10 +102,12 @@ public class Game {
     }
 
     public void removePlayer(Player player) {
+        Player playerToRemove = new Player();
         for (Player gamePlayer: players) {
             if (gamePlayer.getIdentifier() == player.getIdentifier()) {
-                players.remove(gamePlayer);
+                playerToRemove = gamePlayer;
             }
         }
+        players.remove(playerToRemove);
     }
 }

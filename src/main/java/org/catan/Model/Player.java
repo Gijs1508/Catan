@@ -13,6 +13,7 @@ public class Player {
     private int village;
     private int city;
     private int identifier;
+    private boolean turn;
     private Inventory playerInventory;
 
     private HashMap<String, Integer> resourceToCost;
@@ -199,5 +200,13 @@ public class Player {
 
     public void setIdentifier(int identifier) {
         this.identifier = identifier;
+    }
+
+    public boolean isTurn() {
+        return turn;
+    }
+
+    public void setTurn(boolean turn) {
+        this.turn = turn;
     }
 }

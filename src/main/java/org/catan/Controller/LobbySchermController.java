@@ -69,6 +69,7 @@ public class LobbySchermController implements Initializable, Observable {
     private void startGame() throws IOException {
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Game game = App.getCurrentGame();
+        game.getPlayers().get(0).setTurn(true);
         game.setStatus("going");
         dbConnector.updateGame(game);
         App.setRoot("./Views/screenView");
@@ -84,7 +85,6 @@ public class LobbySchermController implements Initializable, Observable {
                 player4pane.setVisible(false);
                 break;
             case 2:
-                System.out.println("Making 2 players visible");
                 player1pane.setVisible(true);
                 player1name.setText(players.get(0).getName());
                 player2pane.setVisible(true);
