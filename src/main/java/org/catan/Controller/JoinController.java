@@ -2,7 +2,6 @@ package org.catan.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.catan.App;
@@ -13,9 +12,6 @@ import org.catan.logic.DatabaseConnector;
 import org.catan.logic.DocumentListener;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class JoinController implements Observable {
     @FXML private TextField code_input;
@@ -46,7 +42,7 @@ public class JoinController implements Observable {
                     this.lobbySchermController.setGameCode(code);
                     setPlayerColor(game.getPlayers().size(), App.getClientPlayer());
                     App.getClientPlayer().setHost(false);
-                    App.setCurrentGameCode(game.getCode());
+                    App.setCurrentGame(game);
                     game.addSpeler(App.getClientPlayer());
                     dbConnector.updateGame(game);
                     addGameListener(game);

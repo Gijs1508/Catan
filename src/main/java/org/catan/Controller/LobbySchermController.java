@@ -57,7 +57,7 @@ public class LobbySchermController implements Initializable, Observable {
             game.addSpeler(App.getClientPlayer());
             dbConnector.createGame(game);
             game_code.setText("Game code: " + game.getCode());
-            App.setCurrentGameCode(game.getCode());
+            App.setCurrentGame(game);
             DocumentListener gameListener = new DocumentListener(String.valueOf(game.getCode()));
             setupGamePlayers(game.getPlayers());
             App.addListener(gameListener);
@@ -66,9 +66,12 @@ public class LobbySchermController implements Initializable, Observable {
     }
 
     @FXML
-    private void startGame() {
-        // Deze functionaliteit zal verplaatst en uitgebreid worden (voor wanneer een speler de sessie betreed).
-        player1pane.setVisible(true);
+    private void startGame() throws IOException {
+        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+        Game game = App.getCurrentGame();
+        game.setStatus("going");
+        dbConnector.updateGame(game);
+        App.setRoot("./Views/screenView");
     }
 
     private void setupGamePlayers(ArrayList<Player> players) {
@@ -114,11 +117,11 @@ public class LobbySchermController implements Initializable, Observable {
     @FXML
     private void leaveGame() throws IOException {
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
-        System.out.println("Start removing player");
-        Game game = dbConnector.getGameById(App.getCurrentGameCode());
+        Game game = dbConnector.getGameById(App.getCurrentGame().getCode());
         game.removePlayer(App.getClientPlayer());
+        App.resetListeners();
+        updatePlayers(game);
         dbConnector.updateGame(game);
-        System.out.println("Player removed");
         App.setStageSize(960, 540);
         App.setRoot("Views/mainView");
     }
@@ -139,6 +142,7 @@ public class LobbySchermController implements Initializable, Observable {
         } else {
             startGameBtn.setDisable(true);
         }
+        App.setCurrentGame(game);
     }
 
     public static LobbySchermController getInstance() {
@@ -159,6 +163,9 @@ public class LobbySchermController implements Initializable, Observable {
 
     private void updatePlayers(Game game) {
         for (int i = 0; i < game.getPlayers().size(); i++) {
+            if (i == 0) {
+                game.getPlayers().get(i).setHost(true);
+            }
             if (game.getPlayers().get(i).getIdentifier() == App.getClientPlayer().getIdentifier()) {
                 App.setClientPlayer(game.getPlayers().get(i));
             }

@@ -30,7 +30,7 @@ public class App extends Application {
     private static String viewName;
     private static Stage appStage;
     private static Player clientPlayer;
-    private static Long currentGameCode;
+    private static Game currentGame;
     private static ArrayList<DocumentListener> listeners = new ArrayList<DocumentListener>();
 
 
@@ -127,11 +127,11 @@ public class App extends Application {
         listeners = new ArrayList<DocumentListener>();
     }
 
-    public static Long getCurrentGameCode() {
-        return currentGameCode;
+    public static Game getCurrentGame() {
+        return currentGame;
     }
 
-    public static void setCurrentGameCode(Long gameCode) {
-        currentGameCode = gameCode;
+    public static void setCurrentGame(Game game) {
+        currentGame = game;
     }
 }
