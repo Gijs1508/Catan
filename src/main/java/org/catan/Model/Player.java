@@ -9,9 +9,9 @@ public class Player {
     private String name;
     private String color;
     private int score;
-    private int road;
-    private int village;
-    private int city;
+    private int roadScore;
+    private int villageScore;
+    private int cityScore;
     private int identifier;
     private boolean turn = false;
     private boolean host = false;
@@ -107,22 +107,18 @@ public class Player {
 
     public void addVictoryPoint() {
         score++;
-        scoreController.addVictoryPointToPlayer(color, score);
     }
 
     public void addRoadPoint() {
-        road++;
-        scoreController.addRoadPointToPlayer(color, road);
+        roadScore++;
     }
 
     public void addVillagePoint() {
-        village++;
-        scoreController.addVillagePointToPlayer(color, village);
+        villageScore++;
     }
 
     public void addCityPoint() {
-        city++;
-        scoreController.addCityPointToPlayer(color, city);
+        cityScore++;
     }
 
     public void setName(String name) {

@@ -8,6 +8,7 @@ import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 import java.util.*;
 
@@ -267,7 +268,8 @@ public class BuildSettlementController implements Observable {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
         bv.setBuildVillages(buildVillages);
-        Player.getActivePlayer().addVillagePoint();
+        App.getCurrentGame().turnPlayerGetter().addVillagePoint();
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         return village;
     }
 
@@ -309,7 +311,8 @@ public class BuildSettlementController implements Observable {
                     break;
                 }
             }
-            Player.getActivePlayer().addCityPoint();
+            App.getCurrentGame().turnPlayerGetter().addCityPoint();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("You don't have enough resources to upgrade an village!");
@@ -397,7 +400,7 @@ public class BuildSettlementController implements Observable {
 //    }
 
     private String getPlayerColor() {
-        return App.getCurrentGame().getTurnPlayer().getColor();
+        return App.getCurrentGame().turnPlayerGetter().getColor();
     }
 
     @Override

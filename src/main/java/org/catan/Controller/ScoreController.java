@@ -54,6 +54,7 @@ public class ScoreController implements Initializable, Observable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeColorToScore();
+        scoreController = this;
     }
 
     /** Assigns labels to player colors
