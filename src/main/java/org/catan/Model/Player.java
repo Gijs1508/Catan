@@ -26,12 +26,19 @@ public class Player {
     public static boolean mainPlayerActive;
     private boolean host = false;
 
+    /**
+     * Empty constructor, needed for Jackson to do proper deserialization
+     */
+    public Player() {
+
+    }
+
     public Player(String name){
         this.name = name;
         this.color = "red"; //TODO
         this.score = 0;
         this.playerInventory = new Inventory();
-        this.identifier = Math.toIntExact(CreateGameCode.getSeed());
+        this.identifier = Math.toIntExact(CreateGameCode.randomCodeGen());
         allPlayers.add(this);
 
         initializeResourceCosts();

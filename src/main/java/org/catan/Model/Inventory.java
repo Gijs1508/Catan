@@ -54,9 +54,6 @@ public class Inventory {
         return cards[5];
     }
 
-    public String[] getStrCards(){
-        return new String[]{"wood", "brick", "ore", "wool", "wheat", "knight"};
-    }
 
 //    public static String[] getResCards() { return new String[]{"wood", "brick", "ore", "wool", "wheat"};}
 

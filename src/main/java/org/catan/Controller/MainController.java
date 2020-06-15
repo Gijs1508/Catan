@@ -21,7 +21,7 @@ public class MainController implements Observable {
     @FXML
     private void joinGame() throws IOException {
         if(nameIsSet()){
-            Player player = new Player(player_name_input.getText());
+            App.setClientPlayer(new Player(player_name_input.getText()));
             App.setRoot("./Views/joinView");
         } else {
             createAlert();
@@ -33,10 +33,10 @@ public class MainController implements Observable {
     @FXML
     private void startGame() throws IOException {
         App.setStageSize(1200, 810);
-        App.setRoot("./Views/lobbyView");
         if(nameIsSet()){
-            Player player = new Player(player_name_input.getText());
-            App.setRoot("./Views/createView");
+            App.setClientPlayer(new Player(player_name_input.getText()));
+            App.getClientPlayer().setHost(true);
+            App.setRoot("./Views/lobbyView");
         } else {
             createAlert();
         }

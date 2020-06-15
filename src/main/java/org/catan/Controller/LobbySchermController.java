@@ -57,6 +57,7 @@ public class LobbySchermController implements Initializable, Observable {
             game.addSpeler(App.getClientPlayer());
             dbConnector.createGame(game);
             game_code.setText("Game code: " + game.getCode());
+            App.setCurrentGameCode(game.getCode());
             DocumentListener gameListener = new DocumentListener(String.valueOf(game.getCode()));
             setupGamePlayers(game.getPlayers());
             App.addListener(gameListener);
@@ -156,24 +157,29 @@ public class LobbySchermController implements Initializable, Observable {
         return this.gameCode;
     }
 
-    private void updatePlayerColors(Game game) {
+    private void updatePlayers(Game game) {
         for (int i = 0; i < game.getPlayers().size(); i++) {
             if (game.getPlayers().get(i).getIdentifier() == App.getClientPlayer().getIdentifier()) {
                 App.setClientPlayer(game.getPlayers().get(i));
             }
-            switch (i) {
-                case 0:
-                    game.getPlayers().get(i).setColor("red");
-                    break;
-                case 1:
-                    game.getPlayers().get(i).setColor("blue");
-                    break;
-                case 2:
-                    game.getPlayers().get(i).setColor("green");
-                    break;
-                case 3:
-                    game.getPlayers().get(i).setColor("yellow");
-            }
+            updatePlayerColors(i, game.getPlayers());
+        }
+    }
+
+    private void updatePlayerColors(int i, ArrayList<Player> players) {
+        switch (i) {
+            case 0:
+                players.get(i).setColor("red");
+                players.get(i).setHost(true);
+                break;
+            case 1:
+                players.get(i).setColor("blue");
+                break;
+            case 2:
+                players.get(i).setColor("green");
+                break;
+            case 3:
+                players.get(i).setColor("yellow");
         }
     }
 }
