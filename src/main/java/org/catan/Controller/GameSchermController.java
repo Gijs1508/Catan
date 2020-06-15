@@ -420,7 +420,6 @@ public class GameSchermController implements Initializable, Observable {
         circle.setScaleY(1);
     }
 
-    // TODO Jan
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
         int[] reqResources = {1, 1, 0, 1, 1, 0};
@@ -441,6 +440,7 @@ public class GameSchermController implements Initializable, Observable {
             startPhase = false;
     }
 
+    // Places the village image on the board
     private void placeVillage(Village village) {
         for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
@@ -454,6 +454,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    // Places the city image on the board
     private void placeCity(Village village) {
         for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
@@ -465,6 +466,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    // Places the road image on the board
     private void placeRoad(Road road) {
         for (int i=0; i < 73; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == road.getX() && objectsPane.getChildren().get(i).getLayoutY() == road.getY()) {
@@ -566,6 +568,7 @@ public class GameSchermController implements Initializable, Observable {
                 node.setVisible(true);
             }
         } catch (Exception e){
+            // Removes the exceptions when there isn't a place
         }
         roadButton.setVisible(false);
         roadButtonClose.setVisible(true);
@@ -592,6 +595,7 @@ public class GameSchermController implements Initializable, Observable {
                 availableSpot.setVisible(true);
             }
         } catch (Exception e) {
+            // Removes the exceptions when there isn't a place
         }
         settlementButton.setVisible(false);
         settlementButtonClose.setVisible(true);
@@ -619,6 +623,7 @@ public class GameSchermController implements Initializable, Observable {
             }
 
         } catch (Exception e) {
+            // Removes the exceptions when there isn't a place
         }
         upgradeButton.setVisible(false);
         upgradeButtonClose.setVisible(true);
@@ -635,6 +640,7 @@ public class GameSchermController implements Initializable, Observable {
         upgradeButtonClose.setVisible(false);
     }
 
+    // Shows the village spots when in the startPhase
     public void villageStartPhase() {
         ArrayList<Circle> nodes = build.showVillageStartSpots();
         for (Circle node : nodes) {
@@ -644,6 +650,7 @@ public class GameSchermController implements Initializable, Observable {
         settlementButtonClose.setVisible(true);
     }
 
+    // Shows the road spots of the recently build village
     public void roadStartPhase(Circle circle) {
         ArrayList<Circle> nodes = build.showRoadStartSpots(circle);
         for (Circle node : nodes) {
