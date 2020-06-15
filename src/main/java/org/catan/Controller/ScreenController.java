@@ -71,6 +71,7 @@ public class ScreenController implements Initializable, Observable {
             e.printStackTrace();
         }
 
+        // Add the loaded views as children for the panes in the screenView.fxml
         logPane.getChildren().setAll(logView);
         boardPane.getChildren().setAll(boardView);
         tradePane.getChildren().setAll(tradeView);
@@ -152,12 +153,14 @@ public class ScreenController implements Initializable, Observable {
         alertPopup.setVisible(false);
     }
 
+    // Makes sure popups are ready to show when needed
     private void initializePopup(Pane popupPane) {
         popupPane.setVisible(false);
         popupPane.setOpacity(1);
         popupPane.setStyle("-fx-background-color: none;");
     }
 
+    // Returns the layout coordinates of the trade popup.
     public HashMap<String, Double> getTradePopupLayout() {
         HashMap<String, Double> popupInfo = new HashMap<>() {{
             this.put("layoutX", tradePopup.getLayoutX());

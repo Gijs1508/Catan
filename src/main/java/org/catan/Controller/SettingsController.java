@@ -8,6 +8,12 @@ import javafx.scene.layout.Pane;
 import org.catan.App;
 import org.catan.Model.Sound;
 
+/**
+ * Manages the settings window that allows the player to change their sound settings.
+ *
+ * @author Jeroen
+ */
+
 public class SettingsController {
     @FXML private Pane background;
     @FXML private ImageView musicImg;
@@ -27,6 +33,7 @@ public class SettingsController {
         settingsController = this;
     }
 
+    // Player mutes/unmutes sound effects
     public void soundsBtnClicked() {
         if (soundsOn) {
             Sound.playClick();
@@ -42,6 +49,7 @@ public class SettingsController {
         }
     }
 
+    // Player mutes/unmutes music
     public void musicBtnClicked() {
         if (musicOn) {
             Sound.muteGameMusic();
@@ -57,11 +65,13 @@ public class SettingsController {
         }
     }
 
+    // Player leaves settings
     public void applyBtnClicked() {
         Sound.playClick();
         ScreenController.getInstance().hideSettings();
     }
 
+    // When settings gets opened, a dark background fades in
     public void startAnimation() {
         background.setOpacity(0);
         AnimationTimer animation = new AnimationTimer() {

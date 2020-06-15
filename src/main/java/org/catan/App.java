@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.Random;
 
 /**
- * JavaFX App
+ * JavaFX App. First class to get accessed.
  */
 public class App extends Application {
 

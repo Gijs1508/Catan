@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 /**
  * Takes care of all the sounds in the game (music, sound effects).
+ *
  * @author Jeroen
  */
 
@@ -36,6 +37,7 @@ public class Sound {
 
     private static boolean introMusicIsPlaying = true;
 
+    /** Initializes the sounds (assigns a default volume for all sounds). */
     public static void initializeSounds() {
         Collections.addAll(soundEffects, pop, diceShuffle, diceThrow, click, takeCard, switch1, switch2, sword, startTurn, endTurn);
         defaultVolume = new HashMap<>(){{

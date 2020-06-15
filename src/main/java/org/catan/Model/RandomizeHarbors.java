@@ -8,10 +8,15 @@ import org.catan.App;
 
 import java.util.*;
 
+/**
+ * Generates a random combination of harbors at the start of the game.
+ *
+ * @author Jeroen
+ */
+
 public class RandomizeHarbors {
 
     private static Random random = new Random(CreateGameCode.getSeed());
-
     private static HashMap<String, Image> resourceToImage = new HashMap<>() {{
         put("wood", new Image(String.valueOf(App.class.getResource("assets/img/woodHarbor.png"))));
         put("brick", new Image(String.valueOf(App.class.getResource("assets/img/brickHarbor.png"))));
@@ -20,18 +25,16 @@ public class RandomizeHarbors {
         put("wheat", new Image(String.valueOf(App.class.getResource("assets/img/wheatHarbor.png"))));
         put("any", new Image(String.valueOf(App.class.getResource("assets/img/anyHarbor.png"))));
     }};
-
     private static HashMap<String, Integer> harborTypeToCount = new HashMap<>() {{
         put("wood", 1);   put("brick", 1);
         put("ore", 1);    put("wool", 1);
         put("wheat", 1);  put("any", 4);
     }};
-
     private static HashMap<Integer, String> harborNumToResource = new HashMap<>();
 
 
-
-    // Distribute harbor types over harbor numbers
+    /** Distribute random harbor types over random harbor numbers
+     * @return ArrayList of the randomized Harbor objects */
     public static ArrayList<Harbor> randomizeHarbors() {
         ArrayList<Harbor> harbors = new ArrayList<>();
 
