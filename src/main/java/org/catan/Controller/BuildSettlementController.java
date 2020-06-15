@@ -267,7 +267,7 @@ public class BuildSettlementController implements Observable {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
         bv.setBuildVillages(buildVillages);
-        Player.getActivePlayer().addVillagePoint();
+        App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         return village;
     }
 
@@ -309,7 +309,7 @@ public class BuildSettlementController implements Observable {
                     break;
                 }
             }
-            Player.getActivePlayer().addCityPoint();
+            App.getCurrentGame().turnPlayerGetter().addCityPoint();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("You don't have enough resources to upgrade an village!");
@@ -367,7 +367,7 @@ public class BuildSettlementController implements Observable {
     public Road buildRoad(Circle node) {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), "blue");
         buildRoads.add(road);
-        Player.getActivePlayer().addRoadPoint();
+        App.getCurrentGame().turnPlayerGetter().addRoadPoint();
         return road;
     }
 
@@ -397,7 +397,7 @@ public class BuildSettlementController implements Observable {
 //    }
 
     private String getPlayerColor() {
-        return App.getCurrentGame().getTurnPlayer().getColor();
+        return App.getCurrentGame().turnPlayerGetter().getColor();
     }
 
     @Override
