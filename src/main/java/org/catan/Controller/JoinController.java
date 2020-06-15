@@ -43,16 +43,20 @@ public class JoinController implements Observable, Initializable {
 
     @FXML
     private void backToMenu() throws IOException {
+        Sound.playClick();
         App.setRoot("./views/mainView");
     }
 
     @FXML
     private void createGame() throws IOException{
+        Sound.playClick();
         App.setRoot("./views/createView");
     }
 
     @FXML
     private void handleButtonJoinAction(ActionEvent actionEvent) throws IOException{
+        Sound.playClick();
+
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Long code = Long.valueOf(code_input.getText());
         Game game = dbConnector.getGameById(code);

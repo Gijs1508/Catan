@@ -33,6 +33,7 @@ public class CreateController implements Observable, Initializable {
     the main menu screen
      */
     public void backToMenu() throws IOException {
+        Sound.playClick();
         App.setRoot("./views/mainView");
     }
 
@@ -41,6 +42,7 @@ public class CreateController implements Observable, Initializable {
     the join game screen
      */
     public void joinGame() throws IOException{
+        Sound.playClick();
         App.setRoot("./views/joinView");
     }
 
@@ -54,6 +56,7 @@ public class CreateController implements Observable, Initializable {
         // TODO Werner: add code to db and check if it does not exist
         long gameCode = CreateGameCode.randomCodeGen();
         game_code_text.setText(String.valueOf(gameCode));
+        Sound.playClick();
     }
 
     @FXML
