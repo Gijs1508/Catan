@@ -12,6 +12,10 @@ public class Player {
     private int road;
     private int village;
     private int city;
+    private int identifier;
+    private boolean turn = false;
+    private boolean host = false;
+
     private Inventory playerInventory;
 
     private HashMap<String, Integer> resourceToCost;
@@ -24,11 +28,19 @@ public class Player {
     public static Player activePlayer;
     public static boolean mainPlayerActive;
 
+    /**
+     * Empty constructor, needed for Jackson to do proper deserialization
+     */
+    public Player() {
+
+    }
+
     public Player(String name){
         this.name = name;
         this.color = "red"; //TODO
         this.score = 0;
         this.playerInventory = new Inventory();
+        this.identifier = Math.toIntExact(CreateGameCode.randomCodeGen());
         allPlayers.add(this);
 
         initializeResourceCosts();
@@ -95,7 +107,6 @@ public class Player {
     }
 
     public void addVictoryPoint() {
-        //TODO call ScoreController to increase player's points
         score++;
         scoreController.addVictoryPointToPlayer(color, score);
     }
@@ -176,4 +187,27 @@ public class Player {
         return resourceToCost.get(resource);
     }
 
+    public boolean isHost() {
+        return host;
+    }
+
+    public void setHost(boolean host) {
+        this.host = host;
+    }
+
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(int identifier) {
+        this.identifier = identifier;
+    }
+
+    public boolean isTurn() {
+        return turn;
+    }
+
+    public void setTurn(boolean turn) {
+        this.turn = turn;
+    }
 }

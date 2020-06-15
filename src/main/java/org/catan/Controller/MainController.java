@@ -17,12 +17,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Used to handle button clicks on the main menu screen.
+ *
+ * @Author Gijs van der Weijden
+ */
+public class MainController implements Observable {
 public class MainController implements Observable, Initializable {
 
+    private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
+
+    @FXML
+    private TextField player_name_input;
     @FXML private TextField player_name_input;
     @FXML private ImageView musicBtn;
 
     // Routes
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MenuMusicHandler.initializeMusic(musicBtn);
@@ -38,7 +49,7 @@ public class MainController implements Observable, Initializable {
     private void joinGame() throws IOException {
         Sound.playClick();
         if(nameIsSet()){
-            Player player = new Player(player_name_input.getText());
+            App.setClientPlayer(new Player(player_name_input.getText()));
             App.setRoot("./Views/joinView");
         } else {
             createAlert();
@@ -48,9 +59,11 @@ public class MainController implements Observable, Initializable {
     @FXML
     private void startGame() throws IOException {
         Sound.playClick();
+        App.setStageSize(1200, 810);
         if(nameIsSet()){
-            Player player = new Player(player_name_input.getText());
-            App.setRoot("./Views/createView");
+            App.setClientPlayer(new Player(player_name_input.getText()));
+            App.getClientPlayer().setHost(true);
+            App.setRoot("./Views/lobbyView");
         } else {
             createAlert();
         }

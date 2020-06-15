@@ -46,6 +46,6 @@ public class CreateController implements Observable {
 
     @Override
     public void update(Game game) {
-
+        //long gameCode = CreateGameCode.getSeed();
     }
 }

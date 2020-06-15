@@ -15,6 +15,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Used to handle button clicks on the rules screen.
+ *
+ * @Author Gijs van der Weijden
+ */
+public class RulesController implements Observable {
 public class RulesController implements Observable, Initializable {
     @FXML private ImageView musicBtn;
 
