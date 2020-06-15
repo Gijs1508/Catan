@@ -13,7 +13,7 @@ public class Player {
     private int village;
     private int city;
     private int identifier;
-    private boolean turn;
+    private boolean turn = true;
     private Inventory playerInventory;
 
     private HashMap<String, Integer> resourceToCost;

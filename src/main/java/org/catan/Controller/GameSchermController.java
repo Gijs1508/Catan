@@ -328,31 +328,17 @@ public class GameSchermController implements Initializable, Observable {
         thief.setLayoutY(circle.getLayoutY() - 33);
         unHighlightTiles();
 
-        String circleID = circle.getId().replaceAll("[^\\d.]", "");; //Cleaning tile string to only a number string
-        int tileID;
-        try {
-            tileID = Integer.parseInt(circleID);
-        }
-        catch (NumberFormatException e) {
-            tileID = 1;
-        }
+        int tileID = ThiefController.convertIDtoInt(circle.getId());
+
         Thief.setTile(tileID);
         // TODO would be cool to find the tile num for the ID (for logging)
         LogController.getInstance().logRobberEvent();
 
-
         // TODO because all players are red, it won't find the owner of the blue settlement
         ArrayList<Player> opponents = findOpponentsOnTile(tileID);
-//        // opponents.remove(Player.getActivePlayer());
 
-        if(opponents.isEmpty()) { // There are no opponents to steal from
+        ThiefController.checkStealableOppenets(opponents);
 
-            return; }
-        else if(opponents.size() > 1) { // There are more opponents to steal from
-            ScreenController.getInstance().showStealPopUp(); // Choose opponent popup
-            StealPopUpController.getInstance().updateOpponents(opponents);
-            return;
-        }
         Player victim = opponents.get(0); // There is one opponent to steal from
         Player.getActivePlayer().stealFromVictim(victim);
     }
@@ -391,8 +377,13 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     public void highlightTiles(int tileId) {
+        Integer tileId2Interger = tileId;
+
         for (Circle thiefTile : thiefTileNodeList) {
-            if (!thiefTile.getId().equals("thiefTile" + tileId)) {
+            int intId = ThiefController.convertIDtoInt(thiefTile.getId());
+            Integer idInterger = intId;
+
+            if (!(idInterger.equals(tileId2Interger))) {
                 thiefTile.setVisible(true);
             }
         }
