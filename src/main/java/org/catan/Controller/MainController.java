@@ -61,11 +61,11 @@ public class MainController implements Observable, Initializable {
     @FXML
     private void startGame() throws IOException {
         Sound.playClick();
-        App.setStageSize(1200, 810);
         if(nameIsSet()){
             App.setClientPlayer(new Player(player_name_input.getText()));
             App.getClientPlayer().setHost(true);
             App.setRoot("./Views/lobbyView");
+            App.setStageSize(1200, 810);
         } else {
             createAlert();
         }
