@@ -205,4 +205,32 @@ public class Player {
     public void setTurn(boolean turn) {
         this.turn = turn;
     }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getRoadScore() {
+        return roadScore;
+    }
+
+    public void setRoadScore(int roadScore) {
+        this.roadScore = roadScore;
+    }
+
+    public int getVillageScore() {
+        return villageScore;
+    }
+
+    public void setVillageScore(int villageScore) {
+        this.villageScore = villageScore;
+    }
+
+    public int getCityScore() {
+        return cityScore;
+    }
+
+    public void setCityScore(int cityScore) {
+        this.cityScore = cityScore;
+    }
 }

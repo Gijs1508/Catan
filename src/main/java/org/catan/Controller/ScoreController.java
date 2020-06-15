@@ -105,19 +105,19 @@ public class ScoreController implements Initializable, Observable {
      * @param color the player's color
      * @param score the player's score in victory points
      * @author Jeroen */
-    public void addVictoryPointToPlayer(String color, int score) {
+    public void setVictoryPointsForPlayer(String color, int score) {
         colorToLabels.get(color).get("points").setText(Integer.toString(score));
     }
 
-    public void addRoadPointToPlayer(String color, int road) {
+    public void setRoadPointsForPlayer(String color, int road) {
         colorToLabels.get(color).get("roads").setText(Integer.toString(road));
     }
 
-    public void addVillagePointToPlayer(String color, int village) {
+    public void setVillagePointsForPlayer(String color, int village) {
         colorToLabels.get(color).get("villages").setText(Integer.toString(village));
     }
 
-    public void addCityPointToPlayer(String color, int city) {
+    public void setCityPointsForPlayer(String color, int city) {
         colorToLabels.get(color).get("cities").setText(Integer.toString(city));
     }
 
@@ -131,6 +131,11 @@ public class ScoreController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
-
+        for (Player player : game.getPlayers()) {
+            setCityPointsForPlayer(player.getColor(), player.getCityScore());
+            setRoadPointsForPlayer(player.getColor(), player.getRoadScore());
+            setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
+            setVictoryPointsForPlayer(player.getColor(), player.getScore());
+        }
     }
 }
