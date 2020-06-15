@@ -38,7 +38,7 @@ public class Bank {
      * @author Jeroen
      * @return type of development card () */
     public String takeDevelopmentCard() {
-        if(bankInventory.getDevelopmentCardsLeft() > 0) {
+        if(bankInventory.developmentCardsLeftGetter() > 0) {
             // Get random key from developmentCardStock
             int randomIndex;
             double r = new Random().nextDouble();

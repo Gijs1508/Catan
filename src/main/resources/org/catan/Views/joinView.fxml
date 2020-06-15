@@ -20,7 +20,7 @@
             <Image url="@../assets/img/Catan_glow.png" />
          </image>
       </ImageView>
-      <TextField fx:id="code_input" alignment="CENTER" layoutX="390.0" layoutY="333.0" prefHeight="90.0" prefWidth="180.0" style="-fx-background-radius: 15px;" styleClass="btn" text="Code...">
+      <TextField fx:id="code_input" alignment="CENTER" layoutX="390.0" layoutY="321.0" prefHeight="90.0" prefWidth="180.0" promptText="Code..." style="-fx-background-radius: 15px;" styleClass="btn" stylesheets="@style.css">
          <font>
             <Font size="41.0" />
          </font>
@@ -40,7 +40,7 @@
             <Font name="Myanmar Text" size="14.0" />
          </font>
       </Button>
-      <Label fx:id="error_text" layoutX="295.0" layoutY="302.0" prefHeight="31.0" prefWidth="370.0" style="-fx-alignment: center;" textAlignment="CENTER">
+      <Label fx:id="error_text" layoutX="295.0" layoutY="290.0" prefHeight="31.0" prefWidth="370.0" style="-fx-alignment: center;" text="Invalide code ingevoerd" textAlignment="CENTER" visible="false">
          <font>
             <Font size="21.0" />
          </font>
