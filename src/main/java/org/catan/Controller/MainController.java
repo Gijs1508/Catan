@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.catan.App;
 import org.catan.Model.Game;
+import org.catan.Model.MenuMusicHandler;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
@@ -21,14 +22,16 @@ public class MainController implements Observable, Initializable {
     @FXML private TextField player_name_input;
     @FXML private ImageView musicBtn;
 
-    private boolean musicOn = true;
-    private final Image musicOnImg = new Image(String.valueOf(App.class.getResource("assets/img/musicOnWhite.png")));
-    private final Image musicOffImg = new Image(String.valueOf(App.class.getResource("assets/img/musicOffWhite.png")));
-
     // Routes
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Sound.playMenuMusic();
+        MenuMusicHandler.initializeMusic(musicBtn);
+
+        if(Sound.introMusicIsPlaying()){
+            Sound.playMenuMusic();
+            Sound.introMusicIsPlaying(true);
+            return;
+        }
     }
 
     @FXML
@@ -39,7 +42,6 @@ public class MainController implements Observable, Initializable {
             App.setRoot("./Views/joinView");
         } else {
             createAlert();
-
         }
     }
 
@@ -63,16 +65,7 @@ public class MainController implements Observable, Initializable {
     @FXML
     private void toggleMusic() {
         Sound.playClick();
-        if (musicOn) {
-            Sound.pauseMenuMusic();
-            musicBtn.setImage(musicOffImg);
-            musicOn = false;
-        }
-        else {
-            Sound.playMenuMusic();
-            musicBtn.setImage(musicOnImg);
-            musicOn = true;
-        }
+        MenuMusicHandler.toggleMusic(musicBtn);
     }
 
     @Override

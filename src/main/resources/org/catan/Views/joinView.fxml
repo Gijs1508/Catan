@@ -19,7 +19,7 @@
             <Image url="@../assets/img/Bord_met_water.png" />
          </image>
       </ImageView>
-      <TextField fx:id="code_input" alignment="CENTER" layoutX="507.0" layoutY="337.0" prefHeight="55.0" prefWidth="186.0" promptText="Code..." style="-fx-background-radius: 15px; -fx-border-radius: 15px; -fx-background-color: #FCFCFC; -fx-border-color: #D3D3D3; -fx-border-width: 2px;" styleClass="btn">
+      <TextField fx:id="code_input" alignment="CENTER" layoutX="507.0" layoutY="338.0" prefHeight="55.0" prefWidth="186.0" promptText="Code..." style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: #FCFCFC; -fx-border-color: #D3D3D3; -fx-border-width: 2px;" styleClass="btn">
          <font>
             <Font size="28.0" />
          </font>
@@ -42,6 +42,11 @@
       <ImageView fitHeight="55.0" fitWidth="250.0" layoutX="525.0" layoutY="515.0" onMouseClicked="#createGame" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/menu/create.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="musicBtn" fitHeight="74.0" fitWidth="79.0" layoutX="1128.0" onMouseClicked="#toggleMusic" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/musicOnWhite.png" />
          </image>
       </ImageView>
    </children>

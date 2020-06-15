@@ -34,6 +34,8 @@ public class Sound {
     private static MediaPlayer bgm = new MediaPlayer(new Media(App.class.getResource("assets/sounds/music/bgm.mp3").toExternalForm()));
     private static MediaPlayer intromusic = new MediaPlayer(new Media(App.class.getResource("assets/sounds/music/intromusic.mp3").toExternalForm()));
 
+    private static boolean introMusicIsPlaying = true;
+
     public static void initializeSounds() {
         Collections.addAll(soundEffects, pop, diceShuffle, diceThrow, click, takeCard, switch1, switch2, sword, startTurn, endTurn);
         defaultVolume = new HashMap<>(){{
@@ -134,5 +136,13 @@ public class Sound {
 
     public static void pauseMenuMusic() {
         intromusic.pause();
+    }
+
+
+    public static void introMusicIsPlaying(boolean state) {
+        introMusicIsPlaying = state;
+    }
+    public static boolean introMusicIsPlaying() {
+        return introMusicIsPlaying;
     }
 }
