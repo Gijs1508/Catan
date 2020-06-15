@@ -180,8 +180,7 @@ public class GameSchermController implements Initializable, Observable {
 
         //TODO: changing the seed to the gamecode!
         //long seed = CreateGameCode.getSeed();
-//        long seed = App.getCurrentGame().getCode();
-        long seed = 000000;
+        long seed = App.getCurrentGame().getCode();
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         //tile1.setFill(Color.BROWN);
