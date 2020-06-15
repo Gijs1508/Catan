@@ -58,9 +58,5 @@ public class DocumentListener {
             }
         });
     }
-
-    public void removeListener() {
-        this.docRef = null;
-    }
-
+    
 }
