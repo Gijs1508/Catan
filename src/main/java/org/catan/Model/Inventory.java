@@ -28,6 +28,15 @@ public class Inventory {
 
     public Inventory(){}
 
+    public int[] getCards(){
+        return this.cards;
+    }
+
+    public String[] strCardsGetter(){
+        return new String[]{"wood", "brick", "ore", "wool", "wheat", "knight"};
+    }
+
+
     //Changing a player's cards
     public void changeCards(String type, int amount){
         switch(type){
@@ -41,17 +50,10 @@ public class Inventory {
         StockController.getInstance().updateResources();
     }
 
-    public int getDevelopmentCardsLeft() {
+    public int developmentCardsLeftGetter() {
         return cards[5];
     }
 
-    public int[] getCards(){
-        return this.cards;
-    }
-
-    public String[] getStrCards(){
-        return new String[]{"wood", "brick", "ore", "wool", "wheat", "knight"};
-    }
 
 //    public static String[] getResCards() { return new String[]{"wood", "brick", "ore", "wool", "wheat"};}
 

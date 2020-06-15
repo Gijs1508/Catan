@@ -14,7 +14,7 @@
             <Image url="@../assets/img/Bord_met_water.png" />
          </image>
       </ImageView>
-      <Button fx:id="start_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="389.0" layoutY="414.0" mnemonicParsing="false" onAction="#startGame" prefHeight="91.0" prefWidth="182.0" styleClass="btn" text="Start game">
+      <Button fx:id="start_game_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="389.0" layoutY="414.0" mnemonicParsing="false" onAction="#startGame" prefHeight="91.0" prefWidth="182.0" styleClass="btn" text="Host game">
          <font>
             <Font name="Myanmar Text" size="29.0" />
          </font>

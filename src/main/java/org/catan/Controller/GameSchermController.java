@@ -20,7 +20,6 @@ import javafx.scene.shape.Polygon;
 import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -734,7 +733,7 @@ public class GameSchermController implements Initializable, Observable {
         Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
         for (int i = 0; i < playerInventory.getCards().length; i++) {
             if (playerInventory.getCards()[i] >= reqResources[i]) {
-                playerInventory.changeCards(playerInventory.getStrCards()[i], -reqResources[i]);
+                playerInventory.changeCards(playerInventory.strCardsGetter()[i], -reqResources[i]);
             } else {
                 return false;
             }
