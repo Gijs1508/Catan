@@ -25,12 +25,12 @@ public class MainController implements Observable, Initializable {
     private final Image musicOnImg = new Image(String.valueOf(App.class.getResource("assets/img/musicOnWhite.png")));
     private final Image musicOffImg = new Image(String.valueOf(App.class.getResource("assets/img/musicOffWhite.png")));
 
+    // Routes
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Sound.playMenuMusic();
     }
 
-    // Routes
     @FXML
     private void joinGame() throws IOException {
         Sound.playClick();
@@ -57,7 +57,7 @@ public class MainController implements Observable, Initializable {
     @FXML
     private void viewRules() throws IOException {
         Sound.playClick();
-        App.setRoot("./Views/regelsView");
+        App.setRoot("./Views/rulesView");
     }
 
     @FXML
