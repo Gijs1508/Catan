@@ -13,7 +13,9 @@ public class Player {
     private int village;
     private int city;
     private int identifier;
-    private boolean turn;
+    private boolean turn = false;
+    private boolean host = false;
+
     private Inventory playerInventory;
 
     private HashMap<String, Integer> resourceToCost;
@@ -25,7 +27,6 @@ public class Player {
     public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
     public static Player activePlayer;
     public static boolean mainPlayerActive;
-    private boolean host = false;
 
     /**
      * Empty constructor, needed for Jackson to do proper deserialization
