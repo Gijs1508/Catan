@@ -2,6 +2,7 @@ package org.catan.Controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
+import org.catan.App;
 import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
@@ -396,7 +397,7 @@ public class BuildSettlementController implements Observable {
 //    }
 
     private String getPlayerColor() {
-        return Game.getActivePlayer().getColor();
+        return App.getCurrentGame().getTurnPlayer().getColor();
     }
 
     @Override
