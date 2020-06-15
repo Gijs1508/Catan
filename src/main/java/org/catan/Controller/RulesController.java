@@ -8,6 +8,11 @@ import org.catan.interfaces.Observable;
 
 import java.io.IOException;
 
+/**
+ * Used to handle button clicks on the rules screen.
+ *
+ * @Author Gijs van der Weijden
+ */
 public class RulesController implements Observable {
     // Routes
     @FXML

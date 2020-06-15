@@ -2,6 +2,7 @@ package org.catan.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.catan.App;
@@ -10,9 +11,14 @@ import org.catan.interfaces.Observable;
 
 import java.io.IOException;
 
+/**
+ * Used to handle button clicks on the join screen.
+ *
+ * @Author Gijs van der Weijden
+ */
 public class JoinController implements Observable {
     @FXML private TextField code_input;
-    @FXML private Text error_text;
+    @FXML private Label error_text;
 
     // Routes
     @FXML

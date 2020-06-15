@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * Used to handle a dice throw.
+ * Gets called when the player clicks on the throw dice button.
+ * Returns a hashmap containing the total of the result and an arraylist of the first and second dice number.
+ *
+ * @Author Gijs van der Weijden
+ */
 public class Dice {
 
     private ScreenController screenController = ScreenController.getInstance();
