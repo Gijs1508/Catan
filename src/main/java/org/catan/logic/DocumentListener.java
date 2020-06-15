@@ -8,6 +8,7 @@ import com.google.cloud.firestore.FirestoreException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import org.catan.App;
+import org.catan.Controller.BuildSettlementController;
 import org.catan.Controller.LobbySchermController;
 import org.catan.Model.Game;
 
@@ -40,6 +41,7 @@ public class DocumentListener {
                             System.out.println("Start lobby update");
                             FXMLLoader loader = new FXMLLoader();
                             LobbySchermController.getInstance().update(game);
+                            BuildSettlementController.getInstance().update(game);
                             break;
                         case "going":
                             if (App.getCurrentGame().getStatus().equals("open")) {
