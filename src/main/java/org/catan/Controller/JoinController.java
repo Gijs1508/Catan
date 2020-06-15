@@ -27,14 +27,12 @@ import java.util.ResourceBundle;
  *
  * @Author Gijs van der Weijden
  */
-public class JoinController implements Observable {
 public class JoinController implements Observable, Initializable {
     @FXML private TextField code_input;
     @FXML private Label error_text;
 
     private Long gameCode;
     private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
-    @FXML private Text error_text;
     @FXML private ImageView musicBtn;
 
     // Routes

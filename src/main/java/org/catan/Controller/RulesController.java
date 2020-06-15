@@ -18,9 +18,8 @@ import java.util.ResourceBundle;
 /**
  * Used to handle button clicks on the rules screen.
  *
- * @Author Gijs van der Weijden
+ * @Author Gijs van der Weijden, Jeroen Bol
  */
-public class RulesController implements Observable {
 public class RulesController implements Observable, Initializable {
     @FXML private ImageView musicBtn;
 

@@ -22,18 +22,15 @@ import java.util.ResourceBundle;
  *
  * @Author Gijs van der Weijden
  */
-public class MainController implements Observable {
 public class MainController implements Observable, Initializable {
 
     private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
 
     @FXML
     private TextField player_name_input;
-    @FXML private TextField player_name_input;
     @FXML private ImageView musicBtn;
 
     // Routes
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MenuMusicHandler.initializeMusic(musicBtn);
