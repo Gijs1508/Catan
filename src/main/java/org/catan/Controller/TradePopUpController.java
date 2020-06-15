@@ -97,7 +97,13 @@ public class TradePopUpController implements Initializable {
             y = popupPane.getLayoutY() - mouseEvent.getSceneY();
             popupPane.setCursor(Cursor.MOVE);
         });
-        popupPane.setOnMouseReleased(mouseEvent -> popupPane.setCursor(Cursor.HAND));
+        popupPane.setOnMouseReleased(mouseEvent -> {
+            popupPane.setCursor(Cursor.HAND);
+            if(draggedOutOfScreen()) {
+                popupPane.setLayoutY(0);
+                popupPane.setLayoutX(0);
+            }
+        });
         popupPane.setOnMouseDragged(mouseEvent -> {
             popupPane.setLayoutX(mouseEvent.getSceneX() + x);
             popupPane.setLayoutY(mouseEvent.getSceneY() + y);
@@ -105,23 +111,23 @@ public class TradePopUpController implements Initializable {
         popupPane.setOnMouseEntered(mouseEvent -> popupPane.setCursor(Cursor.HAND));
     }
 
-    private void checkCollision() {
+    private boolean draggedOutOfScreen() {
         // Collisions are recognized, but I can't find a way to make use of it.
         // X Collisions
-        if(popupPane.getLayoutX() + paneLayoutXinRoot + paneWidth  >  screenController.getRoot().getPrefWidth()) {
-            System.out.println("collides right");
+        if(popupPane.getLayoutX() + paneLayoutXinRoot + paneWidth  >  screenController.getRoot().getPrefWidth()) { // right collision
+            return true;
         }
-        else if(popupPane.getLayoutX() + paneLayoutXinRoot  <  0) {
-            System.out.println("collides left");
+        else if(popupPane.getLayoutX() + paneLayoutXinRoot  <  0) { // left collision
+            return true;
         }
         // Y Collisions
-        if(popupPane.getLayoutY() + paneLayoutYinRoot + paneHeight > screenController.getRoot().getPrefHeight()) {
-            System.out.println("collides bottom");
+        else if(popupPane.getLayoutY() + paneLayoutYinRoot + paneHeight > screenController.getRoot().getPrefHeight()) { // bottom collision
+            return true;
         }
-
-        if(popupPane.getLayoutY() + paneLayoutYinRoot < 0) {
-            System.out.println("collides top");
+        else if(popupPane.getLayoutY() + paneLayoutYinRoot < 0) { // top collision
+            return true;
         }
+        return false;
     }
 
     public static void updateTradeOffer(String name, String[] offerArray, String[] requestArray){
