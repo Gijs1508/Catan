@@ -270,6 +270,7 @@ public class BuildSettlementController implements Observable {
         bv.setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+
         return village;
     }
 
@@ -370,7 +371,7 @@ public class BuildSettlementController implements Observable {
     public Road buildRoad(Circle node) {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), "blue");
         buildRoads.add(road);
-        Player.getActivePlayer().addRoadPoint();
+        App.getCurrentGame().turnPlayerGetter().addRoadPoint();
         return road;
     }
 
