@@ -48,7 +48,7 @@ public class Chat {
     public void setChatMessages(ArrayList<ChatMessage> messages) {
         chatMessages = messages;
     }
-    
+
 //    private ArrayList getMessagesByTimestamp(ArrayList<ChatMessage> messages){
 //
 //    }
