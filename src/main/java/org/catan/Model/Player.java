@@ -4,6 +4,12 @@ import org.catan.Controller.*;
 
 import java.util.*;
 
+/**
+ * The player that's controlled by a person in the match.
+ *
+ * @author Sabrina, Werner, Kaz, Jeroen
+ */
+
 public class Player {
 
     private String name;

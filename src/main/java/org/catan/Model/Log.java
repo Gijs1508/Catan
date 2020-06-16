@@ -10,13 +10,7 @@ import java.util.HashMap;
  * Log class that contains information about a log entry.
  * It finds the appropriate event text that belongs to the given event that is to be logged.
  *
- * todo
- * add log to logs
- * add images to the log if it's an image log
- * make it know who's player 1 and 2
- *
  * @author Jeroen
- * @version 0.1
  */
 
 
@@ -29,10 +23,8 @@ public class Log {
     private String opponentName;
     private ArrayList<String> imgPaths = new ArrayList<>();
 
-    public Log() {
 
-    }
-
+    /** Creates a log for one player */
     public Log(String eventType, String playerName){
         if (logs.getImgEvents().containsKey(eventType))
             logType = "img";
@@ -42,6 +34,7 @@ public class Log {
         createLog();
     }
 
+    /** Creates a log for two players */
     public Log(String eventType, String playerName, String opponentName) {
         if (logs.getImgEvents().containsKey(eventType))
             logType = "img";
@@ -52,6 +45,7 @@ public class Log {
         createLog();
     }
 
+    /** Creates a log's text according to its type */
     private void createLog() {
         if (logs.getImgEvents().containsKey(eventType)) {
             eventString = handleEventString(logs.getImgEvents().get(eventType));
@@ -61,14 +55,18 @@ public class Log {
         }
     }
 
+    /** Handles the event text according to the player's name.
+     * @param eventString event text that doesn't contain player names.
+     * @return the updated eventString, containing player names. */
     private String handleEventString(String eventString) {
         eventString = eventString.replaceAll("%PLAYER%", playerName);
         if(eventString.contains("%PLAYER2%")){
-            eventString = eventString.replaceAll("%PLAYER2%", opponentName);       // TODO needs the other player
+            eventString = eventString.replaceAll("%PLAYER2%", opponentName);
         }
         return eventString;
     }
 
+    /** Finds the image path for the event and adds it to the log's imgPaths. */
     public void addImgPath(String img) {
         String imgPath = logs.getImgPath().get(img);
         imgPaths.add(imgPath);
