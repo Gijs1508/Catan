@@ -18,6 +18,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
+import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 import java.io.IOException;
@@ -180,7 +181,6 @@ public class GameSchermController implements Initializable, Observable {
         //TODO: changing the seed to the gamecode!
         //long seed = CreateGameCode.getSeed();
         long seed = App.getCurrentGame().getCode();
-
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         //tile1.setFill(Color.BROWN);
@@ -189,78 +189,6 @@ public class GameSchermController implements Initializable, Observable {
         initializeHarbors();
 
 //        highlightTiles(10);
-    }
-
-    private void initializeHarbors() {
-
-        // Contains the ImageViews for the ships
-        Collections.addAll(ships, ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9);
-
-        // Contains the children in the harbor panes
-        List<Node> harbor1children = new ArrayList<>(); List<Node> harbor2children = new ArrayList<>();
-        List<Node> harbor3children = new ArrayList<>(); List<Node> harbor4children = new ArrayList<>();
-        List<Node> harbor5children = new ArrayList<>(); List<Node> harbor6children = new ArrayList<>();
-        List<Node> harbor7children = new ArrayList<>(); List<Node> harbor8children = new ArrayList<>();
-        List<Node> harbor9children = new ArrayList<>();
-
-        // 0 > resource (ImageView)              1 > ratio (Label)
-        harbor1children.add(harbor1resource); harbor1children.add(harbor1ratio);
-        harbor2children.add(harbor2resource); harbor2children.add(harbor2ratio);
-        harbor3children.add(harbor3resource); harbor3children.add(harbor3ratio);
-        harbor4children.add(harbor4resource); harbor4children.add(harbor4ratio);
-        harbor5children.add(harbor5resource); harbor5children.add(harbor5ratio);
-        harbor6children.add(harbor6resource); harbor6children.add(harbor6ratio);
-        harbor7children.add(harbor7resource); harbor7children.add(harbor7ratio);
-        harbor8children.add(harbor8resource); harbor8children.add(harbor8ratio);
-        harbor9children.add(harbor9resource); harbor9children.add(harbor9ratio);
-
-        // Harbor number and its children
-        HashMap<Integer, List<Node>> harborToChildren = new HashMap<>() {{
-            put(1, harbor1children); put(2, harbor2children);
-            put(3, harbor3children); put(4, harbor4children);
-            put(5, harbor5children); put(6, harbor6children);
-            put(7, harbor7children); put(8, harbor8children);
-            put(9, harbor9children);
-        }};
-
-        // Contains all vertices that border to a harbor (for faster reading)
-        Collections.addAll(allHarborVertices, vertex1, vertex2, vertex4, vertex5, vertex8, vertex18, vertex15, vertex16,
-                           vertex27, vertex38, vertex29, vertex39, vertex46, vertex47, vertex48, vertex49, vertex51, vertex52);
-
-        // Contains the vertices that border to each harbor
-        ArrayList<Circle> harbor1Vertices = new ArrayList<>(); ArrayList<Circle> harbor2Vertices = new ArrayList<>();
-        ArrayList<Circle> harbor3Vertices = new ArrayList<>(); ArrayList<Circle> harbor4Vertices = new ArrayList<>();
-        ArrayList<Circle> harbor5Vertices = new ArrayList<>(); ArrayList<Circle> harbor6Vertices = new ArrayList<>();
-        ArrayList<Circle> harbor7Vertices = new ArrayList<>(); ArrayList<Circle> harbor8Vertices = new ArrayList<>();
-        ArrayList<Circle> harbor9Vertices = new ArrayList<>();
-        Collections.addAll(harbor1Vertices, vertex1, vertex2); Collections.addAll(harbor2Vertices, vertex4, vertex5);
-        Collections.addAll(harbor3Vertices, vertex8, vertex18); Collections.addAll(harbor4Vertices, vertex15, vertex16);
-        Collections.addAll(harbor5Vertices, vertex27, vertex38); Collections.addAll(harbor6Vertices, vertex29, vertex39);
-        Collections.addAll(harbor7Vertices, vertex46, vertex47); Collections.addAll(harbor8Vertices, vertex48, vertex49);
-        Collections.addAll(harbor9Vertices, vertex51, vertex52);
-
-        // Assigns the vertices to the actual harbor number
-        harborNumToVertices = new HashMap<>() {{
-           put(1, harbor1Vertices); put(2, harbor2Vertices);
-           put(3, harbor3Vertices); put(4, harbor4Vertices);
-           put(5, harbor5Vertices); put(6, harbor6Vertices);
-           put(7, harbor7Vertices); put(8, harbor8Vertices);
-           put(9, harbor9Vertices);
-        }};
-
-        harbors = RandomizeHarbors.randomizeHarbors();
-
-        // Updates the view with randomized harbors
-        for (Harbor harbor : harbors) {
-//            System.out.println(harbor.getHarborNum() + ":" + harbor.getType());
-            List<Node> nodes = harborToChildren.get(harbor.getHarborNum());
-            ImageView harborResource = (ImageView) nodes.get(0);
-            Label harborRatio = (Label) nodes.get(1);
-
-            harborResource.setImage(Harbor.getResourceToImage().get(harbor.getType()));
-            harborRatio.setText("1 : " + harbor.getRatio());
-        }
-        startShipAnimation();
     }
 
     @FXML
@@ -272,6 +200,8 @@ public class GameSchermController implements Initializable, Observable {
         this.startPhase = phase;
     }
 
+    /** Starts the ship animation that is always running.
+     * @author Jeroen, Sabrina */
     private void startShipAnimation() {
         Image shipFrame1 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-1.png")));
         Image shipFrame2 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-2.png")));
@@ -283,7 +213,6 @@ public class GameSchermController implements Initializable, Observable {
             @Override
             public void handle(long l) {
                 tick++;
-
                 if(tick % 60 == 0) {
                     for(ImageView ship : ships)
                         ship.setImage(shipFrame1); }
@@ -352,7 +281,7 @@ public class GameSchermController implements Initializable, Observable {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();
         int opponentCount = 0;
-        for (Village settlement : BuildSettlementController.getInstance().getBuildVillages()) { // Loop through all settlements
+        for (Village settlement : BuildVillages.getBuildVillages()) { // Loop through all settlements
             // TODO this if statement can't be tested properly since colors aren't implemented yet
             if (!settlement.getColor().equals(Player.getMainPlayer().getColor())) { // If settlement isn't player's
                 ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
@@ -365,9 +294,7 @@ public class GameSchermController implements Initializable, Observable {
             }
         }
         for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) { // Get opponent's Player object by color and add to opponents list
-//            System.out.println(entry.getKey());
             for(Player player : Player.getAllPlayers()) {
-//                System.out.println(player.getColor());
                 if(player.getColor().equals(entry.getKey())) {
                     opponents.add(player);
                 }
@@ -434,6 +361,7 @@ public class GameSchermController implements Initializable, Observable {
             startPhase = false;
     }
 
+    // Places the village image on the board
     private void placeVillage(Village village) {
         for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
@@ -447,6 +375,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    // Places the city image on the board
     private void placeCity(Village village) {
         for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
@@ -458,6 +387,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    // Places the road image on the board
     private void placeRoad(Road road) {
         for (int i=0; i < 73; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == road.getX() && objectsPane.getChildren().get(i).getLayoutY() == road.getY()) {
@@ -476,7 +406,7 @@ public class GameSchermController implements Initializable, Observable {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
         int[] reqResources = {1, 1, 0, 0, 0, 0};
 
-        if(canBuildObject(reqResources)){
+        if(canBuildObject(reqResources) || startPhase){
             placeRoad(build.buildRoad(circle));
             logController.logRoadEvent();
         }else {
@@ -559,6 +489,7 @@ public class GameSchermController implements Initializable, Observable {
                 node.setVisible(true);
             }
         } catch (Exception e){
+            // Removes the exceptions when there isn't a place
         }
         roadButton.setVisible(false);
         roadButtonClose.setVisible(true);
@@ -585,6 +516,7 @@ public class GameSchermController implements Initializable, Observable {
                 availableSpot.setVisible(true);
             }
         } catch (Exception e) {
+            // Removes the exceptions when there isn't a place
         }
         settlementButton.setVisible(false);
         settlementButtonClose.setVisible(true);
@@ -612,6 +544,7 @@ public class GameSchermController implements Initializable, Observable {
             }
 
         } catch (Exception e) {
+            // Removes the exceptions when there isn't a place
         }
         upgradeButton.setVisible(false);
         upgradeButtonClose.setVisible(true);
@@ -628,6 +561,7 @@ public class GameSchermController implements Initializable, Observable {
         upgradeButtonClose.setVisible(false);
     }
 
+    // Shows the village spots when in the startPhase
     public void villageStartPhase() {
         ArrayList<Circle> nodes = build.showVillageStartSpots();
         for (Circle node : nodes) {
@@ -637,6 +571,7 @@ public class GameSchermController implements Initializable, Observable {
         settlementButtonClose.setVisible(true);
     }
 
+    // Shows the road spots of the recently build village
     public void roadStartPhase(Circle circle) {
         ArrayList<Circle> nodes = build.showRoadStartSpots(circle);
         for (Circle node : nodes) {
@@ -646,6 +581,8 @@ public class GameSchermController implements Initializable, Observable {
         roadButtonClose.setVisible(true);
     }
 
+    /** Initializes all the nodes on the board (like adding them to an ArrayList).
+     * @author Jeroen */
     private void initializePlacementSpots(){
         Collections.addAll(vertexNodeList,
                 vertex1, vertex2, vertex3 ,vertex4, vertex5, vertex6, vertex7, vertex8, vertex9, vertex10,
@@ -698,6 +635,79 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    /** Initializes the harbors on the board.
+     * @author Jeroen */
+    private void initializeHarbors() {
+
+        // Contains the ImageViews for the ships
+        Collections.addAll(ships, ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9);
+
+        // Contains the children in the harbor panes
+        List<Node> harbor1children = new ArrayList<>(); List<Node> harbor2children = new ArrayList<>();
+        List<Node> harbor3children = new ArrayList<>(); List<Node> harbor4children = new ArrayList<>();
+        List<Node> harbor5children = new ArrayList<>(); List<Node> harbor6children = new ArrayList<>();
+        List<Node> harbor7children = new ArrayList<>(); List<Node> harbor8children = new ArrayList<>();
+        List<Node> harbor9children = new ArrayList<>();
+
+        // 0 > resource (ImageView)              1 > ratio (Label)
+        harbor1children.add(harbor1resource); harbor1children.add(harbor1ratio);
+        harbor2children.add(harbor2resource); harbor2children.add(harbor2ratio);
+        harbor3children.add(harbor3resource); harbor3children.add(harbor3ratio);
+        harbor4children.add(harbor4resource); harbor4children.add(harbor4ratio);
+        harbor5children.add(harbor5resource); harbor5children.add(harbor5ratio);
+        harbor6children.add(harbor6resource); harbor6children.add(harbor6ratio);
+        harbor7children.add(harbor7resource); harbor7children.add(harbor7ratio);
+        harbor8children.add(harbor8resource); harbor8children.add(harbor8ratio);
+        harbor9children.add(harbor9resource); harbor9children.add(harbor9ratio);
+
+        // Harbor number and its children
+        HashMap<Integer, List<Node>> harborToChildren = new HashMap<>() {{
+            put(1, harbor1children); put(2, harbor2children);
+            put(3, harbor3children); put(4, harbor4children);
+            put(5, harbor5children); put(6, harbor6children);
+            put(7, harbor7children); put(8, harbor8children);
+            put(9, harbor9children);
+        }};
+
+        // Contains all vertices that border to a harbor (for faster reading)
+        Collections.addAll(allHarborVertices, vertex1, vertex2, vertex4, vertex5, vertex8, vertex18, vertex15, vertex16,
+                vertex27, vertex38, vertex29, vertex39, vertex46, vertex47, vertex48, vertex49, vertex51, vertex52);
+
+        // Contains the vertices that border to each harbor
+        ArrayList<Circle> harbor1Vertices = new ArrayList<>(); ArrayList<Circle> harbor2Vertices = new ArrayList<>();
+        ArrayList<Circle> harbor3Vertices = new ArrayList<>(); ArrayList<Circle> harbor4Vertices = new ArrayList<>();
+        ArrayList<Circle> harbor5Vertices = new ArrayList<>(); ArrayList<Circle> harbor6Vertices = new ArrayList<>();
+        ArrayList<Circle> harbor7Vertices = new ArrayList<>(); ArrayList<Circle> harbor8Vertices = new ArrayList<>();
+        ArrayList<Circle> harbor9Vertices = new ArrayList<>();
+        Collections.addAll(harbor1Vertices, vertex1, vertex2); Collections.addAll(harbor2Vertices, vertex4, vertex5);
+        Collections.addAll(harbor3Vertices, vertex8, vertex18); Collections.addAll(harbor4Vertices, vertex15, vertex16);
+        Collections.addAll(harbor5Vertices, vertex27, vertex38); Collections.addAll(harbor6Vertices, vertex29, vertex39);
+        Collections.addAll(harbor7Vertices, vertex46, vertex47); Collections.addAll(harbor8Vertices, vertex48, vertex49);
+        Collections.addAll(harbor9Vertices, vertex51, vertex52);
+
+        // Assigns the vertices to the actual harbor number
+        harborNumToVertices = new HashMap<>() {{
+            put(1, harbor1Vertices); put(2, harbor2Vertices);
+            put(3, harbor3Vertices); put(4, harbor4Vertices);
+            put(5, harbor5Vertices); put(6, harbor6Vertices);
+            put(7, harbor7Vertices); put(8, harbor8Vertices);
+            put(9, harbor9Vertices);
+        }};
+
+        harbors = RandomizeHarbors.randomizeHarbors();
+
+        // Updates the view with randomized harbors
+        for (Harbor harbor : harbors) {
+            List<Node> nodes = harborToChildren.get(harbor.getHarborNum());
+            ImageView harborResource = (ImageView) nodes.get(0);
+            Label harborRatio = (Label) nodes.get(1);
+
+            harborResource.setImage(Harbor.getResourceToImage().get(harbor.getType()));
+            harborRatio.setText("1 : " + harbor.getRatio());
+        }
+        startShipAnimation();
+    }
+
     private void initializeButtons() {
         upgradeButtonClose.setVisible(false);
         settlementButtonClose.setVisible(false);
@@ -722,7 +732,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     public boolean canBuildObject(int[] reqResources) {
-        Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
+        Inventory playerInventory = App.getCurrentGame().turnPlayerGetter().getPlayerInventory();
         for (int i = 0; i < playerInventory.getCards().length; i++) {
             if (playerInventory.getCards()[i] >= reqResources[i]) {
                 playerInventory.changeCards(playerInventory.strCardsGetter()[i], -reqResources[i]);
@@ -733,7 +743,8 @@ public class GameSchermController implements Initializable, Observable {
         return true;
     }
 
-    public void openSettings() {
+    // Settings button was pressed (so settings menu will open)
+    @FXML public void openSettings() {
         ScreenController.getInstance().showSettings();
     }
 

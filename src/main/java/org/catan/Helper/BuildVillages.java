@@ -12,7 +12,11 @@ public class BuildVillages {
         buildVillages = v;
     }
 
-    // Returns the array
+    /**
+     * Returns the build villages
+     * Can be accessed in every class that needs it
+     * @return an ArrayList type Village
+     */
     public static ArrayList<Village> getBuildVillages() {
         return buildVillages;
     }

@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.Random;
 
 /**
- * JavaFX App
+ * JavaFX App. First class to get accessed.
  */
 public class App extends Application {
 
@@ -48,6 +48,7 @@ public class App extends Application {
 //        scene = new Scene(loadFXML("Views/screenView"));
         //scene = new Scene(loadFXML("Views/screenView"));
         scene = new Scene(loadFXML("Views/mainView"));
+        MainController.getInstance().playAnimation();
 
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));

@@ -19,6 +19,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Handles the die a player must throw to proceed with a turn.
+ */
+
 public class DobbelsteenController implements Observable {
 
     LogController logController = LogController.getInstance();
@@ -33,6 +37,7 @@ public class DobbelsteenController implements Observable {
     TODO disable throwing multiple times a turn
      */
     @FXML public void throwDie() {
+        System.out.println("is players turn: " + App.getClientPlayer().isTurn());
         if(App.getClientPlayer().isTurn()){
 
             Sound.playDiceShuffle();
@@ -41,6 +46,7 @@ public class DobbelsteenController implements Observable {
                 HashMap<Integer, ArrayList<String>> diceResult;
                 try {
                     diceResult = dice.throwDice();
+
                     Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
                     Integer total = entry.getKey();
                     ArrayList<String> values = entry.getValue();

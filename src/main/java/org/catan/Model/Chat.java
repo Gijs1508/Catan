@@ -4,14 +4,9 @@ import java.util.ArrayList;
 
 /**
  * Class that contains all chat messages.
- * It turns those messages into a String so it can be displayed.
- *
- * todo
- * database
- * timestamps?
+ * It turns those messages into a single String, so it can be displayed.
  *
  * @author Jeroen
- * @version 0.5
  */
 
 public class Chat {
@@ -49,9 +44,4 @@ public class Chat {
     public void setChatMessages(ArrayList<ChatMessage> messages) {
         chatMessages = messages;
     }
-
-//    private ArrayList getMessagesByTimestamp(ArrayList<ChatMessage> messages){
-//
-//    }
-
 }

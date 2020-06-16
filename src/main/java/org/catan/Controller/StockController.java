@@ -15,9 +15,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/**
+ * Manages a player's stock/cards.
+ *
+ * @author Kaz, Jeroen
+ */
+
 public class StockController implements Initializable, Observable {
-
-
     //Make controller available to other classes
     private static StockController stockController;
 
@@ -38,20 +42,11 @@ public class StockController implements Initializable, Observable {
     @FXML private ImageView animationOre;
     private boolean animationIsActive = false;
 
-
-    
-    public StockController(){
-        stockController = this;
-    }
-
     private LogController logController = LogController.getInstance();
     private HashMap<String, ImageView> animationCardForResource;
 
-    public static StockController getInstance(){
-        if(stockController == null){
-            stockController = new StockController();
-        }
-        return stockController;
+    public StockController(){
+        stockController = this;
     }
 
     @Override
@@ -59,9 +54,6 @@ public class StockController implements Initializable, Observable {
         animationResourcesPane.setVisible(true);
         initializeAnimationCardMap();
     }
-
-    @FXML
-    private void initialize(){}
 
     public void testResources(){
         Inventory inventory = Player.getMainPlayer().getPlayerInventory();
@@ -113,6 +105,9 @@ public class StockController implements Initializable, Observable {
             removeCardAnimation(animationCardForResource.get(removedResources.get(i))); }
     }
 
+    /** Animation that plays when a card is taken out of a player's inventory.
+     * @param animationCard ImageView that moves out of the screen when that card is removed
+     * @author Jeroen */
     private void removeCardAnimation(ImageView animationCard){
         animationCard.setVisible(true);
 
@@ -150,7 +145,9 @@ public class StockController implements Initializable, Observable {
         }
     }
 
-    public void activateKnight() {
+    /** Player clicked on the knight card to replace the thief.
+     * @author Jeroen */
+   @FXML public void activateKnight() {
         // Check if it's player's turn
         if(!Player.mainPlayerActive) {
             ScreenController.getInstance().showAlertPopup();
@@ -173,14 +170,15 @@ public class StockController implements Initializable, Observable {
         Sound.playSword();
     }
 
-    public void showKnightDetails() {
+    /** Shows details about the knight card when the knight card is hovered */
+     @FXML public void showKnightDetails() {
         ScreenController.getInstance().showKnightPopup();
     }
-
-    public void hideKnightDetails() {
+    @FXML public void hideKnightDetails() {
         ScreenController.getInstance().hideKnightPopup();
     }
 
+    /** Assigns the animation cards to a resource */
     private void initializeAnimationCardMap() {
         animationCardForResource = new HashMap<>() {{
             put("wood", animationWood);
@@ -189,6 +187,13 @@ public class StockController implements Initializable, Observable {
             put("wool", animationSheep);
             put("wheat", animationWheat);
         }};
+    }
+
+    public static StockController getInstance(){
+        if(stockController == null){
+            stockController = new StockController();
+        }
+        return stockController;
     }
 
     @Override

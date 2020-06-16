@@ -3,42 +3,60 @@ package org.catan.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
+import org.catan.Model.MenuMusicHandler;
+import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 import org.catan.logic.DocumentListener;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Used to handle button clicks on the join screen.
  *
  * @Author Gijs van der Weijden
  */
-public class JoinController implements Observable {
+public class JoinController implements Observable, Initializable {
     @FXML private TextField code_input;
     @FXML private Label error_text;
 
     private Long gameCode;
     private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
+    @FXML private ImageView musicBtn;
 
     // Routes
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        MenuMusicHandler.initializeMusic(musicBtn);
+    }
+
     @FXML
     private void backToMenu() throws IOException {
+        Sound.playClick();
         App.setRoot("./views/mainView");
     }
 
     @FXML
     private void createGame() throws IOException{
+        Sound.playClick();
         App.setRoot("./views/createView");
     }
 
     @FXML
     private void handleButtonJoinAction(ActionEvent actionEvent) throws IOException{
+        Sound.playClick();
+
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Long code = Long.valueOf(code_input.getText());
         Game game = dbConnector.getGameById(code);
@@ -88,6 +106,12 @@ public class JoinController implements Observable {
 
     private void setGameCode(Long gameCode) {
         this.gameCode = gameCode;
+    }
+
+    @FXML
+    private void toggleMusic() {
+        Sound.playClick();
+        MenuMusicHandler.toggleMusic(musicBtn);
     }
 
     @Override
