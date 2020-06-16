@@ -95,8 +95,9 @@ public class TradeController implements Observable {
         }
     }
 
-    @FXML
-    public void buyDevelopmentCard() {
+    /** The player buys a development card and will receive a random card from the bank.
+     * @author Kaz, Jeroen */
+    @FXML public void buyDevelopmentCard() {
         // If player has enough resources
         if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
             // If player has enough resources
@@ -136,6 +137,7 @@ public class TradeController implements Observable {
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to buy a development card.");
             return;
         }
+        // It's not player's turn
         else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You can't buy a development card outside of your turn.");
