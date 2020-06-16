@@ -258,9 +258,8 @@ public class GameSchermController implements Initializable, Observable {
         unHighlightTiles();
 
         int tileID = ThiefController.convertStringIDtoIntID(circle.getId());
-
         Thief.setTile(tileID);
-        // TODO would be cool to find the tile num for the ID (for logging)
+        // TODO would be cool to find the tile num for the ID (for logging) is already there
         LogController.getInstance().logRobberEvent();
 
         // TODO because all players are red, it won't find the owner of the blue settlement
@@ -735,8 +734,8 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     public void updateThief(int tileId){
+        String tile = "thiefTile" + String.valueOf(tileId);
         for (Circle thiefTile : thiefTileNodeList) {
-            String tile = thiefTile.getId() + String.valueOf(tileId);
             if (thiefTile.getId().equals(tile)) {
                 thief.setLayoutX(thiefTile.getLayoutX() - 26);
                 thief.setLayoutY(thiefTile.getLayoutY() - 33);

@@ -29,7 +29,6 @@ public class Gameboard {
 
     public void setThief(Player player, Tile tile) {
 //        ThiefController.placeThief(player, tile);
-
     }
 
     public void setHarbour() {
