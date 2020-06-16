@@ -58,6 +58,7 @@ public class ScoreController implements Initializable, Observable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeColorToScore();
+        scoreController = this;
     }
 
     // Assigns labels to player colors
@@ -102,7 +103,10 @@ public class ScoreController implements Initializable, Observable {
     public void updateScore() {
     }
 
-    // Searches for the color's labels in the score view and updates the victory points label.
+    /** Searches for the color's labels in the score view and updates the victory points label.
+     * @param color the player's color
+     * @param score the player's score in victory points
+     * @author Jeroen */
     public void setVictoryPointsForPlayer(String color, int score) {
         colorToLabels.get(color).get("points").setText(Integer.toString(score));
     }

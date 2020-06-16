@@ -11,9 +11,11 @@ import org.catan.App;
 import org.catan.Controller.BuildSettlementController;
 import org.catan.Controller.LobbySchermController;
 import org.catan.Model.Game;
+import org.catan.Model.Player;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DocumentListener {
 
@@ -53,6 +55,7 @@ public class DocumentListener {
                             }
                             break;
                     }
+                    updateClientPlayer(game.getPlayers());
                     App.setCurrentGame(game);
                 } else {
                     System.out.print("Current data: null");
@@ -60,5 +63,12 @@ public class DocumentListener {
             }
         });
     }
-    
+
+    private void updateClientPlayer(ArrayList<Player> players) {
+        for (Player player : players) {
+            if (player.getIdentifier() == App.getClientPlayer().getIdentifier()) {
+                App.setClientPlayer(player);
+            }
+        }
+    }
 }
