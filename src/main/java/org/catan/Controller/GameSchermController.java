@@ -264,44 +264,9 @@ public class GameSchermController implements Initializable, Observable {
         LogController.getInstance().logRobberEvent();
 
         // TODO because all players are red, it won't find the owner of the blue settlement
-        ArrayList<Player> opponents = findOpponentsOnTile(tileID);
-
-        ThiefController.checkStealableOppenets(opponents);
-
-        Player victim = opponents.get(0); // There is one opponent to steal from
-        Player.getActivePlayer().stealFromVictim(victim);
+        ThiefController.checkStealableOppenets(tileID);
+        ThiefController.test(tileID);
 //        App.getCurrentGame().getBoard().setThief(App.getClientPlayer(), Thief.getTile());
-    }
-
-    /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
-     * @param tileID the id of the tile the thief was moved to
-     * @return arrayList with the opponents as Player objects
-     * @author Jeroen */
-    // TODO desert tile always seem to not have any settlements bordered to it
-    private ArrayList<Player> findOpponentsOnTile(int tileID) {
-        Map<String, Integer> colorToCount = new HashMap<>();
-        ArrayList<Player> opponents = new ArrayList<>();
-        int opponentCount = 0;
-        for (Village settlement : BuildVillages.getBuildVillages()) { // Loop through all settlements
-            // TODO this if statement can't be tested properly since colors aren't implemented yet
-            if (!settlement.getColor().equals(Player.getMainPlayer().getColor())) { // If settlement isn't player's
-                ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
-                for (Tile tile : connectedTiles) {
-                    if (Integer.parseInt(tile.getId().replaceAll("tile", "")) == tileID) { // Tile's ID is saved as "tileX" and tileID is an integer
-                        opponentCount++;
-                        colorToCount.put(settlement.getColor(), opponentCount);
-                    }
-                }
-            }
-        }
-        for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) { // Get opponent's Player object by color and add to opponents list
-            for(Player player : Player.getAllPlayers()) {
-                if(player.getColor().equals(entry.getKey())) {
-                    opponents.add(player);
-                }
-            }
-        }
-        return opponents;
     }
 
     public void highlightTiles(int tileId) {

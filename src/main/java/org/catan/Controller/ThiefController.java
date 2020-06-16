@@ -6,14 +6,26 @@ import java.util.*;
 import java.util.List;
 
 import org.catan.App;
-import org.catan.Model.Game;
-import org.catan.Model.Player;
-import org.catan.Model.Tile;
+import org.catan.Helper.BuildVillages;
+import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
 public class ThiefController implements Observable {
 
-    public static void checkThiefPosition(){
+//    private static ThiefController thiefController;
+//
+//    public ThiefController(){
+//        thiefController = this;
+//    }
+//
+//    public static ThiefController getInstance(){
+//        if(thiefController == null){
+//            thiefController = new ThiefController();
+//        }
+//        return thiefController;
+//    }
+
+    public void checkThiefPosition(){
         App.getClientPlayer().isTurn();
     }
 
@@ -29,7 +41,9 @@ public class ThiefController implements Observable {
         return tileID;
     }
 
-    public static void checkStealableOppenets(ArrayList<Player> opponents) throws IOException {
+    public static void checkStealableOppenets(int tileID) throws IOException {
+        ArrayList<Player> opponents = ThiefController.findOpponentsOnTile(tileID);
+
         if(opponents.isEmpty()) { // There are no opponents to steal from
             return; }
         else if(opponents.size() > 1) { // There are more opponents to steal from
@@ -37,6 +51,44 @@ public class ThiefController implements Observable {
             StealPopUpController.getInstance().updateOpponents(opponents);
             return;
         }
+    }
+
+    public static void test(int tileID){
+        ArrayList<Player> opponents = ThiefController.findOpponentsOnTile(tileID);
+
+        Player victim = opponents.get(0); // There is one opponent to steal from
+        Player.getActivePlayer().stealFromVictim(victim);
+    }
+
+    /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
+     * @param tileID the id of the tile the thief was moved to
+     * @return arrayList with the opponents as Player objects
+     * @author Jeroen */
+    // TODO desert tile always seem to not have any settlements bordered to it
+    private static ArrayList<Player> findOpponentsOnTile(int tileID) {
+        Map<String, Integer> colorToCount = new HashMap<>();
+        ArrayList<Player> opponents = new ArrayList<>();
+        int opponentCount = 0;
+        for (Village settlement : BuildVillages.getBuildVillages()) { // Loop through all settlements
+            // TODO this if statement can't be tested properly since colors aren't implemented yet
+            if (!settlement.getColor().equals(Player.getMainPlayer().getColor())) { // If settlement isn't player's
+                ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
+                for (Tile tile : connectedTiles) {
+                    if (Integer.parseInt(tile.getId().replaceAll("tile", "")) == tileID) { // Tile's ID is saved as "tileX" and tileID is an integer
+                        opponentCount++;
+                        colorToCount.put(settlement.getColor(), opponentCount);
+                    }
+                }
+            }
+        }
+        for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) { // Get opponent's Player object by color and add to opponents list
+            for(Player player : Player.getAllPlayers()) {
+                if(player.getColor().equals(entry.getKey())) {
+                    opponents.add(player);
+                }
+            }
+        }
+        return opponents;
     }
 
     @Override
