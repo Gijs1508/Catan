@@ -270,6 +270,7 @@ public class GameSchermController implements Initializable, Observable {
 
         Player victim = opponents.get(0); // There is one opponent to steal from
         Player.getActivePlayer().stealFromVictim(victim);
+//        App.getCurrentGame().getBoard().setThief(App.getClientPlayer(), Thief.getTile());
     }
 
     /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
