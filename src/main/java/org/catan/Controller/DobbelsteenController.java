@@ -33,7 +33,7 @@ public class DobbelsteenController implements Observable {
     TODO disable throwing multiple times a turn
      */
     @FXML public void throwDie() {
-        if(Player.mainPlayerActive){
+        if(App.getClientPlayer().isTurn()){
 
             Sound.playDiceShuffle();
             // Throw the dice 1.5 seconds after starting the shuffle sound effect
