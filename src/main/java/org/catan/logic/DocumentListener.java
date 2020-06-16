@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import org.catan.App;
 import org.catan.Controller.BuildSettlementController;
+import org.catan.Controller.ChatController;
 import org.catan.Controller.LobbySchermController;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
@@ -42,7 +43,8 @@ public class DocumentListener {
                             updateGameDocument(snapshot);
                             break;
                         case "chats":
-
+                            updateChatDocument(snapshot);
+                            break;
                     }
                 } else {
                     System.out.print("Current data: null");
@@ -54,7 +56,7 @@ public class DocumentListener {
     private void updateChatDocument(DocumentSnapshot snapshot) {
         ObjectMapper mapper = new ObjectMapper();
         Chat chat = mapper.convertValue(snapshot.getData(), Chat.class);
-        
+        ChatController.getInstance().update(chat);
     }
 
 
