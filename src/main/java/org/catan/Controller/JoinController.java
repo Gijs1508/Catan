@@ -70,7 +70,7 @@ public class JoinController implements Observable, Initializable {
                     game.addSpeler(App.getClientPlayer());
                     dbConnector.updateGame(game);
                     addGameListener(game);
-                    App.setStageSize(1200, 810);
+                    App.setStageHeight(837);
                     App.setRoot("./views/lobbyView");
                 } else {
                     this.error_text.setText("Het spel zit al vol");
@@ -87,7 +87,7 @@ public class JoinController implements Observable, Initializable {
     }
 
     private void addGameListener(Game game) {
-        DocumentListener gameListener = new DocumentListener(String.valueOf(game.getCode()));
+        DocumentListener gameListener = new DocumentListener("games", String.valueOf(game.getCode()));
         App.addListener(gameListener);
     }
 
