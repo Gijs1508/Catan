@@ -2,7 +2,12 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.App;
@@ -39,6 +44,8 @@ public class LobbySchermController implements Initializable, Observable {
     @FXML Text player4name;
     @FXML Text game_code;
     @FXML Button startGameBtn;
+    @FXML private Pane alertPopup;
+    private AnchorPane alertPopupView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,6 +55,14 @@ public class LobbySchermController implements Initializable, Observable {
         player4pane.setVisible(false);
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         System.out.println(lobbySchermController.getGameCode());
+
+        try {
+            alertPopupView = (AnchorPane) App.loadFXML("Views/alertPopUpView");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        alertPopup.getChildren().setAll(alertPopupView);
+
         if (lobbySchermController.getGameCode() != null) {
             Game game = dbConnector.getGameById(lobbySchermController.getGameCode());
             game_code.setText("Game code: " + game.getCode());
@@ -62,6 +77,9 @@ public class LobbySchermController implements Initializable, Observable {
             setupGamePlayers(game.getPlayers());
             App.addListener(gameListener);
         }
+
+        initializePopup(alertPopup);
+
         lobbySchermController = this;
     }
 
@@ -172,6 +190,25 @@ public class LobbySchermController implements Initializable, Observable {
         }
     }
 
+
+    public void textClicked(MouseEvent mouseEvent) {
+        Clipboard cb = Clipboard.getSystemClipboard();
+        ClipboardContent cbc = new ClipboardContent();
+        cbc.putString(game_code.getText().replace("Game code: ", ""));
+        cb.setContent(cbc);
+        createAlert();
+    }
+
+    private void createAlert() {
+        showAlertPopup();
+        AlertPopUpController.getInstance().setAlertTitle("Copied!");
+        AlertPopUpController.getInstance().setAlertPlacedController(this.getClass());
+        AlertPopUpController.getInstance().setAlertDescription("Game code is copied to the clipboard.");
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setContentText("Game code copied!");
+//        alert.show();
+    }
+
     private void updatePlayerColors(int i, ArrayList<Player> players) {
         switch (i) {
             case 0:
@@ -187,5 +224,21 @@ public class LobbySchermController implements Initializable, Observable {
             case 3:
                 players.get(i).setColor("yellow");
         }
+    }
+
+    public void showAlertPopup() {
+        alertPopup.setVisible(true);
+    }
+    public void hideAlertPopup() {
+        alertPopup.setVisible(false);
+    }
+
+    // Makes sure popups are ready to show when needed
+    private void initializePopup(Pane popupPane) {
+        popupPane.setVisible(false);
+        popupPane.setOpacity(1);
+        popupPane.setLayoutX(110);
+        popupPane.setLayoutY(-190);
+        popupPane.setStyle("-fx-background-color: none;");
     }
 }

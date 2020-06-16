@@ -98,11 +98,12 @@
                   <Insets top="15.0" />
                </VBox.margin>
                <children>
-                  <Text fx:id="game_code" layoutX="9.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="521.13671875">
+                  <Text fx:id="game_code" layoutX="9.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="521.13671875" onMouseClicked="#textClicked">
                      <font>
                         <Font size="46.0" />
                      </font>
                   </Text>
+                  <Pane fx:id="alertPopup" layoutX="661.0" layoutY="198.0" opacity="0.2" prefHeight="182.0" prefWidth="317.0" style="-fx-background-color: yellow;" />
                </children>
             </Pane>
          </children></VBox>
