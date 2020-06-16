@@ -65,7 +65,7 @@ public class MainController implements Observable, Initializable {
             App.setClientPlayer(new Player(player_name_input.getText()));
             App.getClientPlayer().setHost(true);
             App.setRoot("./Views/lobbyView");
-            App.setStageSize(1200, 830);
+            App.setStageSize(1200, 835); // for some reason I had to add 35 to make it fit
         } else {
             createAlert();
         }
