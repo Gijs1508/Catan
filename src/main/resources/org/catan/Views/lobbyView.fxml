@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e7e6e9;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LobbySchermController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #194868;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LobbySchermController">
    <children>
-      <ImageView fitHeight="800.0" fitWidth="1200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="800.0" fitWidth="1200.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/Bord_met_water.png" />
          </image>
       </ImageView>
-      <VBox layoutX="331.0" layoutY="125.0" prefHeight="522.0" prefWidth="540.0" style="-fx-background-color: #cccc; -fx-background-radius: 5;" AnchorPane.topAnchor="125.0">
+      <VBox layoutX="331.0" layoutY="126.0" prefHeight="522.0" prefWidth="540.0" style="-fx-background-color: #cccc; -fx-background-radius: 5;" AnchorPane.topAnchor="126.0">
          <children>
             <Pane fx:id="player1pane" prefHeight="88.0" prefWidth="430.0" style="-fx-background-color: white;" styleClass="lobbyPlayer">
                <VBox.margin>
@@ -98,7 +94,7 @@
                   <Insets top="15.0" />
                </VBox.margin>
                <children>
-                  <Text fx:id="game_code" layoutX="9.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="521.13671875">
+                  <Text fx:id="game_code" layoutX="29.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="482.13671875">
                      <font>
                         <Font size="46.0" />
                      </font>
@@ -108,13 +104,13 @@
          </children></VBox>
       <Pane prefHeight="145.0" prefWidth="1200.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#53b3e2" height="126.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
-            <Text layoutX="403.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="lobbyText" text="Waiting for host..." wrappingWidth="393.74951171875">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#41b3ff" height="126.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
+            <Text layoutX="403.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="lobbyText" text="Waiting for host..." wrappingWidth="393.74951171875">
                <font>
                   <Font size="50.0" />
                </font>
             </Text>
-            <ImageView fitHeight="59.0" fitWidth="139.0" layoutX="530.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="59.0" fitWidth="139.0" layoutX="530.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/smallLogo.png" />
                </image>
