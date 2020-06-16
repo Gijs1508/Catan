@@ -1,5 +1,6 @@
 package org.catan.Model;
 
+import org.catan.App;
 import org.catan.Controller.ChatController ;
 
 import java.util.Date;
@@ -33,7 +34,7 @@ public class ChatMessage {
     }
 
     private void init(){
-            this.sender = Player.getMainPlayer().getName();
+            this.sender = App.getClientPlayer().getName();
             this.message = sender + ": " + content;
     }
 

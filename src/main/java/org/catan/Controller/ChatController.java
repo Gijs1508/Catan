@@ -12,6 +12,7 @@ import org.catan.Model.Game;
 import org.catan.Model.Player;
 import org.catan.interfaces.ChatObservable;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +28,7 @@ public class ChatController implements Initializable, ChatObservable {
     @FXML private Text msgContent;
     @FXML private Text sender;
     private static ChatController chatController = new ChatController();
-    Chat chat = new Chat(1); // TODO get ID of game
+    Chat chat; // TODO get ID of game
 
     /** Reads the input and gives it to the chat view. */
     @FXML private void sendMessage() {
@@ -35,7 +36,7 @@ public class ChatController implements Initializable, ChatObservable {
             ChatMessage message = new ChatMessage(messageField.getText());
             chat.addChatMessage(message);
             messageField.clear();
-
+            DatabaseConnector.getInstance().updateChat(chat);
             updateChatView();
         }
         else { messageField.clear(); }
@@ -48,12 +49,14 @@ public class ChatController implements Initializable, ChatObservable {
 
     @Override
     public void update(Chat chat) {
-
+        this.chat = chat;
+        updateChatView();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chatController = this;
+        chat = new Chat(App.getCurrentGame().getCode().intValue());
     }
 
     public static ChatController getInstance() {

@@ -14,6 +14,7 @@ import org.catan.Controller.LobbySchermController;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
+import org.w3c.dom.Document;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -28,6 +29,8 @@ public class DocumentListener {
         this.collection = collection;
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         this.docRef = dbConnector.getDb().collection(collection).document(documentId);
+        System.out.println("collection: " + collection);
+        System.out.println("Doc id: " + documentId);
         this.docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,
@@ -73,6 +76,8 @@ public class DocumentListener {
                 break;
             case "going":
                 if (App.getCurrentGame().getStatus().equals("open")) {
+                    DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
+                    App.addListener(chatListener);
                     try {
                         App.setRoot("./Views/screenView");
                     } catch (IOException ex) {
