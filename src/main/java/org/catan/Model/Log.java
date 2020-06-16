@@ -62,7 +62,7 @@ public class Log {
     }
 
     private String handleEventString(String eventString) {
-        eventString = eventString.replaceAll("%PLAYER%", playerName);
+        eventString = eventString.replaceAll("%PLAYER%", App.getCurrentGame().turnPlayerGetter().getName());
         if(eventString.contains("%PLAYER2%")){
             eventString = eventString.replaceAll("%PLAYER2%", opponentName);       // TODO needs the other player
         }
