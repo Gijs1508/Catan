@@ -2,7 +2,7 @@
 
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.ScreenController">
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.ScreenController">
     <children>
         <Pane fx:id="logPane" prefHeight="144.0" prefWidth="430.0" style="-fx-background-color: pink;" />
         <Pane fx:id="scorePane" layoutY="143.0" prefHeight="446.0" prefWidth="200.0" style="-fx-background-color: yellow;" />

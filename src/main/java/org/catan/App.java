@@ -103,11 +103,6 @@ public class App extends Application {
         appStage.setHeight(height);
     }
 
-    public static void setStageSize(int width, int height) {
-        appStage.setWidth(width);
-        appStage.setHeight(height);
-    }
-
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
