@@ -769,11 +769,14 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void updateThief(int tileID){
-        Circle tile = "ThiefTile" + tileID;
-        thief.setLayoutX(.getLayoutX() - 26);
-        thief.setLayoutY(circle.getLayoutY() - 33);
-        unHighlightTiles();
+    public void updateThief(int tileId){
+        for (Circle thiefTile : thiefTileNodeList) {
+            String tile = thiefTile.getId() + String.valueOf(tileId);
+            if (thiefTile.getId().equals(tile)) {
+                thief.setLayoutX(thiefTile.getLayoutX() - 26);
+                thief.setLayoutY(thiefTile.getLayoutY() - 33);
+            }
+        }
     }
 
     public ArrayList<Circle> getAllHarborVertices() {
