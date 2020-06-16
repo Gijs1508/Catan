@@ -8,6 +8,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.Game;
@@ -54,7 +55,7 @@ public class JoinController implements Observable, Initializable {
     }
 
     @FXML
-    private void handleButtonJoinAction(ActionEvent actionEvent) throws IOException{
+    private void handleButtonJoinAction(MouseEvent mouseEvent) throws IOException{
         Sound.playClick();
 
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
