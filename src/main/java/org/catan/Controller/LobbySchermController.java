@@ -122,7 +122,7 @@ public class LobbySchermController implements Initializable, Observable {
         App.resetListeners();
         updatePlayers(game);
         dbConnector.updateGame(game);
-        App.setStageSize(960, 540);
+        App.setStageSize(1200, 676);
         App.setRoot("Views/mainView");
     }
 
