@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.App;
+import org.catan.Model.Chat;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
 import org.catan.interfaces.Observable;
@@ -58,7 +59,7 @@ public class LobbySchermController implements Initializable, Observable {
             dbConnector.createGame(game);
             game_code.setText("Game code: " + game.getCode());
             App.setCurrentGame(game);
-            DocumentListener gameListener = new DocumentListener(String.valueOf(game.getCode()));
+            DocumentListener gameListener = new DocumentListener("games", String.valueOf(game.getCode()));
             setupGamePlayers(game.getPlayers());
             App.addListener(gameListener);
         }
@@ -67,11 +68,14 @@ public class LobbySchermController implements Initializable, Observable {
 
     @FXML
     private void startGame() throws IOException {
-        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Game game = App.getCurrentGame();
         game.getPlayers().get(0).setTurn(true);
         game.setStatus("going");
-        dbConnector.updateGame(game);
+        Chat chat = new Chat(game.getCode().intValue());
+        DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
+        App.addListener(chatListener);
+        DatabaseConnector.getInstance().createChat(chat);
+        DatabaseConnector.getInstance().updateGame(game);
         App.setRoot("./Views/screenView");
     }
 
