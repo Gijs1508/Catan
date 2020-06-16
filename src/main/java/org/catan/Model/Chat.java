@@ -16,6 +16,10 @@ public class Chat {
     private ArrayList<ChatMessage> chatMessages = new ArrayList<>();
     private String chatString;
 
+    public Chat(){
+
+    }
+
     public Chat(int gameId) {
         this.gameId = gameId;
     }
@@ -29,7 +33,7 @@ public class Chat {
         return chatString;
     }
 
-    public ArrayList getChatMessages(){
+    public ArrayList<ChatMessage> getChatMessages(){
         return chatMessages;
     }
 
@@ -44,4 +48,26 @@ public class Chat {
     public void setChatMessages(ArrayList<ChatMessage> messages) {
         chatMessages = messages;
     }
+
+//    private ArrayList getMessagesByTimestamp(ArrayList<ChatMessage> messages){
+//
+//    }
+
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
+    }
+
+    public String getChatString() {
+        return chatString;
+    }
+
+    public void setChatString(String chatString) {
+        this.chatString = chatString;
+    }
+
 }
