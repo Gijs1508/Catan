@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.Model.Log;
 import org.catan.Model.Logs;
@@ -32,7 +33,9 @@ public class LogController implements Initializable, Observable {
 
 
     public LogController() {
-        logController = this; }
+        logController = this;
+        player = App.getClientPlayer().getName();
+    }
 
     @Override // Scroll to bottom with each update
     public void initialize(URL url, ResourceBundle resourceBundle) {

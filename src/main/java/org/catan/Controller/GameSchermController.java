@@ -18,6 +18,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
+import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 import java.io.IOException;
@@ -180,7 +181,6 @@ public class GameSchermController implements Initializable, Observable {
         //TODO: changing the seed to the gamecode!
         //long seed = CreateGameCode.getSeed();
         long seed = App.getCurrentGame().getCode();
-
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         //tile1.setFill(Color.BROWN);
@@ -293,7 +293,7 @@ public class GameSchermController implements Initializable, Observable {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();
         int opponentCount = 0;
-        for (Village settlement : BuildSettlementController.getInstance().getBuildVillages()) { // Loop through all settlements
+        for (Village settlement : BuildVillages.getBuildVillages()) { // Loop through all settlements
             // TODO this if statement can't be tested properly since colors aren't implemented yet
             if (!settlement.getColor().equals(Player.getMainPlayer().getColor())) { // If settlement isn't player's
                 ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
@@ -345,15 +345,12 @@ public class GameSchermController implements Initializable, Observable {
         circle.setScaleY(1);
     }
 
-    // TODO Jan
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
         int[] reqResources = {1, 1, 0, 1, 1, 0};
-        //TODO Jan: deze bool veranderen naar de status van startevent
-        boolean startEvent = false;
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        if(canBuildObject(reqResources)){
+        if(canBuildObject(reqResources) || startPhase){
             placeVillage(build.buildVillage(circle));
             logController.logSettlementEvent();
         }else {
@@ -368,6 +365,7 @@ public class GameSchermController implements Initializable, Observable {
             startPhase = false;
     }
 
+    // Places the village image on the board
     private void placeVillage(Village village) {
         for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() && objectsPane.getChildren().get(i).getLayoutY() == village.getY()) {
@@ -381,6 +379,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    // Places the city image on the board
     private void placeCity(Village village) {
         for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
@@ -392,6 +391,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    // Places the road image on the board
     private void placeRoad(Road road) {
         for (int i=0; i < 73; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == road.getX() && objectsPane.getChildren().get(i).getLayoutY() == road.getY()) {
@@ -410,7 +410,7 @@ public class GameSchermController implements Initializable, Observable {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
         int[] reqResources = {1, 1, 0, 0, 0, 0};
 
-        if(canBuildObject(reqResources)){
+        if(canBuildObject(reqResources) || startPhase){
             placeRoad(build.buildRoad(circle));
             logController.logRoadEvent();
         }else {
@@ -493,6 +493,7 @@ public class GameSchermController implements Initializable, Observable {
                 node.setVisible(true);
             }
         } catch (Exception e){
+            // Removes the exceptions when there isn't a place
         }
         roadButton.setVisible(false);
         roadButtonClose.setVisible(true);
@@ -519,6 +520,7 @@ public class GameSchermController implements Initializable, Observable {
                 availableSpot.setVisible(true);
             }
         } catch (Exception e) {
+            // Removes the exceptions when there isn't a place
         }
         settlementButton.setVisible(false);
         settlementButtonClose.setVisible(true);
@@ -546,6 +548,7 @@ public class GameSchermController implements Initializable, Observable {
             }
 
         } catch (Exception e) {
+            // Removes the exceptions when there isn't a place
         }
         upgradeButton.setVisible(false);
         upgradeButtonClose.setVisible(true);
@@ -562,6 +565,7 @@ public class GameSchermController implements Initializable, Observable {
         upgradeButtonClose.setVisible(false);
     }
 
+    // Shows the village spots when in the startPhase
     public void villageStartPhase() {
         ArrayList<Circle> nodes = build.showVillageStartSpots();
         for (Circle node : nodes) {
@@ -571,6 +575,7 @@ public class GameSchermController implements Initializable, Observable {
         settlementButtonClose.setVisible(true);
     }
 
+    // Shows the road spots of the recently build village
     public void roadStartPhase(Circle circle) {
         ArrayList<Circle> nodes = build.showRoadStartSpots(circle);
         for (Circle node : nodes) {
@@ -731,7 +736,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     public boolean canBuildObject(int[] reqResources) {
-        Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
+        Inventory playerInventory = App.getCurrentGame().turnPlayerGetter().getPlayerInventory();
         for (int i = 0; i < playerInventory.getCards().length; i++) {
             if (playerInventory.getCards()[i] >= reqResources[i]) {
                 playerInventory.changeCards(playerInventory.strCardsGetter()[i], -reqResources[i]);

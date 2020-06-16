@@ -15,9 +15,9 @@ public class Player {
     private String name;
     private String color;
     private int score;
-    private int road;
-    private int village;
-    private int city;
+    private int roadScore;
+    private int villageScore;
+    private int cityScore;
     private int identifier;
     private boolean turn = false;
     private boolean host = false;
@@ -48,7 +48,6 @@ public class Player {
         this.playerInventory = new Inventory();
         this.identifier = Math.toIntExact(CreateGameCode.randomCodeGen());
         allPlayers.add(this);
-
         initializeResourceCosts();
     }
 
@@ -114,22 +113,18 @@ public class Player {
 
     public void addVictoryPoint() {
         score++;
-        scoreController.addVictoryPointToPlayer(color, score);
     }
 
     public void addRoadPoint() {
-        road++;
-        scoreController.addRoadPointToPlayer(color, road);
+        roadScore++;
     }
 
     public void addVillagePoint() {
-        village++;
-        scoreController.addVillagePointToPlayer(color, village);
+        villageScore++;
     }
 
     public void addCityPoint() {
-        city++;
-        scoreController.addCityPointToPlayer(color, city);
+        cityScore++;
     }
 
     public void setName(String name) {
@@ -215,5 +210,33 @@ public class Player {
 
     public void setTurn(boolean turn) {
         this.turn = turn;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getRoadScore() {
+        return roadScore;
+    }
+
+    public void setRoadScore(int roadScore) {
+        this.roadScore = roadScore;
+    }
+
+    public int getVillageScore() {
+        return villageScore;
+    }
+
+    public void setVillageScore(int villageScore) {
+        this.villageScore = villageScore;
+    }
+
+    public int getCityScore() {
+        return cityScore;
+    }
+
+    public void setCityScore(int cityScore) {
+        this.cityScore = cityScore;
     }
 }
