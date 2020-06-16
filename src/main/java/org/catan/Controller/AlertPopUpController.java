@@ -19,7 +19,6 @@ public class AlertPopUpController {
     @FXML private Text popupTitle;
 
     private ScreenController screenController = ScreenController.getInstance();
-    private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
     private static AlertPopUpController alertPopUpController;
     private Object controller = screenController;
 
@@ -33,10 +32,11 @@ public class AlertPopUpController {
 //            case LobbySchermController.getInstance().getClass().toString(): lobbySchermController.hideAlertPopup(); break;
 //        }
 
-        System.out.println(controller.getClass().toString());
+        System.out.println(controller.toString());
+        System.out.println(LobbySchermController.getInstance().getClass().toString());
 
-        if(controller.getClass().toString().equals(lobbySchermController.getClass().toString())){
-            lobbySchermController.hideAlertPopup();
+        if(this.controller.toString().equals(LobbySchermController.getInstance().getClass().toString())){
+            LobbySchermController.getInstance().hideAlertPopup();
         } else {
             screenController.hideAlertPopup();
         }
@@ -50,9 +50,9 @@ public class AlertPopUpController {
         alertDescription.setText(description);
     }
 
-    public void setAlertPlacedController(Class controllerClass){
-        System.out.println(controllerClass.getName());
-        controller = controllerClass;
+    public void setAlertPlacedController(Object controllerClass){
+        this.controller = controllerClass;
+        System.out.println("setAlertPlacedController(): " + this.controller.toString());
     }
 
 

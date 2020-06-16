@@ -202,7 +202,7 @@ public class LobbySchermController implements Initializable, Observable {
     private void createAlert() {
         showAlertPopup();
         AlertPopUpController.getInstance().setAlertTitle("Copied!");
-        AlertPopUpController.getInstance().setAlertPlacedController(this.getClass());
+        AlertPopUpController.getInstance().setAlertPlacedController(LobbySchermController.getInstance().getClass());
         AlertPopUpController.getInstance().setAlertDescription("Game code is copied to the clipboard.");
 //        Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //        alert.setContentText("Game code copied!");
