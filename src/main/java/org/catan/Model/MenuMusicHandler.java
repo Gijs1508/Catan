@@ -29,12 +29,12 @@ public class MenuMusicHandler {
         if (Sound.introMusicIsPlaying()) {
             Sound.pauseMenuMusic();
             musicBtn.setImage(MenuMusicHandler.getMusicOffImg());
-            Sound.introMusicIsPlaying(false);
+            Sound.setIntroMusicIsPlaying(false);
         }
         else {
             Sound.playMenuMusic();
             musicBtn.setImage(MenuMusicHandler.getMusicOnImg());
-            Sound.introMusicIsPlaying(true);
+            Sound.setIntroMusicIsPlaying(true);
         }
     }
 

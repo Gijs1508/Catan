@@ -8,6 +8,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.Game;
@@ -54,9 +55,8 @@ public class JoinController implements Observable, Initializable {
     }
 
     @FXML
-    private void handleButtonJoinAction(ActionEvent actionEvent) throws IOException{
+    private void handleButtonJoinAction(MouseEvent actionEvent) throws IOException{
         Sound.playClick();
-
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Long code = Long.valueOf(code_input.getText());
         Game game = dbConnector.getGameById(code);
@@ -70,7 +70,7 @@ public class JoinController implements Observable, Initializable {
                     game.addSpeler(App.getClientPlayer());
                     dbConnector.updateGame(game);
                     addGameListener(game);
-                    App.setStageSize(1200, 810);
+                    App.setStageHeight(837);
                     App.setRoot("./views/lobbyView");
                 } else {
                     this.error_text.setText("Het spel zit al vol");
@@ -87,7 +87,7 @@ public class JoinController implements Observable, Initializable {
     }
 
     private void addGameListener(Game game) {
-        DocumentListener gameListener = new DocumentListener(String.valueOf(game.getCode()));
+        DocumentListener gameListener = new DocumentListener("games", String.valueOf(game.getCode()));
         App.addListener(gameListener);
     }
 
