@@ -15,11 +15,7 @@ import org.catan.Model.Log;
  * Class that creates a pane for a single log.
  * There are two possible panes, decided by the event type.
  *
- * todo
- * find a way to make everything fit
- *
  * @author Jeroen
- * @version 0.1
  */
 
 public class LogPane {
@@ -38,6 +34,7 @@ public class LogPane {
         initTxtEvent();
     }
 
+    /** Styling that both type of log events use */
     public void initLog(){
         eventText.setFont(Font.font(13));
 
@@ -49,12 +46,12 @@ public class LogPane {
         row.setMinHeight(30);
 
         logGrid.setMargin(eventText, new Insets(0, 15, 0, 30));
-
         logGrid.getRowConstraints().add(row);
 
         eventText.setText(log.getEventString());
     }
 
+    /** Sets a LogPane up for image events */
     public void initImgEvent(){
         initLog();
 
@@ -67,8 +64,6 @@ public class LogPane {
 
         logGrid.getColumnConstraints().addAll(column1, column2);
 
-//        logGrid.setGridLinesVisible(true); //shows gridlines
-
         imgBox.prefHeight(100);
         imgBox.setSpacing(2);
 
@@ -76,6 +71,7 @@ public class LogPane {
         logGrid.add(imgBox, 1, 0);
     }
 
+    /** Sets a LogPane up for text events */
     public void initTxtEvent(){
         initLog();
 

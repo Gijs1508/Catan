@@ -13,6 +13,12 @@ import java.util.ResourceBundle;
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
 
+/**
+ * Updates the scores for the players.
+ *
+ * @author Jeroen
+ */
+
 public class ScoreController implements Initializable, Observable {
 
     @FXML private Label player1name; @FXML private Label player1points;
@@ -36,8 +42,6 @@ public class ScoreController implements Initializable, Observable {
     private static ScoreController scoreController;
 
 
-
-
 //    private Speler speler;
     private int score;
     private HashMap<String, Label> player1labels;
@@ -54,10 +58,10 @@ public class ScoreController implements Initializable, Observable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeColorToScore();
+        scoreController = this;
     }
 
-    /** Assigns labels to player colors
-     * @author Jeroen */
+    // Assigns labels to player colors
     private void initializeColorToScore() {
         player1labels = new HashMap<>(){{
             put("name", player1name); put("points", player1points);
@@ -97,15 +101,26 @@ public class ScoreController implements Initializable, Observable {
     }
 
     public void updateScore() {
-
     }
 
     /** Searches for the color's labels in the score view and updates the victory points label.
      * @param color the player's color
      * @param score the player's score in victory points
      * @author Jeroen */
-    public void addVictoryPointToPlayer(String color, int score) {
+    public void setVictoryPointsForPlayer(String color, int score) {
         colorToLabels.get(color).get("points").setText(Integer.toString(score));
+    }
+
+    public void setRoadPointsForPlayer(String color, int road) {
+        colorToLabels.get(color).get("roads").setText(Integer.toString(road));
+    }
+
+    public void setVillagePointsForPlayer(String color, int village) {
+        colorToLabels.get(color).get("villages").setText(Integer.toString(village));
+    }
+
+    public void setCityPointsForPlayer(String color, int city) {
+        colorToLabels.get(color).get("cities").setText(Integer.toString(city));
     }
 
     public void removeDevelopmentCardFromBankView() {
@@ -118,6 +133,11 @@ public class ScoreController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
-
+        for (Player player : game.getPlayers()) {
+            setCityPointsForPlayer(player.getColor(), player.getCityScore());
+            setRoadPointsForPlayer(player.getColor(), player.getRoadScore());
+            setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
+            setVictoryPointsForPlayer(player.getColor(), player.getScore());
+        }
     }
 }

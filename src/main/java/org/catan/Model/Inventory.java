@@ -32,9 +32,10 @@ public class Inventory {
         return this.cards;
     }
 
-    public String[] getStrCards(){
+    public String[] strCardsGetter(){
         return new String[]{"wood", "brick", "ore", "wool", "wheat", "knight"};
     }
+
 
     //Changing a player's cards
     public void changeCards(String type, int amount){
@@ -49,15 +50,36 @@ public class Inventory {
         StockController.getInstance().updateResources();
     }
 
-    public int getDevelopmentCardsLeft() {
+    public int developmentCardsLeftGetter() {
         return cards[5];
     }
 
+
+//    public static String[] getResCards() { return new String[]{"wood", "brick", "ore", "wool", "wheat"};}
+
+    public HashMap<String, Integer> resourceToAmountGetter() {
+        HashMap<String, Integer> resourceToAmount = new HashMap<>() {{
+            put("wood", cards[0]);
+            put("brick", cards[1]);
+            put("ore", cards[2]);
+            put("wool", cards[3]);
+            put("wheat", cards[4]);
+        }};
+        return resourceToAmount;
+    }
 
     public int cardsTotalGetter(){
         int total = 0;
         for(int card : cards){
             total += card;
+        }
+        return total;
+    }
+
+    public int cardsTotalMinusKnightGetter(){
+        int total = 0;
+        for(int i = 0; i < 4; i++){
+            total++;
         }
         return total;
     }

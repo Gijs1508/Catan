@@ -19,51 +19,42 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/**
+ * Puts all the separate views together into a complete game screen.
+ *
+ * @author Jeroen
+ */
+
 public class ScreenController implements Initializable, Observable {
 
-    private AnchorPane boardView;
-    private AnchorPane stockView;
-    private AnchorPane logView;
-    private AnchorPane chatView;
-    private AnchorPane tradeView;
-    private AnchorPane diceView;
-    private AnchorPane scoreView;
-    private AnchorPane costView;
-    private AnchorPane settingsView;
-    private AnchorPane knightDetails;
-    private AnchorPane tradePopupView;
-    private AnchorPane handInPopupView;
-    private AnchorPane devCardPopupView;
+    @FXML private AnchorPane root; @FXML private Pane boardPane;
+    @FXML private Pane stockPane; @FXML private Pane scorePane;
+    @FXML private Pane chatPane; @FXML private Pane logPane;
+    @FXML private Pane tradePane; @FXML private Pane dicePane;
+    @FXML private Pane costPane; @FXML private Pane settingsPane;
+    @FXML private Pane stealPopup; @FXML private Pane knightPopup;
+    @FXML private Pane tradePopup; @FXML private Pane handInPopup;
+    @FXML private Pane devCardPopup; @FXML private Pane alertPopup;
+
+    private AnchorPane boardView; private AnchorPane stockView;
+    private AnchorPane logView; private AnchorPane chatView;
+    private AnchorPane tradeView; private AnchorPane diceView;
+    private AnchorPane scoreView; private AnchorPane costView;
+    private AnchorPane settingsView; private AnchorPane stealPopupView;
+    private AnchorPane knightDetails; private AnchorPane tradePopupView;
+    private AnchorPane handInPopupView; private AnchorPane devCardPopupView;
     private AnchorPane alertPopupView;
 
-    @FXML private AnchorPane root;
-    @FXML private Pane boardPane;
-    @FXML private Pane stockPane;
-    @FXML private Pane scorePane;
-    @FXML private Pane chatPane;
-    @FXML private Pane logPane;
-    @FXML private Pane tradePane;
-    @FXML private Pane dicePane;
-    @FXML private Pane costPane;
-    @FXML private Pane settingsPane;
-    @FXML private Pane knightPopup;
-    @FXML private Pane tradePopup;
-    @FXML private Pane handInPopup;
-    @FXML private Pane devCardPopup;
-    @FXML private Pane alertPopup;
-
-
     private static ScreenController screenController;
-
     public ScreenController() {
         screenController = this;
     }
 
-    // The order in which the views are loaded is important if you need their controllers to communicate
-
+    /** Loads all the views as AnchorPanes and adds them to one view that manages their locations.
+     * @author Jeroen */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        try {
+        try { // The order in which the views are loaded is important if you need their controllers to communicate.
             logView = (AnchorPane) App.loadFXML("Views/logsView");
             boardView = (AnchorPane) App.loadFXML("Views/boardView");
             stockView = (AnchorPane) App.loadFXML("Views/stockView");
@@ -80,6 +71,7 @@ public class ScreenController implements Initializable, Observable {
             e.printStackTrace();
         }
 
+        // Add the loaded views as children for the panes in the screenView.fxml
         logPane.getChildren().setAll(logView);
         boardPane.getChildren().setAll(boardView);
         tradePane.getChildren().setAll(tradeView);
@@ -94,12 +86,14 @@ public class ScreenController implements Initializable, Observable {
         alertPopup.getChildren().setAll(alertPopupView);
 
         initializePopup(settingsPane);
+        initializePopup(stealPopup);
         initializePopup(knightPopup);
         initializePopup(tradePopup);
         initializePopup(handInPopup);
         initializePopup(devCardPopup);
         initializePopup(alertPopup);
     }
+
 
     public void showSettings() {
         settingsPane.setVisible(true);
@@ -116,6 +110,15 @@ public class ScreenController implements Initializable, Observable {
     public void hideKnightPopup() {
         KnightDetails.getFadeOut().playFromStart();
         KnightDetails.getFadeOut().setOnFinished(actionEvent -> knightPopup.setVisible(false));
+    }
+
+    public void showStealPopUp() throws IOException {
+        stealPopupView = (AnchorPane) App.loadFXML("Views/stealPopUpView");
+        stealPopup.getChildren().setAll(stealPopupView);
+        stealPopup.setVisible(true);
+    }
+    public void hideStealPopUp() {
+        stealPopup.setVisible(false);
     }
 
     public void showHandInPopUp() throws IOException {
@@ -150,12 +153,14 @@ public class ScreenController implements Initializable, Observable {
         alertPopup.setVisible(false);
     }
 
+    // Makes sure popups are ready to show when needed
     private void initializePopup(Pane popupPane) {
         popupPane.setVisible(false);
         popupPane.setOpacity(1);
         popupPane.setStyle("-fx-background-color: none;");
     }
 
+    // Returns the layout coordinates of the trade popup.
     public HashMap<String, Double> getTradePopupLayout() {
         HashMap<String, Double> popupInfo = new HashMap<>() {{
             this.put("layoutX", tradePopup.getLayoutX());

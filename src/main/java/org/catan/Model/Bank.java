@@ -4,6 +4,11 @@ import org.catan.Controller.ScoreController;
 
 import java.util.*;
 
+/**
+ * Bank that sells the players random development cards.
+ * @author Sabrina, Jeroen
+ */
+
 public class Bank {
     private Inventory bankInventory;
     private LinkedHashMap<String, Integer> developmentCardStock;
@@ -15,14 +20,10 @@ public class Bank {
         initializeInventory();
     }
 
+    /** Creates a new inventory for the bank.
+     * Bank has 25 cards, of which 18 are knight cards and 7 are victory point cards. */
     private void initializeInventory() {
         this.bankInventory = new Inventory();
-        // Kaarten toevoegen aan bank, kijken hoe we dit kunnen veranderen naar kaarten over in stapel
-        this.bankInventory.changeCards("wood", 50);
-        this.bankInventory.changeCards("brick", 50);
-        this.bankInventory.changeCards("ore", 50);
-        this.bankInventory.changeCards("wool", 50);
-        this.bankInventory.changeCards("wheat", 50);
         this.bankInventory.changeCards("knight", 25); // Represents all development cards (also victory point cards)
 
         // Each development card the bank has with its amount left.
@@ -32,13 +33,12 @@ public class Bank {
         }};
     }
 
-    /***
-     * Takes a random development card from the bank's inventory.
+    /** Takes a random development card from the bank's inventory.
      * Calculates the odds of getting each card.
      * @author Jeroen
      * @return type of development card () */
     public String takeDevelopmentCard() {
-        if(bankInventory.getDevelopmentCardsLeft() > 0) {
+        if(bankInventory.developmentCardsLeftGetter() > 0) {
             // Get random key from developmentCardStock
             int randomIndex;
             double r = new Random().nextDouble();

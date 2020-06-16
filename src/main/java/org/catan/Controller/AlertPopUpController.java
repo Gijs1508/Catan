@@ -9,6 +9,9 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/** Popup appears as an alert to notify the player of an issue that occurred.
+ * @author Jeroen */
+
 public class AlertPopUpController {
     @FXML private Label alertDescription;
     private ScreenController screenController = ScreenController.getInstance();

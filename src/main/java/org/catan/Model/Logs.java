@@ -5,14 +5,9 @@ import java.util.HashMap;
 
 /**
  * Class that contains all Log objects.
- * This is the class that the LogController reads to update the log view.
- *
- * todo
- * make it contain all Log objects in a way that makes it useful for the controller
- * database
+ * Also contains information required for creating logs.
  *
  * @author Jeroen
- * @version 0.1
  */
 
 public class Logs {
@@ -26,6 +21,7 @@ public class Logs {
         initialize();
     }
 
+    /** Creates the information required for creating logs. */
     public void initialize(){
         imgPath = new HashMap<>() {{
             put("1", "org/catan/assets/img/die/die1.png");
@@ -37,7 +33,7 @@ public class Logs {
 
             put("brick", "org/catan/assets/img/brickSmall.png");
             put("ore", "org/catan/assets/img/oreSmall.png");
-            put("sheep", "org/catan/assets/img/sheepSmall.png");
+            put("wool", "org/catan/assets/img/sheepSmall.png");
             put("wheat", "org/catan/assets/img/wheatSmall.png");
             put("wood", "org/catan/assets/img/woodSmall.png");
         }};

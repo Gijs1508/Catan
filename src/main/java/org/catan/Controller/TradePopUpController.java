@@ -18,11 +18,15 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class TradePopUpController implements Initializable, Observable {
+/**
+ * Manages the popup that shows when a player receives a trade offer.
+ * Player can decline or accept this offer. Popup can be dragged around the screen.
+ * @author Kaz, Jeroen
+ */
 
+public class TradePopUpController implements Initializable, Observable {
     @FXML private AnchorPane popupPane;
     @FXML private ImageView declineBtn;
-
     @FXML private Text popupTitle;
     @FXML private Text playerName;
     @FXML private Text woodOffer;
@@ -50,17 +54,16 @@ public class TradePopUpController implements Initializable, Observable {
     public static String sender = "%PLAYER%";
     public static String[] offer = {"0", "0", "0", "0", "0"};
     public static String[] request = {"0", "0", "0", "0", "0"};
-    // Lock to make sure offer cannot be accepted multiple times
-    public static boolean offerLock = false;
+    public static boolean offerLock = false;  // Lock to make sure offer cannot be accepted multiple times
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         Sound.playPop();
 
         paneWidth = popupPane.getPrefWidth();
         paneHeight = popupPane.getPrefHeight();
 
+        // Shows the offer
         popupTitle.setText(popupTitle.getText().replaceAll("%PLAYER%", sender));
         woodOffer.setText(offer[0]);
         brickOffer.setText(offer[1]);
@@ -77,13 +80,21 @@ public class TradePopUpController implements Initializable, Observable {
         initializeDrag();
     }
 
+    /** Makes the popup draggable.
+     * @author Jeroen */
     private void initializeDrag() {
         popupPane.setOnMousePressed(mouseEvent -> {
             x = popupPane.getLayoutX() - mouseEvent.getSceneX();
             y = popupPane.getLayoutY() - mouseEvent.getSceneY();
             popupPane.setCursor(Cursor.MOVE);
         });
-        popupPane.setOnMouseReleased(mouseEvent -> popupPane.setCursor(Cursor.HAND));
+        popupPane.setOnMouseReleased(mouseEvent -> {
+            popupPane.setCursor(Cursor.HAND);
+            if(draggedOutOfScreen()) { // If the popup is dragged out of the screen, reset the position
+                popupPane.setLayoutY(0);
+                popupPane.setLayoutX(0);
+            }
+        });
         popupPane.setOnMouseDragged(mouseEvent -> {
             popupPane.setLayoutX(mouseEvent.getSceneX() + x);
             popupPane.setLayoutY(mouseEvent.getSceneY() + y);
@@ -91,23 +102,26 @@ public class TradePopUpController implements Initializable, Observable {
         popupPane.setOnMouseEntered(mouseEvent -> popupPane.setCursor(Cursor.HAND));
     }
 
-    private void checkCollision() {
-        // TODO Collisions are recognized, but I can't find a way to make use of it.
+    /** Checks whether the pane has been dragged outside of the screen.
+     * @return true: dragged out of screen / false: didn't drag out of screen
+     * @author Jeroen */
+    private boolean draggedOutOfScreen() {
+        // Collisions are recognized, but I can't find a way to make use of it.
         // X Collisions
-        if(popupPane.getLayoutX() + paneLayoutXinRoot + paneWidth  >  screenController.getRoot().getPrefWidth()) {
-            System.out.println("collides right");
+        if(popupPane.getLayoutX() + paneLayoutXinRoot + paneWidth  >  screenController.getRoot().getPrefWidth()) { // right collision
+            return true;
         }
-        else if(popupPane.getLayoutX() + paneLayoutXinRoot  <  0) {
-            System.out.println("collides left");
+        else if(popupPane.getLayoutX() + paneLayoutXinRoot  <  0) { // left collision
+            return true;
         }
         // Y Collisions
-        if(popupPane.getLayoutY() + paneLayoutYinRoot + paneHeight > screenController.getRoot().getPrefHeight()) {
-            System.out.println("collides bottom");
+        else if(popupPane.getLayoutY() + paneLayoutYinRoot + paneHeight > screenController.getRoot().getPrefHeight()) { // bottom collision
+            return true;
         }
-
-        if(popupPane.getLayoutY() + paneLayoutYinRoot < 0) {
-            System.out.println("collides top");
+        else if(popupPane.getLayoutY() + paneLayoutYinRoot < 0) { // top collision
+            return true;
         }
+        return false;
     }
 
     public static void updateTradeOffer(String name, String[] offerArray, String[] requestArray){

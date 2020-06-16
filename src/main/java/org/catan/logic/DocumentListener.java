@@ -5,9 +5,17 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.EventListener;
 import com.google.cloud.firestore.FirestoreException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
+import org.catan.App;
+import org.catan.Controller.BuildSettlementController;
+import org.catan.Controller.LobbySchermController;
 import org.catan.Model.Game;
+import org.catan.Model.Player;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class DocumentListener {
 
@@ -26,11 +34,29 @@ public class DocumentListener {
                 }
                 // In this if statement, all the controllers that should be called when a game document is updated, should be put
                 if (snapshot != null && snapshot.exists()) {
-                    System.out.println("data: " + snapshot.getData());
                     ObjectMapper mapper = new ObjectMapper();
                     Game game = mapper.convertValue(snapshot.getData(), Game.class);
-                    System.out.println("updated game code: " + game.getCode());
-                    GameDataPrinter.printGameDetails(game);
+                    System.out.println(game.getStatus());
+
+                    switch (game.getStatus()) {
+                        case "open":
+                            System.out.println("Start lobby update");
+                            FXMLLoader loader = new FXMLLoader();
+                            LobbySchermController.getInstance().update(game);
+                            BuildSettlementController.getInstance().update(game);
+                            break;
+                        case "going":
+                            if (App.getCurrentGame().getStatus().equals("open")) {
+                                try {
+                                    App.setRoot("./Views/screenView");
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                            break;
+                    }
+                    updateClientPlayer(game.getPlayers());
+                    App.setCurrentGame(game);
                 } else {
                     System.out.print("Current data: null");
                 }
@@ -38,8 +64,11 @@ public class DocumentListener {
         });
     }
 
-    public void removeListener() {
-        this.docRef = null;
+    private void updateClientPlayer(ArrayList<Player> players) {
+        for (Player player : players) {
+            if (player.getIdentifier() == App.getClientPlayer().getIdentifier()) {
+                App.setClientPlayer(player);
+            }
+        }
     }
-
 }

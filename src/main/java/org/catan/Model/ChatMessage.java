@@ -4,13 +4,18 @@ import org.catan.Controller.ChatController ;
 
 import java.util.Date;
 
+/**
+ * A single chat message which contains the sender and the content of the message.
+ *
+ * @author Jeroen
+ */
+
 public class ChatMessage {
 
     private int id;
     private String content;
     private String sender;
     private String message;
-    private Date timestamp; // DateTime is geen data type?? -Sabrina
     private String playerName;
 
     public ChatMessage() {}
@@ -28,7 +33,7 @@ public class ChatMessage {
     }
 
     private void init(){
-            this.sender = Player.getMainPlayer().getName(); // Wordt later vervangen met getPlayer ofzo
+            this.sender = Player.getMainPlayer().getName();
             this.message = sender + ": " + content;
     }
 
@@ -44,8 +49,5 @@ public class ChatMessage {
 //
 //    }
 //
-//    private Date getTimeStamp(){
-//
-//    }
 
 }

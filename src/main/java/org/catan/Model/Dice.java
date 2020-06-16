@@ -2,6 +2,7 @@ package org.catan.Model;
 
 import org.catan.App;
 import org.catan.Controller.GameSchermController;
+import org.catan.Controller.LogController;
 import org.catan.Controller.ScreenController;
 import org.catan.Helper.BuildVillages;
 
@@ -10,6 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * Used to handle a dice throw.
+ * Gets called when the player clicks on the throw dice button.
+ * Returns a hashmap containing the total of the result and an arraylist of the first and second dice number.
+ *
+ * @Author Gijs van der Weijden
+ */
 public class Dice {
 
     private ScreenController screenController = ScreenController.getInstance();
@@ -28,10 +36,12 @@ public class Dice {
         dices.add(String.valueOf(dice1));
         dices.add(String.valueOf(dice2));
         diceResult.put(total, dices);
+
+        LogController.getInstance().logRollEvent(Integer.toString(dice1), Integer.toString(dice2));
+
         // Throwing 7 properties
         if(total == 7){
-            //TODO Andere spelers ook laten inleveren
-            if(Player.getMainPlayer().getPlayerInventory().cardsTotalGetter() > 7){
+            if(App.getClientPlayer().getPlayerInventory().cardsTotalMinusKnightGetter() > 7){
                 System.out.println("Speler moet kaarten inleveren");
                 screenController.showHandInPopUp();
 //                App.HandInPopUp();
@@ -45,7 +55,8 @@ public class Dice {
     }
 
     private void setPlayerResources(int total){
-        if(BuildVillages.getBuildVillages() != null){
+        if(BuildVillages.getBuildVillages() != null) {
+            ArrayList<String> receivedResources = new ArrayList<>();
             for (Village village : BuildVillages.getBuildVillages()) {
                 for (Tile tile : village.getConnectedTiles()){
                     int amount;
@@ -56,8 +67,12 @@ public class Dice {
                     }
                     if(total == tile.getNumber()){
                         Player.getMainPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
+                        receivedResources.add(tile.getType());
                     }
                 }
+            }
+            if(!receivedResources.isEmpty()) {
+                LogController.getInstance().logReceiveEvent(receivedResources);
             }
         }
     }

@@ -9,6 +9,9 @@ public class Tile {
     private String id;
     private int number;
 
+    //TODO
+    private ArrayList<Village> connectedSettlements;
+
     public Tile() {
 
     }
@@ -29,5 +32,13 @@ public class Tile {
 
     public int getNumber() {
         return this.number;
+    }
+
+    //TODO
+    public void addToConnectedSettlements(Village village) {
+        connectedSettlements.add(village);
+    }
+    public ArrayList<Village> getConnectedSettlements() {
+        return connectedSettlements;
     }
 }

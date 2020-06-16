@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.Model.Log;
 import org.catan.Model.Logs;
@@ -16,8 +17,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class LogController implements Initializable, Observable {
+/** Logs all events that happen in the game, so players get notified of those events.
+ * @author Jeroen
+ */
 
+public class LogController implements Initializable, Observable {
     @FXML private VBox logsBox;
     @FXML private ScrollPane scrollPane;
 
@@ -30,16 +34,15 @@ public class LogController implements Initializable, Observable {
 
     public LogController() {
         logController = this;
+        player = App.getClientPlayer().getName();
     }
 
-    @Override
+    @Override // Scroll to bottom with each update
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));   // Scroll to bottom with each update
-    }
+        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D)); }
 
-    private void addToLogsBox(LogPane logPane) {
-        logsBox.getChildren().add(logPane.getLogGrid());
-    }
+    private void addToLogsBox(LogPane logPane) { // Add a new LogPane to the LogsBox
+        logsBox.getChildren().add(logPane.getLogGrid()); }
 
     private void addImagesToLogPane(LogPane logPane, ArrayList<String> imagePaths) {
         for (int i = 0; i < imagePaths.size(); i++) {
@@ -48,12 +51,12 @@ public class LogController implements Initializable, Observable {
         }
     }
 
-    private void addTxtLogToLogsPane(Log log) {
+    private void addTxtLogToLogsPane(Log log) { // Add a new log to a new LogPane for text events
         LogPane logPane = new LogPane(log);
         addToLogsBox(logPane);
     }
 
-    private void addImgLogToLogsPane(Log log) {
+    private void addImgLogToLogsPane(Log log) { // Add a new log to a new LogPane for image events
         LogPane logPane = new LogPane(log);
         addToLogsBox(logPane);
         addImagesToLogPane(logPane, log.getImgPaths());
@@ -152,7 +155,7 @@ public class LogController implements Initializable, Observable {
         storeLog(log);
     }
 
-
+    // Stores log in logs
     private void storeLog(Log log) {
         logs.addLog(log);
     }
