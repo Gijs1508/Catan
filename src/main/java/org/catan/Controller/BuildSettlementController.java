@@ -369,7 +369,7 @@ public class BuildSettlementController implements Observable {
      * @return an arrayList with nodes of villages
      */
     public Road buildRoad(Circle node) {
-        Road road = new Road(node.getLayoutX(), node.getLayoutY(), "blue");
+        Road road = new Road(node.getLayoutX(), node.getLayoutY(), getPlayerColor());
         buildRoads.add(road);
         App.getCurrentGame().turnPlayerGetter().addRoadPoint();
         return road;
