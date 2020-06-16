@@ -8,23 +8,23 @@ import java.util.ArrayList;
 
 public class TurnManager {
 
-    public static int turn = 0;
-
-    public static void nextTurn(Player lastPlayer){
+    public static void nextPlayer(){
+        Player currentPlayer = App.getCurrentGame().turnPlayerGetter();
+        Player nextPlayer;
         ArrayList<Player> allPlayers = App.getCurrentGame().getPlayers();
+        int lastIndex = allPlayers.size() - 1;
         for (Player player : allPlayers){
-            if (player == lastPlayer){
-                if (allPlayers.indexOf(lastPlayer) == (allPlayers.size() - 1)){
-                    turn = 0;
-                } else {
-                    turn += 1;
-                }
-                System.out.println(lastPlayer.getName() + " ended their turn. " + allPlayers.get(turn).getName() + "'s turn is up next.");
-                lastPlayer.setTurn(false);
-                allPlayers.get(turn).setTurn(true);
-                LogController.setPlayer();
-                LogController.getInstance().logStartTurnEvent();
+            if (currentPlayer == allPlayers.get(lastIndex)){
+                nextPlayer = allPlayers.get(0);
+            } else{
+                nextPlayer = allPlayers.get(allPlayers.indexOf(currentPlayer) + 1);
             }
+            System.out.println("Next player index: " + allPlayers.indexOf(nextPlayer));
+            currentPlayer.setTurn(false);
+            nextPlayer.setTurn(true);
+//                LogController.setPlayer();
+//                LogController.getInstance().logStartTurnEvent();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 }
