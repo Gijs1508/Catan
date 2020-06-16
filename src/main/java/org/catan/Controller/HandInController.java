@@ -12,6 +12,10 @@ import org.catan.Model.Player;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/** Forces the player to hand in half of their resource cards.
+ * The player can pick those cards.
+ * @author Kaz */
+
 public class HandInController implements Initializable {
 
     @FXML private Text requiredAmount;
@@ -44,8 +48,6 @@ public class HandInController implements Initializable {
             getInventory().changeCards("wool", -textToInt(giveWool));
             getInventory().changeCards("wheat", -textToInt(giveWheat));
             screenController.hideHandInPopUp();
-//            Stage stage = (Stage) acceptBtn.getScene().getWindow();
-//            stage.close();
         }
     }
 

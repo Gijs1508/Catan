@@ -2,11 +2,13 @@ package org.catan.Controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
+import org.catan.App;
 import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 import java.util.*;
 
@@ -14,12 +16,6 @@ import java.util.*;
  */
 public class BuildSettlementController implements Observable {
 
-
-    // todo add Player properties in all the methods
-//    private Speler player;
-
-
-    private String color = "blue";
     private ArrayList<Circle> vertexNodeList;
     private ArrayList<Circle> upgradeNodeList;
     private ArrayList<Circle> roadSpotNodeList;
@@ -52,7 +48,7 @@ public class BuildSettlementController implements Observable {
     private ArrayList<Road> playerRoads() {
         ArrayList<Road> playerRoads = new ArrayList<>();
         for (Road buildRoad : buildRoads) {
-            if (buildRoad.getColor().equals(this.color)) {
+            if (buildRoad.getColor().equals(getPlayerColor())) {
                 playerRoads.add(buildRoad);
             }
         }
@@ -63,7 +59,7 @@ public class BuildSettlementController implements Observable {
     private ArrayList<Village> playerVillages() {
         ArrayList<Village> playerVillages = new ArrayList<>();
         for (Village buildVillage : buildVillages) {
-            if (buildVillage.getColor().equals(this.color)) {
+            if (buildVillage.getColor().equals(getPlayerColor())) {
                 playerVillages.add(buildVillage);
             }
         }
@@ -269,10 +265,12 @@ public class BuildSettlementController implements Observable {
             builtAtHarbor(node);
         }
 
-        Village village = new Village(node.getLayoutX(), node.getLayoutY(), "blue", poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
+        Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
         bv.setBuildVillages(buildVillages);
-        Player.getActivePlayer().addVillagePoint();
+        App.getCurrentGame().turnPlayerGetter().addVillagePoint();
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+
         return village;
     }
 
@@ -294,7 +292,7 @@ public class BuildSettlementController implements Observable {
                 Player.getActivePlayer().updateResourceCosts(harbor);
             }
         }
-        return;
+//        return;
     }
 
 
@@ -314,7 +312,8 @@ public class BuildSettlementController implements Observable {
                     break;
                 }
             }
-            Player.getActivePlayer().addCityPoint();
+            App.getCurrentGame().turnPlayerGetter().addCityPoint();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("You don't have enough resources to upgrade an village!");
@@ -358,7 +357,7 @@ public class BuildSettlementController implements Observable {
         }
 
         for (Village village : buildVillages) {
-            if (village.getColor().equals(color))
+            if (village.getColor().equals(getPlayerColor()))
                 roadPlaces.addAll(math.circlesInRadius(village.getX(), village.getY(), roadSpotNodeList, "other"));
         }
 
@@ -370,9 +369,9 @@ public class BuildSettlementController implements Observable {
      * @return an arrayList with nodes of villages
      */
     public Road buildRoad(Circle node) {
-        Road road = new Road(node.getLayoutX(), node.getLayoutY(), "blue");
+        Road road = new Road(node.getLayoutX(), node.getLayoutY(), getPlayerColor());
         buildRoads.add(road);
-        Player.getActivePlayer().addRoadPoint();
+        App.getCurrentGame().turnPlayerGetter().addRoadPoint();
         return road;
     }
 
@@ -401,14 +400,8 @@ public class BuildSettlementController implements Observable {
 //        return true;
 //    }
 
-    private void print(ArrayList<Village> village) {
-        for (Village v : village) {
-            System.out.println("This is a village " + v);
-        }
-    }
-
-    public ArrayList<Village> getBuildVillages() {
-        return buildVillages;
+    private String getPlayerColor() {
+        return App.getCurrentGame().turnPlayerGetter().getColor();
     }
 
     @Override
@@ -417,6 +410,7 @@ public class BuildSettlementController implements Observable {
         updateSettlements(game.getBoard().getSettlements());
     }
 
+    // Updates the roads on the display and in the array
     private void updateRoads(ArrayList<Road> roads) {
         if (!roads.equals(buildRoads)) {
             roads.addAll(buildRoads);
@@ -426,6 +420,7 @@ public class BuildSettlementController implements Observable {
         }
     }
 
+    // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
         if (!villages.equals(buildVillages)) {
             villages.addAll(buildVillages);
@@ -446,6 +441,7 @@ public class BuildSettlementController implements Observable {
         }
     }
 
+    // returns the instance of this class
     public static BuildSettlementController getInstance() {
         return buildSettlementController;
     }

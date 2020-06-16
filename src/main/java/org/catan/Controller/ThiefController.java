@@ -3,6 +3,8 @@ package org.catan.Controller;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+
+import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.Model.Tile;
 import org.catan.interfaces.Observable;
@@ -14,6 +16,9 @@ public class ThiefController implements Observable {
     }
 
     public static void checkThiefPosition(int tileId){
+
+        App.getClientPlayer().isTurn();
+
 //        if (dobelsteen == 7){
 //            Gameboard.highlightTiles(int tileId);
 //        } else {

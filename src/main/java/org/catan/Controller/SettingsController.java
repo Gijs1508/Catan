@@ -4,11 +4,15 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.catan.App;
 import org.catan.Model.Sound;
+
+/**
+ * Manages the settings window that allows the player to change their sound settings.
+ *
+ * @author Jeroen
+ */
 
 public class SettingsController {
     @FXML private Pane background;
@@ -29,6 +33,7 @@ public class SettingsController {
         settingsController = this;
     }
 
+    // Player mutes/unmutes sound effects
     public void soundsBtnClicked() {
         if (soundsOn) {
             Sound.playClick();
@@ -44,26 +49,29 @@ public class SettingsController {
         }
     }
 
+    // Player mutes/unmutes music
     public void musicBtnClicked() {
         if (musicOn) {
-            Sound.muteMusic();
+            Sound.muteGameMusic();
             Sound.playClick();
             musicImg.setImage(musicOffImg);
             musicOn = false;
         }
         else {
-            Sound.unmuteMusic();
+            Sound.unmuteGameMusic();
             Sound.playClick();
             musicImg.setImage(musicOnImg);
             musicOn = true;
         }
     }
 
+    // Player leaves settings
     public void applyBtnClicked() {
         Sound.playClick();
         ScreenController.getInstance().hideSettings();
     }
 
+    // When settings gets opened, a dark background fades in
     public void startAnimation() {
         background.setOpacity(0);
         AnimationTimer animation = new AnimationTimer() {

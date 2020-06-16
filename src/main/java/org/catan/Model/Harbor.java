@@ -6,10 +6,11 @@ import org.catan.App;
 import java.util.HashMap;
 
 /**
- * Harbor model that contains all required information about a single harbor.
+ * Harbor model that contains the information about a single harbor.
+ * Harbor of type resource: The specific resource will cost 2:1.
+ * Harbor of type any: All resources that cost 4:1 become 3:1.
  *
  * @author Jeroen
- * @version 0.5
  */
 
 public class Harbor {
