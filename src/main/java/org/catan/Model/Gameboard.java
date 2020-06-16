@@ -67,4 +67,8 @@ public class Gameboard {
     public void setThief(ImageView thief) {
         this.thief = thief;
     }
+
+    public int getThief(){
+        return Thief.getTile();
+    }
 }
