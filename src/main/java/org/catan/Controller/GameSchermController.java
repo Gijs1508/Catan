@@ -257,7 +257,7 @@ public class GameSchermController implements Initializable, Observable {
         thief.setLayoutY(circle.getLayoutY() - 33);
         unHighlightTiles();
 
-        int tileID = ThiefController.convertIDtoInt(circle.getId());
+        int tileID = ThiefController.convertStringIDtoIntID(circle.getId());
 
         Thief.setTile(tileID);
         // TODO would be cool to find the tile num for the ID (for logging)
@@ -265,18 +265,18 @@ public class GameSchermController implements Initializable, Observable {
 
         // TODO because all players are red, it won't find the owner of the blue settlement
         ThiefController.checkStealableOppenets(tileID);
-        ThiefController.test(tileID);
+        ThiefController.stealOppenets(tileID);
 //        App.getCurrentGame().getBoard().setThief(App.getClientPlayer(), Thief.getTile());
     }
 
     public void highlightTiles(int tileId) {
-        Integer tileId2Interger = tileId;
+        Integer tileId2Interger = tileId;  //Position of Thief. int > Interger
 
         for (Circle thiefTile : thiefTileNodeList) {
-            int intId = ThiefController.convertIDtoInt(thiefTile.getId());
-            Integer idInterger = intId;
+            int intId = ThiefController.convertStringIDtoIntID(thiefTile.getId());
+            Integer idInterger = intId;  //Converting all int ID's to Interger
 
-            if (!(idInterger.equals(tileId2Interger))) {
+            if (!(idInterger.equals(tileId2Interger))) {  //Using Interger because .equals and ! operator doesn't work with int
                 thiefTile.setVisible(true);
             }
         }

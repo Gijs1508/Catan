@@ -11,25 +11,27 @@ import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
 public class ThiefController implements Observable {
+    private static ThiefController thiefController;
 
-//    private static ThiefController thiefController;
-//
-//    public ThiefController(){
-//        thiefController = this;
-//    }
-//
-//    public static ThiefController getInstance(){
-//        if(thiefController == null){
-//            thiefController = new ThiefController();
-//        }
-//        return thiefController;
-//    }
+    public ThiefController(){
+        thiefController = this;
+    }
+
+    public static ThiefController getInstance(){
+        if(thiefController == null){
+            thiefController = new ThiefController();
+        }
+        return thiefController;
+    }
 
     public void checkThiefPosition(){
         App.getClientPlayer().isTurn();
     }
 
-    public static int convertIDtoInt(String circleID){
+    /** Converts String circleID ("Tilenr") to an int tileID (nr)
+     * @param circleID the id of the tile the thief was moved to, but in String format
+     * @return int of cicleID */
+    public static int convertStringIDtoIntID(String circleID){
         circleID = circleID.replaceAll("[^\\d.]", ""); //Cleaning tile string to only a number string
         int tileID;
         try {
@@ -53,7 +55,7 @@ public class ThiefController implements Observable {
         }
     }
 
-    public static void test(int tileID){
+    public static void stealOppenets(int tileID){
         ArrayList<Player> opponents = ThiefController.findOpponentsOnTile(tileID);
 
         Player victim = opponents.get(0); // There is one opponent to steal from
