@@ -309,9 +309,8 @@ public class GameSchermController implements Initializable, Observable {
 
         for (Circle thiefTile : thiefTileNodeList) {
             int intId = ThiefController.convertIDtoInt(thiefTile.getId());
-            Integer idInterger = intId;
 
-            if (!(idInterger.equals(tileId2Interger))) {
+            if (!(intId.equals(tileId2Interger))) {
                 thiefTile.setVisible(true);
             }
         }
@@ -770,6 +769,14 @@ public class GameSchermController implements Initializable, Observable {
         for (Village city : cities) {
             placeCity(city);
         }
+    }
+
+    @FXML
+    public void updateThief(int tileID){
+        Circle tile = "ThiefTile" + tileID;
+        thief.setLayoutX(.getLayoutX() - 26);
+        thief.setLayoutY(circle.getLayoutY() - 33);
+        unHighlightTiles();
     }
 
     public ArrayList<Circle> getAllHarborVertices() {
