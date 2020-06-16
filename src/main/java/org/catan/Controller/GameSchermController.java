@@ -438,11 +438,11 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     public void endTurn() {
-        if(Player.mainPlayerActive){
+        if(App.getClientPlayer().isTurn()){
             Sound.playEndTurnJingle();
 
             logController.logEndTurnEvent();
-            TurnManager.nextTurn(Player.getActivePlayer());
+            TurnManager.nextTurn(App.getClientPlayer());
             //TODO
         }
         else {
