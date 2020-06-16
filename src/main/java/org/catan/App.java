@@ -99,8 +99,8 @@ public class App extends Application {
         TradeController.getInstance();
     }
 
-    public static void setStageSize(int width, int height) {
-        appStage.setWidth(width);
+    public static void setStageHeight(int height) {
+//        appStage.setHeight(height);
         appStage.setHeight(height);
     }
 

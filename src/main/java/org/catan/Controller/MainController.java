@@ -1,12 +1,10 @@
 package org.catan.Controller;
 
-import com.sun.tools.javac.Main;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.catan.App;
@@ -65,7 +63,7 @@ public class MainController implements Observable, Initializable {
             App.setClientPlayer(new Player(player_name_input.getText()));
             App.getClientPlayer().setHost(true);
             App.setRoot("./Views/lobbyView");
-            App.setStageSize(1200, 835); // for some reason I had to add 35 to make it fit
+            App.setStageHeight(837);
         } else {
             createAlert();
         }
@@ -108,7 +106,7 @@ public class MainController implements Observable, Initializable {
                     bgShadow.setOpacity(bgShadow.getOpacity() + 0.007); }
                 else {
                     Sound.playMenuMusic();
-                    Sound.introMusicIsPlaying(true);
+                    Sound.setIntroMusicIsPlaying(true);
 
                     if(title.getLayoutY() <= defaultTitleY) {
                         title.setLayoutY(title.getLayoutY() + 1.4); }

@@ -140,8 +140,7 @@ public class Sound {
         intromusic.pause();
     }
 
-
-    public static void introMusicIsPlaying(boolean state) {
+    public static void setIntroMusicIsPlaying(boolean state) {
         introMusicIsPlaying = state;
     }
     public static boolean introMusicIsPlaying() {

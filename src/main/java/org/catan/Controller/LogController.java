@@ -33,13 +33,13 @@ public class LogController implements Initializable, Observable {
 
 
     public LogController() {
-        logController = this;
         player = App.getClientPlayer().getName();
     }
 
     @Override // Scroll to bottom with each update
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D)); }
+        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));
+        logController = this;}
 
     private void addToLogsBox(LogPane logPane) { // Add a new LogPane to the LogsBox
         logsBox.getChildren().add(logPane.getLogGrid()); }
