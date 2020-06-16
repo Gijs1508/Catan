@@ -17,10 +17,6 @@ public class ThiefController implements Observable {
         App.getClientPlayer().isTurn();
     }
 
-    @Override
-    public void update(Game game) {
-    }
-
     public static int convertIDtoInt(String circleID){
         circleID = circleID.replaceAll("[^\\d.]", ""); //Cleaning tile string to only a number string
         int tileID;
@@ -43,4 +39,8 @@ public class ThiefController implements Observable {
         }
     }
 
+    @Override
+    public void update(Game game) {
+        // Update function
+    }
 }
