@@ -269,6 +269,7 @@ public class BuildSettlementController implements Observable {
         buildVillages.add(village);
         bv.setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
+        App.getCurrentGame().getBoard().addSettlement(village);
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 
         return village;
@@ -313,6 +314,7 @@ public class BuildSettlementController implements Observable {
                 }
             }
             App.getCurrentGame().turnPlayerGetter().addCityPoint();
+            App.getCurrentGame().getBoard().setSettlements(buildVillages);
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -372,6 +374,8 @@ public class BuildSettlementController implements Observable {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), getPlayerColor());
         buildRoads.add(road);
         App.getCurrentGame().turnPlayerGetter().addRoadPoint();
+        App.getCurrentGame().getBoard().addRoad(road);
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         return road;
     }
 
@@ -406,6 +410,7 @@ public class BuildSettlementController implements Observable {
 
     @Override
     public void update(Game game) {
+        System.out.println("Wejo update neef");
         updateRoads(game.getBoard().getRoads());
         updateSettlements(game.getBoard().getSettlements());
     }

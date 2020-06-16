@@ -43,9 +43,11 @@ public class DocumentListener {
                             System.out.println("Start lobby update");
                             FXMLLoader loader = new FXMLLoader();
                             LobbySchermController.getInstance().update(game);
-                            BuildSettlementController.getInstance().update(game);
                             break;
                         case "going":
+                            if (App.getCurrentGame().getStatus().equals("going")) {
+                                BuildSettlementController.getInstance().update(game);
+                            }
                             if (App.getCurrentGame().getStatus().equals("open")) {
                                 try {
                                     App.setRoot("./Views/screenView");
