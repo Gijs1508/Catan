@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import org.catan.App;
 import org.catan.Controller.BuildSettlementController;
 import org.catan.Controller.ChatController;
+import org.catan.Controller.GameSchermController;
 import org.catan.Controller.LobbySchermController;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
@@ -75,6 +76,9 @@ public class DocumentListener {
                 BuildSettlementController.getInstance().update(game);
                 break;
             case "going":
+                if (App.getCurrentGame().getStatus().equals("going")){
+                    GameSchermController.getInstance().update(game);
+                }
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
                     App.addListener(chatListener);
