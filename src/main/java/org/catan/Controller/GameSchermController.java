@@ -21,6 +21,8 @@ import org.catan.App;
 import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -141,6 +143,7 @@ public class GameSchermController implements Initializable, Observable {
 
     //    private Spelbord spelbord;
 //    private Spel spel;
+
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
@@ -265,7 +268,8 @@ public class GameSchermController implements Initializable, Observable {
         // TODO because all players are red, it won't find the owner of the blue settlement
         ThiefController.checkStealableOppenets(tileID);
         ThiefController.stealOppenets(tileID);
-//        App.getCurrentGame().getBoard().setThief(App.getClientPlayer(), Thief.getTile());
+        App.getCurrentGame().getBoard().setThief(thief);
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public void highlightTiles(int tileId) {
@@ -754,8 +758,6 @@ public class GameSchermController implements Initializable, Observable {
     public ArrayList<Harbor> getHarbors() {
         return harbors;
     }
-
-
 
 //    private Speler getSpeler() {
 //        return Speler; // Dit moet worden gewijzigd
