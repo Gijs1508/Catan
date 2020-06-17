@@ -191,6 +191,14 @@ public class GameSchermController implements Initializable, Observable {
 //        highlightTiles(10);
     }
 
+    private void initializeStartPhase() {
+        startPhaseButtonsDisabled();
+    }
+
+    private void endStartPhase() {
+
+    }
+
     @FXML
     private void startPhase() {
         villageStartPhase();
@@ -198,6 +206,18 @@ public class GameSchermController implements Initializable, Observable {
 
     public void setStartPhase(boolean phase) {
         this.startPhase = phase;
+    }
+
+    private void startPhaseButtonsDisabled() {
+        roadButton.setVisible(false);
+        settlementButton.setVisible(false);
+        upgradeButton.setVisible(false);
+    }
+
+    private void startPhaseButtonsEnabled() {
+        roadButton.setVisible(true);
+        settlementButton.setVisible(true);
+        upgradeButton.setVisible(true);
     }
 
     /** Starts the ship animation that is always running.
