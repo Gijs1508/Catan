@@ -25,6 +25,10 @@ public class TurnManager {
 //                LogController.setPlayer();
 //                LogController.getInstance().logStartTurnEvent();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+
+//            if(App.getCurrentGame().turnPlayerGetter().equals(App.getClientPlayer())) { // TODO play start turn jingle when it's client player's turn
+//                Sound.playStartTurnJingle();
+//            }
         }
     }
 }
