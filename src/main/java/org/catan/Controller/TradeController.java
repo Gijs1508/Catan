@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
+import org.catan.App;
 import org.catan.Model.Bank;
 import org.catan.Model.Game;
 import org.catan.Model.Inventory;
@@ -99,7 +100,7 @@ public class TradeController implements Observable {
      * @author Kaz, Jeroen */
     @FXML public void buyDevelopmentCard() {
         // If player has enough resources
-        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && Player.mainPlayerActive){
+        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive()){
             // If player has enough resources
             String developmentCard = Bank.getBank().takeDevelopmentCard();
 
@@ -120,19 +121,19 @@ public class TradeController implements Observable {
                 ScreenController.getInstance().showDevCardPopup();
                 DevCardPopUpController.getInstance().setPointImage();
 
-                Player.getActivePlayer().addVictoryPoint();
+                App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
             }
             // Bank gave a knight card
             else {
                 ScreenController.getInstance().showDevCardPopup();
                 DevCardPopUpController.getInstance().setKnightImage();
-                Player.getActivePlayer().getPlayerInventory().changeCards("knight", 1);
+                App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", 1);
             }
             DevCardPopUpController.getInstance().playAnimation();
             LogController.getInstance().logDevelopmentCardEvent();
         }
         // Player doesn't have enough resources
-        else if (Player.mainPlayerActive){
+        else if (isClientPlayerActive()){
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to buy a development card.");
             return;
@@ -146,7 +147,7 @@ public class TradeController implements Observable {
 
     @FXML
     public void sendTrade() throws IOException {
-        if(tradeType == "bank" && Player.mainPlayerActive){
+        if(tradeType == "bank" && isClientPlayerActive()){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
             int netBrick = netResource(giveBrickCount, takeBrickCount);
@@ -158,8 +159,8 @@ public class TradeController implements Observable {
             int netWheat = netResource(giveWheatCount, takeWheatCount);
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
-        } else if(tradeType == "player" && Player.mainPlayerActive){
-            String playerName = Player.getMainPlayer().getName();
+        } else if(tradeType == "player" && isClientPlayerActive()){
+            String playerName = App.getClientPlayer().getName();
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
             TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
@@ -279,7 +280,7 @@ public class TradeController implements Observable {
     }
 
     private Inventory getInventory(){
-        return Player.getMainPlayer().getPlayerInventory();
+        return App.getClientPlayer().getPlayerInventory();
     }
 
     private int[] getInventoryCards(){
@@ -295,7 +296,7 @@ public class TradeController implements Observable {
             }
         } else { // tradeType is bank
             String resourceType = indexToResource.get(inventoryIndex);
-            int cost = Player.getActivePlayer().getCostOf(resourceType); // Gets the player's cost for the resource type
+            int cost = App.getClientPlayer().getCostOf(resourceType); // Gets the player's cost for the resource type
 
             if(inventoryCard >= cost && tradeGiveLock == false){
                 for(int i = 0; i < cost; i++){
@@ -319,6 +320,9 @@ public class TradeController implements Observable {
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
     }
 
+    private boolean isClientPlayerActive(){
+        return App.getClientPlayer().isTurn();
+    }
 
     @Override
     public void update(Game game) {

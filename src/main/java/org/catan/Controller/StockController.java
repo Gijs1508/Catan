@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
@@ -56,7 +57,7 @@ public class StockController implements Initializable, Observable {
     }
 
     public void testResources(){
-        Inventory inventory = Player.getMainPlayer().getPlayerInventory();
+        Inventory inventory = App.getClientPlayer().getPlayerInventory();
         inventory.changeCards("wood", 1);
         inventory.changeCards("brick", 2);
         inventory.changeCards("ore", 3);
@@ -74,7 +75,7 @@ public class StockController implements Initializable, Observable {
         oldResources[4] = Integer.parseInt(wheatCount.getText());
         oldResources[5] = Integer.parseInt(knightCount.getText());
 
-        int[] cards = Player.getMainPlayer().getPlayerInventory().getCards();
+        int[] cards = App.getClientPlayer().getPlayerInventory().getCards();
         woodCount.setText(Integer.toString(cards[0]));
         brickCount.setText(Integer.toString(cards[1]));
         oreCount.setText(Integer.toString(cards[2]));

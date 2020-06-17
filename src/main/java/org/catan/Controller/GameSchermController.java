@@ -441,7 +441,7 @@ public class GameSchermController implements Initializable, Observable {
         if(App.getClientPlayer().isTurn()){
             Sound.playEndTurnJingle();
 
-//            logController.logEndTurnEvent();
+//            logController.logEndTurnEvent(); //TODO
             TurnManager.nextPlayer();
         }
         else {
@@ -753,9 +753,6 @@ public class GameSchermController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
-//        if(App.getCurrentGame().turnPlayerGetter() != game.turnPlayerGetter()){
-//            System.out.println("db activeplayer requires update");
-//        }
     }
 
     public void updateRoads(ArrayList<Road> roads) {

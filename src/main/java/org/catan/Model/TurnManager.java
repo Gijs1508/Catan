@@ -19,7 +19,6 @@ public class TurnManager {
             } else{
                 nextPlayer = allPlayers.get(allPlayers.indexOf(currentPlayer) + 1);
             }
-            System.out.println("Next player index: " + allPlayers.indexOf(nextPlayer));
             currentPlayer.setTurn(false);
             nextPlayer.setTurn(true);
 //                LogController.setPlayer();
