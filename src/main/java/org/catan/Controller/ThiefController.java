@@ -12,7 +12,6 @@ import org.catan.interfaces.Observable;
 
 public class ThiefController implements Observable {
     private static ThiefController thiefController;
-    private Thief thief = new Thief();
 
     public ThiefController(){
         thiefController = this;
@@ -96,8 +95,8 @@ public class ThiefController implements Observable {
 
     @Override
     public void update(Game game) {
-        if (!(App.getCurrentGame().getBoard().getThief() == thief.getTile())){
-            GameSchermController.getInstance().updateThief(thief.getTile());
+        if (!(App.getCurrentGame().getBoard().getThief().getTile() == game.getBoard().getThief().getTile())){
+            GameSchermController.getInstance().updateThief(game.getBoard().getThief().getTile());
         }
     }
 }

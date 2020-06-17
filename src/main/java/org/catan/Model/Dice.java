@@ -20,8 +20,8 @@ import java.util.Random;
  * @Author Gijs van der Weijden
  */
 public class Dice {
+
     private ScreenController screenController = ScreenController.getInstance();
-    private Thief thief = new Thief();
 
     /*
     This method returns a arraylist containing two random numbers
@@ -48,7 +48,7 @@ public class Dice {
 //                App.HandInPopUp();
             }
             //TODO Rover verzetten
-            GameSchermController.getInstance().highlightTiles(thief.getTile());
+            GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
         }
 
         setPlayerResources(total);

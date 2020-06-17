@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
@@ -24,7 +25,6 @@ import java.util.ResourceBundle;
 public class StockController implements Initializable, Observable {
     //Make controller available to other classes
     private static StockController stockController;
-    private Thief thief;
 
     @FXML private Text wheatCount;
     @FXML private Text woodCount;
@@ -54,7 +54,6 @@ public class StockController implements Initializable, Observable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         animationResourcesPane.setVisible(true);
         initializeAnimationCardMap();
-        this.thief = new Thief();
     }
 
     public void testResources(){
@@ -166,7 +165,7 @@ public class StockController implements Initializable, Observable {
         Player.getActivePlayer().getPlayerInventory().changeCards("knight", -1);
         removeCardAnimation(animationKnightCard);
 
-        GameSchermController.getInstance().highlightTiles(thief.getTile());
+        GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
 
         logController.logKnightEvent();
         Sound.playSword();

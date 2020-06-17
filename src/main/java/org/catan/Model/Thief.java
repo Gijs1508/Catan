@@ -7,7 +7,7 @@ public class Thief {
     }
 
     public void setTile(int tileNumber) {
-        this.tile = tileNumber;
+        tile = tileNumber;
     }
 
     public int getTile() {

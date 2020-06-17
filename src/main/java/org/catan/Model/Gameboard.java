@@ -69,7 +69,7 @@ public class Gameboard {
         this.thief = thief;
     }
 
-    public int getThief(){
-        return thief.getTile();
+    public Thief getThief(){
+        return this.thief;
     }
 }
