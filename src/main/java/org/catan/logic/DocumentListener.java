@@ -11,6 +11,7 @@ import org.catan.App;
 import org.catan.Controller.BuildSettlementController;
 import org.catan.Controller.ChatController;
 import org.catan.Controller.LobbySchermController;
+import org.catan.Controller.LogController;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
@@ -75,6 +76,12 @@ public class DocumentListener {
                 BuildSettlementController.getInstance().update(game);
                 break;
             case "going":
+                System.out.println("going game");
+                System.out.println(App.getCurrentGame().getStatus());
+                if (App.getCurrentGame().getStatus().equals("going")) {
+                    System.out.println("updating logs");
+                    LogController.getInstance().update(game);
+                }
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
                     App.addListener(chatListener);
