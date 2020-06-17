@@ -70,6 +70,8 @@ public class DocumentListener {
         System.out.println(snapshot.getData());
         Game game = mapper.convertValue(snapshot.getData(), Game.class);
         System.out.println("new game status: " + game.getStatus());
+        System.out.println("Game: " + game.getStatus());
+        System.out.println("App: " + App.getCurrentGame().getStatus());
         switch (game.getStatus()) {
             case "open":
                 LobbySchermController.getInstance().update(game);
