@@ -65,9 +65,11 @@ public class DocumentListener {
 
 
     private void updateGameDocument(DocumentSnapshot snapshot) {
+        System.out.println("test updategamedoc");
         ObjectMapper mapper = new ObjectMapper();
         Game game = mapper.convertValue(snapshot.getData(), Game.class);
-
+        System.out.println("Game: " + game.getStatus());
+        System.out.println("App: " + App.getCurrentGame().getStatus());
         switch (game.getStatus()) {
             case "open":
                 System.out.println("Start lobby update");
