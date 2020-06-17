@@ -5,6 +5,9 @@ import org.catan.Model.TurnManager;
 
 public class StartPhaseController {
     private static int startPhaseCount;
+    //TODO Adding to the database if possible
+    // So that a log can be displayed when startPhase has ended
+    private static int startPhaseCountGlobal;
     private static boolean startPhaseActive = true;
 
     public StartPhaseController() {
@@ -23,8 +26,8 @@ public class StartPhaseController {
         if (startPhaseCount == 2) {
             startPhaseActive = false;
             GameSchermController.getInstance().startPhaseButtonsVisible();
-        } else if (startPhaseCount == (App.getCurrentGame().getPlayers().size() * 2)){
-            //            LogController.getInstance().logStartPhase();
+        } else if (startPhaseCountGlobal == (App.getCurrentGame().getPlayers().size() * 2)){
+            LogController.getInstance().logStartPhaseEnded();
         }
     }
 
