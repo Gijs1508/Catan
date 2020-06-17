@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.catan.App;
 import org.catan.Model.Game;
+import org.catan.Model.Player;
 import org.catan.View.popups.KnightDetails;
 import org.catan.interfaces.Observable;
 
@@ -55,6 +56,7 @@ public class ScreenController implements Initializable, Observable {
      * @author Jeroen */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        root.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         try { // The order in which the views are loaded is important if you need their controllers to communicate.
             logView = (AnchorPane) App.loadFXML("Views/logsView");
             boardView = (AnchorPane) App.loadFXML("Views/boardView");
@@ -96,6 +98,10 @@ public class ScreenController implements Initializable, Observable {
         initializePopup(handInPopup);
         initializePopup(devCardPopup);
         initializePopup(alertPopup);
+
+        for(Player player : Player.getAllPlayers()){
+
+        }
     }
 
     public void showGameEnd() {

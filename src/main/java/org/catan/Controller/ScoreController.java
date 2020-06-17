@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import org.catan.App;
 import org.catan.Model.Player;
 
 import java.net.URL;
@@ -61,6 +62,31 @@ public class ScoreController implements Initializable, Observable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeColorToScore();
         scoreController = this;
+
+        for(Player player : App.getCurrentGame().getPlayers()){
+            System.out.println(player.getName());
+        }
+
+        switch(App.getCurrentGame().getPlayers().size()){
+            case 1:
+                setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
+                break;
+            case 2:
+                setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
+                setPlayer2name(App.getCurrentGame().getPlayers().get(1).getName());
+                break;
+            case 3:
+                setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
+                setPlayer2name(App.getCurrentGame().getPlayers().get(1).getName());
+                setPlayer3name(App.getCurrentGame().getPlayers().get(2).getName());
+                break;
+            case 4:
+                setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
+                setPlayer2name(App.getCurrentGame().getPlayers().get(1).getName());
+                setPlayer3name(App.getCurrentGame().getPlayers().get(2).getName());
+                setPlayer4name(App.getCurrentGame().getPlayers().get(3).getName());
+                break;
+        }
     }
 
     // Assigns labels to player colors
@@ -131,6 +157,22 @@ public class ScoreController implements Initializable, Observable {
 
     public static ScoreController getInstance() {
         return scoreController;
+    }
+
+    public void setPlayer1name(String player1name) {
+        this.player1name.setText(player1name);
+    }
+
+    public void setPlayer2name(String player2name) {
+        this.player2name.setText(player2name);
+    }
+
+    public void setPlayer3name(String player3name) {
+        this.player3name.setText(player3name);
+    }
+
+    public void setPlayer4name(String player4name) {
+        this.player4name.setText(player4name);
     }
 
     @Override
