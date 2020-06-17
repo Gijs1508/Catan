@@ -54,6 +54,7 @@ public class ScreenController implements Initializable, Observable {
      * @author Jeroen */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        root.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         try { // The order in which the views are loaded is important if you need their controllers to communicate.
             logView = (AnchorPane) App.loadFXML("Views/logsView");
             boardView = (AnchorPane) App.loadFXML("Views/boardView");

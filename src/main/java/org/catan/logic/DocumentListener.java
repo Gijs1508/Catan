@@ -6,6 +6,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.EventListener;
 import com.google.cloud.firestore.FirestoreException;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import org.catan.App;
 import org.catan.Controller.*;
@@ -62,13 +63,15 @@ public class DocumentListener {
 
 
     private void updateGameDocument(DocumentSnapshot snapshot) {
+        System.out.println("Listeners: " + App.getListeners());
+        System.out.println("current game status: " + App.getCurrentGame().getStatus());
         ObjectMapper mapper = new ObjectMapper();
+        System.out.println("Created objectmapper");
+        System.out.println(snapshot.getData());
         Game game = mapper.convertValue(snapshot.getData(), Game.class);
-
+        System.out.println("new game status: " + game.getStatus());
         switch (game.getStatus()) {
             case "open":
-                System.out.println("Start lobby update");
-                FXMLLoader loader = new FXMLLoader();
                 LobbySchermController.getInstance().update(game);
                 BuildSettlementController.getInstance().update(game);
                 break;

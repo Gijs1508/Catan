@@ -83,19 +83,6 @@ public class App extends Application {
         return viewName;
     }
 
-    private void setupControllerInstances() {
-        LobbySchermController.getInstance();
-        AlertPopUpController.getInstance();
-        BuildSettlementController.getInstance();
-        DevCardPopUpController.getInstance();
-        GameSchermController.getInstance();
-        LogController.getInstance();
-        ScoreController.getInstance();
-        ScreenController.getInstance();
-        SettingsController.getInstance();
-        StockController.getInstance();
-        TradeController.getInstance();
-    }
 
     public static void setStageHeight(int height) {
 //        appStage.setHeight(height);
@@ -121,6 +108,10 @@ public class App extends Application {
 
     public static void addListener(DocumentListener listener) {
         listeners.add(listener);
+    }
+
+    public static ArrayList<DocumentListener> getListeners() {
+        return listeners;
     }
 
     public static void resetListeners() {
