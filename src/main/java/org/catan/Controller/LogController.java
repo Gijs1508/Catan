@@ -155,6 +155,12 @@ public class LogController implements Initializable, Observable {
         storeLog(log);
     }
 
+    public void logStartPhaseEnded() {
+        Log log = new Log("startPhase");
+        addTxtLogToLogsPane(log);
+        storeLog(log);
+    }
+
     // Stores log in logs
     private void storeLog(Log log) {
         logs.addLog(log);
