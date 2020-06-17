@@ -23,6 +23,9 @@ public class Log {
     private String opponentName;
     private ArrayList<String> imgPaths = new ArrayList<>();
 
+    public Log() {
+
+    }
 
     /** Creates a log for one player */
     public Log(String eventType, String playerName){

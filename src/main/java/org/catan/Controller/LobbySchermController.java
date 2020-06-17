@@ -74,7 +74,7 @@ public class LobbySchermController implements Initializable, Observable {
             App.setCurrentGame(game);
             DocumentListener gameListener = new DocumentListener("games", String.valueOf(game.getCode()));
             setupGamePlayers(game.getPlayers());
-            App.addListener(gameListener);
+            App.setGameListener(gameListener);
         }
 
         initializePopup(alertPopup);
@@ -90,6 +90,14 @@ public class LobbySchermController implements Initializable, Observable {
         game.setStatus("going");
         dbConnector.updateGame(game);
         App.setRoot("./Views/screenView");
+    }
+
+    public void updateScreenRoot() {
+        try {
+            App.setRoot("./Views/screenView");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setupGamePlayers(ArrayList<Player> players) {
