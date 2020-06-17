@@ -15,7 +15,7 @@ public class GameDataPrinter {
         }
         System.out.println("game logs: ");
         for (Log log : game.getLogs()) {
-            System.out.println(log.getImgPaths());
+            System.out.println(log.getImages().toString());
             System.out.println(log.getEventString());
         }
         System.out.println("game board villages: ");

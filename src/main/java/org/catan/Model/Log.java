@@ -1,10 +1,6 @@
 package org.catan.Model;
 
-import javafx.scene.image.Image;
-import org.catan.App;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Log class that contains information about a log entry.
@@ -21,7 +17,7 @@ public class Log {
     private String eventString;
     private String playerName;
     private String opponentName;
-    private ArrayList<String> imgPaths = new ArrayList<>();
+    private ArrayList<Image> images = new ArrayList<>();
 
     public Log() {
 
@@ -71,27 +67,27 @@ public class Log {
 
     /** Finds the image path for the event and adds it to the log's imgPaths. */
     public void addImgPath(String img) {
-        String imgPath = logs.getImgPath().get(img);
-        imgPaths.add(imgPath);
+        Image image = logs.getImages().get(img);
+        images.add(image);
     }
 
-    public String imgPathGetter() {
-        return imgPaths.get(0);
+    public Image imgGetter() {
+        return images.get(0);
     }
 
-    public String imgPathGetter(int i) {
-        return imgPaths.get(i);
+    public Image imgPathGetter(int i) {
+        return images.get(i);
     }
 
 
-    public ArrayList<String> getImgPaths() { return imgPaths; }
+    public ArrayList<Image> getImages() { return images; }
 
     public String getEventString() {
         return eventString;
     }
 
-    public String getPathToImg(String img) {
-        return logs.getImgPath().get(img);
+    public Image getImg(String img) {
+        return logs.getImages().get(img);
     }
 
     public String getEventType() {

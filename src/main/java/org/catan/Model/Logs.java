@@ -1,5 +1,7 @@
 package org.catan.Model;
 
+import org.catan.App;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,7 +15,8 @@ import java.util.HashMap;
 public class Logs {
 
     private ArrayList<Log> logs = new ArrayList<>();
-    private HashMap<String, String> imgPath = new HashMap<>();
+//    private HashMap<String, String> imgPath = new HashMap<>();
+    private HashMap<String, Image> images = new HashMap<>();
     private HashMap<String, String> textEvents = new HashMap<>();
     private HashMap<String, String> imgEvents = new HashMap<>();
 
@@ -23,19 +26,34 @@ public class Logs {
 
     /** Creates the information required for creating logs. */
     public void initialize(){
-        imgPath = new HashMap<>() {{
-            put("1", "org/catan/assets/img/die/die1.png");
-            put("2", "org/catan/assets/img/die/die2.png");
-            put("3", "org/catan/assets/img/die/die3.png");
-            put("4", "org/catan/assets/img/die/die4.png");
-            put("5", "org/catan/assets/img/die/die5.png");
-            put("6", "org/catan/assets/img/die/die6.png");
+//        imgPath = new HashMap<>() {{
+//            put("1", String.valueOf(App.class.getResource("assets/img/die/die1.png")));
+//            put("2", String.valueOf(App.class.getResource("assets/img/die/die2.png")));
+//            put("3", String.valueOf(App.class.getResource("assets/img/die/die3.png")));
+//            put("4", String.valueOf(App.class.getResource("assets/img/die/die4.png")));
+//            put("5", String.valueOf(App.class.getResource("assets/img/die/die5.png")));
+//            put("6", String.valueOf(App.class.getResource("assets/img/die/die6.png")));
+//
+//            put("brick", String.valueOf(App.class.getResource("assets/img/brickSmall.png")));
+//            put("ore", String.valueOf(App.class.getResource("assets/img/oreSmall.png")));
+//            put("wool", String.valueOf(App.class.getResource("assets/img/sheepSmall.png")));
+//            put("wheat", String.valueOf(App.class.getResource("assets/img/wheatSmall.png")));
+//            put("wood", String.valueOf(App.class.getResource("assets/img/woodSmall.png")));
+//        }};
 
-            put("brick", "org/catan/assets/img/brickSmall.png");
-            put("ore", "org/catan/assets/img/oreSmall.png");
-            put("wool", "org/catan/assets/img/sheepSmall.png");
-            put("wheat", "org/catan/assets/img/wheatSmall.png");
-            put("wood", "org/catan/assets/img/woodSmall.png");
+        images = new HashMap<>() {{
+            put("1", new Image(String.valueOf(App.class.getResource("assets/img/die/die1.png"))));
+            put("2", new Image(String.valueOf(App.class.getResource("assets/img/die/die2.png"))));
+            put("3", new Image(String.valueOf(App.class.getResource("assets/img/die/die3.png"))));
+            put("4", new Image(String.valueOf(App.class.getResource("assets/img/die/die4.png"))));
+            put("5", new Image(String.valueOf(App.class.getResource("assets/img/die/die5.png"))));
+            put("6", new Image(String.valueOf(App.class.getResource("assets/img/die/die6.png"))));
+
+            put("brick", new Image(String.valueOf(App.class.getResource("assets/img/brickSmall.png"))));
+            put("ore", new Image(String.valueOf(App.class.getResource("assets/img/oreSmall.png"))));
+            put("wool", new Image(String.valueOf(App.class.getResource("assets/img/sheepSmall.png"))));
+            put("wheat", new Image(String.valueOf(App.class.getResource("assets/img/wheatSmall.png"))));
+            put("wood", new Image(String.valueOf(App.class.getResource("assets/img/woodSmall.png"))));
         }};
 
         textEvents = new HashMap<>() {{
@@ -72,8 +90,12 @@ public class Logs {
         return logs;
     }
 
-    public HashMap<String, String> getImgPath() {
-        return imgPath;
+//    public HashMap<String, String> getImgPath() {
+//        return imgPath;
+//    }
+
+    public HashMap<String, Image> getImages() {
+        return images;
     }
 
     public HashMap<String, String> getTextEvents() {

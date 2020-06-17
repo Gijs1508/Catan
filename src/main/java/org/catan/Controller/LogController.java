@@ -46,13 +46,6 @@ public class LogController implements Initializable, Observable {
     private void addToLogsBox(LogPane logPane) { // Add a new LogPane to the LogsBox
         logsBox.getChildren().add(logPane.getLogGrid()); }
 
-    private void addImagesToLogPane(LogPane logPane, ArrayList<String> imagePaths) {
-        for (int i = 0; i < imagePaths.size(); i++) {
-            Image image = new Image(imagePaths.get(i));
-            logPane.addImage(image);
-        }
-    }
-
     private void addTxtLogToLogsPane(Log log) { // Add a new log to a new LogPane for text events
         LogPane logPane = new LogPane(log);
         addToLogsBox(logPane);
@@ -61,7 +54,9 @@ public class LogController implements Initializable, Observable {
     private void addImgLogToLogsPane(Log log) { // Add a new log to a new LogPane for image events
         LogPane logPane = new LogPane(log);
         addToLogsBox(logPane);
-        addImagesToLogPane(logPane, log.getImgPaths());
+        for (int i = 0; i < log.getImages().size(); i++) {
+            logPane.addImage(log.getImages().get(i));
+        }
     }
 
     public void update() {
