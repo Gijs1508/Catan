@@ -6,11 +6,12 @@ public class Thief {
     public Thief() {
     }
 
-    public static void setTile(int tilenr) {
-        tile = tilenr;
+    public static void setTile(int tileNumber) {
+        tile = tileNumber;
     }
 
     public static int getTile() {
         return tile;
     }
+
 }

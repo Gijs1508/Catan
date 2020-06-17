@@ -21,6 +21,8 @@ import org.catan.App;
 import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -141,6 +143,7 @@ public class GameSchermController implements Initializable, Observable {
 
     //    private Spelbord spelbord;
 //    private Spel spel;
+
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
@@ -258,25 +261,21 @@ public class GameSchermController implements Initializable, Observable {
         unHighlightTiles();
 
         int tileID = ThiefController.convertStringIDtoIntID(circle.getId());
-
         Thief.setTile(tileID);
-        // TODO would be cool to find the tile num for the ID (for logging)
+        // TODO would be cool to find the tile num for the ID (for logging) is already there
         LogController.getInstance().logRobberEvent();
 
         // TODO because all players are red, it won't find the owner of the blue settlement
         ThiefController.checkStealableOppenets(tileID);
         ThiefController.stealOppenets(tileID);
-//        App.getCurrentGame().getBoard().setThief(App.getClientPlayer(), Thief.getTile());
+        App.getCurrentGame().getBoard().setThief(thief);
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public void highlightTiles(int tileId) {
-        Integer tileId2Interger = tileId;  //Position of Thief. int > Interger
-
         for (Circle thiefTile : thiefTileNodeList) {
-            int intId = ThiefController.convertStringIDtoIntID(thiefTile.getId());
-            Integer idInterger = intId;  //Converting all int ID's to Interger
-
-            if (!(idInterger.equals(tileId2Interger))) {  //Using Interger because .equals and ! operator doesn't work with int
+            String tile = thiefTile.getId() + String.valueOf(tileId);
+            if (!thiefTile.getId().equals(tile)) {
                 thiefTile.setVisible(true);
             }
         }
@@ -737,6 +736,17 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    @FXML
+    public void updateThief(int tileId){
+        String tile = "thiefTile" + String.valueOf(tileId);
+        for (Circle thiefTile : thiefTileNodeList) {
+            if (thiefTile.getId().equals(tile)) {
+                thief.setLayoutX(thiefTile.getLayoutX() - 26);
+                thief.setLayoutY(thiefTile.getLayoutY() - 33);
+            }
+        }
+    }
+
     public ArrayList<Circle> getAllHarborVertices() {
         return allHarborVertices;
     }
@@ -748,8 +758,6 @@ public class GameSchermController implements Initializable, Observable {
     public ArrayList<Harbor> getHarbors() {
         return harbors;
     }
-
-
 
 //    private Speler getSpeler() {
 //        return Speler; // Dit moet worden gewijzigd

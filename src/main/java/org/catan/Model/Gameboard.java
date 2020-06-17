@@ -1,5 +1,6 @@
 package org.catan.Model;
 
+import javafx.scene.image.ImageView;
 import org.catan.Controller.ThiefController;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +10,7 @@ public class Gameboard {
     private ArrayList<Village> settlements;
     private ArrayList<Road> roads;
     private HashMap players;
-    private Thief thief;
+    private ImageView thief;
     private HashMap harbour;
 
     public Gameboard() {
@@ -29,7 +30,6 @@ public class Gameboard {
 
     public void setThief(Player player, Tile tile) {
 //        ThiefController.placeThief(player, tile);
-
     }
 
     public void setHarbour() {
@@ -62,5 +62,13 @@ public class Gameboard {
 
     public void addRoad(Road road) {
         this.roads.add(road);
+    }
+
+    public void setThief(ImageView thief) {
+        this.thief = thief;
+    }
+
+    public int getThief(){
+        return Thief.getTile();
     }
 }

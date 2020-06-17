@@ -95,6 +95,8 @@ public class ThiefController implements Observable {
 
     @Override
     public void update(Game game) {
-        // Update function
+        if (!(App.getCurrentGame().getBoard().getThief() == Thief.getTile())){
+            GameSchermController.getInstance().updateThief(Thief.getTile());
+        }
     }
 }
