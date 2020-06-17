@@ -72,7 +72,7 @@ public class LobbySchermController implements Initializable, Observable {
             dbConnector.createGame(game);
             game_code.setText("Game code: " + game.getCode());
             App.setCurrentGame(game);
-            DocumentListener gameListener = new DocumentListener("game", String.valueOf(game.getCode()));
+            DocumentListener gameListener = new DocumentListener("games", String.valueOf(game.getCode()));
             setupGamePlayers(game.getPlayers());
             App.addListener(gameListener);
         }
