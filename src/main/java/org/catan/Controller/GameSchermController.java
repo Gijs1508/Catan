@@ -265,8 +265,8 @@ public class GameSchermController implements Initializable, Observable {
         LogController.getInstance().logRobberEvent();
 
         // TODO because all players are red, it won't find the owner of the blue settlement
-        ThiefController.checkStealableOppenets(tileID);
-        ThiefController.stealOppenets(tileID);
+//        ThiefController.checkStealableOppenets(tileID);
+//        ThiefController.stealOppenets(tileID);
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 

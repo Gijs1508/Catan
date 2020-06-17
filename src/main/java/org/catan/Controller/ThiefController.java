@@ -9,9 +9,11 @@ import org.catan.App;
 import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 public class ThiefController implements Observable {
     private static ThiefController thiefController;
+    private Thief thief = new Thief();
 
     public ThiefController(){
         thiefController = this;
@@ -95,8 +97,9 @@ public class ThiefController implements Observable {
 
     @Override
     public void update(Game game) {
-        if (!(App.getCurrentGame().getBoard().getThief().getTile() == game.getBoard().getThief().getTile())){
-            GameSchermController.getInstance().updateThief(game.getBoard().getThief().getTile());
+        if (!(App.getCurrentGame().getBoard().getThief().getTile() == thief.getTile())){
+            GameSchermController.getInstance().updateThief(App.getCurrentGame().getBoard().getThief().getTile());
+            thief.setTile(App.getCurrentGame().getBoard().getThief().getTile());
         }
     }
 }
