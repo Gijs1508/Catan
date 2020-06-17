@@ -296,7 +296,7 @@ public class TradeController implements Observable {
             }
         } else { // tradeType is bank
             String resourceType = indexToResource.get(inventoryIndex);
-            int cost = App.getClientPlayer().getCostOf(resourceType); // Gets the player's cost for the resource type
+            int cost = App.getClientPlayer().getResourceToCost().get(resourceType); // Gets the player's cost for the resource type
 
             if(inventoryCard >= cost && tradeGiveLock == false){
                 for(int i = 0; i < cost; i++){

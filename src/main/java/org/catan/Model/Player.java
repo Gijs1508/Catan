@@ -184,8 +184,8 @@ public class Player {
         return mainPlayerActive;
     }
 
-    public int getCostOf(String resource) {
-        return resourceToCost.get(resource);
+    public HashMap<String, Integer> getResourceToCost() {
+        return resourceToCost;
     }
 
     public boolean isHost() {
