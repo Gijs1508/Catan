@@ -48,7 +48,7 @@ public class Dice {
 //                App.HandInPopUp();
             }
             //TODO Rover verzetten
-            GameSchermController.getInstance().highlightTiles(Thief.getTile());
+            GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
         }
 
         setPlayerResources(total);

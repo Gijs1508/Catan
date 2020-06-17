@@ -190,7 +190,6 @@ public class GameSchermController implements Initializable, Observable {
         initializeButtons();
 
         initializeHarbors();
-
 //        highlightTiles(10);
     }
 
@@ -261,14 +260,13 @@ public class GameSchermController implements Initializable, Observable {
         unHighlightTiles();
 
         int tileID = ThiefController.convertStringIDtoIntID(circle.getId());
-        Thief.setTile(tileID);
         // TODO would be cool to find the tile num for the ID (for logging) is already there
+        App.getCurrentGame().getBoard().getThief().setTile(tileID);
         LogController.getInstance().logRobberEvent();
 
         // TODO because all players are red, it won't find the owner of the blue settlement
         ThiefController.checkStealableOppenets(tileID);
         ThiefController.stealOppenets(tileID);
-        App.getCurrentGame().getBoard().setThief(thief);
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
