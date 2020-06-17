@@ -54,7 +54,6 @@ public class LobbySchermController implements Initializable, Observable {
         player3pane.setVisible(false);
         player4pane.setVisible(false);
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
-        System.out.println(lobbySchermController.getGameCode());
 
         try {
             alertPopupView = (AnchorPane) App.loadFXML("Views/alertPopUpView");
@@ -73,7 +72,7 @@ public class LobbySchermController implements Initializable, Observable {
             dbConnector.createGame(game);
             game_code.setText("Game code: " + game.getCode());
             App.setCurrentGame(game);
-            DocumentListener gameListener = new DocumentListener(String.valueOf(game.getCode()));
+            DocumentListener gameListener = new DocumentListener("game", String.valueOf(game.getCode()));
             setupGamePlayers(game.getPlayers());
             App.addListener(gameListener);
         }
@@ -140,7 +139,8 @@ public class LobbySchermController implements Initializable, Observable {
         App.resetListeners();
         updatePlayers(game);
         dbConnector.updateGame(game);
-        App.setStageSize(1200, 676);
+        //App.setStageSize(1200, 676);
+        App.setStageHeight(718);
         App.setRoot("Views/mainView");
     }
 
@@ -191,7 +191,8 @@ public class LobbySchermController implements Initializable, Observable {
     }
 
 
-    public void textClicked(MouseEvent mouseEvent) {
+    @FXML
+    private void textClicked(MouseEvent mouseEvent) {
         Clipboard cb = Clipboard.getSystemClipboard();
         ClipboardContent cbc = new ClipboardContent();
         cbc.putString(game_code.getText().replace("Game code: ", ""));
@@ -204,9 +205,6 @@ public class LobbySchermController implements Initializable, Observable {
         AlertPopUpController.getInstance().setAlertTitle("Copied!");
         AlertPopUpController.getInstance().setAlertPlacedController(LobbySchermController.getInstance().getClass());
         AlertPopUpController.getInstance().setAlertDescription("Game code is copied to the clipboard.");
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setContentText("Game code copied!");
-//        alert.show();
     }
 
     private void updatePlayerColors(int i, ArrayList<Player> players) {

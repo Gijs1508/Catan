@@ -27,14 +27,6 @@ public class AlertPopUpController {
     }
 
     public void closePopup() {
-//        switch(controller.getClass()){
-//            case ScreenController.getInstance().getClass().toString(): screenController.hideAlertPopup(); break;
-//            case LobbySchermController.getInstance().getClass().toString(): lobbySchermController.hideAlertPopup(); break;
-//        }
-
-        System.out.println(controller.toString());
-        System.out.println(LobbySchermController.getInstance().getClass().toString());
-
         if(this.controller.toString().equals(LobbySchermController.getInstance().getClass().toString())){
             LobbySchermController.getInstance().hideAlertPopup();
         } else {
@@ -52,7 +44,6 @@ public class AlertPopUpController {
 
     public void setAlertPlacedController(Object controllerClass){
         this.controller = controllerClass;
-        System.out.println("setAlertPlacedController(): " + this.controller.toString());
     }
 
 
