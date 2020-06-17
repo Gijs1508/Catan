@@ -45,7 +45,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         Sound.initializeSounds();
         clientPlayer = new Player("Sabrina");
-//        scene = new Scene(loadFXML("Views/screenView"));
+        //scene = new Scene(loadFXML("Views/screenView"));
         //scene = new Scene(loadFXML("Views/screenView"));
         scene = new Scene(loadFXML("Views/mainView"));
         MainController.getInstance().playAnimation();
