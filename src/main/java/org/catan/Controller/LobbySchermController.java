@@ -86,6 +86,14 @@ public class LobbySchermController implements Initializable, Observable {
         App.setRoot("./Views/screenView");
     }
 
+    public void updateScreenRoot() {
+        try {
+            App.setRoot("./Views/screenView");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setupGamePlayers(ArrayList<Player> players) {
         switch (players.size()) {
             case 1:

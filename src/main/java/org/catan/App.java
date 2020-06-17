@@ -83,7 +83,6 @@ public class App extends Application {
         return viewName;
     }
 
-
     private void setupControllerInstances() {
         LobbySchermController.getInstance();
         AlertPopUpController.getInstance();

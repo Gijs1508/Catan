@@ -182,7 +182,11 @@ public class LogController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
+        System.out.println("Start logs update");
         if (game.getLogs().size() > logs.getLogs().size()) {
+            System.out.println("new logs detected");
+            System.out.println(logs.getLogs().size());
+            System.out.println(game.getLogs().size());
             for (int i = logs.getLogs().size(); i < game.getLogs().size(); i++) {
                 if (game.getLogs().get(i).getLogType().equals("txt")) {
                     addTxtLogToLogsPane(game.getLogs().get(i));
