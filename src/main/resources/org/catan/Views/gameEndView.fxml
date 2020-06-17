@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameEndController">
+<children>
+      <Pane fx:id="background" opacity="0.3" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: black;;" />
+    <Pane layoutX="433.0" layoutY="187.0" prefHeight="426.0" prefWidth="335.0" style="-fx-background-radius: 30 30 20 20;">
+        <children>
+            <Pane layoutY="40.0" prefHeight="384.0" prefWidth="334.0" style="-fx-background-color: #e5e4e7; -fx-background-radius: 0 0 20 20;">
+               <children>
+                  <Pane layoutX="79.0" layoutY="307.0" onMouseClicked="#leaveBtnClicked" prefHeight="61.0" prefWidth="176.0" style="-fx-background-color: #FBFBFB; -fx-background-radius: 50;">
+                     <children>
+                        <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="8.0" layoutY="8.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/exit.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="54.0" layoutY="16.0" text="Leave game">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="victoryPane" layoutY="32.0" prefHeight="328.0" prefWidth="334.0">
+                     <children>
+                        <ImageView fitHeight="195.0" fitWidth="205.0" layoutX="70.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/trophy2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="defeatPane" layoutY="32.0" prefHeight="262.0" prefWidth="334.0">
+                     <children>
+                        <Label fx:id="defeatText" layoutX="35.0" layoutY="30.0" prefHeight="178.0" prefWidth="264.0" text="\%PLAYERWON% won the game." textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane prefHeight="66.0" prefWidth="252.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <StackPane prefHeight="72.0" prefWidth="334.0" style="-fx-background-color: white; -fx-background-radius: 30 30 0 0;">
+                <children>
+                  <Label fx:id="gameEndTitle" text="Game ended">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </Label>
+                </children>
+            </StackPane>
+        </children>
+        <effect>
+            <DropShadow blurType="GAUSSIAN" color="#0000005a" />
+        </effect>
+    </Pane>
+</children>
+</AnchorPane>

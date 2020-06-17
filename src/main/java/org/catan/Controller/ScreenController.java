@@ -32,6 +32,7 @@ public class ScreenController implements Initializable, Observable {
     @FXML private Pane chatPane; @FXML private Pane logPane;
     @FXML private Pane tradePane; @FXML private Pane dicePane;
     @FXML private Pane costPane; @FXML private Pane settingsPane;
+    @FXML private Pane gameEndPane;
     @FXML private Pane stealPopup; @FXML private Pane knightPopup;
     @FXML private Pane tradePopup; @FXML private Pane handInPopup;
     @FXML private Pane devCardPopup; @FXML private Pane alertPopup;
@@ -40,10 +41,10 @@ public class ScreenController implements Initializable, Observable {
     private AnchorPane logView; private AnchorPane chatView;
     private AnchorPane tradeView; private AnchorPane diceView;
     private AnchorPane scoreView; private AnchorPane costView;
-    private AnchorPane settingsView; private AnchorPane stealPopupView;
-    private AnchorPane knightDetails; private AnchorPane tradePopupView;
-    private AnchorPane handInPopupView; private AnchorPane devCardPopupView;
-    private AnchorPane alertPopupView;
+    private AnchorPane settingsView; private AnchorPane gameEndView;
+    private AnchorPane stealPopupView; private AnchorPane knightDetails;
+    private AnchorPane tradePopupView; private AnchorPane handInPopupView;
+    private AnchorPane devCardPopupView; private AnchorPane alertPopupView;
 
     private static ScreenController screenController;
     public ScreenController() {
@@ -64,6 +65,7 @@ public class ScreenController implements Initializable, Observable {
             scoreView = (AnchorPane) App.loadFXML("Views/scoreView");
             costView = (AnchorPane) App.loadFXML("Views/costView");
             settingsView = (AnchorPane) App.loadFXML("Views/settingsView");
+            gameEndView = (AnchorPane) App.loadFXML("Views/gameEndView");
             devCardPopupView = (AnchorPane) App.loadFXML("Views/devCardPopUpView");
             alertPopupView = (AnchorPane) App.loadFXML("Views/alertPopUpView");
             knightDetails = new KnightDetails().getRoot();
@@ -81,10 +83,12 @@ public class ScreenController implements Initializable, Observable {
         scorePane.getChildren().setAll(scoreView);
         costPane.getChildren().setAll(costView);
         settingsPane.getChildren().setAll(settingsView);
+        gameEndPane.getChildren().setAll(gameEndView);
         knightPopup.getChildren().setAll(knightDetails);
         devCardPopup.getChildren().setAll(devCardPopupView);
         alertPopup.getChildren().setAll(alertPopupView);
 
+        initializePopup(gameEndPane);
         initializePopup(settingsPane);
         initializePopup(stealPopup);
         initializePopup(knightPopup);
@@ -94,6 +98,12 @@ public class ScreenController implements Initializable, Observable {
         initializePopup(alertPopup);
     }
 
+    public void showGameEnd() {
+        gameEndPane.setVisible(true);
+    }
+    public void hideGameEnd() {
+        gameEndPane.setVisible(false);
+    }
 
     public void showSettings() {
         settingsPane.setVisible(true);

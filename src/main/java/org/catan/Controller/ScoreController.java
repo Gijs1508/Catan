@@ -2,6 +2,7 @@ package org.catan.Controller;
 
 //import model.Speler;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -9,6 +10,7 @@ import org.catan.Model.Player;
 
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.ResourceBundle;
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
@@ -139,5 +141,18 @@ public class ScoreController implements Initializable, Observable {
             setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
             setVictoryPointsForPlayer(player.getColor(), player.getScore());
         }
+    }
+
+    @FXML
+    public void testGameEnd() {
+        boolean clientWon; // Ask Player or Game object about player's result
+        if(Math.random() < 0.5) { clientWon = true; }
+        else { clientWon = false; }
+
+        ScreenController.getInstance().showGameEnd();
+        if (clientWon) {
+            GameEndController.getInstance().initializeVictory(); }
+        else {
+            GameEndController.getInstance().initializeDefeat(); }
     }
 }
