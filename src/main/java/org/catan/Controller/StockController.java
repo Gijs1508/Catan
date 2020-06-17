@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 public class StockController implements Initializable, Observable {
     //Make controller available to other classes
     private static StockController stockController;
+    private Thief thief;
 
     @FXML private Text wheatCount;
     @FXML private Text woodCount;
@@ -53,6 +54,7 @@ public class StockController implements Initializable, Observable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         animationResourcesPane.setVisible(true);
         initializeAnimationCardMap();
+        this.thief = new Thief();
     }
 
     public void testResources(){
@@ -164,7 +166,7 @@ public class StockController implements Initializable, Observable {
         Player.getActivePlayer().getPlayerInventory().changeCards("knight", -1);
         removeCardAnimation(animationKnightCard);
 
-        GameSchermController.getInstance().highlightTiles(Thief.getTile());
+        GameSchermController.getInstance().highlightTiles(thief.getTile());
 
         logController.logKnightEvent();
         Sound.playSword();

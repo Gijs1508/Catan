@@ -1,16 +1,16 @@
 package org.catan.Model;
 
 public class Thief {
-    private static int tile = 10;
+    private int tile = 10;
 
     public Thief() {
     }
 
-    public static void setTile(int tileNumber) {
-        tile = tileNumber;
+    public void setTile(int tileNumber) {
+        this.tile = tileNumber;
     }
 
-    public static int getTile() {
+    public int getTile() {
         return tile;
     }
 

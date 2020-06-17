@@ -10,7 +10,7 @@ public class Gameboard {
     private ArrayList<Village> settlements;
     private ArrayList<Road> roads;
     private HashMap players;
-    private ImageView thief;
+    private Thief thief;
     private HashMap harbour;
 
     public Gameboard() {
@@ -18,6 +18,7 @@ public class Gameboard {
 
         this.settlements = new ArrayList<>();
         this.roads = new ArrayList<>();
+        this.thief = new Thief();
     }
 
     public void setTiles() {
@@ -64,11 +65,11 @@ public class Gameboard {
         this.roads.add(road);
     }
 
-    public void setThief(ImageView thief) {
+    public void setThief(Thief thief) {
         this.thief = thief;
     }
 
     public int getThief(){
-        return Thief.getTile();
+        return thief.getTile();
     }
 }
