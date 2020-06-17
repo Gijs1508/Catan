@@ -4,19 +4,26 @@ public class StartPhaseController {
     private static int startPhaseCount;
     private static boolean startPhaseActive = true;
 
-    public static int getStartPhaseCount() {
-        return startPhaseCount;
+    public StartPhaseController() {
+        activateStartPhase();
     }
 
     public static boolean isStartPhaseActive() {
         return startPhaseActive;
     }
 
-    public static void setStartPhaseCount(int startPhaseCount) {
-        StartPhaseController.startPhaseCount = startPhaseCount;
+    public static void startPhaseCount() {
+        StartPhaseController.startPhaseCount++;
     }
 
-    public static void setStartPhaseActive(boolean startPhaseActive) {
-        StartPhaseController.startPhaseActive = startPhaseActive;
+    public static void checkStartPhase() {
+        if (startPhaseCount == 2) {
+            startPhaseActive = false;
+            GameSchermController.getInstance().startPhaseButtonsVisible();
+        }
+    }
+
+    private void activateStartPhase() {
+        GameSchermController.getInstance().startPhaseButtonsInvisible();
     }
 }
