@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import org.catan.App;
 import org.catan.Model.Player;
 
 import java.net.URL;
@@ -84,17 +85,17 @@ public class StealPopUpController implements Initializable {
     }
 
     public void opponent1clicked() {
-        Player.getActivePlayer().stealFromVictim(opponents.get(0));
+        App.getCurrentGame().turnPlayerGetter().stealFromVictim(opponents.get(0));
         screenController.hideStealPopUp();
     }
 
     public void opponent2clicked() {
-        Player.getActivePlayer().stealFromVictim(opponents.get(1));
+        App.getCurrentGame().turnPlayerGetter().stealFromVictim(opponents.get(1));
         screenController.hideStealPopUp();
     }
 
     public void opponent3clicked() {
-        Player.getActivePlayer().stealFromVictim(opponents.get(2));
+        App.getCurrentGame().turnPlayerGetter().stealFromVictim(opponents.get(2));
         screenController.hideStealPopUp();
     }
 

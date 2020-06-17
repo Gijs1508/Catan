@@ -172,7 +172,7 @@ public class LogController implements Initializable, Observable {
     }
 
     public static void setPlayer(){
-        player = Player.getActivePlayer().getName();
+        player = App.getCurrentGame().turnPlayerGetter().getName();
     }
 
     public static void setOpponent(Player opponentPlayer){

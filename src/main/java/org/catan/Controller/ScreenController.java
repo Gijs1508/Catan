@@ -99,7 +99,7 @@ public class ScreenController implements Initializable, Observable {
         initializePopup(devCardPopup);
         initializePopup(alertPopup);
 
-        for(Player player : Player.getAllPlayers()){
+        for(Player player : App.getCurrentGame().getPlayers()){
 
         }
     }
