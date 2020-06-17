@@ -6,8 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.App;
+import org.catan.Model.Chat;
 import org.catan.Model.Game;
+import org.catan.Model.MenuMusicHandler;
 import org.catan.Model.Player;
+import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 import org.catan.logic.DocumentListener;
@@ -29,19 +32,22 @@ public class LobbySchermController implements Initializable, Observable {
     private Player player3;
     private Player player4;
 
-    @FXML Pane player1pane;
-    @FXML Pane player2pane;
-    @FXML Pane player3pane;
-    @FXML Pane player4pane;
-    @FXML Text player1name;
-    @FXML Text player2name;
-    @FXML Text player3name;
-    @FXML Text player4name;
-    @FXML Text game_code;
-    @FXML Button startGameBtn;
+    @FXML private Pane player1pane;
+    @FXML private Pane player2pane;
+    @FXML private Pane player3pane;
+    @FXML private Pane player4pane;
+    @FXML private Text player1name;
+    @FXML private Text player2name;
+    @FXML private Text player3name;
+    @FXML private Text player4name;
+    @FXML private Text game_code;
+    @FXML private Button startGameBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Sound.setIntroMusicIsPlaying(false); // Pause music
+        Sound.pauseMenuMusic();
+
         player1pane.setVisible(false);
         player2pane.setVisible(false);
         player3pane.setVisible(false);
@@ -58,7 +64,7 @@ public class LobbySchermController implements Initializable, Observable {
             dbConnector.createGame(game);
             game_code.setText("Game code: " + game.getCode());
             App.setCurrentGame(game);
-            DocumentListener gameListener = new DocumentListener(String.valueOf(game.getCode()));
+            DocumentListener gameListener = new DocumentListener("games", String.valueOf(game.getCode()));
             setupGamePlayers(game.getPlayers());
             App.addListener(gameListener);
         }
@@ -67,11 +73,16 @@ public class LobbySchermController implements Initializable, Observable {
 
     @FXML
     private void startGame() throws IOException {
+        Sound.playClick();
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Game game = App.getCurrentGame();
         game.getPlayers().get(0).setTurn(true);
         game.setStatus("going");
-        dbConnector.updateGame(game);
+        Chat chat = new Chat(game.getCode().intValue());
+        DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
+        App.addListener(chatListener);
+        DatabaseConnector.getInstance().createChat(chat);
+        DatabaseConnector.getInstance().updateGame(game);
         App.setRoot("./Views/screenView");
     }
 
@@ -116,13 +127,17 @@ public class LobbySchermController implements Initializable, Observable {
 
     @FXML
     private void leaveGame() throws IOException {
+        Sound.playMenuMusic();  // Continue music
+        Sound.setIntroMusicIsPlaying(true);
+
+        Sound.playClick();
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Game game = dbConnector.getGameById(App.getCurrentGame().getCode());
         game.removePlayer(App.getClientPlayer());
         App.resetListeners();
         updatePlayers(game);
         dbConnector.updateGame(game);
-        App.setStageSize(1200, 711);
+        App.setStageHeight(718);
         App.setRoot("Views/mainView");
     }
 
