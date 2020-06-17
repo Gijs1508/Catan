@@ -99,7 +99,7 @@ public class ThiefController implements Observable {
     public void update(Game game) {
         if (!(App.getCurrentGame().getBoard().getThief().getTile() == thief.getTile())){
             GameSchermController.getInstance().updateThief(game.getBoard().getThief().getTile());
-            thief.setTile(App.getCurrentGame().getBoard().getThief().getTile());
+            thief.setTile(game.getBoard().getThief().getTile());
         }
     }
 }
