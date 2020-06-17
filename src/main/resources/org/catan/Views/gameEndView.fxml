@@ -28,7 +28,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="victoryPane" layoutY="32.0" prefHeight="328.0" prefWidth="334.0">
+                  <Pane fx:id="victoryPane" layoutY="32.0" prefHeight="269.0" prefWidth="334.0">
                      <children>
                         <ImageView fitHeight="195.0" fitWidth="205.0" layoutX="70.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
