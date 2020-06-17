@@ -182,11 +182,7 @@ public class LogController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
-        System.out.println("Start logs update");
-        System.out.println(logs.getLogs().size());
-        System.out.println(game.getLogs().size());
         if (game.getLogs().size() > logs.getLogs().size()) {
-            System.out.println("new logs detected");
             for (int i = logs.getLogs().size(); i < game.getLogs().size(); i++) {
                 if (game.getLogs().get(i).getLogType().equals("txt")) {
                     addTxtLogToLogsPane(game.getLogs().get(i));
@@ -194,6 +190,7 @@ public class LogController implements Initializable, Observable {
                 if (game.getLogs().get(i).getLogType().equals("img")) {
                     addImgLogToLogsPane(game.getLogs().get(i));
                 }
+                storeLog(game.getLogs().get(i));
             }
         }
     }

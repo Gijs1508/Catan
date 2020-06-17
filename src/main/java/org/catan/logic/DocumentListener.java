@@ -5,6 +5,7 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.EventListener;
 import com.google.cloud.firestore.FirestoreException;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
@@ -40,14 +41,19 @@ public class DocumentListener {
                 }
                 // In this if statement, all the controllers that should be called when a game document is updated, should be put
                 if (snapshot != null && snapshot.exists()) {
-                    switch (collection) {
-                        case "games":
-                            updateGameDocument(snapshot);
-                            break;
-                        case "chats":
-                            updateChatDocument(snapshot);
-                            break;
-                    }
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            switch (collection) {
+                                case "games":
+                                    updateGameDocument(snapshot);
+                                    break;
+                                case "chats":
+                                    updateChatDocument(snapshot);
+                                    break;
+                            }
+                        }
+                    });
                 } else {
                     System.out.print("Current data: null");
                 }
@@ -63,30 +69,21 @@ public class DocumentListener {
 
 
     private void updateGameDocument(DocumentSnapshot snapshot) {
-        System.out.println("Listeners: " + App.getListeners());
-        System.out.println("current game status: " + App.getCurrentGame().getStatus());
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println("Created objectmapper");
         System.out.println(snapshot.getData());
         Game game = mapper.convertValue(snapshot.getData(), Game.class);
-        System.out.println("new game status: " + game.getStatus());
-        System.out.println("Game: " + game.getStatus());
-        System.out.println("App: " + App.getCurrentGame().getStatus());
         switch (game.getStatus()) {
             case "open":
                 LobbySchermController.getInstance().update(game);
-                BuildSettlementController.getInstance().update(game);
                 break;
             case "going":
-                System.out.println("going game");
-                System.out.println(App.getCurrentGame().getStatus());
                 if (App.getCurrentGame().getStatus().equals("going")) {
-                    System.out.println("updating logs");
+                    BuildSettlementController.getInstance().update(game);
                     LogController.getInstance().update(game);
                 }
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
-                    App.addListener(chatListener);
+                    App.setChatListener(chatListener);
                     LobbySchermController.getInstance().updateScreenRoot();
                 }
                 break;
