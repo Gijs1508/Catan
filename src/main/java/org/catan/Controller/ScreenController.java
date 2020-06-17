@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.catan.App;
 import org.catan.Model.Game;
+import org.catan.Model.Player;
 import org.catan.View.popups.KnightDetails;
 import org.catan.interfaces.Observable;
 
@@ -92,6 +93,10 @@ public class ScreenController implements Initializable, Observable {
         initializePopup(handInPopup);
         initializePopup(devCardPopup);
         initializePopup(alertPopup);
+
+        for(Player player : Player.getAllPlayers()){
+
+        }
     }
 
 
