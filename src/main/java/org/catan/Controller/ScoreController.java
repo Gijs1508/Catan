@@ -6,13 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import org.catan.App;
 import org.catan.Model.Player;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
 
@@ -24,18 +24,22 @@ import org.catan.interfaces.Observable;
 
 public class ScoreController implements Initializable, Observable {
 
+    @FXML private Pane player1pane;
     @FXML private Label player1name; @FXML private Label player1points;
     @FXML private Label player1roads; @FXML private Label player1villages;
     @FXML private Label player1cities;
 
+    @FXML private Pane player2pane;
     @FXML private Label player2name; @FXML private Label player2points;
     @FXML private Label player2roads; @FXML private Label player2villages;
     @FXML private Label player2cities;
 
+    @FXML private Pane player3pane;
     @FXML private Label player3name; @FXML private Label player3points;
     @FXML private Label player3roads; @FXML private Label player3villages;
     @FXML private Label player3cities;
 
+    @FXML private Pane player4pane;
     @FXML private Label player4name; @FXML private Label player4points;
     @FXML private Label player4roads; @FXML private Label player4villages;
     @FXML private Label player4cities;
@@ -51,6 +55,7 @@ public class ScoreController implements Initializable, Observable {
     private HashMap<String, Label> player2labels;
     private HashMap<String, Label> player3labels;
     private HashMap<String, Label> player4labels;
+    private ArrayList<Pane> playerPanes = new ArrayList<>();
 
     private HashMap<String, HashMap<String, Label>> colorToLabels;
 
@@ -60,6 +65,11 @@ public class ScoreController implements Initializable, Observable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Collections.addAll(playerPanes, player1pane, player2pane, player3pane, player4pane);
+        for(Pane playerPane : playerPanes) {
+            playerPane.setVisible(false);
+        }
+
         initializeColorToScore();
         scoreController = this;
 
@@ -86,6 +96,9 @@ public class ScoreController implements Initializable, Observable {
                 setPlayer3name(App.getCurrentGame().getPlayers().get(2).getName());
                 setPlayer4name(App.getCurrentGame().getPlayers().get(3).getName());
                 break;
+        }
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            playerPanes.get(i).setVisible(true); // Only show playerPane if that player is in the game
         }
     }
 
