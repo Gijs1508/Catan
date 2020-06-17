@@ -427,8 +427,12 @@ public class GameSchermController implements Initializable, Observable {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a road.");
         }
+        if (StartPhaseController.isStartPhaseActive()) {
+            TurnManager.nextTurn(App.getCurrentGame().turnPlayerGetter());
+        }
         StartPhaseController.startPhaseCount();
         StartPhaseController.checkStartPhase();
+
         buildRoadBtnCloseClicked();
     }
 
