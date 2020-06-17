@@ -1,11 +1,13 @@
 package org.catan.Controller;
+import org.catan.Model.Player;
+import org.catan.Model.TurnManager;
 
 public class StartPhaseController {
     private static int startPhaseCount;
     private static boolean startPhaseActive = true;
 
     public StartPhaseController() {
-        activateStartPhase();
+        GameSchermController.getInstance().startPhaseButtonsInvisible();
     }
 
     public static boolean isStartPhaseActive() {
@@ -23,7 +25,11 @@ public class StartPhaseController {
         }
     }
 
-    private void activateStartPhase() {
-        GameSchermController.getInstance().startPhaseButtonsInvisible();
+    private void activateBuildingStartPhase(Player lastPlayer) {
+        // Point A
+        GameSchermController.getInstance().villageStartPhase();
+        // Wait till road is build
+        // If roadArray Is bigger then add point A go further in application
+        TurnManager.nextTurn(lastPlayer);
     }
 }
