@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.App;
+import org.catan.Model.Chat;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
 import org.catan.interfaces.Observable;
@@ -84,11 +85,12 @@ public class LobbySchermController implements Initializable, Observable {
 
     @FXML
     private void startGame() throws IOException {
-        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Game game = App.getCurrentGame();
         game.getPlayers().get(0).setTurn(true);
         game.setStatus("going");
-        dbConnector.updateGame(game);
+        DatabaseConnector.getInstance().updateGame(game);
+        Chat chat = new Chat(game.getCode().intValue());
+        DatabaseConnector.getInstance().createChat(chat);
         App.setRoot("./Views/screenView");
     }
 
