@@ -272,8 +272,9 @@ public class GameSchermController implements Initializable, Observable {
 
     public void highlightTiles(int tileId) {
         for (Circle thiefTile : thiefTileNodeList) {
-            String tile = thiefTile.getId() + String.valueOf(tileId);
-            if (!thiefTile.getId().equals(tile)) {
+            String tileCurrentPosition = String.valueOf(tileId);
+            String tile = thiefTile.getId().replaceAll("[^\\d.]", "");
+            if (!tile.equals(tileCurrentPosition)) {
                 thiefTile.setVisible(true);
             }
         }
