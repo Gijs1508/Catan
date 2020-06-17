@@ -191,9 +191,6 @@ public class GameSchermController implements Initializable, Observable {
 //        highlightTiles(10);
     }
 
-    private void initializeStartPhase() {
-        startPhaseButtonsDisabled();
-    }
 
     private void endStartPhase() {
 
@@ -204,17 +201,13 @@ public class GameSchermController implements Initializable, Observable {
         villageStartPhase();
     }
 
-    public void setStartPhase(boolean phase) {
-        this.startPhase = phase;
-    }
-
-    private void startPhaseButtonsDisabled() {
+    public void startPhaseButtonsInvisible() {
         roadButton.setVisible(false);
         settlementButton.setVisible(false);
         upgradeButton.setVisible(false);
     }
 
-    private void startPhaseButtonsEnabled() {
+    public void startPhaseButtonsVisible() {
         roadButton.setVisible(true);
         settlementButton.setVisible(true);
         upgradeButton.setVisible(true);
@@ -370,19 +363,16 @@ public class GameSchermController implements Initializable, Observable {
         int[] reqResources = {1, 1, 0, 1, 1, 0};
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        if(canBuildObject(reqResources) || startPhase){
+        if(canBuildObject(reqResources) || StartPhaseController.isStartPhaseActive()){
             placeVillage(build.buildVillage(circle));
             logController.logSettlementEvent();
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
         }
-        if (startPhase)
+        if (StartPhaseController.isStartPhaseActive())
             roadStartPhase(circle);
         buildSettlementBtnCloseClicked();
-        startPhaseCount++;
-        if (startPhaseCount == 2)
-            startPhase = false;
     }
 
     // Places the village image on the board
@@ -430,13 +420,15 @@ public class GameSchermController implements Initializable, Observable {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
         int[] reqResources = {1, 1, 0, 0, 0, 0};
 
-        if(canBuildObject(reqResources) || startPhase){
+        if(canBuildObject(reqResources) || StartPhaseController.isStartPhaseActive()){
             placeRoad(build.buildRoad(circle));
             logController.logRoadEvent();
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a road.");
         }
+        StartPhaseController.startPhaseCount();
+        StartPhaseController.checkStartPhase();
         buildRoadBtnCloseClicked();
     }
 
