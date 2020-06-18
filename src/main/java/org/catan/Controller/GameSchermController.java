@@ -193,11 +193,6 @@ public class GameSchermController implements Initializable, Observable {
 
     }
 
-    @FXML
-    private void startPhase() {
-        villageStartPhase();
-    }
-
     public void startPhaseButtonsInvisible() {
         roadButton.setVisible(false);
         settlementButton.setVisible(false);
