@@ -52,8 +52,12 @@ public class ChatController implements Initializable, ChatObservable {
 
     @Override
     public void update(Chat chat) {
-        this.chat = chat;
-        updateChatView();
+        if (chat.getChatMessages().size() > this.chat.getChatMessages().size()) {
+            for (int i = this.chat.getChatMessages().size(); i < chat.getChatMessages().size(); i++) {
+                this.chat.addChatMessage(chat.getChatMessages().get(i));
+            }
+            updateChatView();
+        }
     }
 
     @Override
