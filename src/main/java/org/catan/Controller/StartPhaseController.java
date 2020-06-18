@@ -32,6 +32,7 @@ public class StartPhaseController {
     }
 
     public void activateBuildingStartPhase() {
-        GameSchermController.getInstance().villageStartPhase();
+        if (startPhaseActive)
+            GameSchermController.getInstance().villageStartPhase();
     }
 }
