@@ -271,10 +271,7 @@ public class BuildSettlementController implements Observable {
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        if(checkPlayerWon(App.getCurrentGame().turnPlayerGetter())){
-            System.out.println("player won");
-            // TODO: show player won screen
-        }
+        checkPlayerWon(App.getCurrentGame().turnPlayerGetter());
 
         return village;
     }
@@ -282,8 +279,11 @@ public class BuildSettlementController implements Observable {
     /** checks if the player has won
      * @param turnPlayerGetter the player who just build an settlement
      * @author Gijs */
-    private boolean checkPlayerWon(Player turnPlayerGetter) {
-        return turnPlayerGetter.getScore() >= 10;
+    private void checkPlayerWon(Player turnPlayerGetter) {
+        if(turnPlayerGetter.getScore() >= 10){
+            // TODO: Change this to a real function.
+            ScoreController.getInstance().testGameEnd();
+        }
     }
 
     /** Finds the harbor that the settlement has been placed adjacent to and updates accordingly.
@@ -327,11 +327,8 @@ public class BuildSettlementController implements Observable {
             App.getCurrentGame().turnPlayerGetter().addCityPoint();
             App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+            checkPlayerWon(App.getCurrentGame().turnPlayerGetter());
 
-            if(checkPlayerWon(App.getCurrentGame().turnPlayerGetter())){
-                System.out.println("player won");
-                // TODO: show player won screen
-            }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("You don't have enough resources to upgrade an village!");
