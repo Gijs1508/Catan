@@ -320,7 +320,8 @@ public class GameSchermController implements Initializable, Observable {
         }
         if (StartPhaseController.isStartPhaseActive())
             roadStartPhase(circle);
-        buildSettlementBtnCloseClicked();
+        else
+            buildSettlementBtnCloseClicked();
     }
 
     // Places the village image on the board
@@ -375,13 +376,12 @@ public class GameSchermController implements Initializable, Observable {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a road.");
         }
-        if (StartPhaseController.isStartPhaseActive()) {
+        if (StartPhaseController.isStartPhaseActive())
             TurnManager.nextPlayer();
-        }
+        else
+            buildRoadBtnCloseClicked();
         StartPhaseController.startPhaseCount();
         StartPhaseController.checkStartPhase();
-
-        buildRoadBtnCloseClicked();
     }
 
     @FXML
@@ -534,8 +534,6 @@ public class GameSchermController implements Initializable, Observable {
         for (Circle node : nodes) {
             node.setVisible(true);
         }
-        settlementButton.setVisible(false);
-        settlementButtonClose.setVisible(true);
     }
 
     // Shows the road spots of the recently build village
@@ -544,8 +542,6 @@ public class GameSchermController implements Initializable, Observable {
         for (Circle node : nodes) {
             node.setVisible(true);
         }
-        roadButton.setVisible(false);
-        roadButtonClose.setVisible(true);
     }
 
     /** Initializes all the nodes on the board (like adding them to an ArrayList).
