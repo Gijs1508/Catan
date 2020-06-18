@@ -2,14 +2,17 @@ package org.catan.Controller;
 
 //import model.Speler;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import org.catan.App;
 import org.catan.Model.Player;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
 
@@ -21,18 +24,22 @@ import org.catan.interfaces.Observable;
 
 public class ScoreController implements Initializable, Observable {
 
+    @FXML private Pane player1pane;
     @FXML private Label player1name; @FXML private Label player1points;
     @FXML private Label player1roads; @FXML private Label player1villages;
     @FXML private Label player1cities;
 
+    @FXML private Pane player2pane;
     @FXML private Label player2name; @FXML private Label player2points;
     @FXML private Label player2roads; @FXML private Label player2villages;
     @FXML private Label player2cities;
 
+    @FXML private Pane player3pane;
     @FXML private Label player3name; @FXML private Label player3points;
     @FXML private Label player3roads; @FXML private Label player3villages;
     @FXML private Label player3cities;
 
+    @FXML private Pane player4pane;
     @FXML private Label player4name; @FXML private Label player4points;
     @FXML private Label player4roads; @FXML private Label player4villages;
     @FXML private Label player4cities;
@@ -42,12 +49,13 @@ public class ScoreController implements Initializable, Observable {
     private static ScoreController scoreController;
 
 
-//    private Speler speler;
+    //    private Speler speler;
     private int score;
     private HashMap<String, Label> player1labels;
     private HashMap<String, Label> player2labels;
     private HashMap<String, Label> player3labels;
     private HashMap<String, Label> player4labels;
+    private ArrayList<Pane> playerPanes = new ArrayList<>();
 
     private HashMap<String, HashMap<String, Label>> colorToLabels;
 
@@ -57,8 +65,41 @@ public class ScoreController implements Initializable, Observable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Collections.addAll(playerPanes, player1pane, player2pane, player3pane, player4pane);
+        for(Pane playerPane : playerPanes) {
+            playerPane.setVisible(false);
+        }
+
         initializeColorToScore();
         scoreController = this;
+
+        for(Player player : App.getCurrentGame().getPlayers()){
+            System.out.println(player.getName());
+        }
+
+        switch(App.getCurrentGame().getPlayers().size()){
+            case 1:
+                setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
+                break;
+            case 2:
+                setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
+                setPlayer2name(App.getCurrentGame().getPlayers().get(1).getName());
+                break;
+            case 3:
+                setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
+                setPlayer2name(App.getCurrentGame().getPlayers().get(1).getName());
+                setPlayer3name(App.getCurrentGame().getPlayers().get(2).getName());
+                break;
+            case 4:
+                setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
+                setPlayer2name(App.getCurrentGame().getPlayers().get(1).getName());
+                setPlayer3name(App.getCurrentGame().getPlayers().get(2).getName());
+                setPlayer4name(App.getCurrentGame().getPlayers().get(3).getName());
+                break;
+        }
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            playerPanes.get(i).setVisible(true); // Only show playerPane if that player is in the game
+        }
     }
 
     // Assigns labels to player colors
@@ -131,6 +172,22 @@ public class ScoreController implements Initializable, Observable {
         return scoreController;
     }
 
+    public void setPlayer1name(String player1name) {
+        this.player1name.setText(player1name);
+    }
+
+    public void setPlayer2name(String player2name) {
+        this.player2name.setText(player2name);
+    }
+
+    public void setPlayer3name(String player3name) {
+        this.player3name.setText(player3name);
+    }
+
+    public void setPlayer4name(String player4name) {
+        this.player4name.setText(player4name);
+    }
+
     @Override
     public void update(Game game) {
         for (Player player : game.getPlayers()) {
@@ -139,5 +196,18 @@ public class ScoreController implements Initializable, Observable {
             setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
             setVictoryPointsForPlayer(player.getColor(), player.getScore());
         }
+    }
+
+    @FXML
+    public void testGameEnd() {
+        boolean clientWon; // Ask Player or Game object about player's result
+        if(Math.random() < 0.5) { clientWon = true; }
+        else { clientWon = false; }
+
+        ScreenController.getInstance().showGameEnd();
+        if (clientWon) {
+            GameEndController.getInstance().initializeVictory(); }
+        else {
+            GameEndController.getInstance().initializeDefeat(); }
     }
 }

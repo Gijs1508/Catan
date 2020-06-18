@@ -12,6 +12,7 @@ import org.catan.Model.Logs;
 import org.catan.Model.Player;
 import org.catan.View.panes.LogPane;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,13 +34,14 @@ public class LogController implements Initializable, Observable {
 
 
     public LogController() {
-        logController = this;
         player = App.getClientPlayer().getName();
     }
 
     @Override // Scroll to bottom with each update
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D)); }
+        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));
+        logController = this;
+    }
 
     private void addToLogsBox(LogPane logPane) { // Add a new LogPane to the LogsBox
         logsBox.getChildren().add(logPane.getLogGrid()); }
@@ -164,6 +166,8 @@ public class LogController implements Initializable, Observable {
     // Stores log in logs
     private void storeLog(Log log) {
         logs.addLog(log);
+        App.getCurrentGame().setLogs(logs.getLogs());
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public static LogController getInstance() {
@@ -174,7 +178,7 @@ public class LogController implements Initializable, Observable {
     }
 
     public static void setPlayer(){
-        player = Player.getActivePlayer().getName();
+        player = App.getCurrentGame().turnPlayerGetter().getName();
     }
 
     public static void setOpponent(Player opponentPlayer){
@@ -184,6 +188,18 @@ public class LogController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
+        if (game.getLogs().size() > logs.getLogs().size()) {
+            for (int i = logs.getLogs().size(); i < game.getLogs().size(); i++) {
+                if (game.getLogs().get(i).getLogType().equals("txt")) {
+                    addTxtLogToLogsPane(game.getLogs().get(i));
+                }
+                if (game.getLogs().get(i).getLogType().equals("img")) {
+                    addImgLogToLogsPane(game.getLogs().get(i));
+                }
+                logs.addLog(game.getLogs().get(i));
 
+            }
+            App.getCurrentGame().setLogs(logs.getLogs());
+        }
     }
 }

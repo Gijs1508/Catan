@@ -1,9 +1,13 @@
 package org.catan.Controller;
 
+import com.sun.javafx.scene.control.skin.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.CreateGameCode;
@@ -67,6 +71,5 @@ public class CreateController implements Observable, Initializable {
 
     @Override
     public void update(Game game) {
-        //long gameCode = CreateGameCode.getSeed();
     }
 }

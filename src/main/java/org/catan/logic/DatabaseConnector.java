@@ -4,13 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
+import com.google.cloud.firestore.EventListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
+import org.catan.App;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
+import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
@@ -147,7 +151,7 @@ public class DatabaseConnector {
         dataMap.put("players", playerMap);
         ApiFuture<WriteResult> result = documentReference.update(dataMap);
         try {
-            System.out.println("Update time : " + result.get().getUpdateTime());
+            result.get().getUpdateTime();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,7 +186,7 @@ public class DatabaseConnector {
         dataMap.put("players", playerMap);
         ApiFuture<WriteResult> result = documentReference.set(dataMap);
         try {
-            System.out.println("Update time : " + result.get().getUpdateTime());
+            result.get().getUpdateTime();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -215,13 +219,12 @@ public class DatabaseConnector {
 
     public void updateChat(Chat chat) {
         DocumentReference documentReference = this.db.collection("chats").document(String.valueOf(chat.getGameId()));
-
         ObjectMapper objectMapper = new ObjectMapper();
 
         HashMap<String, Object> dataMap = objectMapper.convertValue(chat, HashMap.class);
         ApiFuture<WriteResult> result = documentReference.update(dataMap);
         try {
-            System.out.println("Update time : " + result.get().getUpdateTime());
+            result.get().getUpdateTime();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -235,7 +238,7 @@ public class DatabaseConnector {
         HashMap<String, Object> dataMap = objectMapper.convertValue(chat, HashMap.class);
         ApiFuture<WriteResult> result = documentReference.set(dataMap);
         try {
-            System.out.println("Update time : " + result.get().getUpdateTime());
+            result.get().getUpdateTime();
         } catch (Exception e) {
             e.printStackTrace();
         }

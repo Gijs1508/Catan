@@ -24,6 +24,8 @@ import java.util.Map;
  */
 
 public class DobbelsteenController implements Observable {
+
+    LogController logController = LogController.getInstance();
     @FXML private ImageView dice1_img;
     @FXML private ImageView dice2_img;
     Dice dice = new Dice();
@@ -37,14 +39,18 @@ public class DobbelsteenController implements Observable {
     @FXML public void throwDie() {
         System.out.println("is players turn: " + App.getClientPlayer().isTurn());
         if(App.getClientPlayer().isTurn()){
-
             Sound.playDiceShuffle();
             // Throw the dice 1.5 seconds after starting the shuffle sound effect
             Timeline delay = new Timeline(new KeyFrame(Duration.seconds(1.5), actionEvent -> {
                 HashMap<Integer, ArrayList<String>> diceResult;
                 try {
                     diceResult = dice.throwDice();
-
+                    for (int key : diceResult.keySet()) {
+                        if (key == 7) {
+                            //TODO Rover verzetten
+                            GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
+                        }
+                    }
                     Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
                     Integer total = entry.getKey();
                     ArrayList<String> values = entry.getValue();

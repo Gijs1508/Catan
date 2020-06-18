@@ -3,7 +3,6 @@ package org.catan.Controller;
 import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import org.catan.App;
-import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.*;
@@ -24,7 +23,6 @@ public class BuildSettlementController implements Observable {
     private ArrayList<Village> buildVillages;
     private MathBuildSettlement math;
     private PolygonConnectedNodes poly;
-    private BuildVillages bv;
 
     private GameSchermController gameSchermController = GameSchermController.getInstance();
     private static BuildSettlementController buildSettlementController;
@@ -39,7 +37,6 @@ public class BuildSettlementController implements Observable {
         this.roadSpotNodeList = roadSpotNodeList;
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
-        this.bv = new BuildVillages();
         this.buildRoads = new ArrayList<>();
         this.buildVillages = new ArrayList<>();
     }
@@ -267,12 +264,22 @@ public class BuildSettlementController implements Observable {
 
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
-        bv.setBuildVillages(buildVillages);
+        App.getCurrentGame().setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
-        App.getCurrentGame().getBoard().addSettlement(village);
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+        checkPlayerWon(App.getCurrentGame().turnPlayerGetter());
 
         return village;
+    }
+
+    /** checks if the player has won
+     * @param turnPlayerGetter the player who just build an settlement
+     * @author Gijs */
+    private void checkPlayerWon(Player turnPlayerGetter) {
+        if(turnPlayerGetter.getScore() >= 10){
+            // TODO: Change this to a real function.
+            ScoreController.getInstance().testGameEnd();
+        }
     }
 
     /** Finds the harbor that the settlement has been placed adjacent to and updates accordingly.
@@ -314,8 +321,11 @@ public class BuildSettlementController implements Observable {
                 }
             }
             App.getCurrentGame().turnPlayerGetter().addCityPoint();
+            App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
             App.getCurrentGame().getBoard().setSettlements(buildVillages);
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+            checkPlayerWon(App.getCurrentGame().turnPlayerGetter());
+
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("You don't have enough resources to upgrade an village!");
@@ -410,7 +420,6 @@ public class BuildSettlementController implements Observable {
 
     @Override
     public void update(Game game) {
-        System.out.println("Wejo update neef");
         updateRoads(game.getBoard().getRoads());
         updateSettlements(game.getBoard().getSettlements());
     }

@@ -65,6 +65,10 @@ public class Logs {
         logs.add(log);
     }
 
+    public void setLogs(ArrayList<Log> logs) {
+        this.logs = logs;
+    }
+
     public ArrayList<Log> getLogs() {
         return logs;
     }

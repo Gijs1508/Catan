@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -57,13 +58,13 @@ public class StockController implements Initializable, Observable {
     }
 
     public void testResources(){
-        Inventory inventory = Player.getMainPlayer().getPlayerInventory();
+        Inventory inventory = App.getClientPlayer().getPlayerInventory();
         inventory.changeCards("wood", 1);
         inventory.changeCards("brick", 2);
         inventory.changeCards("ore", 3);
         inventory.changeCards("wool", 4);
         inventory.changeCards("wheat", 5);
-        updateResources();
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public void updateResources(){
@@ -75,7 +76,7 @@ public class StockController implements Initializable, Observable {
         oldResources[4] = Integer.parseInt(wheatCount.getText());
         oldResources[5] = Integer.parseInt(knightCount.getText());
 
-        int[] cards = App.getCurrentGame().turnPlayerGetter().getPlayerInventory().getCards();
+        int[] cards = App.getClientPlayer().getPlayerInventory().getCards();
         woodCount.setText(Integer.toString(cards[0]));
         brickCount.setText(Integer.toString(cards[1]));
         oreCount.setText(Integer.toString(cards[2]));
@@ -150,25 +151,30 @@ public class StockController implements Initializable, Observable {
      * @author Jeroen */
    @FXML public void activateKnight() {
         // Check if it's player's turn
-        if(!Player.mainPlayerActive) {
+        if(!App.getClientPlayer().isTurn()) {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card outside of your turn.");
             return;
         }
         // Checks if there still are knight cards left
-        if(Player.getActivePlayer().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
+        if(App.getCurrentGame().turnPlayerGetter().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have any knight cards left to activate.");
             return;
         }
 
-        Player.getActivePlayer().getPlayerInventory().changeCards("knight", -1);
+        App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", -1);
         removeCardAnimation(animationKnightCard);
 
-        GameSchermController.getInstance().highlightTiles(Thief.getTile());
+        GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
 
         logController.logKnightEvent();
         Sound.playSword();
+    }
+
+    @Override
+    public void update(Game game) {
+        updateResources();
     }
 
     /** Shows details about the knight card when the knight card is hovered */
@@ -195,10 +201,5 @@ public class StockController implements Initializable, Observable {
             stockController = new StockController();
         }
         return stockController;
-    }
-
-    @Override
-    public void update(Game game) {
-
     }
 }

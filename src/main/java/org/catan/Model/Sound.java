@@ -29,6 +29,8 @@ public class Sound {
     private static AudioClip sword = new AudioClip(App.class.getResource("assets/sounds/soundeffects/sword.mp3").toExternalForm());
     private static AudioClip startTurn = new AudioClip(App.class.getResource("assets/sounds/soundeffects/startTurnJingle.mp3").toExternalForm());
     private static AudioClip endTurn = new AudioClip(App.class.getResource("assets/sounds/soundeffects/endTurnJingle.mp3").toExternalForm());
+    private static AudioClip victory = new AudioClip(App.class.getResource("assets/sounds/soundeffects/victoryJingle.mp3").toExternalForm());
+    private static AudioClip defeat = new AudioClip(App.class.getResource("assets/sounds/soundeffects/defeatJingle.mp3").toExternalForm());
     private static ArrayList<AudioClip> soundEffects = new ArrayList<>();
     private static HashMap<AudioClip, Double> defaultVolume;
 
@@ -51,6 +53,8 @@ public class Sound {
             put(sword, 0.3);
             put(startTurn, 0.1);
             put(endTurn, 0.1);
+            put(victory, 0.1);
+            put(defeat, 0.1);
         }};
         for(AudioClip soundEffect : soundEffects) {
             soundEffect.setVolume(defaultVolume.get(soundEffect));
@@ -110,6 +114,16 @@ public class Sound {
     public static void playEndTurnJingle() {
         if(endTurn.getVolume() > 0)
             endTurn.play();
+    }
+
+    public static void playVictoryJingle() {
+        if(victory.getVolume() > 0)
+            victory.play();
+    }
+
+    public static void playDefeatJingle() {
+        if(defeat.getVolume() > 0)
+            defeat.play();
     }
 
     public static void muteSoundEffects() {

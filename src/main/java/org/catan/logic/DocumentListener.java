@@ -5,13 +5,12 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.EventListener;
 import com.google.cloud.firestore.FirestoreException;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import org.catan.App;
-import org.catan.Controller.BuildSettlementController;
-import org.catan.Controller.ChatController;
-import org.catan.Controller.GameSchermController;
-import org.catan.Controller.LobbySchermController;
+import org.catan.Controller.*;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
@@ -30,8 +29,6 @@ public class DocumentListener {
         this.collection = collection;
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         this.docRef = dbConnector.getDb().collection(collection).document(documentId);
-        System.out.println("collection: " + collection);
-        System.out.println("Doc id: " + documentId);
         this.docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,
@@ -42,14 +39,19 @@ public class DocumentListener {
                 }
                 // In this if statement, all the controllers that should be called when a game document is updated, should be put
                 if (snapshot != null && snapshot.exists()) {
-                    switch (collection) {
-                        case "games":
-                            updateGameDocument(snapshot);
-                            break;
-                        case "chats":
-                            updateChatDocument(snapshot);
-                            break;
-                    }
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            switch (collection) {
+                                case "games":
+                                    updateGameDocument(snapshot);
+                                    break;
+                                case "chats":
+                                    updateChatDocument(snapshot);
+                                    break;
+                            }
+                        }
+                    });
                 } else {
                     System.out.print("Current data: null");
                 }
@@ -70,23 +72,20 @@ public class DocumentListener {
 
         switch (game.getStatus()) {
             case "open":
-                System.out.println("Start lobby update");
-                FXMLLoader loader = new FXMLLoader();
                 LobbySchermController.getInstance().update(game);
                 break;
             case "going":
-                if (App.getCurrentGame().getStatus().equals("going")){
-                    GameSchermController.getInstance().update(game);
+                if (App.getCurrentGame().getStatus().equals("going")) {
                     BuildSettlementController.getInstance().update(game);
+                    GameSchermController.getInstance().update(game);
+                    ThiefController.getInstance().update(game);
+                    LogController.getInstance().update(game);
+                    StockController.getInstance().update(game);
                 }
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
-                    App.addListener(chatListener);
-                    try {
-                        App.setRoot("./Views/screenView");
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+                    App.setChatListener(chatListener);
+                    LobbySchermController.getInstance().updateScreenRoot();
                 }
                 break;
         }

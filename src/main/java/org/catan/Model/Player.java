@@ -1,6 +1,8 @@
 package org.catan.Model;
 
+import org.catan.App;
 import org.catan.Controller.*;
+import org.catan.logic.DatabaseConnector;
 
 import java.util.*;
 
@@ -29,11 +31,6 @@ public class Player {
     private TradeController tradeController = TradeController.getInstance();
     private ScoreController scoreController = ScoreController.getInstance();
 
-    public static Player mainPlayer; // Player controlling the instance of the game
-    public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
-    public static Player activePlayer;
-    public static boolean mainPlayerActive;
-
     /**
      * Empty constructor, needed for Jackson to do proper deserialization
      */
@@ -47,7 +44,6 @@ public class Player {
         this.score = 0;
         this.playerInventory = new Inventory();
         this.identifier = Math.toIntExact(CreateGameCode.randomCodeGen());
-        allPlayers.add(this);
         initializeResourceCosts();
     }
 
@@ -104,11 +100,14 @@ public class Player {
             return;
         }
         String resource = resources.get(new Random().nextInt(resources.size()));
+        System.out.println("Stolen resource: " + resource);
 
-        victim.getPlayerInventory().changeCards(resource, -1); // Take the resource from the victim, and give it to the active player
+        // Take the resource from the victim, and give it to the active player
+        victim.getPlayerInventory().changeCards(resource, -1); // TODO there probably is a better way to change victim's inventory (doesn't update their stockview this way)
         getPlayerInventory().changeCards(resource, 1);
 
         LogController.getInstance().logStealEvent(victim); // Log steal event
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public void addVictoryPoint() {
@@ -136,14 +135,6 @@ public class Player {
         this.color = color;
     }
 
-    public static Player getMainPlayer() {
-        return mainPlayer;
-    }
-
-    public void setMainPlayer(Player player){
-        mainPlayer = player;
-    }
-
     public String getName(){
         return this.name;
     }
@@ -160,32 +151,20 @@ public class Player {
         return this.playerInventory;
     }
 
-    public static ArrayList<Player> getAllPlayers(){
-        return allPlayers;
-    }
+//    public static void setActivePlayer(Player player){
+//        activePlayer = player;
+//        LogController.setPlayer();
+//        if (player.equals(App.getClientPlayer())){
+//            mainPlayerActive = true;
+//            Sound.playStartTurnJingle();
+//            System.out.println("MAIN PLAYER ACTIVE");
+//        } else{
+//            mainPlayerActive = false;
+//        }
+//    }
 
-    public static void setActivePlayer(Player player){
-        activePlayer = player;
-        LogController.setPlayer();
-        if (player == mainPlayer){
-            mainPlayerActive = true;
-            Sound.playStartTurnJingle();
-            System.out.println("MAIN PLAYER ACTIVE");
-        } else{
-            mainPlayerActive = false;
-        }
-    }
-
-    public static Player getActivePlayer(){
-        return activePlayer;
-    }
-
-    public static boolean isMainPlayerActive(){
-        return mainPlayerActive;
-    }
-
-    public int getCostOf(String resource) {
-        return resourceToCost.get(resource);
+    public HashMap<String, Integer> getResourceToCost() {
+        return resourceToCost;
     }
 
     public boolean isHost() {
@@ -239,4 +218,5 @@ public class Player {
     public void setCityScore(int cityScore) {
         this.cityScore = cityScore;
     }
+
 }

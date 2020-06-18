@@ -2,8 +2,10 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.Chat ;
@@ -25,6 +27,7 @@ import java.util.ResourceBundle;
 public class ChatController implements Initializable, ChatObservable {
     @FXML private TextField messageField;
     @FXML private TextArea chatBox;
+    @FXML private ScrollPane scrollPane;
     @FXML private Text msgContent;
     @FXML private Text sender;
     private static ChatController chatController = new ChatController();
@@ -49,14 +52,19 @@ public class ChatController implements Initializable, ChatObservable {
 
     @Override
     public void update(Chat chat) {
-        this.chat = chat;
-        updateChatView();
+        if (chat.getChatMessages().size() > this.chat.getChatMessages().size()) {
+            for (int i = this.chat.getChatMessages().size(); i < chat.getChatMessages().size(); i++) {
+                this.chat.addChatMessage(chat.getChatMessages().get(i));
+            }
+            updateChatView();
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chatController = this;
         chat = new Chat(App.getCurrentGame().getCode().intValue());
+        chatBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));
     }
 
     public static ChatController getInstance() {
