@@ -80,6 +80,7 @@ public class DocumentListener {
                 if (App.getCurrentGame().getStatus().equals("going")) {
                     BuildSettlementController.getInstance().update(game);
                     LogController.getInstance().update(game);
+                    StockController.getInstance().update(game);
                 }
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
