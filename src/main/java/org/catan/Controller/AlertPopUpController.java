@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -27,7 +28,10 @@ public class AlertPopUpController {
     }
 
     public void closePopup() {
-        if(this.controller.toString().equals(LobbySchermController.getInstance().getClass().toString())){
+        if(controller.equals(MainController.getInstance().getClass())){
+            MainController.getInstance().hideAlertPopup();
+        }
+        else if(controller.toString().equals(LobbySchermController.getInstance().getClass().toString())){
             LobbySchermController.getInstance().hideAlertPopup();
         } else {
             screenController.hideAlertPopup();
@@ -40,6 +44,10 @@ public class AlertPopUpController {
 
     public void setAlertDescription(String description) {
         alertDescription.setText(description);
+        if(description.length() < 30) {
+            alertDescription.setFont(Font.font(20)); }
+        else {
+            alertDescription.setFont(Font.font(15)); }
     }
 
     public void setAlertPlacedController(Object controllerClass){

@@ -99,9 +99,7 @@ public class ScreenController implements Initializable, Observable {
         initializePopup(devCardPopup);
         initializePopup(alertPopup);
 
-        for(Player player : App.getCurrentGame().getPlayers()){
-
-        }
+        AlertPopUpController.getInstance().setAlertPlacedController(this.getClass());
     }
 
     public void showGameEnd() {

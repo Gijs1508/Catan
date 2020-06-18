@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.catan.App;
 import org.catan.Model.Game;
@@ -28,9 +30,9 @@ public class MainController implements Observable, Initializable {
     @FXML private ImageView bg;
     @FXML private ImageView title;
     @FXML private ImageView musicBtn;
-
     @FXML private TextField player_name_input;
     @FXML private VBox buttons;
+    @FXML private Pane alertPopup;
 
     private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
     private static MainController mainController;
@@ -39,6 +41,12 @@ public class MainController implements Observable, Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MenuMusicHandler.initializeMusic(musicBtn);
         mainController = this;
+        try {
+            alertPopup.getChildren().add(App.loadFXML("Views/alertPopUpView"));
+            alertPopup.setVisible(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -121,9 +129,16 @@ public class MainController implements Observable, Initializable {
     }
 
     private void createAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText("You didn't fill in a name!");
-        alert.show();
+        AlertPopUpController.getInstance().setAlertPlacedController(this.getClass());
+        showAlertPopup();
+        AlertPopUpController.getInstance().setAlertDescription("You didn't fill in a name!");
+    }
+
+    public void showAlertPopup() {
+        alertPopup.setVisible(true);
+    }
+    public void hideAlertPopup() {
+        alertPopup.setVisible(false);
     }
 
     private boolean nameIsSet(){
