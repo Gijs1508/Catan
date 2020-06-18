@@ -389,31 +389,6 @@ public class BuildSettlementController implements Observable {
         return road;
     }
 
-//    public boolean buildItem(int[] requiredResources, Object object){
-//        Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
-//        for (int i = 0; i < playerInventory.getCards().length; i++) {
-//            for (int reqCard : requiredResources){
-//                if(playerInventory.getCards()[i] >= reqCard){
-//                    System.out.println(playerInventory.getStrCards()[i]);
-//                    playerInventory.changeCards(playerInventory.getStrCards()[i], -reqCard);
-//                    //buildVillages.add(object);
-//                    System.out.println(object.getClass().getName());
-//
-//                    switch (object.getClass().getName()){
-//                        case "org.catan.Model.Village": buildVillages.add((Village) object); break;
-//                        case "org.catan.Model.Road": buildRoads.add((Road) object); break;
-//                    }
-//
-//                    bv.setBuildVillages(buildVillages);
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-//            }
-//        }
-//        return true;
-//    }
-
     private String getPlayerColor() {
         return App.getCurrentGame().turnPlayerGetter().getColor();
     }
