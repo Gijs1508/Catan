@@ -441,7 +441,7 @@ public class GameSchermController implements Initializable, Observable {
         if(App.getClientPlayer().isTurn()){
             Sound.playEndTurnJingle();
             logController.logEndTurnEvent();
-            TurnManager.nextTurn();
+            TurnManager.nextPlayer();
             //TODO
         }
         else {
