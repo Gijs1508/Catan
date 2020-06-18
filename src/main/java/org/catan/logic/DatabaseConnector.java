@@ -157,18 +157,6 @@ public class DatabaseConnector {
         }
     }
 
-
-    public void updateStock(Inventory inventory) {
-        DocumentReference documentReference = this.db.collection("games").document(String.valueOf(App.getCurrentGame().getCode()));
-        documentReference.addSnapshotListener((snapshot, e) -> {
-            if (e != null) { System.out.println("Listen failed: " + e); return; }
-
-            if(snapshot != null && snapshot.exists()) {
-                System.out.println();
-            }
-        });
-    }
-
     private ArrayList<Map> converPlayersToHashMaps(ArrayList<Player> playerList){
         ArrayList<Map> playerMapList = new ArrayList<>();
 
