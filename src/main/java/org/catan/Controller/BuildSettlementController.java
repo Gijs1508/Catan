@@ -3,7 +3,6 @@ package org.catan.Controller;
 import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import org.catan.App;
-import org.catan.Helper.BuildVillages;
 import org.catan.Helper.MathBuildSettlement;
 import org.catan.Helper.PolygonConnectedNodes;
 import org.catan.Model.*;
@@ -265,7 +264,7 @@ public class BuildSettlementController implements Observable {
 
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
-        App.getCurrentGame().setBuiltVillages(buildVillages);
+        App.getCurrentGame().setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 

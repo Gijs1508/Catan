@@ -4,7 +4,6 @@ import org.catan.App;
 import org.catan.Controller.GameSchermController;
 import org.catan.Controller.LogController;
 import org.catan.Controller.ScreenController;
-import org.catan.Helper.BuildVillages;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,9 +54,9 @@ public class Dice {
     }
 
     private void setPlayerResources(int total){
-        if(App.getCurrentGame().getBuiltVillages() != null) {
+        if(App.getCurrentGame().getBuildVillages() != null) {
             ArrayList<String> receivedResources = new ArrayList<>();
-            for (Village village : App.getCurrentGame().getBuiltVillages()) {
+            for (Village village : App.getCurrentGame().getBuildVillages()) {
                 for (Tile tile : village.getConnectedTiles()){
                     int amount;
                     if(village.isUpgraded()){

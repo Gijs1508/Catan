@@ -18,7 +18,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
-import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 import java.io.IOException;
@@ -292,7 +291,7 @@ public class GameSchermController implements Initializable, Observable {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();
         int opponentCount = 0;
-        for (Village settlement : App.getCurrentGame().getBuiltVillages()) { // Loop through all settlements
+        for (Village settlement : App.getCurrentGame().getBuildVillages()) { // Loop through all settlements
             // TODO this if statement can't be tested properly since colors aren't implemented yet
             if (!settlement.getColor().equals(App.getClientPlayer().getColor())) { // If settlement isn't player's
                 ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
@@ -311,11 +310,11 @@ public class GameSchermController implements Initializable, Observable {
                 }
             }
         }
-        System.out.println("\n\n\n\nOpponent size:" + opponents.size());
-        for (Player player : opponents) {
-            System.out.println(player.getName());
-            System.out.println(player.getColor());
-        }
+//        System.out.println("\n\n\n\nOpponent size:" + opponents.size());
+//        for (Player player : opponents) {
+//            System.out.println(player.getName());
+//            System.out.println(player.getColor());
+//        }
         return opponents;
     }
 
