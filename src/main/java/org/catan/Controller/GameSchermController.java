@@ -310,11 +310,6 @@ public class GameSchermController implements Initializable, Observable {
                 }
             }
         }
-//        System.out.println("\n\n\n\nOpponent size:" + opponents.size());
-//        for (Player player : opponents) {
-//            System.out.println(player.getName());
-//            System.out.println(player.getColor());
-//        }
         return opponents;
     }
 

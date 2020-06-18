@@ -47,7 +47,7 @@ public class Inventory {
             case "wheat": cards[4] += amount; break;
             case "knight": cards[5] += amount; break;
         }
-        StockController.getInstance().updateResources();
+        StockController.getInstance().updateResources(); // TODO update specific player's controller
     }
 
     public int developmentCardsLeftGetter() {

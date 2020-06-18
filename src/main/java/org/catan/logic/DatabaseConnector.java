@@ -4,13 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
+import com.google.cloud.firestore.EventListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
+import org.catan.App;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
+import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
@@ -151,6 +155,18 @@ public class DatabaseConnector {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void updateStock(Inventory inventory) {
+        DocumentReference documentReference = this.db.collection("games").document(String.valueOf(App.getCurrentGame().getCode()));
+        documentReference.addSnapshotListener((snapshot, e) -> {
+            if (e != null) { System.out.println("Listen failed: " + e); return; }
+
+            if(snapshot != null && snapshot.exists()) {
+                System.out.println();
+            }
+        });
     }
 
     private ArrayList<Map> converPlayersToHashMaps(ArrayList<Player> playerList){
