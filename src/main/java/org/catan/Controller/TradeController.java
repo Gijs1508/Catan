@@ -332,7 +332,6 @@ public class TradeController implements Observable {
 
     @Override
     public void update(Game game) {
-        System.out.println("Trade update reached");
 //        if(App.getClientPlayer() != App.getCurrentGame().turnPlayerGetter()){
 //            receiveTrade();
 //        }

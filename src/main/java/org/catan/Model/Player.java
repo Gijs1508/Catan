@@ -241,8 +241,4 @@ public class Player {
         this.cityScore = cityScore;
     }
 
-    public HashMap<String, Integer> getResourceToCost() {
-        return resourceToCost;
-    }
-
 }
