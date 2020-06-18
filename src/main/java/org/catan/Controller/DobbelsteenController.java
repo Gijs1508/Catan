@@ -39,7 +39,6 @@ public class DobbelsteenController implements Observable {
     @FXML public void throwDie() {
         System.out.println("is players turn: " + App.getClientPlayer().isTurn());
         if(App.getClientPlayer().isTurn()){
-
             Sound.playDiceShuffle();
             // Throw the dice 1.5 seconds after starting the shuffle sound effect
             Timeline delay = new Timeline(new KeyFrame(Duration.seconds(1.5), actionEvent -> {

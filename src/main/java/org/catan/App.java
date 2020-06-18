@@ -31,8 +31,8 @@ public class App extends Application {
     private static Stage appStage;
     private static Player clientPlayer;
     private static Game currentGame;
-    private static ArrayList<DocumentListener> listeners = new ArrayList<DocumentListener>();
-
+    private static DocumentListener gameListener;
+    private static DocumentListener chatListener;
 
     private AnchorPane screenView;
     private AnchorPane boardView;
@@ -48,7 +48,7 @@ public class App extends Application {
         //scene = new Scene(loadFXML("Views/screenView"));
         //scene = new Scene(loadFXML("Views/screenView"));
         scene = new Scene(loadFXML("Views/mainView"));
-        MainController.getInstance().playAnimation();
+//        MainController.getInstance().playAnimation();
 
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
@@ -85,20 +85,6 @@ public class App extends Application {
     }
 
 
-    private void setupControllerInstances() {
-        LobbySchermController.getInstance();
-        AlertPopUpController.getInstance();
-        BuildSettlementController.getInstance();
-        DevCardPopUpController.getInstance();
-        GameSchermController.getInstance();
-        LogController.getInstance();
-        ScoreController.getInstance();
-        ScreenController.getInstance();
-        SettingsController.getInstance();
-        StockController.getInstance();
-        TradeController.getInstance();
-    }
-
     public static void setStageHeight(int height) {
 //        appStage.setHeight(height);
         appStage.setHeight(height);
@@ -121,19 +107,32 @@ public class App extends Application {
         launch();
     }
 
-    public static void addListener(DocumentListener listener) {
-        listeners.add(listener);
-    }
-
-    public static void resetListeners() {
-        listeners = new ArrayList<DocumentListener>();
-    }
-
     public static Game getCurrentGame() {
         return currentGame;
     }
 
     public static void setCurrentGame(Game game) {
         currentGame = game;
+    }
+
+    public static DocumentListener getGameListener() {
+        return gameListener;
+    }
+
+    public static void setGameListener(DocumentListener gameListener) {
+        App.gameListener = gameListener;
+    }
+
+    public static DocumentListener getChatListener() {
+        return chatListener;
+    }
+
+    public static void setChatListener(DocumentListener chatListener) {
+        App.chatListener = chatListener;
+    }
+
+    public static void resetListeners() {
+        gameListener = null;
+        chatListener = null;
     }
 }

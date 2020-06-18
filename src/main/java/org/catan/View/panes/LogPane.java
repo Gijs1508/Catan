@@ -28,7 +28,7 @@ public class LogPane {
 
     public LogPane(Log log){
         this.log = log;
-        if(log.getLogType() == "img"){
+        if(log.getLogType().equals("img")){
             initImgEvent();
             return; }
         initTxtEvent();

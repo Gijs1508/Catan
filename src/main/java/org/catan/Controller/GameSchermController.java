@@ -21,8 +21,6 @@ import org.catan.App;
 import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
-import org.catan.logic.DatabaseConnector;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -143,7 +141,6 @@ public class GameSchermController implements Initializable, Observable {
 
     //    private Spelbord spelbord;
 //    private Spel spel;
-
     private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
@@ -190,6 +187,7 @@ public class GameSchermController implements Initializable, Observable {
         initializeButtons();
 
         initializeHarbors();
+
 //        highlightTiles(10);
     }
 
@@ -264,6 +262,7 @@ public class GameSchermController implements Initializable, Observable {
         App.getCurrentGame().getBoard().getThief().setTile(tileID);
         LogController.getInstance().logRobberEvent();
 
+
         // TODO because all players are red, it won't find the owner of the blue settlement
 //        ThiefController.checkStealableOppenets(tileID);
 //        ThiefController.stealOppenets(tileID);
@@ -272,8 +271,7 @@ public class GameSchermController implements Initializable, Observable {
 
     public void highlightTiles(int tileId) {
         for (Circle thiefTile : thiefTileNodeList) {
-            String tileCurrentPosition = "thiefTile" + String.valueOf(tileId);
-            if (!thiefTile.getId().equals(tileCurrentPosition)) {
+            if (!thiefTile.getId().equals("thiefTile" + tileId)) {
                 thiefTile.setVisible(true);
             }
         }
@@ -301,15 +299,12 @@ public class GameSchermController implements Initializable, Observable {
         circle.setScaleY(1);
     }
 
-    // TODO Jan
     @FXML
     public void buildSettlement(MouseEvent mouseEvent) {
         int[] reqResources = {1, 1, 0, 1, 1, 0};
-        //TODO Jan: deze bool veranderen naar de status van startevent
-        boolean startEvent = false;
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        if(canBuildObject(reqResources)){
+        if(canBuildObject(reqResources) || startPhase){
             placeVillage(build.buildVillage(circle));
             logController.logSettlementEvent();
         }else {
@@ -397,11 +392,10 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     public void endTurn() {
-        if(Player.mainPlayerActive){
+        if(App.getClientPlayer().isTurn()){
             Sound.playEndTurnJingle();
-
             logController.logEndTurnEvent();
-            TurnManager.nextTurn(Player.getActivePlayer());
+            TurnManager.nextPlayer();
             //TODO
         }
         else {

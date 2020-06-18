@@ -57,7 +57,7 @@ public class StockController implements Initializable, Observable {
     }
 
     public void testResources(){
-        Inventory inventory = Player.getMainPlayer().getPlayerInventory();
+        Inventory inventory = App.getClientPlayer().getPlayerInventory();
         inventory.changeCards("wood", 1);
         inventory.changeCards("brick", 2);
         inventory.changeCards("ore", 3);
@@ -75,7 +75,7 @@ public class StockController implements Initializable, Observable {
         oldResources[4] = Integer.parseInt(wheatCount.getText());
         oldResources[5] = Integer.parseInt(knightCount.getText());
 
-        int[] cards = Player.getMainPlayer().getPlayerInventory().getCards();
+        int[] cards = App.getClientPlayer().getPlayerInventory().getCards();
         woodCount.setText(Integer.toString(cards[0]));
         brickCount.setText(Integer.toString(cards[1]));
         oreCount.setText(Integer.toString(cards[2]));
@@ -150,19 +150,19 @@ public class StockController implements Initializable, Observable {
      * @author Jeroen */
    @FXML public void activateKnight() {
         // Check if it's player's turn
-        if(!Player.mainPlayerActive) {
+        if(!App.getClientPlayer().isTurn()) {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card outside of your turn.");
             return;
         }
         // Checks if there still are knight cards left
-        if(Player.getActivePlayer().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
+        if(App.getCurrentGame().turnPlayerGetter().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have any knight cards left to activate.");
             return;
         }
 
-        Player.getActivePlayer().getPlayerInventory().changeCards("knight", -1);
+       App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", -1);
         removeCardAnimation(animationKnightCard);
 
         GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
