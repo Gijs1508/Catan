@@ -8,10 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.catan.App;
-import org.catan.Model.Chat ;
-import org.catan.Model.ChatMessage ;
-import org.catan.Model.Game;
-import org.catan.Model.Player;
+import org.catan.Model.*;
 import org.catan.interfaces.ChatObservable;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
@@ -41,6 +38,7 @@ public class ChatController implements Initializable, ChatObservable {
             messageField.clear();
             DatabaseConnector.getInstance().updateChat(chat);
             updateChatView();
+            new ChatThread(message.getMessage(), 5);
         }
         else { messageField.clear(); }
     }
