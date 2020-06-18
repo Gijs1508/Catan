@@ -30,11 +30,9 @@ public class Dice {
     public HashMap<Integer, ArrayList<String>> throwDice() throws IOException {
         HashMap<Integer, ArrayList<String>> diceResult = new HashMap<>();
         ArrayList<String> dices = new ArrayList<>();
-//        Random rand = new Random();
-//        int dice1 = (rand.nextInt(6) + 1);
-//        int dice2 = (rand.nextInt(6) + 1);
-        int dice1 = 3;
-        int dice2 = 4;
+        Random rand = new Random();
+        int dice1 = (rand.nextInt(6) + 1);
+        int dice2 = (rand.nextInt(6) + 1);
         Integer total = dice1 + dice2;
         dices.add(String.valueOf(dice1));
         dices.add(String.valueOf(dice2));
