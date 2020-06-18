@@ -158,7 +158,7 @@ public class GameSchermController implements Initializable, Observable {
     LogController logController = LogController.getInstance();
 
     private BuildSettlementController build;
-    private StartPhaseController startPhaseController;
+    private Runnable startPhaseController;
 
     private static GameSchermController gameSchermController;
 
@@ -179,7 +179,11 @@ public class GameSchermController implements Initializable, Observable {
         long seed = App.getCurrentGame().getCode();
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
-        this.startPhaseController = new StartPhaseController();
+//        this.startPhaseController = new StartPhaseController();
+        startPhaseController = new StartPhaseController();
+        Thread t1 = new Thread(startPhaseController);
+        t1.start();
+
         startPhaseButtonsInvisible();
         initializeButtons();
 
