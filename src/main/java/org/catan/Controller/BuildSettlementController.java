@@ -266,6 +266,7 @@ public class BuildSettlementController implements Observable {
         buildVillages.add(village);
         App.getCurrentGame().setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
+        App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         checkPlayerWon(App.getCurrentGame().turnPlayerGetter());
 
