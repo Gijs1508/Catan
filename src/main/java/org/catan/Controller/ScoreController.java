@@ -49,7 +49,7 @@ public class ScoreController implements Initializable, Observable {
     private static ScoreController scoreController;
 
 
-//    private Speler speler;
+    //    private Speler speler;
     private int score;
     private HashMap<String, Label> player1labels;
     private HashMap<String, Label> player2labels;
