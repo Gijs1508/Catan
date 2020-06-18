@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
@@ -133,7 +134,7 @@ public class TradePopUpController implements Initializable, Observable {
     public void acceptTrade(MouseEvent mouseEvent) {
         Sound.playClick();
 
-        Inventory playerInventory = Player.getMainPlayer().getPlayerInventory();
+        Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
         int[] cards = playerInventory.getCards();
         if(!offerLock && ownCards()){
             playerInventory.changeCards("wood", Integer.parseInt(offer[0]));
@@ -161,7 +162,7 @@ public class TradePopUpController implements Initializable, Observable {
     // Check if player owns all the requested cards
     public boolean ownCards(){
         boolean ownCards = true;
-        int[] cards = Player.getMainPlayer().getPlayerInventory().getCards();
+        int[] cards = App.getClientPlayer().getPlayerInventory().getCards();
         for (int i = 0; i < request.length; i++){
             if (!(cards[i] >= Integer.parseInt(request[i]))){
                 return false;

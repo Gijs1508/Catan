@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.catan.App;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 
@@ -62,7 +63,7 @@ public class HandInController implements Initializable {
     }
 
     private Inventory getInventory(){
-        return Player.getMainPlayer().getPlayerInventory();
+        return App.getClientPlayer().getPlayerInventory();
     }
 
     private int[] getInventoryCards(){

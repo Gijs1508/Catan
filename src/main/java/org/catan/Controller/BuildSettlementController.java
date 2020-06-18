@@ -301,7 +301,7 @@ public class BuildSettlementController implements Observable {
         // Finds what harbor belongs to that harborNum and updates the player's costs accordingly
         for (Harbor harbor : gameSchermController.getHarbors()) {
             if(harbor.getHarborNum() == harborNum) {
-                Player.getActivePlayer().updateResourceCosts(harbor);
+                App.getCurrentGame().turnPlayerGetter().updateResourceCosts(harbor);
             }
         }
 //        return;

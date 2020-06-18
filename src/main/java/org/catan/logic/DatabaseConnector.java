@@ -215,7 +215,7 @@ public class DatabaseConnector {
 
     public void updateChat(Chat chat) {
         DocumentReference documentReference = this.db.collection("chats").document(String.valueOf(chat.getGameId()));
-
+        System.out.println(documentReference.getPath());
         ObjectMapper objectMapper = new ObjectMapper();
 
         HashMap<String, Object> dataMap = objectMapper.convertValue(chat, HashMap.class);

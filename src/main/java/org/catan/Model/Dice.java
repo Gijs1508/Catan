@@ -66,7 +66,7 @@ public class Dice {
                         amount = 1;
                     }
                     if(total == tile.getNumber()){
-                        Player.getMainPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
+                        App.getClientPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
                         receivedResources.add(tile.getType());
                     }
                 }
