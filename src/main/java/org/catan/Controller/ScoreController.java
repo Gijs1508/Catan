@@ -2,9 +2,11 @@ package org.catan.Controller;
 
 //import model.Speler;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import org.catan.App;
 import org.catan.Model.Player;
 
 import java.net.URL;
@@ -139,5 +141,12 @@ public class ScoreController implements Initializable, Observable {
             setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
             setVictoryPointsForPlayer(player.getColor(), player.getScore());
         }
+    }
+
+    public void givePoints(ActionEvent actionEvent) {
+        System.out.println("hihi geklikt");
+        System.out.println(App.getCurrentGame().turnPlayerGetter().getName());
+        System.out.println(App.getCurrentGame().turnPlayerGetter().getScore());
+        App.getCurrentGame().turnPlayerGetter().setScore(10);
     }
 }
