@@ -27,6 +27,7 @@ public class AlertPopUpController {
         alertPopUpController = this;
     }
 
+    // Checks which hideAlertPopup should be called
     public void closePopup() {
         if(controller.equals(MainController.getInstance().getClass())){
             MainController.getInstance().hideAlertPopup();
@@ -44,7 +45,7 @@ public class AlertPopUpController {
 
     public void setAlertDescription(String description) {
         alertDescription.setText(description);
-        if(description.length() < 30) {
+        if(description.length() < 30) { // If description's length is smaller than 30, make font size bigger
             alertDescription.setFont(Font.font(20)); }
         else {
             alertDescription.setFont(Font.font(15)); }
@@ -53,8 +54,6 @@ public class AlertPopUpController {
     public void setAlertPlacedController(Object controllerClass){
         this.controller = controllerClass;
     }
-
-
 
     public static AlertPopUpController getInstance() {
         return alertPopUpController;
