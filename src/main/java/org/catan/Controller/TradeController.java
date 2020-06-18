@@ -12,6 +12,7 @@ import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
 import java.util.*;
@@ -160,17 +161,22 @@ public class TradeController implements Observable {
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
         } else if(tradeType == "player" && isClientPlayerActive()){
-            String playerName = App.getClientPlayer().getName();
+            String playerName = App.getCurrentGame().turnPlayerGetter().getName();
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
             TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
 //            App.tradePopUp();
-            ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij MainPlayer
+//            ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij de client
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
         else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You can't send trade offers outside of your turn.");
         }
+    }
+
+    public void receiveTrade() throws IOException{
+        ScreenController.getInstance().showTradePopup();
     }
 
 
@@ -326,7 +332,10 @@ public class TradeController implements Observable {
 
     @Override
     public void update(Game game) {
-
+        System.out.println("Trade update reached");
+//        if(App.getClientPlayer() != App.getCurrentGame().turnPlayerGetter()){
+//            receiveTrade();
+//        }
     }
 
 }

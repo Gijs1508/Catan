@@ -8,10 +8,7 @@ import com.google.cloud.firestore.FirestoreException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import org.catan.App;
-import org.catan.Controller.BuildSettlementController;
-import org.catan.Controller.ChatController;
-import org.catan.Controller.GameSchermController;
-import org.catan.Controller.LobbySchermController;
+import org.catan.Controller.*;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
@@ -78,6 +75,7 @@ public class DocumentListener {
             case "going":
                 if (App.getCurrentGame().getStatus().equals("going")){
                     GameSchermController.getInstance().update(game);
+                    TradeController.getInstance().update(game);
                 }
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));

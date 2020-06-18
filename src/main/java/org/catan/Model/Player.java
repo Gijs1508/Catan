@@ -1,5 +1,6 @@
 package org.catan.Model;
 
+import org.catan.App;
 import org.catan.Controller.*;
 
 import java.util.*;
@@ -239,4 +240,9 @@ public class Player {
     public void setCityScore(int cityScore) {
         this.cityScore = cityScore;
     }
+
+    public HashMap<String, Integer> getResourceToCost() {
+        return resourceToCost;
+    }
+
 }
