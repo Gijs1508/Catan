@@ -10,10 +10,6 @@ public class StartPhaseController {
     private static int startPhaseCountGlobal;
     private static boolean startPhaseActive = true;
 
-    public StartPhaseController() {
-        GameSchermController.getInstance().startPhaseButtonsInvisible();
-    }
-
     public static boolean isStartPhaseActive() {
         return startPhaseActive;
     }
