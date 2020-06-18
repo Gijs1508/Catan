@@ -147,7 +147,7 @@ public class DatabaseConnector {
         dataMap.put("players", playerMap);
         ApiFuture<WriteResult> result = documentReference.update(dataMap);
         try {
-            System.out.println("Update time : " + result.get().getUpdateTime());
+            result.get().getUpdateTime();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,7 +182,7 @@ public class DatabaseConnector {
         dataMap.put("players", playerMap);
         ApiFuture<WriteResult> result = documentReference.set(dataMap);
         try {
-            System.out.println("Update time : " + result.get().getUpdateTime());
+            result.get().getUpdateTime();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -215,13 +215,12 @@ public class DatabaseConnector {
 
     public void updateChat(Chat chat) {
         DocumentReference documentReference = this.db.collection("chats").document(String.valueOf(chat.getGameId()));
-        System.out.println(documentReference.getPath());
         ObjectMapper objectMapper = new ObjectMapper();
 
         HashMap<String, Object> dataMap = objectMapper.convertValue(chat, HashMap.class);
         ApiFuture<WriteResult> result = documentReference.update(dataMap);
         try {
-            System.out.println("Update time : " + result.get().getUpdateTime());
+            result.get().getUpdateTime();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -235,7 +234,7 @@ public class DatabaseConnector {
         HashMap<String, Object> dataMap = objectMapper.convertValue(chat, HashMap.class);
         ApiFuture<WriteResult> result = documentReference.set(dataMap);
         try {
-            System.out.println("Update time : " + result.get().getUpdateTime());
+            result.get().getUpdateTime();
         } catch (Exception e) {
             e.printStackTrace();
         }

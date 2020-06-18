@@ -21,6 +21,8 @@ import org.catan.App;
 import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -252,6 +254,7 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     private void placeThief(MouseEvent mouseEvent) throws IOException {
+        System.out.println("Doing thief placement");
         Circle circle = (Circle) mouseEvent.getSource();
         thief.setLayoutX(circle.getLayoutX() - 26);
         thief.setLayoutY(circle.getLayoutY() - 33);
@@ -259,8 +262,8 @@ public class GameSchermController implements Initializable, Observable {
 
         int tileID = ThiefController.convertStringIDtoIntID(circle.getId());
         // TODO would be cool to find the tile num for the ID (for logging) is already there
-        App.getCurrentGame().getBoard().getThief().setTile(tileID);
         LogController.getInstance().logRobberEvent();
+        App.getCurrentGame().getBoard().getThief().setTile(tileID);
 
 
         // TODO because all players are red, it won't find the owner of the blue settlement
@@ -730,9 +733,10 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     public void updateThief(int tileId){
-        String tile = "thiefTile" + String.valueOf(tileId);
+        String tile = "thiefTile" + tileId;
         for (Circle thiefTile : thiefTileNodeList) {
             if (thiefTile.getId().equals(tile)) {
+                System.out.println("Matching thief tile found!");
                 thief.setLayoutX(thiefTile.getLayoutX() - 26);
                 thief.setLayoutY(thiefTile.getLayoutY() - 33);
             }

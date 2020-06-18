@@ -29,8 +29,6 @@ public class DocumentListener {
         this.collection = collection;
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         this.docRef = dbConnector.getDb().collection(collection).document(documentId);
-        System.out.println("collection: " + collection);
-        System.out.println("Doc id: " + documentId);
         this.docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,
@@ -70,7 +68,6 @@ public class DocumentListener {
 
     private void updateGameDocument(DocumentSnapshot snapshot) {
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println(snapshot.getData());
         Game game = mapper.convertValue(snapshot.getData(), Game.class);
         switch (game.getStatus()) {
             case "open":
@@ -80,8 +77,6 @@ public class DocumentListener {
                 if (App.getCurrentGame().getStatus().equals("going")) {
                     BuildSettlementController.getInstance().update(game);
                     LogController.getInstance().update(game);
-                }
-                if (App.getCurrentGame().getStatus().equals("going")){
                     GameSchermController.getInstance().update(game);
                     ThiefController.getInstance().update(game);
                 }
