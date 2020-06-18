@@ -27,6 +27,13 @@
             <Image url="@../assets/img/menu/joinGame.png" />
          </image>
       </ImageView>
+
+      <Label fx:id="error_text" layoutX="295.0" layoutY="290.0" prefHeight="31.0" prefWidth="370.0" style="-fx-alignment: center;" text="Invalide code ingevoerd" textAlignment="CENTER" visible="false">
+         <font>
+            <Font size="20.0" />
+            <Font size="21.0" />
+         </font>
+      </Label>
       <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="473.0" layoutY="515.0" onMouseClicked="#backToMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/menu/back2.png" />

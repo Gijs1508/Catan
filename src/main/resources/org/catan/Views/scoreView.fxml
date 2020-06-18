@@ -10,7 +10,7 @@
    <children>
       <VBox layoutY="76.0" prefHeight="370.0" prefWidth="200.0" style="-fx-background-color: white;">
          <children>
-            <Pane prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
+            <Pane fx:id="player1pane" prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
                <children>
                   <ImageView fitHeight="52.0" fitWidth="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -63,7 +63,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
+            <Pane fx:id="player2pane" prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
                <children>
                   <ImageView fitHeight="52.0" fitWidth="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -116,7 +116,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
+            <Pane fx:id="player3pane" prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
                <children>
                   <ImageView fitHeight="52.0" fitWidth="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -169,7 +169,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
+            <Pane fx:id="player4pane" prefHeight="92.0" prefWidth="200.0" style="-fx-background-color: white;">
                <children>
                   <ImageView fitHeight="52.0" fitWidth="47.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -243,5 +243,6 @@
             </Label>
          </children>
       </Pane>
+      <Button fx:id="testGameEnd" layoutX="119.0" layoutY="3.0" mnemonicParsing="false" onAction="#testGameEnd" text="ENDGAME" />
    </children>
 </AnchorPane>

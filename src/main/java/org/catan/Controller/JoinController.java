@@ -87,8 +87,8 @@ public class JoinController implements Observable, Initializable {
     }
 
     private void addGameListener(Game game) {
-        DocumentListener gameListener = new DocumentListener("games", String.valueOf(game.getCode()));
-        App.addListener(gameListener);
+         App.setGameListener(new DocumentListener("games", String.valueOf(game.getCode())));
+
     }
 
     private void setPlayerColor(int playerSize, Player player) {

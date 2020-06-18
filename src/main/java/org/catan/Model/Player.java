@@ -30,11 +30,6 @@ public class Player {
     private TradeController tradeController = TradeController.getInstance();
     private ScoreController scoreController = ScoreController.getInstance();
 
-    public static Player mainPlayer; // Player controlling the instance of the game
-    public static ArrayList<Player> allPlayers = new ArrayList<Player>(); //TODO Moet aangemaakt worden in de Lobby of bij het opstarten van het spel
-    public static Player activePlayer;
-    public static boolean mainPlayerActive;
-
     /**
      * Empty constructor, needed for Jackson to do proper deserialization
      */
@@ -48,7 +43,6 @@ public class Player {
         this.score = 0;
         this.playerInventory = new Inventory();
         this.identifier = Math.toIntExact(CreateGameCode.randomCodeGen());
-        allPlayers.add(this);
         initializeResourceCosts();
     }
 
@@ -137,14 +131,6 @@ public class Player {
         this.color = color;
     }
 
-    public static Player getMainPlayer() {
-        return mainPlayer;
-    }
-
-    public void setMainPlayer(Player player){
-        mainPlayer = player;
-    }
-
     public String getName(){
         return this.name;
     }
@@ -161,29 +147,17 @@ public class Player {
         return this.playerInventory;
     }
 
-    public static ArrayList<Player> getAllPlayers(){
-        return allPlayers;
-    }
-
-    public static void setActivePlayer(Player player){
-        activePlayer = player;
-        LogController.setPlayer();
-        if (player == mainPlayer){
-            mainPlayerActive = true;
-            Sound.playStartTurnJingle();
-            System.out.println("MAIN PLAYER ACTIVE");
-        } else{
-            mainPlayerActive = false;
-        }
-    }
-
-    public static Player getActivePlayer(){
-        return activePlayer;
-    }
-
-    public static boolean isMainPlayerActive(){
-        return mainPlayerActive;
-    }
+//    public static void setActivePlayer(Player player){
+//        activePlayer = player;
+//        LogController.setPlayer();
+//        if (player.equals(App.getClientPlayer())){
+//            mainPlayerActive = true;
+//            Sound.playStartTurnJingle();
+//            System.out.println("MAIN PLAYER ACTIVE");
+//        } else{
+//            mainPlayerActive = false;
+//        }
+//    }
 
     public HashMap<String, Integer> getResourceToCost() {
         return resourceToCost;

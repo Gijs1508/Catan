@@ -281,7 +281,7 @@ public class GameSchermController implements Initializable, Observable {
             return;
         }
         Player victim = opponents.get(0); // There is one opponent to steal from
-        Player.getActivePlayer().stealFromVictim(victim);
+        App.getCurrentGame().turnPlayerGetter().stealFromVictim(victim);
     }
 
     /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
@@ -295,7 +295,7 @@ public class GameSchermController implements Initializable, Observable {
         int opponentCount = 0;
         for (Village settlement : BuildVillages.getBuildVillages()) { // Loop through all settlements
             // TODO this if statement can't be tested properly since colors aren't implemented yet
-            if (!settlement.getColor().equals(Player.getMainPlayer().getColor())) { // If settlement isn't player's
+            if (!settlement.getColor().equals(App.getClientPlayer().getColor())) { // If settlement isn't player's
                 ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
                 for (Tile tile : connectedTiles) {
                     if (Integer.parseInt(tile.getId().replaceAll("tile", "")) == tileID) { // Tile's ID is saved as "tileX" and tileID is an integer
@@ -306,7 +306,7 @@ public class GameSchermController implements Initializable, Observable {
             }
         }
         for (Map.Entry<String, Integer> entry : colorToCount.entrySet()) { // Get opponent's Player object by color and add to opponents list
-            for(Player player : Player.getAllPlayers()) {
+            for(Player player : App.getCurrentGame().getPlayers()) {
                 if(player.getColor().equals(entry.getKey())) {
                     opponents.add(player);
                 }
@@ -440,9 +440,9 @@ public class GameSchermController implements Initializable, Observable {
     public void endTurn() {
         if(App.getClientPlayer().isTurn()){
             Sound.playEndTurnJingle();
-
-//            logController.logEndTurnEvent(); //TODO
-            TurnManager.nextPlayer();
+            logController.logEndTurnEvent();
+            TurnManager.nextTurn();
+            //TODO
         }
         else {
             ScreenController.getInstance().showAlertPopup();
@@ -753,6 +753,7 @@ public class GameSchermController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
+
     }
 
     public void updateRoads(ArrayList<Road> roads) {

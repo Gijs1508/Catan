@@ -35,14 +35,10 @@ public class MainController implements Observable, Initializable {
     private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
     private static MainController mainController;
 
-    // Routes
-    public MainController() {
-        mainController = this;
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MenuMusicHandler.initializeMusic(musicBtn);
+        mainController = this;
     }
 
     @FXML
@@ -83,8 +79,8 @@ public class MainController implements Observable, Initializable {
 
     @Override
     public void update(Game game) {
-
     }
+
 
     /** Starts the animation that plays at launch.
      * @author Jeroen */
