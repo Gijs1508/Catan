@@ -1648,7 +1648,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Button fx:id="testStartPhase" layoutX="565.0" layoutY="10.0" mnemonicParsing="false" onAction="#startPhase" text="TEST startPhase" />
+
       <ImageView fitHeight="66.0" fitWidth="88.0" layoutX="702.0" layoutY="2.0" onMouseClicked="#openSettings" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/gear.png" />
