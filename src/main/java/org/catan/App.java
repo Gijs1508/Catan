@@ -56,6 +56,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         appStage = stage;
+
         // Main player = Player controlling the instance of the game
         //Player testPlayer1 = new Player("testPlayer"); //TODO Moet aangemaakt worden bij het opstarten/joinen van het spel
         //testPlayer1.setMainPlayer(testPlayer1);

@@ -4,6 +4,8 @@ import org.catan.App;
 import org.catan.Controller.GameSchermController;
 import org.catan.Controller.LogController;
 import org.catan.Controller.ScreenController;
+import org.catan.Controller.ThiefController;
+import org.catan.Helper.BuildVillages;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,8 +47,6 @@ public class Dice {
                 screenController.showHandInPopUp();
 //                App.HandInPopUp();
             }
-            //TODO Rover verzetten
-            GameSchermController.getInstance().highlightTiles(Thief.getTile());
         }
 
         setPlayerResources(total);
