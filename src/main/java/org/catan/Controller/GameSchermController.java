@@ -710,6 +710,12 @@ public class GameSchermController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
+        if (App.getCurrentGame().turnPlayerGetter() != game.turnPlayerGetter()){
+            for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++){
+                App.getCurrentGame().getPlayers().get(i).setTurn(game.getPlayers().get(i).isTurn());
+                System.out.println("Player " + i + " turn: " + App.getCurrentGame().getPlayers().get(i).isTurn());
+            }
+        }
     }
 
     public void updateRoads(ArrayList<Road> roads) {

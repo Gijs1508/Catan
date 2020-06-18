@@ -44,7 +44,11 @@ public class DocumentListener {
                         public void run() {
                             switch (collection) {
                                 case "games":
-                                    updateGameDocument(snapshot);
+                                    try {
+                                        updateGameDocument(snapshot);
+                                    } catch (IOException ioException) {
+                                        ioException.printStackTrace();
+                                    }
                                     break;
                                 case "chats":
                                     updateChatDocument(snapshot);
@@ -66,7 +70,7 @@ public class DocumentListener {
     }
 
 
-    private void updateGameDocument(DocumentSnapshot snapshot) {
+    private void updateGameDocument(DocumentSnapshot snapshot) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Game game = mapper.convertValue(snapshot.getData(), Game.class);
         switch (game.getStatus()) {
@@ -79,6 +83,7 @@ public class DocumentListener {
                     GameSchermController.getInstance().update(game);
                     ThiefController.getInstance().update(game);
                     LogController.getInstance().update(game);
+                    TradeController.getInstance().update(game);
                 }
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
