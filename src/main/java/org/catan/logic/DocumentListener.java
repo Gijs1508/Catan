@@ -74,12 +74,10 @@ public class DocumentListener {
                 FXMLLoader loader = new FXMLLoader();
                 LobbySchermController.getInstance().update(game);
                 break;
-                        case "going":
-                            if (App.getCurrentGame().getStatus().equals("going")) {
-                                BuildSettlementController.getInstance().update(game);
-                            }
+            case "going":
                 if (App.getCurrentGame().getStatus().equals("going")){
                     GameSchermController.getInstance().update(game);
+                    BuildSettlementController.getInstance().update(game);
                 }
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
