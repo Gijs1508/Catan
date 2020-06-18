@@ -137,6 +137,7 @@ public class GameSchermController implements Initializable, Observable {
     @FXML private ImageView roadButton; @FXML private ImageView settlementButton;
     @FXML private ImageView upgradeButton; @FXML private ImageView roadButtonClose;
     @FXML private ImageView settlementButtonClose; @FXML private ImageView upgradeButtonClose;
+    @FXML private ImageView endTurnButton;
 
     @FXML private Pane objectsPane;
 
@@ -171,7 +172,6 @@ public class GameSchermController implements Initializable, Observable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializePlacementSpots();
-//        initializeRoads();
         addAllTilesToArray();
 
         //TODO: changing the seed to the gamecode!
@@ -180,8 +180,7 @@ public class GameSchermController implements Initializable, Observable {
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
         this.startPhaseController = new StartPhaseController();
-
-        //tile1.setFill(Color.BROWN);
+        startPhaseButtonsInvisible();
         initializeButtons();
 
         initializeHarbors();
@@ -189,21 +188,18 @@ public class GameSchermController implements Initializable, Observable {
         gameSchermController = this;
     }
 
-
-    private void endStartPhase() {
-
-    }
-
     public void startPhaseButtonsInvisible() {
         roadButton.setVisible(false);
         settlementButton.setVisible(false);
         upgradeButton.setVisible(false);
+        endTurnButton.setVisible(false);
     }
 
     public void startPhaseButtonsVisible() {
         roadButton.setVisible(true);
         settlementButton.setVisible(true);
         upgradeButton.setVisible(true);
+        endTurnButton.setVisible(true);
     }
 
     /** Starts the ship animation that is always running.
