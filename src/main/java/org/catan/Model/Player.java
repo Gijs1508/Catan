@@ -2,6 +2,7 @@ package org.catan.Model;
 
 import org.catan.App;
 import org.catan.Controller.*;
+import org.catan.logic.DatabaseConnector;
 
 import java.util.*;
 
@@ -101,10 +102,12 @@ public class Player {
         String resource = resources.get(new Random().nextInt(resources.size()));
         System.out.println("Stolen resource: " + resource);
 
-        victim.getPlayerInventory().changeCards(resource, -1); // Take the resource from the victim, and give it to the active player
+        // Take the resource from the victim, and give it to the active player
+        victim.getPlayerInventory().changeCards(resource, -1); // TODO there probably is a better way to change victim's inventory (doesn't update their stockview this way)
         getPlayerInventory().changeCards(resource, 1);
 
         LogController.getInstance().logStealEvent(victim); // Log steal event
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public void addVictoryPoint() {

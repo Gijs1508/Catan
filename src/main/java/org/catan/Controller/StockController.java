@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -64,6 +65,7 @@ public class StockController implements Initializable, Observable {
         inventory.changeCards("wool", 4);
         inventory.changeCards("wheat", 5);
         updateResources();
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public void updateResources(){
@@ -162,7 +164,7 @@ public class StockController implements Initializable, Observable {
             return;
         }
 
-       App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", -1);
+        App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", -1);
         removeCardAnimation(animationKnightCard);
 
         GameSchermController.getInstance().highlightTiles(Thief.getTile());

@@ -50,10 +50,9 @@ public class Inventory {
             case "knight": cards[5] += amount; break;
         }
 
-        if(this.equals(App.getClientPlayer())) {
+        if(this.equals(App.getClientPlayer().getPlayerInventory())) {
             StockController.getInstance().updateResources();
         }
-        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public int developmentCardsLeftGetter() {
