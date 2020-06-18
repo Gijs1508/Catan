@@ -3,7 +3,9 @@ package org.catan.Model;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
+import org.catan.App;
 import org.catan.Controller.StockController;
+import org.catan.logic.DatabaseConnector;
 
 import java.util.HashMap;
 
@@ -47,7 +49,10 @@ public class Inventory {
             case "wheat": cards[4] += amount; break;
             case "knight": cards[5] += amount; break;
         }
-        StockController.getInstance().updateResources();
+
+        if(this.equals(App.getClientPlayer().getPlayerInventory())) {
+            StockController.getInstance().updateResources();
+        }
     }
 
     public int developmentCardsLeftGetter() {

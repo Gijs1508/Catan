@@ -18,7 +18,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import org.catan.App;
-import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
@@ -163,9 +162,6 @@ public class GameSchermController implements Initializable, Observable {
 
     private static GameSchermController gameSchermController;
 
-    public GameSchermController(){
-    }
-
     public static GameSchermController getInstance(){
         if(gameSchermController == null){
             gameSchermController = new GameSchermController();
@@ -261,14 +257,13 @@ public class GameSchermController implements Initializable, Observable {
 
         LogController.getInstance().logRobberEvent();
 
-        int tileID = ThiefController.convertStringIDtoIntID(circle.getId());
+        int tileID = ThiefController.getInstance().convertStringIDtoIntID(circle.getId());
         // TODO would be cool to find the tile num for the ID (for logging) is already there
         App.getCurrentGame().getBoard().getThief().setTile(tileID);
 
 
         // TODO because all players are red, it won't find the owner of the blue settlement
-//        ThiefController.checkStealableOppenets(tileID);
-//        ThiefController.stealOppenets(tileID);
+        ThiefController.getInstance().stealFromOpponent(tileID);
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 

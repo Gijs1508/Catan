@@ -16,15 +16,7 @@ import java.util.*;
 
 public class RandomizeHarbors {
 
-    private static Random random = new Random(CreateGameCode.getSeed());
-    private static HashMap<String, Image> resourceToImage = new HashMap<>() {{
-        put("wood", new Image(String.valueOf(App.class.getResource("assets/img/woodHarbor.png"))));
-        put("brick", new Image(String.valueOf(App.class.getResource("assets/img/brickHarbor.png"))));
-        put("ore", new Image(String.valueOf(App.class.getResource("assets/img/oreHarbor.png"))));
-        put("wool", new Image(String.valueOf(App.class.getResource("assets/img/sheepHarbor.png"))));
-        put("wheat", new Image(String.valueOf(App.class.getResource("assets/img/wheatHarbor.png"))));
-        put("any", new Image(String.valueOf(App.class.getResource("assets/img/anyHarbor.png"))));
-    }};
+    private static Random random = new Random(App.getCurrentGame().getCode());
     private static HashMap<String, Integer> harborTypeToCount = new HashMap<>() {{
         put("wood", 1);   put("brick", 1);
         put("ore", 1);    put("wool", 1);

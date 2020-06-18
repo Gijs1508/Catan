@@ -21,8 +21,8 @@ public class TurnManager {
             }
             currentPlayer.setTurn(false);
             nextPlayer.setTurn(true);
-//                LogController.setPlayer();
-//                LogController.getInstance().logStartTurnEvent();
+//            LogController.setPlayer();
+//            LogController.getInstance().logStartTurnEvent();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
