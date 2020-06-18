@@ -16,9 +16,6 @@ import org.catan.logic.DatabaseConnector;
 public class ThiefController implements Initializable, Observable {
     private static ThiefController thiefController;
 
-    public ThiefController(){
-    }
-
     public static ThiefController getInstance(){
         if(thiefController == null){
             thiefController = new ThiefController();
@@ -33,7 +30,7 @@ public class ThiefController implements Initializable, Observable {
     /** Converts String circleID ("Tilenr") to an int tileID (nr)
      * @param circleID the id of the tile the thief was moved to, but in String format
      * @return int of cicleID */
-    public static int convertStringIDtoIntID(String circleID){
+    public int convertStringIDtoIntID(String circleID){
         circleID = circleID.replaceAll("[^\\d.]", ""); //Cleaning tile string to only a number string
         int tileID;
         try {
@@ -45,8 +42,12 @@ public class ThiefController implements Initializable, Observable {
         return tileID;
     }
 
-    public static void checkStealableOppenets(int tileID) throws IOException {
-        ArrayList<Player> opponents = ThiefController.findOpponentsOnTile(tileID);
+    /** Steals from an opponent if the robber has been moved to a tile with settlements to steal from.
+     * @param tileID the id of the tile the thief was moved to
+     * @throws IOException
+     * @author Jeroen */
+    public void stealFromOpponent(int tileID) throws IOException {
+        ArrayList<Player> opponents = findOpponentsOnTile(tileID);
 
         if(opponents.isEmpty()) { // There are no opponents to steal from
             return; }
@@ -55,11 +56,6 @@ public class ThiefController implements Initializable, Observable {
             StealPopUpController.getInstance().updateOpponents(opponents);
             return;
         }
-    }
-
-    public static void stealOppenets(int tileID){
-        ArrayList<Player> opponents = ThiefController.findOpponentsOnTile(tileID);
-
         Player victim = opponents.get(0); // There is one opponent to steal from
         App.getClientPlayer().stealFromVictim(victim);
     }
@@ -69,11 +65,11 @@ public class ThiefController implements Initializable, Observable {
      * @return arrayList with the opponents as Player objects
      * @author Jeroen */
     // TODO desert tile always seem to not have any settlements bordered to it
-    private static ArrayList<Player> findOpponentsOnTile(int tileID) {
+    private ArrayList<Player> findOpponentsOnTile(int tileID) {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();
         int opponentCount = 0;
-        for (Village settlement : BuildVillages.getBuildVillages()) { // Loop through all settlements
+        for (Village settlement : App.getCurrentGame().getBuildVillages()) { // Loop through all settlements
             // TODO this if statement can't be tested properly since colors aren't implemented yet
             if (!settlement.getColor().equals(App.getCurrentGame().turnPlayerGetter().getColor())) { // If settlement isn't player's
                 ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
