@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 /**
  * Updates the scores for the players.
@@ -141,12 +142,5 @@ public class ScoreController implements Initializable, Observable {
             setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
             setVictoryPointsForPlayer(player.getColor(), player.getScore());
         }
-    }
-
-    public void givePoints(ActionEvent actionEvent) {
-        System.out.println("hihi geklikt");
-        System.out.println(App.getCurrentGame().turnPlayerGetter().getName());
-        System.out.println(App.getCurrentGame().turnPlayerGetter().getScore());
-        App.getCurrentGame().turnPlayerGetter().setScore(10);
     }
 }

@@ -754,7 +754,6 @@ public class GameSchermController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
-
     }
 
     public void updateRoads(ArrayList<Road> roads) {

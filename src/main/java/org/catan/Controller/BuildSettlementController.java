@@ -269,9 +269,21 @@ public class BuildSettlementController implements Observable {
         buildVillages.add(village);
         bv.setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
+        App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+        if(checkPlayerWon(App.getCurrentGame().turnPlayerGetter())){
+            System.out.println("player won");
+            // TODO: show player won screen
+        }
 
         return village;
+    }
+
+    /** checks if the player has won
+     * @param turnPlayerGetter the player who just build an settlement
+     * @author Gijs */
+    private boolean checkPlayerWon(Player turnPlayerGetter) {
+        return turnPlayerGetter.getScore() >= 10;
     }
 
     /** Finds the harbor that the settlement has been placed adjacent to and updates accordingly.
@@ -313,7 +325,13 @@ public class BuildSettlementController implements Observable {
                 }
             }
             App.getCurrentGame().turnPlayerGetter().addCityPoint();
+            App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+
+            if(checkPlayerWon(App.getCurrentGame().turnPlayerGetter())){
+                System.out.println("player won");
+                // TODO: show player won screen
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("You don't have enough resources to upgrade an village!");
