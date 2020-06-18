@@ -97,8 +97,9 @@ public class ThiefController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
+        System.out.println("Old thief tile: " + App.getCurrentGame().getBoard().getThief().getTile());
+        System.out.println("New thief tile: " + game.getBoard().getThief().getTile());
         if (App.getCurrentGame().getBoard().getThief().getTile() != game.getBoard().getThief().getTile()){
-            System.out.println("Starting thief tile update");
             GameSchermController.getInstance().updateThief(game.getBoard().getThief().getTile());
             App.getCurrentGame().getBoard().getThief().setTile(game.getBoard().getThief().getTile());
         }

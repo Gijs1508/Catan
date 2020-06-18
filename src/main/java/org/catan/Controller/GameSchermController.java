@@ -164,7 +164,6 @@ public class GameSchermController implements Initializable, Observable {
     private static GameSchermController gameSchermController;
 
     public GameSchermController(){
-        gameSchermController = this;
     }
 
     public static GameSchermController getInstance(){
@@ -190,7 +189,7 @@ public class GameSchermController implements Initializable, Observable {
 
         initializeHarbors();
 
-//        highlightTiles(10);
+        gameSchermController = this;
     }
 
     @FXML
@@ -260,9 +259,10 @@ public class GameSchermController implements Initializable, Observable {
         thief.setLayoutY(circle.getLayoutY() - 33);
         unHighlightTiles();
 
+        LogController.getInstance().logRobberEvent();
+
         int tileID = ThiefController.convertStringIDtoIntID(circle.getId());
         // TODO would be cool to find the tile num for the ID (for logging) is already there
-        LogController.getInstance().logRobberEvent();
         App.getCurrentGame().getBoard().getThief().setTile(tileID);
 
 
@@ -736,7 +736,6 @@ public class GameSchermController implements Initializable, Observable {
         String tile = "thiefTile" + tileId;
         for (Circle thiefTile : thiefTileNodeList) {
             if (thiefTile.getId().equals(tile)) {
-                System.out.println("Matching thief tile found!");
                 thief.setLayoutX(thiefTile.getLayoutX() - 26);
                 thief.setLayoutY(thiefTile.getLayoutY() - 33);
             }
