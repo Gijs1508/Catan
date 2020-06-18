@@ -24,7 +24,6 @@ public class BuildSettlementController implements Observable {
     private ArrayList<Village> buildVillages;
     private MathBuildSettlement math;
     private PolygonConnectedNodes poly;
-    private BuildVillages bv;
 
     private GameSchermController gameSchermController = GameSchermController.getInstance();
     private static BuildSettlementController buildSettlementController;
@@ -39,7 +38,6 @@ public class BuildSettlementController implements Observable {
         this.roadSpotNodeList = roadSpotNodeList;
         this.math = new MathBuildSettlement();
         this.poly = new PolygonConnectedNodes(vertexNodeList);
-        this.bv = new BuildVillages();
         this.buildRoads = new ArrayList<>();
         this.buildVillages = new ArrayList<>();
     }
@@ -267,7 +265,7 @@ public class BuildSettlementController implements Observable {
 
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
-        bv.setBuildVillages(buildVillages);
+        App.getCurrentGame().setBuiltVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 

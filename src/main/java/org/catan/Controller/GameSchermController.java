@@ -273,7 +273,6 @@ public class GameSchermController implements Initializable, Observable {
 //        // opponents.remove(Player.getActivePlayer());
 
         if(opponents.isEmpty()) { // There are no opponents to steal from
-
             return; }
         else if(opponents.size() > 1) { // There are more opponents to steal from
             ScreenController.getInstance().showStealPopUp(); // Choose opponent popup
@@ -293,7 +292,7 @@ public class GameSchermController implements Initializable, Observable {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();
         int opponentCount = 0;
-        for (Village settlement : BuildVillages.getBuildVillages()) { // Loop through all settlements
+        for (Village settlement : App.getCurrentGame().getBuiltVillages()) { // Loop through all settlements
             // TODO this if statement can't be tested properly since colors aren't implemented yet
             if (!settlement.getColor().equals(App.getClientPlayer().getColor())) { // If settlement isn't player's
                 ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
@@ -311,6 +310,11 @@ public class GameSchermController implements Initializable, Observable {
                     opponents.add(player);
                 }
             }
+        }
+        System.out.println("\n\n\n\nOpponent size:" + opponents.size());
+        for (Player player : opponents) {
+            System.out.println(player.getName());
+            System.out.println(player.getColor());
         }
         return opponents;
     }

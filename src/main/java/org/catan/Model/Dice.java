@@ -55,9 +55,9 @@ public class Dice {
     }
 
     private void setPlayerResources(int total){
-        if(BuildVillages.getBuildVillages() != null) {
+        if(App.getCurrentGame().getBuiltVillages() != null) {
             ArrayList<String> receivedResources = new ArrayList<>();
-            for (Village village : BuildVillages.getBuildVillages()) {
+            for (Village village : App.getCurrentGame().getBuiltVillages()) {
                 for (Tile tile : village.getConnectedTiles()){
                     int amount;
                     if(village.isUpgraded()){

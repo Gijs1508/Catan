@@ -2,6 +2,7 @@ package org.catan.Model;
 
 import org.catan.logic.CodeGenerator;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Game {
@@ -12,6 +13,7 @@ public class Game {
     private Long code;
     private ArrayList<Log> logs;
     private Gameboard board;
+    private ArrayList<Village> builtVillages = new ArrayList<>();
 
     public Game() {
         this.board = new Gameboard();
@@ -71,6 +73,17 @@ public class Game {
 
     public ArrayList<Log> getLogs() {
         return logs;
+    }
+
+    // Updates the array when I new village is build
+    public void setBuiltVillages(ArrayList<Village> builtVillages) {
+        this.builtVillages = builtVillages;
+    }
+    /** Returns the build villages
+     * Can be accessed in every class that needs it
+     * @return an ArrayList type Village */
+    public ArrayList<Village> getBuiltVillages() {
+        return builtVillages;
     }
 
     public void setLogs(ArrayList<Log> logs) {
