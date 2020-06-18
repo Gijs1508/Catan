@@ -190,8 +190,10 @@ public class LogController implements Initializable, Observable {
                 if (game.getLogs().get(i).getLogType().equals("img")) {
                     addImgLogToLogsPane(game.getLogs().get(i));
                 }
-                storeLog(game.getLogs().get(i));
+                logs.addLog(game.getLogs().get(i));
+
             }
+            App.getCurrentGame().setLogs(logs.getLogs());
         }
     }
 }

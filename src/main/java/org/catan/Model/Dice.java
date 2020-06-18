@@ -4,6 +4,7 @@ import org.catan.App;
 import org.catan.Controller.GameSchermController;
 import org.catan.Controller.LogController;
 import org.catan.Controller.ScreenController;
+import org.catan.Controller.ThiefController;
 import org.catan.Helper.BuildVillages;
 
 import java.io.IOException;
@@ -29,9 +30,11 @@ public class Dice {
     public HashMap<Integer, ArrayList<String>> throwDice() throws IOException {
         HashMap<Integer, ArrayList<String>> diceResult = new HashMap<>();
         ArrayList<String> dices = new ArrayList<>();
-        Random rand = new Random();
-        int dice1 = (rand.nextInt(6) + 1);
-        int dice2 = (rand.nextInt(6) + 1);
+//        Random rand = new Random();
+//        int dice1 = (rand.nextInt(6) + 1);
+//        int dice2 = (rand.nextInt(6) + 1);
+        int dice1 = 3;
+        int dice2 = 4;
         Integer total = dice1 + dice2;
         dices.add(String.valueOf(dice1));
         dices.add(String.valueOf(dice2));
@@ -46,8 +49,6 @@ public class Dice {
                 screenController.showHandInPopUp();
 //                App.HandInPopUp();
             }
-            //TODO Rover verzetten
-            GameSchermController.getInstance().highlightTiles(Thief.getTile());
         }
 
         setPlayerResources(total);
