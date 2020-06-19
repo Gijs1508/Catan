@@ -6,13 +6,13 @@ public class Game {
 
     private static ArrayList<Player> players = new ArrayList<Player>();
     public static Player activePlayer;
-    public static boolean tradeSent = false;
     private String status;
     private Long code;
     private ArrayList<Log> logs;
     private Gameboard board;
     private ArrayList<Village> buildVillages = new ArrayList<>();
     private TradeOffer tradeOffer = new TradeOffer();
+    private String tradeStatus = "closed";
 
     public Game() {
         this.board = new Gameboard();
@@ -113,14 +113,6 @@ public class Game {
         activePlayer = player;
     }
 
-    public void setTradeSent(boolean isSent){
-        tradeSent = isSent;
-    }
-
-    public boolean isTradeSent(){
-        return tradeSent;
-    }
-
     public void removePlayer(Player player) {
         Player playerToRemove = new Player();
         for (Player gamePlayer: players) {
@@ -143,5 +135,13 @@ public class Game {
 
     public TradeOffer getTradeOffer(){
         return tradeOffer;
+    }
+
+    public String getTradeStatus(){
+        return tradeStatus;
+    }
+
+    public void setTradeStatus(String status){
+        this.tradeStatus = status;
     }
 }

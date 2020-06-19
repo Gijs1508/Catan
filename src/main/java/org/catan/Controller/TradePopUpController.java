@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -49,7 +50,8 @@ public class TradePopUpController implements Initializable, Observable {
     private double paneWidth;
     private double paneHeight;
 
-    public static String sender = "%PLAYER%";
+    public static Player sender;
+    public static String senderName = "%PLAYER%";
     public static String[] offer = {"0", "0", "0", "0", "0"};
     public static String[] request = {"0", "0", "0", "0", "0"};
     public static boolean offerLock = false;  // Lock to make sure offer cannot be accepted multiple times
@@ -64,7 +66,7 @@ public class TradePopUpController implements Initializable, Observable {
         paneHeight = popupPane.getPrefHeight();
 
         // Shows the offer
-        popupTitle.setText(popupTitle.getText().replaceAll("%PLAYER%", sender));
+        popupTitle.setText(popupTitle.getText().replaceAll("%PLAYER%", senderName));
         woodOffer.setText(offer[0]);
         brickOffer.setText(offer[1]);
         oreOffer.setText(offer[2]);
@@ -126,6 +128,7 @@ public class TradePopUpController implements Initializable, Observable {
 
     public static void updateTradeOffer(Player sender, String[] offerArray, String[] requestArray){
         sender = sender;
+        senderName = sender.getName();
         offer = offerArray;
         request = requestArray;
     }
@@ -148,12 +151,17 @@ public class TradePopUpController implements Initializable, Observable {
             playerInventory.changeCards("wheat", -Integer.parseInt(request[4]));
             offerLock = true;
 
+            App.getCurrentGame().setTradeStatus("accepted");
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+
             screenController.hideTradePopup();
         }
     }
 
     public void declineTrade(MouseEvent mouseEvent) {
         Sound.playClick();
+        App.getCurrentGame().setTradeStatus("closed"); //TODO Instellen voor >2 players
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 
         screenController.hideTradePopup();
     }

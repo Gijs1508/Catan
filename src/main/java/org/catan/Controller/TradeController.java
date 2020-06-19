@@ -157,17 +157,17 @@ public class TradeController implements Initializable, Observable {
             int netWheat = netResource(giveWheatCount, takeWheatCount);
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
-        } else if(tradeType.equals("player") && isClientPlayerActive()){
+        } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed")){
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
 
             App.getCurrentGame().getTradeOffer().updateOffer(App.getClientPlayer(), offerArray, requestArray);
-            App.getCurrentGame().setTradeSent(true);
+            App.getCurrentGame().setTradeStatus("pending");
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
         else {
             ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You can't send trade offers outside of your turn.");
+            AlertPopUpController.getInstance().setAlertDescription("You currently cannot send a trade offer.");
         }
     }
 
@@ -328,12 +328,36 @@ public class TradeController implements Initializable, Observable {
 
     @Override
     public void update(Game game) throws IOException {
-        if(!(App.getClientPlayer().getIdentifier() == App.getCurrentGame().turnPlayerGetter().getIdentifier()) && game.isTradeSent()){
-            TradeOffer trade = new TradeOffer();
+        String currStatus = App.getCurrentGame().getTradeStatus();
+        String newStatus = game.getTradeStatus();
+
+        if(!currStatus.equals(newStatus)){
+            System.out.println("New trade status: " + newStatus);
+            App.getCurrentGame().setTradeStatus(game.getTradeStatus());
+            if(newStatus.equals("accepted")){
+
+                TradeOffer tradeOffer = App.getCurrentGame().getTradeOffer();
+                String[] offer = tradeOffer.getOfferedCards();
+                String[] request = tradeOffer.getRequestedCards();
+                Inventory playerInventory = getInventory();
+
+                playerInventory.changeCards("wood",-Integer.parseInt(offer[0]));
+                playerInventory.changeCards("brick",-Integer.parseInt(offer[1]));
+                playerInventory.changeCards("ore",-Integer.parseInt(offer[2]));
+                playerInventory.changeCards("wool",-Integer.parseInt(offer[3]));
+                playerInventory.changeCards("sheep",-Integer.parseInt(offer[4]));
+
+                playerInventory.changeCards("wood", Integer.parseInt(request[0]));
+                playerInventory.changeCards("brick", Integer.parseInt(request[1]));
+                playerInventory.changeCards("ore", Integer.parseInt(request[2]));
+                playerInventory.changeCards("wool", Integer.parseInt(request[3]));
+                playerInventory.changeCards("sheep", Integer.parseInt(request[4]));
+          }
+        }
+        if(!(App.getClientPlayer().getIdentifier() == App.getCurrentGame().turnPlayerGetter().getIdentifier()) && game.getTradeStatus().equals("pending")){
             Player sender = game.getTradeOffer().getSender();
             String[] offer = game.getTradeOffer().getOfferedCards();
             String[] request = game.getTradeOffer().getRequestedCards();
-            System.out.println(sender.getName() + " " + offer + " " + request);
             App.getCurrentGame().getTradeOffer().updateOffer(sender, offer, request);
             receiveTrade();
         }
