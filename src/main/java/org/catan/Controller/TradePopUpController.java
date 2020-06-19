@@ -124,8 +124,8 @@ public class TradePopUpController implements Initializable, Observable {
         return false;
     }
 
-    public static void updateTradeOffer(String name, String[] offerArray, String[] requestArray){
-        sender = name;
+    public static void updateTradeOffer(Player sender, String[] offerArray, String[] requestArray){
+        sender = sender;
         offer = offerArray;
         request = requestArray;
     }

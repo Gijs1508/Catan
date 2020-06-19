@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import org.catan.App;
 import org.catan.Model.*;
@@ -162,8 +161,9 @@ public class TradeController implements Initializable, Observable {
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
 
-            App.getCurrentGame().fetchTradeOffer().updateOffer(App.getClientPlayer(), offerArray, requestArray);
+            App.getCurrentGame().getTradeOffer().updateOffer(App.getClientPlayer(), offerArray, requestArray);
             App.getCurrentGame().setTradeSent(true);
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
         else {
             ScreenController.getInstance().showAlertPopup();
@@ -330,11 +330,11 @@ public class TradeController implements Initializable, Observable {
     public void update(Game game) throws IOException {
         if(!(App.getClientPlayer().getIdentifier() == App.getCurrentGame().turnPlayerGetter().getIdentifier()) && game.isTradeSent()){
             TradeOffer trade = new TradeOffer();
-            Player sender = game.fetchTradeOffer().fetchSender();
-            String[] offer = game.fetchTradeOffer().fetchOfferedCards();
-            String[] request = game.fetchTradeOffer().fetchRequestedCards();
-            System.out.println(sender + " " + offer + " " + request);
-//            App.getCurrentGame().fetchTradeOffer().updateOffer(sender, offer, request);
+            Player sender = game.getTradeOffer().getSender();
+            String[] offer = game.getTradeOffer().getOfferedCards();
+            String[] request = game.getTradeOffer().getRequestedCards();
+            System.out.println(sender.getName() + " " + offer + " " + request);
+            App.getCurrentGame().getTradeOffer().updateOffer(sender, offer, request);
             receiveTrade();
         }
     }

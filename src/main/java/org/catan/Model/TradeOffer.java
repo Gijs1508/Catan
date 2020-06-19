@@ -17,11 +17,10 @@ public class TradeOffer {
         this.sender = sender;
         this.offeredCards = offer;
         this.requestedCards = request;
-        TradePopUpController.updateTradeOffer(sender.getName(), offer, request);
-        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+        TradePopUpController.updateTradeOffer(sender, offer, request);
     }
 
-    public String[][] fetchTrade(){
+    public String[][] fetchTradeOffer(){
         String[][] trade = {offeredCards, requestedCards};
         return trade;
     }
@@ -30,15 +29,15 @@ public class TradeOffer {
         this.sender = player;
     }
 
-    public Player fetchSender(){
+    public Player getSender(){
         return this.sender;
     }
 
-    public String[] fetchOfferedCards(){
+    public String[] getOfferedCards(){
         return offeredCards;
     }
 
-    public String[] fetchRequestedCards(){
+    public String[] getRequestedCards(){
         return requestedCards;
     }
 }

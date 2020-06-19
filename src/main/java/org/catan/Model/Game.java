@@ -141,7 +141,7 @@ public class Game {
         return new Player();
     }
 
-    public TradeOffer fetchTradeOffer(){
+    public TradeOffer getTradeOffer(){
         return tradeOffer;
     }
 }
