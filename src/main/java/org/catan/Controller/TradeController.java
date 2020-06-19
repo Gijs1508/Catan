@@ -377,14 +377,14 @@ public class TradeController implements Initializable, Observable {
     }
 
     public void tradeRejected(){
+        int otherPlayers = App.getCurrentGame().getPlayers().size() - 1;
         tradeRejections += 1;
-        System.out.println("Players - 1 = " + (App.getCurrentGame().getPlayers().size() - 1));
-        if(tradeRejections >= (App.getCurrentGame().getPlayers().size() - 1)){
+        if(tradeRejections >= otherPlayers){
             System.out.println("All players declined");
             App.getCurrentGame().setTradeStatus("closed");
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        } else if (tradeRejections < (App.getCurrentGame().getPlayers().size() - 1)){
-            App.getCurrentGame().setTradeStatus("pending2"); // Waiting for other players
+        } else if (!App.getCurrentGame().getTradeStatus().equals("closed")){
+            App.getCurrentGame().setTradeStatus("pending2");
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
