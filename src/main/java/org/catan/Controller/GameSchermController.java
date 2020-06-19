@@ -306,14 +306,14 @@ public class GameSchermController implements Initializable, Observable {
         int[] reqResources = {1, 1, 0, 1, 1, 0};
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        if(canBuildObject(reqResources) || StartPhaseController.isStartPhaseActive()){
+        if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()){
             placeVillage(build.buildVillage(circle));
             logController.logSettlementEvent();
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
         }
-        if (StartPhaseController.isStartPhaseActive())
+        if (StartPhaseController.getInstance().isStartPhaseActive())
             roadStartPhase(circle);
         else
             buildSettlementBtnCloseClicked();
@@ -364,19 +364,19 @@ public class GameSchermController implements Initializable, Observable {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
         int[] reqResources = {1, 1, 0, 0, 0, 0};
 
-        if(canBuildObject(reqResources) || StartPhaseController.isStartPhaseActive()){
+        if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()){
             placeRoad(build.buildRoad(circle));
             logController.logRoadEvent();
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a road.");
         }
-        if (StartPhaseController.isStartPhaseActive())
+        if (StartPhaseController.getInstance().isStartPhaseActive())
             TurnManager.nextPlayer();
         else
             buildRoadBtnCloseClicked();
-        StartPhaseController.startPhaseCount();
-        StartPhaseController.checkStartPhase();
+        StartPhaseController.getInstance().startPhaseCount();
+        StartPhaseController.getInstance().checkStartPhase();
 //        StartPhaseController.setWaitState(false);
     }
 
