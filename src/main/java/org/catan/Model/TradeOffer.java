@@ -1,6 +1,8 @@
 package org.catan.Model;
 
+import org.catan.App;
 import org.catan.Controller.TradePopUpController;
+import org.catan.logic.DatabaseConnector;
 
 public class TradeOffer {
 
@@ -16,6 +18,7 @@ public class TradeOffer {
         this.offeredCards = offer;
         this.requestedCards = request;
         TradePopUpController.updateTradeOffer(sender.getName(), offer, request);
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public String[][] fetchTrade(){
@@ -29,5 +32,13 @@ public class TradeOffer {
 
     public Player fetchSender(){
         return this.sender;
+    }
+
+    public String[] fetchOfferedCards(){
+        return offeredCards;
+    }
+
+    public String[] fetchRequestedCards(){
+        return requestedCards;
     }
 }

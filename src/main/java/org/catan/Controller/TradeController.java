@@ -20,7 +20,6 @@ public class TradeController implements Initializable, Observable {
     private String tradeType = "player";
     private boolean tradeGiveLock, tradeTakeLock = false;
     private boolean tradeSent = false;
-    private TradeOffer tradeOffer = new TradeOffer();
 
     @FXML
     private Label giveWheatCount;
@@ -160,17 +159,11 @@ public class TradeController implements Initializable, Observable {
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
         } else if(tradeType.equals("player") && isClientPlayerActive()){
-            String playerName = App.getCurrentGame().turnPlayerGetter().getName();
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
 
-            tradeOffer.updateOffer(App.getClientPlayer(), offerArray, requestArray);
-//            TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
-//            App.tradePopUp();
-            ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij de client
+            App.getCurrentGame().fetchTradeOffer().updateOffer(App.getClientPlayer(), offerArray, requestArray);
             App.getCurrentGame().setTradeSent(true);
-            System.out.println("trade sent");
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
         else {
             ScreenController.getInstance().showAlertPopup();
@@ -335,10 +328,14 @@ public class TradeController implements Initializable, Observable {
 
     @Override
     public void update(Game game) throws IOException {
-        System.out.print("Update reached, isTradeSent = " + App.getCurrentGame().isTradeSent() + "\n");
-        if(App.getClientPlayer() != App.getCurrentGame().turnPlayerGetter() && game.isTradeSent()){
-            System.out.print("trade offer");
-//            receiveTrade();
+        if(!(App.getClientPlayer().getIdentifier() == App.getCurrentGame().turnPlayerGetter().getIdentifier()) && game.isTradeSent()){
+            TradeOffer trade = new TradeOffer();
+            Player sender = game.fetchTradeOffer().fetchSender();
+            String[] offer = game.fetchTradeOffer().fetchOfferedCards();
+            String[] request = game.fetchTradeOffer().fetchRequestedCards();
+            System.out.println(sender + " " + offer + " " + request);
+//            App.getCurrentGame().fetchTradeOffer().updateOffer(sender, offer, request);
+            receiveTrade();
         }
     }
 

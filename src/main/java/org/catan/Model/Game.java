@@ -12,6 +12,7 @@ public class Game {
     private ArrayList<Log> logs;
     private Gameboard board;
     private ArrayList<Village> buildVillages = new ArrayList<>();
+    private TradeOffer tradeOffer = new TradeOffer();
 
     public Game() {
         this.board = new Gameboard();
@@ -138,5 +139,9 @@ public class Game {
         }
 
         return new Player();
+    }
+
+    public TradeOffer fetchTradeOffer(){
+        return tradeOffer;
     }
 }
