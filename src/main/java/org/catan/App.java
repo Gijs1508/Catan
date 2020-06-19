@@ -2,9 +2,15 @@ package org.catan;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.catan.Controller.*;
 import org.catan.Model.*;
@@ -33,13 +39,6 @@ public class App extends Application {
     private static Game currentGame;
     private static DocumentListener gameListener;
     private static DocumentListener chatListener;
-
-    private AnchorPane screenView;
-    private AnchorPane boardView;
-    private AnchorPane stockView;
-    private AnchorPane logView;
-    private AnchorPane chatView;
-
 
     @Override
     public void start(Stage stage) throws IOException {
