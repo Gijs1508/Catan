@@ -105,6 +105,7 @@ public class ScreenController implements Initializable, Observable {
         StartPhaseController spc = new StartPhaseController();
         if (App.getCurrentGame().turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier())
             spc.activateBuildingStartPhase();
+        AlertPopUpController.getInstance().setAlertPlacedController(this.getClass());
     }
 
     public void showGameEnd() {
