@@ -17,6 +17,18 @@ public class StartPhaseController implements Observable {
     private static int startPhaseCountGlobal;
     private static boolean startPhaseActive = true;
     private static boolean waitState = true;
+    private static StartPhaseController startPhaseController;
+
+    public StartPhaseController() {
+        startPhaseController = this;
+    }
+
+    public static StartPhaseController getInstance(){
+        if(startPhaseController == null){
+            startPhaseController = new StartPhaseController();
+        }
+        return startPhaseController;
+    }
 
 //    public void run() {
 //        while(true) {
@@ -47,19 +59,19 @@ public class StartPhaseController implements Observable {
 //        }
 //    }
 
-    public static void setWaitState(boolean waitState1) {
-        waitState = waitState1;
-    }
+//    public static void setWaitState(boolean waitState1) {
+//        waitState = waitState1;
+//    }
 
-    public static boolean isStartPhaseActive() {
+    public boolean isStartPhaseActive() {
         return startPhaseActive;
     }
 
-    public static void startPhaseCount() {
+    public void startPhaseCount() {
         StartPhaseController.startPhaseCount++;
     }
 
-    public static void checkStartPhase() {
+    public void checkStartPhase() {
         if (startPhaseCount == 2) {
             startPhaseActive = false;
             GameSchermController.getInstance().startPhaseButtonsVisible();
@@ -69,7 +81,6 @@ public class StartPhaseController implements Observable {
     }
 
     public void activateBuildingStartPhase() {
-        System.out.println("OOMGGG");
         if (startPhaseActive)
             GameSchermController.getInstance().villageStartPhase();
     }
