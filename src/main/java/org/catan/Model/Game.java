@@ -127,7 +127,6 @@ public class Game {
                 return player;
             }
         }
-
         return new Player();
     }
 }
