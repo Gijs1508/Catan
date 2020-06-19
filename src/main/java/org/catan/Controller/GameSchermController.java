@@ -307,8 +307,8 @@ public class GameSchermController implements Initializable, Observable {
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
         if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()){
-            placeVillage(build.buildVillage(circle));
             logController.logSettlementEvent();
+            placeVillage(build.buildVillage(circle));
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
