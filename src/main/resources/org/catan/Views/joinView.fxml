@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -12,10 +13,14 @@
             <Image url="@../assets/img/Bord_met_water.png" />
          </image>
       </ImageView>
-      <TextField fx:id="code_input" alignment="CENTER" layoutX="507.0" layoutY="338.0" prefHeight="55.0" prefWidth="186.0" promptText="Code..." style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: #FCFCFC; -fx-border-color: #D3D3D3; -fx-border-width: 2px;" styleClass="btn">
+      <TextField fx:id="code_input" alignment="CENTER" layoutX="507.0" layoutY="338.0" prefHeight="62.0" prefWidth="186.0" promptText="Code..." style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: #FCFCFC; -fx-border-color: #D3D3D3; -fx-border-width: 2px;">
          <font>
             <Font size="28.0" />
          </font>
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="roboto" />
+         </styleClass>
       </TextField>
       <ImageView id="logo_img" fitHeight="318.0" fitWidth="550.0" layoutX="325.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>

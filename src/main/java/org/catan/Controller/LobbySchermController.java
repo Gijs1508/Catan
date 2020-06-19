@@ -9,6 +9,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.Chat;
@@ -35,6 +36,7 @@ public class LobbySchermController implements Initializable, Observable {
     private Player player3;
     private Player player4;
 
+    @FXML private Text waitingForHost;
     @FXML Pane player1pane;
     @FXML Pane player2pane;
     @FXML Pane player3pane;
@@ -45,7 +47,9 @@ public class LobbySchermController implements Initializable, Observable {
     @FXML Text player4name;
     @FXML Text game_code;
     @FXML Button startGameBtn;
+    @FXML private Button leaveGameBtn;
     @FXML private Pane alertPopup;
+    @FXML private Text host;
     private AnchorPane alertPopupView;
 
     @Override
@@ -158,11 +162,9 @@ public class LobbySchermController implements Initializable, Observable {
     }
 
     private void genoegAantalSpelers() {
-
     }
 
     private void startTimer() {
-
     }
 
     @Override
@@ -179,7 +181,6 @@ public class LobbySchermController implements Initializable, Observable {
         if (lobbySchermController == null) {
             lobbySchermController = new LobbySchermController();
         }
-
         return lobbySchermController;
     }
 
@@ -205,7 +206,7 @@ public class LobbySchermController implements Initializable, Observable {
 
 
     @FXML
-    private void textClicked(MouseEvent mouseEvent) {
+    private void textClicked() {
         Clipboard cb = Clipboard.getSystemClipboard();
         ClipboardContent cbc = new ClipboardContent();
         cbc.putString(game_code.getText().replace("Game code: ", ""));
@@ -248,8 +249,6 @@ public class LobbySchermController implements Initializable, Observable {
     private void initializePopup(Pane popupPane) {
         popupPane.setVisible(false);
         popupPane.setOpacity(1);
-        popupPane.setLayoutX(110);
-        popupPane.setLayoutY(-190);
         popupPane.setStyle("-fx-background-color: none;");
     }
 }
