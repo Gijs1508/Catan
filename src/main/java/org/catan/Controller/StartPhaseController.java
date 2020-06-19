@@ -53,7 +53,7 @@ public class StartPhaseController implements Observable {
     }
 
     @Override
-    public void update(Game game) throws IOException {
+    public void update(Game game) {
         if(game.turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier() && !startPhaseHappened){
             activateBuildingStartPhase();
         }
