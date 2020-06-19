@@ -57,6 +57,10 @@ public class StartPhaseController implements Observable {
         if(game.turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier() && !startPhaseHappened){
             activateBuildingStartPhase();
         }
+
+        if (game.turnPlayerGetter().getIdentifier() != App.getClientPlayer().getIdentifier() && startPhaseHappened) {
+            startPhaseHappened = false;
+        }
     }
 
 }
