@@ -19,7 +19,7 @@ public class GameDataPrinter {
             System.out.println(log.getEventString());
         }
         System.out.println("game board villages: ");
-        for (Village village : game.getBoard().getSettlements()) {
+        for (Village village : game.getBuildVillages()) {
             System.out.println(village.getX());
             System.out.println(village.getY());
             System.out.println("is upgraded: " + village.isUpgraded());

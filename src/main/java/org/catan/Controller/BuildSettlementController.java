@@ -264,7 +264,6 @@ public class BuildSettlementController implements Observable {
 
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
-        App.getCurrentGame().getBoard().setSettlements(buildVillages);
         App.getCurrentGame().setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
@@ -325,7 +324,7 @@ public class BuildSettlementController implements Observable {
             App.getCurrentGame().turnPlayerGetter().addCityPoint();
             App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
             App.getCurrentGame().turnPlayerGetter().removeVillagePoint();
-            App.getCurrentGame().getBoard().setSettlements(buildVillages);
+            App.getCurrentGame().setBuildVillages(buildVillages);
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
             checkPlayerWon(App.getCurrentGame().turnPlayerGetter());
 
@@ -399,7 +398,7 @@ public class BuildSettlementController implements Observable {
     @Override
     public void update(Game game) {
         updateRoads(game.getBoard().getRoads());
-        updateSettlements(game.getBoard().getSettlements());
+        updateSettlements(game.getBuildVillages());
     }
 
     // Updates the roads on the display and in the array
@@ -432,7 +431,7 @@ public class BuildSettlementController implements Observable {
                 GameSchermController.getInstance().updateVillage(villages2);
             if (!cities.isEmpty())
                 GameSchermController.getInstance().updateCity(cities);
-            App.getCurrentGame().getBoard().setSettlements(buildVillages);
+            App.getCurrentGame().setBuildVillages(buildVillages);
             System.out.println("Update complete");
         }
     }

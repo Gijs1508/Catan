@@ -1,5 +1,6 @@
 package org.catan.logic;
 
+import org.catan.App;
 import org.catan.Model.*;
 
 import java.util.ArrayList;
@@ -34,9 +35,9 @@ public class CreateTestGame {
             add(tile4);
             add(tile1);
         }});
-        game.getBoard().addSettlement(janVillage1);
-        game.getBoard().addSettlement(janVillage2);
-        game.getBoard().addSettlement(sabrinaVillage1);
+//        game.getBoard().addSettlement(janVillage1);
+//        game.getBoard().addSettlement(janVillage2);
+//        game.getBoard().addSettlement(sabrinaVillage1);
 
         Road janRoad1 = new Road(33, 66, jan.getColor());
         Road janRoad2 = new Road(20, 77, jan.getColor());
