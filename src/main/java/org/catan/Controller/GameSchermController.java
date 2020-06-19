@@ -313,9 +313,12 @@ public class GameSchermController implements Initializable, Observable {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
         }
-        if (StartPhaseController.getInstance().isStartPhaseActive())
-            roadStartPhase(circle);
-        else
+        if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            for (Circle vertex : vertexNodeList) {
+                vertex.setVisible(false);
+                roadStartPhase(circle);
+            }
+        } else
             buildSettlementBtnCloseClicked();
     }
 
@@ -371,8 +374,12 @@ public class GameSchermController implements Initializable, Observable {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a road.");
         }
-        if (StartPhaseController.getInstance().isStartPhaseActive())
+        if (StartPhaseController.getInstance().isStartPhaseActive()) {
             TurnManager.nextPlayer();
+            for (Circle road : roadSpotNodeList) {
+                road.setVisible(false);
+            }
+        }
         else
             buildRoadBtnCloseClicked();
         StartPhaseController.getInstance().startPhaseCount();
