@@ -420,6 +420,7 @@ public class BuildSettlementController implements Observable {
             ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicates(villages, 0));
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
             ArrayList<Village> cities = new ArrayList<>();
+            buildVillages.clear();
             buildVillages = new ArrayList<>(villages);
             for (Village village : changedVillages) {
                 if (village.isUpgraded()) {
