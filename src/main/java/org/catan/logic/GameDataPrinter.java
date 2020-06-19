@@ -29,7 +29,7 @@ public class GameDataPrinter {
             }
         }
         System.out.println("game board roads: ");
-        for (Road road : game.getBoard().getRoads()) {
+        for (Road road : game.getRoads()) {
             System.out.println(road.getColor());
             System.out.println(road.getImgPath());
         }

@@ -386,7 +386,7 @@ public class BuildSettlementController implements Observable {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), getPlayerColor());
         buildRoads.add(road);
         App.getCurrentGame().turnPlayerGetter().addRoadPoint();
-        App.getCurrentGame().getBoard().setRoads(buildRoads);
+        App.getCurrentGame().setRoads(buildRoads);
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         return road;
     }
@@ -397,7 +397,7 @@ public class BuildSettlementController implements Observable {
 
     @Override
     public void update(Game game) {
-        updateRoads(game.getBoard().getRoads());
+        updateRoads(game.getRoads());
         updateSettlements(game.getBuildVillages());
     }
 
@@ -408,7 +408,7 @@ public class BuildSettlementController implements Observable {
             ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicates(roads, 0));
             GameSchermController.getInstance().updateRoads(changedRoads);
             buildRoads.addAll(changedRoads);
-            App.getCurrentGame().getBoard().setRoads(buildRoads);
+            App.getCurrentGame().setRoads(buildRoads);
             System.out.println("Update complete");
         }
     }

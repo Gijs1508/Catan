@@ -45,11 +45,11 @@ public class CreateTestGame {
         Road sabrinaRoad2 = new Road(100, 10, sabrina.getColor());
         Road sabrinaRoad3 = new Road(45, 75, sabrina.getColor());
 
-        game.getBoard().addRoad(janRoad1);
-        game.getBoard().addRoad(janRoad2);
-        game.getBoard().addRoad(sabrinaRoad1);
-        game.getBoard().addRoad(sabrinaRoad2);
-        game.getBoard().addRoad(sabrinaRoad3);
+//        game.getBoard().addRoad(janRoad1);
+//        game.getBoard().addRoad(janRoad2);
+//        game.getBoard().addRoad(sabrinaRoad1);
+//        game.getBoard().addRoad(sabrinaRoad2);
+//        game.getBoard().addRoad(sabrinaRoad3);
 
         Log log1 = new Log("roll", jan.getName());
         log1.addImgPath("3");

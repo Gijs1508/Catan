@@ -11,6 +11,7 @@ public class Game {
     private ArrayList<Log> logs;
     private Gameboard board;
     private ArrayList<Village> buildVillages = new ArrayList<>();
+    private ArrayList<Road> roads = new ArrayList<>();
 
     public Game() {
         this.board = new Gameboard();
@@ -81,6 +82,18 @@ public class Game {
      * @return an ArrayList type Village */
     public ArrayList<Village> getBuildVillages() {
         return buildVillages;
+    }
+
+    public ArrayList<Road> getRoads() {
+        return roads;
+    }
+
+    public void setRoads(ArrayList<Road> roads) {
+        this.roads = roads;
+    }
+
+    public void addRoad(Road road) {
+        this.roads.add(road);
     }
 
     public void setLogs(ArrayList<Log> logs) {
