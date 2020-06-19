@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="popupPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="408.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.TradePopUpController">
+<AnchorPane fx:id="popupPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.TradePopUpController">
    <children>
       <Pane prefHeight="291.0" prefWidth="408.0" style="-fx-background-radius: 30 30 20 20;">
          <children>
@@ -152,7 +154,7 @@
             </Pane>
             <StackPane layoutX="7.0" layoutY="9.0" prefHeight="46.0" prefWidth="395.0" style="-fx-background-color: white; -fx-background-radius: 30 30 0 0;">
                <children>
-                  <Text fx:id="popupTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="roboto" text="Trade offer from %PLAYER%" textAlignment="CENTER" textOrigin="CENTER">
+                  <Text fx:id="popupTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Trade offer from %PLAYER%" textAlignment="CENTER" textOrigin="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>

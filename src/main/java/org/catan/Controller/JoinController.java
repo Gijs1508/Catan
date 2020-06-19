@@ -55,9 +55,8 @@ public class JoinController implements Observable, Initializable {
     }
 
     @FXML
-    private void handleButtonJoinAction(MouseEvent mouseEvent) throws IOException{
+    private void handleButtonJoinAction(MouseEvent actionEvent) throws IOException{
         Sound.playClick();
-
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Long code = Long.valueOf(code_input.getText());
         Game game = dbConnector.getGameById(code);

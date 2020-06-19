@@ -37,14 +37,8 @@ public class MainController implements Observable, Initializable {
     private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
     private static MainController mainController;
 
-    private static String playerName = "";
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(playerName.length() > 0) {
-            player_name_input.setText(playerName);
-        }
-
         MenuMusicHandler.initializeMusic(musicBtn);
         mainController = this;
         try {
@@ -53,10 +47,6 @@ public class MainController implements Observable, Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        player_name_input.textProperty().addListener((observable, oldValue, newValue) -> {
-            playerName = newValue;
-        });
     }
 
     @FXML

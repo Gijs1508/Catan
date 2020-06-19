@@ -14,6 +14,8 @@ public class Gameboard {
     private HashMap harbour;
 
     public Gameboard() {
+
+
         this.settlements = new ArrayList<>();
         this.roads = new ArrayList<>();
         this.thief = new Thief();

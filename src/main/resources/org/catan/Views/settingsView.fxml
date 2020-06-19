@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.SettingsController">
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.SettingsController">
 <children>
       <Pane fx:id="background" opacity="0.66" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: black;;" />
     <Pane layoutX="476.0" layoutY="171.0" prefHeight="327.0" prefWidth="254.0" style="-fx-background-radius: 30 30 20 20;">
@@ -20,7 +21,7 @@
                            <children>
                               <Pane layoutX="10.0" onMouseClicked="#soundsBtnClicked" prefHeight="69.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 50;">
                                  <children>
-                                    <Label layoutX="110.0" layoutY="20.0" styleClass="roboto" text="Sounds">
+                                    <Label layoutX="110.0" layoutY="20.0" text="Sounds">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -46,7 +47,7 @@
                                           <Image url="@../assets/img/musicOff.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="116.0" layoutY="23.0" styleClass="roboto" text="Music">
+                                    <Label layoutX="116.0" layoutY="20.0" text="Music">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -67,7 +68,7 @@
                                           <Image url="@../assets/img/checkmarkBlack.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="88.0" layoutY="19.0" styleClass="roboto" text="Apply">
+                                    <Label layoutX="88.0" layoutY="16.0" text="Apply">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -85,7 +86,7 @@
             </Pane>
             <StackPane prefHeight="46.0" prefWidth="252.0" style="-fx-background-color: white; -fx-background-radius: 30 30 0 0;">
                 <children>
-                    <Text fx:id="popupTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="roboto" text="Settings" textAlignment="CENTER" textOrigin="CENTER">
+                    <Text fx:id="popupTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" textAlignment="CENTER" textOrigin="CENTER">
                         <font>
                             <Font size="20.0" />
                         </font>

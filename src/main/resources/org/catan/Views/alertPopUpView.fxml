@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -8,13 +7,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="popupPane" prefHeight="182.0" prefWidth="317.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.AlertPopUpController">
+<AnchorPane fx:id="popupPane" prefHeight="182.0" prefWidth="317.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.AlertPopUpController">
    <children>
       <Pane prefHeight="182.0" prefWidth="317.0" style="-fx-background-radius: 30 30 20 20;">
          <children>
             <Pane layoutX="7.0" layoutY="53.0" prefHeight="126.0" prefWidth="304.0" style="-fx-background-color: #e5e4e7; -fx-background-radius: 0 0 20 20;">
                <children>
-                  <Label fx:id="alertDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="2.0" prefHeight="94.0" prefWidth="272.0" styleClass="roboto" text="The action you tried to perform has failed." textAlignment="CENTER" wrapText="true">
+                  <Label fx:id="alertDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="3.0" prefHeight="94.0" prefWidth="272.0" text="The action you tried to perform has failed." textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -31,7 +30,7 @@
             </Pane>
             <StackPane layoutX="7.0" layoutY="9.0" prefHeight="46.0" prefWidth="304.0" style="-fx-background-color: white; -fx-background-radius: 30 30 0 0;">
                <children>
-                  <Text fx:id="popupTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="roboto" text="Action failed!" textAlignment="CENTER" textOrigin="CENTER">
+                  <Text fx:id="popupTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Action failed!" textAlignment="CENTER" textOrigin="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>
