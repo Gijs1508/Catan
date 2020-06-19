@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="676.0" prefWidth="1200.0" style="-fx-background-color: #224870;" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.MainController">
+<AnchorPane prefHeight="676.0" prefWidth="1200.0" style="-fx-background-color: #224870;" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.MainController">
    <children>
       <ImageView fx:id="bg" fitHeight="676.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -23,7 +22,7 @@
             <Image url="@../assets/img/musicOnWhite.png" />
          </image>
       </ImageView>
-      <TextField fx:id="player_name_input" layoutX="501.0" layoutY="333.0" prefHeight="45.0" prefWidth="199.0" promptText="Your name..">
+      <TextField id="namefield" fx:id="player_name_input" layoutX="501.0" layoutY="333.0" prefHeight="45.0" prefWidth="199.0" promptText="Your name..">
          <font>
             <Font size="21.0" />
          </font>
@@ -33,7 +32,7 @@
             <Image url="@../assets/img/Catan-logo.png" />
          </image>
       </ImageView>
-      <VBox fx:id="buttons" layoutX="466.0" layoutY="386.0" prefHeight="203.0" prefWidth="266.0" spacing="10.0">
+      <VBox fx:id="buttons" layoutX="466.0" layoutY="391.0" prefHeight="203.0" prefWidth="266.0" spacing="6.0">
          <children>
             <ImageView fitHeight="71.0" fitWidth="266.0" onMouseClicked="#startGame" pickOnBounds="true" preserveRatio="true">
                <image>

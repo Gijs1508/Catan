@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -17,10 +16,6 @@
          <font>
             <Font size="28.0" />
          </font>
-         <styleClass>
-            <String fx:value="btn" />
-            <String fx:value="roboto" />
-         </styleClass>
       </TextField>
       <ImageView id="logo_img" fitHeight="318.0" fitWidth="550.0" layoutX="325.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
