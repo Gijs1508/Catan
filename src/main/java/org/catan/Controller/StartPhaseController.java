@@ -1,14 +1,9 @@
 package org.catan.Controller;
-import javafx.fxml.Initializable;
 import org.catan.App;
 import org.catan.Model.Game;
-import org.catan.Model.Player;
-import org.catan.Model.TurnManager;
 import org.catan.interfaces.Observable;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class StartPhaseController implements Observable {
     private static int startPhaseCount;
@@ -16,11 +11,15 @@ public class StartPhaseController implements Observable {
     // So that a log can be displayed when startPhase has ended
     private static int startPhaseCountGlobal;
     private static boolean startPhaseActive = true;
-    private static boolean waitState = true;
+    private boolean startPhaseHappened = false;
     private static StartPhaseController startPhaseController;
 
     public StartPhaseController() {
         startPhaseController = this;
+    }
+
+    public void setStartPhaseHappened(boolean happened) {
+        this.startPhaseHappened = happened;
     }
 
     public static StartPhaseController getInstance(){
@@ -29,39 +28,6 @@ public class StartPhaseController implements Observable {
         }
         return startPhaseController;
     }
-
-//    public void run() {
-//        while(true) {
-//            if (App.getClientPlayer().isTurn()) {
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (Exception e) {}
-//                activateBuildingStartPhase();
-//                while(waitState) {
-//                    System.out.println("I am looping");
-//                    try {
-//                        System.out.println("sleepy time");
-//                        Thread.sleep(500);
-//                    } catch (Exception e){}
-//
-//                    // Can't use wait because then we need to multithread the program
-//                }
-//                try {
-//                    Thread.sleep(3000);
-//                } catch (Exception e) {}
-//            } else if(!startPhaseActive) {
-//                break;
-//            }
-//            try {
-//                Thread.sleep(3000);
-//            } catch (InterruptedException ei) {}
-//            waitState = true;
-//        }
-//    }
-
-//    public static void setWaitState(boolean waitState1) {
-//        waitState = waitState1;
-//    }
 
     public boolean isStartPhaseActive() {
         return startPhaseActive;
@@ -82,12 +48,13 @@ public class StartPhaseController implements Observable {
 
     public void activateBuildingStartPhase() {
         if (startPhaseActive)
+            startPhaseHappened = true;
             GameSchermController.getInstance().villageStartPhase();
     }
 
     @Override
     public void update(Game game) throws IOException {
-        if(game.turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier()){
+        if(game.turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier() && !startPhaseHappened){
             activateBuildingStartPhase();
         }
     }
