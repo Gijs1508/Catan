@@ -352,6 +352,8 @@ public class TradeController implements Initializable, Observable {
                 playerInventory.changeCards("ore", Integer.parseInt(request[2]));
                 playerInventory.changeCards("wool", Integer.parseInt(request[3]));
                 playerInventory.changeCards("sheep", Integer.parseInt(request[4]));
+
+                App.getCurrentGame().setTradeStatus("closed");
           }
         }
         if(!(App.getClientPlayer().getIdentifier() == App.getCurrentGame().turnPlayerGetter().getIdentifier()) && game.getTradeStatus().equals("pending")){

@@ -56,7 +56,7 @@ public class TradePopUpController implements Initializable, Observable {
     public static String[] request = {"0", "0", "0", "0", "0"};
     public static boolean offerLock = false;  // Lock to make sure offer cannot be accepted multiple times
 
-    private TradeOffer tradeOffer;
+    private static TradePopUpController tradePopUpController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -160,7 +160,7 @@ public class TradePopUpController implements Initializable, Observable {
 
     public void declineTrade(MouseEvent mouseEvent) {
         Sound.playClick();
-        App.getCurrentGame().setTradeStatus("closed"); //TODO Instellen voor >2 players
+        App.getCurrentGame().setTradeStatus("rejected"); //TODO Instellen voor >2 players
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 
         screenController.hideTradePopup();
@@ -180,10 +180,15 @@ public class TradePopUpController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
-
+        if(game.getTradeStatus().equals("accepted")){
+            screenController.hideTradePopup();
+        }
     }
 
-    public void setTradeOffer(TradeOffer tradeOffer) {
-        this.tradeOffer = tradeOffer;
+    public static TradePopUpController getInstance(){
+        if(tradePopUpController == null){
+            tradePopUpController = new TradePopUpController();
+        }
+        return tradePopUpController;
     }
 }
