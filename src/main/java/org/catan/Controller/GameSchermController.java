@@ -384,7 +384,6 @@ public class GameSchermController implements Initializable, Observable {
             buildRoadBtnCloseClicked();
         StartPhaseController.getInstance().startPhaseCount();
         StartPhaseController.getInstance().checkStartPhase();
-//        StartPhaseController.setWaitState(false);
     }
 
     @FXML
