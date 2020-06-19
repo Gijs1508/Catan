@@ -58,5 +58,6 @@
             </ImageView>
          </children>
       </VBox>
+      <Pane fx:id="alertPopup" layoutX="441.0" layoutY="252.0" prefHeight="182.0" prefWidth="317.0" />
    </children>
 </AnchorPane>
