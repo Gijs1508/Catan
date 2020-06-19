@@ -2,6 +2,7 @@ package org.catan.Model;
 
 import org.catan.App;
 import org.catan.Controller.LogController;
+import org.catan.Controller.StartPhaseController;
 import org.catan.logic.DatabaseConnector;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class TurnManager {
 //            LogController.setPlayer();
 //            LogController.getInstance().logStartTurnEvent();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+            StartPhaseController.getInstance().setStartPhaseHappened(false);
         }
     }
 }
