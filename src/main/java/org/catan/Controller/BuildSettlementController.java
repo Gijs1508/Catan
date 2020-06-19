@@ -404,7 +404,8 @@ public class BuildSettlementController implements Observable {
 
     // Updates the roads on the display and in the array
     private void updateRoads(ArrayList<Road> roads) {
-        if (roads.size() != buildRoads.size()) {
+        if (roads.size() > buildRoads.size()) {
+            System.out.println("Updating the roads");
             roads.addAll(buildRoads);
             ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicates(roads, 0));
             GameSchermController.getInstance().updateRoads(changedRoads);
@@ -417,6 +418,7 @@ public class BuildSettlementController implements Observable {
     // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
         if (isSettlementArrayTheSame(villages)) {
+            System.out.println("Updating the settlements");
             villages.addAll(buildVillages);
             ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicates(villages, 0));
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
@@ -433,12 +435,11 @@ public class BuildSettlementController implements Observable {
             if (!cities.isEmpty())
                 GameSchermController.getInstance().updateCity(cities);
             App.getCurrentGame().getBoard().setSettlements(buildVillages);
-            System.out.println("Update complete");
         }
     }
 
     private boolean isSettlementArrayTheSame(ArrayList<Village> villages) {
-        if (villages.size() != buildVillages.size())
+        if (villages.size() > buildVillages.size())
             return true;
         else {
             for (int i=0; i < villages.size(); i++) {
