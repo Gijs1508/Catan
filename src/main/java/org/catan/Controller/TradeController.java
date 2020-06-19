@@ -78,7 +78,7 @@ public class TradeController implements Observable {
     public void bankTrade() {
         Sound.playSwitch();
 
-        if (tradeType == "player") {
+        if (tradeType.equals("player")) {
             tradeType = "bank";
             bankTradeBtn.setFont(new Font("System Bold", 14));
             playerTradeBtn.setFont(new Font("System", 14));
@@ -90,7 +90,7 @@ public class TradeController implements Observable {
     public void playerTrade() {
         Sound.playSwitch2();
 
-        if (tradeType == "bank") {
+        if (tradeType.equals("bank")) {
             tradeType = "player";
             bankTradeBtn.setFont(new Font("System", 14));
             playerTradeBtn.setFont(new Font("System Bold", 14));
@@ -149,7 +149,7 @@ public class TradeController implements Observable {
 
     @FXML
     public void sendTrade() throws IOException {
-        if(tradeType == "bank" && isClientPlayerActive()){
+        if(tradeType.equals("bank") && isClientPlayerActive()){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
             int netBrick = netResource(giveBrickCount, takeBrickCount);
@@ -161,7 +161,7 @@ public class TradeController implements Observable {
             int netWheat = netResource(giveWheatCount, takeWheatCount);
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
-        } else if(tradeType == "player" && isClientPlayerActive()){
+        } else if(tradeType.equals("player") && isClientPlayerActive()){
             String playerName = App.getCurrentGame().turnPlayerGetter().getName();
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
@@ -299,7 +299,7 @@ public class TradeController implements Observable {
 
     private void giveResource(Label resource, int inventoryIndex){
         int inventoryCard = getInventoryCards()[inventoryIndex];
-        if(tradeType == "player"){
+        if(tradeType.equals("player")){
             if(resourceToInt(resource) < inventoryCard){
                 resource.setText(raiseResource(resource));
             }
@@ -317,7 +317,7 @@ public class TradeController implements Observable {
     }
 
     private void takeResource(Label resourceCount){
-        if(tradeType == "player"){
+        if(tradeType.equals("player")){
             resourceCount.setText(raiseResource(resourceCount));
         } else if(tradeTakeLock == false){
             resourceCount.setText(raiseResource(resourceCount));
