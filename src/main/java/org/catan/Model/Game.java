@@ -6,6 +6,7 @@ public class Game {
 
     private static ArrayList<Player> players = new ArrayList<Player>();
     public static Player activePlayer;
+    public static boolean tradeSent = false;
     private String status;
     private Long code;
     private ArrayList<Log> logs;
@@ -109,6 +110,14 @@ public class Game {
 
     public static void setActivePlayer(Player player){
         activePlayer = player;
+    }
+
+    public static void setTradeSent(boolean isSent){
+        tradeSent = isSent;
+    }
+
+    public static boolean isTradeSent(){
+        return tradeSent;
     }
 
     public void removePlayer(Player player) {

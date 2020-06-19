@@ -168,7 +168,8 @@ public class TradeController implements Observable {
             TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
 //            App.tradePopUp();
 //            ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij de client
-            tradeSent = true;
+            App.getCurrentGame().setTradeSent(true);
+            System.out.println("trade sent");
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
         else {
@@ -334,8 +335,8 @@ public class TradeController implements Observable {
 
     @Override
     public void update(Game game) throws IOException {
-        System.out.print("Client player: " + App.getClientPlayer().getName() + " active player: " + App.getCurrentGame().turnPlayerGetter().getName() + "\n");
-        if(App.getClientPlayer() != App.getCurrentGame().turnPlayerGetter() && tradeSent){
+        System.out.print("Update reached, isTradeSent = " + App.getCurrentGame().isTradeSent() + "\n");
+        if(App.getClientPlayer() != App.getCurrentGame().turnPlayerGetter() && game.isTradeSent()){
             System.out.print("trade offer");
 //            receiveTrade();
         }
