@@ -405,20 +405,17 @@ public class BuildSettlementController implements Observable {
     // Updates the roads on the display and in the array
     private void updateRoads(ArrayList<Road> roads) {
         if (roads.size() > buildRoads.size()) {
-            System.out.println("Updating the roads");
             roads.addAll(buildRoads);
             ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicates(roads, 0));
             GameSchermController.getInstance().updateRoads(changedRoads);
             buildRoads.addAll(changedRoads);
             App.getCurrentGame().getBoard().setRoads(buildRoads);
-            System.out.println("Update complete");
         }
     }
 
     // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
         if (isSettlementArrayTheSame(villages)) {
-            System.out.println("Updating the settlements");
             villages.addAll(buildVillages);
             ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicates(villages, 0));
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
