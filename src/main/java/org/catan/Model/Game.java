@@ -104,19 +104,19 @@ public class Game {
         this.board = board;
     }
 
-    public static Player getActivePlayer(){
+    public Player getActivePlayer(){
         return activePlayer;
     }
 
-    public static void setActivePlayer(Player player){
+    public void setActivePlayer(Player player){
         activePlayer = player;
     }
 
-    public static void setTradeSent(boolean isSent){
+    public void setTradeSent(boolean isSent){
         tradeSent = isSent;
     }
 
-    public static boolean isTradeSent(){
+    public boolean isTradeSent(){
         return tradeSent;
     }
 

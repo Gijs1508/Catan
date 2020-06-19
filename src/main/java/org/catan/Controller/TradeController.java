@@ -7,11 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import org.catan.App;
-import org.catan.Model.Bank;
-import org.catan.Model.Game;
-import org.catan.Model.Inventory;
-import org.catan.Model.Player;
-import org.catan.Model.Sound;
+import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
@@ -24,6 +20,7 @@ public class TradeController implements Initializable, Observable {
     private String tradeType = "player";
     private boolean tradeGiveLock, tradeTakeLock = false;
     private boolean tradeSent = false;
+    private TradeOffer tradeOffer = new TradeOffer();
 
     @FXML
     private Label giveWheatCount;
@@ -166,9 +163,11 @@ public class TradeController implements Initializable, Observable {
             String playerName = App.getCurrentGame().turnPlayerGetter().getName();
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
-            TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
+
+            tradeOffer.updateOffer(App.getClientPlayer(), offerArray, requestArray);
+//            TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
 //            App.tradePopUp();
-//            ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij de client
+            ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij de client
             App.getCurrentGame().setTradeSent(true);
             System.out.println("trade sent");
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());

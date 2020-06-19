@@ -9,10 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import org.catan.App;
-import org.catan.Model.Game;
-import org.catan.Model.Inventory;
-import org.catan.Model.Player;
-import org.catan.Model.Sound;
+import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
 import java.net.URL;
@@ -56,6 +53,8 @@ public class TradePopUpController implements Initializable, Observable {
     public static String[] offer = {"0", "0", "0", "0", "0"};
     public static String[] request = {"0", "0", "0", "0", "0"};
     public static boolean offerLock = false;  // Lock to make sure offer cannot be accepted multiple times
+
+    private TradeOffer tradeOffer;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -174,5 +173,9 @@ public class TradePopUpController implements Initializable, Observable {
     @Override
     public void update(Game game) {
 
+    }
+
+    public void setTradeOffer(TradeOffer tradeOffer) {
+        this.tradeOffer = tradeOffer;
     }
 }
