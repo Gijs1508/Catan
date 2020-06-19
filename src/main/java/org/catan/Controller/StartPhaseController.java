@@ -47,9 +47,10 @@ public class StartPhaseController implements Observable {
     }
 
     public void activateBuildingStartPhase() {
-        if (startPhaseActive)
+        if (startPhaseActive) {
             startPhaseHappened = true;
             GameSchermController.getInstance().villageStartPhase();
+        }
     }
 
     @Override
