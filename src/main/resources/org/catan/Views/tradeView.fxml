@@ -73,7 +73,7 @@
                <children>
                   <Pane prefHeight="160.0" prefWidth="44.0">
                      <children>
-                        <Label fx:id="giveWheatCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="giveWheatCount" layoutX="13.0" layoutY="2.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -99,7 +99,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <Label fx:id="takeWheatCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="takeWheatCount" layoutX="14.0" layoutY="121.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -108,7 +108,7 @@
                   </Pane>
                   <Pane prefHeight="160.0" prefWidth="44.0">
                      <children>
-                        <Label fx:id="giveWoodCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="giveWoodCount" layoutX="13.0" layoutY="2.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -134,7 +134,7 @@
                               <Image url="@../assets/img/arrowDown.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="takeWoodCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="takeWoodCount" layoutX="14.0" layoutY="121.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -143,7 +143,7 @@
                   </Pane>
                   <Pane prefHeight="160.0" prefWidth="44.0">
                      <children>
-                        <Label fx:id="giveBrickCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="giveBrickCount" layoutX="13.0" layoutY="2.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -169,7 +169,7 @@
                               <Image url="@../assets/img/arrowDown.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="takeBrickCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="takeBrickCount" layoutX="14.0" layoutY="121.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -178,7 +178,7 @@
                   </Pane>
                   <Pane prefHeight="160.0" prefWidth="44.0">
                      <children>
-                        <Label fx:id="giveWoolCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="giveWoolCount" layoutX="13.0" layoutY="2.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -204,7 +204,7 @@
                               <Image url="@../assets/img/arrowDown.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="takeWoolCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="takeWoolCount" layoutX="14.0" layoutY="121.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -213,7 +213,7 @@
                   </Pane>
                   <Pane prefHeight="160.0" prefWidth="44.0">
                      <children>
-                        <Label fx:id="giveOreCount" layoutX="13.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="giveOreCount" layoutX="13.0" layoutY="2.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -239,7 +239,7 @@
                               <Image url="@../assets/img/arrowDown.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="takeOreCount" layoutX="14.0" layoutY="114.0" prefHeight="20.0" prefWidth="10.0" text="0">
+                        <Label fx:id="takeOreCount" layoutX="14.0" layoutY="121.0" prefHeight="20.0" prefWidth="10.0" styleClass="roboto" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -269,11 +269,6 @@
                </children>
             </HBox>
          </children></Pane>
-        <Label layoutX="271.0" prefHeight="45.0" prefWidth="97.0" styleClass="roboto" text="Trade">
-            <font>
-                <Font size="28.0" />
-            </font>
-        </Label>
       <Pane layoutX="509.0" layoutY="41.0" prefHeight="160.0" prefWidth="62.0">
          <children>
             <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
@@ -352,5 +347,10 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <ImageView fitHeight="40.0" fitWidth="93.0" layoutX="267.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/UI/trade.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
