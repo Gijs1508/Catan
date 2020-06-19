@@ -1,6 +1,7 @@
 package org.catan.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -15,9 +16,10 @@ import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
-public class TradeController implements Observable {
+public class TradeController implements Initializable, Observable {
 
     private String tradeType = "player";
     private boolean tradeGiveLock, tradeTakeLock = false;
@@ -64,7 +66,6 @@ public class TradeController implements Observable {
 
 
     public TradeController(){
-        tradeController = this;
     }
 
     public static TradeController getInstance(){
@@ -342,4 +343,8 @@ public class TradeController implements Observable {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tradeController = this;
+    }
 }
