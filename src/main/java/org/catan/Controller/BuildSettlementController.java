@@ -398,15 +398,16 @@ public class BuildSettlementController implements Observable {
 
     @Override
     public void update(Game game) {
+        System.out.println("Update has been called");
         updateRoads(game.getBoard().getRoads());
         updateSettlements(game.getBoard().getSettlements());
     }
 
     // Updates the roads on the display and in the array
     private void updateRoads(ArrayList<Road> roads) {
-        System.out.println("There is an update for the roads");
         if (roads.size() > buildRoads.size()) {
-            System.out.println("Im inside the if statement so something has changed");
+            System.out.println("===================================");
+            System.out.println();
             System.out.println("Size roads: " + roads.size());
             System.out.println("Size buildRoads: " + buildRoads.size());
             roads.addAll(buildRoads);
@@ -417,6 +418,7 @@ public class BuildSettlementController implements Observable {
             buildRoads.addAll(changedRoads);
             System.out.println("Size buildRoads after adding Changedroads: " + buildRoads.size() );
             App.getCurrentGame().getBoard().setRoads(buildRoads);
+            System.out.println();
         }
     }
 
