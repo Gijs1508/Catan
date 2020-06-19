@@ -97,11 +97,12 @@ public class Village {
         Village village = (Village) o;
         return Double.compare(village.x, x) == 0 &&
                 Double.compare(village.y, y) == 0 &&
-                upgraded == village.upgraded;
+                upgraded == village.upgraded &&
+                color.equals(village.color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, upgraded);
+        return Objects.hash(x, y, color, upgraded);
     }
 }
