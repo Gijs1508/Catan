@@ -10,6 +10,7 @@ import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
  */
@@ -171,6 +172,17 @@ public class BuildSettlementController implements Observable {
         for (Village village : array) {
             if (!arrayFixed.contains(village)) {
                 arrayFixed.add(village);
+            }
+        }
+        return arrayFixed;
+    }
+
+    // Removes everything that has a duplicate and returns the unique
+    private ArrayList<Road> removeDuplicatesCompletely(ArrayList<Road> array, ArrayList<Road> array2) {
+        ArrayList<Road> arrayFixed = new ArrayList<>();
+        for (Road road : array) {
+            if (!array2.contains(road)) {
+                arrayFixed.add(road);
             }
         }
         return arrayFixed;
@@ -406,19 +418,10 @@ public class BuildSettlementController implements Observable {
     // Updates the roads on the display and in the array
     private void updateRoads(ArrayList<Road> roads) {
         if (roads.size() > buildRoads.size()) {
-            System.out.println("===================================");
-            System.out.println();
-            System.out.println("Size roads: " + roads.size());
-            System.out.println("Size buildRoads: " + buildRoads.size());
-            roads.addAll(buildRoads);
-            System.out.println("Size roads after addAll: " + roads.size());
-            ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicates(roads, 0));
-            System.out.println("Size changedRoads: " + changedRoads.size());
+            ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicatesCompletely(roads, buildRoads));
             GameSchermController.getInstance().updateRoads(changedRoads);
             buildRoads.addAll(changedRoads);
-            System.out.println("Size buildRoads after adding Changedroads: " + buildRoads.size() );
             App.getCurrentGame().getBoard().setRoads(buildRoads);
-            System.out.println();
         }
     }
 
