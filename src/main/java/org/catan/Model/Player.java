@@ -122,6 +122,10 @@ public class Player {
         villageScore++;
     }
 
+    public void removeVillagePoint() {
+        villageScore--;
+    }
+
     public void addCityPoint() {
         cityScore++;
     }

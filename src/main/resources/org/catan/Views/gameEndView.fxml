@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameEndController">
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameEndController">
 <children>
       <Pane fx:id="background" opacity="0.3" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: black;;" />
     <Pane layoutX="433.0" layoutY="187.0" prefHeight="426.0" prefWidth="335.0" style="-fx-background-radius: 30 30 20 20;">
@@ -21,7 +21,7 @@
                               <Image url="@../assets/img/exit.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="54.0" layoutY="16.0" text="Leave game">
+                        <Label layoutX="54.0" layoutY="19.0" styleClass="roboto" text="Leave game">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -39,7 +39,7 @@
                   </Pane>
                   <Pane fx:id="defeatPane" layoutY="32.0" prefHeight="262.0" prefWidth="334.0">
                      <children>
-                        <Label fx:id="defeatText" layoutX="35.0" layoutY="30.0" prefHeight="178.0" prefWidth="264.0" text="\%PLAYERWON% won the game." textAlignment="CENTER" wrapText="true">
+                        <Label fx:id="defeatText" layoutX="35.0" layoutY="30.0" prefHeight="178.0" prefWidth="264.0" styleClass="roboto" text="\%PLAYERWON% won the game." textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -55,7 +55,7 @@
             </Pane>
             <StackPane prefHeight="72.0" prefWidth="334.0" style="-fx-background-color: white; -fx-background-radius: 30 30 0 0;">
                 <children>
-                  <Label fx:id="gameEndTitle" text="Game ended">
+                  <Label fx:id="gameEndTitle" styleClass="roboto" text="Game ended">
                      <font>
                         <Font size="33.0" />
                      </font>
