@@ -330,7 +330,7 @@ public class BuildSettlementController implements Observable {
 
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("You don't have enough resources to upgrade an village!");
+            alert.setContentText("You don't have enough resources to upgrade a village!");
             alert.show();
         }
         return village;
