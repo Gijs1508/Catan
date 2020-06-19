@@ -48,6 +48,10 @@ public class Log {
         createLog();
     }
 
+    public Log(String eventType) {
+        this.eventType = eventType;
+    }
+
     /** Creates a log's text according to its type */
     private void createLog() {
         if (logs.getImgEvents().containsKey(eventType)) {
@@ -62,7 +66,7 @@ public class Log {
      * @param eventString event text that doesn't contain player names.
      * @return the updated eventString, containing player names. */
     private String handleEventString(String eventString) {
-        eventString = eventString.replaceAll("%PLAYER%", playerName);
+        eventString = eventString.replaceAll("%PLAYER%", App.getCurrentGame().turnPlayerGetter().getName());
         if(eventString.contains("%PLAYER2%")){
             eventString = eventString.replaceAll("%PLAYER2%", opponentName);
         }
