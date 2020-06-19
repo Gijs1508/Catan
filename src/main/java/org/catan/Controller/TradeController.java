@@ -19,6 +19,7 @@ public class TradeController implements Initializable, Observable {
     private String tradeType = "player";
     private boolean tradeGiveLock, tradeTakeLock = false;
     private boolean tradeSent = false;
+    private int tradeRejections = 0;
 
     @FXML
     private Label giveWheatCount;
@@ -161,6 +162,7 @@ public class TradeController implements Initializable, Observable {
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
             String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
 
+            tradeRejections = 0;
             App.getCurrentGame().getTradeOffer().updateOffer(App.getClientPlayer(), offerArray, requestArray);
             App.getCurrentGame().setTradeStatus("pending");
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
@@ -330,38 +332,60 @@ public class TradeController implements Initializable, Observable {
     public void update(Game game) throws IOException {
         String currStatus = App.getCurrentGame().getTradeStatus();
         String newStatus = game.getTradeStatus();
+        System.out.println("Trade status: " + currStatus);
 
         if(!currStatus.equals(newStatus)){
             System.out.println("New trade status: " + newStatus);
             App.getCurrentGame().setTradeStatus(game.getTradeStatus());
-            if(newStatus.equals("accepted")){
 
-                TradeOffer tradeOffer = App.getCurrentGame().getTradeOffer();
-                String[] offer = tradeOffer.getOfferedCards();
-                String[] request = tradeOffer.getRequestedCards();
-                Inventory playerInventory = getInventory();
-
-                playerInventory.changeCards("wood",-Integer.parseInt(offer[0]));
-                playerInventory.changeCards("brick",-Integer.parseInt(offer[1]));
-                playerInventory.changeCards("ore",-Integer.parseInt(offer[2]));
-                playerInventory.changeCards("wool",-Integer.parseInt(offer[3]));
-                playerInventory.changeCards("sheep",-Integer.parseInt(offer[4]));
-
-                playerInventory.changeCards("wood", Integer.parseInt(request[0]));
-                playerInventory.changeCards("brick", Integer.parseInt(request[1]));
-                playerInventory.changeCards("ore", Integer.parseInt(request[2]));
-                playerInventory.changeCards("wool", Integer.parseInt(request[3]));
-                playerInventory.changeCards("sheep", Integer.parseInt(request[4]));
-
-                App.getCurrentGame().setTradeStatus("closed");
-          }
+            if(newStatus.equals("accepted") && App.getClientPlayer().isTurn()){
+                tradeAccepted();
+            }
+            else if(newStatus.equals("rejected")){
+                tradeRejected();
+            }
         }
+
         if(!(App.getClientPlayer().getIdentifier() == App.getCurrentGame().turnPlayerGetter().getIdentifier()) && game.getTradeStatus().equals("pending")){
             Player sender = game.getTradeOffer().getSender();
             String[] offer = game.getTradeOffer().getOfferedCards();
             String[] request = game.getTradeOffer().getRequestedCards();
             App.getCurrentGame().getTradeOffer().updateOffer(sender, offer, request);
             receiveTrade();
+        }
+    }
+
+    public void tradeAccepted(){
+        TradeOffer tradeOffer = App.getCurrentGame().getTradeOffer();
+        String[] offer = tradeOffer.getOfferedCards();
+        String[] request = tradeOffer.getRequestedCards();
+        Inventory playerInventory = getInventory();
+
+        playerInventory.changeCards("wood",-Integer.parseInt(offer[0]));
+        playerInventory.changeCards("brick",-Integer.parseInt(offer[1]));
+        playerInventory.changeCards("ore",-Integer.parseInt(offer[2]));
+        playerInventory.changeCards("wool",-Integer.parseInt(offer[3]));
+        playerInventory.changeCards("sheep",-Integer.parseInt(offer[4]));
+
+        playerInventory.changeCards("wood", Integer.parseInt(request[0]));
+        playerInventory.changeCards("brick", Integer.parseInt(request[1]));
+        playerInventory.changeCards("ore", Integer.parseInt(request[2]));
+        playerInventory.changeCards("wool", Integer.parseInt(request[3]));
+        playerInventory.changeCards("sheep", Integer.parseInt(request[4]));
+
+        App.getCurrentGame().setTradeStatus("closed");
+    }
+
+    public void tradeRejected(){
+        tradeRejections += 1;
+        System.out.println("Players - 1 = " + (App.getCurrentGame().getPlayers().size() - 1));
+        if(tradeRejections >= (App.getCurrentGame().getPlayers().size() - 1)){
+            System.out.println("All players declined");
+            App.getCurrentGame().setTradeStatus("closed");
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+        } else if (tradeRejections < (App.getCurrentGame().getPlayers().size() - 1)){
+            App.getCurrentGame().setTradeStatus("pending2"); // Waiting for other players
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 
