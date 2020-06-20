@@ -282,14 +282,14 @@ public class BuildSettlementController implements Observable {
      */
     public Village buildVillage(Circle node) {
         // If the node borders a harbor
-        if(gameSchermController.getAllHarborVertices().contains(node)) {
+        System.out.println(node.toString());
+        if(GameSchermController.getInstance().getAllHarborVertices().contains(node)) {
             builtAtHarbor(node);
         }
 
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
         App.getCurrentGame().getBoard().setSettlements(buildVillages);
-//        App.getCurrentGame().setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
@@ -315,18 +315,17 @@ public class BuildSettlementController implements Observable {
         int harborNum = 0;
 
         // Finds what harborNum belongs to the vertex a settlement was placed on
-        for (Map.Entry<Integer, ArrayList<Circle>> entry : gameSchermController.getHarborNumToVertices().entrySet()) {
+        for (Map.Entry<Integer, ArrayList<Circle>> entry : GameSchermController.getInstance().getHarborNumToVertices().entrySet()) {
             if(entry.getValue().contains(node)) {
                 harborNum = entry.getKey();
             }
         }
         // Finds what harbor belongs to that harborNum and updates the player's costs accordingly
-        for (Harbor harbor : gameSchermController.getHarbors()) {
+        for (Harbor harbor : GameSchermController.getInstance().getHarbors()) {
             if(harbor.getHarborNum() == harborNum) {
                 App.getCurrentGame().turnPlayerGetter().updateResourceCosts(harbor);
             }
         }
-//        return;
     }
 
 
