@@ -107,7 +107,6 @@ public class Player {
         getPlayerInventory().changeCards(resource, 1);
 
         LogController.getInstance().logStealEvent(victim); // Log steal event
-        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public void addVictoryPoint() {

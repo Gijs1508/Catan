@@ -52,6 +52,9 @@ public class Inventory {
         if(this.equals(App.getClientPlayer().getPlayerInventory())) {
             StockController.getInstance().updateResources();
         }
+        else {
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+        }
     }
 
     public int developmentCardsLeftGetter() {
