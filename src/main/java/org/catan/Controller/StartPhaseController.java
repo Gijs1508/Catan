@@ -3,8 +3,6 @@ import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
 
-import java.io.IOException;
-
 public class StartPhaseController implements Observable {
     private static int startPhaseCount;
     //TODO Adding to the database if possible
@@ -16,10 +14,6 @@ public class StartPhaseController implements Observable {
 
     public StartPhaseController() {
         startPhaseController = this;
-    }
-
-    public void setStartPhaseHappened(boolean happened) {
-        this.startPhaseHappened = happened;
     }
 
     public static StartPhaseController getInstance(){
@@ -47,15 +41,19 @@ public class StartPhaseController implements Observable {
     }
 
     public void activateBuildingStartPhase() {
-        if (startPhaseActive)
+        if (startPhaseActive) {
             startPhaseHappened = true;
             GameSchermController.getInstance().villageStartPhase();
+        }
     }
 
     @Override
-    public void update(Game game) throws IOException {
+    public void update(Game game) {
         if(game.turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier() && !startPhaseHappened){
             activateBuildingStartPhase();
+        }
+        if (game.turnPlayerGetter().getIdentifier() != App.getClientPlayer().getIdentifier() && startPhaseHappened) {
+            startPhaseHappened = false;
         }
     }
 

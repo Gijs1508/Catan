@@ -10,6 +10,7 @@ import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
  */
@@ -71,15 +72,16 @@ public class BuildSettlementController implements Observable {
     public ArrayList<Circle> showVillageStartSpots() {
         ArrayList<Circle> nodes = new ArrayList<>();
         for (Circle circle : vertexNodeList) {
-            if (buildVillages.isEmpty()) {
-                nodes.add(circle);
-            } else {
-                for (Village buildVillage : buildVillages) {
-                    if ((circle.getLayoutX() != buildVillage.getX()) || (circle.getLayoutY() != buildVillage.getY())) {
-                        nodes.add(circle);
-                    }
+            int count = 0;
+            for (Village buildVillage : buildVillages) {
+                if ((circle.getLayoutX() == buildVillage.getX()) && (circle.getLayoutY() == buildVillage.getY())) {
+                    count++;
                 }
             }
+            if (count == 0)
+                nodes.add(circle);
+            if (buildVillages.isEmpty())
+                nodes.add(circle);
             }
         return villagesNotClose(nodes);
     }
@@ -176,6 +178,28 @@ public class BuildSettlementController implements Observable {
         return arrayFixed;
     }
 
+    // Removes everything that has a duplicate and returns the unique
+    private ArrayList<Road> removeDuplicatesCompletely(ArrayList<Road> array, ArrayList<Road> array2) {
+        ArrayList<Road> arrayFixed = new ArrayList<>();
+        for (Road road : array) {
+            if (!array2.contains(road)) {
+                arrayFixed.add(road);
+            }
+        }
+        return arrayFixed;
+    }
+
+    // Removes everything that has a duplicate and returns the unique
+    private ArrayList<Village> removeDuplicatesCompletely(ArrayList<Village> array, ArrayList<Village> array2, int useless) {
+        ArrayList<Village> arrayFixed = new ArrayList<>();
+        for (Village village : array) {
+            if (!array2.contains(village)) {
+                arrayFixed.add(village);
+            }
+        }
+        return arrayFixed;
+    }
+
     // Removes the uniques from two ArrayLists
     private ArrayList<Circle> removeNonDuplicates(ArrayList<Circle> array, ArrayList<Circle> array2) {
         ArrayList<Circle> arrayFixed = new ArrayList<>();
@@ -264,7 +288,8 @@ public class BuildSettlementController implements Observable {
 
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
-        App.getCurrentGame().setBuildVillages(buildVillages);
+        App.getCurrentGame().getBoard().setSettlements(buildVillages);
+//        App.getCurrentGame().setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
@@ -324,7 +349,7 @@ public class BuildSettlementController implements Observable {
             App.getCurrentGame().turnPlayerGetter().addCityPoint();
             App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
             App.getCurrentGame().turnPlayerGetter().removeVillagePoint();
-            App.getCurrentGame().setBuildVillages(buildVillages);
+            App.getCurrentGame().getBoard().setSettlements(buildVillages);
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
             checkPlayerWon(App.getCurrentGame().turnPlayerGetter());
 
@@ -386,7 +411,7 @@ public class BuildSettlementController implements Observable {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), getPlayerColor());
         buildRoads.add(road);
         App.getCurrentGame().turnPlayerGetter().addRoadPoint();
-        App.getCurrentGame().setRoads(buildRoads);
+        App.getCurrentGame().getBoard().setRoads(buildRoads);
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         return road;
     }
@@ -397,57 +422,57 @@ public class BuildSettlementController implements Observable {
 
     @Override
     public void update(Game game) {
-        updateRoads(game.getRoads());
-        updateSettlements(game.getBuildVillages());
+        updateRoads(game.getBoard().getRoads());
+        updateSettlements(game.getBoard().getSettlements());
     }
 
     // Updates the roads on the display and in the array
     private void updateRoads(ArrayList<Road> roads) {
-        if (roads.size() != buildRoads.size()) {
-            roads.addAll(buildRoads);
-            ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicates(roads, 0));
+        if (!roads.equals(buildRoads)) {
+            ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicatesCompletely(roads, buildRoads));
             GameSchermController.getInstance().updateRoads(changedRoads);
             buildRoads.addAll(changedRoads);
-            App.getCurrentGame().setRoads(buildRoads);
-            System.out.println("Update complete");
+            App.getCurrentGame().getBoard().setRoads(buildRoads);
         }
     }
 
     // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
-        if (isSettlementArrayTheSame(villages)) {
-            villages.addAll(buildVillages);
-            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicates(villages, 0));
+//        if (isSettlementArrayTheSame(villages)) {
+        if (!villages.equals(buildVillages)) {
+            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
             ArrayList<Village> cities = new ArrayList<>();
-            buildVillages = new ArrayList<>(villages);
+            buildVillages.addAll(changedVillages);
+
             for (Village village : changedVillages) {
                 if (village.isUpgraded()) {
                     cities.add(village);
                     villages2.remove(village);
                 }
             }
+
             if (!villages2.isEmpty())
                 GameSchermController.getInstance().updateVillage(villages2);
             if (!cities.isEmpty())
                 GameSchermController.getInstance().updateCity(cities);
-            App.getCurrentGame().setBuildVillages(buildVillages);
-            System.out.println("Update complete");
+
+            App.getCurrentGame().getBoard().setSettlements(buildVillages);
         }
     }
 
-    private boolean isSettlementArrayTheSame(ArrayList<Village> villages) {
-        if (villages.size() != buildVillages.size())
-            return true;
-        else {
-            for (int i=0; i < villages.size(); i++) {
-                if (buildVillages.get(i).isUpgraded() != villages.get(i).isUpgraded())
-                    return true;
-            }
-        }
-        return false;
-    }
-
+    // Keep this for if updateSettlements is updating to much
+//    private boolean isSettlementArrayTheSame(ArrayList<Village> villages) {
+//        if (villages.size() > buildVillages.size())
+//            return true;
+//        else {
+//            for (int i=0; i < villages.size(); i++) {
+//                if (buildVillages.get(i).isUpgraded() != villages.get(i).isUpgraded())
+//                    return true;
+//            }
+//        }
+//        return false;
+//    }
 
     // returns the instance of this class
     public static BuildSettlementController getInstance() {

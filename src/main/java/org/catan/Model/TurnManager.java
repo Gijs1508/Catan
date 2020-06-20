@@ -25,7 +25,6 @@ public class TurnManager {
 //            LogController.setPlayer();
 //            LogController.getInstance().logStartTurnEvent();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-            StartPhaseController.getInstance().setStartPhaseHappened(false);
         }
     }
 }
