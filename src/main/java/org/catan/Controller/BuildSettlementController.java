@@ -199,6 +199,25 @@ public class BuildSettlementController implements Observable {
         return arrayFixed;
     }
 
+    private ArrayList<Village> villageDuplicateTest(ArrayList<Village> array) {
+        ArrayList<Village> arrayFixed = new ArrayList<>();
+        System.out.println("###");
+        System.out.println("This is the villageDuplicateTest");
+        System.out.println("Size array parameter: " + array.size());
+        for (Village village : array) {
+            int count = 0;
+            for (Village village2: array) {
+                if (village.getX() == village2.getX() && village.getY() == village2.getY())
+                    count++;
+            }
+            if (count == 1)
+                arrayFixed.add(village);
+        }
+        System.out.println("Size arrayFixed: " + arrayFixed.size());
+        System.out.println("###");
+        return arrayFixed;
+    }
+
     // Removes the uniques from two ArrayLists
     private ArrayList<Circle> removeNonDuplicates(ArrayList<Circle> array, ArrayList<Circle> array2) {
         ArrayList<Circle> arrayFixed = new ArrayList<>();
@@ -421,7 +440,6 @@ public class BuildSettlementController implements Observable {
 
     @Override
     public void update(Game game) {
-        System.out.println("Update has been called");
         updateRoads(game.getBoard().getRoads());
         updateSettlements(game.getBoard().getSettlements());
     }
@@ -429,7 +447,6 @@ public class BuildSettlementController implements Observable {
     // Updates the roads on the display and in the array
     private void updateRoads(ArrayList<Road> roads) {
         if (!roads.equals(buildRoads)) {
-            System.out.println("A road has been build");
             ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicatesCompletely(roads, buildRoads));
             GameSchermController.getInstance().updateRoads(changedRoads);
             buildRoads.addAll(changedRoads);
@@ -445,7 +462,10 @@ public class BuildSettlementController implements Observable {
             System.out.println("=================");
             System.out.println("This is the villages size: " + villages.size());
             System.out.println("This is the buildVillages size: " + buildVillages.size());
-            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
+//            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
+            ArrayList<Village> changedVillages = new ArrayList<>(villages);
+            changedVillages.addAll(buildVillages);
+            changedVillages = new ArrayList<>(villageDuplicateTest(changedVillages));
             System.out.println("This is the changedVillages size: " + changedVillages.size());
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
             ArrayList<Village> cities = new ArrayList<>();
@@ -466,7 +486,16 @@ public class BuildSettlementController implements Observable {
             if (!cities.isEmpty())
                 GameSchermController.getInstance().updateCity(cities);
 
+
+            System.out.println("**************************");
+            System.out.println("This is the local version");
+            printTest(buildVillages);
+            System.out.println();
             App.getCurrentGame().getBoard().setSettlements(buildVillages);
+            System.out.println("This is the App version");
+            printTest(App.getCurrentGame().getBoard().getSettlements());
+            System.out.println("**************************");
+            System.out.println("=================");
         }
     }
 
@@ -480,6 +509,13 @@ public class BuildSettlementController implements Observable {
             }
         }
         return false;
+    }
+
+    public void printTest(ArrayList<Village> array) {
+        for (Village v : array) {
+            System.out.println("This is the X: " + v.getX());
+            System.out.println("This is the Y: " + v.getY());
+        }
     }
 
 
