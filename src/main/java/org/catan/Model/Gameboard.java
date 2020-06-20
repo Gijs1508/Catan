@@ -39,10 +39,14 @@ public class Gameboard {
         return this.tiles;
     }
 
+    /** Returns the built villages
+     * Can be accessed in every class that needs it
+     * @return an ArrayList type Village */
     public ArrayList<Village> getSettlements() {
         return this.settlements;
     }
 
+    // Updates the array when a new village is built
     public void setSettlements(ArrayList<Village> settlements) {
         this.settlements = settlements;
     }
