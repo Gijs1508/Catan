@@ -18,10 +18,6 @@ public class StartPhaseController implements Observable {
         startPhaseController = this;
     }
 
-    public void setStartPhaseHappened(boolean happened) {
-        this.startPhaseHappened = happened;
-    }
-
     public static StartPhaseController getInstance(){
         if(startPhaseController == null){
             startPhaseController = new StartPhaseController();
