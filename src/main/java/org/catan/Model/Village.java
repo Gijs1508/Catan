@@ -13,7 +13,6 @@ public class Village {
     public Village() {
     }
 
-
     public Village(double x, double y, String color, ArrayList<Tile> connectedTiles) {
         this.x = x;
         this.y = y;
@@ -84,10 +83,6 @@ public class Village {
 
     public ArrayList<Tile> getConnectedTiles() {
         return connectedTiles;
-    }
-
-    public void addConnectedTile(Tile tile) {
-        this.connectedTiles.add(tile);
     }
 
     @Override

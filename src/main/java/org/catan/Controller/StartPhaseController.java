@@ -3,8 +3,6 @@ import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
 
-import java.io.IOException;
-
 public class StartPhaseController implements Observable {
     private static int startPhaseCount;
     //TODO Adding to the database if possible
