@@ -17,6 +17,8 @@ import java.util.HashMap;
  */
 public class Inventory {
 
+    private int ownerID;
+
     /* Array of all resources
     INDEXES:
     [0]: Wood
@@ -27,8 +29,6 @@ public class Inventory {
     [5]: Knight
      */
     private int[] cards = {0, 0, 0, 0, 0, 0};
-
-    public Inventory(){}
 
     public int[] getCards(){
         return this.cards;
@@ -84,6 +84,13 @@ public class Inventory {
             total++;
         }
         return total;
+    }
+
+    public int getOwnerID() {
+        return ownerID;
+    }
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
     }
 
 }
