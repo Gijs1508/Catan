@@ -52,8 +52,8 @@ public class TradePopUpController implements Initializable, Observable {
 
     public static Player sender;
     public static String senderName = "%PLAYER%";
-    public static String[] offer = {"0", "0", "0", "0", "0"};
-    public static String[] request = {"0", "0", "0", "0", "0"};
+    public static int[] offer = {0, 0, 0, 0, 0};
+    public static int[] request = {0, 0, 0, 0, 0};
     public static boolean offerLock = false;  // Lock to make sure offer cannot be accepted multiple times
 
     private static TradePopUpController tradePopUpController;
@@ -67,16 +67,16 @@ public class TradePopUpController implements Initializable, Observable {
 
         // Shows the offer
         popupTitle.setText(popupTitle.getText().replaceAll("%PLAYER%", senderName));
-        woodOffer.setText(offer[0]);
-        brickOffer.setText(offer[1]);
-        oreOffer.setText(offer[2]);
-        woolOffer.setText(offer[3]);
-        wheatOffer.setText(offer[4]);
-        woodRequest.setText(request[0]);
-        brickRequest.setText(request[1]);
-        oreRequest.setText(request[2]);
-        woolRequest.setText(request[3]);
-        wheatRequest.setText(request[4]);
+        woodOffer.setText(resourceToString(offer[0]));
+        brickOffer.setText(resourceToString(offer[1]));
+        oreOffer.setText(resourceToString(offer[2]));
+        woolOffer.setText(resourceToString(offer[3]));
+        wheatOffer.setText(resourceToString(offer[4]));
+        woodRequest.setText(resourceToString(request[0]));
+        brickRequest.setText(resourceToString(request[1]));
+        oreRequest.setText(resourceToString(request[2]));
+        woolRequest.setText(resourceToString(request[3]));
+        wheatRequest.setText(resourceToString(request[4]));
         offerLock = false;
 
         initializeDrag();
@@ -126,11 +126,11 @@ public class TradePopUpController implements Initializable, Observable {
         return false;
     }
 
-    public static void updateTradeOffer(Player sender, String[] offerArray, String[] requestArray){
-        sender = sender;
+    public static void updateTradeOffer(TradeOffer tradeOffer){
+        sender = tradeOffer.getSender();
         senderName = sender.getName();
-        offer = offerArray;
-        request = requestArray;
+        offer = tradeOffer.getOfferedCards();
+        request = tradeOffer.getRequestedCards();
     }
 
     public void acceptTrade(MouseEvent mouseEvent) {
@@ -139,16 +139,17 @@ public class TradePopUpController implements Initializable, Observable {
         Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
         int[] cards = playerInventory.getCards();
         if(!offerLock && ownCards()){
-            playerInventory.changeCards("wood", Integer.parseInt(offer[0]));
-            playerInventory.changeCards("wood", -Integer.parseInt(request[0]));
-            playerInventory.changeCards("brick", Integer.parseInt(offer[1]));
-            playerInventory.changeCards("brick", -Integer.parseInt(request[1]));
-            playerInventory.changeCards("ore", Integer.parseInt(offer[2]));
-            playerInventory.changeCards("ore", -Integer.parseInt(request[2]));
-            playerInventory.changeCards("wool", Integer.parseInt(offer[3]));
-            playerInventory.changeCards("wool", -Integer.parseInt(request[3]));
-            playerInventory.changeCards("wheat", Integer.parseInt(offer[4]));
-            playerInventory.changeCards("wheat", -Integer.parseInt(request[4]));
+            playerInventory.changeCards("wood", offer[0]);
+            playerInventory.changeCards("brick", offer[1]);
+            playerInventory.changeCards("ore", offer[2]);
+            playerInventory.changeCards("wool", offer[3]);
+            playerInventory.changeCards("wheat", offer[4]);
+
+            playerInventory.changeCards("wood", -request[0]);
+            playerInventory.changeCards("brick", -request[1]);
+            playerInventory.changeCards("ore", -request[2]);
+            playerInventory.changeCards("wool", -request[3]);
+            playerInventory.changeCards("wheat", -request[4]);
             offerLock = true;
 
             App.getCurrentGame().setTradeStatus("accepted");
@@ -160,7 +161,7 @@ public class TradePopUpController implements Initializable, Observable {
 
     public void declineTrade(MouseEvent mouseEvent) {
         Sound.playClick();
-        App.getCurrentGame().setTradeStatus("rejected"); //TODO Instellen voor >2 players
+        App.getCurrentGame().getTradeOffers().get(App.getCurrentGame().getTradeOffers().size() - 1).addRejection();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 
         screenController.hideTradePopup();
@@ -171,7 +172,7 @@ public class TradePopUpController implements Initializable, Observable {
         boolean ownCards = true;
         int[] cards = App.getClientPlayer().getPlayerInventory().getCards();
         for (int i = 0; i < request.length; i++){
-            if (!(cards[i] >= Integer.parseInt(request[i]))){
+            if (!(cards[i] >= request[i])){
                 return false;
             }
         }
@@ -190,5 +191,9 @@ public class TradePopUpController implements Initializable, Observable {
             tradePopUpController = new TradePopUpController();
         }
         return tradePopUpController;
+    }
+
+    private String resourceToString(int resource){
+        return Integer.toString(resource);
     }
 }

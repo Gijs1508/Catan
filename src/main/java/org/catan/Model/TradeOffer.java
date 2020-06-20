@@ -7,22 +7,19 @@ import org.catan.logic.DatabaseConnector;
 public class TradeOffer {
 
     private Player sender;
-    private String[] offeredCards;
-    private String[] requestedCards;
+    private int[] offeredCards = {0, 0, 0, 0, 0};
+    private int[] requestedCards = {0, 0, 0, 0, 0};
+    private int rejections;
 
     public TradeOffer(){
     }
 
-    public void updateOffer(Player sender, String[] offer, String[] request){
+    public void updateOffer(Player sender, int[] offer, int[] request){
         this.sender = sender;
         this.offeredCards = offer;
         this.requestedCards = request;
-        TradePopUpController.updateTradeOffer(sender, offer, request);
-    }
-
-    public String[][] fetchTradeOffer(){
-        String[][] trade = {offeredCards, requestedCards};
-        return trade;
+        this.rejections = 0;
+//        TradePopUpController.updateTradeOffer(sender, offer, request);
     }
 
     public void setSender(Player player){
@@ -33,11 +30,19 @@ public class TradeOffer {
         return this.sender;
     }
 
-    public String[] getOfferedCards(){
-        return offeredCards;
+    public int[] getOfferedCards(){
+        return this.offeredCards;
     }
 
-    public String[] getRequestedCards(){
-        return requestedCards;
+    public int[] getRequestedCards(){
+        return this.requestedCards;
+    }
+
+    public void addRejection(){
+        this.rejections += 1;
+    }
+
+    public int getRejections(){
+        return this.rejections;
     }
 }

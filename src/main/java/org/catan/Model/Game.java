@@ -12,6 +12,7 @@ public class Game {
     private Gameboard board;
     private ArrayList<Village> buildVillages = new ArrayList<>();
     private TradeOffer tradeOffer = new TradeOffer();
+    private ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
     private String tradeStatus = "closed";
 
     public Game() {
@@ -143,5 +144,13 @@ public class Game {
 
     public void setTradeStatus(String status){
         this.tradeStatus = status;
+    }
+
+    public void setTradeOffers(ArrayList<TradeOffer> tradeOffers){
+        this.tradeOffers = tradeOffers;
+    }
+
+    public ArrayList<TradeOffer> getTradeOffers(){
+        return this.tradeOffers;
     }
 }
