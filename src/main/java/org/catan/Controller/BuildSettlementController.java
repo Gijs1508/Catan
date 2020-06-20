@@ -288,7 +288,7 @@ public class BuildSettlementController implements Observable {
         Village village = new Village(node.getLayoutX(), node.getLayoutY(), getPlayerColor(), poly.getConnectedTiles(node.getLayoutX(), node.getLayoutY()));
         buildVillages.add(village);
         App.getCurrentGame().getBoard().setSettlements(buildVillages);
-        App.getCurrentGame().setBuildVillages(buildVillages);
+//        App.getCurrentGame().setBuildVillages(buildVillages);
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
@@ -437,63 +437,50 @@ public class BuildSettlementController implements Observable {
         }
     }
 
-
     // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
-        if (!villages.equals(buildVillages)) {
-            villages.addAll(buildVillages);
-            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicates(villages, 0));
+        if (isSettlementArrayTheSame(villages)) {
+            System.out.println();
+            System.out.println("Village has been changed");
+            System.out.println("=================");
+            System.out.println("This is the villages size: " + villages.size());
+            System.out.println("This is the buildVillages size: " + buildVillages.size());
+            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
+            System.out.println("This is the changedVillages size: " + changedVillages.size());
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
             ArrayList<Village> cities = new ArrayList<>();
-            buildVillages = new ArrayList<>(villages);
+            System.out.println("This is the villages2 size: " + villages2.size());
+            buildVillages.addAll(changedVillages);
+            System.out.println("This is the buildVillages size after adding the changed villages: " + buildVillages.size());
             for (Village village : changedVillages) {
                 if (village.isUpgraded()) {
                     cities.add(village);
                     villages2.remove(village);
                 }
             }
+            System.out.println("This is the villages2 size after the for loop: " + villages2.size());
+            System.out.println("This is the city size after the for loop: " + cities.size());
+            System.out.println();
             if (!villages2.isEmpty())
                 GameSchermController.getInstance().updateVillage(villages2);
             if (!cities.isEmpty())
                 GameSchermController.getInstance().updateCity(cities);
+
+            App.getCurrentGame().getBoard().setSettlements(buildVillages);
         }
     }
 
-
-//    // Updates the settlements on the display and in the array
-//    private void updateSettlements(ArrayList<Village> villages) {
-//        if (isSettlementArrayTheSame(villages)) {
-//            villages.addAll(buildVillages);
-//            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicates(villages, 0));
-//            ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
-//            ArrayList<Village> cities = new ArrayList<>();
-//            buildVillages.clear();
-//            buildVillages = new ArrayList<>(villages);
-//            for (Village village : changedVillages) {
-//                if (village.isUpgraded()) {
-//                    cities.add(village);
-//                    villages2.remove(village);
-//                }
-//            }
-//            if (!villages2.isEmpty())
-//                GameSchermController.getInstance().updateVillage(villages2);
-//            if (!cities.isEmpty())
-//                GameSchermController.getInstance().updateCity(cities);
-//            App.getCurrentGame().getBoard().setSettlements(buildVillages);
-//        }
-//    }
-//
-//    private boolean isSettlementArrayTheSame(ArrayList<Village> villages) {
-//        if (villages.size() > buildVillages.size())
-//            return true;
-//        else {
-//            for (int i=0; i < villages.size(); i++) {
-//                if (buildVillages.get(i).isUpgraded() != villages.get(i).isUpgraded())
-//                    return true;
-//            }
-//        }
-//        return false;
-//    }
+    private boolean isSettlementArrayTheSame(ArrayList<Village> villages) {
+        if (villages.size() > buildVillages.size())
+            return true;
+        else {
+            for (int i=0; i < villages.size(); i++) {
+                if (buildVillages.get(i).isUpgraded() != villages.get(i).isUpgraded())
+                    return true;
+            }
+        }
+        return false;
+    }
 
 
     // returns the instance of this class
