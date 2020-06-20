@@ -29,7 +29,7 @@ public class AlertPopUpController {
 
     // Checks which hideAlertPopup should be called
     public void closePopup() {
-        if(controller.equals(MainController.getInstance().getClass())){
+        if(controller.toString().equals(MainController.getInstance().getClass().toString())){
             MainController.getInstance().hideAlertPopup();
         }
         else if(controller.toString().equals(LobbySchermController.getInstance().getClass().toString())){

@@ -49,7 +49,6 @@ public class Inventory {
             case "wheat": cards[4] += amount; break;
             case "knight": cards[5] += amount; break;
         }
-
         if(this.equals(App.getClientPlayer().getPlayerInventory())) {
             StockController.getInstance().updateResources();
         }
