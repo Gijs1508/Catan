@@ -39,7 +39,8 @@ public class Inventory {
     }
 
 
-    //Changing a player's cards
+    // Changing a player's cards
+    // Each method that calls this method should update the database
     public void changeCards(String type, int amount){
         switch(type){
             case "wood": cards[0] += amount; break;
@@ -48,12 +49,6 @@ public class Inventory {
             case "wool": cards[3] += amount; break;
             case "wheat": cards[4] += amount; break;
             case "knight": cards[5] += amount; break;
-        }
-        if(this.equals(App.getClientPlayer().getPlayerInventory())) {
-            StockController.getInstance().updateResources();
-        }
-        else {
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 

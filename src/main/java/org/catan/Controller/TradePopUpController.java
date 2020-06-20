@@ -14,6 +14,7 @@ import org.catan.Model.Inventory;
 import org.catan.Model.Player;
 import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -131,7 +132,8 @@ public class TradePopUpController implements Initializable, Observable {
         request = requestArray;
     }
 
-    public void acceptTrade(MouseEvent mouseEvent) {
+    @FXML
+    public void acceptTrade() {
         Sound.playClick();
 
         Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
@@ -150,6 +152,7 @@ public class TradePopUpController implements Initializable, Observable {
             offerLock = true;
 
             screenController.hideTradePopup();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 

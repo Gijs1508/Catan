@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import org.catan.App;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
+import org.catan.logic.DatabaseConnector;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,6 +50,7 @@ public class HandInController implements Initializable {
             getInventory().changeCards("wool", -textToInt(giveWool));
             getInventory().changeCards("wheat", -textToInt(giveWheat));
             screenController.hideHandInPopUp();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 
