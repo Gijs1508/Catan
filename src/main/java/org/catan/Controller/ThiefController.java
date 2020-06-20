@@ -69,7 +69,7 @@ public class ThiefController implements Initializable, Observable {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();
         int opponentCount = 0;
-        for (Village settlement : App.getCurrentGame().getBuildVillages()) { // Loop through all settlements
+        for (Village settlement : App.getCurrentGame().getBoard().getSettlements()) { // Loop through all settlements
             // TODO this if statement can't be tested properly since colors aren't implemented yet
             if (!settlement.getColor().equals(App.getCurrentGame().turnPlayerGetter().getColor())) { // If settlement isn't player's
                 ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement

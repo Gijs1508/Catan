@@ -84,6 +84,7 @@ public class DocumentListener {
                     GameSchermController.getInstance().update(game);
                     ThiefController.getInstance().update(game);
                     LogController.getInstance().update(game);
+                    StockController.getInstance().update(game);
                     TradeController.getInstance().update(game);
                     StartPhaseController.getInstance().update(game);
                 }

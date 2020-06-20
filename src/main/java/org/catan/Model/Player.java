@@ -44,6 +44,7 @@ public class Player {
         this.score = 0;
         this.playerInventory = new Inventory();
         this.identifier = Math.toIntExact(CreateGameCode.randomCodeGen());
+        playerInventory.setOwnerID(identifier);
         initializeResourceCosts();
     }
 
@@ -103,11 +104,11 @@ public class Player {
         System.out.println("Stolen resource: " + resource);
 
         // Take the resource from the victim, and give it to the active player
-        victim.getPlayerInventory().changeCards(resource, -1); // TODO there probably is a better way to change victim's inventory (doesn't update their stockview this way)
+        victim.getPlayerInventory().changeCards(resource, -1);
         getPlayerInventory().changeCards(resource, 1);
 
-        LogController.getInstance().logStealEvent(victim); // Log steal event
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+        LogController.getInstance().logStealEvent(victim); // Log steal event
     }
 
     public void addVictoryPoint() {

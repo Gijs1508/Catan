@@ -148,7 +148,7 @@ public class TradeController implements Observable {
     }
 
     @FXML
-    public void sendTrade() throws IOException {
+    public void sendTrade() {
         if(tradeType == "bank" && isClientPlayerActive()){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
@@ -161,6 +161,7 @@ public class TradeController implements Observable {
             int netWheat = netResource(giveWheatCount, takeWheatCount);
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         } else if(tradeType == "player" && isClientPlayerActive()){
             String playerName = App.getCurrentGame().turnPlayerGetter().getName();
             String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
@@ -169,7 +170,6 @@ public class TradeController implements Observable {
 //            App.tradePopUp();
 //            ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij de client
             tradeSent = true;
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
         else {
             ScreenController.getInstance().showAlertPopup();
