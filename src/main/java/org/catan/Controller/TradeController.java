@@ -404,11 +404,8 @@ public class TradeController implements Initializable, Observable {
         int[] offer = tradeOffer.getOfferedCards();
         int[] request = tradeOffer.getRequestedCards();
         Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
-        for(int resource : request){
-            System.out.println(resource);
-        }
 
-        playerInventory.changeCards("wood",offer[0]);
+        playerInventory.changeCards("wood",-offer[0]);
         playerInventory.changeCards("brick",-offer[1]);
         playerInventory.changeCards("ore",-offer[2]);
         playerInventory.changeCards("wool",-offer[3]);
