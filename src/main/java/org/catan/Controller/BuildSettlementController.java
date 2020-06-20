@@ -72,15 +72,16 @@ public class BuildSettlementController implements Observable {
     public ArrayList<Circle> showVillageStartSpots() {
         ArrayList<Circle> nodes = new ArrayList<>();
         for (Circle circle : vertexNodeList) {
-            if (buildVillages.isEmpty()) {
-                nodes.add(circle);
-            } else {
-                for (Village buildVillage : buildVillages) {
-                    if ((circle.getLayoutX() != buildVillage.getX()) || (circle.getLayoutY() != buildVillage.getY())) {
-                        nodes.add(circle);
-                    }
+            int count = 0;
+            for (Village buildVillage : buildVillages) {
+                if ((circle.getLayoutX() == buildVillage.getX()) && (circle.getLayoutY() == buildVillage.getY())) {
+                    count++;
                 }
             }
+            if (count == 0)
+                nodes.add(circle);
+            if (buildVillages.isEmpty())
+                nodes.add(circle);
             }
         return villagesNotClose(nodes);
     }
