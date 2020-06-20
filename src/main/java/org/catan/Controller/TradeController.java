@@ -341,29 +341,6 @@ public class TradeController implements Initializable, Observable {
 
     @Override
     public void update(Game game) throws IOException {
-//        String currStatus = App.getCurrentGame().getTradeStatus();
-//        String newStatus = game.getTradeStatus();
-//        System.out.println("Trade status: " + currStatus);
-//
-//        if(!currStatus.equals(newStatus)){
-//            System.out.println("New trade status: " + newStatus);
-//            App.getCurrentGame().setTradeStatus(game.getTradeStatus());
-//
-//            if(newStatus.equals("accepted") && App.getClientPlayer().isTurn()){
-//                tradeAccepted();
-//            }
-//            else if(newStatus.equals("rejected")){
-//                tradeRejected();
-//            }
-//        }
-//
-//        if(!(App.getClientPlayer().getIdentifier() == App.getCurrentGame().turnPlayerGetter().getIdentifier()) && game.getTradeStatus().equals("pending")){
-//            Player sender = game.getTradeOffer().getSender();
-//            String[] offer = game.getTradeOffer().getOfferedCards();
-//            String[] request = game.getTradeOffer().getRequestedCards();
-//            App.getCurrentGame().getTradeOffer().updateOffer(sender, offer, request);
-//            receiveTrade();
-//        }
 
         App.getCurrentGame().setTradeStatus(game.getTradeStatus());
 
@@ -417,21 +394,9 @@ public class TradeController implements Initializable, Observable {
         playerInventory.changeCards("wool", request[3]);
         playerInventory.changeCards("wheat", request[4]);
 
+        System.out.println("Trade completed, new wheat count: " + playerInventory.getCards()[4]);
         App.getCurrentGame().setTradeStatus("closed");
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-    }
-
-    public void tradeRejected(){
-        int otherPlayers = App.getCurrentGame().getPlayers().size() - 1;
-        tradeRejections += 1;
-        if(tradeRejections >= otherPlayers){
-            System.out.println("All players declined");
-            App.getCurrentGame().setTradeStatus("closed");
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        } else if (!App.getCurrentGame().getTradeStatus().equals("closed")){
-            App.getCurrentGame().setTradeStatus("pending2");
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        }
     }
 
     @Override

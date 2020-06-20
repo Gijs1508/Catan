@@ -157,7 +157,6 @@ public class TradePopUpController implements Initializable, Observable {
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 
             screenController.hideTradePopup();
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 

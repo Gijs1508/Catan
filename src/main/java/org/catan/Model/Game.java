@@ -5,13 +5,11 @@ import java.util.ArrayList;
 public class Game {
 
     private static ArrayList<Player> players = new ArrayList<>();
-    public static Player activePlayer;
     private String status;
     private Long code;
     private ArrayList<Log> logs;
     private Gameboard board;
     private ArrayList<Village> buildVillages = new ArrayList<>();
-    private TradeOffer tradeOffer = new TradeOffer();
     private ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
     private String tradeStatus = "closed";
 
@@ -21,10 +19,6 @@ public class Game {
         this.logs = new ArrayList<>();
         this.status = "open";
         this.code = CreateGameCode.randomCodeGen();
-    }
-
-    public void nextTurn() {
-
     }
 
 //    public Tile getRoverStatus(){
@@ -95,14 +89,6 @@ public class Game {
         this.board = board;
     }
 
-    public Player getActivePlayer(){
-        return activePlayer;
-    }
-
-    public void setActivePlayer(Player player){
-        activePlayer = player;
-    }
-
     public void removePlayer(Player player) {
         Player playerToRemove = new Player();
         for (Player gamePlayer: players) {
@@ -120,10 +106,6 @@ public class Game {
             }
         }
         return new Player();
-    }
-
-    public TradeOffer getTradeOffer(){
-        return tradeOffer;
     }
 
     public String getTradeStatus(){
