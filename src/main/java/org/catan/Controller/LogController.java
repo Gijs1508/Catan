@@ -157,11 +157,17 @@ public class LogController implements Initializable, Observable {
         storeLog(log);
     }
 
+    public void logStartPhaseEnded() {
+        Log log = new Log("startPhase");
+        addTxtLogToLogsPane(log);
+        storeLog(log);
+    }
+
     // Stores log in logs
     private void storeLog(Log log) {
         logs.addLog(log);
         App.getCurrentGame().setLogs(logs.getLogs());
-        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame()); // Meaning that methods that create logs don't have to update the database within that method
     }
 
     public static LogController getInstance() {

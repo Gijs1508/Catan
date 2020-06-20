@@ -1,6 +1,7 @@
 package org.catan.Model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Village {
     private double x;
@@ -10,9 +11,7 @@ public class Village {
     private ArrayList<Tile> connectedTiles = new ArrayList<>();
 
     public Village() {
-
     }
-
 
     public Village(double x, double y, String color, ArrayList<Tile> connectedTiles) {
         this.x = x;
@@ -86,5 +85,19 @@ public class Village {
         return connectedTiles;
     }
 
-    public void addConnectedTile(Tile tile) {this.connectedTiles.add(tile);}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Village village = (Village) o;
+        return Double.compare(village.x, x) == 0 &&
+                Double.compare(village.y, y) == 0 &&
+                upgraded == village.upgraded &&
+                color.equals(village.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, color, upgraded);
+    }
 }

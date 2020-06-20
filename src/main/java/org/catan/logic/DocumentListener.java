@@ -73,6 +73,7 @@ public class DocumentListener {
     private void updateGameDocument(DocumentSnapshot snapshot) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Game game = mapper.convertValue(snapshot.getData(), Game.class);
+
         switch (game.getStatus()) {
             case "open":
                 LobbySchermController.getInstance().update(game);
@@ -83,7 +84,9 @@ public class DocumentListener {
                     GameSchermController.getInstance().update(game);
                     ThiefController.getInstance().update(game);
                     LogController.getInstance().update(game);
+                    StockController.getInstance().update(game);
                     TradeController.getInstance().update(game);
+                    StartPhaseController.getInstance().update(game);
                     TradePopUpController.getInstance().update(game);
                 }
                 if (App.getCurrentGame().getStatus().equals("open")) {

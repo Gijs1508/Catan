@@ -133,7 +133,8 @@ public class TradePopUpController implements Initializable, Observable {
         request = tradeOffer.getRequestedCards();
     }
 
-    public void acceptTrade(MouseEvent mouseEvent) {
+    @FXML
+    public void acceptTrade() {
         Sound.playClick();
 
         Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
@@ -156,6 +157,7 @@ public class TradePopUpController implements Initializable, Observable {
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 
             screenController.hideTradePopup();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 

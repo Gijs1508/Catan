@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
 
-    private static ArrayList<Player> players = new ArrayList<Player>();
+    private static ArrayList<Player> players = new ArrayList<>();
     public static Player activePlayer;
     private String status;
     private Long code;
@@ -75,17 +75,6 @@ public class Game {
         return logs;
     }
 
-    // Updates the array when a new village is build
-    public void setBuildVillages(ArrayList<Village> buildVillages) {
-        this.buildVillages = buildVillages;
-    }
-    /** Returns the build villages
-     * Can be accessed in every class that needs it
-     * @return an ArrayList type Village */
-    public ArrayList<Village> getBuildVillages() {
-        return buildVillages;
-    }
-
     public void setLogs(ArrayList<Log> logs) {
         this.logs = logs;
     }
@@ -130,7 +119,6 @@ public class Game {
                 return player;
             }
         }
-
         return new Player();
     }
 

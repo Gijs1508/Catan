@@ -137,6 +137,7 @@ public class GameSchermController implements Initializable, Observable {
     @FXML private ImageView roadButton; @FXML private ImageView settlementButton;
     @FXML private ImageView upgradeButton; @FXML private ImageView roadButtonClose;
     @FXML private ImageView settlementButtonClose; @FXML private ImageView upgradeButtonClose;
+    @FXML private ImageView endTurnButton;
 
     @FXML private Pane objectsPane;
 
@@ -157,8 +158,6 @@ public class GameSchermController implements Initializable, Observable {
     LogController logController = LogController.getInstance();
 
     private BuildSettlementController build;
-    private boolean startPhase = true;
-    private int startPhaseCount = 0;
 
     private static GameSchermController gameSchermController;
 
@@ -172,7 +171,6 @@ public class GameSchermController implements Initializable, Observable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializePlacementSpots();
-//        initializeRoads();
         addAllTilesToArray();
 
         //TODO: changing the seed to the gamecode!
@@ -180,7 +178,8 @@ public class GameSchermController implements Initializable, Observable {
         long seed = App.getCurrentGame().getCode();
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
-        //tile1.setFill(Color.BROWN);
+
+        startPhaseButtonsInvisible();
         initializeButtons();
 
         initializeHarbors();
@@ -188,13 +187,18 @@ public class GameSchermController implements Initializable, Observable {
         gameSchermController = this;
     }
 
-    @FXML
-    private void startPhase() {
-        villageStartPhase();
+    public void startPhaseButtonsInvisible() {
+        roadButton.setVisible(false);
+        settlementButton.setVisible(false);
+        upgradeButton.setVisible(false);
+        endTurnButton.setVisible(false);
     }
 
-    public void setStartPhase(boolean phase) {
-        this.startPhase = phase;
+    public void startPhaseButtonsVisible() {
+        roadButton.setVisible(true);
+        settlementButton.setVisible(true);
+        upgradeButton.setVisible(true);
+        endTurnButton.setVisible(true);
     }
 
     /** Starts the ship animation that is always running.
@@ -302,19 +306,20 @@ public class GameSchermController implements Initializable, Observable {
         int[] reqResources = {1, 1, 0, 1, 1, 0};
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        if(canBuildObject(reqResources) || startPhase){
-            placeVillage(build.buildVillage(circle));
+        if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()){
             logController.logSettlementEvent();
+            placeVillage(build.buildVillage(circle));
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
         }
-        if (startPhase)
-            roadStartPhase(circle);
-        buildSettlementBtnCloseClicked();
-        startPhaseCount++;
-        if (startPhaseCount == 2)
-            startPhase = false;
+        if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            for (Circle vertex : vertexNodeList) {
+                vertex.setVisible(false);
+                roadStartPhase(circle);
+            }
+        } else
+            buildSettlementBtnCloseClicked();
     }
 
     // Places the village image on the board
@@ -362,14 +367,23 @@ public class GameSchermController implements Initializable, Observable {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
         int[] reqResources = {1, 1, 0, 0, 0, 0};
 
-        if(canBuildObject(reqResources) || startPhase){
+        if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()){
             placeRoad(build.buildRoad(circle));
             logController.logRoadEvent();
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a road.");
         }
-        buildRoadBtnCloseClicked();
+        if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            TurnManager.nextPlayer();
+            for (Circle road : roadSpotNodeList) {
+                road.setVisible(false);
+            }
+        }
+        else
+            buildRoadBtnCloseClicked();
+        StartPhaseController.getInstance().startPhaseCount();
+        StartPhaseController.getInstance().checkStartPhase();
     }
 
     @FXML
@@ -522,8 +536,6 @@ public class GameSchermController implements Initializable, Observable {
         for (Circle node : nodes) {
             node.setVisible(true);
         }
-        settlementButton.setVisible(false);
-        settlementButtonClose.setVisible(true);
     }
 
     // Shows the road spots of the recently build village
@@ -532,8 +544,6 @@ public class GameSchermController implements Initializable, Observable {
         for (Circle node : nodes) {
             node.setVisible(true);
         }
-        roadButton.setVisible(false);
-        roadButtonClose.setVisible(true);
     }
 
     /** Initializes all the nodes on the board (like adding them to an ArrayList).

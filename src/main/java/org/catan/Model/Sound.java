@@ -47,7 +47,7 @@ public class Sound {
             put(diceShuffle, 0.6);
             put(diceThrow, 0.6);
             put(click, 0.2);
-            put(takeCard, 0.2);
+            put(takeCard, 0.1);
             put(switch1, 0.6);
             put(switch2, 0.6);
             put(sword, 0.3);

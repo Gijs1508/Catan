@@ -1,5 +1,7 @@
 package org.catan.Model;
 
+import java.util.Objects;
+
 public class Road {
     private double x;
     private double y;
@@ -7,8 +9,8 @@ public class Road {
     private String color;
 
     public Road() {
-
     }
+
 
     public Road(double x, double y, String color) {
         this.x = x;
@@ -46,5 +48,20 @@ public class Road {
 
     public String getColor() {
         return this.color;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Road road = (Road) o;
+        return Double.compare(road.x, x) == 0 &&
+                Double.compare(road.y, y) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

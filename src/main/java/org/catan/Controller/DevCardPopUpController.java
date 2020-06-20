@@ -66,7 +66,7 @@ public class DevCardPopUpController {
             @Override
             public void handle(long l) {
                 if(root.getLayoutY() < 0) {
-                    root.setLayoutY(root.getLayoutY() + 2.6);
+                    root.setLayoutY(root.getLayoutY() + 3);
                 }
                 else {
                     tick++;

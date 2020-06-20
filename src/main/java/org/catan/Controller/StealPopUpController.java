@@ -74,29 +74,28 @@ public class StealPopUpController implements Initializable {
         circle.setFill(Color.web(colorToHex.get(opponent.getColor())));
 
         if(circles.isEmpty()) { // This circle is the first circle
-            circle.setOnMouseClicked(e -> opponent1clicked()); }
+            circle.setOnMouseClicked(e -> opponentClicked(0)); }
         else if(circles.size() == 1) { // This circle is the second circle
-            circle.setOnMouseClicked(e -> opponent2clicked()); }
+            circle.setOnMouseClicked(e -> opponentClicked(1)); }
         else { // This circle is the third circle (there can't be four)
-            circle.setOnMouseClicked(e -> opponent3clicked()); }
+            circle.setOnMouseClicked(e -> opponentClicked(2)); }
 
         circles.add(circle);
         circleBox.getChildren().add(circle);
     }
 
-    public void opponent1clicked() {
-        App.getCurrentGame().turnPlayerGetter().stealFromVictim(opponents.get(0));
-        screenController.hideStealPopUp();
-    }
-
-    public void opponent2clicked() {
-        App.getCurrentGame().turnPlayerGetter().stealFromVictim(opponents.get(1));
-        screenController.hideStealPopUp();
-    }
-
-    public void opponent3clicked() {
-        App.getCurrentGame().turnPlayerGetter().stealFromVictim(opponents.get(2));
-        screenController.hideStealPopUp();
+    /** Finds the opponent that the player chose to steal from and steal from them.
+     * @param circleNum number of the circle that was pressed */
+    public void opponentClicked(int circleNum) {
+        for (int i = 0; i < opponents.size(); i++) {
+            for(Player player : App.getCurrentGame().getPlayers()) {
+                if (opponents.get(circleNum).getIdentifier() == player.getIdentifier()) {
+                    App.getCurrentGame().turnPlayerGetter().stealFromVictim(player);
+                    screenController.hideStealPopUp();
+                    return;
+                }
+            }
+        }
     }
 
     public static StealPopUpController getInstance() {
