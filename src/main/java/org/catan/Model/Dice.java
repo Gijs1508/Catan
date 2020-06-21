@@ -40,14 +40,6 @@ public class Dice {
 
         LogController.getInstance().logRollEvent(Integer.toString(dice1), Integer.toString(dice2));
 
-        // Throwing 7 properties
-        if(total == 7){
-            if(App.getClientPlayer().getPlayerInventory().cardsTotalMinusKnightGetter() > 7){
-//                System.out.println("Speler moet kaarten inleveren");
-//                screenController.showHandInPopUp();
-            }
-        }
-
         setPlayerResources(total);
         return diceResult;
     }
