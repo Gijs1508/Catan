@@ -43,8 +43,8 @@ public class Dice {
         // Throwing 7 properties
         if(total == 7){
             if(App.getClientPlayer().getPlayerInventory().cardsTotalMinusKnightGetter() > 7){
-                System.out.println("Speler moet kaarten inleveren");
-                screenController.showHandInPopUp();
+//                System.out.println("Speler moet kaarten inleveren");
+//                screenController.showHandInPopUp();
             }
         }
 

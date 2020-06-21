@@ -14,6 +14,8 @@ import org.catan.Model.Player;
 import org.catan.Model.Game;
 import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +32,15 @@ public class DobbelsteenController implements Observable {
     @FXML private ImageView dice2_img;
     Dice dice = new Dice();
 
+    private static DobbelsteenController dobbelsteenController;
+
+    public static DobbelsteenController getInstance(){
+        if(dobbelsteenController == null){
+            dobbelsteenController = new DobbelsteenController();
+        }
+        return dobbelsteenController;
+    }
+
     /*
     This method gets called when the player presses the throw dice button.
     it uses the Dice class to get random numbers and then sets the images
@@ -41,13 +52,18 @@ public class DobbelsteenController implements Observable {
         if(App.getClientPlayer().isTurn()){
             Sound.playDiceShuffle();
             // Throw the dice 1.5 seconds after starting the shuffle sound effect
-            Timeline delay = new Timeline(new KeyFrame(Duration.seconds(1.5), actionEvent -> {
+            Timeline delay = new Timeline(new KeyFrame(Duration.seconds(0.5), actionEvent -> {
                 HashMap<Integer, ArrayList<String>> diceResult;
                 try {
                     diceResult = dice.throwDice();
                     for (int key : diceResult.keySet()) {
                         if (key == 7) {
                             //TODO Rover verzetten
+                            System.out.println("isSeven = true");
+                            App.getCurrentGame().setSevenThrown(true);
+                            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+                            App.getCurrentGame().setSevenThrown(false); // Another update necessary to ensure sevenThrown won't stay true
+                            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
                             GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
                         }
                     }
@@ -70,7 +86,13 @@ public class DobbelsteenController implements Observable {
     }
 
     @Override
-    public void update(Game game) {
-
+    public void update(Game game) throws IOException {
+        if(App.getCurrentGame().isSevenThrown() != game.isSevenThrown()){
+            System.out.println("Boolean set to: " + game.isSevenThrown());
+            App.getCurrentGame().setSevenThrown(game.isSevenThrown());
+            if(App.getClientPlayer().getPlayerInventory().cardsTotalMinusKnightGetter() > 7 && game.isSevenThrown()){
+                ScreenController.getInstance().showHandInPopUp();
+            }
+        }
     }
 }

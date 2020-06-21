@@ -1,5 +1,7 @@
 package org.catan.Model;
 
+import org.catan.Controller.DobbelsteenController;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -12,6 +14,7 @@ public class Game {
     private ArrayList<Village> buildVillages = new ArrayList<>();
     private ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
     private String tradeStatus = "closed";
+    private boolean sevenThrown = false;
 
     public Game() {
         this.board = new Gameboard();
@@ -89,6 +92,7 @@ public class Game {
         this.board = board;
     }
 
+
     public void removePlayer(Player player) {
         Player playerToRemove = new Player();
         for (Player gamePlayer: players) {
@@ -122,5 +126,13 @@ public class Game {
 
     public ArrayList<TradeOffer> getTradeOffers(){
         return this.tradeOffers;
+    }
+
+    public boolean isSevenThrown(){
+        return sevenThrown;
+    }
+
+    public void setSevenThrown(boolean sevenThrown){
+        this.sevenThrown = sevenThrown;
     }
 }
