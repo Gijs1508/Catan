@@ -171,8 +171,6 @@ public class TradeController implements Initializable, Observable {
             tradeOffers.add(trade);
             App.getCurrentGame().setTradeOffers(tradeOffers);
             App.getCurrentGame().setTradeStatus("pending");
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-
 //            tradeRejections = 0;
 //            App.getCurrentGame().getTradeOffer().updateOffer(App.getClientPlayer(), offerArray, requestArray);
 //            App.getCurrentGame().setTradeStatus("pending");
@@ -181,7 +179,9 @@ public class TradeController implements Initializable, Observable {
         else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You currently cannot send a trade offer.");
+            return;
         }
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     public void receiveTrade() throws IOException{
