@@ -129,7 +129,7 @@ public class TradeController implements Initializable, Observable {
             else {
                 ScreenController.getInstance().showDevCardPopup();
                 DevCardPopUpController.getInstance().setKnightImage();
-                App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", 1);
+                getInventory().changeCards("knight", 1);
             }
             DevCardPopUpController.getInstance().playAnimation();
             LogController.getInstance().logDevelopmentCardEvent();
@@ -161,6 +161,7 @@ public class TradeController implements Initializable, Observable {
             int netWheat = netResource(giveWheatCount, takeWheatCount);
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed")){
             int[] offerArray = {resourceToInt(giveWoodCount), resourceToInt(giveBrickCount), resourceToInt(giveOreCount), resourceToInt(giveWoolCount), resourceToInt(giveWheatCount)};
             int[] requestArray = {resourceToInt(takeWoodCount), resourceToInt(takeBrickCount), resourceToInt(takeOreCount), resourceToInt(takeWoolCount), resourceToInt(takeWheatCount)};
@@ -172,11 +173,7 @@ public class TradeController implements Initializable, Observable {
             App.getCurrentGame().setTradeOffers(tradeOffers);
             App.getCurrentGame().setTradeStatus("pending");
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-
-//            tradeRejections = 0;
-//            App.getCurrentGame().getTradeOffer().updateOffer(App.getClientPlayer(), offerArray, requestArray);
-//            App.getCurrentGame().setTradeStatus("pending");
-//            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+            resetTrade();
         }
         else {
             ScreenController.getInstance().showAlertPopup();
@@ -371,7 +368,6 @@ public class TradeController implements Initializable, Observable {
                 }
             }
         } else if(game.getTradeStatus().equals("accepted") && App.getClientPlayer().isTurn()){
-            System.out.println("Trade accepted!");
             tradeAccepted();
         }
     }
@@ -380,13 +376,13 @@ public class TradeController implements Initializable, Observable {
         TradeOffer tradeOffer = tradeOffers.get(tradeOffers.size() - 1);
         int[] offer = tradeOffer.getOfferedCards();
         int[] request = tradeOffer.getRequestedCards();
-        Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
+        Inventory playerInventory = App.getCurrentGame().turnPlayerGetter().getPlayerInventory();
 
-        playerInventory.changeCards("wood",-offer[0]);
-        playerInventory.changeCards("brick",-offer[1]);
-        playerInventory.changeCards("ore",-offer[2]);
-        playerInventory.changeCards("wool",-offer[3]);
-        playerInventory.changeCards("wheat",-offer[4]);
+        playerInventory.changeCards("wood", -offer[0]);
+        playerInventory.changeCards("brick", -offer[1]);
+        playerInventory.changeCards("ore", -offer[2]);
+        playerInventory.changeCards("wool", -offer[3]);
+        playerInventory.changeCards("wheat", -offer[4]);
 
         playerInventory.changeCards("wood", request[0]);
         playerInventory.changeCards("brick", request[1]);
@@ -397,6 +393,8 @@ public class TradeController implements Initializable, Observable {
         System.out.println("Trade completed, new wheat count: " + playerInventory.getCards()[4]);
         App.getCurrentGame().setTradeStatus("closed");
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+        System.out.println("Update reached");
+        System.out.println("Trade completed, new wheat count: " + playerInventory.getCards()[4]);
     }
 
     @Override
