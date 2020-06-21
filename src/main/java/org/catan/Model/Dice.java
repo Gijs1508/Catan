@@ -45,7 +45,6 @@ public class Dice {
             if(App.getClientPlayer().getPlayerInventory().cardsTotalMinusKnightGetter() > 7){
                 System.out.println("Speler moet kaarten inleveren");
                 screenController.showHandInPopUp();
-//                App.HandInPopUp();
             }
         }
 

@@ -63,7 +63,7 @@ public class TradeController implements Initializable, Observable {
 
     private static TradeController tradeController;
 
-
+    //sadsd
     public TradeController(){
     }
 
@@ -372,11 +372,11 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
-    public void tradeAccepted(){
+    private void tradeAccepted(){
         TradeOffer tradeOffer = tradeOffers.get(tradeOffers.size() - 1);
         int[] offer = tradeOffer.getOfferedCards();
         int[] request = tradeOffer.getRequestedCards();
-        Inventory playerInventory = App.getCurrentGame().turnPlayerGetter().getPlayerInventory();
+        Inventory playerInventory = App.getCurrentGame().turnPlayerGetter().getPlayerInventory(); // ClientPlayer inventory does not work for whatever reason
 
         playerInventory.changeCards("wood", -offer[0]);
         playerInventory.changeCards("brick", -offer[1]);
@@ -390,11 +390,8 @@ public class TradeController implements Initializable, Observable {
         playerInventory.changeCards("wool", request[3]);
         playerInventory.changeCards("wheat", request[4]);
 
-        System.out.println("Trade completed, new wheat count: " + playerInventory.getCards()[4]);
         App.getCurrentGame().setTradeStatus("closed");
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        System.out.println("Update reached");
-        System.out.println("Trade completed, new wheat count: " + playerInventory.getCards()[4]);
     }
 
     @Override
