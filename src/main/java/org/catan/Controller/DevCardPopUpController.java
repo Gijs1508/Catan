@@ -15,25 +15,25 @@ import java.util.ResourceBundle;
 
 /**
  * Controller for the popup that shows when a development card is bought.
+ *
  * @author Jeroen
  */
 
 public class DevCardPopUpController {
-    @FXML ImageView cardImg;
-    @FXML AnchorPane root;
+    @FXML private ImageView cardImg;
+    @FXML private AnchorPane root;
     private final String KNIGHT_IMG = String.valueOf(App.class.getResource("assets/img/knightTitle.png"));
     private final String POINT_IMG = String.valueOf(App.class.getResource("assets/img/victoryPoint.png"));
     private boolean animationIsPlaying;
-    private static DevCardPopUpController devCardPopUpController;
     private AnimationTimer animation;
+    private static DevCardPopUpController devCardPopUpController;
 
     public DevCardPopUpController() {
         devCardPopUpController = this;
     }
 
-    /** Plays the animation to make the popup appear on the screen.
-     * It slides down from the top, stops at the center and fades out.
-     * @author Jeroen */
+    /** Plays the animation that makes the popup appear on the screen.
+     * It slides down from the top, stops at the center and then fades out. */
     public void playAnimation() {
         // If animation is already playing, overwrite the current animation with a quick animation that simply fades out.
         if(animationIsPlaying) {
