@@ -197,15 +197,21 @@ public class GameSchermController implements Initializable, Observable {
 
     public void disableButtons() {
         roadButton.setVisible(false);
+        roadButtonClose.setVisible(false);
         settlementButton.setVisible(false);
+        settlementButtonClose.setVisible(false);
         upgradeButton.setVisible(false);
+        upgradeButtonClose.setVisible(false);
         endTurnButton.setVisible(false);
     }
 
     public void enableButtons() {
         roadButton.setVisible(true);
+        roadButtonClose.setVisible(false);
         settlementButton.setVisible(true);
+        settlementButtonClose.setVisible(false);
         upgradeButton.setVisible(true);
+        upgradeButtonClose.setVisible(false);
         endTurnButton.setVisible(true);
     }
 

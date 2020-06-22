@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
-
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.effect.DropShadow?>
+
 <AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
    <children>
       <ImageView fitHeight="590.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true">
@@ -1622,7 +1622,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="settlementButtonClose" fitHeight="60.0" fitWidth="52.0" layoutX="51.0" onMouseClicked="#buildSettlementBtnCloseClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settlementButtonClose" fitHeight="60.0" fitWidth="52.0" layoutX="51.0" onMouseClicked="#buildSettlementBtnCloseClicked" pickOnBounds="true" preserveRatio="true" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -1630,7 +1630,7 @@
                   <Image url="@../assets/img/UI/buildButtonClose.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="upgradeButtonClose" fitWidth="52.0" layoutX="102.0" onMouseClicked="#upgradeSettlementBtnCloseClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="upgradeButtonClose" fitWidth="52.0" layoutX="102.0" onMouseClicked="#upgradeSettlementBtnCloseClicked" pickOnBounds="true" preserveRatio="true" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -1638,7 +1638,7 @@
                   <Image url="@../assets/img/UI/upgradeButtonClose.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="roadButtonClose" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildRoadBtnCloseClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="roadButtonClose" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#buildRoadBtnCloseClicked" pickOnBounds="true" preserveRatio="true" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
