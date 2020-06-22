@@ -144,13 +144,11 @@ public class TradeController implements Initializable, Observable {
     public void disableButtons() {
         buyDevelopmentCardBtn.setOpacity(0.8);
         buyDevelopmentCardBtn.setTextFill(Color.GRAY);
-        handleTradeButtons.setOpacity(0.5);
     }
 
     public void enableButtons() {
         buyDevelopmentCardBtn.setOpacity(1);
         buyDevelopmentCardBtn.setTextFill(Color.BLACK);
-        handleTradeButtons.setOpacity(1);
     }
 
     @FXML
