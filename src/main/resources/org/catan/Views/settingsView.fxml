@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.SettingsController">
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.SettingsController">
 <children>
       <Pane fx:id="background" opacity="0.66" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: black;;" />
     <Pane layoutX="476.0" layoutY="171.0" prefHeight="327.0" prefWidth="254.0" style="-fx-background-radius: 30 30 20 20;">
@@ -57,6 +52,9 @@
                                        </font>
                                     </Label>
                                  </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Pane>
                            </children>
                            <cursor>
@@ -81,6 +79,9 @@
                                        </image>
                                     </ImageView>
                                  </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Pane>
                            </children>
                         </Pane>
@@ -98,7 +99,10 @@
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Pane layoutX="-14.0" layoutY="-2.0" prefHeight="67.0" prefWidth="252.0" />
+                                    <Pane layoutX="-14.0" layoutY="-2.0" prefHeight="67.0" prefWidth="252.0">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Pane>
                                  </children>
                               </Pane>
                            </children>
