@@ -20,7 +20,6 @@ import org.catan.Model.Player;
 import org.catan.Model.TurnManager;
 import org.catan.logic.DocumentListener;
 import org.catan.logic.GameDataPrinter;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
