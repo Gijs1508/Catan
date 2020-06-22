@@ -723,7 +723,7 @@ public class GameSchermController implements Initializable, Observable {
     private boolean playerHasAllResources(int[] reqResources){
         Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
         for (int i = 0; i < playerInventory.getCards().length; i++) {
-            if (playerInventory.getCards()[i] <= reqResources[i]) {
+            if (playerInventory.getCards()[i] < reqResources[i]) {
                 return false;
             }
         }
