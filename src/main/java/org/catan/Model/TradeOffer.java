@@ -4,6 +4,11 @@ import org.catan.App;
 import org.catan.Controller.TradePopUpController;
 import org.catan.logic.DatabaseConnector;
 
+/**
+ * Used to create & update trade offers
+ *
+ * @author Kaz
+ */
 public class TradeOffer {
 
     private Player sender;
@@ -14,12 +19,17 @@ public class TradeOffer {
     public TradeOffer(){
     }
 
+    /**
+     * This method updates the trade offer
+     * @param sender The player who sent the offer
+     * @param offer The offered resources
+     * @param request The requested resources
+     */
     public void updateOffer(Player sender, int[] offer, int[] request){
         this.sender = sender;
         this.offeredCards = offer;
         this.requestedCards = request;
         this.rejections = 0;
-//        TradePopUpController.updateTradeOffer(sender, offer, request);
     }
 
     public void setSender(Player player){

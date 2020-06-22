@@ -373,6 +373,7 @@ public class GameSchermController implements Initializable, Observable {
         }
         if (StartPhaseController.getInstance().isStartPhaseActive()) {
             TurnManager.nextPlayer();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
             for (Circle road : roadSpotNodeList) {
                 road.setVisible(false);
             }
@@ -405,7 +406,8 @@ public class GameSchermController implements Initializable, Observable {
             Sound.playEndTurnJingle();
             logController.logEndTurnEvent();
             TurnManager.nextPlayer();
-            //TODO
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+            System.out.println("DB update");
         }
         else {
             ScreenController.getInstance().showAlertPopup();

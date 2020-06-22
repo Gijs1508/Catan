@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="676.0" prefWidth="1200.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.JoinController">
+<AnchorPane prefHeight="676.0" prefWidth="1200.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.JoinController">
    <children>
       <ImageView fitHeight="676.0" fitWidth="1233.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -33,14 +35,9 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="473.0" layoutY="515.0" onMouseClicked="#backToMenu" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="55.0" fitWidth="298.0" layoutX="552.0" layoutY="514.0" onMouseClicked="#backToMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/menu/back2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="55.0" fitWidth="250.0" layoutX="577.0" layoutY="515.0" onMouseClicked="#createGame" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/img/menu/create.png" />
          </image>
       </ImageView>
       <ImageView fx:id="musicBtn" fitHeight="74.0" fitWidth="79.0" layoutX="1128.0" onMouseClicked="#toggleMusic" pickOnBounds="true" preserveRatio="true">

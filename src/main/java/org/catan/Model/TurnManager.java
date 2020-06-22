@@ -7,8 +7,16 @@ import org.catan.logic.DatabaseConnector;
 
 import java.util.ArrayList;
 
+/**
+ * Changes turn and sets the next player as active
+ *
+ * @author Kaz
+ */
 public class TurnManager {
 
+    /**
+     * This method calculates which player will be next
+     */
     public static void nextPlayer(){
         Player currentPlayer = App.getCurrentGame().turnPlayerGetter();
         Player nextPlayer;
@@ -23,9 +31,6 @@ public class TurnManager {
             currentPlayer.setTurn(false);
             nextPlayer.setTurn(true);
             App.getCurrentGame().setTradeStatus("closed");
-//            LogController.setPlayer();
-//            LogController.getInstance().logStartTurnEvent();
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 }
