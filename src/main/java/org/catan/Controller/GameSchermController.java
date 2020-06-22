@@ -704,11 +704,26 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     public boolean canBuildObject(int[] reqResources) {
-        Inventory playerInventory = App.getCurrentGame().turnPlayerGetter().getPlayerInventory();
+        Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
+        if(playerHasAllResources(reqResources)){
+            for (int i = 0; i < playerInventory.getCards().length; i++) {
+                if (playerInventory.getCards()[i] >= reqResources[i]) {
+                    System.out.println(playerInventory.getCards()[i] + "\t" + reqResources[i]);
+                    playerInventory.changeCards(playerInventory.strCardsGetter()[i], -reqResources[i]);
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean playerHasAllResources(int[] reqResources){
+        Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
         for (int i = 0; i < playerInventory.getCards().length; i++) {
-            if (playerInventory.getCards()[i] >= reqResources[i]) {
-                playerInventory.changeCards(playerInventory.strCardsGetter()[i], -reqResources[i]);
-            } else {
+            if (playerInventory.getCards()[i] <= reqResources[i]) {
                 return false;
             }
         }
