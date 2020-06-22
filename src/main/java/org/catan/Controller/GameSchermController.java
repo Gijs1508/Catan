@@ -179,25 +179,39 @@ public class GameSchermController implements Initializable, Observable {
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
 
-        startPhaseButtonsInvisible();
-        initializeButtons();
-
+        disableButtons();
         initializeHarbors();
 
         gameSchermController = this;
     }
 
-    public void startPhaseButtonsInvisible() {
+    @Override
+    public void update(Game game) {
+        if (App.getCurrentGame().turnPlayerGetter().getIdentifier() != game.turnPlayerGetter().getIdentifier()){
+            for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++){
+                App.getCurrentGame().getPlayers().get(i).setTurn(game.getPlayers().get(i).isTurn());
+                System.out.println("Player " + i + " turn: " + App.getCurrentGame().getPlayers().get(i).isTurn());
+            }
+        }
+    }
+
+    public void disableButtons() {
         roadButton.setVisible(false);
+        roadButtonClose.setVisible(false);
         settlementButton.setVisible(false);
+        settlementButtonClose.setVisible(false);
         upgradeButton.setVisible(false);
+        upgradeButtonClose.setVisible(false);
         endTurnButton.setVisible(false);
     }
 
-    public void startPhaseButtonsVisible() {
+    public void enableButtons() {
         roadButton.setVisible(true);
+        roadButtonClose.setVisible(false);
         settlementButton.setVisible(true);
+        settlementButtonClose.setVisible(false);
         upgradeButton.setVisible(true);
+        upgradeButtonClose.setVisible(false);
         endTurnButton.setVisible(true);
     }
 
@@ -229,26 +243,6 @@ public class GameSchermController implements Initializable, Observable {
             }
         };
         shipAnimation.start();
-    }
-
-    private void keyHandler() {
-
-    }
-
-    private void timer() {
-
-    }
-
-    private void handelMetBank() {
-
-    }
-
-    private void handelMetSpelers() {
-
-    }
-
-    private void gebruikRidderkaart() {
-
     }
 
     @FXML
@@ -309,6 +303,7 @@ public class GameSchermController implements Initializable, Observable {
         if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()){
             logController.logSettlementEvent();
             placeVillage(build.buildVillage(circle));
+            Sound.playBuildSettlement();
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
@@ -340,6 +335,7 @@ public class GameSchermController implements Initializable, Observable {
     private void placeCity(Village village) {
         for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
+                Sound.playUpgradeSettlement();
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
                 imageView.setImage(image);
@@ -352,6 +348,7 @@ public class GameSchermController implements Initializable, Observable {
     private void placeRoad(Road road) {
         for (int i=0; i < 73; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == road.getX() && objectsPane.getChildren().get(i).getLayoutY() == road.getY()) {
+                Sound.playBuildRoad();
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(road.getImgPath())));
                 imageView.setLayoutX(road.getX() - 3);
@@ -675,12 +672,6 @@ public class GameSchermController implements Initializable, Observable {
         startShipAnimation();
     }
 
-    private void initializeButtons() {
-        upgradeButtonClose.setVisible(false);
-        settlementButtonClose.setVisible(false);
-        roadButtonClose.setVisible(false);
-    }
-
 //    private Speler getSpeler() {
 //        return Speler; // Dit moet worden gewijzigd
 //    }
@@ -713,16 +704,6 @@ public class GameSchermController implements Initializable, Observable {
     // Settings button was pressed (so settings menu will open)
     @FXML public void openSettings() {
         ScreenController.getInstance().showSettings();
-    }
-
-    @Override
-    public void update(Game game) {
-        if (App.getCurrentGame().turnPlayerGetter() != game.turnPlayerGetter()){
-            for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++){
-                App.getCurrentGame().getPlayers().get(i).setTurn(game.getPlayers().get(i).isTurn());
-                System.out.println("Player " + i + " turn: " + App.getCurrentGame().getPlayers().get(i).isTurn());
-            }
-        }
     }
 
     public void updateRoads(ArrayList<Road> roads) {

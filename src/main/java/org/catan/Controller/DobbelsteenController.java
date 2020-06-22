@@ -5,8 +5,10 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.catan.App;
 import org.catan.Model.Dice;
@@ -30,9 +32,14 @@ public class DobbelsteenController implements Observable {
     LogController logController = LogController.getInstance();
     @FXML private ImageView dice1_img;
     @FXML private ImageView dice2_img;
+    @FXML private Button throwButton;
     Dice dice = new Dice();
 
     private static DobbelsteenController dobbelsteenController;
+
+    public DobbelsteenController() {
+        dobbelsteenController = this;
+    }
 
     public static DobbelsteenController getInstance(){
         if(dobbelsteenController == null){
@@ -49,7 +56,7 @@ public class DobbelsteenController implements Observable {
      */
     @FXML public void throwDie() {
         System.out.println("is players turn: " + App.getClientPlayer().isTurn());
-        if(App.getClientPlayer().isTurn()){
+        if(App.getClientPlayer().isTurn() && !StartPhaseController.getInstance().isStartPhaseActive()){
             Sound.playDiceShuffle();
             // Throw the dice 1.5 seconds after starting the shuffle sound effect
             Timeline delay = new Timeline(new KeyFrame(Duration.seconds(0.5), actionEvent -> {
@@ -79,6 +86,10 @@ public class DobbelsteenController implements Observable {
             }));
             delay.play();
         }
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't roll during the start phase.");
+        }
         else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You can't roll when it's not your turn.");
@@ -94,5 +105,15 @@ public class DobbelsteenController implements Observable {
                 ScreenController.getInstance().showHandInPopUp();
             }
         }
+    }
+
+    public void disableButton() {
+        throwButton.setTextFill(Color.GRAY);
+        throwButton.setOpacity(0.8);
+    }
+
+    public void enableButton() {
+        throwButton.setTextFill(Color.BLACK);
+        throwButton.setOpacity(1);
     }
 }

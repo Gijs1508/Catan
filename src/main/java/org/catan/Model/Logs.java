@@ -51,7 +51,6 @@ public class Logs {
             put("point", "%PLAYER% gains a victory point.");
             put("knight", "%PLAYER% activates a knight card.");
             put("development", "%PLAYER% buys a development card.");
-            put("startPhase", "The start phase has ended");
         }};
 
         imgEvents = new HashMap<>() {{

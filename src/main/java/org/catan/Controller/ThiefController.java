@@ -64,13 +64,11 @@ public class ThiefController implements Initializable, Observable {
      * @param tileID the id of the tile the thief was moved to
      * @return arrayList with the opponents as Player objects
      * @author Jeroen */
-    // TODO desert tile always seem to not have any settlements bordered to it
     private ArrayList<Player> findOpponentsOnTile(int tileID) {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();
         int opponentCount = 0;
         for (Village settlement : App.getCurrentGame().getBoard().getSettlements()) { // Loop through all settlements
-            // TODO this if statement can't be tested properly since colors aren't implemented yet
             if (!settlement.getColor().equals(App.getCurrentGame().turnPlayerGetter().getColor())) { // If settlement isn't player's
                 ArrayList<Tile> connectedTiles = settlement.getConnectedTiles(); // Get the connected tiles for each settlement
                 for (Tile tile : connectedTiles) {

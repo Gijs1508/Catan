@@ -12,9 +12,9 @@
       <Pane fx:id="background" opacity="0.66" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: black;;" />
     <Pane layoutX="476.0" layoutY="171.0" prefHeight="327.0" prefWidth="254.0" style="-fx-background-radius: 30 30 20 20;">
         <children>
-            <Pane layoutY="40.0" prefHeight="288.0" prefWidth="252.0" style="-fx-background-color: #e5e4e7; -fx-background-radius: 0 0 20 20;">
+            <Pane layoutY="40.0" prefHeight="372.0" prefWidth="252.0" style="-fx-background-color: #e5e4e7; -fx-background-radius: 0 0 20 20;">
                <children>
-                  <VBox layoutY="28.0" prefHeight="247.0" prefWidth="252.0" spacing="10.0">
+                  <VBox layoutY="28.0" prefHeight="344.0" prefWidth="252.0" spacing="10.0">
                      <children>
                         <Pane prefHeight="71.0" prefWidth="252.0">
                            <children>
@@ -52,6 +52,9 @@
                                        </font>
                                     </Label>
                                  </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Pane>
                            </children>
                            <cursor>
@@ -59,8 +62,32 @@
                            </cursor>
                         </Pane>
                         <Pane prefHeight="66.0" prefWidth="252.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                            <children>
-                              <Pane layoutX="38.0" layoutY="10.0" onMouseClicked="#applyBtnClicked" prefHeight="61.0" prefWidth="176.0" style="-fx-background-color: #FBFBFB; -fx-background-radius: 50;">
+                              <Pane layoutX="10.0" layoutY="-1.0" onMouseClicked="#rulesBtnClicked" prefHeight="69.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+                                 <children>
+                                    <Label fx:id="rulesPopUpButton" layoutX="116.0" layoutY="23.0" styleClass="roboto" text="Rules">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="69.0" fitWidth="67.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/img/UI/rules.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Pane>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="72.0" prefWidth="252.0">
+                           <children>
+                              <Pane layoutX="14.0" layoutY="6.0" onMouseClicked="#applyBtnClicked" prefHeight="61.0" prefWidth="224.0" style="-fx-background-color: #FBFBFB; -fx-background-radius: 50;">
                                  <children>
                                     <ImageView fitHeight="61.0" fitWidth="55.0" layoutX="8.0">
                                        <image>
@@ -72,12 +99,13 @@
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </Label>
+                                    <Pane layoutX="-14.0" layoutY="-2.0" prefHeight="67.0" prefWidth="252.0">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Pane>
                                  </children>
                               </Pane>
                            </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
                         </Pane>
                      </children>
                   </VBox>

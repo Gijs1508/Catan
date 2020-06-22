@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.catan.App;
 import org.catan.Model.*;
@@ -30,34 +32,25 @@ public class TradeController implements Initializable, Observable {
     //ArrayList of trade offers
     ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
 
-    @FXML
-    private Label giveWheatCount;
-    @FXML
-    private Label takeWheatCount;
-    @FXML
-    private Label giveWoodCount;
-    @FXML
-    private Label takeWoodCount;
-    @FXML
-    private Label giveOreCount;
-    @FXML
-    private Label takeOreCount;
-    @FXML
-    private Label giveWoolCount;
-    @FXML
-    private Label takeWoolCount;
-    @FXML
-    private Label giveBrickCount;
-    @FXML
-    private Label takeBrickCount;
-    @FXML
-    private Button playerTradeBtn;
-    @FXML
-    private Button bankTradeBtn;
+    @FXML private Label giveWheatCount;
+    @FXML private Label takeWheatCount;
+    @FXML private Label giveWoodCount;
+    @FXML private Label takeWoodCount;
+    @FXML private Label giveOreCount;
+    @FXML private Label takeOreCount;
+    @FXML private Label giveWoolCount;
+    @FXML private Label takeWoolCount;
+    @FXML private Label giveBrickCount;
+    @FXML private Label takeBrickCount;
+    @FXML private Button playerTradeBtn;
+    @FXML private Button bankTradeBtn;
 
     @FXML private Label wheatRatio; @FXML private Label woodRatio;
     @FXML private Label brickRatio; @FXML private Label woolRatio;
     @FXML private Label oreRatio;
+
+    @FXML private Button buyDevelopmentCardBtn;
+    @FXML private Pane handleTradeButtons;
 
     private HashMap<Integer, String> indexToResource = new HashMap<>(){{
         put(0, "wood");
@@ -112,8 +105,9 @@ public class TradeController implements Initializable, Observable {
     /** The player buys a development card and will receive a random card from the bank.
      * @author Kaz, Jeroen */
     @FXML public void buyDevelopmentCard() {
+        Sound.playClick();
         // If player has enough resources
-        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive()){
+        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive() && !StartPhaseController.getInstance().isStartPhaseActive()){
             // If player has enough resources
             String developmentCard = Bank.getBank().takeDevelopmentCard();
 
@@ -145,6 +139,11 @@ public class TradeController implements Initializable, Observable {
             DevCardPopUpController.getInstance().playAnimation();
             LogController.getInstance().logDevelopmentCardEvent();
         }
+        // Start phase is active
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't roll during the start phase.");
+        }
         // Player doesn't have enough resources
         else if (isClientPlayerActive()){
             ScreenController.getInstance().showAlertPopup();
@@ -158,6 +157,16 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    public void disableButtons() {
+        buyDevelopmentCardBtn.setOpacity(0.8);
+        buyDevelopmentCardBtn.setTextFill(Color.GRAY);
+    }
+
+    public void enableButtons() {
+        buyDevelopmentCardBtn.setOpacity(1);
+        buyDevelopmentCardBtn.setTextFill(Color.BLACK);
+    }
+
     /**
      * This method manages bank trades and sends out trade requests for player type trades
      *
@@ -165,8 +174,9 @@ public class TradeController implements Initializable, Observable {
      * @throws IOException
      */
     @FXML
-    public void sendTrade() throws IOException {
-        if(tradeType.equals("bank") && isClientPlayerActive()){
+    public void sendTrade() {
+        Sound.playClick();
+        if(tradeType.equals("bank") && isClientPlayerActive() && !StartPhaseController.getInstance().isStartPhaseActive()){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
             int netBrick = netResource(giveBrickCount, takeBrickCount);
@@ -179,7 +189,7 @@ public class TradeController implements Initializable, Observable {
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed")){
+        } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed") && !StartPhaseController.getInstance().isStartPhaseActive()){
             int[] offerArray = {resourceToInt(giveWoodCount), resourceToInt(giveBrickCount), resourceToInt(giveOreCount), resourceToInt(giveWoolCount), resourceToInt(giveWheatCount)};
             int[] requestArray = {resourceToInt(takeWoodCount), resourceToInt(takeBrickCount), resourceToInt(takeOreCount), resourceToInt(takeWoolCount), resourceToInt(takeWheatCount)};
 
@@ -191,9 +201,13 @@ public class TradeController implements Initializable, Observable {
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
             resetTrade();
         }
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't send a trade offer during the start phase.");
+        }
         else {
             ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You currently cannot send a trade offer.");
+            AlertPopUpController.getInstance().setAlertDescription("You can't send a trade offer outside outside of your turn.");
         }
     }
 

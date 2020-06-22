@@ -15,6 +15,9 @@ import java.util.*;
 
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
+import org.catan.logic.DatabaseConnector;
+
+import javax.print.Doc;
 
 /**
  * Updates the scores for the players.
@@ -196,18 +199,5 @@ public class ScoreController implements Initializable, Observable {
             setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
             setVictoryPointsForPlayer(player.getColor(), player.getScore());
         }
-    }
-
-    @FXML
-    public void testGameEnd() {
-        boolean clientWon; // Ask Player or Game object about player's result
-        if(Math.random() < 0.5) { clientWon = true; }
-        else { clientWon = false; }
-
-        ScreenController.getInstance().showGameEnd();
-        if (clientWon) {
-            GameEndController.getInstance().initializeVictory(); }
-        else {
-            GameEndController.getInstance().initializeDefeat(); }
     }
 }

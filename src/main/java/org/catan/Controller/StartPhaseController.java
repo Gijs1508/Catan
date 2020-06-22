@@ -5,9 +5,6 @@ import org.catan.interfaces.Observable;
 
 public class StartPhaseController implements Observable {
     private static int startPhaseCount;
-    //TODO Adding to the database if possible
-    // So that a log can be displayed when startPhase has ended
-    private static int startPhaseCountGlobal;
     private static boolean startPhaseActive = true;
     private boolean startPhaseHappened = false;
     private static StartPhaseController startPhaseController;
@@ -34,9 +31,7 @@ public class StartPhaseController implements Observable {
     public void checkStartPhase() {
         if (startPhaseCount == 2) {
             startPhaseActive = false;
-            GameSchermController.getInstance().startPhaseButtonsVisible();
-        } else if (startPhaseCountGlobal == (App.getCurrentGame().getPlayers().size() * 2)){
-            LogController.getInstance().logStartPhaseEnded();
+            GameSchermController.getInstance().enableButtons();
         }
     }
 

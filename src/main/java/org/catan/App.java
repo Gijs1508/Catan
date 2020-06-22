@@ -43,8 +43,6 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         Sound.initializeSounds();
         clientPlayer = new Player("Sabrina");
-        //scene = new Scene(loadFXML("Views/screenView"));
-        //scene = new Scene(loadFXML("Views/screenView"));
         scene = new Scene(loadFXML("Views/mainView"));
 //        MainController.getInstance().playAnimation();
 
@@ -58,11 +56,6 @@ public class App extends Application {
         // Main player = Player controlling the instance of the game
         //Player testPlayer1 = new Player("testPlayer"); //TODO Moet aangemaakt worden bij het opstarten/joinen van het spel
         //testPlayer1.setMainPlayer(testPlayer1);
-
-        // Other test players
-//        Player testPlayer2 = new Player("testPlayer2");
-//        Player testPlayer3 = new Player("testPlayer3");
-//        Player testPlayer4 = new Player("testPlayer4");
 
         // Initialize first active player
         Random random = new Random();
@@ -84,7 +77,6 @@ public class App extends Application {
 
 
     public static void setStageHeight(int height) {
-//        appStage.setHeight(height);
         appStage.setHeight(height);
     }
 
