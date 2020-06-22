@@ -296,9 +296,7 @@ public class BuildSettlementController implements Observable {
         return village;
     }
 
-    /** Finds the harbor that the settlement has been placed adjacent to and updates accordingly.
-     * @param node the vertex a settlement has been placed on
-     * @author Jeroen */
+    // Finds the harbor that the settlement has been placed adjacent to and updates accordingly.
     private void builtAtHarbor(Circle node) {
         int harborNum = 0;
 
