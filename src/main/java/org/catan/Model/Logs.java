@@ -44,7 +44,8 @@ public class Logs {
             put("endturn", "%PLAYER% ends turn.");
             put("upgrade", "%PLAYER% upgrades a settlement.");
             put("road", "%PLAYER% builds a road.");
-            put("trade", "%PLAYER% traded with %PLAYER2%.");
+            put("tradesucceeded", "%PLAYER2% traded with %PLAYER%.");
+            put("tradesent", "%PLAYER% sent a trade offer.");
             put("settlement", "%PLAYER% builds a settlement.");
             put("robber", "%PLAYER% moves the robber.");
             put("win", "%PLAYER% wins the game.");

@@ -3,7 +3,6 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -163,6 +162,8 @@ public class TradePopUpController implements Initializable, Observable {
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 
             screenController.hideTradePopup();
+
+            LogController.getInstance().logTradeSucceededEvent(senderName);
         }
     }
 
@@ -170,7 +171,7 @@ public class TradePopUpController implements Initializable, Observable {
      * This method removes the trade offer popup and sends a trade rejection to the database
      * @author Kaz
      */
-    public void declineTrade(MouseEvent mouseEvent) {
+    public void declineTrade() {
         Sound.playClick();
         App.getCurrentGame().getTradeOffers().get(App.getCurrentGame().getTradeOffers().size() - 1).addRejection();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
