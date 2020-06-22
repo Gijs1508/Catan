@@ -34,6 +34,7 @@ public class DobbelsteenController implements Observable {
     @FXML private ImageView dice2_img;
     @FXML private Button throwButton;
     Dice dice = new Dice();
+    private boolean diceThrown;
 
     private static DobbelsteenController dobbelsteenController;
 
@@ -55,8 +56,7 @@ public class DobbelsteenController implements Observable {
     TODO disable throwing multiple times a turn
      */
     @FXML public void throwDie() {
-        System.out.println("is players turn: " + App.getClientPlayer().isTurn());
-        if(App.getClientPlayer().isTurn() && !StartPhaseController.getInstance().isStartPhaseActive()){
+        if(App.getClientPlayer().isTurn() && !StartPhaseController.getInstance().isStartPhaseActive() && !diceThrown){
             Sound.playDiceShuffle();
             // Throw the dice 1.5 seconds after starting the shuffle sound effect
             Timeline delay = new Timeline(new KeyFrame(Duration.seconds(0.5), actionEvent -> {
@@ -84,11 +84,16 @@ public class DobbelsteenController implements Observable {
                     e.printStackTrace();
                 }
             }));
+            diceThrown = true;
             delay.play();
         }
         else if (StartPhaseController.getInstance().isStartPhaseActive()) {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You can't roll during the start phase.");
+        }
+        else if (diceThrown) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can only roll once during your turn.");
         }
         else {
             ScreenController.getInstance().showAlertPopup();
@@ -99,7 +104,6 @@ public class DobbelsteenController implements Observable {
     @Override
     public void update(Game game) throws IOException {
         if(App.getCurrentGame().isSevenThrown() != game.isSevenThrown()){
-            System.out.println("Boolean set to: " + game.isSevenThrown());
             App.getCurrentGame().setSevenThrown(game.isSevenThrown());
             if(App.getClientPlayer().getPlayerInventory().cardsTotalMinusKnightGetter() > 7 && game.isSevenThrown()){
                 ScreenController.getInstance().showHandInPopUp();
@@ -115,5 +119,13 @@ public class DobbelsteenController implements Observable {
     public void enableButton() {
         throwButton.setTextFill(Color.BLACK);
         throwButton.setOpacity(1);
+    }
+
+    public boolean isDiceThrown() {
+        return diceThrown;
+    }
+
+    public void setDiceThrown(boolean diceThrown) {
+        this.diceThrown = diceThrown;
     }
 }

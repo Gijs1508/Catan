@@ -17,6 +17,7 @@ import org.catan.interfaces.Observable;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -121,7 +122,15 @@ public class ScreenController implements Initializable, Observable {
         if (!StartPhaseController.getInstance().isStartPhaseActive()) {
             handleButtonStates();
         }
+        if (!App.getClientPlayer().isTurn() && game.turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier()) {
+            resetDoneActions();
+        }
     }
+
+    private void resetDoneActions() {
+        DobbelsteenController.getInstance().setDiceThrown(false);
+    }
+
 
     /** Buttons are disabled in start phase */
     private void initializeButtonStates() {
