@@ -29,11 +29,10 @@ import java.util.Map;
 
 public class DobbelsteenController implements Observable {
 
-    LogController logController = LogController.getInstance();
     @FXML private ImageView dice1_img;
     @FXML private ImageView dice2_img;
     @FXML private Button throwButton;
-    Dice dice = new Dice();
+    private Dice dice = new Dice();
     private boolean diceThrown;
 
     private static DobbelsteenController dobbelsteenController;
@@ -111,11 +110,13 @@ public class DobbelsteenController implements Observable {
         }
     }
 
+    /** Grays out the throw button when player is unable to use it */
     public void disableButton() {
         throwButton.setTextFill(Color.GRAY);
         throwButton.setOpacity(0.8);
     }
 
+    /** Makes throw button visible again when it's player's turn */
     public void enableButton() {
         throwButton.setTextFill(Color.BLACK);
         throwButton.setOpacity(1);
