@@ -14,6 +14,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * Manages the trade view
+ *
+ * @author Kaz
+ */
+
 public class TradeController implements Initializable, Observable {
 
     private String tradeType = "player";
@@ -63,7 +69,6 @@ public class TradeController implements Initializable, Observable {
 
     private static TradeController tradeController;
 
-    //sadsd
     public TradeController(){
     }
 
@@ -74,6 +79,9 @@ public class TradeController implements Initializable, Observable {
         return tradeController;
     }
 
+    /**
+     * This method switches the trade type from player to bank if the 'bank' button is clicked
+     */
     @FXML
     public void bankTrade() {
         Sound.playSwitch();
@@ -86,6 +94,9 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method switches the trade type from bank to player if the 'player' button is clicked
+     */
     @FXML
     public void playerTrade() {
         Sound.playSwitch2();
@@ -147,6 +158,12 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method manages bank trades and sends out trade requests for player type trades
+     *
+     * @author Kaz
+     * @throws IOException
+     */
     @FXML
     public void sendTrade() throws IOException {
         if(tradeType.equals("bank") && isClientPlayerActive()){
@@ -166,7 +183,6 @@ public class TradeController implements Initializable, Observable {
             int[] offerArray = {resourceToInt(giveWoodCount), resourceToInt(giveBrickCount), resourceToInt(giveOreCount), resourceToInt(giveWoolCount), resourceToInt(giveWheatCount)};
             int[] requestArray = {resourceToInt(takeWoodCount), resourceToInt(takeBrickCount), resourceToInt(takeOreCount), resourceToInt(takeWoolCount), resourceToInt(takeWheatCount)};
 
-            //Trade offers with ArrayList
             TradeOffer trade = new TradeOffer();
             trade.updateOffer(App.getClientPlayer(), offerArray, requestArray);
             tradeOffers.add(trade);
@@ -181,6 +197,12 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method makes inbound trade offers show up on screen
+     *
+     * @author Kaz
+     * @throws IOException
+     */
     public void receiveTrade() throws IOException{
         ScreenController.getInstance().showTradePopup();
     }
@@ -202,61 +224,96 @@ public class TradeController implements Initializable, Observable {
         tradeTakeLock = false;
     }
 
+    /**
+     * This method adds wood to the upper trade counter
+     */
     @FXML
     public void giveMoreWood() {
         //Inventory index of Wood is 0
         giveResource(giveWoodCount, 0);
     }
 
+    /**
+     * This method adds wood to the lower trade counter
+     */
     @FXML
     public void takeMoreWood() {
         takeResource(takeWoodCount);
     }
 
+    /**
+     * This method adds brick to the upper trade counter
+     */
     @FXML
     public void giveMoreBrick() {
         //Inventory index of Brick is 1
         giveResource(giveBrickCount, 1);
     }
 
+    /**
+     * This method adds brick to the lower trade counter
+     */
     @FXML
     public void takeMoreBrick() {
         takeResource(takeBrickCount);
     }
 
+    /**
+     * This method adds wool to the upper trade counter
+     */
     @FXML
     public void giveMoreWool() {
         //Inventory index of Wool is 3
         giveResource(giveWoolCount, 3);
     }
 
+    /**
+     * This method adds wool to the lower trade counter
+     */
     @FXML
     public void takeMoreWool() {
         takeResource(takeWoolCount);
     }
 
+    /**
+     * This method adds ore to the upper trade counter
+     */
     @FXML
     public void giveMoreOre() {
         //Inventory index of Ore is 2
         giveResource(giveOreCount, 2);
     }
 
+    /**
+     * This method adds ore to the lower trade counter
+     */
     @FXML
     public void takeMoreOre() {
         takeResource(takeOreCount);
     }
 
+    /**
+     * This method adds wheat to the upper trade counter
+     */
     @FXML
     public void giveMoreWheat() {
         //Inventory index of Wheat is 4
         giveResource(giveWheatCount, 4);
     }
 
+    /**
+     * This method adds wheat to the lower trade counter
+     */
     @FXML
     public void takeMoreWheat() {
         takeResource(takeWheatCount);
     }
 
+    /**
+     * This method updates the bank trading resource ratio
+     * @param type
+     * @param ratio
+     */
     public void updateRatioView(String type, int ratio) {
         switch (type) {
             case "wheat":
@@ -279,14 +336,29 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method converts a Label to an int and adds 1 to it, before returning the new number as String
+     * @param resource The resource that needs to be raised
+     * @return
+     */
     private String raiseResource(Label resource){
         return Integer.toString(resourceToInt(resource) + 1);
     }
 
+    /**
+     * This method converts a Label to an int and lowers it by 1, before returning the new number as String
+     * @param resource The resource that needs to be lowered
+     * @return
+     */
     private String lowerResource(Label resource){
         return Integer.toString(resourceToInt(resource) + 1);
     }
 
+    /**
+     * This method converts a Label into an int and returns the int, used for calculation purposes
+     * @param resource The resource that needs to be converted
+     * @return
+     */
     private int resourceToInt(Label resource){
         return Integer.parseInt(resource.getText());
     }
@@ -300,6 +372,11 @@ public class TradeController implements Initializable, Observable {
     }
 
 
+    /**
+     * This method manages the view of the upper trade counters and checks if the player owns required resources
+     * @param resource the trade counter that needs to be changed
+     * @param inventoryIndex the index of the required resource in Inventory class
+     */
     private void giveResource(Label resource, int inventoryIndex){
         int inventoryCard = getInventoryCards()[inventoryIndex];
         if(tradeType.equals("player")){
@@ -319,6 +396,10 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method manages the lower trade counters
+     * @param resourceCount the trade counter that needs to be changed
+     */
     private void takeResource(Label resourceCount){
         if(tradeType.equals("player")){
             resourceCount.setText(raiseResource(resourceCount));
@@ -328,10 +409,19 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method calculates the net gain/loss of a resource during a trade
+     * @param givenResource the upper trade counter of a resource
+     * @param receivedResource the lower trade counter of a resource
+     * @return the net gain/loss as int
+     */
     private int netResource(Label givenResource, Label receivedResource){
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
     }
 
+    /**
+     * This method checks if the client is active
+     */
     private boolean isClientPlayerActive(){
         return App.getClientPlayer().isTurn();
     }
@@ -372,6 +462,9 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method updates the player resources after their trade has been accepted by another player
+     */
     private void tradeAccepted(){
         TradeOffer tradeOffer = tradeOffers.get(tradeOffers.size() - 1);
         int[] offer = tradeOffer.getOfferedCards();

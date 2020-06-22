@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Manages a player's stock/cards.
+ * Manages a player's stock view.
  *
  * @author Kaz, Jeroen
  */
@@ -57,6 +57,7 @@ public class StockController implements Initializable, Observable {
         initializeAnimationCardMap();
     }
 
+    //TODO remove from final version
     public void testResources(){
         Inventory inventory = App.getClientPlayer().getPlayerInventory();
         inventory.changeCards("wood", 1);
@@ -67,6 +68,10 @@ public class StockController implements Initializable, Observable {
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
+    /**
+     * This method updates the resources in the players' stock view and triggers card animations if necessary
+     * @author Jeroen, Kaz
+     */
     public void updateResources(){
         int[] oldResources = new int[6];
         oldResources[0] = Integer.parseInt(woodCount.getText());
@@ -100,7 +105,6 @@ public class StockController implements Initializable, Observable {
             removedResources.add("wheat");
 
         // Play the take card sound effect if any cards have been removed
-        // todo - one at a time
         if(!removedResources.isEmpty()) {
             Sound.playTakeCard(); }
 
