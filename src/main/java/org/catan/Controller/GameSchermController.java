@@ -26,11 +26,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class GameSchermController implements Initializable, Observable {
+/**
+ * Handles the board and everything that happens on it.
+ *
+ * @author Jan, Jeroen,
+ */
 
-    private int aantalSpelers;
-//    private Spelbord spelbord;
-//    private Spel spel;
+public class GameSchermController implements Initializable, Observable {
 
     // Tiles
     @FXML private Polygon tile1; @FXML private Polygon tile2; @FXML private Polygon tile3;
@@ -39,7 +41,7 @@ public class GameSchermController implements Initializable, Observable {
     @FXML private Polygon tile11; @FXML private Polygon tile12; @FXML private Polygon tile13;
     @FXML private Polygon tile14; @FXML private Polygon tile15; @FXML private Polygon tile16;
     @FXML private Polygon tile17; @FXML private Polygon tile18; @FXML private Polygon tile19;
-    // This is the bandit
+    // This is the bandit tile (desert)
     @FXML private Polygon tile10;
     @FXML private ImageView thief;
 
@@ -141,9 +143,7 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML private Pane objectsPane;
 
-    //    private Spelbord spelbord;
-//    private Spel spel;
-    private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
+    private ArrayList<Circle> vertexNodeList = new ArrayList<>();
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Circle> thiefTileNodeList = new ArrayList<>();
@@ -173,8 +173,6 @@ public class GameSchermController implements Initializable, Observable {
         initializePlacementSpots();
         addAllTilesToArray();
 
-        //TODO: changing the seed to the gamecode!
-        //long seed = CreateGameCode.getSeed();
         long seed = App.getCurrentGame().getCode();
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
@@ -195,6 +193,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    /** Makes the buttons on the board invisible when the player isn't supposed to interact with them. */
     public void disableButtons() {
         roadButton.setVisible(false);
         roadButtonClose.setVisible(false);
@@ -205,6 +204,7 @@ public class GameSchermController implements Initializable, Observable {
         endTurnButton.setVisible(false);
     }
 
+    /** Makes the buttons on the board visible again when the player is able to interact with them.*/
     public void enableButtons() {
         roadButton.setVisible(true);
         roadButtonClose.setVisible(false);
@@ -215,8 +215,7 @@ public class GameSchermController implements Initializable, Observable {
         endTurnButton.setVisible(true);
     }
 
-    /** Starts the ship animation that is always running.
-     * @author Jeroen, Sabrina */
+    // Starts the ship animation that is always running
     private void startShipAnimation() {
         Image shipFrame1 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-1.png")));
         Image shipFrame2 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-2.png")));
@@ -247,7 +246,6 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     private void placeThief(MouseEvent mouseEvent) throws IOException {
-        System.out.println("Doing thief placement");
         Circle circle = (Circle) mouseEvent.getSource();
         thief.setLayoutX(circle.getLayoutX() - 26);
         thief.setLayoutY(circle.getLayoutY() - 33);
@@ -256,15 +254,14 @@ public class GameSchermController implements Initializable, Observable {
         LogController.getInstance().logRobberEvent();
 
         int tileID = ThiefController.getInstance().convertStringIDtoIntID(circle.getId());
-        // TODO would be cool to find the tile num for the ID (for logging) is already there
         App.getCurrentGame().getBoard().getThief().setTile(tileID);
 
-
-        // TODO because all players are red, it won't find the owner of the blue settlement
         ThiefController.getInstance().stealFromOpponent(tileID);
+
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
+    /** Shows clickable circles to show to which tiles the robber can be moved to */
     public void highlightTiles(int tileId) {
         for (Circle thiefTile : thiefTileNodeList) {
             if (!thiefTile.getId().equals("thiefTile" + tileId)) {
@@ -273,6 +270,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    /** Hides the circles on the tiles */
     private void unHighlightTiles() {
         for (Circle thiefTile : thiefTileNodeList) {
             thiefTile.setVisible(false);
@@ -415,32 +413,32 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
-    @FXML // When you hover over a circle when road is selected
-    public void emphasizeRoad(MouseEvent mouseEvent) {
+    /** Makes the circle for placing roads bigger (called when player hovers over it) */
+    @FXML public void emphasizeRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
         circle.setFill(Paint.valueOf("#c89eff"));
         circle.setScaleX(1.1);
         circle.setScaleY(1.1);
     }
 
-    @FXML
-    public void undoEmphasizeRoad(MouseEvent mouseEvent) {
+    /** Puts the circle for placing roads back to its original style (called when player stops hovering over it) */
+    @FXML public void undoEmphasizeRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
         circle.setFill(Paint.valueOf("#c89cffd9"));
         circle.setScaleX(1);
         circle.setScaleY(1);
     }
 
-    @FXML
-    public void emphasizeSettlement(MouseEvent mouseEvent) {
+    /** Makes the circle for placing settlements bigger (called when player hovers over it) */
+    @FXML public void emphasizeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
         circle.setFill(Color.WHITE);
         circle.setScaleX(1.1);
         circle.setScaleY(1.1);
     }
 
-    @FXML
-    public void undoEmphasizeSettlement(MouseEvent mouseEvent) {
+    /** Puts the circle for placing settlements back to its original style (called when player stops hovering over it) */
+    @FXML public void undoEmphasizeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
         circle.setFill(Paint.valueOf("#ffffffa8"));
         circle.setScaleX(1);
@@ -545,8 +543,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
-    /** Initializes all the nodes on the board (like adding them to an ArrayList).
-     * @author Jeroen */
+    //Initializes all the nodes on the board (puts them into ArrayLists).
     private void initializePlacementSpots(){
         Collections.addAll(vertexNodeList,
                 vertex1, vertex2, vertex3 ,vertex4, vertex5, vertex6, vertex7, vertex8, vertex9, vertex10,
@@ -599,8 +596,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
-    /** Initializes the harbors on the board.
-     * @author Jeroen */
+    // Initializes the harbors on the board.
     private void initializeHarbors() {
 
         // Contains the ImageViews for the ships
@@ -671,11 +667,6 @@ public class GameSchermController implements Initializable, Observable {
         }
         startShipAnimation();
     }
-
-//    private Speler getSpeler() {
-//        return Speler; // Dit moet worden gewijzigd
-//    }
-
 
     private void addAllTilesToArray() {
 
