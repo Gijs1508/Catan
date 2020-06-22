@@ -3,7 +3,6 @@ package org.catan.Controller;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -40,7 +39,8 @@ public class StockController implements Initializable, Observable {
     @FXML private ImageView animationBrick;
     @FXML private ImageView animationSheep;
     @FXML private ImageView animationOre;
-    private boolean animationIsActive = false;
+    private boolean removeAnimationIsActive = false;
+    private boolean addAnimationIsActive = false;
 
     private LogController logController = LogController.getInstance();
     private HashMap<String, ImageView> animationCardForResource;
@@ -102,43 +102,85 @@ public class StockController implements Initializable, Observable {
         if(cards[4] < oldResources[4])
             removedResources.add("wheat");
 
+        ArrayList<String> addedResources = new ArrayList<>();
+        if(cards[0] > oldResources[0])
+            addedResources.add("wood");
+        if(cards[1] > oldResources[1])
+            addedResources.add("brick");
+        if(cards[2] > oldResources[2])
+            addedResources.add("ore");
+        if(cards[3] > oldResources[3])
+            addedResources.add("wool");
+        if(cards[4] > oldResources[4])
+            addedResources.add("wheat");
+
         // Play the take card sound effect if any cards have been removed
-        if(!removedResources.isEmpty()) {
+        if(!addedResources.isEmpty()) {
             Sound.playTakeCard(); }
 
         // Play card animation for each removed card
-        for (String removedResource : removedResources) {
-            removeCardAnimation(animationCardForResource.get(removedResource));
-        }
+        for (int i = 0; i < removedResources.size(); i++) {
+            removeCardAnimation(animationCardForResource.get(removedResources.get(i))); }
+
+        // Play card animation for each removed card
+        for (int i = 0; i < addedResources.size(); i++) {
+            addCardAnimation(animationCardForResource.get(addedResources.get(i))); }
     }
 
-    // TODO leave this out of the final product
-    public void testResources(){
-        Inventory inventory = App.getClientPlayer().getPlayerInventory();
-        inventory.changeCards("wood", 1);
-        inventory.changeCards("brick", 2);
-        inventory.changeCards("ore", 3);
-        inventory.changeCards("wool", 4);
-        inventory.changeCards("wheat", 5);
-        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-    }
-
-    /** Animation that plays when a card is taken out of a player's inventory.
-     * @param animationCard ImageView that moves out of the screen when that card is removed
-     * @author Jeroen */
-    private void removeCardAnimation(ImageView animationCard){
+    private void addCardAnimation(ImageView animationCard) {
         animationCard.setVisible(true);
 
         double x = animationCard.getTranslateX();
         double y = animationCard.getTranslateY();
 
-        if(!animationIsActive){
+        animationCard.setTranslateY(animationCard.getTranslateY() - 200);
+
+        if(!addAnimationIsActive) {
             AnimationTimer animationTimer = new AnimationTimer() {
                 int tick = 0;
                 @Override
                 public void handle(long l) {
                     tick++;
-                    animationIsActive = true;
+                    addAnimationIsActive = true;
+
+                    animationCard.setTranslateY(animationCard.getTranslateY() + 2.8);
+
+                    if(tick > 40) {
+                        animationCard.setOpacity(animationCard.getOpacity() - 0.06);    // After 40 ticks, start decreasing opacity per tick
+                    }
+
+                    if(animationCard.getOpacity() <= 0) {   // If card isn't visible anymore, stop animation and reset the card
+                        this.stop();
+
+                        animationCard.setTranslateX(x);
+                        animationCard.setTranslateY(y);
+                        animationCard.setOpacity(1);
+                        animationCard.setVisible(false);
+
+                        tick = 0;
+                        addAnimationIsActive = false;
+                    }
+                }
+            };
+            animationTimer.start();
+        }
+    }
+
+
+    // Animation that plays when a card is taken out of a player's inventory.
+    private void removeCardAnimation(ImageView animationCard) {
+        animationCard.setVisible(true);
+
+        double x = animationCard.getTranslateX();
+        double y = animationCard.getTranslateY();
+
+        if(!removeAnimationIsActive) {
+            AnimationTimer animationTimer = new AnimationTimer() {
+                int tick = 0;
+                @Override
+                public void handle(long l) {
+                    tick++;
+                    removeAnimationIsActive = true;
 
                     animationCard.setTranslateY(animationCard.getTranslateY() - 2.8);   // Move the card up
 
@@ -155,7 +197,7 @@ public class StockController implements Initializable, Observable {
                         animationCard.setVisible(false);
 
                         tick = 0;
-                        animationIsActive = false;
+                        removeAnimationIsActive = false;
                     }
                 }
             };
@@ -216,7 +258,7 @@ public class StockController implements Initializable, Observable {
         ScreenController.getInstance().hideKnightPopup();
     }
 
-    /** Assigns the animation cards to a resource */
+    // Assigns the animation cards to a resource
     private void initializeAnimationCardMap() {
         animationCardForResource = new HashMap<>() {{
             put("wood", animationWood);
