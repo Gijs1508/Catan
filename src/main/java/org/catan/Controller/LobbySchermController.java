@@ -15,6 +15,7 @@ import org.catan.App;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
+import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 import org.catan.logic.DocumentListener;
@@ -89,6 +90,8 @@ public class LobbySchermController implements Initializable, Observable {
 
     @FXML
     private void startGame() throws IOException {
+        Sound.playClick();
+
         Game game = App.getCurrentGame();
         game.getPlayers().get(0).setTurn(true);
         game.setStatus("going");
@@ -150,6 +153,8 @@ public class LobbySchermController implements Initializable, Observable {
 
     @FXML
     private void leaveGame() throws IOException {
+        Sound.playClick();
+
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         Game game = dbConnector.getGameById(App.getCurrentGame().getCode());
         game.removePlayer(App.getClientPlayer());

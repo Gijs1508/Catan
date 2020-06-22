@@ -34,7 +34,7 @@ public class StartPhaseController implements Observable {
     public void checkStartPhase() {
         if (startPhaseCount == 2) {
             startPhaseActive = false;
-            GameSchermController.getInstance().startPhaseButtonsVisible();
+            GameSchermController.getInstance().enableButtons();
         } else if (startPhaseCountGlobal == (App.getCurrentGame().getPlayers().size() * 2)){
             LogController.getInstance().logStartPhaseEnded();
         }

@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.catan.App;
 import org.catan.Model.*;
@@ -24,34 +26,25 @@ public class TradeController implements Initializable, Observable {
     //ArrayList of trade offers
     ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
 
-    @FXML
-    private Label giveWheatCount;
-    @FXML
-    private Label takeWheatCount;
-    @FXML
-    private Label giveWoodCount;
-    @FXML
-    private Label takeWoodCount;
-    @FXML
-    private Label giveOreCount;
-    @FXML
-    private Label takeOreCount;
-    @FXML
-    private Label giveWoolCount;
-    @FXML
-    private Label takeWoolCount;
-    @FXML
-    private Label giveBrickCount;
-    @FXML
-    private Label takeBrickCount;
-    @FXML
-    private Button playerTradeBtn;
-    @FXML
-    private Button bankTradeBtn;
+    @FXML private Label giveWheatCount;
+    @FXML private Label takeWheatCount;
+    @FXML private Label giveWoodCount;
+    @FXML private Label takeWoodCount;
+    @FXML private Label giveOreCount;
+    @FXML private Label takeOreCount;
+    @FXML private Label giveWoolCount;
+    @FXML private Label takeWoolCount;
+    @FXML private Label giveBrickCount;
+    @FXML private Label takeBrickCount;
+    @FXML private Button playerTradeBtn;
+    @FXML private Button bankTradeBtn;
 
     @FXML private Label wheatRatio; @FXML private Label woodRatio;
     @FXML private Label brickRatio; @FXML private Label woolRatio;
     @FXML private Label oreRatio;
+
+    @FXML private Button buyDevelopmentCardBtn;
+    @FXML private Pane handleTradeButtons;
 
     private HashMap<Integer, String> indexToResource = new HashMap<>(){{
         put(0, "wood");
@@ -101,6 +94,7 @@ public class TradeController implements Initializable, Observable {
     /** The player buys a development card and will receive a random card from the bank.
      * @author Kaz, Jeroen */
     @FXML public void buyDevelopmentCard() {
+        Sound.playClick();
         // If player has enough resources
         if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive()){
             // If player has enough resources
@@ -147,8 +141,19 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    public void disableButtons() {
+        buyDevelopmentCardBtn.setOpacity(0.8);
+        buyDevelopmentCardBtn.setTextFill(Color.GRAY);
+    }
+
+    public void enableButtons() {
+        buyDevelopmentCardBtn.setOpacity(1);
+        buyDevelopmentCardBtn.setTextFill(Color.BLACK);
+    }
+
     @FXML
-    public void sendTrade() throws IOException {
+    public void sendTrade() {
+        Sound.playClick();
         if(tradeType.equals("bank") && isClientPlayerActive()){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
