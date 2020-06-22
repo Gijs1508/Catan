@@ -241,26 +241,6 @@ public class GameSchermController implements Initializable, Observable {
         shipAnimation.start();
     }
 
-    private void keyHandler() {
-
-    }
-
-    private void timer() {
-
-    }
-
-    private void handelMetBank() {
-
-    }
-
-    private void handelMetSpelers() {
-
-    }
-
-    private void gebruikRidderkaart() {
-
-    }
-
     @FXML
     private void placeThief(MouseEvent mouseEvent) throws IOException {
         System.out.println("Doing thief placement");
