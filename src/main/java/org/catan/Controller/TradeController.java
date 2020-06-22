@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.catan.App;
 import org.catan.Model.*;
@@ -24,34 +26,25 @@ public class TradeController implements Initializable, Observable {
     //ArrayList of trade offers
     ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
 
-    @FXML
-    private Label giveWheatCount;
-    @FXML
-    private Label takeWheatCount;
-    @FXML
-    private Label giveWoodCount;
-    @FXML
-    private Label takeWoodCount;
-    @FXML
-    private Label giveOreCount;
-    @FXML
-    private Label takeOreCount;
-    @FXML
-    private Label giveWoolCount;
-    @FXML
-    private Label takeWoolCount;
-    @FXML
-    private Label giveBrickCount;
-    @FXML
-    private Label takeBrickCount;
-    @FXML
-    private Button playerTradeBtn;
-    @FXML
-    private Button bankTradeBtn;
+    @FXML private Label giveWheatCount;
+    @FXML private Label takeWheatCount;
+    @FXML private Label giveWoodCount;
+    @FXML private Label takeWoodCount;
+    @FXML private Label giveOreCount;
+    @FXML private Label takeOreCount;
+    @FXML private Label giveWoolCount;
+    @FXML private Label takeWoolCount;
+    @FXML private Label giveBrickCount;
+    @FXML private Label takeBrickCount;
+    @FXML private Button playerTradeBtn;
+    @FXML private Button bankTradeBtn;
 
     @FXML private Label wheatRatio; @FXML private Label woodRatio;
     @FXML private Label brickRatio; @FXML private Label woolRatio;
     @FXML private Label oreRatio;
+
+    @FXML private Button buyDevelopmentCardBtn;
+    @FXML private Pane handleTradeButtons;
 
     private HashMap<Integer, String> indexToResource = new HashMap<>(){{
         put(0, "wood");
@@ -146,6 +139,18 @@ public class TradeController implements Initializable, Observable {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You can't buy a development card outside of your turn.");
         }
+    }
+
+    public void disableButtons() {
+        buyDevelopmentCardBtn.setOpacity(0.8);
+        buyDevelopmentCardBtn.setTextFill(Color.GRAY);
+        handleTradeButtons.setOpacity(0.5);
+    }
+
+    public void enableButtons() {
+        buyDevelopmentCardBtn.setOpacity(1);
+        buyDevelopmentCardBtn.setTextFill(Color.BLACK);
+        handleTradeButtons.setOpacity(1);
     }
 
     @FXML

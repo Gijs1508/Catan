@@ -179,7 +179,7 @@ public class GameSchermController implements Initializable, Observable {
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
 
-//        startPhaseButtonsInvisible();
+//        disableButtons();
         initializeButtons();
 
         initializeHarbors();
@@ -187,14 +187,24 @@ public class GameSchermController implements Initializable, Observable {
         gameSchermController = this;
     }
 
-    public void startPhaseButtonsInvisible() {
+    @Override
+    public void update(Game game) {
+        if (App.getCurrentGame().turnPlayerGetter().getIdentifier() != game.turnPlayerGetter().getIdentifier()){
+            for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++){
+                App.getCurrentGame().getPlayers().get(i).setTurn(game.getPlayers().get(i).isTurn());
+                System.out.println("Player " + i + " turn: " + App.getCurrentGame().getPlayers().get(i).isTurn());
+            }
+        }
+    }
+
+    public void disableButtons() {
         roadButton.setVisible(false);
         settlementButton.setVisible(false);
         upgradeButton.setVisible(false);
         endTurnButton.setVisible(false);
     }
 
-    public void startPhaseButtonsVisible() {
+    public void enableButtons() {
         roadButton.setVisible(true);
         settlementButton.setVisible(true);
         upgradeButton.setVisible(true);
@@ -711,16 +721,6 @@ public class GameSchermController implements Initializable, Observable {
     // Settings button was pressed (so settings menu will open)
     @FXML public void openSettings() {
         ScreenController.getInstance().showSettings();
-    }
-
-    @Override
-    public void update(Game game) {
-        if (App.getCurrentGame().turnPlayerGetter() != game.turnPlayerGetter()){
-            for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++){
-                App.getCurrentGame().getPlayers().get(i).setTurn(game.getPlayers().get(i).isTurn());
-                System.out.println("Player " + i + " turn: " + App.getCurrentGame().getPlayers().get(i).isTurn());
-            }
-        }
     }
 
     public void updateRoads(ArrayList<Road> roads) {
