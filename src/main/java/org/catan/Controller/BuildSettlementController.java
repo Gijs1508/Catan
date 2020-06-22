@@ -285,7 +285,6 @@ public class BuildSettlementController implements Observable {
      */
     public Village buildVillage(Circle node) {
         // If the node borders a harbor
-        System.out.println(node.toString());
         if(GameSchermController.getInstance().getAllHarborVertices().contains(node)) {
             builtAtHarbor(node);
         }
@@ -444,6 +443,7 @@ public class BuildSettlementController implements Observable {
 
             for (Village village : changedVillages) {
                 if (village.isUpgraded()) {
+                    cities.add(village);
                     cities.add(village);
                     villages2.remove(village);
                 }

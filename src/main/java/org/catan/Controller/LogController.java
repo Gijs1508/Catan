@@ -186,6 +186,7 @@ public class LogController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
+
         if (game.getLogs().size() > logs.getLogs().size()) {
             for (int i = logs.getLogs().size(); i < game.getLogs().size(); i++) {
                 if (game.getLogs().get(i).getLogType().equals("txt")) {
