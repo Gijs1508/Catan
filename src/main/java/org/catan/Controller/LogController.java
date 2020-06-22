@@ -78,7 +78,7 @@ public class LogController implements Initializable, Observable {
 
     public void logReceiveEvent(ArrayList<String> receivedCards) {
         try {
-            Log log = new Log("receive", player);
+            Log log = new Log("receive", App.getClientPlayer().getName());
             for (String receivedCard : receivedCards) {
                 log.addImgPath(receivedCard);
             }

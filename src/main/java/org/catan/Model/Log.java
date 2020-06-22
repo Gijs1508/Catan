@@ -57,7 +57,7 @@ public class Log {
 
     // Handles the event text according to the player's name.
     private String handleEventString(String eventString) {
-        eventString = eventString.replaceAll("%PLAYER%", App.getCurrentGame().turnPlayerGetter().getName());
+        eventString = eventString.replaceAll("%PLAYER%", playerName);
         if(eventString.contains("%PLAYER2%")){
             eventString = eventString.replaceAll("%PLAYER2%", opponentName);
         }

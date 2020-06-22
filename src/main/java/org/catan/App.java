@@ -32,7 +32,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Sound.initializeSounds();
-        clientPlayer = new Player("Sabrina");
+        clientPlayer = new Player("");
         scene = new Scene(loadFXML("Views/mainView"));
 //        MainController.getInstance().playAnimation();
 
