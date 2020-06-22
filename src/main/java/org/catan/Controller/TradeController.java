@@ -406,7 +406,7 @@ public class TradeController implements Initializable, Observable {
     private void takeResource(Label resourceCount){
         if(tradeType.equals("player")){
             resourceCount.setText(raiseResource(resourceCount));
-        } else if(tradeTakeLock == false){
+        } else if(tradeTakeLock == false && (resourceToInt(giveWoodCount) > 0 || resourceToInt(giveBrickCount) > 0 || resourceToInt(giveOreCount) > 0 || resourceToInt(giveWoolCount) > 0 || resourceToInt(giveWheatCount) > 0)){
             resourceCount.setText(raiseResource(resourceCount));
             tradeTakeLock = true;
         }
