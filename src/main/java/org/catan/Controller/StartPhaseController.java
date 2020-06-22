@@ -51,5 +51,4 @@ public class StartPhaseController implements Observable {
             startPhaseHappened = false;
         }
     }
-
 }

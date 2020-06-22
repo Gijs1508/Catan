@@ -63,8 +63,8 @@ public class GameEndController implements Observable {
         return false;
     }
 
-    @FXML
-    public void leaveBtnClicked() throws IOException {
+    /** Player clicked the button to leave the game and go back to the main menu. */
+    @FXML public void leaveBtnClicked() throws IOException {
         Sound.playClick();
         ScreenController.getInstance().hideGameEnd();
         App.setStageHeight(715);
@@ -77,7 +77,7 @@ public class GameEndController implements Observable {
     }
 
     @Override
-    public void update(Game game) throws IOException {
+    public void update(Game game) {
         if (didSomeoneWin()) {
             ScreenController.getInstance().showGameEnd();
             if (App.getClientPlayer().getScore() >= 10)

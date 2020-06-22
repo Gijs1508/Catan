@@ -33,8 +33,8 @@ public class SettingsController {
         settingsController = this;
     }
 
-    // Player mutes/unmutes sound effects
-    public void soundsBtnClicked() {
+    /** Player mutes/unmutes sound effects */
+    @FXML public void soundsBtnClicked() {
         if (soundsOn) {
             Sound.playClick();
             Sound.muteSoundEffects();
@@ -49,12 +49,13 @@ public class SettingsController {
         }
     }
 
-    public void rulesBtnClicked() {
+    /** Player clicked the settings button */
+    @FXML public void rulesBtnClicked() {
         ScreenController.getInstance().showRulesPopUp();
     }
 
-    // Player mutes/unmutes music
-    public void musicBtnClicked() {
+    /** Player mutes/unmutes music */
+    @FXML public void musicBtnClicked() {
         if (musicOn) {
             Sound.muteGameMusic();
             Sound.playClick();
@@ -69,13 +70,13 @@ public class SettingsController {
         }
     }
 
-    // Player leaves settings
+    /** Player leaves settings */
     public void applyBtnClicked() {
         Sound.playClick();
         ScreenController.getInstance().hideSettings();
     }
 
-    // When settings gets opened, a dark background fades in
+    /** When settings gets opened, a dark background fades in */
     public void startAnimation() {
         background.setOpacity(0);
         AnimationTimer animation = new AnimationTimer() {

@@ -62,8 +62,7 @@ public class StealPopUpController implements Initializable {
         }
     }
 
-    /** Creates a clickable circle for each potential victim.
-     * @param opponent the opponent */
+    // Creates a clickable circle for each potential victim
     private void createCircle(Player opponent) {
         Circle circle = new Circle();
         circle.setCursor(Cursor.HAND);

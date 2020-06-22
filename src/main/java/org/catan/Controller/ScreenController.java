@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 /**
  * Handles things that happen on the entire screen.
  * Puts all the separate views together into a complete game screen.
+ *
  * @author Jeroen
  */
 
@@ -147,7 +148,6 @@ public class ScreenController implements Initializable, Observable {
             TradeController.getInstance().enableButtons();
         }
     }
-
 
     public void showGameEnd() {
         gameEndPane.setVisible(true);

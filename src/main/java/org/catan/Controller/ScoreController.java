@@ -20,7 +20,7 @@ import org.catan.logic.DatabaseConnector;
 import javax.print.Doc;
 
 /**
- * Updates the scores for the players.
+ * Shows the scores for the players.
  *
  * @author Jeroen
  */
@@ -51,8 +51,6 @@ public class ScoreController implements Initializable, Observable {
 
     private static ScoreController scoreController;
 
-
-    //    private Speler speler;
     private int score;
     private HashMap<String, Label> player1labels;
     private HashMap<String, Label> player2labels;
@@ -66,8 +64,8 @@ public class ScoreController implements Initializable, Observable {
         scoreController = this;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    /** Initializes the scoreboard */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         Collections.addAll(playerPanes, player1pane, player2pane, player3pane, player4pane);
         for(Pane playerPane : playerPanes) {
             playerPane.setVisible(false);
@@ -80,6 +78,7 @@ public class ScoreController implements Initializable, Observable {
             System.out.println(player.getName());
         }
 
+        // Sets player names
         switch(App.getCurrentGame().getPlayers().size()){
             case 1:
                 setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
@@ -102,6 +101,16 @@ public class ScoreController implements Initializable, Observable {
         }
         for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
             playerPanes.get(i).setVisible(true); // Only show playerPane if that player is in the game
+        }
+    }
+
+    @Override
+    public void update(Game game) {
+        for (Player player : game.getPlayers()) {
+            setCityPointsForPlayer(player.getColor(), player.getCityScore());
+            setRoadPointsForPlayer(player.getColor(), player.getRoadScore());
+            setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
+            setVictoryPointsForPlayer(player.getColor(), player.getScore());
         }
     }
 
@@ -149,24 +158,33 @@ public class ScoreController implements Initializable, Observable {
 
     /** Searches for the color's labels in the score view and updates the victory points label.
      * @param color the player's color
-     * @param score the player's score in victory points
-     * @author Jeroen */
+     * @param score the player's score in victory points */
     public void setVictoryPointsForPlayer(String color, int score) {
         colorToLabels.get(color).get("points").setText(Integer.toString(score));
     }
 
+    /** Searches for the color's labels in the score view and updates the amount of roads label.
+     * @param color the player's color
+     * @param road the player's amount of roads */
     public void setRoadPointsForPlayer(String color, int road) {
         colorToLabels.get(color).get("roads").setText(Integer.toString(road));
     }
 
+    /** Searches for the color's labels in the score view and updates the amount of villages label.
+     * @param color the player's color
+     * @param village the player's amount of villages */
     public void setVillagePointsForPlayer(String color, int village) {
         colorToLabels.get(color).get("villages").setText(Integer.toString(village));
     }
 
+    /** Searches for the color's labels in the score view and updates the amount of cities label.
+     * @param color the player's color
+     * @param city the player's amount of cities */
     public void setCityPointsForPlayer(String color, int city) {
         colorToLabels.get(color).get("cities").setText(Integer.toString(city));
     }
 
+    /** Takes one card away from the bank on the score view */
     public void removeDevelopmentCardFromBankView() {
         bankDevelopmentCards.setText(String.valueOf(Integer.parseInt(bankDevelopmentCards.getText()) - 1));
     }
@@ -189,15 +207,5 @@ public class ScoreController implements Initializable, Observable {
 
     public void setPlayer4name(String player4name) {
         this.player4name.setText(player4name);
-    }
-
-    @Override
-    public void update(Game game) {
-        for (Player player : game.getPlayers()) {
-            setCityPointsForPlayer(player.getColor(), player.getCityScore());
-            setRoadPointsForPlayer(player.getColor(), player.getRoadScore());
-            setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
-            setVictoryPointsForPlayer(player.getColor(), player.getScore());
-        }
     }
 }

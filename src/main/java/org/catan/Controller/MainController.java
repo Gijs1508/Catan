@@ -27,36 +27,33 @@ import java.util.ResourceBundle;
  */
 public class MainController implements Observable, Initializable {
     @FXML private ImageView bgShadow;
-    @FXML private ImageView bg;
     @FXML private ImageView title;
     @FXML private ImageView musicBtn;
     @FXML private TextField player_name_input;
     @FXML private VBox buttons;
     @FXML private Pane alertPopup;
 
-    private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
+    private static String playerName = "";
     private static MainController mainController;
 
-    private static String playerName = "";
+    /** Initializes the main controller
+     * @author Jeroen */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+        mainController = this;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(playerName.length() > 0) {
+        player_name_input.textProperty().addListener((observable, oldValue, newValue) ->
+                playerName = newValue); // Makes sure the player's name is saved as long as the application is active
+
+        if(playerName.length() > 0) { // If the player has already written their name
             player_name_input.setText(playerName);
         }
-
         MenuMusicHandler.initializeMusic(musicBtn);
-        mainController = this;
         try {
             alertPopup.getChildren().add(App.loadFXML("Views/alertPopUpView"));
             alertPopup.setVisible(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        player_name_input.textProperty().addListener((observable, oldValue, newValue) -> {
-            playerName = newValue;
-        });
     }
 
     @FXML

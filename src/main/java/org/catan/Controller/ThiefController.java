@@ -13,6 +13,13 @@ import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
+/**
+ * Handles the thief on the board.
+ * Detects settlements on its tile and allows players to steal from it.
+ *
+ * @author Jeroen, Sabrina
+ */
+
 public class ThiefController implements Initializable, Observable {
     private static ThiefController thiefController;
 
@@ -60,10 +67,7 @@ public class ThiefController implements Initializable, Observable {
         App.getClientPlayer().stealFromVictim(victim);
     }
 
-    /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
-     * @param tileID the id of the tile the thief was moved to
-     * @return arrayList with the opponents as Player objects
-     * @author Jeroen */
+    // Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
     private ArrayList<Player> findOpponentsOnTile(int tileID) {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();

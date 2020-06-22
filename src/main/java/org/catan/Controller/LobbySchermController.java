@@ -53,8 +53,15 @@ public class LobbySchermController implements Initializable, Observable {
     @FXML private Text host;
     private AnchorPane alertPopupView;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public static LobbySchermController getInstance() {
+        if (lobbySchermController == null) {
+            lobbySchermController = new LobbySchermController();
+        }
+        return lobbySchermController;
+    }
+
+    /** Initializes the lobby screen. */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         player1pane.setVisible(false);
         player2pane.setVisible(false);
         player3pane.setVisible(false);
@@ -104,6 +111,7 @@ public class LobbySchermController implements Initializable, Observable {
         System.out.println(game.getCode());
     }
 
+    /** Leaves the lobby menu and enters the game screen. */
     public void updateScreenRoot() {
         try {
             App.setRoot("./Views/screenView");
@@ -172,21 +180,14 @@ public class LobbySchermController implements Initializable, Observable {
     private void startTimer() {
     }
 
-    @Override
-    public void update(Game game) {
+    /** Disables or enables the start game button according to the lobby size (gets called with each database update) */
+    @Override public void update(Game game) {
         setupGamePlayers(game.getPlayers());
         if (game.getPlayers().size() > 1 && App.getClientPlayer().isHost()) {
             startGameBtn.setDisable(false);
         } else {
             startGameBtn.setDisable(true);
         }
-    }
-
-    public static LobbySchermController getInstance() {
-        if (lobbySchermController == null) {
-            lobbySchermController = new LobbySchermController();
-        }
-        return lobbySchermController;
     }
 
     public void setGameCode(Long gameCode) {

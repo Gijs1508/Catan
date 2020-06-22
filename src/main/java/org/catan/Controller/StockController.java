@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
  */
 
 public class StockController implements Initializable, Observable {
-    //Make controller available to other classes
     private static StockController stockController;
 
     @FXML private Text wheatCount;
@@ -33,7 +32,6 @@ public class StockController implements Initializable, Observable {
     @FXML private Text woolCount;
     @FXML private Text oreCount;
     @FXML private Text knightCount;
-    @FXML private Button testResources;
 
     @FXML private Pane animationResourcesPane;
     @FXML private ImageView animationKnightCard;
