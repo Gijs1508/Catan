@@ -1,20 +1,16 @@
 package org.catan.Controller;
 
-import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import org.catan.App;
+import org.catan.Model.Game;
+import org.catan.Model.Player;
 import org.catan.Model.Sound;
-
+import org.catan.interfaces.Observable;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class GameEndController {
+public class GameEndController implements Observable {
     @FXML private Pane background;
     @FXML private Pane victoryPane;
     @FXML private Pane defeatPane;
@@ -22,9 +18,11 @@ public class GameEndController {
     @FXML private Label defeatText;
     private static GameEndController gameEndController;
 
-    public GameEndController() { gameEndController = this; }
+    public GameEndController() {
+        gameEndController = this;
+    }
 
-    public void initializeVictory() {
+    private void initializeVictory() {
         victoryPane.setVisible(true);
         defeatPane.setVisible(false);
         Sound.playVictoryJingle();
@@ -32,24 +30,52 @@ public class GameEndController {
         background.setStyle("-fx-background-color: #2ecc71;"); // green bg
     }
 
-    public void initializeDefeat() {
+    private void initializeDefeat() {
         defeatPane.setVisible(true);
         victoryPane.setVisible(false);
         Sound.playDefeatJingle();
         gameEndTitle.setText("Defeat!");
         background.setStyle("-fx-background-color: #e74c3c;"); // red bg
-        defeatText.setText(defeatText.getText().replaceAll("%PLAYERWON%", "testPlayer")); // TODO Find name of player who won
+        defeatText.setText(defeatText.getText().replaceAll("%PLAYERWON%", winPlayerGetter()));
+    }
+
+    private String winPlayerGetter() {
+        for (Player player : App.getCurrentGame().getPlayers()) {
+            if (player.getCityScore() == 10) {
+                return player.getName();
+            }
+        }
+        return "Not You";
+    }
+
+    private boolean didSomeoneWin() {
+        for (Player player : App.getCurrentGame().getPlayers()) {
+            if (player.getScore() == 10)
+                return true;
+        }
+        return false;
     }
 
     @FXML
     public void leaveBtnClicked() throws IOException {
         Sound.playClick();
         ScreenController.getInstance().hideGameEnd();
+        App.setStageHeight(715);
         App.setRoot("Views/mainView");
         App.getCurrentGame().removePlayer(App.getClientPlayer());
     }
 
     public static GameEndController getInstance() {
         return gameEndController;
+    }
+
+    @Override
+    public void update(Game game) throws IOException {
+        if (didSomeoneWin()) {
+            if (winPlayerGetter().equals(App.getClientPlayer().getName()))
+                initializeVictory();
+            else
+                initializeDefeat();
+        }
     }
 }
