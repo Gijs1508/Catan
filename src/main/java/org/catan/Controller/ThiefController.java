@@ -1,17 +1,13 @@
 package org.catan.Controller;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.List;
 
 import javafx.fxml.Initializable;
 import org.catan.App;
-import org.catan.Helper.BuildVillages;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
-import org.catan.logic.DatabaseConnector;
 
 public class ThiefController implements Initializable, Observable {
     private static ThiefController thiefController;
