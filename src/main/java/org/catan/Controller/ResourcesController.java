@@ -37,7 +37,7 @@ public class ResourcesController implements Initializable, Observable {
                     } else {
                         amount = 1;
                     }
-                    if(total == tile.getNumber() && village.getColor().equals(App.getClientPlayer().getColor())){
+                    if(total == tile.getNumber() && village.getColor().equals(App.getClientPlayer().getColor()) && !tile.getId().equals(getThiefTileId())){
                         App.getClientPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
                         updateGamePlayer(App.getClientPlayer());
                         receivedResources.add(tile.getType());
@@ -51,6 +51,10 @@ public class ResourcesController implements Initializable, Observable {
                 LogController.getInstance().logReceiveEvent(receivedResources);
             }
         }
+    }
+
+    private String getThiefTileId() {
+        return "tile" + App.getCurrentGame().getBoard().getThief().getTile();
     }
 
     private void updateGamePlayer(Player player) {
