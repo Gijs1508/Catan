@@ -181,7 +181,17 @@ public class StockController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
+       updateClientPlayerInventory(game.getPlayers());
        updateResources();
+    }
+
+    private void updateClientPlayerInventory(ArrayList<Player> players) {
+        for (int i = 0; i < players.size(); i++) {
+            if (App.getClientPlayer().getIdentifier() == App.getCurrentGame().getPlayers().get(i).getIdentifier()) {
+                App.getClientPlayer().setPlayerInventory(players.get(i).getPlayerInventory());
+            }
+        }
+
     }
 
     /** Shows details about the knight card when the knight card is hovered */

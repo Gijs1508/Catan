@@ -27,7 +27,6 @@ public class ResourcesController implements Initializable, Observable {
     }
 
     public void setPlayerResources(int total){
-        ArrayList<Tile> usedTiles = new ArrayList<>();
         ArrayList<String> receivedResources = new ArrayList<>();
         if(App.getCurrentGame().getBoard().getSettlements() != null) {
             for (Village village : App.getCurrentGame().getBoard().getSettlements()) {
@@ -38,20 +37,17 @@ public class ResourcesController implements Initializable, Observable {
                     } else {
                         amount = 1;
                     }
-                    if(total == tile.getNumber() && !usedTiles.contains(tile) && village.getColor().equals(App.getClientPlayer().getColor())){
-                        System.out.println("Player color: " + App.getClientPlayer().getColor());
+                    if(total == tile.getNumber() && village.getColor().equals(App.getClientPlayer().getColor())){
                         App.getClientPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
-                        System.out.println(Arrays.toString(App.getClientPlayer().getPlayerInventory().getCards()));
                         updateGamePlayer(App.getClientPlayer());
                         receivedResources.add(tile.getType());
-                        usedTiles.add(tile);
-                        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
                     }
                 }
             }
 
 
             if(!receivedResources.isEmpty()) {
+                DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
                 LogController.getInstance().logReceiveEvent(receivedResources);
             }
         }
@@ -90,11 +86,9 @@ public class ResourcesController implements Initializable, Observable {
     }
 
     public void updateByLog(Log log) {
-        System.out.println("Go into resource update");
         String diceResult1 = log.getImgPaths().get(0);
         String diceResult2 = log.getImgPaths().get(1);
         int diceTotal = getIntFromImgPath(diceResult1) + getIntFromImgPath(diceResult2);
-        System.out.println("Dice total: " + diceTotal);
         setPlayerResources(diceTotal);
     }
 
