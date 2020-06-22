@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -21,6 +22,9 @@
          <image>
             <Image url="@../assets/img/musicOnWhite.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <TextField id="namefield" fx:id="player_name_input" layoutX="501.0" layoutY="333.0" prefHeight="45.0" prefWidth="199.0" promptText="Your name..">
          <font>
@@ -38,16 +42,25 @@
                <image>
                   <Image url="@../assets/img/menu/startGame.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fitHeight="71.0" fitWidth="266.0" onMouseClicked="#joinGame" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/menu/joinGame.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fitHeight="71.0" fitWidth="266.0" onMouseClicked="#viewRules" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/menu/Rules.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </VBox>

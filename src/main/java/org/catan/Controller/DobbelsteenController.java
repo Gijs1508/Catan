@@ -56,7 +56,7 @@ public class DobbelsteenController implements Observable {
      */
     @FXML public void throwDie() {
         System.out.println("is players turn: " + App.getClientPlayer().isTurn());
-        if(App.getClientPlayer().isTurn()){
+        if(App.getClientPlayer().isTurn() && !StartPhaseController.getInstance().isStartPhaseActive()){
             Sound.playDiceShuffle();
             // Throw the dice 1.5 seconds after starting the shuffle sound effect
             Timeline delay = new Timeline(new KeyFrame(Duration.seconds(0.5), actionEvent -> {
@@ -85,6 +85,10 @@ public class DobbelsteenController implements Observable {
                 }
             }));
             delay.play();
+        }
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't roll during the start phase.");
         }
         else {
             ScreenController.getInstance().showAlertPopup();
