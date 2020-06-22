@@ -23,6 +23,7 @@ public class Player {
     private int identifier;
     private boolean turn = false;
     private boolean host = false;
+    private boolean winner;
 
     private Inventory playerInventory;
 
@@ -224,4 +225,11 @@ public class Player {
         this.cityScore = cityScore;
     }
 
+    public void setWinner(boolean winner) {
+        this.winner = winner;
+    }
+
+    public boolean isWinner() {
+        return winner;
+    }
 }
