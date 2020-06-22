@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import org.catan.App;
@@ -24,7 +25,8 @@ import java.util.ResourceBundle;
  */
 
 public class TradePopUpController implements Initializable, Observable {
-    @FXML private AnchorPane popupPane;
+    @FXML private AnchorPane parentPane;
+    @FXML private Pane popupPane;
     @FXML private Text popupTitle;
     @FXML private Text woodOffer;
     @FXML private Text brickOffer;
@@ -99,7 +101,6 @@ public class TradePopUpController implements Initializable, Observable {
             popupPane.setLayoutX(mouseEvent.getSceneX() + x);
             popupPane.setLayoutY(mouseEvent.getSceneY() + y);
         });
-        popupPane.setOnMouseEntered(mouseEvent -> popupPane.setCursor(Cursor.HAND));
     }
 
     /** Checks whether the pane has been dragged outside of the screen.

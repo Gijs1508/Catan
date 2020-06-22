@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="popupPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="408.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.TradePopUpController">
+<AnchorPane fx:id="parentPane" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.TradePopUpController">
    <children>
-      <Pane prefHeight="291.0" prefWidth="408.0" style="-fx-background-radius: 30 30 20 20;">
+      <Pane fx:id="popupPane" layoutX="600.0" layoutY="141.0" prefHeight="291.0" prefWidth="408.0" style="-fx-background-radius: 30 30 20 20;">
          <children>
             <Pane layoutX="7.0" layoutY="47.0" prefHeight="240.0" prefWidth="395.0" style="-fx-background-color: #e5e4e7; -fx-background-radius: 0 0 20 20;">
                <children>
@@ -163,6 +163,9 @@
          <effect>
             <DropShadow blurType="GAUSSIAN" color="#0000005a" />
          </effect>
+         <cursor>
+            <Cursor fx:constant="MOVE" />
+         </cursor>
       </Pane>
    </children>
 </AnchorPane>
