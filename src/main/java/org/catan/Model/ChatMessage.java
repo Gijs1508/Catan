@@ -18,6 +18,10 @@ public class ChatMessage {
     private String sender;
     private String message;
 
+    public ChatMessage(){
+
+    }
+
     public ChatMessage(String content) {
         this.content = content;
         init();
