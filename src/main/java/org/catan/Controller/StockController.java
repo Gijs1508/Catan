@@ -154,27 +154,31 @@ public class StockController implements Initializable, Observable {
     /** Player clicked on the knight card to replace the thief.
      * @author Jeroen */
    @FXML public void activateKnight() {
-        // Check if it's player's turn
-        if(!App.getClientPlayer().isTurn()) {
-            ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card outside of your turn.");
-            return;
-        }
-        // Checks if there still are knight cards left
-        if(App.getCurrentGame().turnPlayerGetter().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
-            ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You don't have any knight cards left to activate.");
-            return;
-        }
+       // Check if it's player's turn
+       if(App.getCurrentGame().getTradeStatus().equals("pending")) {
+           ScreenController.getInstance().showAlertPopup();
+           AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card when your trade offer is still pending.");
+           return;
+       }
+       if(!App.getClientPlayer().isTurn()) {
+           ScreenController.getInstance().showAlertPopup();
+           AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card outside of your turn.");
+           return;
+       }
+       // Checks if there still are knight cards left
+       if(App.getCurrentGame().turnPlayerGetter().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
+           ScreenController.getInstance().showAlertPopup();
+           AlertPopUpController.getInstance().setAlertDescription("You don't have any knight cards left to activate.");
+           return;
+       }
 
-        App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", -1);
-        StockController.getInstance().updateResources();
-        removeCardAnimation(animationKnightCard);
+       App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", -1);
+       StockController.getInstance().updateResources();
+       removeCardAnimation(animationKnightCard);
+       GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
 
-        GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
-
-        logController.logKnightEvent();
-        Sound.playSword();
+       logController.logKnightEvent();
+       Sound.playSword();
     }
 
     @Override
