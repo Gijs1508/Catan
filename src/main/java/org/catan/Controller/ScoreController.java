@@ -152,9 +152,7 @@ public class ScoreController implements Initializable, Observable {
      * @param score the player's score in victory points
      * @author Jeroen */
     public void setVictoryPointsForPlayer(String color, int score) {
-        System.out.println("I the setVictoryPointsForPlayers have been called");
         colorToLabels.get(color).get("points").setText(Integer.toString(score));
-        System.out.println(colorToLabels.get(color).get("points"));
     }
 
     public void setRoadPointsForPlayer(String color, int road) {
