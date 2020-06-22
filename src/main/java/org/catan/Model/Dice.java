@@ -1,9 +1,6 @@
 package org.catan.Model;
 
-import org.catan.App;
 import org.catan.Controller.*;
-import org.catan.Helper.BuildVillages;
-import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
 import java.util.ArrayList;

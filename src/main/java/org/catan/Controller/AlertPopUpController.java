@@ -1,20 +1,16 @@
 package org.catan.Controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.catan.Model.Sound;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-/** Popup appears as an alert to notify the player of an issue that occurred.
- * @author Jeroen */
+/**
+ * Popup appears as an alert to notify the player of an issue that occurred.
+ *
+ * @author Jeroen
+ */
 
 public class AlertPopUpController {
     @FXML private Label alertDescription;
@@ -28,16 +24,16 @@ public class AlertPopUpController {
         alertPopUpController = this;
     }
 
-    // Checks which hideAlertPopup should be called
+    /** Checks on which controller the popup is active and closes it */
     public void closePopup() {
         Sound.playClick();
         if(controller.toString().equals(MainController.getInstance().getClass().toString())){
-            MainController.getInstance().hideAlertPopup();
+            MainController.getInstance().hideAlertPopup(); // Popup is active in the main (main menu) controller
         }
         else if(controller.toString().equals(LobbySchermController.getInstance().getClass().toString())){
-            LobbySchermController.getInstance().hideAlertPopup();
+            LobbySchermController.getInstance().hideAlertPopup(); // Popup is active in the lobby controller
         } else {
-            screenController.hideAlertPopup();
+            screenController.hideAlertPopup(); // Popup is active in the screen (in-game) controller
         }
     }
 

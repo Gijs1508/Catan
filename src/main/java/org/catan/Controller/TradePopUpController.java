@@ -3,7 +3,6 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -20,14 +19,13 @@ import java.util.ResourceBundle;
 /**
  * Manages the popup that shows when a player receives a trade offer.
  * Player can decline or accept this offer. Popup can be dragged around the screen.
+ *
  * @author Kaz, Jeroen
  */
 
 public class TradePopUpController implements Initializable, Observable {
     @FXML private AnchorPane popupPane;
-    @FXML private ImageView declineBtn;
     @FXML private Text popupTitle;
-    @FXML private Text playerName;
     @FXML private Text woodOffer;
     @FXML private Text brickOffer;
     @FXML private Text oreOffer;
@@ -44,7 +42,7 @@ public class TradePopUpController implements Initializable, Observable {
     private double x;
     private double y;
 
-    private HashMap<String, Double> paneInfo = screenController.getTradePopupLayout();
+    private HashMap<String, Double> paneInfo = screenController.tradePopupLayoutGetter();
     private double paneLayoutXinRoot = paneInfo.get("layoutX");
     private double paneLayoutYinRoot = paneInfo.get("layoutY");
     private double paneWidth;
@@ -85,7 +83,7 @@ public class TradePopUpController implements Initializable, Observable {
     /** Makes the popup draggable.
      * @author Jeroen */
     private void initializeDrag() {
-        popupPane.setOnMousePressed(mouseEvent -> {
+        popupPane.setOnMousePressed(mouseEvent -> { // Read the position of the popup before dragging
             x = popupPane.getLayoutX() - mouseEvent.getSceneX();
             y = popupPane.getLayoutY() - mouseEvent.getSceneY();
             popupPane.setCursor(Cursor.MOVE);
@@ -97,7 +95,7 @@ public class TradePopUpController implements Initializable, Observable {
                 popupPane.setLayoutX(0);
             }
         });
-        popupPane.setOnMouseDragged(mouseEvent -> {
+        popupPane.setOnMouseDragged(mouseEvent -> { // Keep updating the popup's position as user keeps dragging
             popupPane.setLayoutX(mouseEvent.getSceneX() + x);
             popupPane.setLayoutY(mouseEvent.getSceneY() + y);
         });
@@ -108,7 +106,6 @@ public class TradePopUpController implements Initializable, Observable {
      * @return true: dragged out of screen / false: didn't drag out of screen
      * @author Jeroen */
     private boolean draggedOutOfScreen() {
-        // Collisions are recognized, but I can't find a way to make use of it.
         // X Collisions
         if(popupPane.getLayoutX() + paneLayoutXinRoot + paneWidth  >  screenController.getRoot().getPrefWidth()) { // right collision
             return true;
