@@ -107,8 +107,9 @@ public class StockController implements Initializable, Observable {
             Sound.playTakeCard(); }
 
         // Play card animation for each removed card
-        for (int i = 0; i < removedResources.size(); i++) {
-            removeCardAnimation(animationCardForResource.get(removedResources.get(i))); }
+        for (String removedResource : removedResources) {
+            removeCardAnimation(animationCardForResource.get(removedResource));
+        }
     }
 
     /** Animation that plays when a card is taken out of a player's inventory.
