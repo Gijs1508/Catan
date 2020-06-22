@@ -41,16 +41,16 @@ public class GameEndController implements Observable {
 
     private String winPlayerGetter() {
         for (Player player : App.getCurrentGame().getPlayers()) {
-            if (player.getCityScore() == 10) {
+            if (player.getScore() >= 10) {
                 return player.getName();
             }
         }
-        return "Not You";
+        return "Not You ";
     }
 
     private boolean didSomeoneWin() {
         for (Player player : App.getCurrentGame().getPlayers()) {
-            if (player.getScore() == 10)
+            if (player.getScore() >= 10)
                 return true;
         }
         return false;
@@ -73,7 +73,7 @@ public class GameEndController implements Observable {
     public void update(Game game) throws IOException {
         if (didSomeoneWin()) {
             ScreenController.getInstance().showGameEnd();
-            if (winPlayerGetter().equals(App.getClientPlayer().getName()))
+            if (App.getClientPlayer().getScore() >= 10)
                 initializeVictory();
             else
                 initializeDefeat();
