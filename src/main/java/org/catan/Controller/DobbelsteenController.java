@@ -115,7 +115,7 @@ public class DobbelsteenController implements Observable {
      * Update function that is inherited from Observable interface, this function should contain all functionality
      * Regarding things that must be done when the game document is update in Firebase
      * @author Werner
-     * @param Game game
+     * @param game
      * @throws IOException
      */
     @Override
