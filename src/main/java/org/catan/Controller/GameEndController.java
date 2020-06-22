@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import org.catan.App;
 import org.catan.Model.Sound;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,11 +42,11 @@ public class GameEndController {
     }
 
     @FXML
-    public void leaveBtnClicked() {
+    public void leaveBtnClicked() throws IOException {
         Sound.playClick();
         ScreenController.getInstance().hideGameEnd();
-        // TODO leave game and go back to main menu
-//        App.getCurrentGame().removePlayer(App.getClientPlayer());
+        App.setRoot("Views/mainView");
+        App.getCurrentGame().removePlayer(App.getClientPlayer());
     }
 
     public static GameEndController getInstance() {
