@@ -20,11 +20,22 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The DocumentListener class, this class is the core of the working multiplayer functionality, as it will relay
+ * all changes in a game from one client, to the other clients
+ * @author Werner
+ */
 public class DocumentListener {
 
     private DocumentReference docRef;
     private String collection;
 
+    /**
+     * Constructor function, here the collection of the firestore and the document of that collection are given, to
+     * create a DocumentListener for that specific document
+     * @param collection the id of the collection you wish to put your listener on
+     * @param documentId the id of the document you wish to put your listener on
+     */
     public DocumentListener(String collection, String documentId) {
         this.collection = collection;
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();

@@ -2,6 +2,10 @@ package org.catan.logic;
 
 import org.catan.Model.*;
 
+/**
+ * Class with debugging purposes, to print out all the property data of a game object
+ * @author Werner
+ */
 public class GameDataPrinter {
     public static void printGameDetails(Game game) {
         System.out.println(game.getCode());

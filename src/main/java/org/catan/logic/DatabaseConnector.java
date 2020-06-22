@@ -22,7 +22,7 @@ import java.util.*;
 /**
  * Class that contains the functionality to communicate with the database
  *
- * @author werner
+ * @author Werner
  */
 public class DatabaseConnector {
     private Firestore db;

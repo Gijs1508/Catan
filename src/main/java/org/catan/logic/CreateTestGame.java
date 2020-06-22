@@ -4,6 +4,10 @@ import org.catan.Model.*;
 
 import java.util.ArrayList;
 
+/**
+ * Debugging class that contains functionality to quickly create a game object with some preset data, for testing
+ * @author Werner
+ */
 public class CreateTestGame {
     public static Game createTestGame() {
         Game game = new Game();

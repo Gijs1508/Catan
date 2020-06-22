@@ -309,7 +309,7 @@ public class LogController implements Initializable, Observable {
             checkForResourceLogs(game, oldLogsSize);
         }
     }
-    
+
     private void checkForResourceLogs(Game game, int oldLogsSize) {
         for (int i = oldLogsSize; i < game.getLogs().size(); i++) {
             if (game.getLogs().get(i).getLogType().equals("img")) {
