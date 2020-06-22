@@ -242,6 +242,5 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="testGameEnd" layoutX="119.0" layoutY="3.0" mnemonicParsing="false" onAction="#testGameEnd" text="ENDGAME" />
    </children>
 </AnchorPane>

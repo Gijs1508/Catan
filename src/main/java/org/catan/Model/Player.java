@@ -40,7 +40,7 @@ public class Player {
 
     public Player(String name){
         this.name = name;
-        this.color = "red"; //TODO
+        this.color = "red";
         this.score = 0;
         this.playerInventory = new Inventory();
         this.identifier = Math.toIntExact(CreateGameCode.randomCodeGen());
@@ -223,5 +223,4 @@ public class Player {
     public void setCityScore(int cityScore) {
         this.cityScore = cityScore;
     }
-
 }

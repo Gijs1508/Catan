@@ -303,6 +303,7 @@ public class GameSchermController implements Initializable, Observable {
         if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()){
             logController.logSettlementEvent();
             placeVillage(build.buildVillage(circle));
+            Sound.playBuildSettlement();
         }else {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
@@ -334,6 +335,7 @@ public class GameSchermController implements Initializable, Observable {
     private void placeCity(Village village) {
         for (int i=0; i < 127; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == village.getX() - 18 && objectsPane.getChildren().get(i).getLayoutY() == village.getY() - 20) {
+                Sound.playUpgradeSettlement();
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(village.imgPath())));
                 imageView.setImage(image);
@@ -346,6 +348,7 @@ public class GameSchermController implements Initializable, Observable {
     private void placeRoad(Road road) {
         for (int i=0; i < 73; i++) {
             if (objectsPane.getChildren().get(i).getLayoutX() == road.getX() && objectsPane.getChildren().get(i).getLayoutY() == road.getY()) {
+                Sound.playBuildRoad();
                 ImageView imageView = (ImageView) objectsPane.getChildren().get(i);
                 Image image = new Image(String.valueOf(App.class.getResource(road.getImgPath())));
                 imageView.setLayoutX(road.getX() - 3);
