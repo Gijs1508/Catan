@@ -15,9 +15,10 @@ import org.catan.logic.DatabaseConnector;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/** Forces the player to hand in half of their resource cards.
- * The player can pick those cards.
- * @author Kaz */
+/**
+ * Manages the pop up view to hand in cards
+ * @author Kaz
+ */
 
 public class HandInController implements Initializable {
 
@@ -43,6 +44,10 @@ public class HandInController implements Initializable {
         giveWheat.setText("0");
     }
 
+    /**
+     * This method changes the player inventory when the required amount of cards are selected
+     * @author Kaz
+     */
     public void accept() {
         Sound.playClick();
 
@@ -57,6 +62,10 @@ public class HandInController implements Initializable {
         }
     }
 
+    /**
+     * This method resets the selected cards to 0
+     * @author Kaz
+     */
     public void reset() {
         calcRequiredAmount();
         requiredAmount.setText(Integer.toString(requiredCards));
@@ -79,22 +88,47 @@ public class HandInController implements Initializable {
         requiredCards = getInventory().cardsTotalGetter() / 2;
     }
 
+    /**
+     * This method raises the wheat counter
+     * @param mouseEvent button clicked
+     * @author Kaz
+     */
     public void raiseWheat(MouseEvent mouseEvent) {
         giveResource(giveWheat, 4);
     }
 
+    /**
+     * This method raises the wood counter
+     * @param mouseEvent button clicked
+     * @author Kaz
+     */
     public void raiseWood(MouseEvent mouseEvent) {
         giveResource(giveWood, 0);
     }
 
+    /**
+     * This method raises the brick counter
+     * @param mouseEvent button clicked
+     * @author Kaz
+     */
     public void raiseBrick(MouseEvent mouseEvent) {
         giveResource(giveBrick, 1);
     }
 
+    /**
+     * This method raises the wool counter
+     * @param mouseEvent button clicked
+     * @author Kaz
+     */
     public void raiseWool(MouseEvent mouseEvent) {
         giveResource(giveWool, 3);
     }
 
+    /**
+     * This method raises the ore counter
+     * @param mouseEvent button clicked
+     * @author Kaz
+     */
     public void raiseOre(MouseEvent mouseEvent) {
         giveResource(giveOre, 2);
     }
