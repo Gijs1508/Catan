@@ -36,9 +36,10 @@ public class Dice {
         dices.add(String.valueOf(dice2));
         diceResult.put(total, dices);
 
+        ResourcesController.getInstance().setPlayerResources(total);
+
         LogController.getInstance().logRollEvent(Integer.toString(dice1), Integer.toString(dice2));
 
-        ResourcesController.getInstance().setPlayerResources(total);
         return diceResult;
     }
 
