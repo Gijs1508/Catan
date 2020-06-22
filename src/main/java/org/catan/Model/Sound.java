@@ -24,6 +24,9 @@ public class Sound {
     private static AudioClip diceThrow = new AudioClip(App.class.getResource("assets/sounds/soundeffects/diceThrow.mp3").toExternalForm());
     private static AudioClip click = new AudioClip(App.class.getResource("assets/sounds/soundeffects/click.mp3").toExternalForm());
     private static AudioClip takeCard = new AudioClip(App.class.getResource("assets/sounds/soundeffects/takeCard.mp3").toExternalForm());
+    private static AudioClip buildSettlement = new AudioClip(App.class.getResource("assets/sounds/soundeffects/buildSettlement.mp3").toExternalForm());
+    private static AudioClip upgradeSettlement = new AudioClip(App.class.getResource("assets/sounds/soundeffects/upgradeSettlement.mp3").toExternalForm());
+    private static AudioClip buildRoad = new AudioClip(App.class.getResource("assets/sounds/soundeffects/buildRoad.mp3").toExternalForm());
     private static AudioClip switch1 = new AudioClip(App.class.getResource("assets/sounds/soundeffects/switch.mp3").toExternalForm());
     private static AudioClip switch2 = new AudioClip(App.class.getResource("assets/sounds/soundeffects/switch2.mp3").toExternalForm());
     private static AudioClip sword = new AudioClip(App.class.getResource("assets/sounds/soundeffects/sword.mp3").toExternalForm());
@@ -48,6 +51,9 @@ public class Sound {
             put(diceThrow, 0.6);
             put(click, 0.2);
             put(takeCard, 0.1);
+            put(buildSettlement, 0.4);
+            put(upgradeSettlement, 0.4);
+            put(buildRoad, 0.4);
             put(switch1, 0.6);
             put(switch2, 0.6);
             put(sword, 0.3);
@@ -89,6 +95,21 @@ public class Sound {
     public static void playTakeCard() {
         if(takeCard.getVolume() > 0)
             takeCard.play();
+    }
+
+    public static void playBuildSettlement() {
+        if(buildSettlement.getVolume() > 0)
+            buildSettlement.play();
+    }
+
+    public static void playUpgradeSettlement() {
+        if(upgradeSettlement.getVolume() > 0)
+            upgradeSettlement.play();
+    }
+
+    public static void playBuildRoad() {
+        if(buildRoad.getVolume() > 0)
+            buildRoad.play();
     }
 
     public static void playSwitch() {
