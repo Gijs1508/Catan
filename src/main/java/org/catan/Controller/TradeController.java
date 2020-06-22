@@ -96,7 +96,7 @@ public class TradeController implements Initializable, Observable {
     @FXML public void buyDevelopmentCard() {
         Sound.playClick();
         // If player has enough resources
-        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive()){
+        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive() && !StartPhaseController.getInstance().isStartPhaseActive()){
             // If player has enough resources
             String developmentCard = Bank.getBank().takeDevelopmentCard();
 
@@ -134,6 +134,11 @@ public class TradeController implements Initializable, Observable {
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to buy a development card.");
             return;
         }
+        // Start phase is active
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't roll during the start phase.");
+        }
         // It's not player's turn
         else {
             ScreenController.getInstance().showAlertPopup();
@@ -154,7 +159,7 @@ public class TradeController implements Initializable, Observable {
     @FXML
     public void sendTrade() {
         Sound.playClick();
-        if(tradeType.equals("bank") && isClientPlayerActive()){
+        if(tradeType.equals("bank") && isClientPlayerActive() && !StartPhaseController.getInstance().isStartPhaseActive()){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
             int netBrick = netResource(giveBrickCount, takeBrickCount);
@@ -180,9 +185,13 @@ public class TradeController implements Initializable, Observable {
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
             resetTrade();
         }
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't send a trade offer during the start phase.");
+        }
         else {
             ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You currently cannot send a trade offer.");
+            AlertPopUpController.getInstance().setAlertDescription("You can't send a trade offer outside outside of your turn.");
         }
     }
 

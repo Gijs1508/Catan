@@ -113,12 +113,21 @@ public class ScreenController implements Initializable, Observable {
 
         AlertPopUpController.getInstance().setAlertPlacedController(this.getClass());
 
-        handleButtonStates();
+        initializeButtonStates();
     }
 
     @Override
     public void update(Game game) {
-        handleButtonStates();
+        if (!StartPhaseController.getInstance().isStartPhaseActive()) {
+            handleButtonStates();
+        }
+    }
+
+    /** Buttons are disabled in start phase */
+    private void initializeButtonStates() {
+        GameSchermController.getInstance().disableButtons();
+        DobbelsteenController.getInstance().disableButton();
+        TradeController.getInstance().disableButtons();
     }
 
     /** Disables / enables all buttons that can't be used outside of player's turn */
@@ -129,9 +138,7 @@ public class ScreenController implements Initializable, Observable {
             DobbelsteenController.getInstance().disableButton();
             TradeController.getInstance().disableButtons();
         } else { // It is player's turn
-            if (!StartPhaseController.getInstance().isStartPhaseActive()) { // Only show board's buttons outside of start phase
-                GameSchermController.getInstance().enableButtons();
-            }
+            GameSchermController.getInstance().enableButtons();
             DobbelsteenController.getInstance().enableButton();
             TradeController.getInstance().enableButtons();
         }
