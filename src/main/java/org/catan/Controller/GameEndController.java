@@ -69,9 +69,11 @@ public class GameEndController implements Observable {
         return gameEndController;
     }
 
+    // TODO Updating the scores to the database
     @Override
     public void update(Game game) throws IOException {
         if (didSomeoneWin()) {
+            ScreenController.getInstance().showGameEnd();
             if (winPlayerGetter().equals(App.getClientPlayer().getName()))
                 initializeVictory();
             else
