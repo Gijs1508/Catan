@@ -135,7 +135,6 @@ public class Player {
         this.name = name;
     }
 
-
     public void setColor(String color) {
         this.color = color;
     }
@@ -155,18 +154,6 @@ public class Player {
     public Inventory getPlayerInventory(){
         return this.playerInventory;
     }
-
-//    public static void setActivePlayer(Player player){
-//        activePlayer = player;
-//        LogController.setPlayer();
-//        if (player.equals(App.getClientPlayer())){
-//            mainPlayerActive = true;
-//            Sound.playStartTurnJingle();
-//            System.out.println("MAIN PLAYER ACTIVE");
-//        } else{
-//            mainPlayerActive = false;
-//        }
-//    }
 
     public HashMap<String, Integer> getResourceToCost() {
         return resourceToCost;
