@@ -57,9 +57,9 @@ public class ResourcesController implements Initializable {
     }
 
     private void updateGamePlayer(Player player) {
-        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
-            if (player.getIdentifier() == App.getCurrentGame().getPlayers().get(i).getIdentifier()) {
-                App.getCurrentGame().getPlayers().get(i).setPlayerInventory(player.getPlayerInventory());
+        for (Player players : App.getCurrentGame().getPlayers()) {
+            if (player.getIdentifier() == players.getIdentifier()) {
+                players.setPlayerInventory(player.getPlayerInventory());
             }
         }
     }
