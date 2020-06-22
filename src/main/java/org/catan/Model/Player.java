@@ -156,6 +156,10 @@ public class Player {
         return this.playerInventory;
     }
 
+    public void setPlayerInventory(Inventory inventory) {
+        this.playerInventory = inventory;
+    }
+
 //    public static void setActivePlayer(Player player){
 //        activePlayer = player;
 //        LogController.setPlayer();

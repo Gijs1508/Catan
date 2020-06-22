@@ -2,16 +2,14 @@ package org.catan.Controller;
 
 import javafx.fxml.Initializable;
 import org.catan.App;
-import org.catan.Model.Game;
-import org.catan.Model.Log;
-import org.catan.Model.Tile;
-import org.catan.Model.Village;
+import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class ResourcesController implements Initializable, Observable {
@@ -41,7 +39,10 @@ public class ResourcesController implements Initializable, Observable {
                         amount = 1;
                     }
                     if(total == tile.getNumber() && !usedTiles.contains(tile) && village.getColor().equals(App.getClientPlayer().getColor())){
+                        System.out.println("Player color: " + App.getClientPlayer().getColor());
                         App.getClientPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
+                        System.out.println(Arrays.toString(App.getClientPlayer().getPlayerInventory().getCards()));
+                        updateGamePlayer(App.getClientPlayer());
                         receivedResources.add(tile.getType());
                         usedTiles.add(tile);
                         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
@@ -52,6 +53,14 @@ public class ResourcesController implements Initializable, Observable {
 
             if(!receivedResources.isEmpty()) {
                 LogController.getInstance().logReceiveEvent(receivedResources);
+            }
+        }
+    }
+
+    private void updateGamePlayer(Player player) {
+        for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++) {
+            if (player.getIdentifier() == App.getCurrentGame().getPlayers().get(i).getIdentifier()) {
+                App.getCurrentGame().getPlayers().get(i).setPlayerInventory(player.getPlayerInventory());
             }
         }
     }
@@ -81,9 +90,11 @@ public class ResourcesController implements Initializable, Observable {
     }
 
     public void updateByLog(Log log) {
+        System.out.println("Go into resource update");
         String diceResult1 = log.getImgPaths().get(0);
         String diceResult2 = log.getImgPaths().get(1);
         int diceTotal = getIntFromImgPath(diceResult1) + getIntFromImgPath(diceResult2);
+        System.out.println("Dice total: " + diceTotal);
         setPlayerResources(diceTotal);
     }
 
