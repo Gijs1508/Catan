@@ -27,7 +27,6 @@ public class ResourcesController implements Initializable {
     }
 
     public void setPlayerResources(int total){
-        System.out.println("setPlayerResources has been called");
         ArrayList<String> receivedResources = new ArrayList<>();
             for (Village village : App.getCurrentGame().getBoard().getSettlements()) {
                 for (Tile tile : village.getConnectedTiles()){
