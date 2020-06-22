@@ -433,7 +433,7 @@ public class BuildSettlementController implements Observable {
 
     // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
-        if (!villages.equals(buildVillages)) {
+        if (!villages.equals(buildVillages) && villages.size() >= buildVillages.size()) {
             ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
             ArrayList<Village> cities = new ArrayList<>();
