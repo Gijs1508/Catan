@@ -99,14 +99,14 @@ public class LobbySchermController implements Initializable, Observable {
         Chat chat = new Chat(game.getCode().intValue());
         DatabaseConnector.getInstance().createChat(chat);
         App.setChatListener(new DocumentListener("chats", String.valueOf(game.getCode())));
-        App.setRoot("./Views/screenView");
+        App.setRoot("Views/screenView");
 
         System.out.println(game.getCode());
     }
 
     public void updateScreenRoot() {
         try {
-            App.setRoot("./Views/screenView");
+            App.setRoot("Views/screenView");
         } catch (Exception e) {
             e.printStackTrace();
         }

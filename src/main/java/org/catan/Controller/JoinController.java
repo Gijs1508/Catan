@@ -60,7 +60,7 @@ public class JoinController implements Observable, Initializable {
             if (game.getCode().equals(code)) {
                 if (game.getStatus().equals("open")) {
                     if (game.getPlayers().size() < 4) {
-                        this.lobbySchermController.setGameCode(code);
+                        LobbySchermController.getInstance().setGameCode(code);
                         setPlayerColor(game.getPlayers().size(), App.getClientPlayer());
                         App.getClientPlayer().setHost(false);
                         App.setCurrentGame(game);
@@ -68,7 +68,7 @@ public class JoinController implements Observable, Initializable {
                         dbConnector.updateGame(game);
                         addGameListener(game);
                         App.setStageHeight(837);
-                        App.setRoot("./views/lobbyView");
+                        App.setRoot("Views/lobbyView");
                     } else {
                         this.error_text.setText("Game is full");
                         this.error_text.setVisible(true);
