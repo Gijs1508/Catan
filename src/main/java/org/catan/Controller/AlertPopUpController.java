@@ -41,6 +41,8 @@ public class AlertPopUpController {
         popupTitle.setText(title);
     }
 
+    /** Updates the alert pop-up's description text to describe the current issue.
+     * @param description description to update the alert pop-up with */
     public void setAlertDescription(String description) {
         alertDescription.setText(description);
         if(description.length() < 30) { // If description's length is smaller than 30, make font size bigger
@@ -49,6 +51,9 @@ public class AlertPopUpController {
             alertDescription.setFont(Font.font(15)); }
     }
 
+    /** Assigns another controller to this controller, so alerts can be interacted with over different controllers.
+     * @param controllerClass the controller the alert is in
+     * @author Gijs */
     public void setAlertPlacedController(Object controllerClass){
         this.controller = controllerClass;
     }

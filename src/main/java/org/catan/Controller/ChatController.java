@@ -20,20 +20,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Takes care of the user input and updates the chat.
- * @author Jeroen
- * */
+ * Handles the chat that allows players to communicate.
+ *
+ * @author Jeroen, Werner
+ */
 
 public class ChatController implements Initializable, ChatObservable {
     @FXML private TextField messageField;
     @FXML private TextArea chatBox;
     @FXML private ScrollPane scrollPane;
-    @FXML private Text msgContent;
-    @FXML private Text sender;
     private static ChatController chatController = new ChatController();
     Chat chat; // TODO get ID of game
 
-    /** Reads the input and gives it to the chat view. */
+    // Reads the input and updates the chat with it
     @FXML private void sendMessage() {
         if(messageField.getText().length() > 0 && messageField.getText().length() < 100) {
             ChatMessage message = new ChatMessage(messageField.getText());
@@ -45,6 +44,7 @@ public class ChatController implements Initializable, ChatObservable {
         else { messageField.clear(); }
     }
 
+    // Updates the chat by overwriting the chat String
     private void updateChatView() {
         chatBox.clear();
         chatBox.appendText(chat.generateChatString());
@@ -64,7 +64,7 @@ public class ChatController implements Initializable, ChatObservable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chatController = this;
         chat = new Chat(App.getCurrentGame().getCode().intValue());
-        chatBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));
+        chatBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D)); // Scroll to bottom of chat with each update
     }
 
     public static ChatController getInstance() {

@@ -10,6 +10,13 @@ import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;
 import java.io.IOException;
 
+/**
+ * Handles the pop up that appears when the game has ended.
+ * Shows whether you won or lost the game and allows the player to return to the main menu.
+ * 
+ * @author Jeroen, Jan
+ */
+
 public class GameEndController implements Observable {
     @FXML private Pane background;
     @FXML private Pane victoryPane;
