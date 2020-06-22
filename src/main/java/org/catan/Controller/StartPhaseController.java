@@ -49,12 +49,12 @@ public class StartPhaseController implements Observable {
 
     @Override
     public void update(Game game) {
-//        if(game.turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier() && !startPhaseHappened){
-//            activateBuildingStartPhase();
-//        }
-//        if (game.turnPlayerGetter().getIdentifier() != App.getClientPlayer().getIdentifier() && startPhaseHappened) {
-//            startPhaseHappened = false;
-//        }
+        if(game.turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier() && !startPhaseHappened){
+            activateBuildingStartPhase();
+        }
+        if (game.turnPlayerGetter().getIdentifier() != App.getClientPlayer().getIdentifier() && startPhaseHappened) {
+            startPhaseHappened = false;
+        }
     }
 
 }

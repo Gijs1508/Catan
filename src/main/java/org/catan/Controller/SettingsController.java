@@ -49,6 +49,10 @@ public class SettingsController {
         }
     }
 
+    public void rulesBtnClicked() {
+        ScreenController.getInstance().showRulesPopUp();
+    }
+
     // Player mutes/unmutes music
     public void musicBtnClicked() {
         if (musicOn) {
