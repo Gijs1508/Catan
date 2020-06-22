@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class ResourcesController implements Initializable, Observable {
+public class ResourcesController implements Initializable {
 
     private static ResourcesController resourcesController;
 
@@ -27,8 +27,8 @@ public class ResourcesController implements Initializable, Observable {
     }
 
     public void setPlayerResources(int total){
+        System.out.println("setPlayerResources has been called");
         ArrayList<String> receivedResources = new ArrayList<>();
-        if(App.getCurrentGame().getBoard().getSettlements() != null) {
             for (Village village : App.getCurrentGame().getBoard().getSettlements()) {
                 for (Tile tile : village.getConnectedTiles()){
                     int amount;
@@ -43,7 +43,6 @@ public class ResourcesController implements Initializable, Observable {
                         receivedResources.add(tile.getType());
                     }
                 }
-            }
 
 
             if(!receivedResources.isEmpty()) {
@@ -63,11 +62,6 @@ public class ResourcesController implements Initializable, Observable {
                 App.getCurrentGame().getPlayers().get(i).setPlayerInventory(player.getPlayerInventory());
             }
         }
-    }
-
-    @Override
-    public void update(Game game) {
-        
     }
 
     private int getIntFromImgPath(String imgpath) {
