@@ -48,10 +48,6 @@ public class Log {
         createLog();
     }
 
-    public Log(String eventType) {
-        this.eventType = eventType;
-    }
-
     /** Creates a log's text according to its type */
     private void createLog() {
         if (logs.getImgEvents().containsKey(eventType)) {
