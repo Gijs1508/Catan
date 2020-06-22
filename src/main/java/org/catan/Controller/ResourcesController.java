@@ -3,13 +3,8 @@ package org.catan.Controller;
 import javafx.fxml.Initializable;
 import org.catan.App;
 import org.catan.Model.*;
-import org.catan.interfaces.Observable;
-import org.catan.logic.DatabaseConnector;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class ResourcesController implements Initializable {
@@ -29,23 +24,23 @@ public class ResourcesController implements Initializable {
     public void setPlayerResources(int total){
         ArrayList<String> receivedResources = new ArrayList<>();
             for (Village village : App.getCurrentGame().getBoard().getSettlements()) {
+                int amount;
+                if(village.isUpgraded()){
+                    amount = 2;
+                } else {
+                    amount = 1;
+                }
                 for (Tile tile : village.getConnectedTiles()){
-                    int amount;
-                    if(village.isUpgraded()){
-                        amount = 2;
-                    } else {
-                        amount = 1;
-                    }
                     if(total == tile.getNumber() && village.getColor().equals(App.getClientPlayer().getColor()) && !tile.getId().equals(getThiefTileId())){
-                        App.getClientPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
-                        updateGamePlayer(App.getClientPlayer());
+                        for (Player player : App.getCurrentGame().getPlayers()) {
+                            if (player.getColor().equals(App.getClientPlayer().getColor()))
+                                player.getPlayerInventory().changeCards(tile.getType(), amount);
+                        }
                         receivedResources.add(tile.getType());
                     }
                 }
-
-
             if(!receivedResources.isEmpty()) {
-                DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+                StockController.getInstance().updateResources();
                 LogController.getInstance().logReceiveEvent(receivedResources);
             }
         }
@@ -53,14 +48,6 @@ public class ResourcesController implements Initializable {
 
     private String getThiefTileId() {
         return "tile" + App.getCurrentGame().getBoard().getThief().getTile();
-    }
-
-    private void updateGamePlayer(Player player) {
-        for (Player players : App.getCurrentGame().getPlayers()) {
-            if (player.getIdentifier() == players.getIdentifier()) {
-                players.setPlayerInventory(player.getPlayerInventory());
-            }
-        }
     }
 
     private int getIntFromImgPath(String imgpath) {
