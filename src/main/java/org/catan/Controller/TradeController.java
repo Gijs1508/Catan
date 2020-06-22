@@ -101,6 +101,7 @@ public class TradeController implements Initializable, Observable {
     /** The player buys a development card and will receive a random card from the bank.
      * @author Kaz, Jeroen */
     @FXML public void buyDevelopmentCard() {
+        Sound.playClick();
         // If player has enough resources
         if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive()){
             // If player has enough resources
@@ -148,7 +149,8 @@ public class TradeController implements Initializable, Observable {
     }
 
     @FXML
-    public void sendTrade() throws IOException {
+    public void sendTrade() {
+        Sound.playClick();
         if(tradeType.equals("bank") && isClientPlayerActive()){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);

@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import org.catan.Model.Sound;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,6 +30,7 @@ public class AlertPopUpController {
 
     // Checks which hideAlertPopup should be called
     public void closePopup() {
+        Sound.playClick();
         if(controller.toString().equals(MainController.getInstance().getClass().toString())){
             MainController.getInstance().hideAlertPopup();
         }

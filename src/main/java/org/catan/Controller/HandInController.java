@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import org.catan.App;
 import org.catan.Model.Inventory;
 import org.catan.Model.Player;
+import org.catan.Model.Sound;
 import org.catan.logic.DatabaseConnector;
 
 import java.net.URL;
@@ -43,6 +44,8 @@ public class HandInController implements Initializable {
     }
 
     public void accept() {
+        Sound.playClick();
+
         if(textToInt(requiredAmount) == 0){
             getInventory().changeCards("wood", -textToInt(giveWood));
             getInventory().changeCards("brick", -textToInt(giveBrick));
