@@ -196,7 +196,7 @@ public class TradePopUpController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
-        if(game.getTradeStatus().equals("accepted")){
+        if(game.getTradeStatus().equals("accepted") || game.getTradeStatus().equals("timeout")){
             screenController.hideTradePopup();
         }
     }
