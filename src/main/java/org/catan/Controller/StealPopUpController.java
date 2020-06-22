@@ -12,6 +12,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import org.catan.App;
 import org.catan.Model.Player;
+import org.catan.Model.Sound;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -87,6 +88,7 @@ public class StealPopUpController implements Initializable {
     /** Finds the opponent that the player chose to steal from and steal from them.
      * @param circleNum number of the circle that was pressed */
     public void opponentClicked(int circleNum) {
+        Sound.playClick();
         for (int i = 0; i < opponents.size(); i++) {
             for(Player player : App.getCurrentGame().getPlayers()) {
                 if (opponents.get(circleNum).getIdentifier() == player.getIdentifier()) {

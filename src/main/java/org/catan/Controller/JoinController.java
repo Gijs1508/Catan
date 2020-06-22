@@ -49,12 +49,6 @@ public class JoinController implements Observable, Initializable {
     }
 
     @FXML
-    private void createGame() throws IOException{
-        Sound.playClick();
-        App.setRoot("./views/createView");
-    }
-
-    @FXML
     private void handleButtonJoinAction() throws IOException{
         Sound.playClick();
         this.error_text.setVisible(false);

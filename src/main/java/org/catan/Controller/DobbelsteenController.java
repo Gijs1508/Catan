@@ -5,8 +5,10 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.catan.App;
 import org.catan.Model.Dice;
@@ -27,12 +29,17 @@ import java.util.Map;
 
 public class DobbelsteenController implements Observable {
 
-    LogController logController = LogController.getInstance();
     @FXML private ImageView dice1_img;
     @FXML private ImageView dice2_img;
-    Dice dice = new Dice();
+    @FXML private Button throwButton;
+    private Dice dice = new Dice();
+    private boolean diceThrown;
 
     private static DobbelsteenController dobbelsteenController;
+
+    public DobbelsteenController() {
+        dobbelsteenController = this;
+    }
 
     public static DobbelsteenController getInstance(){
         if(dobbelsteenController == null){
@@ -48,8 +55,7 @@ public class DobbelsteenController implements Observable {
     TODO disable throwing multiple times a turn
      */
     @FXML public void throwDie() {
-        System.out.println("is players turn: " + App.getClientPlayer().isTurn());
-        if(App.getClientPlayer().isTurn()){
+        if(App.getClientPlayer().isTurn() && !StartPhaseController.getInstance().isStartPhaseActive() && !diceThrown){
             Sound.playDiceShuffle();
             // Throw the dice 1.5 seconds after starting the shuffle sound effect
             Timeline delay = new Timeline(new KeyFrame(Duration.seconds(0.5), actionEvent -> {
@@ -77,7 +83,16 @@ public class DobbelsteenController implements Observable {
                     e.printStackTrace();
                 }
             }));
+            diceThrown = true;
             delay.play();
+        }
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't roll during the start phase.");
+        }
+        else if (diceThrown) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can only roll once during your turn.");
         }
         else {
             ScreenController.getInstance().showAlertPopup();
@@ -88,11 +103,30 @@ public class DobbelsteenController implements Observable {
     @Override
     public void update(Game game) throws IOException {
         if(App.getCurrentGame().isSevenThrown() != game.isSevenThrown()){
-            System.out.println("Boolean set to: " + game.isSevenThrown());
             App.getCurrentGame().setSevenThrown(game.isSevenThrown());
             if(App.getClientPlayer().getPlayerInventory().cardsTotalMinusKnightGetter() > 7 && game.isSevenThrown()){
                 ScreenController.getInstance().showHandInPopUp();
             }
         }
+    }
+
+    /** Grays out the throw button when player is unable to use it */
+    public void disableButton() {
+        throwButton.setTextFill(Color.GRAY);
+        throwButton.setOpacity(0.8);
+    }
+
+    /** Makes throw button visible again when it's player's turn */
+    public void enableButton() {
+        throwButton.setTextFill(Color.BLACK);
+        throwButton.setOpacity(1);
+    }
+
+    public boolean isDiceThrown() {
+        return diceThrown;
+    }
+
+    public void setDiceThrown(boolean diceThrown) {
+        this.diceThrown = diceThrown;
     }
 }

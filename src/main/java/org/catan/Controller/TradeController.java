@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.catan.App;
 import org.catan.Model.*;
@@ -13,6 +15,12 @@ import org.catan.logic.DatabaseConnector;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+
+/**
+ * Manages the trade view
+ *
+ * @author Kaz
+ */
 
 public class TradeController implements Initializable, Observable {
 
@@ -24,34 +32,25 @@ public class TradeController implements Initializable, Observable {
     //ArrayList of trade offers
     ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
 
-    @FXML
-    private Label giveWheatCount;
-    @FXML
-    private Label takeWheatCount;
-    @FXML
-    private Label giveWoodCount;
-    @FXML
-    private Label takeWoodCount;
-    @FXML
-    private Label giveOreCount;
-    @FXML
-    private Label takeOreCount;
-    @FXML
-    private Label giveWoolCount;
-    @FXML
-    private Label takeWoolCount;
-    @FXML
-    private Label giveBrickCount;
-    @FXML
-    private Label takeBrickCount;
-    @FXML
-    private Button playerTradeBtn;
-    @FXML
-    private Button bankTradeBtn;
+    @FXML private Label giveWheatCount;
+    @FXML private Label takeWheatCount;
+    @FXML private Label giveWoodCount;
+    @FXML private Label takeWoodCount;
+    @FXML private Label giveOreCount;
+    @FXML private Label takeOreCount;
+    @FXML private Label giveWoolCount;
+    @FXML private Label takeWoolCount;
+    @FXML private Label giveBrickCount;
+    @FXML private Label takeBrickCount;
+    @FXML private Button playerTradeBtn;
+    @FXML private Button bankTradeBtn;
 
     @FXML private Label wheatRatio; @FXML private Label woodRatio;
     @FXML private Label brickRatio; @FXML private Label woolRatio;
     @FXML private Label oreRatio;
+
+    @FXML private Button buyDevelopmentCardBtn;
+    @FXML private Pane handleTradeButtons;
 
     private HashMap<Integer, String> indexToResource = new HashMap<>(){{
         put(0, "wood");
@@ -63,7 +62,6 @@ public class TradeController implements Initializable, Observable {
 
     private static TradeController tradeController;
 
-    //sadsd
     public TradeController(){
     }
 
@@ -74,6 +72,10 @@ public class TradeController implements Initializable, Observable {
         return tradeController;
     }
 
+    /**
+     * This method switches the trade type from player to bank if the 'bank' button is clicked
+     * @author Kaz
+     */
     @FXML
     public void bankTrade() {
         Sound.playSwitch();
@@ -86,6 +88,10 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method switches the trade type from bank to player if the 'player' button is clicked
+     * @author Kaz
+     */
     @FXML
     public void playerTrade() {
         Sound.playSwitch2();
@@ -101,8 +107,9 @@ public class TradeController implements Initializable, Observable {
     /** The player buys a development card and will receive a random card from the bank.
      * @author Kaz, Jeroen */
     @FXML public void buyDevelopmentCard() {
+        Sound.playClick();
         // If player has enough resources
-        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive()){
+        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive() && !StartPhaseController.getInstance().isStartPhaseActive()){
             // If player has enough resources
             String developmentCard = Bank.getBank().takeDevelopmentCard();
 
@@ -134,6 +141,11 @@ public class TradeController implements Initializable, Observable {
             DevCardPopUpController.getInstance().playAnimation();
             LogController.getInstance().logDevelopmentCardEvent();
         }
+        // Start phase is active
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't roll during the start phase.");
+        }
         // Player doesn't have enough resources
         else if (isClientPlayerActive()){
             ScreenController.getInstance().showAlertPopup();
@@ -147,9 +159,25 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    public void disableButtons() {
+        buyDevelopmentCardBtn.setOpacity(0.8);
+        buyDevelopmentCardBtn.setTextFill(Color.GRAY);
+    }
+
+    public void enableButtons() {
+        buyDevelopmentCardBtn.setOpacity(1);
+        buyDevelopmentCardBtn.setTextFill(Color.BLACK);
+    }
+
+    /**
+     * This method manages bank trades and sends out trade requests for player type trades
+     * @throws IOException
+     * @author Kaz
+     */
     @FXML
-    public void sendTrade() throws IOException {
-        if(tradeType.equals("bank") && isClientPlayerActive()){
+    public void sendTrade() {
+        Sound.playClick();
+        if(tradeType.equals("bank") && isClientPlayerActive() && !StartPhaseController.getInstance().isStartPhaseActive()){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
             int netBrick = netResource(giveBrickCount, takeBrickCount);
@@ -162,11 +190,10 @@ public class TradeController implements Initializable, Observable {
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed")){
+        } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed") && !StartPhaseController.getInstance().isStartPhaseActive()){
             int[] offerArray = {resourceToInt(giveWoodCount), resourceToInt(giveBrickCount), resourceToInt(giveOreCount), resourceToInt(giveWoolCount), resourceToInt(giveWheatCount)};
             int[] requestArray = {resourceToInt(takeWoodCount), resourceToInt(takeBrickCount), resourceToInt(takeOreCount), resourceToInt(takeWoolCount), resourceToInt(takeWheatCount)};
 
-            //Trade offers with ArrayList
             TradeOffer trade = new TradeOffer();
             trade.updateOffer(App.getClientPlayer(), offerArray, requestArray);
             tradeOffers.add(trade);
@@ -175,17 +202,29 @@ public class TradeController implements Initializable, Observable {
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
             resetTrade();
         }
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't send a trade offer during the start phase.");
+        }
         else {
             ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You currently cannot send a trade offer.");
+            AlertPopUpController.getInstance().setAlertDescription("You can't send a trade offer outside outside of your turn.");
         }
     }
 
+    /**
+     * This method makes inbound trade offers show up on screen in a popup window
+     * @throws IOException
+     * @author Kaz
+     */
     public void receiveTrade() throws IOException{
         ScreenController.getInstance().showTradePopup();
     }
 
-
+    /**
+     * This method resets all trade counters to 0
+     * @author Kaz
+     */
     @FXML
     public void resetTrade() {
         takeWoodCount.setText("0");
@@ -202,61 +241,107 @@ public class TradeController implements Initializable, Observable {
         tradeTakeLock = false;
     }
 
+    /**
+     * This method adds wood to the upper trade counter
+     * @author Kaz
+     */
     @FXML
     public void giveMoreWood() {
         //Inventory index of Wood is 0
         giveResource(giveWoodCount, 0);
     }
 
+    /**
+     * This method adds wood to the lower trade counter
+     * @author Kaz
+     */
     @FXML
     public void takeMoreWood() {
         takeResource(takeWoodCount);
     }
 
+    /**
+     * This method adds brick to the upper trade counter
+     * @author Kaz
+     */
     @FXML
     public void giveMoreBrick() {
         //Inventory index of Brick is 1
         giveResource(giveBrickCount, 1);
     }
 
+    /**
+     * This method adds brick to the lower trade counter
+     * @author Kaz
+     */
     @FXML
     public void takeMoreBrick() {
         takeResource(takeBrickCount);
     }
 
+    /**
+     * This method adds wool to the upper trade counter
+     * @author Kaz
+     */
     @FXML
     public void giveMoreWool() {
         //Inventory index of Wool is 3
         giveResource(giveWoolCount, 3);
     }
 
+    /**
+     * This method adds wool to the lower trade counter
+     * @author Kaz
+     */
     @FXML
     public void takeMoreWool() {
         takeResource(takeWoolCount);
     }
 
+    /**
+     * This method adds ore to the upper trade counter
+     * @author Kaz
+     */
     @FXML
     public void giveMoreOre() {
         //Inventory index of Ore is 2
         giveResource(giveOreCount, 2);
     }
 
+    /**
+     * This method adds ore to the lower trade counter
+     * @author Kaz
+     */
     @FXML
     public void takeMoreOre() {
         takeResource(takeOreCount);
     }
 
+    /**
+     * This method adds wheat to the upper trade counter
+     * @author Kaz
+     */
     @FXML
     public void giveMoreWheat() {
         //Inventory index of Wheat is 4
         giveResource(giveWheatCount, 4);
     }
 
+    /**
+     * This method adds wheat to the lower trade counter
+     * @author Kaz
+     */
     @FXML
     public void takeMoreWheat() {
         takeResource(takeWheatCount);
     }
 
+    /**
+     * This method updates the bank trading resource ratio
+     * @param type
+     * @param ratio
+     * @author Jeroen
+     */
     public void updateRatioView(String type, int ratio) {
         switch (type) {
             case "wheat":
@@ -279,14 +364,12 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    //Raise given resource by one before returning as String
     private String raiseResource(Label resource){
         return Integer.toString(resourceToInt(resource) + 1);
     }
 
-    private String lowerResource(Label resource){
-        return Integer.toString(resourceToInt(resource) + 1);
-    }
-
+    //Convert Label to int
     private int resourceToInt(Label resource){
         return Integer.parseInt(resource.getText());
     }
@@ -299,7 +382,7 @@ public class TradeController implements Initializable, Observable {
         return getInventory().getCards();
     }
 
-
+    //Check if player owns required resource and add to the upper trade counter
     private void giveResource(Label resource, int inventoryIndex){
         int inventoryCard = getInventoryCards()[inventoryIndex];
         if(tradeType.equals("player")){
@@ -319,19 +402,22 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
+    //Raise the lower trade counter of a resource
     private void takeResource(Label resourceCount){
         if(tradeType.equals("player")){
             resourceCount.setText(raiseResource(resourceCount));
-        } else if(tradeTakeLock == false){
+        } else if(tradeTakeLock == false && (resourceToInt(giveWoodCount) > 0 || resourceToInt(giveBrickCount) > 0 || resourceToInt(giveOreCount) > 0 || resourceToInt(giveWoolCount) > 0 || resourceToInt(giveWheatCount) > 0)){
             resourceCount.setText(raiseResource(resourceCount));
             tradeTakeLock = true;
         }
     }
 
+    //Calculate the net gain/loss of a resource after a trade
     private int netResource(Label givenResource, Label receivedResource){
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
     }
 
+    //Check if client is active
     private boolean isClientPlayerActive(){
         return App.getClientPlayer().isTurn();
     }
@@ -372,11 +458,14 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
-    private void tradeAccepted(){
+    /**
+     * This method updates the player resources after their trade has been accepted by another player
+     */
+    public void tradeAccepted(){
         TradeOffer tradeOffer = tradeOffers.get(tradeOffers.size() - 1);
         int[] offer = tradeOffer.getOfferedCards();
         int[] request = tradeOffer.getRequestedCards();
-        Inventory playerInventory = App.getCurrentGame().turnPlayerGetter().getPlayerInventory(); // ClientPlayer inventory does not work for whatever reason
+        Inventory playerInventory = getInventory();
 
         playerInventory.changeCards("wood", -offer[0]);
         playerInventory.changeCards("brick", -offer[1]);

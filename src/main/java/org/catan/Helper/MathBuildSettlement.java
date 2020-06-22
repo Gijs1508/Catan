@@ -4,10 +4,21 @@ import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 
+/**
+ * This controller calculates distances and what nodes are close to eachother
+ * This is used in the BuildSettlementController
+ * @author Jan
+ */
 public class MathBuildSettlement {
 
-    // Returns the circles that are next to the circle you put in the function
-    // x and y are the selected circle, ArrayList is the list from player, Type is what you want it to check road/village road/road ect
+    /**
+     * Returns the nodes that are next to the circle you put in the function
+     * @param x coordinate from your node
+     * @param y coordinate from your node
+     * @param a the ArrayList with nodes you want to see if it is close to
+     * @param type the nodes you want to check (close to roads or villages)
+     * @return an ArrayList with all the nodes that are close
+     */
     public ArrayList<Circle> circlesInRadius(double x, double y, ArrayList<Circle> a, String type) {
         int radius = radius(type);
         ArrayList<Circle> inRadius = new ArrayList<>();
@@ -34,6 +45,11 @@ public class MathBuildSettlement {
     }
 
     // Measures the distance between points
+
+    /**
+     * Measures the distance between points
+     * @return The distance
+     */
     public double distance(double xa, double ya, double xb, double yb) {
         double xTotal = Math.pow(xb - xa, 2);
         double yTotal = Math.pow(yb - ya, 2);

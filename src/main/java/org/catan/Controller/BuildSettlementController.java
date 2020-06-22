@@ -10,9 +10,9 @@ import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-/* This controller calculates the nodes for settlements / road placement and returns it to GameSchermController
+/**
+ * This controller calculates the nodes for placement and places these on the board with the GameSchermController
  */
 public class BuildSettlementController implements Observable {
 
@@ -27,7 +27,6 @@ public class BuildSettlementController implements Observable {
 
     private GameSchermController gameSchermController = GameSchermController.getInstance();
     private static BuildSettlementController buildSettlementController;
-
 
     public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList,
                                      ArrayList<Circle> upgradeNodeList) {
@@ -68,6 +67,7 @@ public class BuildSettlementController implements Observable {
     * The methods returns the right placement nodes in the start phase
     * This is for village placement
     * @return an arrayList with nodes
+     * @author Jan
      */
     public ArrayList<Circle> showVillageStartSpots() {
         ArrayList<Circle> nodes = new ArrayList<>();
@@ -91,6 +91,7 @@ public class BuildSettlementController implements Observable {
      * This is for road placement
      * @param village Give the village the player just build
      * @return an arrayList with nodes
+     * @author Jan
      */
     public ArrayList<Circle> showRoadStartSpots(Circle village) {
         ArrayList<Circle> roads = new ArrayList<>(math.circlesInRadius(village.getLayoutX(), village.getLayoutY(), roadSpotNodeList, "other"));
@@ -112,6 +113,7 @@ public class BuildSettlementController implements Observable {
      * The methods returns the right placement nodes outside the start phase
      * This is for village placement
      * @return an arrayList with nodes
+     * @author Jan
      */
     public ArrayList<Circle> showVillageSpots() {
         ArrayList<Road> roadsConnected = new ArrayList<>(roadsConnected()); // Gives roads that have a minimum length of 2
@@ -279,6 +281,7 @@ public class BuildSettlementController implements Observable {
      * The methods makes a Village and returns it
      * Villages gets used in GameSchermController for image placement
      * @param node the player clicked
+     * @author Jan
      */
     public Village buildVillage(Circle node) {
         // If the node borders a harbor
@@ -293,24 +296,10 @@ public class BuildSettlementController implements Observable {
         App.getCurrentGame().turnPlayerGetter().addVillagePoint();
         App.getCurrentGame().turnPlayerGetter().addVictoryPoint();
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        checkPlayerWon(App.getCurrentGame().turnPlayerGetter());
-
         return village;
     }
 
-    /** checks if the player has won
-     * @param turnPlayerGetter the player who just build an settlement
-     * @author Gijs */
-    private void checkPlayerWon(Player turnPlayerGetter) {
-        if(turnPlayerGetter.getScore() >= 10){
-            // TODO: Change this to a real function.
-            ScoreController.getInstance().testGameEnd();
-        }
-    }
-
-    /** Finds the harbor that the settlement has been placed adjacent to and updates accordingly.
-     * @param node the vertex a settlement has been placed on
-     * @author Jeroen */
+    // Finds the harbor that the settlement has been placed adjacent to and updates accordingly.
     private void builtAtHarbor(Circle node) {
         int harborNum = 0;
 
@@ -328,11 +317,11 @@ public class BuildSettlementController implements Observable {
         }
     }
 
-
     /**
      * The methods upgrades a Village and returns it
      * Upgraded villages gets used in GameSchermController for image placement
      * @param node the player clicked
+     * @author Jan
      */
     public Village buildUpgrade(Circle node) {
         Village village = null;
@@ -350,7 +339,6 @@ public class BuildSettlementController implements Observable {
             App.getCurrentGame().turnPlayerGetter().removeVillagePoint();
             App.getCurrentGame().getBoard().setSettlements(buildVillages);
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-            checkPlayerWon(App.getCurrentGame().turnPlayerGetter());
 
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -363,6 +351,7 @@ public class BuildSettlementController implements Observable {
     /**
      * Checks the villages that can be upgraded
      * @return an arrayList with nodes of villages
+     * @author Jan
      */
     public ArrayList<Circle> showUpgradeableVillages() {
         ArrayList<Village> villages = new ArrayList<>(playerVillages());
@@ -385,6 +374,7 @@ public class BuildSettlementController implements Observable {
     /**
      * Checks the roads that can be build
      * @return an arrayList with nodes of roads
+     * @author Jan
      */
     public ArrayList<Circle> showRoadSpots() {
         ArrayList<Road> playerRoads = new ArrayList<>(playerRoads());
@@ -405,6 +395,7 @@ public class BuildSettlementController implements Observable {
     /**
      * The returns the villages that can be upgraded
      * @return an arrayList with nodes of villages
+     * @author Jan
      */
     public Road buildRoad(Circle node) {
         Road road = new Road(node.getLayoutX(), node.getLayoutY(), getPlayerColor());
@@ -415,10 +406,15 @@ public class BuildSettlementController implements Observable {
         return road;
     }
 
+    // Returns the color from the player whose turn it is
     private String getPlayerColor() {
         return App.getCurrentGame().turnPlayerGetter().getColor();
     }
 
+    /**
+     * This method updates all the villages when called
+     * @author Jan
+     */
     @Override
     public void update(Game game) {
         updateRoads(game.getBoard().getRoads());
@@ -437,7 +433,6 @@ public class BuildSettlementController implements Observable {
 
     // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
-//        if (isSettlementArrayTheSame(villages)) {
         if (!villages.equals(buildVillages)) {
             ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
@@ -459,19 +454,6 @@ public class BuildSettlementController implements Observable {
             App.getCurrentGame().getBoard().setSettlements(buildVillages);
         }
     }
-
-    // Keep this for if updateSettlements is updating to much
-//    private boolean isSettlementArrayTheSame(ArrayList<Village> villages) {
-//        if (villages.size() > buildVillages.size())
-//            return true;
-//        else {
-//            for (int i=0; i < villages.size(); i++) {
-//                if (buildVillages.get(i).isUpgraded() != villages.get(i).isUpgraded())
-//                    return true;
-//            }
-//        }
-//        return false;
-//    }
 
     // returns the instance of this class
     public static BuildSettlementController getInstance() {

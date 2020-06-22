@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="676.0" prefWidth="1200.0" style="-fx-background-color: #194868;" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.RulesController">
+<AnchorPane prefHeight="676.0" prefWidth="1200.0" style="-fx-background-color: #194868;" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.RulesController">
    <children>
       <ImageView id="bg_img" fitHeight="676.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,12 +21,18 @@
          <image>
             <Image url="@../assets/img/menu/back.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <TextArea id="rules" editable="false" layoutX="30.0" layoutY="162.0" prefHeight="426.0" prefWidth="1142.0" text="The players in the game represent settlers establishing settlements on the island of Catan. Players build settlements, cities, and roads to connect them as they settle the island. &#10;The game board, which represents the island, is composed of hexagonal tiles (hexes) of different land types, which are laid out randomly at the beginning of each game.&#10;&#10;Players build by spending resources (sheep, wheat, wood, brick and ore) that are depicted by these resource cards; &#10;each land type, with the exception of the unproductive desert, produces a specific resource- hills produce brick, forests produce wood, mountains produce ore, fields produce wheat, and pastures produce sheep.&#10;On each player's turn, two six-sided dice are rolled to determine which hexes produce resources. &#10;Players with a settlement adjacent to a hex containing the number just rolled receive one card of the corresponding resource; cities produce two cards of the corresponding resource. &#10;For example, if a player has one city and two settlements adjacent to a grain hex, that player would take four grain resource cards if the corresponding number was rolled.&#10;&#10;There is also a robber token, initially placed on the desert; if a player rolls 7, the robber must be moved to another hex, which will no longer produce resources until the robber is moved again. &#10;That player may also steal a resource card from another player with a settlement or city adjacent to the robber's new placement. &#10;In addition, when a 7 is rolled, all players with 8 or more resource cards must discard their choice of half of their cards, rounded down. &#10;For example, If a player has 9 resource cards, and a 7 is rolled, the player must get rid of 4 cards.&#10;&#10;On the player's turn, the player may spend resource cards to build roads, settlements, upgrade settlements to cities (which replace existing settlements), or development cards. &#10;Players can trade resource cards between each other; players may also trade off-island (in effect, with the non-player bank) at a ratio of four-to-one resource for one of any other. &#10;By building settlements adjacent to ports, players may trade with the bank at three-to-one (three of any single resource type) or two-to-one (two of a specific resource) ratios, depending on the port's location.&#10;&#10;The goal of the game is to reach ten victory points. Players score one point for each settlement they own and two for each city. &#10;Various other achievements, such as establishing the longest road and the largest army (by playing the most knight cards), grant a player additional victory points.&#10;&#10;Resource cards can also be spent to buy a development card. &#10;Three types of development cards include cards worth one victory point; knight cards, which allow the player to move the robber as if they had rolled a 7 (but without the remove-half rule); &#10;and a third set of cards which allow the player one of three abilities when played." wrapText="true" />
       <ImageView fx:id="musicBtn" fitHeight="74.0" fitWidth="79.0" layoutX="1126.0" onMouseClicked="#toggleMusic" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/musicOnWhite.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
    </children>
 </AnchorPane>

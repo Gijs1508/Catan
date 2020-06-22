@@ -17,17 +17,17 @@ import org.catan.interfaces.Observable;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
+ * Handles things that happen on the entire screen.
  * Puts all the separate views together into a complete game screen.
- *
  * @author Jeroen
  */
 
 public class ScreenController implements Initializable, Observable {
-
     @FXML private AnchorPane root; @FXML private Pane boardPane;
     @FXML private Pane stockPane; @FXML private Pane scorePane;
     @FXML private Pane chatPane; @FXML private Pane logPane;
@@ -37,6 +37,7 @@ public class ScreenController implements Initializable, Observable {
     @FXML private Pane stealPopup; @FXML private Pane knightPopup;
     @FXML private Pane tradePopup; @FXML private Pane handInPopup;
     @FXML private Pane devCardPopup; @FXML private Pane alertPopup;
+    @FXML private Pane rulesPane;
 
     private AnchorPane boardView; private AnchorPane stockView;
     private AnchorPane logView; private AnchorPane chatView;
@@ -46,16 +47,15 @@ public class ScreenController implements Initializable, Observable {
     private AnchorPane stealPopupView; private AnchorPane knightDetails;
     private AnchorPane tradePopupView; private AnchorPane handInPopupView;
     private AnchorPane devCardPopupView; private AnchorPane alertPopupView;
+    private AnchorPane rulesPopUp;
 
     private static ScreenController screenController;
     public ScreenController() {
         screenController = this;
     }
 
-    /** Loads all the views as AnchorPanes and adds them to one view that manages their locations.
-     * @author Jeroen */
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
+    /** Loads all the views as AnchorPanes and adds them to one view that handles their locations. */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle){
         root.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         try { // The order in which the views are loaded is important if you need their controllers to communicate.
             logView = (AnchorPane) App.loadFXML("Views/logsView");
@@ -70,6 +70,7 @@ public class ScreenController implements Initializable, Observable {
             gameEndView = (AnchorPane) App.loadFXML("Views/gameEndView");
             devCardPopupView = (AnchorPane) App.loadFXML("Views/devCardPopUpView");
             alertPopupView = (AnchorPane) App.loadFXML("Views/alertPopUpView");
+            rulesPopUp = (AnchorPane) App.loadFXML("Views/rulesPopUp");
             knightDetails = new KnightDetails().getRoot();
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,9 +90,11 @@ public class ScreenController implements Initializable, Observable {
         knightPopup.getChildren().setAll(knightDetails);
         devCardPopup.getChildren().setAll(devCardPopupView);
         alertPopup.getChildren().setAll(alertPopupView);
+        rulesPane.getChildren().setAll(rulesPopUp);
 
         initializePopup(gameEndPane);
         initializePopup(settingsPane);
+        initializePopup(rulesPane);
         initializePopup(stealPopup);
         initializePopup(knightPopup);
         initializePopup(tradePopup);
@@ -99,15 +102,52 @@ public class ScreenController implements Initializable, Observable {
         initializePopup(devCardPopup);
         initializePopup(alertPopup);
 
-        for(Player player : App.getCurrentGame().getPlayers()){
+        // Start the start phase with the first player
+        if (App.getCurrentGame().turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier())
+            StartPhaseController.getInstance().activateBuildingStartPhase();
 
-        }
-//        StartPhaseController spc = new StartPhaseController();
-//        if (App.getCurrentGame().turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier())
-//            spc.activateBuildingStartPhase();
-
+        // All alert pop-ups are now in the game screen, so this controller needs to be assigned to the pop-up controller
         AlertPopUpController.getInstance().setAlertPlacedController(this.getClass());
+
+        initializeButtonStates();
     }
+
+    /** Makes sure the buttons update on time */
+    @Override public void update(Game game) {
+        if (!StartPhaseController.getInstance().isStartPhaseActive()) {
+            handleButtonStates();
+        }
+        if (!App.getClientPlayer().isTurn() && game.turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier()) {
+            resetDoneActions();
+        }
+    }
+
+    private void resetDoneActions() {
+        DobbelsteenController.getInstance().setDiceThrown(false);
+    }
+
+
+    // Buttons are disabled in start phase
+    private void initializeButtonStates() {
+        GameSchermController.getInstance().disableButtons();
+        DobbelsteenController.getInstance().disableButton();
+        TradeController.getInstance().disableButtons();
+    }
+
+    // Disables / enables all buttons that can't be used outside of player's turn
+    private void handleButtonStates() {
+        // Disable buttons if it's not client player's turn
+        if (App.getCurrentGame().turnPlayerGetter().getIdentifier() != App.getClientPlayer().getIdentifier()) {
+            GameSchermController.getInstance().disableButtons();
+            DobbelsteenController.getInstance().disableButton();
+            TradeController.getInstance().disableButtons();
+        } else { // It is player's turn
+            GameSchermController.getInstance().enableButtons();
+            DobbelsteenController.getInstance().enableButton();
+            TradeController.getInstance().enableButtons();
+        }
+    }
+
 
     public void showGameEnd() {
         gameEndPane.setVisible(true);
@@ -120,6 +160,7 @@ public class ScreenController implements Initializable, Observable {
         settingsPane.setVisible(true);
         SettingsController.getInstance().startAnimation();
     }
+
     public void hideSettings() {
         settingsPane.setVisible(false);
     }
@@ -133,6 +174,7 @@ public class ScreenController implements Initializable, Observable {
         KnightDetails.getFadeOut().setOnFinished(actionEvent -> knightPopup.setVisible(false));
     }
 
+    /** Creates a new instance of the steal popup and shows it. */
     public void showStealPopUp() throws IOException {
         stealPopupView = (AnchorPane) App.loadFXML("Views/stealPopUpView");
         stealPopup.getChildren().setAll(stealPopupView);
@@ -142,6 +184,16 @@ public class ScreenController implements Initializable, Observable {
         stealPopup.setVisible(false);
     }
 
+
+    public void showRulesPopUp() {
+        rulesPane.setVisible(true);
+        RulesPopUpController.getInstance().startAnimation();
+    }
+    public void hideRulesPopUp() {
+        rulesPane.setVisible(false);
+    }
+
+    /** Creates a new instance of the hand in popup and shows it. */
     public void showHandInPopUp() throws IOException {
         handInPopupView = (AnchorPane) App.loadFXML("Views/handInPopUpView");
         handInPopup.getChildren().setAll(handInPopupView);
@@ -151,6 +203,7 @@ public class ScreenController implements Initializable, Observable {
         handInPopup.setVisible(false);
     }
 
+    /** Creates a new instance of the trade popup and shows it. */
     public void showTradePopup() throws IOException {
         tradePopupView = (AnchorPane) App.loadFXML("Views/tradePopUpView");
         tradePopup.getChildren().setAll(tradePopupView);
@@ -174,15 +227,18 @@ public class ScreenController implements Initializable, Observable {
         alertPopup.setVisible(false);
     }
 
-    // Makes sure popups are ready to show when needed
+    // Makes sure all popups aren't visible and are ready to appear when needed.
     private void initializePopup(Pane popupPane) {
         popupPane.setVisible(false);
         popupPane.setOpacity(1);
         popupPane.setStyle("-fx-background-color: none;");
     }
 
+    /** Finds the position of the trade popup in the entire screen (root).
+     * This is used for finding out whether the trade pop up was dragged out of the screen.
+     * @return HashMap containing the layout x and y of the trade popup. */
     // Returns the layout coordinates of the trade popup.
-    public HashMap<String, Double> getTradePopupLayout() {
+    public HashMap<String, Double> tradePopupLayoutGetter() {
         HashMap<String, Double> popupInfo = new HashMap<>() {{
             this.put("layoutX", tradePopup.getLayoutX());
             this.put("layoutY", tradePopup.getLayoutY());
@@ -196,10 +252,5 @@ public class ScreenController implements Initializable, Observable {
 
     public static ScreenController getInstance() {
         return screenController;
-    }
-
-    @Override
-    public void update(Game game) {
-
     }
 }
