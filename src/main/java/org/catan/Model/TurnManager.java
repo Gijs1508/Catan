@@ -31,7 +31,6 @@ public class TurnManager {
             currentPlayer.setTurn(false);
             nextPlayer.setTurn(true);
             App.getCurrentGame().setTradeStatus("closed");
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 }
