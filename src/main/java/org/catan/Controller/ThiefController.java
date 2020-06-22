@@ -29,7 +29,8 @@ public class ThiefController implements Initializable, Observable {
 
     /** Converts String circleID ("Tilenr") to an int tileID (nr)
      * @param circleID the id of the tile the thief was moved to, but in String format
-     * @return int of cicleID */
+     * @return int of cicleID
+     * @author Sabrina*/
     public int convertStringIDtoIntID(String circleID){
         circleID = circleID.replaceAll("[^\\d.]", ""); //Cleaning tile string to only a number string
         int tileID;
