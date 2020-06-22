@@ -45,10 +45,9 @@ public class ResourcesController implements Initializable, Observable {
                 }
             }
 
-
             if(!receivedResources.isEmpty()) {
                 DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-                LogController.getInstance().logReceiveEvent(receivedResources);
+                LogController.getInstance().logReceiveEvent(receivedResources, App.getClientPlayer().getName());
             }
         }
     }
