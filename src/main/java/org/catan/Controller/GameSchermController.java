@@ -407,12 +407,15 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     public void endTurn() {
-        if(App.getClientPlayer().isTurn()){
+        if(App.getClientPlayer().isTurn() && DobbelsteenController.getInstance().isDiceThrown()){
             Sound.playEndTurnJingle();
             logController.logEndTurnEvent();
             TurnManager.nextPlayer();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
             System.out.println("DB update");
+        } else if (!DobbelsteenController.getInstance().isDiceThrown()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You must throw the dice before ending your turn.");
         }
         else {
             ScreenController.getInstance().showAlertPopup();
