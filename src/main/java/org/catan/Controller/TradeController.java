@@ -478,7 +478,7 @@ public class TradeController implements Initializable, Observable {
 
             if(currentRejections < updatedRejections){
                 currentOffer.addRejection();
-                if(currentOffer.getRejections() >= App.getCurrentGame().getPlayers().size() - 1){
+                if((currentOffer.getRejections() >= App.getCurrentGame().getPlayers().size() - 1) & App.getClientPlayer().isTurn()){
                     ScreenController.getInstance().showAlertPopup();
                     AlertPopUpController.getInstance().setAlertDescription("All players declined your trade offer");
                     App.getCurrentGame().setTradeStatus("closed");
