@@ -37,6 +37,7 @@ public class ScreenController implements Initializable, Observable {
     @FXML private Pane stealPopup; @FXML private Pane knightPopup;
     @FXML private Pane tradePopup; @FXML private Pane handInPopup;
     @FXML private Pane devCardPopup; @FXML private Pane alertPopup;
+    @FXML private Pane rulesPane;
 
     private AnchorPane boardView; private AnchorPane stockView;
     private AnchorPane logView; private AnchorPane chatView;
@@ -46,6 +47,7 @@ public class ScreenController implements Initializable, Observable {
     private AnchorPane stealPopupView; private AnchorPane knightDetails;
     private AnchorPane tradePopupView; private AnchorPane handInPopupView;
     private AnchorPane devCardPopupView; private AnchorPane alertPopupView;
+    private AnchorPane rulesPopUp;
 
     private static ScreenController screenController;
     public ScreenController() {
@@ -70,6 +72,7 @@ public class ScreenController implements Initializable, Observable {
             gameEndView = (AnchorPane) App.loadFXML("Views/gameEndView");
             devCardPopupView = (AnchorPane) App.loadFXML("Views/devCardPopUpView");
             alertPopupView = (AnchorPane) App.loadFXML("Views/alertPopUpView");
+            rulesPopUp = (AnchorPane) App.loadFXML("Views/rulesPopUp");
             knightDetails = new KnightDetails().getRoot();
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,9 +92,11 @@ public class ScreenController implements Initializable, Observable {
         knightPopup.getChildren().setAll(knightDetails);
         devCardPopup.getChildren().setAll(devCardPopupView);
         alertPopup.getChildren().setAll(alertPopupView);
+        rulesPane.getChildren().setAll(rulesPopUp);
 
         initializePopup(gameEndPane);
         initializePopup(settingsPane);
+        initializePopup(rulesPane);
         initializePopup(stealPopup);
         initializePopup(knightPopup);
         initializePopup(tradePopup);
@@ -102,9 +107,9 @@ public class ScreenController implements Initializable, Observable {
         for(Player player : App.getCurrentGame().getPlayers()){
 
         }
-//        StartPhaseController spc = new StartPhaseController();
-//        if (App.getCurrentGame().turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier())
-//            spc.activateBuildingStartPhase();
+        StartPhaseController spc = new StartPhaseController();
+        if (App.getCurrentGame().turnPlayerGetter().getIdentifier() == App.getClientPlayer().getIdentifier())
+            spc.activateBuildingStartPhase();
 
         AlertPopUpController.getInstance().setAlertPlacedController(this.getClass());
     }
@@ -120,6 +125,7 @@ public class ScreenController implements Initializable, Observable {
         settingsPane.setVisible(true);
         SettingsController.getInstance().startAnimation();
     }
+
     public void hideSettings() {
         settingsPane.setVisible(false);
     }
@@ -138,6 +144,16 @@ public class ScreenController implements Initializable, Observable {
         stealPopup.getChildren().setAll(stealPopupView);
         stealPopup.setVisible(true);
     }
+
+    public void showRulesPopUp() {
+        rulesPane.setVisible(true);
+        RulesPopUpController.getInstance().startAnimation();
+    }
+
+    public void hideRulesPopUp() {
+        rulesPane.setVisible(false);
+    }
+
     public void hideStealPopUp() {
         stealPopup.setVisible(false);
     }

@@ -179,7 +179,7 @@ public class GameSchermController implements Initializable, Observable {
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
 
-//        startPhaseButtonsInvisible();
+        startPhaseButtonsInvisible();
         initializeButtons();
 
         initializeHarbors();
