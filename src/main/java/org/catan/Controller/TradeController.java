@@ -128,16 +128,16 @@ public class TradeController implements Initializable, Observable {
             DevCardPopUpController.getInstance().playAnimation();
             LogController.getInstance().logDevelopmentCardEvent();
         }
+        // Start phase is active
+        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't roll during the start phase.");
+        }
         // Player doesn't have enough resources
         else if (isClientPlayerActive()){
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to buy a development card.");
             return;
-        }
-        // Start phase is active
-        else if (StartPhaseController.getInstance().isStartPhaseActive()) {
-            ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You can't roll during the start phase.");
         }
         // It's not player's turn
         else {
@@ -172,7 +172,7 @@ public class TradeController implements Initializable, Observable {
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed")){
+        } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed") && !StartPhaseController.getInstance().isStartPhaseActive()){
             int[] offerArray = {resourceToInt(giveWoodCount), resourceToInt(giveBrickCount), resourceToInt(giveOreCount), resourceToInt(giveWoolCount), resourceToInt(giveWheatCount)};
             int[] requestArray = {resourceToInt(takeWoodCount), resourceToInt(takeBrickCount), resourceToInt(takeOreCount), resourceToInt(takeWoolCount), resourceToInt(takeWheatCount)};
 
