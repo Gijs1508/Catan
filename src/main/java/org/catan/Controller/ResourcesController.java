@@ -39,10 +39,10 @@ public class ResourcesController implements Initializable {
                         receivedResources.add(tile.getType());
                     }
                 }
-            if(!receivedResources.isEmpty()) {
-                StockController.getInstance().updateResources();
-                LogController.getInstance().logReceiveEvent(receivedResources);
-            }
+        }
+        if(!receivedResources.isEmpty()) {
+            StockController.getInstance().updateResources();
+            LogController.getInstance().logReceiveEvent(receivedResources);
         }
     }
 
