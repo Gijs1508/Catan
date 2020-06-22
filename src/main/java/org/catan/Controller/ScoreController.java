@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import org.catan.App;
+import org.catan.Model.Bank;
 import org.catan.Model.Player;
 
 import java.net.URL;
@@ -136,39 +137,28 @@ public class ScoreController implements Initializable, Observable {
         }};
     }
 
-    public int getScore() {
-        return this.score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public void updateScore() {
-    }
-
-    /** Searches for the color's labels in the score view and updates the victory points label.
-     * @param color the player's color
-     * @param score the player's score in victory points
-     * @author Jeroen */
-    public void setVictoryPointsForPlayer(String color, int score) {
+    // Searches for the color's labels in the score view and updates the victory points label.
+    private void setVictoryPointsForPlayer(String color, int score) {
         colorToLabels.get(color).get("points").setText(Integer.toString(score));
     }
 
-    public void setRoadPointsForPlayer(String color, int road) {
+    // Searches for the color's labels in the score view and updates the player's roads label.
+    private void setRoadPointsForPlayer(String color, int road) {
         colorToLabels.get(color).get("roads").setText(Integer.toString(road));
     }
 
-    public void setVillagePointsForPlayer(String color, int village) {
+    // Searches for the color's labels in the score view and updates the player's villages label.
+    private void setVillagePointsForPlayer(String color, int village) {
         colorToLabels.get(color).get("villages").setText(Integer.toString(village));
     }
-
-    public void setCityPointsForPlayer(String color, int city) {
+    // Searches for the color's labels in the score view and updates the player's cities label.
+    private void setCityPointsForPlayer(String color, int city) {
         colorToLabels.get(color).get("cities").setText(Integer.toString(city));
     }
 
-    public void removeDevelopmentCardFromBankView() {
-        bankDevelopmentCards.setText(String.valueOf(Integer.parseInt(bankDevelopmentCards.getText()) - 1));
+    // Gets the amount of resource cards the bank has left and updates the bank in the scoreboard.
+    private void setDevelopmentCardsLeftForBank(int cardsLeft) {
+        bankDevelopmentCards.setText(Integer.toString(cardsLeft));
     }
 
     public static ScoreController getInstance() {
@@ -199,5 +189,6 @@ public class ScoreController implements Initializable, Observable {
             setVillagePointsForPlayer(player.getColor(), player.getVillageScore());
             setVictoryPointsForPlayer(player.getColor(), player.getScore());
         }
+        setDevelopmentCardsLeftForBank(game.getBank().getBankInventory().developmentCardsLeftGetter());
     }
 }

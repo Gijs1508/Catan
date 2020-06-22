@@ -78,7 +78,7 @@ public class TradeController implements Initializable, Observable {
      */
     @FXML
     public void bankTrade() {
-        StockController.getInstance().testResources(); // TODO TODO TODO AAOAAAAAOOAOA TODO TODO AAOAOAOAOAOOOOOOOO DELETE THIS HOOOOOOO
+        //StockController.getInstance().testResources(); // TODO TODO TODO AAOAAAAAOOAOA TODO TODO AAOAOAOAOAOOOOOOOO DELETE THIS HOOOOOOO
         Sound.playSwitch();
 
         if (tradeType.equals("player")) {
@@ -110,8 +110,11 @@ public class TradeController implements Initializable, Observable {
     @FXML public void buyDevelopmentCard() {
         Sound.playClick();
         // If player has enough resources
-        if(getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive() && !StartPhaseController.getInstance().isStartPhaseActive()){
-            // If player has enough resources
+        if(
+                getInventoryCards()[2] >= 1 && getInventoryCards()[3] >= 1 && getInventoryCards()[4] >= 1 && isClientPlayerActive()
+                && !StartPhaseController.getInstance().isStartPhaseActive()
+                && !App.getCurrentGame().getTradeStatus().equals("pending"))
+        {
             String developmentCard = Bank.getBank().takeDevelopmentCard();
 
             // If bank is empty
@@ -141,6 +144,10 @@ public class TradeController implements Initializable, Observable {
             }
             DevCardPopUpController.getInstance().playAnimation();
             LogController.getInstance().logDevelopmentCardEvent();
+        }
+        else if (App.getCurrentGame().getTradeStatus().equals("pending")) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't buy a development card while your trade offer is pending.");
         }
         // Start phase is active
         else if (StartPhaseController.getInstance().isStartPhaseActive()) {
@@ -178,7 +185,13 @@ public class TradeController implements Initializable, Observable {
     @FXML
     public void sendTrade() {
         Sound.playClick();
-        if(tradeType.equals("bank") && isClientPlayerActive() && !StartPhaseController.getInstance().isStartPhaseActive()){
+
+        // Bank trade
+        if (
+                tradeType.equals("bank") && isClientPlayerActive()
+                && !StartPhaseController.getInstance().isStartPhaseActive() && !App.getCurrentGame().getTradeStatus().equals("pending")
+                && DobbelsteenController.getInstance().isDiceThrown()
+        ) {
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
             int netBrick = netResource(giveBrickCount, takeBrickCount);
@@ -191,7 +204,15 @@ public class TradeController implements Initializable, Observable {
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed") && !StartPhaseController.getInstance().isStartPhaseActive()){
+        }
+
+        // Player trade
+        else if (
+                tradeType.equals("player") && isClientPlayerActive()
+                && App.getCurrentGame().getTradeStatus().equals("closed")
+                && !StartPhaseController.getInstance().isStartPhaseActive()
+                && DobbelsteenController.getInstance().isDiceThrown()
+        ) {
             int[] offerArray = {resourceToInt(giveWoodCount), resourceToInt(giveBrickCount), resourceToInt(giveOreCount), resourceToInt(giveWoolCount), resourceToInt(giveWheatCount)};
             int[] requestArray = {resourceToInt(takeWoodCount), resourceToInt(takeBrickCount), resourceToInt(takeOreCount), resourceToInt(takeWoolCount), resourceToInt(takeWheatCount)};
 
@@ -202,6 +223,16 @@ public class TradeController implements Initializable, Observable {
             App.getCurrentGame().setTradeStatus("pending");
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
             resetTrade();
+        }
+
+        // Alerts
+        else if(!DobbelsteenController.getInstance().isDiceThrown()) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You must throw the dice before sending a trade.");
+        }
+        else if (!App.getCurrentGame().getTradeStatus().equals("pending")) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't send a trade offer while one is still pending.");
         }
         else if (StartPhaseController.getInstance().isStartPhaseActive()) {
             ScreenController.getInstance().showAlertPopup();
@@ -447,7 +478,7 @@ public class TradeController implements Initializable, Observable {
 
             if(currentRejections < updatedRejections){
                 currentOffer.addRejection();
-                if(currentOffer.getRejections() >= App.getCurrentGame().getPlayers().size() - 1){
+                if((currentOffer.getRejections() >= App.getCurrentGame().getPlayers().size() - 1) & App.getClientPlayer().isTurn()){
                     ScreenController.getInstance().showAlertPopup();
                     AlertPopUpController.getInstance().setAlertDescription("All players declined your trade offer");
                     App.getCurrentGame().setTradeStatus("closed");

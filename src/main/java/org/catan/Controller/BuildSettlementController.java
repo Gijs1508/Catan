@@ -285,7 +285,6 @@ public class BuildSettlementController implements Observable {
      */
     public Village buildVillage(Circle node) {
         // If the node borders a harbor
-        System.out.println(node.toString());
         if(GameSchermController.getInstance().getAllHarborVertices().contains(node)) {
             builtAtHarbor(node);
         }
@@ -326,7 +325,7 @@ public class BuildSettlementController implements Observable {
     public Village buildUpgrade(Circle node) {
         Village village = null;
         int[] reqResources = {0, 0, 3, 0, 2, 0};
-        if(gameSchermController.canBuildObject(reqResources)){
+        if(gameSchermController.canBuildObject(reqResources) && !App.getCurrentGame().getTradeStatus().equals("pending")){
             for (Village buildVillage : buildVillages) {
                 if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
                     buildVillage.setUpgraded(true);
@@ -340,10 +339,13 @@ public class BuildSettlementController implements Observable {
             App.getCurrentGame().getBoard().setSettlements(buildVillages);
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
 
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("You don't have enough resources to upgrade a village!");
-            alert.show();
+        } else if(App.getCurrentGame().getTradeStatus().equals("pending")){
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't upgrade your settlement while your trade offer is pending.");
+        }
+        else {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to upgrade a village.");
         }
         return village;
     }
@@ -442,6 +444,7 @@ public class BuildSettlementController implements Observable {
 
             for (Village village : changedVillages) {
                 if (village.isUpgraded()) {
+                    cities.add(village);
                     cities.add(village);
                     villages2.remove(village);
                 }

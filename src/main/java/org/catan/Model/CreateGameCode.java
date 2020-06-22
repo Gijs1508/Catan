@@ -9,9 +9,6 @@ package org.catan.Model;
 public class CreateGameCode {
     private static long seed;
 
-    CreateGameCode(){
-
-    }
     /*
     This method generates a random code based on numbers.
     It returns the game code as seed, since that is also used as

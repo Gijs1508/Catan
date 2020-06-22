@@ -190,7 +190,6 @@ public class GameSchermController implements Initializable, Observable {
         if (App.getCurrentGame().turnPlayerGetter().getIdentifier() != game.turnPlayerGetter().getIdentifier()){
             for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++){
                 App.getCurrentGame().getPlayers().get(i).setTurn(game.getPlayers().get(i).isTurn());
-                System.out.println("Player " + i + " turn: " + App.getCurrentGame().getPlayers().get(i).isTurn());
             }
         }
     }
@@ -247,7 +246,12 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     private void placeThief(MouseEvent mouseEvent) throws IOException {
-        System.out.println("Doing thief placement");
+        if(App.getCurrentGame().getTradeStatus().equals("pending")) {
+            ScreenController.getInstance().showAlertPopup();
+            AlertPopUpController.getInstance().setAlertDescription("You can't move the thief while your trade offer is pending.");
+            return;
+        }
+
         Circle circle = (Circle) mouseEvent.getSource();
         thief.setLayoutX(circle.getLayoutX() - 26);
         thief.setLayoutY(circle.getLayoutY() - 33);
@@ -305,13 +309,16 @@ public class GameSchermController implements Initializable, Observable {
         int[] reqResources = {1, 1, 0, 1, 1, 0};
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
-        if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()){
+        if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive() && !App.getCurrentGame().getTradeStatus().equals("pending")){
             logController.logSettlementEvent();
             placeVillage(build.buildVillage(circle));
             Sound.playBuildSettlement();
-        }else {
-            ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a village.");
+        }
+        else if(App.getCurrentGame().getTradeStatus().equals("pending")) {
+            alert("You can't build a settlement while your trade offer is pending.");
+        }
+        else {
+            alert("You don't have enough resources to build a village.");
         }
         if (StartPhaseController.getInstance().isStartPhaseActive()) {
             for (Circle vertex : vertexNodeList) {
@@ -369,12 +376,15 @@ public class GameSchermController implements Initializable, Observable {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
         int[] reqResources = {1, 1, 0, 0, 0, 0};
 
-        if(canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()){
+        if((canBuildObject(reqResources) || StartPhaseController.getInstance().isStartPhaseActive()) && !App.getCurrentGame().getTradeStatus().equals("pending")){
             placeRoad(build.buildRoad(circle));
             logController.logRoadEvent();
-        }else {
-            ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You don't have enough resources to build a road.");
+        }
+        else if (App.getCurrentGame().getTradeStatus().equals("pending")){
+            alert("You can't build any roads while your trade offer is still pending.");
+        }
+        else {
+            alert("You don't have enough resources to build a road.");
         }
         if (StartPhaseController.getInstance().isStartPhaseActive()) {
             TurnManager.nextPlayer();
@@ -390,14 +400,6 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void showVertex() {
-    }
-
-    @FXML
-    public void hideVertex() {
-    }
-
-    @FXML
     private void upgradeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The upgrade node that is clicked
         placeCity(build.buildUpgrade(circle));
@@ -407,19 +409,18 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     public void endTurn() {
-        if(App.getClientPlayer().isTurn() && DobbelsteenController.getInstance().isDiceThrown()){
+        if(App.getClientPlayer().isTurn() && DobbelsteenController.getInstance().isDiceThrown() && !App.getCurrentGame().getTradeStatus().equals("pending")){
             Sound.playEndTurnJingle();
             logController.logEndTurnEvent();
             TurnManager.nextPlayer();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-            System.out.println("DB update");
+        } else if (App.getCurrentGame().getTradeStatus().equals("pending")) {
+            alert("You can't end your turn while your trade offer is still pending.");
         } else if (!DobbelsteenController.getInstance().isDiceThrown()) {
-            ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You must throw the dice before ending your turn.");
+            alert("You must throw the dice before ending your turn.");
         }
         else {
-            ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You can't end your turn when it's not your turn.");
+            alert("You can't end your turn when it's not your turn.");
         }
     }
 
@@ -613,6 +614,12 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    // Shows an alert message
+    public void alert(String alertMessage) {
+        ScreenController.getInstance().showAlertPopup();
+        AlertPopUpController.getInstance().setAlertDescription(alertMessage);
+    }
+
     /** Initializes the harbors on the board.
      * @author Jeroen */
     private void initializeHarbors() {
@@ -708,7 +715,6 @@ public class GameSchermController implements Initializable, Observable {
         if(playerHasAllResources(reqResources)){
             for (int i = 0; i < playerInventory.getCards().length; i++) {
                 if (playerInventory.getCards()[i] >= reqResources[i]) {
-                    System.out.println(playerInventory.getCards()[i] + "\t" + reqResources[i]);
                     playerInventory.changeCards(playerInventory.strCardsGetter()[i], -reqResources[i]);
                 } else {
                     return false;
