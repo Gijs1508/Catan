@@ -112,6 +112,17 @@ public class StockController implements Initializable, Observable {
         }
     }
 
+    // TODO leave this out of the final product
+    public void testResources(){
+        Inventory inventory = App.getClientPlayer().getPlayerInventory();
+        inventory.changeCards("wood", 1);
+        inventory.changeCards("brick", 2);
+        inventory.changeCards("ore", 3);
+        inventory.changeCards("wool", 4);
+        inventory.changeCards("wheat", 5);
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+    }
+
     /** Animation that plays when a card is taken out of a player's inventory.
      * @param animationCard ImageView that moves out of the screen when that card is removed
      * @author Jeroen */
