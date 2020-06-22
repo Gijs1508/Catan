@@ -1,27 +1,28 @@
 package org.catan.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import org.catan.App;
-import org.catan.Model.Bank;
-import org.catan.Model.Game;
-import org.catan.Model.Inventory;
-import org.catan.Model.Player;
-import org.catan.Model.Sound;
+import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
-public class TradeController implements Observable {
+public class TradeController implements Initializable, Observable {
 
     private String tradeType = "player";
     private boolean tradeGiveLock, tradeTakeLock = false;
     private boolean tradeSent = false;
+    private int tradeRejections = 0;
+
+    //ArrayList of trade offers
+    ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
 
     @FXML
     private Label giveWheatCount;
@@ -62,9 +63,8 @@ public class TradeController implements Observable {
 
     private static TradeController tradeController;
 
-
+    //sadsd
     public TradeController(){
-        tradeController = this;
     }
 
     public static TradeController getInstance(){
@@ -78,7 +78,7 @@ public class TradeController implements Observable {
     public void bankTrade() {
         Sound.playSwitch();
 
-        if (tradeType == "player") {
+        if (tradeType.equals("player")) {
             tradeType = "bank";
             bankTradeBtn.setFont(new Font("System Bold", 14));
             playerTradeBtn.setFont(new Font("System", 14));
@@ -90,7 +90,7 @@ public class TradeController implements Observable {
     public void playerTrade() {
         Sound.playSwitch2();
 
-        if (tradeType == "bank") {
+        if (tradeType.equals("bank")) {
             tradeType = "player";
             bankTradeBtn.setFont(new Font("System", 14));
             playerTradeBtn.setFont(new Font("System Bold", 14));
@@ -129,7 +129,7 @@ public class TradeController implements Observable {
             else {
                 ScreenController.getInstance().showDevCardPopup();
                 DevCardPopUpController.getInstance().setKnightImage();
-                App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", 1);
+                getInventory().changeCards("knight", 1);
             }
             DevCardPopUpController.getInstance().playAnimation();
             LogController.getInstance().logDevelopmentCardEvent();
@@ -148,8 +148,8 @@ public class TradeController implements Observable {
     }
 
     @FXML
-    public void sendTrade() {
-        if(tradeType == "bank" && isClientPlayerActive()){
+    public void sendTrade() throws IOException {
+        if(tradeType.equals("bank") && isClientPlayerActive()){
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
             int netBrick = netResource(giveBrickCount, takeBrickCount);
@@ -162,18 +162,22 @@ public class TradeController implements Observable {
             getInventory().changeCards("wheat", netWheat);
             resetTrade();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-        } else if(tradeType == "player" && isClientPlayerActive()){
-            String playerName = App.getCurrentGame().turnPlayerGetter().getName();
-            String[] offerArray = {giveWoodCount.getText(), giveBrickCount.getText(), giveOreCount.getText(), giveWoolCount.getText(), giveWheatCount.getText()};
-            String[] requestArray = {takeWoodCount.getText(), takeBrickCount.getText(), takeOreCount.getText(), takeWoolCount.getText(), takeWheatCount.getText()};
-            TradePopUpController.updateTradeOffer(playerName, offerArray, requestArray);
-//            App.tradePopUp();
-//            ScreenController.getInstance().showTradePopup(); //TODO Moet alleen verschijnen bij de andere spelers, dus NIET bij de client
-            tradeSent = true;
+        } else if(tradeType.equals("player") && isClientPlayerActive() && App.getCurrentGame().getTradeStatus().equals("closed")){
+            int[] offerArray = {resourceToInt(giveWoodCount), resourceToInt(giveBrickCount), resourceToInt(giveOreCount), resourceToInt(giveWoolCount), resourceToInt(giveWheatCount)};
+            int[] requestArray = {resourceToInt(takeWoodCount), resourceToInt(takeBrickCount), resourceToInt(takeOreCount), resourceToInt(takeWoolCount), resourceToInt(takeWheatCount)};
+
+            //Trade offers with ArrayList
+            TradeOffer trade = new TradeOffer();
+            trade.updateOffer(App.getClientPlayer(), offerArray, requestArray);
+            tradeOffers.add(trade);
+            App.getCurrentGame().setTradeOffers(tradeOffers);
+            App.getCurrentGame().setTradeStatus("pending");
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+            resetTrade();
         }
         else {
             ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You can't send trade offers outside of your turn.");
+            AlertPopUpController.getInstance().setAlertDescription("You currently cannot send a trade offer.");
         }
     }
 
@@ -298,7 +302,7 @@ public class TradeController implements Observable {
 
     private void giveResource(Label resource, int inventoryIndex){
         int inventoryCard = getInventoryCards()[inventoryIndex];
-        if(tradeType == "player"){
+        if(tradeType.equals("player")){
             if(resourceToInt(resource) < inventoryCard){
                 resource.setText(raiseResource(resource));
             }
@@ -316,7 +320,7 @@ public class TradeController implements Observable {
     }
 
     private void takeResource(Label resourceCount){
-        if(tradeType == "player"){
+        if(tradeType.equals("player")){
             resourceCount.setText(raiseResource(resourceCount));
         } else if(tradeTakeLock == false){
             resourceCount.setText(raiseResource(resourceCount));
@@ -334,11 +338,64 @@ public class TradeController implements Observable {
 
     @Override
     public void update(Game game) throws IOException {
-        System.out.print("Client player: " + App.getClientPlayer().getName() + " active player: " + App.getCurrentGame().turnPlayerGetter().getName() + "\n");
-        if(App.getClientPlayer() != App.getCurrentGame().turnPlayerGetter() && tradeSent){
-            System.out.print("trade offer");
-//            receiveTrade();
+
+        App.getCurrentGame().setTradeStatus(game.getTradeStatus());
+
+        ArrayList<TradeOffer> currentOffers = App.getCurrentGame().getTradeOffers();
+        ArrayList<TradeOffer> updatedOffers = game.getTradeOffers();
+        if(!(App.getClientPlayer().getIdentifier() == App.getCurrentGame().turnPlayerGetter().getIdentifier()) && currentOffers.size() < updatedOffers.size()){
+            tradeOffers = updatedOffers;
+            App.getCurrentGame().setTradeOffers(tradeOffers);
+
+            System.out.println("Eligible for trade");
+            TradePopUpController.updateTradeOffer(updatedOffers.get(tradeOffers.size() - 1));
+            receiveTrade();
+        }
+
+        if(game.getTradeStatus().equals("pending")){
+            TradeOffer currentOffer = App.getCurrentGame().getTradeOffers().get(game.getTradeOffers().size() - 1);
+            TradeOffer updatedOffer = updatedOffers.get(game.getTradeOffers().size() - 1);
+            int currentRejections = currentOffer.getRejections();
+            int updatedRejections = updatedOffer.getRejections();
+
+            if(currentRejections < updatedRejections){
+                currentOffer.addRejection();
+                System.out.println("Added rejection, new amount: " + currentOffer.getRejections());
+                if(currentOffer.getRejections() >= App.getCurrentGame().getPlayers().size() - 1){
+                    System.out.println("All players declined!");
+                    App.getCurrentGame().setTradeStatus("closed");
+                    DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+                }
+            }
+        } else if(game.getTradeStatus().equals("accepted") && App.getClientPlayer().isTurn()){
+            tradeAccepted();
         }
     }
 
+    private void tradeAccepted(){
+        TradeOffer tradeOffer = tradeOffers.get(tradeOffers.size() - 1);
+        int[] offer = tradeOffer.getOfferedCards();
+        int[] request = tradeOffer.getRequestedCards();
+        Inventory playerInventory = App.getCurrentGame().turnPlayerGetter().getPlayerInventory(); // ClientPlayer inventory does not work for whatever reason
+
+        playerInventory.changeCards("wood", -offer[0]);
+        playerInventory.changeCards("brick", -offer[1]);
+        playerInventory.changeCards("ore", -offer[2]);
+        playerInventory.changeCards("wool", -offer[3]);
+        playerInventory.changeCards("wheat", -offer[4]);
+
+        playerInventory.changeCards("wood", request[0]);
+        playerInventory.changeCards("brick", request[1]);
+        playerInventory.changeCards("ore", request[2]);
+        playerInventory.changeCards("wool", request[3]);
+        playerInventory.changeCards("wheat", request[4]);
+
+        App.getCurrentGame().setTradeStatus("closed");
+        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tradeController = this;
+    }
 }

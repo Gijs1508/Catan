@@ -87,6 +87,8 @@ public class DocumentListener {
                     StockController.getInstance().update(game);
                     TradeController.getInstance().update(game);
                     StartPhaseController.getInstance().update(game);
+                    TradePopUpController.getInstance().update(game);
+                    DobbelsteenController.getInstance().update(game);
                 }
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));

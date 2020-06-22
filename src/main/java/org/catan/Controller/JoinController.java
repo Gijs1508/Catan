@@ -55,34 +55,38 @@ public class JoinController implements Observable, Initializable {
     }
 
     @FXML
-    private void handleButtonJoinAction(MouseEvent mouseEvent) throws IOException{
+    private void handleButtonJoinAction() throws IOException{
         Sound.playClick();
+        this.error_text.setVisible(false);
 
-        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
-        Long code = Long.valueOf(code_input.getText());
-        Game game = dbConnector.getGameById(code);
-        if (game.getCode().equals(code)) {
-            if (game.getStatus().equals("open")) {
-                if (game.getPlayers().size() < 4) {
-                    this.lobbySchermController.setGameCode(code);
-                    setPlayerColor(game.getPlayers().size(), App.getClientPlayer());
-                    App.getClientPlayer().setHost(false);
-                    App.setCurrentGame(game);
-                    game.addSpeler(App.getClientPlayer());
-                    dbConnector.updateGame(game);
-                    addGameListener(game);
-                    App.setStageHeight(837);
-                    App.setRoot("./views/lobbyView");
+        try {
+            DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+            Long code = Long.valueOf(code_input.getText());
+            Game game = dbConnector.getGameById(code);
+            if (game.getCode().equals(code)) {
+                if (game.getStatus().equals("open")) {
+                    if (game.getPlayers().size() < 4) {
+                        this.lobbySchermController.setGameCode(code);
+                        setPlayerColor(game.getPlayers().size(), App.getClientPlayer());
+                        App.getClientPlayer().setHost(false);
+                        App.setCurrentGame(game);
+                        game.addSpeler(App.getClientPlayer());
+                        dbConnector.updateGame(game);
+                        addGameListener(game);
+                        App.setStageHeight(837);
+                        App.setRoot("./views/lobbyView");
+                    } else {
+                        this.error_text.setText("Game is full");
+                        this.error_text.setVisible(true);
+                    }
                 } else {
-                    this.error_text.setText("Het spel zit al vol");
+                    this.error_text.setText("Game couldn't be joined");
                     this.error_text.setVisible(true);
                 }
-            } else {
-                this.error_text.setText("Dit spel kan niet meer worden gejoined");
-                this.error_text.setVisible(true);
             }
-        } else {
-            this.error_text.setText("Invalide code ingevoerd");
+        }
+        catch(NumberFormatException e) {
+            this.error_text.setText("Code is invalid");
             this.error_text.setVisible(true);
         }
     }

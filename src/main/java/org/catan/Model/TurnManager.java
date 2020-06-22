@@ -22,6 +22,7 @@ public class TurnManager {
             }
             currentPlayer.setTurn(false);
             nextPlayer.setTurn(true);
+            App.getCurrentGame().setTradeStatus("closed");
 //            LogController.setPlayer();
 //            LogController.getInstance().logStartTurnEvent();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());

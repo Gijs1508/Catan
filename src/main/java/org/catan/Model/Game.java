@@ -1,15 +1,20 @@
 package org.catan.Model;
 
+import org.catan.Controller.DobbelsteenController;
+
 import java.util.ArrayList;
 
 public class Game {
 
     private static ArrayList<Player> players = new ArrayList<>();
-    public static Player activePlayer;
     private String status;
     private Long code;
     private ArrayList<Log> logs;
     private Gameboard board;
+    private ArrayList<Village> buildVillages = new ArrayList<>();
+    private ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
+    private String tradeStatus = "closed";
+    private boolean sevenThrown = false;
 
     public Game() {
         this.board = new Gameboard();
@@ -17,10 +22,6 @@ public class Game {
         this.logs = new ArrayList<>();
         this.status = "open";
         this.code = CreateGameCode.randomCodeGen();
-    }
-
-    public void nextTurn() {
-
     }
 
 //    public Tile getRoverStatus(){
@@ -91,13 +92,6 @@ public class Game {
         this.board = board;
     }
 
-    public static Player getActivePlayer(){
-        return activePlayer;
-    }
-
-    public static void setActivePlayer(Player player){
-        activePlayer = player;
-    }
 
     public void removePlayer(Player player) {
         Player playerToRemove = new Player();
@@ -116,5 +110,29 @@ public class Game {
             }
         }
         return new Player();
+    }
+
+    public String getTradeStatus(){
+        return tradeStatus;
+    }
+
+    public void setTradeStatus(String status){
+        this.tradeStatus = status;
+    }
+
+    public void setTradeOffers(ArrayList<TradeOffer> tradeOffers){
+        this.tradeOffers = tradeOffers;
+    }
+
+    public ArrayList<TradeOffer> getTradeOffers(){
+        return this.tradeOffers;
+    }
+
+    public boolean isSevenThrown(){
+        return sevenThrown;
+    }
+
+    public void setSevenThrown(boolean sevenThrown){
+        this.sevenThrown = sevenThrown;
     }
 }
