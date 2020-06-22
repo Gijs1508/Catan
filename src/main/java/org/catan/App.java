@@ -85,7 +85,6 @@ public class App extends Application {
 
 
     public static void setStageHeight(int height) {
-//        appStage.setHeight(height);
         appStage.setHeight(height);
     }
 
