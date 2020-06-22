@@ -32,7 +32,6 @@ public class StockController implements Initializable, Observable {
     @FXML private Text woolCount;
     @FXML private Text oreCount;
     @FXML private Text knightCount;
-    @FXML private Button testResources;
 
     @FXML private Pane animationResourcesPane;
     @FXML private ImageView animationKnightCard;
@@ -54,17 +53,6 @@ public class StockController implements Initializable, Observable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         animationResourcesPane.setVisible(true);
         initializeAnimationCardMap();
-    }
-
-    //TODO remove from final version
-    public void testResources(){
-        Inventory inventory = App.getClientPlayer().getPlayerInventory();
-        inventory.changeCards("wood", 1);
-        inventory.changeCards("brick", 2);
-        inventory.changeCards("ore", 3);
-        inventory.changeCards("wool", 4);
-        inventory.changeCards("wheat", 5);
-        DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
     /**

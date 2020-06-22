@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.StockController">
+<AnchorPane prefHeight="210.0" prefWidth="600.0" style="-fx-background-color: #e5e4e7;" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.StockController">
    <children>
       <HBox layoutX="127.0" layoutY="46.0" prefHeight="149.0" prefWidth="434.0" spacing="12.0">
          <children>
@@ -140,6 +144,5 @@
             <Image url="@../assets/img/UI/resources.png" />
          </image>
       </ImageView>
-      <Button fx:id="testResources" layoutX="535.0" layoutY="10.0" mnemonicParsing="false" onAction="#testResources" text="TEST" />
    </children>
 </AnchorPane>
