@@ -265,6 +265,11 @@ public class GameSchermController implements Initializable, Observable {
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
+    /**
+     * This method highlights the tiles with nodes where the thief can be placed
+     * @param tileId this is where the thief is staying at the moment
+     * @author Jan
+     */
     public void highlightTiles(int tileId) {
         for (Circle thiefTile : thiefTileNodeList) {
             if (!thiefTile.getId().equals("thiefTile" + tileId)) {
@@ -296,7 +301,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void buildSettlement(MouseEvent mouseEvent) {
+    private void buildSettlement(MouseEvent mouseEvent) {
         int[] reqResources = {1, 1, 0, 1, 1, 0};
 
         Circle circle = (Circle) mouseEvent.getSource(); // The vertex node that is clicked
@@ -360,7 +365,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void buildRoad(MouseEvent mouseEvent) {
+    private void buildRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The roadSpot node that is clicked
         int[] reqResources = {1, 1, 0, 0, 0, 0};
 
@@ -393,7 +398,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void upgradeSettlement(MouseEvent mouseEvent) {
+    private void upgradeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource(); // The upgrade node that is clicked
         placeCity(build.buildUpgrade(circle));
         upgradeSettlementBtnCloseClicked();
@@ -416,7 +421,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML // When you hover over a circle when road is selected
-    public void emphasizeRoad(MouseEvent mouseEvent) {
+    private void emphasizeRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
         circle.setFill(Paint.valueOf("#c89eff"));
         circle.setScaleX(1.1);
@@ -424,7 +429,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void undoEmphasizeRoad(MouseEvent mouseEvent) {
+    private void undoEmphasizeRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
         circle.setFill(Paint.valueOf("#c89cffd9"));
         circle.setScaleX(1);
@@ -432,7 +437,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void emphasizeSettlement(MouseEvent mouseEvent) {
+    private void emphasizeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
         circle.setFill(Color.WHITE);
         circle.setScaleX(1.1);
@@ -440,7 +445,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void undoEmphasizeSettlement(MouseEvent mouseEvent) {
+    private void undoEmphasizeSettlement(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
         circle.setFill(Paint.valueOf("#ffffffa8"));
         circle.setScaleX(1);
@@ -448,7 +453,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void buildRoadBtnClicked() {
+    private void buildRoadBtnClicked() {
         Sound.playClick();
 
         try {
@@ -464,7 +469,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void buildRoadBtnCloseClicked() {
+    private void buildRoadBtnCloseClicked() {
         Sound.playClick();
 
         for (Circle circle : roadSpotNodeList) {
@@ -475,7 +480,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void buildSettlementBtnClicked() {
+    private void buildSettlementBtnClicked() {
         Sound.playClick();
 
         try {
@@ -491,7 +496,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void buildSettlementBtnCloseClicked() {
+    private void buildSettlementBtnCloseClicked() {
         Sound.playClick();
 
         for (Circle circle : vertexNodeList) {
@@ -502,7 +507,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void upgradeSettlementBtnClicked() {
+    private void upgradeSettlementBtnClicked() {
         Sound.playClick();
 
         try {
@@ -519,7 +524,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     @FXML
-    public void upgradeSettlementBtnCloseClicked() {
+    private void upgradeSettlementBtnCloseClicked() {
         Sound.playClick();
 
         for (Circle circle : upgradeNodeList) {
@@ -530,6 +535,12 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     // Shows the village spots when in the startPhase
+
+    /**
+     * Shows all the available village spots in the startPhase
+     * Gets called in the StartPhaseController
+     * @author Jan
+     */
     public void villageStartPhase() {
         ArrayList<Circle> nodes = build.showVillageStartSpots();
         for (Circle node : nodes) {
@@ -538,7 +549,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     // Shows the road spots of the recently build village
-    public void roadStartPhase(Circle circle) {
+    private void roadStartPhase(Circle circle) {
         ArrayList<Circle> nodes = build.showRoadStartSpots(circle);
         for (Circle node : nodes) {
             node.setVisible(true);
@@ -546,7 +557,7 @@ public class GameSchermController implements Initializable, Observable {
     }
 
     /** Initializes all the nodes on the board (like adding them to an ArrayList).
-     * @author Jeroen */
+     * @author Jeroen and Jan*/
     private void initializePlacementSpots(){
         Collections.addAll(vertexNodeList,
                 vertex1, vertex2, vertex3 ,vertex4, vertex5, vertex6, vertex7, vertex8, vertex9, vertex10,
@@ -706,18 +717,36 @@ public class GameSchermController implements Initializable, Observable {
         ScreenController.getInstance().showSettings();
     }
 
+    /**
+     * Updates the roads on screen
+     * Is called by BuildSettlementController
+     * @param roads an ArrayList with roads that need to be placed.
+     * @author Jan
+     */
     public void updateRoads(ArrayList<Road> roads) {
         for (Road road : roads) {
             placeRoad(road);
         }
     }
 
+    /**
+     * Updates the villages on screen
+     * Is called by BuildSettlementController
+     * @param villages an ArrayList with villages that need to be placed.
+     * @author Jan
+     */
     public void updateVillage(ArrayList<Village> villages) {
         for (Village village : villages) {
             placeVillage(village);
         }
     }
 
+    /**
+     * Updates the cities on screen
+     * Is called by BuildSettlementController
+     * @param cities an ArrayList with villages that are upgraded
+     * @author Jan
+     */
     public void updateCity(ArrayList<Village> cities) {
         for (Village city : cities) {
             placeCity(city);
@@ -726,7 +755,7 @@ public class GameSchermController implements Initializable, Observable {
 
     /**
      * This method changes the thief location on screen
-     * @param tileId
+     * @param tileId Where the thief should be placed
      * @author Jan
      */
     @FXML
@@ -752,7 +781,4 @@ public class GameSchermController implements Initializable, Observable {
         return harbors;
     }
 
-//    private Speler getSpeler() {
-//        return Speler; // Dit moet worden gewijzigd
-//    }
 }
