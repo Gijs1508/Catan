@@ -11,6 +11,7 @@ import javafx.util.Duration;
 import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
+import org.catan.Model.Sound;
 import org.catan.View.popups.KnightDetails;
 import org.catan.interfaces.Observable;
 
@@ -124,6 +125,7 @@ public class ScreenController implements Initializable, Observable {
 
     private void resetDoneActions() {
         DobbelsteenController.getInstance().setDiceThrown(false);
+        Sound.playEndTurnJingle();
     }
 
 
