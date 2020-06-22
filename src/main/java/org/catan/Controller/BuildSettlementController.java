@@ -411,6 +411,10 @@ public class BuildSettlementController implements Observable {
         return App.getCurrentGame().turnPlayerGetter().getColor();
     }
 
+    /**
+     * This method updates all the villages when called
+     * @author Jan
+     */
     @Override
     public void update(Game game) {
         updateRoads(game.getBoard().getRoads());
