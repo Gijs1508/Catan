@@ -23,10 +23,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Handles the die a player must throw to proceed with a turn.
- */
 
+/**
+ * Controller that has the functionality for handling the dice throws
+ * @author  Werner
+ */
 public class DobbelsteenController implements Observable {
 
     LogController logController = LogController.getInstance();
@@ -38,10 +39,19 @@ public class DobbelsteenController implements Observable {
 
     private static DobbelsteenController dobbelsteenController;
 
+    /**
+     * Constructor
+     */
     public DobbelsteenController() {
         dobbelsteenController = this;
     }
 
+    /**
+     * @author Werner
+     * Get instance function, used to ensure that there is only ever 1 instance of the controller object
+     * @return DobbelsteenController
+     *
+     */
     public static DobbelsteenController getInstance(){
         if(dobbelsteenController == null){
             dobbelsteenController = new DobbelsteenController();
@@ -49,11 +59,11 @@ public class DobbelsteenController implements Observable {
         return dobbelsteenController;
     }
 
-    /*
-    This method gets called when the player presses the throw dice button.
-    it uses the Dice class to get random numbers and then sets the images
-    of the dices to the numbers rolled.
-    TODO disable throwing multiple times a turn
+    /**
+     * This method gets called when the player presses the throw dice button.
+     *     it uses the Dice class to get random numbers and then sets the images
+     *     of the dices to the numbers rolled.
+     * @author Gijs
      */
     @FXML public void throwDie() {
         if(App.getClientPlayer().isTurn() && !StartPhaseController.getInstance().isStartPhaseActive() && !diceThrown){
@@ -101,6 +111,13 @@ public class DobbelsteenController implements Observable {
         }
     }
 
+    /**
+     * Update function that is inherited from Observable interface, this function should contain all functionality
+     * Regarding things that must be done when the game document is update in Firebase
+     * @author Werner
+     * @param Game game
+     * @throws IOException
+     */
     @Override
     public void update(Game game) throws IOException {
         if(App.getCurrentGame().isSevenThrown() != game.isSevenThrown()){
@@ -111,20 +128,38 @@ public class DobbelsteenController implements Observable {
         }
     }
 
+    /**
+     * Function to visibly change the throw dice button, to make it look disabled
+     * @author Werner
+     */
     public void disableButton() {
         throwButton.setTextFill(Color.GRAY);
         throwButton.setOpacity(0.8);
     }
 
+    /**
+     * Functionality to visibly change the throw dice button, to make it look enabled
+     * @author Werner
+     */
     public void enableButton() {
         throwButton.setTextFill(Color.BLACK);
         throwButton.setOpacity(1);
     }
 
+    /**
+     * Function that returns the value of the diceThrown property
+     * @return boolean
+     * @author Werner
+     */
     public boolean isDiceThrown() {
         return diceThrown;
     }
 
+    /**
+     * Function that sets the value of the diceThrown property
+     * @author Werner
+     * @param diceThrown
+     */
     public void setDiceThrown(boolean diceThrown) {
         this.diceThrown = diceThrown;
     }
