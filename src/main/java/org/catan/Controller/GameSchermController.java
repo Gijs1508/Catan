@@ -179,9 +179,7 @@ public class GameSchermController implements Initializable, Observable {
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
 
-//        disableButtons();
-        initializeButtons();
-
+        disableButtons();
         initializeHarbors();
 
         gameSchermController = this;
@@ -681,12 +679,6 @@ public class GameSchermController implements Initializable, Observable {
             harborRatio.setText("1 : " + harbor.getRatio());
         }
         startShipAnimation();
-    }
-
-    private void initializeButtons() {
-        upgradeButtonClose.setVisible(false);
-        settlementButtonClose.setVisible(false);
-        roadButtonClose.setVisible(false);
     }
 
 //    private Speler getSpeler() {

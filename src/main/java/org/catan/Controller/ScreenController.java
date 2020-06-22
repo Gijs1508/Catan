@@ -128,13 +128,15 @@ public class ScreenController implements Initializable, Observable {
             GameSchermController.getInstance().disableButtons();
             DobbelsteenController.getInstance().disableButton();
             TradeController.getInstance().disableButtons();
-        }
-        else { // It is player's turn
-            GameSchermController.getInstance().enableButtons();
+        } else { // It is player's turn
+            if (!StartPhaseController.getInstance().isStartPhaseActive()) { // Only show board's buttons outside of start phase
+                GameSchermController.getInstance().enableButtons();
+            }
             DobbelsteenController.getInstance().enableButton();
             TradeController.getInstance().enableButtons();
         }
     }
+
 
     public void showGameEnd() {
         gameEndPane.setVisible(true);
