@@ -70,11 +70,16 @@
                            <children>
                               <Pane layoutX="10.0" layoutY="-1.0" onMouseClicked="#rulesBtnClicked" prefHeight="69.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 50;">
                                  <children>
-                                    <Label fx:id="rulesPopUpButton" layoutX="91.0" layoutY="23.0" styleClass="roboto" text="Rules">
+                                    <Label fx:id="rulesPopUpButton" layoutX="116.0" layoutY="23.0" styleClass="roboto" text="Rules">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="69.0" fitWidth="67.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/img/UI/rules.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </Pane>
                            </children>
@@ -93,7 +98,7 @@
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Pane layoutY="-33.0" prefHeight="67.0" prefWidth="252.0" />
+                                    <Pane layoutX="-14.0" layoutY="-2.0" prefHeight="67.0" prefWidth="252.0" />
                                  </children>
                               </Pane>
                            </children>
