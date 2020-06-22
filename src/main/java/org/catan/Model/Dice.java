@@ -1,11 +1,9 @@
 package org.catan.Model;
 
 import org.catan.App;
-import org.catan.Controller.GameSchermController;
-import org.catan.Controller.LogController;
-import org.catan.Controller.ScreenController;
-import org.catan.Controller.ThiefController;
+import org.catan.Controller.*;
 import org.catan.Helper.BuildVillages;
+import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,32 +36,11 @@ public class Dice {
         dices.add(String.valueOf(dice2));
         diceResult.put(total, dices);
 
+        ResourcesController.getInstance().setPlayerResources(total);
+
         LogController.getInstance().logRollEvent(Integer.toString(dice1), Integer.toString(dice2));
 
-        setPlayerResources(total);
         return diceResult;
     }
 
-    private void setPlayerResources(int total){
-        if(App.getCurrentGame().getBoard().getSettlements() != null) {
-            ArrayList<String> receivedResources = new ArrayList<>();
-            for (Village village : App.getCurrentGame().getBoard().getSettlements()) {
-                for (Tile tile : village.getConnectedTiles()){
-                    int amount;
-                    if(village.isUpgraded()){
-                        amount = 2;
-                    } else {
-                        amount = 1;
-                    }
-                    if(total == tile.getNumber()){
-                        App.getClientPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
-                        receivedResources.add(tile.getType());
-                    }
-                }
-            }
-            if(!receivedResources.isEmpty()) {
-                LogController.getInstance().logReceiveEvent(receivedResources);
-            }
-        }
-    }
 }

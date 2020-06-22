@@ -126,6 +126,10 @@ public class TradePopUpController implements Initializable, Observable {
         return false;
     }
 
+    /**
+     * This method updates the popup view with the given trade offer specifics
+     * @param tradeOffer the trade offer that needs to be used
+     */
     public static void updateTradeOffer(TradeOffer tradeOffer){
         sender = tradeOffer.getSender();
         senderName = sender.getName();
@@ -133,6 +137,9 @@ public class TradePopUpController implements Initializable, Observable {
         request = tradeOffer.getRequestedCards();
     }
 
+    /**
+     * This method changes the player's cards when accepting the trade offer
+     */
     @FXML
     public void acceptTrade() {
         Sound.playClick();
@@ -160,6 +167,9 @@ public class TradePopUpController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method removes the trade offer popup and sends a trade rejection to the database
+     */
     public void declineTrade(MouseEvent mouseEvent) {
         Sound.playClick();
         App.getCurrentGame().getTradeOffers().get(App.getCurrentGame().getTradeOffers().size() - 1).addRejection();
@@ -168,7 +178,10 @@ public class TradePopUpController implements Initializable, Observable {
         screenController.hideTradePopup();
     }
 
-    // Check if player owns all the requested cards
+    /**
+     * This method checks if the player owns all the required cards of the trade offer
+     * @return whether or not the player owns the required cards as boolean
+     */
     public boolean ownCards(){
         boolean ownCards = true;
         int[] cards = App.getClientPlayer().getPlayerInventory().getCards();
@@ -194,6 +207,11 @@ public class TradePopUpController implements Initializable, Observable {
         return tradePopUpController;
     }
 
+    /**
+     * This method changes ints to Strings
+     * @param resource the resource that needs to be converted
+     * @return the String
+     */
     private String resourceToString(int resource){
         return Integer.toString(resource);
     }

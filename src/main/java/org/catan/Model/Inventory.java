@@ -13,7 +13,7 @@ import java.util.HashMap;
  * Used to keep track of player & bank inventory.
  * All 4 resources plus the knight cards are stored in a player's inventory.
  *
- * @Author Kaz Schraven
+ * @Author Kaz
  */
 public class Inventory {
 
@@ -39,8 +39,10 @@ public class Inventory {
     }
 
 
-    // Changing a player's cards
-    // Each method that calls this method should update the database
+    /**
+     * This method updates the player resources
+     * @param type The resource that needs to be changed
+     */
     public void changeCards(String type, int amount){
         switch(type){
             case "wood": cards[0] += amount; break;
@@ -57,8 +59,10 @@ public class Inventory {
     }
 
 
-//    public static String[] getResCards() { return new String[]{"wood", "brick", "ore", "wool", "wheat"};}
-
+    /**
+     * This method converts the player's resources into a hashmap
+     * @return the hashmap
+     */
     public HashMap<String, Integer> resourceToAmountGetter() {
         HashMap<String, Integer> resourceToAmount = new HashMap<>() {{
             put("wood", cards[0]);
@@ -70,6 +74,10 @@ public class Inventory {
         return resourceToAmount;
     }
 
+    /**
+     * This method counts all of the player's cards
+     * @return the total amount of cards
+     */
     public int cardsTotalGetter(){
         int total = 0;
         for(int card : cards){
@@ -78,12 +86,12 @@ public class Inventory {
         return total;
     }
 
+    /**
+     * This method deducts the knight cards from the player's total card count
+     * @return the total amount of resources
+     */
     public int cardsTotalMinusKnightGetter(){
-        int total = 0;
-        for(int card : cards){
-            total += card;
-        }
-        return total;
+        return cardsTotalGetter() - cards[5];
     }
 
     public int getOwnerID() {

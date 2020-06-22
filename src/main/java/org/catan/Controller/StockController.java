@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Manages a player's stock/cards.
+ * Manages a player's stock view.
  *
  * @author Kaz, Jeroen
  */
@@ -57,6 +57,7 @@ public class StockController implements Initializable, Observable {
         initializeAnimationCardMap();
     }
 
+    //TODO remove from final version
     public void testResources(){
         Inventory inventory = App.getClientPlayer().getPlayerInventory();
         inventory.changeCards("wood", 1);
@@ -67,6 +68,10 @@ public class StockController implements Initializable, Observable {
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
     }
 
+    /**
+     * This method updates the resources in the players' stock view and triggers card animations if necessary
+     * @author Jeroen, Kaz
+     */
     public void updateResources(){
         int[] oldResources = new int[6];
         oldResources[0] = Integer.parseInt(woodCount.getText());
@@ -100,7 +105,6 @@ public class StockController implements Initializable, Observable {
             removedResources.add("wheat");
 
         // Play the take card sound effect if any cards have been removed
-        // todo - one at a time
         if(!removedResources.isEmpty()) {
             Sound.playTakeCard(); }
 
@@ -177,7 +181,17 @@ public class StockController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
+       updateClientPlayerInventory(game.getPlayers());
        updateResources();
+    }
+
+    private void updateClientPlayerInventory(ArrayList<Player> players) {
+        for (int i = 0; i < players.size(); i++) {
+            if (App.getClientPlayer().getIdentifier() == App.getCurrentGame().getPlayers().get(i).getIdentifier()) {
+                App.getClientPlayer().setPlayerInventory(players.get(i).getPlayerInventory());
+            }
+        }
+
     }
 
     /** Shows details about the knight card when the knight card is hovered */

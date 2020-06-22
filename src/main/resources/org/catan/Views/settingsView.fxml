@@ -20,7 +20,7 @@
                            <children>
                               <Pane layoutX="10.0" onMouseClicked="#soundsBtnClicked" prefHeight="69.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 50;">
                                  <children>
-                                    <Label layoutX="110.0" layoutY="20.0" styleClass="roboto" text="Sounds">
+                                    <Label layoutX="116.0" layoutY="20.0" styleClass="roboto" text="Sounds">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -94,12 +94,12 @@
                                           <Image url="@../assets/img/checkmarkBlack.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="88.0" layoutY="19.0" styleClass="roboto" text="Apply">
+                                    <Label layoutX="111.0" layoutY="19.0" styleClass="roboto" text="Apply">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Pane layoutX="-14.0" layoutY="-2.0" prefHeight="67.0" prefWidth="252.0">
+                                    <Pane layoutX="-2.0" layoutY="-2.0" prefHeight="67.0" prefWidth="232.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor></Pane>
