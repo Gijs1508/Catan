@@ -724,6 +724,11 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    /**
+     * This method changes the thief location on screen
+     * @param tileId
+     * @author Jan
+     */
     @FXML
     public void updateThief(int tileId){
         String tile = "thiefTile" + tileId;
