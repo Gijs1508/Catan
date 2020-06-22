@@ -17,6 +17,7 @@ import org.catan.Model.Player;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -34,9 +35,7 @@ public class DatabaseConnector {
      */
     public DatabaseConnector() {
         try {
-            File accountKey = new File("src/main/resources/org/catan/credentials/FirestoreKey.json");
-            FileInputStream serviceAccount =
-                    new FileInputStream(accountKey);
+            InputStream serviceAccount = App.class.getResourceAsStream("/org/catan/credentials/FirestoreKey.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))

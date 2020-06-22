@@ -64,7 +64,7 @@ public class MainController implements Observable, Initializable {
         Sound.playClick();
         if(nameIsSet()){
             App.setClientPlayer(new Player(player_name_input.getText()));
-            App.setRoot("./Views/joinView");
+            App.setRoot("Views/joinView");
         } else {
             createAlert();
         }
@@ -76,7 +76,7 @@ public class MainController implements Observable, Initializable {
         if(nameIsSet()){
             App.setClientPlayer(new Player(player_name_input.getText()));
             App.getClientPlayer().setHost(true);
-            App.setRoot("./Views/lobbyView");
+            App.setRoot("Views/lobbyView");
             App.setStageHeight(837);
         } else {
             createAlert();
@@ -86,7 +86,7 @@ public class MainController implements Observable, Initializable {
     @FXML
     private void viewRules() throws IOException {
         Sound.playClick();
-        App.setRoot("./Views/rulesView");
+        App.setRoot("Views/rulesView");
     }
 
     @FXML

@@ -83,9 +83,6 @@ public class App extends Application {
         clientPlayer = player;
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
 
     public static Game getCurrentGame() {
         return currentGame;
@@ -114,5 +111,9 @@ public class App extends Application {
     public static void resetListeners() {
         gameListener = null;
         chatListener = null;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
