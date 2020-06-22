@@ -1,5 +1,6 @@
 package org.catan.Controller;
 
+import javafx.fxml.Initializable;
 import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.Model.Log;
@@ -9,9 +10,11 @@ import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ResourcesController implements Observable {
+public class ResourcesController implements Initializable, Observable {
 
     private static ResourcesController resourcesController;
 
@@ -82,5 +85,10 @@ public class ResourcesController implements Observable {
         String diceResult2 = log.getImgPaths().get(1);
         int diceTotal = getIntFromImgPath(diceResult1) + getIntFromImgPath(diceResult2);
         setPlayerResources(diceTotal);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        resourcesController = this;
     }
 }
