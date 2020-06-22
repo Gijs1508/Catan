@@ -186,21 +186,19 @@ public class LogController implements Initializable, Observable {
 
     @Override
     public void update(Game game) {
-        int oldLogsSize = logs.getLogs().size();
         if (game.getLogs().size() > logs.getLogs().size()) {
             for (int i = logs.getLogs().size(); i < game.getLogs().size(); i++) {
                 if (game.getLogs().get(i).getLogType().equals("txt")) {
                     addTxtLogToLogsPane(game.getLogs().get(i));
                 }
                 if (game.getLogs().get(i).getLogType().equals("img")) {
-                    System.out.println(game.getLogs().get(i).getEventType());
                     addImgLogToLogsPane(game.getLogs().get(i));
                 }
                 logs.addLog(game.getLogs().get(i));
 
             }
-            App.getCurrentGame().setLogs(logs.getLogs());
-            checkForResourceLogs(game, oldLogsSize);
+            App.getCurrentGame().setLogs(game.getLogs());
+            checkForResourceLogs(game, logs.getLogs().size());
         }
     }
 
