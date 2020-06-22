@@ -201,13 +201,13 @@ public class ScoreController implements Initializable, Observable {
     @FXML
     public void testGameEnd() {
         boolean clientWon; // Ask Player or Game object about player's result
-        if(Math.random() < 0.5) { clientWon = true; }
-        else { clientWon = false; }
-
-        ScreenController.getInstance().showGameEnd();
-        if (clientWon) {
-            GameEndController.getInstance().initializeVictory(); }
-        else {
-            GameEndController.getInstance().initializeDefeat(); }
+//        if(Math.random() < 0.5) { clientWon = true; }
+//        else { clientWon = false; }
+//
+//        ScreenController.getInstance().showGameEnd();
+//        if (clientWon) {
+//            GameEndController.getInstance().initializeVictory(); }
+//        else {
+//            GameEndController.getInstance().initializeDefeat(); }
     }
 }
