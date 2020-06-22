@@ -129,6 +129,7 @@ public class TradePopUpController implements Initializable, Observable {
     /**
      * This method updates the popup view with the given trade offer specifics
      * @param tradeOffer the trade offer that needs to be used
+     * @author Kaz
      */
     public static void updateTradeOffer(TradeOffer tradeOffer){
         sender = tradeOffer.getSender();
@@ -139,6 +140,7 @@ public class TradePopUpController implements Initializable, Observable {
 
     /**
      * This method changes the player's cards when accepting the trade offer
+     * @author Kaz
      */
     @FXML
     public void acceptTrade() {
@@ -169,6 +171,7 @@ public class TradePopUpController implements Initializable, Observable {
 
     /**
      * This method removes the trade offer popup and sends a trade rejection to the database
+     * @author Kaz
      */
     public void declineTrade(MouseEvent mouseEvent) {
         Sound.playClick();
@@ -181,6 +184,7 @@ public class TradePopUpController implements Initializable, Observable {
     /**
      * This method checks if the player owns all the required cards of the trade offer
      * @return whether or not the player owns the required cards as boolean
+     * @author Kaz
      */
     public boolean ownCards(){
         boolean ownCards = true;
@@ -207,11 +211,7 @@ public class TradePopUpController implements Initializable, Observable {
         return tradePopUpController;
     }
 
-    /**
-     * This method changes ints to Strings
-     * @param resource the resource that needs to be converted
-     * @return the String
-     */
+    // Return resource int as String
     private String resourceToString(int resource){
         return Integer.toString(resource);
     }

@@ -18,8 +18,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Manages a player's stock view.
- *
+ * Manages a player's stock view based on their inventory
  * @author Kaz, Jeroen
  */
 
@@ -195,7 +194,7 @@ public class StockController implements Initializable, Observable {
     }
 
     /** Shows details about the knight card when the knight card is hovered */
-     @FXML public void showKnightDetails() {
+    @FXML public void showKnightDetails() {
         ScreenController.getInstance().showKnightPopup();
     }
     @FXML public void hideKnightDetails() {

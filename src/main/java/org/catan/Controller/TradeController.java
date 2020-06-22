@@ -74,6 +74,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method switches the trade type from player to bank if the 'bank' button is clicked
+     * @author Kaz
      */
     @FXML
     public void bankTrade() {
@@ -89,6 +90,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method switches the trade type from bank to player if the 'player' button is clicked
+     * @author Kaz
      */
     @FXML
     public void playerTrade() {
@@ -169,9 +171,8 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method manages bank trades and sends out trade requests for player type trades
-     *
-     * @author Kaz
      * @throws IOException
+     * @author Kaz
      */
     @FXML
     public void sendTrade() {
@@ -212,16 +213,18 @@ public class TradeController implements Initializable, Observable {
     }
 
     /**
-     * This method makes inbound trade offers show up on screen
-     *
-     * @author Kaz
+     * This method makes inbound trade offers show up on screen in a popup window
      * @throws IOException
+     * @author Kaz
      */
     public void receiveTrade() throws IOException{
         ScreenController.getInstance().showTradePopup();
     }
 
-
+    /**
+     * This method resets all trade counters to 0
+     * @author Kaz
+     */
     @FXML
     public void resetTrade() {
         takeWoodCount.setText("0");
@@ -240,6 +243,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds wood to the upper trade counter
+     * @author Kaz
      */
     @FXML
     public void giveMoreWood() {
@@ -249,6 +253,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds wood to the lower trade counter
+     * @author Kaz
      */
     @FXML
     public void takeMoreWood() {
@@ -257,6 +262,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds brick to the upper trade counter
+     * @author Kaz
      */
     @FXML
     public void giveMoreBrick() {
@@ -266,6 +272,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds brick to the lower trade counter
+     * @author Kaz
      */
     @FXML
     public void takeMoreBrick() {
@@ -274,6 +281,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds wool to the upper trade counter
+     * @author Kaz
      */
     @FXML
     public void giveMoreWool() {
@@ -283,6 +291,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds wool to the lower trade counter
+     * @author Kaz
      */
     @FXML
     public void takeMoreWool() {
@@ -291,6 +300,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds ore to the upper trade counter
+     * @author Kaz
      */
     @FXML
     public void giveMoreOre() {
@@ -300,6 +310,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds ore to the lower trade counter
+     * @author Kaz
      */
     @FXML
     public void takeMoreOre() {
@@ -308,6 +319,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds wheat to the upper trade counter
+     * @author Kaz
      */
     @FXML
     public void giveMoreWheat() {
@@ -317,6 +329,7 @@ public class TradeController implements Initializable, Observable {
 
     /**
      * This method adds wheat to the lower trade counter
+     * @author Kaz
      */
     @FXML
     public void takeMoreWheat() {
@@ -327,6 +340,7 @@ public class TradeController implements Initializable, Observable {
      * This method updates the bank trading resource ratio
      * @param type
      * @param ratio
+     * @author Jeroen
      */
     public void updateRatioView(String type, int ratio) {
         switch (type) {
@@ -350,29 +364,12 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
-    /**
-     * This method converts a Label to an int and adds 1 to it, before returning the new number as String
-     * @param resource The resource that needs to be raised
-     * @return
-     */
+    //Raise given resource by one before returning as String
     private String raiseResource(Label resource){
         return Integer.toString(resourceToInt(resource) + 1);
     }
 
-    /**
-     * This method converts a Label to an int and lowers it by 1, before returning the new number as String
-     * @param resource The resource that needs to be lowered
-     * @return
-     */
-    private String lowerResource(Label resource){
-        return Integer.toString(resourceToInt(resource) + 1);
-    }
-
-    /**
-     * This method converts a Label into an int and returns the int, used for calculation purposes
-     * @param resource The resource that needs to be converted
-     * @return
-     */
+    //Convert Label to int
     private int resourceToInt(Label resource){
         return Integer.parseInt(resource.getText());
     }
@@ -385,12 +382,7 @@ public class TradeController implements Initializable, Observable {
         return getInventory().getCards();
     }
 
-
-    /**
-     * This method manages the view of the upper trade counters and checks if the player owns required resources
-     * @param resource the trade counter that needs to be changed
-     * @param inventoryIndex the index of the required resource in Inventory class
-     */
+    //Check if player owns required resource and add to the upper trade counter
     private void giveResource(Label resource, int inventoryIndex){
         int inventoryCard = getInventoryCards()[inventoryIndex];
         if(tradeType.equals("player")){
@@ -410,10 +402,7 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
-    /**
-     * This method manages the lower trade counters
-     * @param resourceCount the trade counter that needs to be changed
-     */
+    //Raise the lower trade counter of a resource
     private void takeResource(Label resourceCount){
         if(tradeType.equals("player")){
             resourceCount.setText(raiseResource(resourceCount));
@@ -423,19 +412,12 @@ public class TradeController implements Initializable, Observable {
         }
     }
 
-    /**
-     * This method calculates the net gain/loss of a resource during a trade
-     * @param givenResource the upper trade counter of a resource
-     * @param receivedResource the lower trade counter of a resource
-     * @return the net gain/loss as int
-     */
+    //Calculate the net gain/loss of a resource after a trade
     private int netResource(Label givenResource, Label receivedResource){
         return (resourceToInt(receivedResource) - resourceToInt(givenResource));
     }
 
-    /**
-     * This method checks if the client is active
-     */
+    //Check if client is active
     private boolean isClientPlayerActive(){
         return App.getClientPlayer().isTurn();
     }
@@ -479,11 +461,11 @@ public class TradeController implements Initializable, Observable {
     /**
      * This method updates the player resources after their trade has been accepted by another player
      */
-    private void tradeAccepted(){
+    public void tradeAccepted(){
         TradeOffer tradeOffer = tradeOffers.get(tradeOffers.size() - 1);
         int[] offer = tradeOffer.getOfferedCards();
         int[] request = tradeOffer.getRequestedCards();
-        Inventory playerInventory = App.getCurrentGame().turnPlayerGetter().getPlayerInventory(); // ClientPlayer inventory does not work for whatever reason
+        Inventory playerInventory = getInventory();
 
         playerInventory.changeCards("wood", -offer[0]);
         playerInventory.changeCards("brick", -offer[1]);
