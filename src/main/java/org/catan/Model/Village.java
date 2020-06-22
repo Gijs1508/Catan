@@ -3,6 +3,11 @@ package org.catan.Model;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * This is model is the village
+ * @author Jan
+ */
+
 public class Village {
     private double x;
     private double y;
@@ -73,6 +78,11 @@ public class Village {
         return this.color;
     }
 
+    /**
+     * Sets the upgrade status of a village
+     * @param upgraded true is a city and false (default) a village
+     * @author Jan
+     */
     public void setUpgraded(boolean upgraded) {
         this.upgraded = upgraded;
     }
@@ -85,6 +95,10 @@ public class Village {
         return connectedTiles;
     }
 
+    /**
+     * This is necessary to use the equals for the villages
+     * @author Jan
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
