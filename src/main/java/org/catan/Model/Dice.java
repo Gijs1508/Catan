@@ -45,8 +45,8 @@ public class Dice {
     }
 
     private void setPlayerResources(int total){
+        ArrayList<Tile> usedTiles = new ArrayList<>();
         if(App.getCurrentGame().getBoard().getSettlements() != null) {
-            ArrayList<String> receivedResources = new ArrayList<>();
             for (Village village : App.getCurrentGame().getBoard().getSettlements()) {
                 for (Tile tile : village.getConnectedTiles()){
                     int amount;
@@ -55,15 +55,40 @@ public class Dice {
                     } else {
                         amount = 1;
                     }
-                    if(total == tile.getNumber()){
-                        App.getClientPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
-                        receivedResources.add(tile.getType());
+                    if(total == tile.getNumber() && !usedTiles.contains(tile)){
+                        addResourcesToPlayer(App.getClientPlayer().getColor(), tile, amount);
+                        usedTiles.add(tile);
                     }
                 }
             }
-            if(!receivedResources.isEmpty()) {
-                LogController.getInstance().logReceiveEvent(receivedResources);
+        }
+    }
+
+
+    private void addResourcesToPlayer(String playerColor, Tile tile, int amount){
+        ArrayList<Village> usedVillages = new ArrayList<>();
+        ArrayList<String> receivedResources = new ArrayList<>();
+
+        System.out.println("==============================");
+        for(Village vill : App.getCurrentGame().getBoard().getSettlements()){
+            System.out.println("villagekleur + playerkleur: " + vill.getColor() + "\t" + playerColor);
+            if(vill.getColor().equals(playerColor) && !usedVillages.contains(vill)){
+                System.out.println("ik geef je " + tile.getType());
+                System.out.println();
+                System.out.println(vill.getColor() + "\t" + vill.getX() + "\t" + vill.getY());
+
+                App.getClientPlayer().getPlayerInventory().changeCards(tile.getType(), amount);
+                receivedResources.add(tile.getType());
+                usedVillages.add(vill);
             }
         }
+        System.out.println("==============================");
+
+
+        if(!receivedResources.isEmpty()) {
+            LogController.getInstance().logReceiveEvent(receivedResources);
+        }
+
+
     }
 }
