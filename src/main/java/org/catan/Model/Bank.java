@@ -20,13 +20,13 @@ public class Bank {
         initializeInventory();
     }
 
-    /** Creates a new inventory for the bank.
-     * Bank has 25 cards, of which 18 are knight cards and 7 are victory point cards. */
+    // Creates a new inventory for the bank
     private void initializeInventory() {
         this.bankInventory = new Inventory();
         this.bankInventory.changeCards("knight", 25); // Represents all development cards (also victory point cards)
 
-        // Each development card the bank has with its amount left.
+        // Each development card the bank has with its amount left
+        // Bank has 25 cards, of which 18 are knight cards and 7 are victory point cards
         developmentCardStock = new LinkedHashMap<>(){{
            put("victoryPoint", 7);
            put("knight", 18);

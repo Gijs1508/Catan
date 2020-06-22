@@ -49,11 +49,6 @@ public class Chat {
         chatMessages = messages;
     }
 
-//    private ArrayList getMessagesByTimestamp(ArrayList<ChatMessage> messages){
-//
-//    }
-
-
     public int getGameId() {
         return gameId;
     }

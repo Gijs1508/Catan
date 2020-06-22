@@ -35,6 +35,7 @@ public class Harbor {
         findRatio();
     }
 
+    /** Finds harbor's ratio and sets it to the object. */
     private void findRatio() {
         if (type.equals("any")) {
             ratio = 3;

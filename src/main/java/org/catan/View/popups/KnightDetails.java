@@ -26,7 +26,7 @@ public class KnightDetails {
         initialiseKnightPopup();
     }
 
-    /** Creates the pane that gets showed when player hovers over a knight card. */
+    // Creates the pane that gets showed when player hovers over a knight card.
     private void initialiseKnightPopup(){
         root.setPrefHeight(296);
         root.setPrefWidth(185);
@@ -38,7 +38,7 @@ public class KnightDetails {
         root.getChildren().add(knightDetails);
     }
 
-    /** Initialise the fades to make the appearing and disappearing of the details go smoothly */
+    // Initialise the fades to make the appearing and disappearing of the details go smoothly
     private void initialiseFades() {
         fadeIn.setNode(root);
         fadeIn.setFromValue(0.0);

@@ -17,10 +17,6 @@ public class ChatMessage {
     private String content;
     private String sender;
     private String message;
-    private String playerName;
-
-    public ChatMessage() {}
-
 
     public ChatMessage(String content) {
         this.content = content;
@@ -45,10 +41,5 @@ public class ChatMessage {
     public String getSender() {
         return sender;
     }
-//
-//    private int getId(){
-//
-//    }
-//
 
 }
