@@ -446,9 +446,9 @@ public class TradeController implements Initializable, Observable {
 
             if(currentRejections < updatedRejections){
                 currentOffer.addRejection();
-                System.out.println("Added rejection, new amount: " + currentOffer.getRejections());
                 if(currentOffer.getRejections() >= App.getCurrentGame().getPlayers().size() - 1){
-                    System.out.println("All players declined!");
+                    ScreenController.getInstance().showAlertPopup();
+                    AlertPopUpController.getInstance().setAlertDescription("All players declined your trade offer");
                     App.getCurrentGame().setTradeStatus("closed");
                     DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
                 }
@@ -481,6 +481,9 @@ public class TradeController implements Initializable, Observable {
 
         App.getCurrentGame().setTradeStatus("closed");
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+
+        ScreenController.getInstance().showAlertPopup();
+        AlertPopUpController.getInstance().setAlertDescription("Your trade offer has been accepted!");
     }
 
     @Override
