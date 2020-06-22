@@ -22,6 +22,8 @@ public class Log {
     private String opponentName;
     private ArrayList<String> imgPaths = new ArrayList<>();
 
+    public Log() {} // Jackson
+
     /** Creates a log for one player */
     public Log(String eventType, String playerName){
         if (logs.getImgEvents().containsKey(eventType))

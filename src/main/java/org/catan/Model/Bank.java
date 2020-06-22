@@ -1,5 +1,6 @@
 package org.catan.Model;
 
+import org.catan.App;
 import org.catan.Controller.ScoreController;
 
 import java.util.*;
@@ -66,16 +67,17 @@ public class Bank {
             }
             // Remove that development card from the developmentCardStock, the inventory and update the score view
             developmentCardStock.replace(developmentCard, developmentCardStock.get(developmentCard) - 1);
-            bankInventory.changeCards("knight", -1);
-            scoreController.removeDevelopmentCardFromBankView();
+            bankInventory.changeCards("knight", -1); // knight refers to all development cards
+
+            App.getCurrentGame().setBank(this);
 
             return developmentCard;
         }
         else return "bankEmpty";
     }
 
-    public Inventory getCards(){
-        return this.bankInventory;
+    public Inventory getBankInventory() {
+        return bankInventory;
     }
 
     public static Bank getBank() {

@@ -11,6 +11,7 @@ public class Game {
     private Long code;
     private ArrayList<Log> logs;
     private Gameboard board;
+    private Bank bank;
     private ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
     private String tradeStatus = "closed";
     private boolean sevenThrown = false;
@@ -18,6 +19,7 @@ public class Game {
     public Game() {
         this.board = new Gameboard();
         this.players = new ArrayList<>();
+        this.bank = new Bank();
         this.logs = new ArrayList<>();
         this.status = "open";
         this.code = CreateGameCode.randomCodeGen();
@@ -70,6 +72,9 @@ public class Game {
     public void setBoard(Gameboard board) {
         this.board = board;
     }
+
+    public Bank getBank() { return bank; }
+    public void setBank(Bank bank) { this.bank = bank; }
 
 
     public void removePlayer(Player player) {

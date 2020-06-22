@@ -16,9 +16,7 @@ public class Chat {
     private ArrayList<ChatMessage> chatMessages = new ArrayList<>();
     private String chatString;
 
-    public Chat(){
-
-    }
+    public Chat(){} // Jackson
 
     public Chat(int gameId) {
         this.gameId = gameId;

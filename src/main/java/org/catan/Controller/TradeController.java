@@ -78,6 +78,8 @@ public class TradeController implements Initializable, Observable {
      */
     @FXML
     public void bankTrade() {
+        StockController.getInstance().testResources(); // TODO TODO TODO AAOAAAAAOOAOA TODO TODO AAOAOAOAOAOOOOOOOO DELETE THIS HOOOOOOO
+
         Sound.playSwitch();
 
         if (tradeType.equals("player")) {
