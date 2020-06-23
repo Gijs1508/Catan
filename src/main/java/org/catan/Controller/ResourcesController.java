@@ -7,6 +7,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Updates the player's resources when a dice has been thrown
+ * and the player owns a settlement on the thrown number
+ * @author Gijs van der Weijden
+ */
 public class ResourcesController implements Initializable {
 
     private static ResourcesController resourcesController;
@@ -21,6 +26,11 @@ public class ResourcesController implements Initializable {
         return resourcesController;
     }
 
+    /**
+     * sets the player resources for every settlement he owns
+     * @param total: the result of the dice
+     * @author Gijs
+     */
     public void setPlayerResources(int total){
         ArrayList<String> receivedResources = new ArrayList<>();
             for (Village village : App.getCurrentGame().getBoard().getSettlements()) {
@@ -69,6 +79,11 @@ public class ResourcesController implements Initializable {
         }
     }
 
+    /**
+     * Updates the resources of all players via the log.
+     * @param log
+     * @author Werner
+     */
     public void updateByLog(Log log) {
         String diceResult1 = log.getImgPaths().get(0);
         String diceResult2 = log.getImgPaths().get(1);

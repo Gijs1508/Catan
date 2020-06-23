@@ -25,11 +25,15 @@ import java.util.Map;
 
 
 /**
+<<<<<<< HEAD
  * Controller that has the functionality for handling the dice throws
  * @author  Werner
+=======
+ * Handles the die a player must throw to proceed with a turn.
+ * @author Gijs van der Weijden
+>>>>>>> master
  */
 public class DobbelsteenController implements Observable {
-
     @FXML private ImageView dice1_img;
     @FXML private ImageView dice2_img;
     @FXML private Button throwButton;
