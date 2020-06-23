@@ -89,9 +89,8 @@ public class GameEndController implements Observable {
     public void update(Game game) {
         if (didSomeoneWin()) {
             ScreenController.getInstance().showGameEnd();
-            if (App.getClientPlayer().getScore() >= 10) {
+            if (App.getClientPlayer().getScore() >= 10)
                 initializeVictory();
-            }
             else
                 initializeDefeat();
         }
