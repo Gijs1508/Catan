@@ -30,7 +30,7 @@ public class RulesController implements Observable, Initializable {
     }
 
     @FXML
-    public void backToMenu() throws IOException {
+    private void backToMenu() throws IOException {
         Sound.playClick();
         App.setRoot("./Views/mainView");
     }

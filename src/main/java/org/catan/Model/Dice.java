@@ -18,9 +18,11 @@ public class Dice {
 
     private ScreenController screenController = ScreenController.getInstance();
 
-    /*
-    This method returns a arraylist containing two random numbers
-    between 1-6. 
+    /**
+     *  This creates two random integers between 1-6.
+     * @return diceResult: a hashmap containing the total of the two integers
+     * and an arraylist with the two separate integers
+     * @author Gijs
      */
     public HashMap<Integer, ArrayList<String>> throwDice() throws IOException {
         HashMap<Integer, ArrayList<String>> diceResult = new HashMap<>();
