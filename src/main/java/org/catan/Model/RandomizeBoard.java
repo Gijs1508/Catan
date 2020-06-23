@@ -19,9 +19,13 @@ public class RandomizeBoard {
 
     public static ArrayList<Tile> ALL_TILES = new ArrayList<Tile>();
 
-    /*
-    This method gets called when a new game gets created. It places
-    Resources and numbers on the tiles.
+    /**
+     *  This method gets called when a new game gets created. It places
+     *  Resources and numbers on the tiles.
+     * @param tiles
+     * @param labels
+     * @param seed
+     * @author Gijs
      */
     public static void setRandomTiles(ArrayList<Polygon> tiles, ArrayList<Label> labels, long seed){
         // In this arraylist all the tiles are stored containing a hashmap with (name_of_resource, img_of_resource)

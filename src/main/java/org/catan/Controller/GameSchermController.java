@@ -710,6 +710,12 @@ public class GameSchermController implements Initializable, Observable {
                 tile16num, tile17num, tile18num, tile19num);
     }
 
+    /**
+     * Checks if the player has enough resources to build a certain object
+     * @param reqResources
+     * @return true/false
+     * @author Gijs
+     */
     public boolean canBuildObject(int[] reqResources) {
         Inventory playerInventory = App.getClientPlayer().getPlayerInventory();
         if(playerHasAllResources(reqResources)){

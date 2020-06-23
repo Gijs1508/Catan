@@ -19,7 +19,7 @@ public class Timer extends Thread{
     @Override
     public void run() {
         try {
-            Thread.sleep(25000); // 25 seconds
+            Thread.sleep(20000); // 25 seconds
             if(App.getCurrentGame().getTradeStatus().equals("pending")){
                 App.getCurrentGame().setTradeStatus("timeout");
                 DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
