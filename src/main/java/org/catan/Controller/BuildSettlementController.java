@@ -435,16 +435,22 @@ public class BuildSettlementController implements Observable {
 
     // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
-        printArrayLists(villages);
         if (!villages.equals(buildVillages) && villages.size() >= buildVillages.size()) {
+            System.out.println("This is the villages size: " + villages.size());
+            System.out.println("This is the buildVillages size: " + buildVillages.size());
+
+
             ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
+            System.out.println("This is the changedVillages size: " + changedVillages.size());
+            System.out.println("===");
+            print(changedVillages);
+            System.out.println("===");
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
             ArrayList<Village> cities = new ArrayList<>();
             buildVillages.addAll(changedVillages);
 
             for (Village village : changedVillages) {
                 if (village.isUpgraded()) {
-                    cities.add(village);
                     cities.add(village);
                     villages2.remove(village);
                 }
@@ -459,14 +465,12 @@ public class BuildSettlementController implements Observable {
         }
     }
 
-    private void printArrayLists(ArrayList<Village> villages) {
-        System.out.println("villages");
-        for(Village vill : villages){
-            System.out.println(vill.getColor() + "\t"+ vill.isUpgraded());
-        }
-        System.out.println("buildvillages");
-        for(Village vill : buildVillages){
-            System.out.println(vill.getColor() + "\t"+ vill.isUpgraded());
+    private void print(ArrayList<Village> villages) {
+        for(Village v : villages){
+            System.out.println("This is the X: " + v.getX());
+            System.out.println("This is the Y: " + v.getY());
+            System.out.println("This is the color: " + v.getColor());
+            System.out.println("This is the upgrade status: " + v.isUpgraded());
         }
     }
 
