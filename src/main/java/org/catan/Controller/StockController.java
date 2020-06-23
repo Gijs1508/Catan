@@ -87,8 +87,6 @@ public class StockController implements Initializable, Observable {
         wheatCount.setText(Integer.toString(cards[4]));
         knightCount.setText(Integer.toString(cards[5]));
 
-        //System.out.println("New wheatcount after stockController update: " + cards[4]);
-
         // If the new count is less than before, a card (or more) has been taken
         ArrayList<String> removedResources = new ArrayList<>();
         if(cards[0] < oldResources[0])

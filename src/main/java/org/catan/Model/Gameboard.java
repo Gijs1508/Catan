@@ -1,7 +1,4 @@
 package org.catan.Model;
-
-import javafx.scene.image.ImageView;
-import org.catan.Controller.ThiefController;
 import java.util.ArrayList;
 import java.util.HashMap;
 

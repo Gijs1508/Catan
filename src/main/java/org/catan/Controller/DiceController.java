@@ -60,7 +60,6 @@ public class DiceController implements Observable {
                     diceResult = dice.throwDice();
                     for (int key : diceResult.keySet()) {
                         if (key == 7) {
-                            System.out.println("isSeven = true");
                             App.getCurrentGame().setSevenThrown(true);
                             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
                             App.getCurrentGame().setSevenThrown(false); // Another update necessary to ensure sevenThrown won't stay true

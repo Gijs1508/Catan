@@ -97,7 +97,6 @@ public class Player {
             return;
         }
         String resource = resources.get(new Random().nextInt(resources.size()));
-        System.out.println("Stolen resource: " + resource);
 
         // Take the resource from the victim, and give it to the active player
         victim.getPlayerInventory().changeCards(resource, -1);

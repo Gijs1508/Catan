@@ -40,11 +40,6 @@ public class RandomizeBoard {
         HashMap<String, Integer> labelHashmap = createNumberOnTiles(randomBoard, labels);
 
         addItemsToTile(tileHashmap, labelHashmap);
-
-        // Test loop to check if the tile objects are created
-//        for (Tile allTile : ALL_TILES) {
-//            System.out.println(allTile.getId());
-//        }
     }
 
     private static HashMap<String, String> createResourcesOnTiles(Random randomBoard, ArrayList<Polygon> tiles, ArrayList<HashMap<String, Image>> tileArray){
@@ -88,7 +83,6 @@ public class RandomizeBoard {
                 int randInt = randomBoard.nextInt(tileNumbers.size());
                 for (int i = 0; i < tileNumbers.size(); i++) {
                     if(!checkIfLabelInArray(filledLabels, label.getId())){
-                        //System.out.println(tileNumbers);
                         label.setText(tileNumbers.get(randInt).toString());
                         if(label.getText().equals("6") || label.getText().equals("8")){
                             label.setTextFill(Color.RED);
@@ -161,14 +155,8 @@ public class RandomizeBoard {
             tempHash.put("wool", wool_img);
             tileArray.add(tempHash);
         }
-        //printAll(tileArray);
 
         return tileArray;
-    }
-
-    private static void printAll(ArrayList<HashMap<String, Image>> tileArray){
-        for (HashMap<String, Image> stringImageHashMap : tileArray) {
-        }
     }
 
     private static boolean checkIfTileInArray(ArrayList<String> tiles, String tile){

@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import org.catan.App;
-import org.catan.Model.Bank;
 import org.catan.Model.Player;
 
 import java.net.URL;
@@ -16,9 +15,6 @@ import java.util.*;
 
 import org.catan.Model.Game;
 import org.catan.interfaces.Observable;
-import org.catan.logic.DatabaseConnector;
-
-import javax.print.Doc;
 
 /**
  * Updates the scores for the players.
@@ -76,10 +72,6 @@ public class ScoreController implements Initializable, Observable {
 
         initializeColorToScore();
         scoreController = this;
-
-        for(Player player : App.getCurrentGame().getPlayers()){
-            System.out.println(player.getName());
-        }
 
         switch(App.getCurrentGame().getPlayers().size()){
             case 1:

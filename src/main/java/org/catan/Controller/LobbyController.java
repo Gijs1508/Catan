@@ -91,8 +91,6 @@ public class LobbyController implements Initializable, Observable {
         DatabaseConnector.getInstance().createChat(chat);
         App.setChatListener(new DocumentListener("chats", String.valueOf(game.getCode())));
         App.setRoot("./Views/screenView");
-
-        System.out.println(game.getCode());
     }
 
     /** Takes the player to the game screen */
