@@ -1,12 +1,5 @@
 package org.catan.Model;
 
-import javafx.beans.property.*;
-import javafx.fxml.FXML;
-import javafx.scene.text.Text;
-import org.catan.App;
-import org.catan.Controller.StockController;
-import org.catan.logic.DatabaseConnector;
-
 import java.util.HashMap;
 
 /**

@@ -72,76 +72,91 @@ public class Sound {
         intromusic.setCycleCount(Integer.MAX_VALUE);
     }
 
+    /** Play pop sound */
     public static void playPop() {
         if(pop.getVolume() > 0)
             pop.play();
     }
 
+    /** Play dice shuffle sound */
     public static void playDiceShuffle() {
         if(diceShuffle.getVolume() > 0)
             diceShuffle.play();
     }
 
+    /** Play dice throw sound */
     public static void playDiceThrow() {
         if(diceThrow.getVolume() > 0)
             diceThrow.play();
     }
 
+    /** Play click sound */
     public static void playClick() {
         if(click.getVolume() > 0)
             click.play();
     }
 
+    /** Play take card sound */
     public static void playTakeCard() {
         if(takeCard.getVolume() > 0)
             takeCard.play();
     }
 
+    /** Play build settlement sound */
     public static void playBuildSettlement() {
         if(buildSettlement.getVolume() > 0)
             buildSettlement.play();
     }
 
+    /** Play upgrade settlement sound */
     public static void playUpgradeSettlement() {
         if(upgradeSettlement.getVolume() > 0)
             upgradeSettlement.play();
     }
 
+    /** Play build road sound */
     public static void playBuildRoad() {
         if(buildRoad.getVolume() > 0)
             buildRoad.play();
     }
 
+    /** Play switch sound */
     public static void playSwitch() {
         if(switch1.getVolume() > 0)
             switch1.play();
     }
 
+    /** Play second switch sound */
     public static void playSwitch2() {
         if(switch2.getVolume() > 0)
             switch2.play();
     }
 
+    /** Play sword sound */
     public static void playSword() {
         if(sword.getVolume() > 0)
             sword.play();
     }
 
+    /** Play start turn jingle */
     public static void playStartTurnJingle() {
         if(startTurn.getVolume() > 0)
             startTurn.play();
     }
 
+    /** Play end turn jingle */
     public static void playEndTurnJingle() {
         if(endTurn.getVolume() > 0)
             endTurn.play();
     }
 
+    /** Play victory jingle */
     public static void playVictoryJingle() {
         if(victory.getVolume() > 0)
             victory.play();
     }
 
+    /** Play defeat jingle */
     public static void playDefeatJingle() {
         if(defeat.getVolume() > 0)
             defeat.play();
@@ -161,18 +176,22 @@ public class Sound {
         }
     }
 
+    /** Mutes ingame music */
     public static void muteGameMusic() {
         bgm.pause();
     }
 
+    /** Unmute game music */
     public static void unmuteGameMusic() {
         bgm.play();
     }
 
+    /** Play menu music */
     public static void playMenuMusic() {
         intromusic.play();
     }
 
+    /** Pause menu music */
     public static void pauseMenuMusic() {
         intromusic.pause();
     }
