@@ -95,8 +95,14 @@ public class LogController implements Initializable, Observable {
         storeLog(log);
     }
 
-    public void logTradeEvent(Player opponent) {
-        Log log = new Log("trade", player, opponent.getName());
+    public void logTradeSentEvent() {
+        Log log = new Log("tradesent", player);
+        addTxtLogToLogsPane(log);
+        storeLog(log);
+    }
+
+    public void logTradeSucceededEvent(String senderName) {
+        Log log = new Log("tradesucceeded", player, senderName);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
