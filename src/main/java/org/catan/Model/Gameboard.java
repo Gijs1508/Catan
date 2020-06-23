@@ -16,22 +16,6 @@ public class Gameboard {
         this.thief = new Thief();
     }
 
-    public void setTiles() {
-
-    }
-
-    public void setSettlements(Player player, Tile tile) {
-
-    }
-
-    public void setThief(Player player, Tile tile) {
-//        ThiefController.placeThief(player, tile);
-    }
-
-    public void setHarbour() {
-
-    }
-
     public HashMap getTiles() {
         return this.tiles;
     }

@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class RandomizeBoard {
 
-    public static ArrayList<Tile> ALL_TILES = new ArrayList<Tile>();
+    public static ArrayList<Tile> ALL_TILES = new ArrayList<>();
 
     /**
      *  This method gets called when a new game gets created. It places

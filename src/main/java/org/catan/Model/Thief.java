@@ -1,5 +1,9 @@
 package org.catan.Model;
 
+/**
+ * Class that contains information about the thief.
+ */
+
 public class Thief {
     private int tile = 10;
 

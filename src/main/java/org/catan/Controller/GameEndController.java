@@ -86,11 +86,12 @@ public class GameEndController implements Observable {
      * @author Jan
      */
     @Override
-    public void update(Game game) throws IOException {
+    public void update(Game game) {
         if (didSomeoneWin()) {
             ScreenController.getInstance().showGameEnd();
-            if (App.getClientPlayer().getScore() >= 10)
+            if (App.getClientPlayer().getScore() >= 10) {
                 initializeVictory();
+            }
             else
                 initializeDefeat();
         }

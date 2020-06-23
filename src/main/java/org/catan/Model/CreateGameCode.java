@@ -30,8 +30,4 @@ public class CreateGameCode {
         }
         return seed;
     }
-
-    public static long getSeed() {
-        return seed;
-    }
 }

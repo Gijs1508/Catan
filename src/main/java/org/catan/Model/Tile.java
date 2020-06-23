@@ -1,19 +1,15 @@
 package org.catan.Model;
 
-import javafx.scene.shape.Circle;
-
-import java.util.ArrayList;
+/**
+ * Contains information about a single tile
+ */
 
 public class Tile {
     private String type;
     private String id;
     private int number;
 
-    //TODO
-    private ArrayList<Village> connectedSettlements;
-
     public Tile() {
-
     }
 
     public Tile(String type, String id, Integer number){
@@ -32,13 +28,5 @@ public class Tile {
 
     public int getNumber() {
         return this.number;
-    }
-
-    //TODO
-    public void addToConnectedSettlements(Village village) {
-        connectedSettlements.add(village);
-    }
-    public ArrayList<Village> getConnectedSettlements() {
-        return connectedSettlements;
     }
 }
