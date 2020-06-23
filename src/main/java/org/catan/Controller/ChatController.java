@@ -5,17 +5,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.Chat ;
 import org.catan.Model.ChatMessage ;
-import org.catan.Model.Game;
-import org.catan.Model.Player;
 import org.catan.interfaces.ChatObservable;
-import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -50,8 +44,9 @@ public class ChatController implements Initializable, ChatObservable {
         chatBox.appendText(chat.generateChatString());
     }
 
-    @Override
-    public void update(Chat chat) {
+    /** Updates the chat
+     * @param chat Chat object that contains the entire chat */
+    @Override public void update(Chat chat) {
         if (chat.getChatMessages().size() > this.chat.getChatMessages().size()) {
             for (int i = this.chat.getChatMessages().size(); i < chat.getChatMessages().size(); i++) {
                 this.chat.addChatMessage(chat.getChatMessages().get(i));
@@ -60,8 +55,8 @@ public class ChatController implements Initializable, ChatObservable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    /** Initializes the chat */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         chatController = this;
         chat = new Chat(App.getCurrentGame().getCode().intValue());
         chatBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D)); // Scroll to bottom of chat with each update
