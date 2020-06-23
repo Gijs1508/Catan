@@ -3,16 +3,14 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.catan.App;
-import org.catan.Model.Chat;
-import org.catan.Model.Game;
-import org.catan.Model.Player;
-import org.catan.Model.Sound;
+import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 import org.catan.logic.DocumentListener;
@@ -46,6 +44,8 @@ public class LobbyController implements Initializable, Observable {
 
     /** Initializes the lobby screen with the information that exists. */
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+        Sound.pauseMenuMusic();
+
         player1pane.setVisible(false);
         player2pane.setVisible(false);
         player3pane.setVisible(false);
@@ -114,6 +114,10 @@ public class LobbyController implements Initializable, Observable {
         dbConnector.updateGame(game);
         App.setStageHeight(718);
         App.setRoot("Views/mainView");
+
+        if(Sound.introMusicIsPlaying()) {
+            Sound.playMenuMusic();
+        }
     }
 
     /** Updates the game. Enables/disables the start buttons for the host according to the player count. */

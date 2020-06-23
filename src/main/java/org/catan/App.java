@@ -5,9 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.catan.Controller.MainController;
 import org.catan.Model.*;
 import org.catan.Model.Player;
 import org.catan.logic.DocumentListener;
+
 import java.io.IOException;
 import java.util.Random;
 
@@ -29,7 +31,7 @@ public class App extends Application {
         Sound.initializeSounds();
         clientPlayer = new Player("");
         scene = new Scene(loadFXML("Views/mainView"));
-//        MainController.getInstance().playAnimation();
+        MainController.getInstance().playAnimation();
 
         scene.getStylesheets().add(App.class.getResource("assets/style/style.css").toExternalForm());
         stage.getIcons().add(new Image(String.valueOf(App.class.getResource("assets/img/appicon.png"))));
