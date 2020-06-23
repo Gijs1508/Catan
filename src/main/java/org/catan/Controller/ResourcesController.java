@@ -41,7 +41,8 @@ public class ResourcesController implements Initializable {
                     amount = 1;
                 }
                 for (Tile tile : village.getConnectedTiles()){
-                    if(total == tile.getNumber() && village.getColor().equals(App.getClientPlayer().getColor()) && !tile.getId().equals(getThiefTileId())){
+//                    if(total == tile.getNumber() && village.getColor().equals(App.getClientPlayer().getColor()) && !tile.getId().equals(getThiefTileId())){
+                    if(total == tile.getNumber() && village.getColor().equals(App.getClientPlayer().getColor())){
                         for (Player player : App.getCurrentGame().getPlayers()) {
                             if (player.getColor().equals(App.getClientPlayer().getColor()))
                                 player.getPlayerInventory().changeCards(tile.getType(), amount);
