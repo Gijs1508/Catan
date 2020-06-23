@@ -2,8 +2,6 @@ package org.catan.Controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -12,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.catan.App;
 import org.catan.Model.Dice;
-import org.catan.Model.Player;
 import org.catan.Model.Game;
 import org.catan.Model.Sound;
 import org.catan.interfaces.Observable;

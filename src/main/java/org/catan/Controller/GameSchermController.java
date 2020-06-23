@@ -1,9 +1,5 @@
 package org.catan.Controller;
 
-//import Model.Spel;
-//import Model.Spelbord;
-//import Model.Speler;
-
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,11 +23,6 @@ import java.net.URL;
 import java.util.*;
 
 public class GameSchermController implements Initializable, Observable {
-
-    private int aantalSpelers;
-//    private Spelbord spelbord;
-//    private Spel spel;
-
     // Tiles
     @FXML private Polygon tile1; @FXML private Polygon tile2; @FXML private Polygon tile3;
     @FXML private Polygon tile4; @FXML private Polygon tile5; @FXML private Polygon tile6;
@@ -141,9 +132,7 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML private Pane objectsPane;
 
-    //    private Spelbord spelbord;
-//    private Spel spel;
-    private ArrayList<Circle> vertexNodeList = new ArrayList<>();           // Probably needs to be in a HashMap later on to connect a model with the node.
+    private ArrayList<Circle> vertexNodeList = new ArrayList<>();
     private ArrayList<Circle> roadSpotNodeList = new ArrayList<>();
     private ArrayList<Circle> upgradeNodeList = new ArrayList<>();
     private ArrayList<Circle> thiefTileNodeList = new ArrayList<>();
@@ -155,10 +144,8 @@ public class GameSchermController implements Initializable, Observable {
     private HashMap<Integer, ArrayList<Circle>> harborNumToVertices;
     private ArrayList<Circle> allHarborVertices = new ArrayList<>();
 
-    LogController logController = LogController.getInstance();
-
+    private LogController logController = LogController.getInstance();
     private BuildSettlementController build;
-
     private static GameSchermController gameSchermController;
 
     public static GameSchermController getInstance(){
@@ -168,13 +155,11 @@ public class GameSchermController implements Initializable, Observable {
         return gameSchermController;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    /** Initializes the game */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         initializePlacementSpots();
         addAllTilesToArray();
 
-        //TODO: changing the seed to the gamecode!
-        //long seed = CreateGameCode.getSeed();
         long seed = App.getCurrentGame().getCode();
         RandomizeBoard.setRandomTiles(tileNodeList, tileNumNodeList, seed);
         this.build = new BuildSettlementController(vertexNodeList, roadSpotNodeList, upgradeNodeList);
@@ -185,63 +170,13 @@ public class GameSchermController implements Initializable, Observable {
         gameSchermController = this;
     }
 
-    @Override
-    public void update(Game game) {
+    /** Updates the game */
+    @Override public void update(Game game) {
         if (App.getCurrentGame().turnPlayerGetter().getIdentifier() != game.turnPlayerGetter().getIdentifier()){
             for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++){
                 App.getCurrentGame().getPlayers().get(i).setTurn(game.getPlayers().get(i).isTurn());
             }
         }
-    }
-
-    public void disableButtons() {
-        roadButton.setVisible(false);
-        roadButtonClose.setVisible(false);
-        settlementButton.setVisible(false);
-        settlementButtonClose.setVisible(false);
-        upgradeButton.setVisible(false);
-        upgradeButtonClose.setVisible(false);
-        endTurnButton.setVisible(false);
-    }
-
-    public void enableButtons() {
-        roadButton.setVisible(true);
-        roadButtonClose.setVisible(false);
-        settlementButton.setVisible(true);
-        settlementButtonClose.setVisible(false);
-        upgradeButton.setVisible(true);
-        upgradeButtonClose.setVisible(false);
-        endTurnButton.setVisible(true);
-    }
-
-    /** Starts the ship animation that is always running.
-     * @author Jeroen, Sabrina */
-    private void startShipAnimation() {
-        Image shipFrame1 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-1.png")));
-        Image shipFrame2 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-2.png")));
-        Image shipFrame3 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-3.png")));
-
-        // Ship animation with 1 frame per second (60 ticks)
-        AnimationTimer shipAnimation = new AnimationTimer() {
-            int tick;
-            @Override
-            public void handle(long l) {
-                tick++;
-                if(tick % 60 == 0) {
-                    for(ImageView ship : ships)
-                        ship.setImage(shipFrame1); }
-                if(tick % 120 == 0) {
-                    for(ImageView ship : ships)
-                        ship.setImage(shipFrame2); }
-                if(tick % 180 == 0) {
-                    for(ImageView ship : ships)
-                        ship.setImage(shipFrame3); }
-                if(tick % 240 == 0) {
-                    for(ImageView ship : ships)
-                        ship.setImage(shipFrame2); }
-            }
-        };
-        shipAnimation.start();
     }
 
     @FXML
@@ -267,41 +202,6 @@ public class GameSchermController implements Initializable, Observable {
         // TODO because all players are red, it won't find the owner of the blue settlement
         ThiefController.getInstance().stealFromOpponent(tileID);
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-    }
-
-    /**
-     * This method highlights the tiles with nodes where the thief can be placed
-     * @param tileId this is where the thief is staying at the moment
-     * @author Jan
-     */
-    public void highlightTiles(int tileId) {
-        for (Circle thiefTile : thiefTileNodeList) {
-            if (!thiefTile.getId().equals("thiefTile" + tileId)) {
-                thiefTile.setVisible(true);
-            }
-        }
-    }
-
-    private void unHighlightTiles() {
-        for (Circle thiefTile : thiefTileNodeList) {
-            thiefTile.setVisible(false);
-        }
-    }
-
-    @FXML
-    private void emphasizeTile(MouseEvent mouseEvent) {
-        Circle circle = (Circle) mouseEvent.getSource();
-        circle.setOpacity(0.9);
-        circle.setScaleX(1.1);
-        circle.setScaleY(1.1);
-    }
-
-    @FXML
-    private void undoEmphasizeTile(MouseEvent mouseEvent) {
-        Circle circle = (Circle) mouseEvent.getSource();
-        circle.setOpacity(0.7);
-        circle.setScaleX(1);
-        circle.setScaleY(1);
     }
 
     @FXML
@@ -424,6 +324,93 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
+    /** Makes all buttons on the board invisible */
+    public void disableButtons() {
+        roadButton.setVisible(false);
+        roadButtonClose.setVisible(false);
+        settlementButton.setVisible(false);
+        settlementButtonClose.setVisible(false);
+        upgradeButton.setVisible(false);
+        upgradeButtonClose.setVisible(false);
+        endTurnButton.setVisible(false);
+    }
+
+    /** Makes all buttons on the board visible */
+    public void enableButtons() {
+        roadButton.setVisible(true);
+        roadButtonClose.setVisible(false);
+        settlementButton.setVisible(true);
+        settlementButtonClose.setVisible(false);
+        upgradeButton.setVisible(true);
+        upgradeButtonClose.setVisible(false);
+        endTurnButton.setVisible(true);
+    }
+
+    /** Starts the ship animation that is always running.
+     * @author Jeroen, Sabrina */
+    private void startShipAnimation() {
+        Image shipFrame1 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-1.png")));
+        Image shipFrame2 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-2.png")));
+        Image shipFrame3 = new Image(String.valueOf(App.class.getResource("assets/img/ships/ship-3.png")));
+
+        // Ship animation with 1 frame per second (60 ticks)
+        AnimationTimer shipAnimation = new AnimationTimer() {
+            int tick;
+            @Override
+            public void handle(long l) {
+                tick++;
+                if(tick % 60 == 0) {
+                    for(ImageView ship : ships)
+                        ship.setImage(shipFrame1); }
+                if(tick % 120 == 0) {
+                    for(ImageView ship : ships)
+                        ship.setImage(shipFrame2); }
+                if(tick % 180 == 0) {
+                    for(ImageView ship : ships)
+                        ship.setImage(shipFrame3); }
+                if(tick % 240 == 0) {
+                    for(ImageView ship : ships)
+                        ship.setImage(shipFrame2); }
+            }
+        };
+        shipAnimation.start();
+    }
+
+    /**
+     * This method highlights the tiles with nodes where the thief can be placed
+     * @param tileId this is where the thief is staying at the moment
+     * @author Jan
+     */
+    public void highlightTiles(int tileId) {
+        for (Circle thiefTile : thiefTileNodeList) {
+            if (!thiefTile.getId().equals("thiefTile" + tileId)) {
+                thiefTile.setVisible(true);
+            }
+        }
+    }
+
+    private void unHighlightTiles() {
+        for (Circle thiefTile : thiefTileNodeList) {
+            thiefTile.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void emphasizeTile(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource();
+        circle.setOpacity(0.9);
+        circle.setScaleX(1.1);
+        circle.setScaleY(1.1);
+    }
+
+    @FXML
+    private void undoEmphasizeTile(MouseEvent mouseEvent) {
+        Circle circle = (Circle) mouseEvent.getSource();
+        circle.setOpacity(0.7);
+        circle.setScaleX(1);
+        circle.setScaleY(1);
+    }
+
     @FXML // When you hover over a circle when road is selected
     private void emphasizeRoad(MouseEvent mouseEvent) {
         Circle circle = (Circle) mouseEvent.getSource();
@@ -538,8 +525,6 @@ public class GameSchermController implements Initializable, Observable {
         upgradeButtonClose.setVisible(false);
     }
 
-    // Shows the village spots when in the startPhase
-
     /**
      * Shows all the available village spots in the startPhase
      * Gets called in the StartPhaseController
@@ -560,8 +545,7 @@ public class GameSchermController implements Initializable, Observable {
         }
     }
 
-    /** Initializes all the nodes on the board (like adding them to an ArrayList).
-     * @author Jeroen and Jan*/
+    // Initializes all the nodes on the board (like adding them to an ArrayList)
     private void initializePlacementSpots(){
         Collections.addAll(vertexNodeList,
                 vertex1, vertex2, vertex3 ,vertex4, vertex5, vertex6, vertex7, vertex8, vertex9, vertex10,
@@ -620,8 +604,7 @@ public class GameSchermController implements Initializable, Observable {
         AlertPopUpController.getInstance().setAlertDescription(alertMessage);
     }
 
-    /** Initializes the harbors on the board.
-     * @author Jeroen */
+    // Initializes the harbors on the board.
     private void initializeHarbors() {
 
         // Contains the ImageViews for the ships
@@ -693,13 +676,8 @@ public class GameSchermController implements Initializable, Observable {
         startShipAnimation();
     }
 
-//    private Speler getSpeler() {
-//        return Speler; // Dit moet worden gewijzigd
-//    }
-
-
+    // Assigns all tiles to lists
     private void addAllTilesToArray() {
-
         Collections.addAll(tileNodeList, tile1, tile2, tile3, tile4, tile5,
                 tile6, tile7, tile8, tile9, tile11, tile12, tile13,
                 tile14, tile15,tile16, tile17, tile18, tile19);
