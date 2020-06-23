@@ -24,24 +24,24 @@ import java.util.Map;
  * Handles the die a player must throw to proceed with a turn.
  * @author Gijs van der Weijden
  */
-public class DobbelsteenController implements Observable {
+public class DiceController implements Observable {
     @FXML private ImageView dice1_img;
     @FXML private ImageView dice2_img;
     @FXML private Button throwButton;
     private Dice dice = new Dice();
     private boolean diceThrown;
 
-    private static DobbelsteenController dobbelsteenController;
+    private static DiceController diceController;
 
-    public DobbelsteenController() {
-        dobbelsteenController = this;
+    public DiceController() {
+        diceController = this;
     }
 
-    public static DobbelsteenController getInstance(){
-        if(dobbelsteenController == null){
-            dobbelsteenController = new DobbelsteenController();
+    public static DiceController getInstance(){
+        if(diceController == null){
+            diceController = new DiceController();
         }
-        return dobbelsteenController;
+        return diceController;
     }
 
     /**

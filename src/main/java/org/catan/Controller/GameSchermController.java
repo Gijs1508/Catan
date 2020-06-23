@@ -309,14 +309,14 @@ public class GameSchermController implements Initializable, Observable {
 
     @FXML
     public void endTurn() {
-        if(App.getClientPlayer().isTurn() && DobbelsteenController.getInstance().isDiceThrown() && !App.getCurrentGame().getTradeStatus().equals("pending")){
+        if(App.getClientPlayer().isTurn() && DiceController.getInstance().isDiceThrown() && !App.getCurrentGame().getTradeStatus().equals("pending")){
             Sound.playEndTurnJingle();
             logController.logEndTurnEvent();
             TurnManager.nextPlayer();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         } else if (App.getCurrentGame().getTradeStatus().equals("pending")) {
             alert("You can't end your turn while your trade offer is still pending.");
-        } else if (!DobbelsteenController.getInstance().isDiceThrown()) {
+        } else if (!DiceController.getInstance().isDiceThrown()) {
             alert("You must throw the dice before ending your turn.");
         }
         else {

@@ -1,24 +1,17 @@
 package org.catan.Controller;
 
-import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
 import org.catan.App;
 import org.catan.Model.Game;
-import org.catan.Model.Player;
 import org.catan.Model.Sound;
 import org.catan.View.popups.KnightDetails;
 import org.catan.interfaces.Observable;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -124,7 +117,7 @@ public class ScreenController implements Initializable, Observable {
     }
 
     private void resetDoneActions() {
-        DobbelsteenController.getInstance().setDiceThrown(false);
+        DiceController.getInstance().setDiceThrown(false);
         Sound.playEndTurnJingle();
     }
 
@@ -132,7 +125,7 @@ public class ScreenController implements Initializable, Observable {
     // Buttons are disabled in start phase
     private void initializeButtonStates() {
         GameSchermController.getInstance().disableButtons();
-        DobbelsteenController.getInstance().disableButton();
+        DiceController.getInstance().disableButton();
         TradeController.getInstance().disableButtons();
     }
 
@@ -141,11 +134,11 @@ public class ScreenController implements Initializable, Observable {
         // Disable buttons if it's not client player's turn
         if (App.getCurrentGame().turnPlayerGetter().getIdentifier() != App.getClientPlayer().getIdentifier()) {
             GameSchermController.getInstance().disableButtons();
-            DobbelsteenController.getInstance().disableButton();
+            DiceController.getInstance().disableButton();
             TradeController.getInstance().disableButtons();
         } else { // It is player's turn
             GameSchermController.getInstance().enableButtons();
-            DobbelsteenController.getInstance().enableButton();
+            DiceController.getInstance().enableButton();
             TradeController.getInstance().enableButtons();
         }
     }

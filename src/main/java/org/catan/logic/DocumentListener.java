@@ -84,7 +84,7 @@ public class DocumentListener {
                     TradeController.getInstance().update(game);
                     StartPhaseController.getInstance().update(game);
                     TradePopUpController.getInstance().update(game);
-                    DobbelsteenController.getInstance().update(game);
+                    DiceController.getInstance().update(game);
                     ScreenController.getInstance().update(game);
                     GameEndController.getInstance().update(game);
                     ScoreController.getInstance().update(game);

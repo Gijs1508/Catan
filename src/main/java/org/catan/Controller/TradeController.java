@@ -193,7 +193,7 @@ public class TradeController implements Initializable, Observable {
         if (
                 tradeType.equals("bank") && isClientPlayerActive()
                 && !StartPhaseController.getInstance().isStartPhaseActive() && !App.getCurrentGame().getTradeStatus().equals("pending")
-                && DobbelsteenController.getInstance().isDiceThrown()
+                && DiceController.getInstance().isDiceThrown()
         ) {
             int netWood = netResource(giveWoodCount, takeWoodCount);
             getInventory().changeCards("wood", netWood);
@@ -214,7 +214,7 @@ public class TradeController implements Initializable, Observable {
                 tradeType.equals("player") && isClientPlayerActive()
                 && App.getCurrentGame().getTradeStatus().equals("closed")
                 && !StartPhaseController.getInstance().isStartPhaseActive()
-                && DobbelsteenController.getInstance().isDiceThrown()
+                && DiceController.getInstance().isDiceThrown()
         ) {
             int[] offerArray = {resourceToInt(giveWoodCount), resourceToInt(giveBrickCount), resourceToInt(giveOreCount), resourceToInt(giveWoolCount), resourceToInt(giveWheatCount)};
             int[] requestArray = {resourceToInt(takeWoodCount), resourceToInt(takeBrickCount), resourceToInt(takeOreCount), resourceToInt(takeWoolCount), resourceToInt(takeWheatCount)};
@@ -230,7 +230,7 @@ public class TradeController implements Initializable, Observable {
         }
 
         // Alerts
-        else if(!DobbelsteenController.getInstance().isDiceThrown()) {
+        else if(!DiceController.getInstance().isDiceThrown()) {
             ScreenController.getInstance().showAlertPopup();
             AlertPopUpController.getInstance().setAlertDescription("You must throw the dice before sending a trade.");
         }

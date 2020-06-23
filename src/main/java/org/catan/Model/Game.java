@@ -1,7 +1,5 @@
 package org.catan.Model;
 
-import org.catan.Controller.DobbelsteenController;
-
 import java.util.ArrayList;
 
 public class Game {
