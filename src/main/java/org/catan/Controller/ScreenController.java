@@ -175,15 +175,17 @@ public class ScreenController implements Initializable, Observable {
         stealPopup.getChildren().setAll(stealPopupView);
         stealPopup.setVisible(true);
     }
+    /** Hides the steal pop up */
     public void hideStealPopUp() {
         stealPopup.setVisible(false);
     }
 
-
+    /** Shows the rules pop up with its animation */
     public void showRulesPopUp() {
         rulesPane.setVisible(true);
         RulesPopUpController.getInstance().startAnimation();
     }
+    /** Hide rules pop up */
     public void hideRulesPopUp() {
         rulesPane.setVisible(false);
     }
@@ -194,6 +196,7 @@ public class ScreenController implements Initializable, Observable {
         handInPopup.getChildren().setAll(handInPopupView);
         handInPopup.setVisible(true);
     }
+    /** Hide hand in pop up */
     public void hideHandInPopUp() {
         handInPopup.setVisible(false);
     }
@@ -204,20 +207,25 @@ public class ScreenController implements Initializable, Observable {
         tradePopup.getChildren().setAll(tradePopupView);
         tradePopup.setVisible(true);
     }
+    /** Hide trade pop up */
     public void hideTradePopup() {
         tradePopup.setVisible(false);
     }
 
+    /** Show dev card popup */
     public void showDevCardPopup() {
         devCardPopup.setVisible(true);
     }
+    /** Hide dev card popup */
     public void hideDevCardPopup() {
         devCardPopup.setVisible(false);
     }
 
+    /** Show alert pop up */
     public void showAlertPopup() {
         alertPopup.setVisible(true);
     }
+    /** Hide alert pop up */
     public void hideAlertPopup() {
         alertPopup.setVisible(false);
     }

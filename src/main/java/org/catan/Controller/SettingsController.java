@@ -33,7 +33,7 @@ public class SettingsController {
         settingsController = this;
     }
 
-    // Player mutes/unmutes sound effects
+    /** Player mutes/unmutes sound effects */
     public void soundsBtnClicked() {
         if (soundsOn) {
             Sound.playClick();
@@ -49,11 +49,12 @@ public class SettingsController {
         }
     }
 
+    /** Player pressed the rules button */
     public void rulesBtnClicked() {
         ScreenController.getInstance().showRulesPopUp();
     }
 
-    // Player mutes/unmutes music
+    /** Player mutes/unmutes music */
     public void musicBtnClicked() {
         if (musicOn) {
             Sound.muteGameMusic();
@@ -69,7 +70,7 @@ public class SettingsController {
         }
     }
 
-    // Player leaves settings
+    /** Player leaves settings */
     public void applyBtnClicked() {
         Sound.playClick();
         ScreenController.getInstance().hideSettings();
