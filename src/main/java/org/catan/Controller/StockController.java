@@ -134,6 +134,7 @@ public class StockController implements Initializable, Observable {
         double y = animationCard.getTranslateY();
 
         animationCard.setTranslateY(animationCard.getTranslateY() - 200);
+        animationCard.setOpacity(0);
 
         if(!addAnimationIsActive) {
             AnimationTimer animationTimer = new AnimationTimer() {
@@ -146,10 +147,10 @@ public class StockController implements Initializable, Observable {
                     animationCard.setTranslateY(animationCard.getTranslateY() + 2.8);
 
                     if(tick > 40) {
-                        animationCard.setOpacity(animationCard.getOpacity() - 0.06);    // After 40 ticks, start decreasing opacity per tick
+                        animationCard.setOpacity(animationCard.getOpacity() + 0.03);    // After 40 ticks, start decreasing opacity per tick
                     }
 
-                    if(animationCard.getOpacity() <= 0) {   // If card isn't visible anymore, stop animation and reset the card
+                    if(animationCard.getOpacity() >= 1) {   // If card isn't visible anymore, stop animation and reset the card
                         this.stop();
 
                         animationCard.setTranslateX(x);
