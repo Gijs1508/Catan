@@ -25,10 +25,9 @@ import java.util.Map;
 
 /**
  * Handles the die a player must throw to proceed with a turn.
+ * @author Gijs van der Weijden
  */
-
 public class DobbelsteenController implements Observable {
-
     @FXML private ImageView dice1_img;
     @FXML private ImageView dice2_img;
     @FXML private Button throwButton;
@@ -48,10 +47,11 @@ public class DobbelsteenController implements Observable {
         return dobbelsteenController;
     }
 
-    /*
-    This method gets called when the player presses the throw dice button.
-    it uses the Dice class to get random numbers and then sets the images
-    of the dices to the numbers rolled.
+    /**
+     * This method gets called when the player presses the throw dice button.
+     * it uses the Dice class to get random numbers and then sets the images
+     * of the dices to the numbers rolled.
+     * @author Gijs
      */
     @FXML public void throwDie() {
         if(App.getClientPlayer().isTurn() && !StartPhaseController.getInstance().isStartPhaseActive() && !diceThrown){
@@ -97,6 +97,7 @@ public class DobbelsteenController implements Observable {
             AlertPopUpController.getInstance().setAlertDescription("You can't roll when it's not your turn.");
         }
     }
+
 
     @Override
     public void update(Game game) throws IOException {

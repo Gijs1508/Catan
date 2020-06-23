@@ -22,7 +22,6 @@ import java.util.ResourceBundle;
 
 /**
  * Used to handle button clicks on the main menu screen.
- *
  * @Author Gijs van der Weijden
  */
 public class MainController implements Observable, Initializable {
