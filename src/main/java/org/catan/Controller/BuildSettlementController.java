@@ -453,6 +453,7 @@ public class BuildSettlementController implements Observable {
             System.out.println("This is the buildVillages size: " + buildVillages.size());
 
             ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
+            ArrayList<Village> changedVillagesReal = new ArrayList<>(removeDuplicatesCompletely(buildVillages, changedVillages, 0));
             System.out.println("This is the changedVillages size: " + changedVillages.size());
             System.out.println();
             System.out.println("Changed villages printed");
@@ -460,13 +461,13 @@ public class BuildSettlementController implements Observable {
             print(changedVillages);
             System.out.println("===");
             System.out.println();
-            ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
+            ArrayList<Village> villages2 = new ArrayList<>(changedVillagesReal);
             ArrayList<Village> cities = new ArrayList<>();
             System.out.println("buildVillages gets changed villages added");
-            buildVillages.addAll(changedVillages);
+            buildVillages.addAll(changedVillagesReal);
             System.out.println("Build villages size after the adding:  " + buildVillages.size());
 
-            for (Village village : changedVillages) {
+            for (Village village : changedVillagesReal) {
                 if (village.isUpgraded()) {
                     cities.add(village);
                     villages2.remove(village);
