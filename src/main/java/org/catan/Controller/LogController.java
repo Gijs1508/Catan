@@ -171,13 +171,6 @@ public class LogController implements Initializable, Observable {
         storeLog(log);
     }
 
-    /** Logs the event where the game is won. */
-    public void logWinEvent() {
-        Log log = new Log("win", player);
-        addTxtLogToLogsPane(log);
-        storeLog(log);
-    }
-
     /** Logs the event where a knight is activated. */
     public void logKnightEvent() {
         Log log = new Log("knight", player);
