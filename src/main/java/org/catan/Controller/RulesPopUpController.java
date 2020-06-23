@@ -31,7 +31,7 @@ public class RulesPopUpController implements Initializable {
         ScreenController.getInstance().hideRulesPopUp();
     }
 
-    // When settings gets opened, a dark background fades in
+    // Settings fade in when opened
     public void startAnimation() {
         background.setOpacity(0);
         AnimationTimer animation = new AnimationTimer() {

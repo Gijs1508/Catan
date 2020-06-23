@@ -75,7 +75,8 @@ public class SettingsController {
         ScreenController.getInstance().hideSettings();
     }
 
-    // When settings gets opened, a dark background fades in
+    /** Starts an animation for the settings.
+     *  A dark background fades in. */
     public void startAnimation() {
         background.setOpacity(0);
         AnimationTimer animation = new AnimationTimer() {

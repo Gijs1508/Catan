@@ -1,9 +1,7 @@
 package org.catan.Controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.catan.App;
 import org.catan.Model.Game;

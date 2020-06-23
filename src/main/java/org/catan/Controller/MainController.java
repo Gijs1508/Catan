@@ -24,14 +24,12 @@ import java.util.ResourceBundle;
  */
 public class MainController implements Observable, Initializable {
     @FXML private ImageView bgShadow;
-    @FXML private ImageView bg;
     @FXML private ImageView title;
     @FXML private ImageView musicBtn;
     @FXML private TextField player_name_input;
     @FXML private VBox buttons;
     @FXML private Pane alertPopup;
 
-    private LobbyController lobbyController = LobbyController.getInstance();
     private static MainController mainController;
 
     private static String playerName = "";
