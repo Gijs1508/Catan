@@ -196,6 +196,11 @@ public class DatabaseConnector {
 
     }
 
+    /**
+     * Function to get a chat document by their id
+     * @param id
+     * @return
+     */
     public Chat getChatById(int id) {
         Chat chat = new Chat();
         CollectionReference collectionReference = this.db.collection("chats");
@@ -217,6 +222,10 @@ public class DatabaseConnector {
         return chat;
     }
 
+    /**
+     * Function to update an existing chat document in the database
+     * @param chat
+     */
     public void updateChat(Chat chat) {
         DocumentReference documentReference = this.db.collection("chats").document(String.valueOf(chat.getGameId()));
         ObjectMapper objectMapper = new ObjectMapper();
@@ -230,6 +239,10 @@ public class DatabaseConnector {
         }
     }
 
+    /**
+     * Function to add a new Chat document to the database
+     * @param chat
+     */
     public void createChat(Chat chat) {
         DocumentReference documentReference = this.db.collection("chats").document(String.valueOf(chat.getGameId()));
 
@@ -244,6 +257,10 @@ public class DatabaseConnector {
         }
     }
 
+    /**
+     * function to get Database variable
+     * @return
+     */
     public Firestore getDb() {
         return this.db;
     }
