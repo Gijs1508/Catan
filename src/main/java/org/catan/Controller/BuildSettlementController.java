@@ -285,7 +285,6 @@ public class BuildSettlementController implements Observable {
      */
     public Village buildVillage(Circle node) {
         // If the node borders a harbor
-        System.out.println(node.toString());
         if(GameSchermController.getInstance().getAllHarborVertices().contains(node)) {
             builtAtHarbor(node);
         }
@@ -436,6 +435,7 @@ public class BuildSettlementController implements Observable {
 
     // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
+        printArrayLists(villages);
         if (!villages.equals(buildVillages) && villages.size() >= buildVillages.size()) {
             ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
@@ -444,6 +444,7 @@ public class BuildSettlementController implements Observable {
 
             for (Village village : changedVillages) {
                 if (village.isUpgraded()) {
+                    cities.add(village);
                     cities.add(village);
                     villages2.remove(village);
                 }
@@ -455,6 +456,17 @@ public class BuildSettlementController implements Observable {
                 GameSchermController.getInstance().updateCity(cities);
 
             App.getCurrentGame().getBoard().setSettlements(buildVillages);
+        }
+    }
+
+    private void printArrayLists(ArrayList<Village> villages) {
+        System.out.println("villages");
+        for(Village vill : villages){
+            System.out.println(vill.getColor() + "\t"+ vill.isUpgraded());
+        }
+        System.out.println("buildvillages");
+        for(Village vill : buildVillages){
+            System.out.println(vill.getColor() + "\t"+ vill.isUpgraded());
         }
     }
 

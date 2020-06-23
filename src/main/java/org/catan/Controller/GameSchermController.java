@@ -190,7 +190,6 @@ public class GameSchermController implements Initializable, Observable {
         if (App.getCurrentGame().turnPlayerGetter().getIdentifier() != game.turnPlayerGetter().getIdentifier()){
             for (int i = 0; i < App.getCurrentGame().getPlayers().size(); i++){
                 App.getCurrentGame().getPlayers().get(i).setTurn(game.getPlayers().get(i).isTurn());
-                System.out.println("Player " + i + " turn: " + App.getCurrentGame().getPlayers().get(i).isTurn());
             }
         }
     }
@@ -253,7 +252,6 @@ public class GameSchermController implements Initializable, Observable {
             return;
         }
 
-        System.out.println("Doing thief placement");
         Circle circle = (Circle) mouseEvent.getSource();
         thief.setLayoutX(circle.getLayoutX() - 26);
         thief.setLayoutY(circle.getLayoutY() - 33);
@@ -416,7 +414,6 @@ public class GameSchermController implements Initializable, Observable {
             logController.logEndTurnEvent();
             TurnManager.nextPlayer();
             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-            System.out.println("DB update");
         } else if (App.getCurrentGame().getTradeStatus().equals("pending")) {
             alert("You can't end your turn while your trade offer is still pending.");
         } else if (!DobbelsteenController.getInstance().isDiceThrown()) {
@@ -718,7 +715,6 @@ public class GameSchermController implements Initializable, Observable {
         if(playerHasAllResources(reqResources)){
             for (int i = 0; i < playerInventory.getCards().length; i++) {
                 if (playerInventory.getCards()[i] >= reqResources[i]) {
-                    System.out.println(playerInventory.getCards()[i] + "\t" + reqResources[i]);
                     playerInventory.changeCards(playerInventory.strCardsGetter()[i], -reqResources[i]);
                 } else {
                     return false;

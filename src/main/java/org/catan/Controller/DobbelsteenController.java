@@ -52,7 +52,6 @@ public class DobbelsteenController implements Observable {
     This method gets called when the player presses the throw dice button.
     it uses the Dice class to get random numbers and then sets the images
     of the dices to the numbers rolled.
-    TODO disable throwing multiple times a turn
      */
     @FXML public void throwDie() {
         if(App.getClientPlayer().isTurn() && !StartPhaseController.getInstance().isStartPhaseActive() && !diceThrown){
@@ -64,7 +63,6 @@ public class DobbelsteenController implements Observable {
                     diceResult = dice.throwDice();
                     for (int key : diceResult.keySet()) {
                         if (key == 7) {
-                            //TODO Rover verzetten
                             System.out.println("isSeven = true");
                             App.getCurrentGame().setSevenThrown(true);
                             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());

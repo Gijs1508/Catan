@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.catan.App;
 import org.catan.Model.*;
+import org.catan.Model.Timer;
 import org.catan.interfaces.Observable;
 import org.catan.logic.DatabaseConnector;
 
@@ -28,6 +29,7 @@ public class TradeController implements Initializable, Observable {
     private boolean tradeGiveLock, tradeTakeLock = false;
     private boolean tradeSent = false;
     private int tradeRejections = 0;
+
 
     //ArrayList of trade offers
     ArrayList<TradeOffer> tradeOffers = new ArrayList<TradeOffer>();
@@ -78,7 +80,8 @@ public class TradeController implements Initializable, Observable {
      */
     @FXML
     public void bankTrade() {
-        //StockController.getInstance().testResources(); // TODO TODO TODO AAOAAAAAOOAOA TODO TODO AAOAOAOAOAOOOOOOOO DELETE THIS HOOOOOOO
+        StockController.getInstance().testResources(); // todo weg
+
         Sound.playSwitch();
 
         if (tradeType.equals("player")) {
@@ -216,12 +219,13 @@ public class TradeController implements Initializable, Observable {
             int[] offerArray = {resourceToInt(giveWoodCount), resourceToInt(giveBrickCount), resourceToInt(giveOreCount), resourceToInt(giveWoolCount), resourceToInt(giveWheatCount)};
             int[] requestArray = {resourceToInt(takeWoodCount), resourceToInt(takeBrickCount), resourceToInt(takeOreCount), resourceToInt(takeWoolCount), resourceToInt(takeWheatCount)};
 
+            Timer timer = new Timer();
             TradeOffer trade = new TradeOffer();
             trade.updateOffer(App.getClientPlayer(), offerArray, requestArray);
             tradeOffers.add(trade);
             App.getCurrentGame().setTradeOffers(tradeOffers);
             App.getCurrentGame().setTradeStatus("pending");
-            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+            LogController.getInstance().logTradeSentEvent();
             resetTrade();
         }
 
@@ -465,7 +469,6 @@ public class TradeController implements Initializable, Observable {
             tradeOffers = updatedOffers;
             App.getCurrentGame().setTradeOffers(tradeOffers);
 
-            System.out.println("Eligible for trade");
             TradePopUpController.updateTradeOffer(updatedOffers.get(tradeOffers.size() - 1));
             receiveTrade();
         }
@@ -478,7 +481,7 @@ public class TradeController implements Initializable, Observable {
 
             if(currentRejections < updatedRejections){
                 currentOffer.addRejection();
-                if((currentOffer.getRejections() >= App.getCurrentGame().getPlayers().size() - 1) & App.getClientPlayer().isTurn()){
+                if((currentOffer.getRejections() >= App.getCurrentGame().getPlayers().size() - 1) && App.getClientPlayer().isTurn()){
                     ScreenController.getInstance().showAlertPopup();
                     AlertPopUpController.getInstance().setAlertDescription("All players declined your trade offer");
                     App.getCurrentGame().setTradeStatus("closed");
@@ -487,6 +490,11 @@ public class TradeController implements Initializable, Observable {
             }
         } else if(game.getTradeStatus().equals("accepted") && App.getClientPlayer().isTurn()){
             tradeAccepted();
+        } else if(game.getTradeStatus().equals("timeout") && App.getClientPlayer().isTurn()){
+            App.getCurrentGame().setTradeStatus("closed");
+            AlertPopUpController.getInstance().setAlertDescription("Nobody responded to the trade offer in time");
+            ScreenController.getInstance().showAlertPopup();
+            DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
         }
     }
 

@@ -13,7 +13,6 @@ import java.io.IOException;
 /**
  * Handles the pop up that appears when the game has ended.
  * Shows whether you won or lost the game and allows the player to return to the main menu.
- * 
  * @author Jeroen, Jan
  */
 
