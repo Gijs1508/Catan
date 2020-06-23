@@ -192,13 +192,25 @@ public class BuildSettlementController implements Observable {
     }
 
     // Removes everything that has a duplicate and returns the unique
-    private ArrayList<Village> removeDuplicatesCompletely(ArrayList<Village> array, ArrayList<Village> array2, int useless) {
+    private ArrayList<Village> removeDuplicatesCompletely(ArrayList<Village> villages, ArrayList<Village> buildVillages2, int useless) {
         ArrayList<Village> arrayFixed = new ArrayList<>();
-        for (Village village : array) {
-            if (!array2.contains(village)) {
+        for (Village village : villages) {
+            if (!buildVillages2.contains(village)) {
                 arrayFixed.add(village);
             }
         }
+//        for (Village village : villages) {
+//            int count =0 ;
+//            for (Village village1 : buildVillages2) {
+//                if (village.getX() == village1.getX() && village.getY() == village1.getY() && village.isUpgraded() == village1.isUpgraded())
+//                    count++;
+//            }
+//            if (count == 0) {
+//                arrayFixed.add(village);
+//            }
+//        }
+
+
         return arrayFixed;
     }
 
@@ -440,7 +452,7 @@ public class BuildSettlementController implements Observable {
             System.out.println("This is the villages size: " + villages.size());
             System.out.println("This is the buildVillages size: " + buildVillages.size());
 
-            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(buildVillages, villages, 0));
+            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
             System.out.println("This is the changedVillages size: " + changedVillages.size());
             System.out.println();
             System.out.println("Changed villages printed");
