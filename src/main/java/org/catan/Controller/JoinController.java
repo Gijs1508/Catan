@@ -25,7 +25,6 @@ import java.util.ResourceBundle;
 
 /**
  * Used to handle button clicks on the join screen.
- *
  * @Author Gijs van der Weijden
  */
 public class JoinController implements Observable, Initializable {
