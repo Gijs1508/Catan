@@ -11,7 +11,6 @@ import org.catan.Model.Player;
 import org.catan.logic.DocumentListener;
 
 import java.io.IOException;
-import java.util.Random;
 
 /**
  * JavaFX App. First class to get accessed.
@@ -39,7 +38,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         appStage = stage;
-        Random random = new Random();
 
         stage.show();
     }
@@ -48,11 +46,6 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
         viewName = fxml;
     }
-
-    public static String getViewNameGlobally() {
-        return viewName;
-    }
-
 
     public static void setStageHeight(int height) {
         appStage.setHeight(height);
@@ -83,16 +76,8 @@ public class App extends Application {
         currentGame = game;
     }
 
-    public static DocumentListener getGameListener() {
-        return gameListener;
-    }
-
     public static void setGameListener(DocumentListener gameListener) {
         App.gameListener = gameListener;
-    }
-
-    public static DocumentListener getChatListener() {
-        return chatListener;
     }
 
     public static void setChatListener(DocumentListener chatListener) {
