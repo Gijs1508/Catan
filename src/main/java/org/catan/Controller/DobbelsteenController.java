@@ -30,11 +30,10 @@ import java.util.Map;
  */
 public class DobbelsteenController implements Observable {
 
-    LogController logController = LogController.getInstance();
     @FXML private ImageView dice1_img;
     @FXML private ImageView dice2_img;
     @FXML private Button throwButton;
-    Dice dice = new Dice();
+    private Dice dice = new Dice();
     private boolean diceThrown;
 
     private static DobbelsteenController dobbelsteenController;
@@ -61,8 +60,8 @@ public class DobbelsteenController implements Observable {
 
     /**
      * This method gets called when the player presses the throw dice button.
-     *     it uses the Dice class to get random numbers and then sets the images
-     *     of the dices to the numbers rolled.
+     * it uses the Dice class to get random numbers and then sets the images
+     * of the dices to the numbers rolled.
      * @author Gijs
      */
     @FXML public void throwDie() {
@@ -75,7 +74,6 @@ public class DobbelsteenController implements Observable {
                     diceResult = dice.throwDice();
                     for (int key : diceResult.keySet()) {
                         if (key == 7) {
-                            //TODO Rover verzetten
                             System.out.println("isSeven = true");
                             App.getCurrentGame().setSevenThrown(true);
                             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());

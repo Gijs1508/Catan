@@ -13,7 +13,6 @@ import java.util.HashMap;
  * @author Jeroen
  */
 
-
 public class Log {
     private Logs logs = new Logs();
     private String eventType;
@@ -23,9 +22,7 @@ public class Log {
     private String opponentName;
     private ArrayList<String> imgPaths = new ArrayList<>();
 
-    public Log() {
-
-    }
+    public Log() {} // Jackson
 
     /** Creates a log for one player */
     public Log(String eventType, String playerName){
@@ -48,7 +45,7 @@ public class Log {
         createLog();
     }
 
-    /** Creates a log's text according to its type */
+    // Creates a log's text according to its type
     private void createLog() {
         if (logs.getImgEvents().containsKey(eventType)) {
             eventString = handleEventString(logs.getImgEvents().get(eventType));
@@ -58,11 +55,9 @@ public class Log {
         }
     }
 
-    /** Handles the event text according to the player's name.
-     * @param eventString event text that doesn't contain player names.
-     * @return the updated eventString, containing player names. */
+    // Handles the event text according to the player's name.
     private String handleEventString(String eventString) {
-        eventString = eventString.replaceAll("%PLAYER%", App.getCurrentGame().turnPlayerGetter().getName());
+        eventString = eventString.replaceAll("%PLAYER%", playerName);
         if(eventString.contains("%PLAYER2%")){
             eventString = eventString.replaceAll("%PLAYER2%", opponentName);
         }

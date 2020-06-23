@@ -147,12 +147,14 @@ public class Sound {
             defeat.play();
     }
 
+    /** Mute all sound effects in the game */
     public static void muteSoundEffects() {
         for (AudioClip soundEffect : soundEffects) {
             soundEffect.setVolume(0);
         }
     }
 
+    /** Puts the volume of all sound effects back to their default volume */
     public static void unmuteSoundEffects() {
         for (AudioClip soundEffect : soundEffects) {
             soundEffect.setVolume(defaultVolume.get(soundEffect));
@@ -175,9 +177,12 @@ public class Sound {
         intromusic.pause();
     }
 
+    /** Changes the state of the music in the main menu
+     * @param state true-music is playing  false-music isn't playing */
     public static void setIntroMusicIsPlaying(boolean state) {
         introMusicIsPlaying = state;
     }
+    /** Keeps track of the state of the music in the main menus */
     public static boolean introMusicIsPlaying() {
         return introMusicIsPlaying;
     }

@@ -78,14 +78,16 @@ public class LogPane {
         logGrid.getChildren().addAll(eventText);
     }
 
-    public GridPane getLogGrid() {
-        return logGrid;
-    }
-
+    /** Adds an image to the logPane
+     * @param image image that's added to the log */
     public void addImage(Image image) {
         ImageView imageView = new ImageView(image);
         imageView.setPreserveRatio(true);
         imageView.setFitWidth(27);
         imgBox.getChildren().addAll(imageView);
+    }
+
+    public GridPane getLogGrid() {
+        return logGrid;
     }
 }

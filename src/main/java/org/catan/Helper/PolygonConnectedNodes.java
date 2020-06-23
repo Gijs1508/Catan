@@ -6,6 +6,11 @@ import org.catan.Model.Tile;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This helper class is used to see which tiles a villages is next to
+ * @author Jan
+ */
+
 public class PolygonConnectedNodes {
 
     private ArrayList<Circle> vertexNodes = null;
@@ -18,7 +23,12 @@ public class PolygonConnectedNodes {
         this.polygonsConnected = getPolygons();
     }
 
-    // Returns the tiles the village is connected to
+    /**
+     * Returns the tiles the village is connected to
+     * @param x coordinate of the village
+     * @param y coordinate of the village
+     * @author Jan
+     */
     public ArrayList<Tile> getConnectedTiles(double x, double y) {
         ArrayList<Tile> connectedTiles = new ArrayList<>();
         for (int i=0; i < polygonsConnected.size(); i++) {

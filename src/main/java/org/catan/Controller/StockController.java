@@ -3,7 +3,6 @@ package org.catan.Controller;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -18,8 +17,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Manages a player's stock view.
- *
+ * Manages a player's stock view based on their inventory
  * @author Kaz, Jeroen
  */
 
@@ -33,7 +31,6 @@ public class StockController implements Initializable, Observable {
     @FXML private Text woolCount;
     @FXML private Text oreCount;
     @FXML private Text knightCount;
-    @FXML private Button testResources;
 
     @FXML private Pane animationResourcesPane;
     @FXML private ImageView animationKnightCard;
@@ -42,7 +39,8 @@ public class StockController implements Initializable, Observable {
     @FXML private ImageView animationBrick;
     @FXML private ImageView animationSheep;
     @FXML private ImageView animationOre;
-    private boolean animationIsActive = false;
+    private boolean removeAnimationIsActive = false;
+    private boolean addAnimationIsActive = false;
 
     private LogController logController = LogController.getInstance();
     private HashMap<String, ImageView> animationCardForResource;
@@ -51,13 +49,7 @@ public class StockController implements Initializable, Observable {
         stockController = this;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        animationResourcesPane.setVisible(true);
-        initializeAnimationCardMap();
-    }
-
-    //TODO remove from final version
+    // TODO leave this out of the final product
     public void testResources(){
         Inventory inventory = App.getClientPlayer().getPlayerInventory();
         inventory.changeCards("wood", 1);
@@ -66,6 +58,12 @@ public class StockController implements Initializable, Observable {
         inventory.changeCards("wool", 4);
         inventory.changeCards("wheat", 5);
         DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        animationResourcesPane.setVisible(true);
+        initializeAnimationCardMap();
     }
 
     /**
@@ -104,31 +102,86 @@ public class StockController implements Initializable, Observable {
         if(cards[4] < oldResources[4])
             removedResources.add("wheat");
 
+        ArrayList<String> addedResources = new ArrayList<>();
+        if(cards[0] > oldResources[0])
+            addedResources.add("wood");
+        if(cards[1] > oldResources[1])
+            addedResources.add("brick");
+        if(cards[2] > oldResources[2])
+            addedResources.add("ore");
+        if(cards[3] > oldResources[3])
+            addedResources.add("wool");
+        if(cards[4] > oldResources[4])
+            addedResources.add("wheat");
+
         // Play the take card sound effect if any cards have been removed
-        if(!removedResources.isEmpty()) {
+        if(!addedResources.isEmpty()) {
             Sound.playTakeCard(); }
 
         // Play card animation for each removed card
         for (int i = 0; i < removedResources.size(); i++) {
             removeCardAnimation(animationCardForResource.get(removedResources.get(i))); }
+
+        // Play card animation for each removed card
+        for (int i = 0; i < addedResources.size(); i++) {
+            addCardAnimation(animationCardForResource.get(addedResources.get(i))); }
     }
 
-    /** Animation that plays when a card is taken out of a player's inventory.
-     * @param animationCard ImageView that moves out of the screen when that card is removed
-     * @author Jeroen */
-    private void removeCardAnimation(ImageView animationCard){
+    private void addCardAnimation(ImageView animationCard) {
         animationCard.setVisible(true);
 
         double x = animationCard.getTranslateX();
         double y = animationCard.getTranslateY();
 
-        if(!animationIsActive){
+        animationCard.setTranslateY(animationCard.getTranslateY() - 200);
+        animationCard.setOpacity(0);
+
+        if(!addAnimationIsActive) {
             AnimationTimer animationTimer = new AnimationTimer() {
                 int tick = 0;
                 @Override
                 public void handle(long l) {
                     tick++;
-                    animationIsActive = true;
+                    addAnimationIsActive = true;
+
+                    animationCard.setTranslateY(animationCard.getTranslateY() + 2.8);
+
+                    if(tick > 40) {
+                        animationCard.setOpacity(animationCard.getOpacity() + 0.03);    // After 40 ticks, start decreasing opacity per tick
+                    }
+
+                    if(animationCard.getOpacity() >= 1) {   // If card isn't visible anymore, stop animation and reset the card
+                        this.stop();
+
+                        animationCard.setTranslateX(x);
+                        animationCard.setTranslateY(y);
+                        animationCard.setOpacity(1);
+                        animationCard.setVisible(false);
+
+                        tick = 0;
+                        addAnimationIsActive = false;
+                    }
+                }
+            };
+            animationTimer.start();
+        }
+    }
+
+
+    // Animation that plays when a card is taken out of a player's inventory.
+    private void removeCardAnimation(ImageView animationCard) {
+        animationCard.setVisible(true);
+
+        double x = animationCard.getTranslateX();
+        double y = animationCard.getTranslateY();
+
+        if(!removeAnimationIsActive) {
+            AnimationTimer animationTimer = new AnimationTimer() {
+                int tick = 0;
+                @Override
+                public void handle(long l) {
+                    tick++;
+                    removeAnimationIsActive = true;
 
                     animationCard.setTranslateY(animationCard.getTranslateY() - 2.8);   // Move the card up
 
@@ -145,7 +198,7 @@ public class StockController implements Initializable, Observable {
                         animationCard.setVisible(false);
 
                         tick = 0;
-                        animationIsActive = false;
+                        removeAnimationIsActive = false;
                     }
                 }
             };
@@ -156,27 +209,31 @@ public class StockController implements Initializable, Observable {
     /** Player clicked on the knight card to replace the thief.
      * @author Jeroen */
    @FXML public void activateKnight() {
-        // Check if it's player's turn
-        if(!App.getClientPlayer().isTurn()) {
-            ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card outside of your turn.");
-            return;
-        }
-        // Checks if there still are knight cards left
-        if(App.getCurrentGame().turnPlayerGetter().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
-            ScreenController.getInstance().showAlertPopup();
-            AlertPopUpController.getInstance().setAlertDescription("You don't have any knight cards left to activate.");
-            return;
-        }
+       // Check if it's player's turn
+       if(App.getCurrentGame().getTradeStatus().equals("pending")) {
+           ScreenController.getInstance().showAlertPopup();
+           AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card when your trade offer is still pending.");
+           return;
+       }
+       if(!App.getClientPlayer().isTurn()) {
+           ScreenController.getInstance().showAlertPopup();
+           AlertPopUpController.getInstance().setAlertDescription("You can't activate a knight card outside of your turn.");
+           return;
+       }
+       // Checks if there still are knight cards left
+       if(App.getCurrentGame().turnPlayerGetter().getPlayerInventory().getCards()[5] <= 0) {  // 5-knight
+           ScreenController.getInstance().showAlertPopup();
+           AlertPopUpController.getInstance().setAlertDescription("You don't have any knight cards left to activate.");
+           return;
+       }
 
-        App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", -1);
-        StockController.getInstance().updateResources();
-        removeCardAnimation(animationKnightCard);
+       App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", -1);
+       StockController.getInstance().updateResources();
+       removeCardAnimation(animationKnightCard);
+       GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
 
-        GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
-
-        logController.logKnightEvent();
-        Sound.playSword();
+       logController.logKnightEvent();
+       Sound.playSword();
     }
 
     @Override
@@ -195,14 +252,14 @@ public class StockController implements Initializable, Observable {
     }
 
     /** Shows details about the knight card when the knight card is hovered */
-     @FXML public void showKnightDetails() {
+    @FXML public void showKnightDetails() {
         ScreenController.getInstance().showKnightPopup();
     }
     @FXML public void hideKnightDetails() {
         ScreenController.getInstance().hideKnightPopup();
     }
 
-    /** Assigns the animation cards to a resource */
+    // Assigns the animation cards to a resource
     private void initializeAnimationCardMap() {
         animationCardForResource = new HashMap<>() {{
             put("wood", animationWood);

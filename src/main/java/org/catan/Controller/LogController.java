@@ -114,9 +114,9 @@ public class LogController implements Initializable, Observable {
      */
     public void logReceiveEvent(ArrayList<String> receivedCards) {
         try {
-            Log log = new Log("receive", player);
-            for (int i = 0; i < receivedCards.size(); i++) {
-                log.addImgPath(receivedCards.get(i));
+            Log log = new Log("receive", App.getClientPlayer().getName());
+            for (String receivedCard : receivedCards) {
+                log.addImgPath(receivedCard);
             }
             addImgLogToLogsPane(log);
             storeLog(log);
@@ -136,13 +136,23 @@ public class LogController implements Initializable, Observable {
         storeLog(log);
     }
 
+        /**
+         * Add a Player traded with other player event log to the logs box and store it
+         * @author Werner
+         */
+    public void logTradeSentEvent() {
+        Log log = new Log("tradesent", player);
+        addTxtLogToLogsPane(log);
+        storeLog(log);
+    }
+
     /**
-     * Add a Player traded with other player event log to the logs box and store it
+     * Add a trade succeeded log the logs box and store it
+     * @param senderName
      * @author Werner
-     * @param opponent
      */
-    public void logTradeEvent(Player opponent) {
-        Log log = new Log("trade", player, opponent.getName());
+    public void logTradeSucceededEvent(String senderName) {
+        Log log = new Log("tradesucceeded", player, senderName);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
@@ -292,21 +302,20 @@ public class LogController implements Initializable, Observable {
      */
     @Override
     public void update(Game game) {
-        int oldLogsSize = logs.getLogs().size();
-        if (game.getLogs().size() > logs.getLogs().size()) {
+        int oldLogSize = logs.getLogs().size();
+        if (game.getLogs().size() > oldLogSize) {
             for (int i = logs.getLogs().size(); i < game.getLogs().size(); i++) {
                 if (game.getLogs().get(i).getLogType().equals("txt")) {
                     addTxtLogToLogsPane(game.getLogs().get(i));
                 }
                 if (game.getLogs().get(i).getLogType().equals("img")) {
-                    System.out.println(game.getLogs().get(i).getEventType());
                     addImgLogToLogsPane(game.getLogs().get(i));
                 }
                 logs.addLog(game.getLogs().get(i));
 
             }
-            App.getCurrentGame().setLogs(logs.getLogs());
-            checkForResourceLogs(game, oldLogsSize);
+            checkForResourceLogs(game, oldLogSize);
+            App.getCurrentGame().setLogs(game.getLogs());
         }
     }
 
@@ -314,7 +323,6 @@ public class LogController implements Initializable, Observable {
         for (int i = oldLogsSize; i < game.getLogs().size(); i++) {
             if (game.getLogs().get(i).getLogType().equals("img")) {
                 if (game.getLogs().get(i).getEventType().equals("roll")) {
-                    System.out.println("Start resource update");
                     ResourcesController.getInstance().updateByLog(game.getLogs().get(i));
                 }
             }

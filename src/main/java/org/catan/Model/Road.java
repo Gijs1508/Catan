@@ -2,6 +2,11 @@ package org.catan.Model;
 
 import java.util.Objects;
 
+/**
+ * This model is the road
+ * @author Jan
+ */
+
 public class Road {
     private double x;
     private double y;
@@ -51,6 +56,10 @@ public class Road {
     }
 
 
+    /**
+     * This is necessary to use the equals for the roads
+     * @author Jan
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

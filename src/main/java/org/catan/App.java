@@ -2,26 +2,16 @@ package org.catan;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.catan.Controller.*;
+import org.catan.Controller.StockController;
 import org.catan.Model.*;
-import org.catan.logic.CreateTestGame;
-import org.catan.logic.DatabaseConnector;
 import org.catan.Model.Player;
-import org.catan.Model.TurnManager;
 import org.catan.logic.DocumentListener;
-import org.catan.logic.GameDataPrinter;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 import java.io.IOException;
 import java.util.Random;
@@ -42,7 +32,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Sound.initializeSounds();
-        clientPlayer = new Player("Sabrina");
+        clientPlayer = new Player("");
         scene = new Scene(loadFXML("Views/mainView"));
 //        MainController.getInstance().playAnimation();
 
