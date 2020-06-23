@@ -194,10 +194,13 @@ public class BuildSettlementController implements Observable {
     // Removes everything that has a duplicate and returns the unique
     private ArrayList<Village> removeDuplicatesCompletely(ArrayList<Village> array, ArrayList<Village> array2, int useless) {
         ArrayList<Village> arrayFixed = new ArrayList<>();
-        for (Village village : array) {
-            if (!array2.contains(village)) {
-                arrayFixed.add(village);
+        for (int i = 0; i < array2.size(); i++) {
+            if (array.get(i).isUpgraded() != array2.get(i).isUpgraded()) {
+                arrayFixed.add(array.get(i));
             }
+        }
+        for (int i = array2.size(); i < array.size(); i++) {
+            arrayFixed.add(array.get(i));
         }
         return arrayFixed;
     }
