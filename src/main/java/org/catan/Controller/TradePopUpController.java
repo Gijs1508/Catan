@@ -163,7 +163,7 @@ public class TradePopUpController implements Initializable, Observable {
 
             screenController.hideTradePopup();
 
-//            LogController.getInstance().logTradeSucceededEvent(senderName);
+            LogController.getInstance().logTradeSucceededEvent(senderName);
         }
     }
 

@@ -225,7 +225,7 @@ public class TradeController implements Initializable, Observable {
             tradeOffers.add(trade);
             App.getCurrentGame().setTradeOffers(tradeOffers);
             App.getCurrentGame().setTradeStatus("pending");
-//            LogController.getInstance().logTradeSentEvent();
+            LogController.getInstance().logTradeSentEvent();
             resetTrade();
         }
 
