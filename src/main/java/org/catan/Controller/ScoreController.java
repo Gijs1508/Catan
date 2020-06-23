@@ -74,10 +74,6 @@ public class ScoreController implements Initializable, Observable {
         initializeColorToScore();
         scoreController = this;
 
-        for(Player player : App.getCurrentGame().getPlayers()){
-            System.out.println(player.getName());
-        }
-
         switch(App.getCurrentGame().getPlayers().size()){
             case 1:
                 setPlayer1name(App.getCurrentGame().getPlayers().get(0).getName());
