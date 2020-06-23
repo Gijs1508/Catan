@@ -9,6 +9,13 @@ import org.catan.App;
 import org.catan.Model.*;
 import org.catan.interfaces.Observable;
 
+/**
+ * Handles parts of the thief's communication with the board.
+ * Allows stealing from opponents.
+ *
+ * @author Jeroen
+ */
+
 public class ThiefController implements Initializable, Observable {
     private static ThiefController thiefController;
 
@@ -19,13 +26,9 @@ public class ThiefController implements Initializable, Observable {
         return thiefController;
     }
 
-    public void checkThiefPosition(){
-        App.getClientPlayer().isTurn();
-    }
-
     /** Converts String circleID ("Tilenr") to an int tileID (nr)
      * @param circleID the id of the tile the thief was moved to, but in String format
-     * @return int of cicleID */
+     * @return int of circleID */
     public int convertStringIDtoIntID(String circleID){
         circleID = circleID.replaceAll("[^\\d.]", ""); //Cleaning tile string to only a number string
         int tileID;
@@ -40,7 +43,6 @@ public class ThiefController implements Initializable, Observable {
 
     /** Steals from an opponent if the robber has been moved to a tile with settlements to steal from.
      * @param tileID the id of the tile the thief was moved to
-     * @throws IOException
      * @author Jeroen */
     public void stealFromOpponent(int tileID) throws IOException {
         ArrayList<Player> opponents = findOpponentsOnTile(tileID);
@@ -56,10 +58,7 @@ public class ThiefController implements Initializable, Observable {
         App.getClientPlayer().stealFromVictim(victim);
     }
 
-    /** Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
-     * @param tileID the id of the tile the thief was moved to
-     * @return arrayList with the opponents as Player objects
-     * @author Jeroen */
+    // Finds what opponents are potential victims for stealing by looking at the settlements that border the tileID's tile.
     private ArrayList<Player> findOpponentsOnTile(int tileID) {
         Map<String, Integer> colorToCount = new HashMap<>();
         ArrayList<Player> opponents = new ArrayList<>();
