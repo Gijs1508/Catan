@@ -3,12 +3,9 @@ package org.catan.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.catan.App;
 import org.catan.Model.Inventory;
-import org.catan.Model.Player;
 import org.catan.Model.Sound;
 import org.catan.logic.DatabaseConnector;
 
@@ -90,46 +87,41 @@ public class HandInController implements Initializable {
 
     /**
      * This method raises the wheat counter
-     * @param mouseEvent button clicked
      * @author Kaz
      */
-    public void raiseWheat(MouseEvent mouseEvent) {
+    public void raiseWheat() {
         giveResource(giveWheat, 4);
     }
 
     /**
      * This method raises the wood counter
-     * @param mouseEvent button clicked
      * @author Kaz
      */
-    public void raiseWood(MouseEvent mouseEvent) {
+    public void raiseWood() {
         giveResource(giveWood, 0);
     }
 
     /**
      * This method raises the brick counter
-     * @param mouseEvent button clicked
      * @author Kaz
      */
-    public void raiseBrick(MouseEvent mouseEvent) {
+    public void raiseBrick() {
         giveResource(giveBrick, 1);
     }
 
     /**
      * This method raises the wool counter
-     * @param mouseEvent button clicked
      * @author Kaz
      */
-    public void raiseWool(MouseEvent mouseEvent) {
+    public void raiseWool() {
         giveResource(giveWool, 3);
     }
 
     /**
      * This method raises the ore counter
-     * @param mouseEvent button clicked
      * @author Kaz
      */
-    public void raiseOre(MouseEvent mouseEvent) {
+    public void raiseOre() {
         giveResource(giveOre, 2);
     }
 

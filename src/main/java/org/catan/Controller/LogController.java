@@ -19,28 +19,44 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /** Logs all events that happen in the game, so players get notified of those events.
+ *
  * @author Jeroen
  */
-
 public class LogController implements Initializable, Observable {
     @FXML private VBox logsBox;
     @FXML private ScrollPane scrollPane;
-
     private Logs logs = new Logs();
     private static String player;
-    private static String opponent;
 
     private static LogController logController;
-
 
     public LogController() {
         player = App.getClientPlayer().getName();
     }
 
-    @Override // Scroll to bottom with each update
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D));
+    /** Initializes the LogController */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+        logsBox.heightProperty().addListener(observable -> scrollPane.setVvalue(1D)); // Scroll to bottom with each update
         logController = this;
+    }
+
+    /** Updates the logs for all players */
+    @Override public void update(Game game) {
+        int oldLogSize = logs.getLogs().size();
+        if (game.getLogs().size() > oldLogSize) {
+            for (int i = logs.getLogs().size(); i < game.getLogs().size(); i++) {
+                if (game.getLogs().get(i).getLogType().equals("txt")) {
+                    addTxtLogToLogsPane(game.getLogs().get(i));
+                }
+                if (game.getLogs().get(i).getLogType().equals("img")) {
+                    addImgLogToLogsPane(game.getLogs().get(i));
+                }
+                logs.addLog(game.getLogs().get(i));
+
+            }
+            checkForResourceLogs(game, oldLogSize);
+            App.getCurrentGame().setLogs(game.getLogs());
+        }
     }
 
     private void addToLogsBox(LogPane logPane) { // Add a new LogPane to the LogsBox
@@ -64,10 +80,9 @@ public class LogController implements Initializable, Observable {
         addImagesToLogPane(logPane, log.getImgPaths());
     }
 
-    public void update() {
-    }
-
-
+    /** Logs the event when a player throws the die.
+     * @param dice1 String value of first dice result
+     * @param dice2 String value of second dice result */
     public void logRollEvent(String dice1, String dice2) {
         Log log = new Log("roll", player);
         log.addImgPath(dice1);
@@ -76,6 +91,8 @@ public class LogController implements Initializable, Observable {
         storeLog(log);
     }
 
+    /** Logs the event when a player receives a resource card.
+     * @param receivedCards The cards (String) that are received */
     public void logReceiveEvent(ArrayList<String> receivedCards) {
         try {
             Log log = new Log("receive", App.getClientPlayer().getName());
@@ -89,78 +106,86 @@ public class LogController implements Initializable, Observable {
         }
     }
 
+    /** Logs the event when a card is stolen from another player.
+     * @param opponent The player that was stolen from */
     public void logStealEvent(Player opponent) {
         Log log = new Log("steal", player, opponent.getName());
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the event when a trade is sent. */
     public void logTradeSentEvent() {
         Log log = new Log("tradesent", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the event when a trade has succeeded.
+     * @param senderName The name of the sender of the trade offer */
     public void logTradeSucceededEvent(String senderName) {
         Log log = new Log("tradesucceeded", player, senderName);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the start of a player's turn. */
     public void logStartTurnEvent() {
         Log log = new Log("startturn", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the end of a player's turn. */
     public void logEndTurnEvent() {
         Log log = new Log("endturn", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the event where a player upgrades a settlement to a city. */
     public void logUpgradeEvent() {
         Log log = new Log("upgrade", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the event where a road is built. */
     public void logRoadEvent() {
         Log log = new Log("road", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the event where a settlement is built. */
     public void logSettlementEvent() {
         Log log = new Log("settlement", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the event where the robber is moved. */
     public void logRobberEvent() {
         Log log = new Log("robber", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the event where the game is won. */
     public void logWinEvent() {
         Log log = new Log("win", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
-    public void logPointEvent() {
-        Log log = new Log("point", player);
-        addTxtLogToLogsPane(log);
-        storeLog(log);
-    }
-
+    /** Logs the event where a knight is activated. */
     public void logKnightEvent() {
         Log log = new Log("knight", player);
         addTxtLogToLogsPane(log);
         storeLog(log);
     }
 
+    /** Logs the event where a development card is bought. */
     public void logDevelopmentCardEvent() {
         Log log = new Log("development", player);
         addTxtLogToLogsPane(log);
@@ -179,34 +204,6 @@ public class LogController implements Initializable, Observable {
             logController = new LogController();
         }
         return logController;
-    }
-
-    public static void setPlayer(){
-        player = App.getCurrentGame().turnPlayerGetter().getName();
-    }
-
-    public static void setOpponent(Player opponentPlayer){
-        opponent = opponentPlayer.getName();
-        //TODO Opponent moet bij alle acties waar de opponent in voorkomt aangegeven worden met behulp van deze methode
-    }
-
-    @Override
-    public void update(Game game) {
-        int oldLogSize = logs.getLogs().size();
-        if (game.getLogs().size() > oldLogSize) {
-            for (int i = logs.getLogs().size(); i < game.getLogs().size(); i++) {
-                if (game.getLogs().get(i).getLogType().equals("txt")) {
-                    addTxtLogToLogsPane(game.getLogs().get(i));
-                }
-                if (game.getLogs().get(i).getLogType().equals("img")) {
-                    addImgLogToLogsPane(game.getLogs().get(i));
-                }
-                logs.addLog(game.getLogs().get(i));
-
-            }
-            checkForResourceLogs(game, oldLogSize);
-            App.getCurrentGame().setLogs(game.getLogs());
-        }
     }
 
     private void checkForResourceLogs(Game game, int oldLogsSize) {

@@ -42,8 +42,8 @@ public class JoinController implements Observable, Initializable {
         App.setRoot("./views/mainView");
     }
 
-    @FXML
-    private void handleButtonJoinAction() throws IOException{
+    // Player clicked the join button
+    @FXML private void handleButtonJoinAction() throws IOException{
         Sound.playClick();
         this.error_text.setVisible(false);
 
@@ -95,10 +95,6 @@ public class JoinController implements Observable, Initializable {
             case 3:
                 player.setColor("yellow");
         }
-    }
-
-    private void setGameCode(Long gameCode) {
-        this.gameCode = gameCode;
     }
 
     @FXML

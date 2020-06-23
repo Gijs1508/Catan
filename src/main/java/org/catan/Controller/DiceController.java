@@ -69,7 +69,6 @@ public class DiceController implements Observable {
                         }
                     }
                     Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
-                    Integer total = entry.getKey();
                     ArrayList<String> values = entry.getValue();
                     dice1_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(0) + ".png"))));
                     dice2_img.setImage(new Image(String.valueOf(App.class.getResource("assets/img/die/die" + values.get(1) + ".png"))));
