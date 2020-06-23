@@ -3,10 +3,8 @@ package org.catan.Controller;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.catan.App;
@@ -33,7 +31,7 @@ public class MainController implements Observable, Initializable {
     @FXML private VBox buttons;
     @FXML private Pane alertPopup;
 
-    private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
+    private LobbyController lobbyController = LobbyController.getInstance();
     private static MainController mainController;
 
     private static String playerName = "";

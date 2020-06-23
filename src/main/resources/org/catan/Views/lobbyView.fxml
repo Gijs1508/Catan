@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e7e6e9;" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LobbySchermController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e7e6e9;" stylesheets="@../assets/style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.LobbyController">
    <children>
       <ImageView fitHeight="810.0" fitWidth="1200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>

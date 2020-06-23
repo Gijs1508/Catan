@@ -2,14 +2,11 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.Chat;
@@ -29,7 +26,7 @@ import java.util.ResourceBundle;
  * Handles the interactivity and functionality of the lobby screen.
  */
 
-public class LobbySchermController implements Initializable, Observable {
+public class LobbyController implements Initializable, Observable {
     @FXML Pane player1pane;
     @FXML Pane player2pane;
     @FXML Pane player3pane;
@@ -43,7 +40,7 @@ public class LobbySchermController implements Initializable, Observable {
     @FXML private Pane alertPopup;
 
     private Long gameCode;
-    private static LobbySchermController lobbySchermController = new LobbySchermController();
+    private static LobbyController lobbyController = new LobbyController();
     private AnchorPane alertPopupView;
 
 
@@ -62,8 +59,8 @@ public class LobbySchermController implements Initializable, Observable {
         }
         alertPopup.getChildren().setAll(alertPopupView);
 
-        if (lobbySchermController.getGameCode() != null) {
-            Game game = dbConnector.getGameById(lobbySchermController.getGameCode());
+        if (lobbyController.getGameCode() != null) {
+            Game game = dbConnector.getGameById(lobbyController.getGameCode());
             game_code.setText("Game code: " + game.getCode());
             setupGamePlayers(game.getPlayers());
         } else {
@@ -79,7 +76,7 @@ public class LobbySchermController implements Initializable, Observable {
 
         initializePopup(alertPopup);
 
-        lobbySchermController = this;
+        lobbyController = this;
     }
 
     // Starts the game
@@ -241,10 +238,10 @@ public class LobbySchermController implements Initializable, Observable {
         return this.gameCode;
     }
 
-    public static LobbySchermController getInstance() {
-        if (lobbySchermController == null) {
-            lobbySchermController = new LobbySchermController();
+    public static LobbyController getInstance() {
+        if (lobbyController == null) {
+            lobbyController = new LobbyController();
         }
-        return lobbySchermController;
+        return lobbyController;
     }
 }
