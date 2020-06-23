@@ -228,7 +228,7 @@ public class StockController implements Initializable, Observable {
        App.getCurrentGame().turnPlayerGetter().getPlayerInventory().changeCards("knight", -1);
        StockController.getInstance().updateResources();
        removeCardAnimation(animationKnightCard);
-       GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
+       BoardController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
 
        logController.logKnightEvent();
        Sound.playSword();

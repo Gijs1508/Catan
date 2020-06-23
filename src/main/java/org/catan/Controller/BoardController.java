@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class GameSchermController implements Initializable, Observable {
+public class BoardController implements Initializable, Observable {
     // Tiles
     @FXML private Polygon tile1; @FXML private Polygon tile2; @FXML private Polygon tile3;
     @FXML private Polygon tile4; @FXML private Polygon tile5; @FXML private Polygon tile6;
@@ -146,13 +146,13 @@ public class GameSchermController implements Initializable, Observable {
 
     private LogController logController = LogController.getInstance();
     private BuildSettlementController build;
-    private static GameSchermController gameSchermController;
+    private static BoardController boardController;
 
-    public static GameSchermController getInstance(){
-        if(gameSchermController == null){
-            gameSchermController = new GameSchermController();
+    public static BoardController getInstance(){
+        if(boardController == null){
+            boardController = new BoardController();
         }
-        return gameSchermController;
+        return boardController;
     }
 
     /** Initializes the game */
@@ -167,7 +167,7 @@ public class GameSchermController implements Initializable, Observable {
         disableButtons();
         initializeHarbors();
 
-        gameSchermController = this;
+        boardController = this;
     }
 
     /** Updates the game */

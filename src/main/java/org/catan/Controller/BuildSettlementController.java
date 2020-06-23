@@ -1,6 +1,5 @@
 package org.catan.Controller;
 
-import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import org.catan.App;
 import org.catan.Helper.MathBuildSettlement;
@@ -25,7 +24,7 @@ public class BuildSettlementController implements Observable {
     private MathBuildSettlement math;
     private PolygonConnectedNodes poly;
 
-    private GameSchermController gameSchermController = GameSchermController.getInstance();
+    private BoardController boardController = BoardController.getInstance();
     private static BuildSettlementController buildSettlementController;
 
     public BuildSettlementController(ArrayList<Circle> vertexNodeList, ArrayList<Circle> roadSpotNodeList,
@@ -285,7 +284,7 @@ public class BuildSettlementController implements Observable {
      */
     public Village buildVillage(Circle node) {
         // If the node borders a harbor
-        if(GameSchermController.getInstance().getAllHarborVertices().contains(node)) {
+        if(BoardController.getInstance().getAllHarborVertices().contains(node)) {
             builtAtHarbor(node);
         }
 
@@ -303,13 +302,13 @@ public class BuildSettlementController implements Observable {
         int harborNum = 0;
 
         // Finds what harborNum belongs to the vertex a settlement was placed on
-        for (Map.Entry<Integer, ArrayList<Circle>> entry : GameSchermController.getInstance().getHarborNumToVertices().entrySet()) {
+        for (Map.Entry<Integer, ArrayList<Circle>> entry : BoardController.getInstance().getHarborNumToVertices().entrySet()) {
             if(entry.getValue().contains(node)) {
                 harborNum = entry.getKey();
             }
         }
         // Finds what harbor belongs to that harborNum and updates the player's costs accordingly
-        for (Harbor harbor : GameSchermController.getInstance().getHarbors()) {
+        for (Harbor harbor : BoardController.getInstance().getHarbors()) {
             if(harbor.getHarborNum() == harborNum) {
                 App.getCurrentGame().turnPlayerGetter().updateResourceCosts(harbor);
             }
@@ -325,7 +324,7 @@ public class BuildSettlementController implements Observable {
     public Village buildUpgrade(Circle node) {
         Village village = null;
         int[] reqResources = {0, 0, 3, 0, 2, 0};
-        if(gameSchermController.canBuildObject(reqResources) && !App.getCurrentGame().getTradeStatus().equals("pending")){
+        if(boardController.canBuildObject(reqResources) && !App.getCurrentGame().getTradeStatus().equals("pending")){
             for (Village buildVillage : buildVillages) {
                 if (node.getLayoutX() == buildVillage.getX() && node.getLayoutY() == buildVillage.getY()) {
                     buildVillage.setUpgraded(true);
@@ -427,7 +426,7 @@ public class BuildSettlementController implements Observable {
     private void updateRoads(ArrayList<Road> roads) {
         if (!roads.equals(buildRoads)) {
             ArrayList<Road> changedRoads = new ArrayList<>(removeDuplicatesCompletely(roads, buildRoads));
-            GameSchermController.getInstance().updateRoads(changedRoads);
+            BoardController.getInstance().updateRoads(changedRoads);
             buildRoads.addAll(changedRoads);
             App.getCurrentGame().getBoard().setRoads(buildRoads);
         }
@@ -450,9 +449,9 @@ public class BuildSettlementController implements Observable {
             }
 
             if (!villages2.isEmpty())
-                GameSchermController.getInstance().updateVillage(villages2);
+                BoardController.getInstance().updateVillage(villages2);
             if (!cities.isEmpty())
-                GameSchermController.getInstance().updateCity(cities);
+                BoardController.getInstance().updateCity(cities);
 
             App.getCurrentGame().getBoard().setSettlements(buildVillages);
         }

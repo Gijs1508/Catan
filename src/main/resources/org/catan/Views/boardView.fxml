@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.effect.DropShadow?>
 
-<AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.GameSchermController">
+<AnchorPane id="boardPane" prefHeight="590.0" prefWidth="770.0" style="-fx-background-color: #3498DB;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catan.Controller.BoardController">
    <children>
       <ImageView fitHeight="590.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true">
          <image>

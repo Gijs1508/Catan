@@ -77,7 +77,7 @@ public class DocumentListener {
             case "going":
                 if (App.getCurrentGame().getStatus().equals("going")) {
                     BuildSettlementController.getInstance().update(game);
-                    GameSchermController.getInstance().update(game);
+                    BoardController.getInstance().update(game);
                     ThiefController.getInstance().update(game);
                     LogController.getInstance().update(game);
                     StockController.getInstance().update(game);

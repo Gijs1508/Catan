@@ -124,7 +124,7 @@ public class ScreenController implements Initializable, Observable {
 
     // Buttons are disabled in start phase
     private void initializeButtonStates() {
-        GameSchermController.getInstance().disableButtons();
+        BoardController.getInstance().disableButtons();
         DiceController.getInstance().disableButton();
         TradeController.getInstance().disableButtons();
     }
@@ -133,11 +133,11 @@ public class ScreenController implements Initializable, Observable {
     private void handleButtonStates() {
         // Disable buttons if it's not client player's turn
         if (App.getCurrentGame().turnPlayerGetter().getIdentifier() != App.getClientPlayer().getIdentifier()) {
-            GameSchermController.getInstance().disableButtons();
+            BoardController.getInstance().disableButtons();
             DiceController.getInstance().disableButton();
             TradeController.getInstance().disableButtons();
         } else { // It is player's turn
-            GameSchermController.getInstance().enableButtons();
+            BoardController.getInstance().enableButtons();
             DiceController.getInstance().enableButton();
             TradeController.getInstance().enableButtons();
         }

@@ -31,14 +31,14 @@ public class StartPhaseController implements Observable {
     public void checkStartPhase() {
         if (startPhaseCount == 2) {
             startPhaseActive = false;
-            GameSchermController.getInstance().enableButtons();
+            BoardController.getInstance().enableButtons();
         }
     }
 
     public void activateBuildingStartPhase() {
         if (startPhaseActive) {
             startPhaseHappened = true;
-            GameSchermController.getInstance().villageStartPhase();
+            BoardController.getInstance().villageStartPhase();
         }
     }
 

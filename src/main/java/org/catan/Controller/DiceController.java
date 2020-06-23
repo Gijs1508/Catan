@@ -64,7 +64,7 @@ public class DiceController implements Observable {
                             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
                             App.getCurrentGame().setSevenThrown(false); // Another update necessary to ensure sevenThrown won't stay true
                             DatabaseConnector.getInstance().updateGame(App.getCurrentGame());
-                            GameSchermController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
+                            BoardController.getInstance().highlightTiles(App.getCurrentGame().getBoard().getThief().getTile());
                         }
                     }
                     Map.Entry<Integer,ArrayList<String>> entry = diceResult.entrySet().iterator().next();
