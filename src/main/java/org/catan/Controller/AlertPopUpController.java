@@ -30,8 +30,8 @@ public class AlertPopUpController {
         if(controller.toString().equals(MainController.getInstance().getClass().toString())){
             MainController.getInstance().hideAlertPopup(); // Popup is active in the main (main menu) controller
         }
-        else if(controller.toString().equals(LobbySchermController.getInstance().getClass().toString())){
-            LobbySchermController.getInstance().hideAlertPopup(); // Popup is active in the lobby controller
+        else if(controller.toString().equals(LobbyController.getInstance().getClass().toString())){
+            LobbyController.getInstance().hideAlertPopup(); // Popup is active in the lobby controller
         } else {
             screenController.hideAlertPopup(); // Popup is active in the screen (in-game) controller
         }

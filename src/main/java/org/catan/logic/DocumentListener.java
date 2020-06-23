@@ -6,15 +6,11 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.EventListener;
 import com.google.cloud.firestore.FirestoreException;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.layout.Pane;
 import org.catan.App;
 import org.catan.Controller.*;
 import org.catan.Model.Chat;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
-import org.w3c.dom.Document;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -76,7 +72,7 @@ public class DocumentListener {
 
         switch (game.getStatus()) {
             case "open":
-                LobbySchermController.getInstance().update(game);
+                LobbyController.getInstance().update(game);
                 break;
             case "going":
                 if (App.getCurrentGame().getStatus().equals("going")) {
@@ -96,7 +92,7 @@ public class DocumentListener {
                 if (App.getCurrentGame().getStatus().equals("open")) {
                     DocumentListener chatListener = new DocumentListener("chats", String.valueOf(game.getCode()));
                     App.setChatListener(chatListener);
-                    LobbySchermController.getInstance().updateScreenRoot();
+                    LobbyController.getInstance().updateScreenRoot();
                 }
                 break;
         }

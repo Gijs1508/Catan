@@ -1,15 +1,10 @@
 package org.catan.Controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.Game;
 import org.catan.Model.Player;
@@ -32,7 +27,7 @@ public class JoinController implements Observable, Initializable {
     @FXML private Label error_text;
 
     private Long gameCode;
-    private LobbySchermController lobbySchermController = LobbySchermController.getInstance();
+    private LobbyController lobbyController = LobbyController.getInstance();
     @FXML private ImageView musicBtn;
 
     // Routes
@@ -59,7 +54,7 @@ public class JoinController implements Observable, Initializable {
             if (game.getCode().equals(code)) {
                 if (game.getStatus().equals("open")) {
                     if (game.getPlayers().size() < 4) {
-                        LobbySchermController.getInstance().setGameCode(code);
+                        this.lobbyController.setGameCode(code);
                         setPlayerColor(game.getPlayers().size(), App.getClientPlayer());
                         App.getClientPlayer().setHost(false);
                         App.setCurrentGame(game);

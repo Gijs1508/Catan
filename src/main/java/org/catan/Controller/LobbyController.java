@@ -2,14 +2,11 @@ package org.catan.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.catan.App;
 import org.catan.Model.Chat;
@@ -25,19 +22,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Handles the interactivity and functionality of the lobby screen.
+ */
 
-public class LobbySchermController implements Initializable, Observable {
-
-    private Long gameCode;
-    private static LobbySchermController lobbySchermController = new LobbySchermController();
-    private int aantalSpelers;
-    private int minimumAantalSpelers;
-    private Player player1;
-    private Player player2;
-    private Player player3;
-    private Player player4;
-
-    @FXML private Text waitingForHost;
+public class LobbyController implements Initializable, Observable {
     @FXML Pane player1pane;
     @FXML Pane player2pane;
     @FXML Pane player3pane;
@@ -48,13 +37,15 @@ public class LobbySchermController implements Initializable, Observable {
     @FXML Text player4name;
     @FXML Text game_code;
     @FXML Button startGameBtn;
-    @FXML private Button leaveGameBtn;
     @FXML private Pane alertPopup;
-    @FXML private Text host;
+
+    private Long gameCode;
+    private static LobbyController lobbyController = new LobbyController();
     private AnchorPane alertPopupView;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    /** Initializes the lobby screen with the information that exists. */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         player1pane.setVisible(false);
         player2pane.setVisible(false);
         player3pane.setVisible(false);
@@ -68,8 +59,8 @@ public class LobbySchermController implements Initializable, Observable {
         }
         alertPopup.getChildren().setAll(alertPopupView);
 
-        if (lobbySchermController.getGameCode() != null) {
-            Game game = dbConnector.getGameById(lobbySchermController.getGameCode());
+        if (lobbyController.getGameCode() != null) {
+            Game game = dbConnector.getGameById(lobbyController.getGameCode());
             game_code.setText("Game code: " + game.getCode());
             setupGamePlayers(game.getPlayers());
         } else {
@@ -85,11 +76,11 @@ public class LobbySchermController implements Initializable, Observable {
 
         initializePopup(alertPopup);
 
-        lobbySchermController = this;
+        lobbyController = this;
     }
 
-    @FXML
-    private void startGame() throws IOException {
+    // Starts the game
+    @FXML private void startGame() throws IOException {
         Sound.playClick();
 
         Game game = App.getCurrentGame();
@@ -104,12 +95,59 @@ public class LobbySchermController implements Initializable, Observable {
         System.out.println(game.getCode());
     }
 
+    /** Takes the player to the game screen */
     public void updateScreenRoot() {
         try {
             App.setRoot("Views/screenView");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void leaveGame() throws IOException {
+        Sound.playClick();
+
+        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
+        Game game = dbConnector.getGameById(App.getCurrentGame().getCode());
+        game.removePlayer(App.getClientPlayer());
+        App.resetListeners();
+        updatePlayers(game);
+        dbConnector.updateGame(game);
+        App.setStageHeight(718);
+        App.setRoot("Views/mainView");
+    }
+
+    /** Updates the game. Enables/disables the start buttons for the host according to the player count. */
+    @Override public void update(Game game) {
+        setupGamePlayers(game.getPlayers());
+        if (game.getPlayers().size() > 1 && App.getClientPlayer().isHost()) {
+            startGameBtn.setDisable(false);
+        } else {
+            startGameBtn.setDisable(true);
+        }
+    }
+
+    // Update the game with the players that joined the lobby
+    private void updatePlayers(Game game) {
+        for (int i = 0; i < game.getPlayers().size(); i++) {
+            if (i == 0) {
+                game.getPlayers().get(i).setHost(true);
+            }
+            if (game.getPlayers().get(i).getIdentifier() == App.getClientPlayer().getIdentifier()) {
+                App.setClientPlayer(game.getPlayers().get(i));
+            }
+            updatePlayerColors(i, game.getPlayers());
+        }
+    }
+
+    // Player clicked on the code, to copy it to their clipboard
+    @FXML private void textClicked() {
+        Clipboard cb = Clipboard.getSystemClipboard();
+        ClipboardContent cbc = new ClipboardContent();
+        cbc.putString(game_code.getText().replace("Game code: ", ""));
+        cb.setContent(cbc);
+        createAlert();
     }
 
     private void setupGamePlayers(ArrayList<Player> players) {
@@ -151,74 +189,7 @@ public class LobbySchermController implements Initializable, Observable {
         }
     }
 
-    @FXML
-    private void leaveGame() throws IOException {
-        Sound.playClick();
-
-        DatabaseConnector dbConnector = DatabaseConnector.getInstance();
-        Game game = dbConnector.getGameById(App.getCurrentGame().getCode());
-        game.removePlayer(App.getClientPlayer());
-        App.resetListeners();
-        updatePlayers(game);
-        dbConnector.updateGame(game);
-        //App.setStageSize(1200, 676);
-        App.setStageHeight(718);
-        App.setRoot("Views/mainView");
-    }
-
-    private void genoegAantalSpelers() {
-    }
-
-    private void startTimer() {
-    }
-
-    @Override
-    public void update(Game game) {
-        setupGamePlayers(game.getPlayers());
-        if (game.getPlayers().size() > 1 && App.getClientPlayer().isHost()) {
-            startGameBtn.setDisable(false);
-        } else {
-            startGameBtn.setDisable(true);
-        }
-    }
-
-    public static LobbySchermController getInstance() {
-        if (lobbySchermController == null) {
-            lobbySchermController = new LobbySchermController();
-        }
-        return lobbySchermController;
-    }
-
-    public void setGameCode(Long gameCode) {
-        this.gameCode = gameCode;
-    }
-
-    public Long getGameCode() {
-        return this.gameCode;
-    }
-
-    private void updatePlayers(Game game) {
-        for (int i = 0; i < game.getPlayers().size(); i++) {
-            if (i == 0) {
-                game.getPlayers().get(i).setHost(true);
-            }
-            if (game.getPlayers().get(i).getIdentifier() == App.getClientPlayer().getIdentifier()) {
-                App.setClientPlayer(game.getPlayers().get(i));
-            }
-            updatePlayerColors(i, game.getPlayers());
-        }
-    }
-
-
-    @FXML
-    private void textClicked() {
-        Clipboard cb = Clipboard.getSystemClipboard();
-        ClipboardContent cbc = new ClipboardContent();
-        cbc.putString(game_code.getText().replace("Game code: ", ""));
-        cb.setContent(cbc);
-        createAlert();
-    }
-
+    // Creates an alert
     private void createAlert() {
         showAlertPopup();
         AlertPopUpController.getInstance().setAlertTitle("Copied!");
@@ -226,6 +197,7 @@ public class LobbySchermController implements Initializable, Observable {
         AlertPopUpController.getInstance().setAlertDescription("Game code is copied to the clipboard.");
     }
 
+    // Updates the colors of the players
     private void updatePlayerColors(int i, ArrayList<Player> players) {
         switch (i) {
             case 0:
@@ -243,6 +215,14 @@ public class LobbySchermController implements Initializable, Observable {
         }
     }
 
+
+    // Makes sure popups are ready to show when needed
+    private void initializePopup(Pane popupPane) {
+        popupPane.setVisible(false);
+        popupPane.setOpacity(1);
+        popupPane.setStyle("-fx-background-color: none;");
+    }
+
     public void showAlertPopup() {
         alertPopup.setVisible(true);
     }
@@ -250,10 +230,18 @@ public class LobbySchermController implements Initializable, Observable {
         alertPopup.setVisible(false);
     }
 
-    // Makes sure popups are ready to show when needed
-    private void initializePopup(Pane popupPane) {
-        popupPane.setVisible(false);
-        popupPane.setOpacity(1);
-        popupPane.setStyle("-fx-background-color: none;");
+    public void setGameCode(Long gameCode) {
+        this.gameCode = gameCode;
+    }
+
+    public Long getGameCode() {
+        return this.gameCode;
+    }
+
+    public static LobbyController getInstance() {
+        if (lobbyController == null) {
+            lobbyController = new LobbyController();
+        }
+        return lobbyController;
     }
 }
