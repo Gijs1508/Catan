@@ -435,19 +435,24 @@ public class BuildSettlementController implements Observable {
 
     // Updates the settlements on the display and in the array
     private void updateSettlements(ArrayList<Village> villages) {
-        if (!villages.equals(buildVillages) && villages.size() >= buildVillages.size()) {
+//        if (!villages.equals(buildVillages) && villages.size() >= buildVillages.size()) {
+        if (villages.size() > buildVillages.size() || isNewCities(villages)) {
             System.out.println("This is the villages size: " + villages.size());
             System.out.println("This is the buildVillages size: " + buildVillages.size());
 
-
-            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(villages, buildVillages, 0));
+            ArrayList<Village> changedVillages = new ArrayList<>(removeDuplicatesCompletely(buildVillages, villages, 0));
             System.out.println("This is the changedVillages size: " + changedVillages.size());
+            System.out.println();
+            System.out.println("Changed villages printed");
             System.out.println("===");
             print(changedVillages);
             System.out.println("===");
+            System.out.println();
             ArrayList<Village> villages2 = new ArrayList<>(changedVillages);
             ArrayList<Village> cities = new ArrayList<>();
+            System.out.println("buildVillages gets changed villages added");
             buildVillages.addAll(changedVillages);
+            System.out.println("Build villages size after the adding:  " + buildVillages.size());
 
             for (Village village : changedVillages) {
                 if (village.isUpgraded()) {
@@ -463,6 +468,21 @@ public class BuildSettlementController implements Observable {
 
             App.getCurrentGame().getBoard().setSettlements(buildVillages);
         }
+    }
+
+    private boolean isNewCities(ArrayList<Village> villages) {
+        int newCount =0;
+        int oldCount=0;
+        for (Village village : villages) {
+            if (village.isUpgraded())
+                newCount++;
+        }
+        for (Village village : buildVillages) {
+            if (village.isUpgraded())
+                oldCount++;
+        }
+
+        return newCount>oldCount;
     }
 
     private void print(ArrayList<Village> villages) {
